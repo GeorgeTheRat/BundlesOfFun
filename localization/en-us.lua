@@ -10,13 +10,17 @@ return {
             j_bof_a_blueberry = {
                 name = "Blueberry",
                 text = {
-                    ""
+                    "Each {C:attention}card{} held in hand",
+                    "permanently gains {C:chips}+#1#{} Chip#<s>1#",
+                    "Decreases by {C:chips}-#2#{} Chip#<s>2#",
+                    "at end of round"
                 }
             },
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
                 text = {
-                    ""
+                    "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
+                    "Destroyed when {C:attention}Boss Blind{} defeated"
                 }
             },
             j_bof_a_durian = {

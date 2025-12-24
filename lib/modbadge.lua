@@ -1,8 +1,11 @@
 local badge_gradient = SMODS.Gradient{
     key = "badge_gradient",
     colours = {
-        HEX("9363bb"),
-        HEX("6376bb")
+        HEX("8B4A4A"),
+        HEX("4A6A8B"),
+        HEX("6B5A7A"),
+        HEX("A3744A"),
+        HEX("7A7A7A")
     }
 }
 
