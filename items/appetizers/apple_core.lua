@@ -19,5 +19,9 @@
 --         }
 --     end,
 --     calculate = function(self, card, context)
+
+--     end,
+--     in_pool = function(self, args)
+--         return false
 --     end
 -- }

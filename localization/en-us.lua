@@ -26,7 +26,9 @@ return {
             j_bof_a_durian = {
                 name = "Durian",
                 text = {
-                    ""
+                    "Sell this Joker",
+                    "card to fill {C:attention}consumable",
+                    "slots with {C:tarot}The Fool"
                 }
             },
             j_bof_a_eaten_apple = {

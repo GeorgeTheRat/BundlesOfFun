@@ -31,34 +31,14 @@ SMODS.Joker {
             }
         end
         if context.end_of_round and not context.game_over and context.main_eval and not context.blueprint then
-            if card.ability.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 then
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        play_sound("tarot1")
-                        card.T.r = -0.2
-                        card:juice_up(0.3, 0.4)
-                        card.states.drag.is = true
-                        card.children.center.pinch.x = true
-                        G.E_MANAGER:add_event(Event({
-                            trigger = "after",
-                            delay = 0.3,
-                            blockable = false,
-                            func = function()
-                                G.jokers:remove_card(card)
-                                card:remove()
-                                card = nil
-                                return true
-                            end,
-                        }))
-                        return true
-                    end,
-                }))
+            if card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 then
+                SMODS.destroy_cards(card, nil, nil, true)
                 return {
-                    message = localize("k_eaten"),
+                    message = localize("k_eaten_ex"),
                     colour = G.C.FILTER,
                 }
             else
-                card.ability.perma_bonus = card.ability.perma_bonus - card.ability.extra.perma_bonus_mod
+                card.ability.extra.perma_bonus = card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod
                 return {
                     message = "-" .. card.ability.extra.perma_bonus_mod .. " Chip" .. (card.ability.extra.perma_bonus_mod > 1 and "s" or ""),
                     colour = G.C.CHIPS
