@@ -1,0 +1,18 @@
+{
+  "id": "bundlesoffun",
+  "name": "Bundles of Fun",
+  "author": [
+    "George The Rat",
+    "Glitchkat10"
+  ],
+  "description": "",
+  "prefix": "bof",
+  "main_file": "main.lua",
+  "version": "1.0.0",
+  "priority": 0,
+  "badge_colour": "9363bb",
+  "badge_text_colour": "FFFFFF",
+  "dependencies": [
+    "Steamodded (>=1.0.0~BETA-0827c)"
+  ]
+}
