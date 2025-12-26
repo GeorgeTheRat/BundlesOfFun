@@ -5,7 +5,7 @@ SMODS.Joker {
         extra = {
             chips = 100,
             mult = 25,
-            xmult = 2.5
+            xmult = 3
         }
     },
     pos = { x = 5, y = 0 },
