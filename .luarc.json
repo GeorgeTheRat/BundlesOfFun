@@ -1,0 +1,24 @@
+{
+    "workspace.library": [
+        "/home/sylvi/Documents/projects/smods-bettercalc/lsp_def",
+        "/home/sylvi/Documents/balatro source",
+        "/home/sylvi/Documents/love2d lsp definitions"
+    ],
+
+    "diagnostics.disable": [
+        "undefined-global",
+        "lowercase-global",
+        "need-check-nil",
+        "duplicate-set-field",
+        "inject-field",
+        "undefined-field",
+        "unused-local"
+    ],
+    "diagnostics.severity": {
+        "unused-local": "Hint"
+    },
+"runtime.version": "LuaJIT",
+"type.weakUnionCheck": true,
+"type.weakNilCheck": true,
+"diagnostics.unusedLocalExclude": []
+}
