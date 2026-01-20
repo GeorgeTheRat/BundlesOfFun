@@ -22,26 +22,24 @@
      end,
      calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
-            SMODS.scale_card(card, {
-                ref_table = context.other_card,
-                ref_value = "perma_mult",
-                scalar_table = card.ability.extra,
-                scalar_value = "mult"
-            })
+            context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) + card.ability.extra.mult
+            return {
+                message = localize("k_upgrade_ex")
+            }
         end
 
         if context.end_of_round and context.main_eval then
-            SMODS.scale_card(card,{
-                ref_table = card.ability.extra,
-                ref_value = "mult",
-                scalar_value = "drop",
-                operation = "-"
-            })
+            card.ability.extra.mult = card.ability.extra.mult - 1
 
-            if card.ability.extra.mult <= 0 then
-                SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
-                card:set_ability("j_bof_a_apple_core") --Do we want instant core, or Cavendish logic?
-            end
+            return {
+                --message = nommed or something idk,
+                func = function ()
+                    if card.ability.extra.mult <= 0 then
+                        SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
+                        card:set_ability("j_bof_a_apple_core") --Do we want instant core, or Cavendish logic?
+                    end
+                end
+            }
         end
      end
  }

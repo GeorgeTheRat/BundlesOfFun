@@ -4,7 +4,10 @@ return {
             j_bof_a_apple = {
                 name = "Apple",
                 text = {
-                    ""
+                    "Each scored card",
+                    "gains {C:mult}+#1#{} permanent Mult",
+                    "Decreases by {C:attention}#2#{} at",
+                    "end of round"
                 }
             },
             j_bof_a_blueberry = {
@@ -31,10 +34,12 @@ return {
                     "slots with {C:tarot}The Fool"
                 }
             },
-            j_bof_a_eaten_apple = {
-                name = "Eaten Apple",
+            j_bof_a_apple_core = {
+                name = "Apple Core",
                 text = {
-                    ""
+                    "The next {C:attention}#1#{}",
+                    "cards grant {C:mult}+#2#{}",
+                    "Mult instead of scoring"
                 }
             },
             j_bof_a_grapes = {
