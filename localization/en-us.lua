@@ -19,8 +19,8 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_a_dragonfruit = {
-                name = "Dragonfruit",
+            j_bof_a_grapes = {
+                name = "Grapes",
                 text = {
                     "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
                     "Destroyed when {C:attention}Boss Blind{} defeated"
@@ -42,10 +42,13 @@ return {
                     "Mult instead of scoring"
                 }
             },
-            j_bof_a_grapes = {
-                name = "Grapes",
+            j_bof_a_dragonfruit = {
+                name = "Dragonfruit",
                 text = {
-                    ""
+                    "{C:attention}Copy{} all cards in",
+                    "next {C:blue}played{} hand,",
+                    "or {C:attention}destroy{} all cards",
+                    "in next {C:red}discarded{} hand"
                 }
             },
             j_bof_a_jelly_beans = {

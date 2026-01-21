@@ -3,63 +3,54 @@ SMODS.Joker {
     name = "Dragonfruit",
     config = {
         extra = {
-            chips = 100,
-            mult = 25,
-            xmult = 3
+            nommed = false
         }
     },
     pos = { x = 5, y = 0 },
-    cost = 6,
+    cost = 1,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.mult,
-                card.ability.extra.xmult
+
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
+        if context.before then
+            for i,v in ipairs(context.full_hand) do
+                local newcard = copy_card(v,nil, nil, true)
+                newcard:add_to_deck()
+                G.deck.config.card_limit = G.deck.config.card_limit + 1
+                table.insert(G.playing_cards, newcard)
+                G.hand:emplace(newcard)
+                newcard.states.visible = nil
+
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        newcard:start_materialize()
+                        return true
+                    end
+                }))
+                SMODS.calculate_effect({message = localize("k_copied_ex")}, card)
+            end
+
+            card.ability.extra.nommed = true
+            return nil, true
+        end
+
+        if context.discard then
+            card.ability.extra.nommed = true
             return {
-                chips = card.ability.extra.chips,
-                extra = {
-                    mult = card.ability.extra.mult,
-                    extra = {
-                        xmult = card.ability.extra.xmult
-                    }
-                }
+                remove = true
             }
         end
-        if context.end_of_round and not context.game_over and context.main_eval and context.beat_boss and not context.blueprint then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    play_sound("tarot1")
-                    card.T.r = -0.2
-                    card:juice_up(0.3, 0.4)
-                    card.states.drag.is = true
-                    card.children.center.pinch.x = true
-                    G.E_MANAGER:add_event(Event({
-                        trigger = "after",
-                        delay = 0.3,
-                        blockable = false,
-                        func = function()
-                            G.jokers:remove_card(card)
-                            card:remove()
-                            card = nil
-                            return true
-                        end,
-                    }))
-                    return true
-                end,
-            }))
-            return {
-                message = localize("k_eaten"),
-                colour = G.C.FILTER,
-            }
+
+        if (context.drawing_cards or context.after) and card.ability.extra.nommed then
+            SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
+            SMODS.destroy_cards(card, true, true, true)
         end
     end
 }
