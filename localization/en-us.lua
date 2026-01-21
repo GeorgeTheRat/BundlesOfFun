@@ -60,7 +60,10 @@ return {
             j_bof_a_shrimp = {
                 name = "Shrimp",
                 text = {
-                    ""
+                    "{C:mult}Prevents Death{}",
+                    "if chips scored are at",
+                    "least {C:attention}#1#%{} of requirement",
+                    "{C:inactive}({C:attention}#2#%{C:inactive} less each round)"
                 }
             },
             j_bof_a_tomato = {
@@ -76,6 +79,12 @@ return {
                     "Decreases by {C:white,B:1}-#2#%{} at end of round"
                 }
             }
+        }
+    },
+    misc = {
+        dictionary = {
+            k_bof_savedbyshrimp = "Saved by delicious shrimp",
+            k_bof_nom = "Nom!"
         }
     }
 }
