@@ -63,7 +63,8 @@ return {
                     "{C:mult}Prevents Death{}",
                     "if chips scored are at",
                     "least {C:attention}#1#%{} of requirement",
-                    "{C:inactive}({C:attention}#2#%{C:inactive} less each round)"
+                    "{C:inactive}({C:attention}#2#%{C:inactive} less each round)",
+                    "{C:mult}Self-destructs"
                 }
             },
             j_bof_a_tomato = {
