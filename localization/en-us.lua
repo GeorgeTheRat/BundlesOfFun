@@ -38,8 +38,8 @@ return {
                 name = "Apple Core",
                 text = {
                     "The next {C:attention}#1#{}",
-                    "cards grant {C:mult}+#2#{}",
-                    "Mult instead of scoring"
+                    "cards grant {C:mult}+#2#{} Mult",
+                    "instead of scoring"
                 }
             },
             j_bof_a_dragonfruit = {
