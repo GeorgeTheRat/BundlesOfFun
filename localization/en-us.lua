@@ -70,7 +70,10 @@ return {
             j_bof_a_tomato = {
                 name = "Tomato",
                 text = {
-                    ""
+                    "The next {C:attention}#1#{} held",
+                    "in hand cards have a ",
+                    "{C:green}#2# in #3#{} chance of becoming",
+                    "{C:attention}Mult{} or {C:attention}Lucky{} Cards"
                 }
             },
             j_bof_a_wondrous_bread = {
