@@ -58,7 +58,7 @@ return {
                 }
             },
             j_bof_a_shrimp = {
-                name = "Shrimp",
+                name = "Fried Shrimp",
                 text = {
                     "{C:mult}Prevents Death{}",
                     "if chips scored are at",
@@ -85,7 +85,7 @@ return {
     misc = {
         dictionary = {
             k_bof_savedbyshrimp = "Saved by delicious shrimp",
-            k_bof_nom = "Nom!"
+            k_bof_nom = "Nom!",
         }
     }
 }
