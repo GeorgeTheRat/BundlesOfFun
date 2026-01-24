@@ -82,6 +82,16 @@ return {
                     "Balance {C:white,B:1}#1#%{} of {C:chips}Chips{} and {C:mult}Mult",
                     "Decreases by {C:white,B:1}-#2#%{} at end of round"
                 }
+            },
+            j_bof_j_hatty_hal = {
+                name = "Hatty Hal",
+                text = {
+                    "This joker gains {C:chips}+#1#{} Chip",
+                    "and increases its scaling by {C:chips}+#2#{} Chip",
+                    "every time a {C:attention}Playing Card{}",
+                    "is added to your deck.",
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips)"
+                }
             }
         }
     },
