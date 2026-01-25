@@ -54,7 +54,8 @@ return {
             j_bof_a_jelly_beans = {
                 name = "Jelly Beans",
                 text = {
-                    ""
+                    "The next {C:attention}2{} skipped {C:attention}Blinds{}",
+                    "create a {C:attention}Juggle Tag{}"
                 }
             },
             j_bof_a_shrimp = {
