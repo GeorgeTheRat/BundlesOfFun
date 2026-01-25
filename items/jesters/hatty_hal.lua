@@ -8,11 +8,11 @@ SMODS.Joker {
             chips = 0
         }
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 2 },
     cost = 1,
     rarity = 2,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local cae = card.ability.extra
         return {
