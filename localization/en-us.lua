@@ -1,13 +1,21 @@
 return {
     descriptions = {
         Joker = {
+            j_bof_a_apple_core = {
+                name = "Apple Core",
+                text = {
+                    "The next {C:attention}#1#{}",
+                    "cards give {C:mult}+#2#{} Mult",
+                    "instead of scoring"
+                }
+            },
             j_bof_a_apple = {
                 name = "Apple",
                 text = {
                     "Each scored card",
                     "gains {C:mult}+#1#{} permanent Mult",
-                    "Decreases by {C:attention}#2#{} at",
-                    "end of round"
+                    "Decreases by {C:mult}-#2#{} Mult",
+                    "at end of round"
                 }
             },
             j_bof_a_blueberry = {
@@ -29,51 +37,45 @@ return {
             j_bof_a_durian = {
                 name = "Durian",
                 text = {
-                    "Sell this Joker",
-                    "card to fill {C:attention}consumable",
-                    "slots with {C:tarot}The Fool"
-                }
-            },
-            j_bof_a_apple_core = {
-                name = "Apple Core",
-                text = {
-                    "The next {C:attention}#1#{}",
-                    "cards grant {C:mult}+#2#{} Mult",
-                    "instead of scoring"
+                    "Sell this Joker card to",
+                    "fill consumable slots",
+                    "with {C:tarot}The Fool"
                 }
             },
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
                 text = {
-                    "{C:attention}Copy{} all cards in",
-                    "next {C:blue}played{} hand,",
-                    "or {C:attention}destroy{} all cards",
-                    "in next {C:red}discarded{} hand"
+                    "Create a permanent copy of",
+                    "all {C:attention}played{} cards next hand",
+                    "or destroy all cards in",
+                    "next {C:attention}discarded{} poker hand"
                 }
             },
             j_bof_a_jelly_beans = {
                 name = "Jelly Beans",
                 text = {
-                    ""
+                    "The next {C:attention}#1# Blinds{} skipped,",
+                    "create a {C:attention}Juggle Tag"
                 }
             },
             j_bof_a_shrimp = {
                 name = "Fried Shrimp",
                 text = {
-                    "{C:mult}Prevents Death{}",
-                    "if chips scored are at",
-                    "least {C:attention}#1#%{} of requirement",
-                    "{C:inactive}({C:attention}#2#%{C:inactive} less each round)",
-                    "{C:mult}Self-destructs"
+                    "Prevents Death if",
+                    "chips scored are at least",
+                    "{C:attention}#1#%{} of required chips,",
+                    "decreases by {C:attention}-#2#%",
+                    "at end of round",
+                    "{C:red,E:1}self destructs"
                 }
             },
             j_bof_a_tomato = {
                 name = "Tomato",
                 text = {
                     "The next {C:attention}#1#{} held",
-                    "in hand cards have a ",
+                    "in hand cards have a",
                     "{C:green}#2# in #3#{} chance of becoming",
-                    "{C:attention}Mult{} or {C:attention}Lucky{} Cards"
+                    "{C:attention}Mult Cards{} or {C:attention}Lucky Cards{}"
                 }
             },
             j_bof_a_wondrous_bread = {
@@ -86,18 +88,27 @@ return {
             j_bof_j_hatty_hal = {
                 name = "Hatty Hal",
                 text = {
-                    "This joker gains {C:chips}+#1#{} Chip",
-                    "and increases its scaling by {C:chips}+#2#{} Chip",
-                    "every time a {C:attention}Playing Card{}",
-                    "is added to your deck.",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips)"
+                    "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
+                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>1#",
+                    "every time a {C:attention}playing card{}",
+                    "is added to your deck",
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
+                }
+            },
+            j_bof_j_barber = {
+                name = "Barber",
+                text = {
+                    "Earn {C:money}$#1#{} at end of round",
+                    "{C:green}#2# in #3#{} chance to",
+                    "increase payout by {C:money}$#4#",
+                    "when {C:attention}Blind{} is selected"
                 }
             }
         }
     },
     misc = {
         dictionary = {
-            k_bof_savedbyshrimp = "Saved by delicious shrimp",
+            k_bof_saved_by_shrimp = "Saved by delicious shrimp",
             k_bof_nom = "Nom!",
         }
     }

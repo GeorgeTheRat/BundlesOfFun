@@ -1,11 +1,6 @@
 SMODS.Joker {
     key = "a_durian",
     name = "Durian",
-    config = {
-        extra = {
-            
-        }
-    },
     pos = { x = 6, y = 0 },
     cost = 1,
     rarity = 2,
@@ -21,7 +16,7 @@ SMODS.Joker {
                 card:juice_up(0.3, 0.5)
                 SMODS.add_card({
                     key = "c_fool",
-                    key_append = "chm_durian"
+                    key_append = "bof_durian"
                 })
             end
         end

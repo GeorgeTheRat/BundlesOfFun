@@ -11,13 +11,6 @@ SMODS.Joker {
     rarity = 3,
     blueprint_compat = true,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-
-            }
-        }
-    end,
     calculate = function(self, card, context)
         if context.before then
             for i,v in ipairs(context.full_hand) do
@@ -36,7 +29,6 @@ SMODS.Joker {
                 }))
                 SMODS.calculate_effect({message = localize("k_copied_ex")}, card)
             end
-
             card.ability.extra.nommed = true
             return nil, true
         end

@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Jelly Beans",
     config = {
         extra = {
-            create = 1
+            blinds = 2
         }
     },
     pos = { x = 1, y = 0 },
@@ -12,23 +12,21 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-                card.ability.extra.create
-            }
-        }
+        info_queue[#info_queue + 1] = G.P_TAGS.tag_juggle
+        return { vars = { card.ability.extra.blinds } }
     end,
     calculate = function(self, card, context)
         if context.skip_blind then
-            for i = 1, card.ability.extra.create do
-                add_tag(Tag("tag_juggle"))
-                card:juice_up(0.4, 0.4)
-                play_sound("tarot1")
+            card.ability.extra.blinds = card.ability.extra.blinds - 1
+            add_tag(Tag("tag_juggle"))
+            card:juice_up(0.4, 0.4)
+            play_sound("tarot1")
+            if card.ability.extra.blinds <= 0 then
+                SMODS.destroy_cards(card, true, nil, true)
+                return {
+                    message = localize("k_eaten_ex")
+                }
             end
-            SMODS.destroy_cards(card, nil, nil, true)
-            return {
-                message = localize("k_eaten_ex")
-            }
         end
     end
 }

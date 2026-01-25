@@ -1,26 +1,26 @@
- SMODS.Joker {
-     key = "a_apple_core",
-     name = "Apple Core",
-     config = {
-         extra = {
+SMODS.Joker {
+    key = "a_apple_core",
+    name = "Apple Core",
+    config = {
+        extra = {
             count = 20,
             mult = 8
-         }
-     },
-     pos = { x = 3, y = 0 },
-     cost = 1,
-     rarity = 1,
-     blueprint_compat = true,
-     atlas = "joker",
-     loc_vars = function(self, info_queue, card)
+        }
+    },
+    pos = { x = 3, y = 0 },
+    cost = 1,
+    rarity = 1,
+    blueprint_compat = true,
+    atlas = "joker",
+    loc_vars = function(self, info_queue, card)
         return {
             vars = {
                 card.ability.extra.count,
                 card.ability.extra.mult
             }
         }
-     end,
-     calculate = function(self, card, context)
+    end,
+    calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and card.ability.extra.count > 0 then
             card.ability.extra.count = card.ability.extra.count - 1
             return {
@@ -40,8 +40,8 @@
                 suppress = true
             }
         end
-     end,
-     in_pool = function(self, args)
-         return false
-     end
- }
+    end,
+    in_pool = function(self, args)
+        return false
+    end
+}
