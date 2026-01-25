@@ -54,7 +54,7 @@ return {
             j_bof_a_jelly_beans = {
                 name = "Jelly Beans",
                 text = {
-                    "The next {C:attention}#1# Blinds{} skipped,",
+                    "The next {C:attention}#1# Blind#<s>1#{} skipped,",
                     "create a {C:attention}Juggle Tag"
                 }
             },
