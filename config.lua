@@ -1,4 +1,4 @@
-return {
+sreturn {
     bundles = {
         appetizers = true,
         fables = true,
