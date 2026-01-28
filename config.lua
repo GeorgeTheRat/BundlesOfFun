@@ -1,9 +1,9 @@
-sreturn {
+return {
     bundles = {
         appetizers = true,
         fables = true,
         geodes = true,
-        jokers = true,
+        jesters = true,
         normalities = true
     }
 }

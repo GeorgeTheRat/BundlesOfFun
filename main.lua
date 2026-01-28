@@ -1,4 +1,4 @@
-tif not BundlesOfFun then BundlesOfFun = {} end
+if not BundlesOfFun then BundlesOfFun = {} end
 SMODS.BundlesOfFun = BundlesOfFun
 
 BundlesOfFun.config = SMODS.current_mod.config or {}
@@ -43,7 +43,7 @@ function BundlesOfFun.is_item_enabled(item_key)
         a = "appetizers",
         f = "fables",
         g = "geodes",
-        j = "jokers",
+        j = "jesters",
         n = "normalities"
     }
     
@@ -116,7 +116,7 @@ local function create_bundles_config_tab()
         { id = "appetizers", name = "Appetizers", color = G.C.RED },
         { id = "fables", name = "Fables", color = G.C.BLUE },
         { id = "geodes", name = "Geodes", color = G.C.PURPLE },
-        { id = "jokers", name = "Jesters", color = G.C.ORANGE },
+        { id = "jesters", name = "Jesters", color = G.C.ORANGE },
         { id = "normalities", name = "Normalities", color = G.C.GREY },
     }
     
