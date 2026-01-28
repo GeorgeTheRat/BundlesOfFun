@@ -85,14 +85,13 @@ return {
                     "Decreases by {C:white,B:1}-#2#%{} at end of round"
                 }
             },
-            j_bof_j_hatty_hal = {
-                name = "Hatty Hal",
+            j_bof_j_ballbo = {
+                name = "Ballbo",
                 text = {
-                    "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
-                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>1#",
-                    "every time a {C:attention}playing card{}",
-                    "is added to your deck",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
+                    "This Joker gains {C:mult}+#1#{} Mult and",
+                    "increases its {C:attention}scaling{} by {C:mult}+#2#{} Mult",
+                    "if played hand contains a {C:attention}Flush",
+                    "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },
             j_bof_j_barber = {
@@ -103,7 +102,24 @@ return {
                     "increase payout by {C:money}$#4#",
                     "when {C:attention}Blind{} is selected"
                 }
-            }
+            },
+            j_bof_j_evil_eddrick = {
+                name = "Evil Eddrick",
+                text = {
+                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
+                    "on {C:attention}final hand{} of round"
+                }
+            },
+            j_bof_j_hatty_hal = {
+                name = "Hatty Hal",
+                text = {
+                    "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
+                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>1#",
+                    "every time a {C:attention}playing card{}",
+                    "is added to your deck",
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
+                }
+            },
         }
     },
     misc = {
