@@ -1,6 +1,6 @@
 SMODS.Joker {
-    key = "a_wondrous_bread",
-    name = "Wondrous Bread",
+    key = "a_wonderous_bread",
+    name = "Wonderous Bread",
     config = {
         extra = {
             balance = 100,
@@ -10,6 +10,7 @@ SMODS.Joker {
     pos = { x = 9, y = 0 },
     cost = 6,
     rarity = 2,
+    order = 6,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

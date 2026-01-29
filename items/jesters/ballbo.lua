@@ -11,6 +11,7 @@ SMODS.Joker {
     pos = { x = 8, y = 2 },
     cost = 7,
     rarity = 3,
+    order = 15,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
@@ -23,7 +24,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if next(context.poker_hands) == "Flush" and not context.blueprint then
+        if next(context.poker_hands["Flush"]) and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult",

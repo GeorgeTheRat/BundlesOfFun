@@ -1,0 +1,45 @@
+[manifest]
+mod_id = "BundlesOfFun"
+name = "Bundles of Fun"
+version = "1.0.0"
+author = "Glitchkat10"
+description = "Adds various jokers organized in categories"
+prefix = "bof"
+
+# Patch to fix joker collection sorting for BOF items
+[[patches]]
+[patches.pattern]
+target = "=[SMODS _ 'src/overrides.lua']"
+pattern = '''return SMODS.card_collection_UIBox(cards, args)'''
+position = "before"
+payload = '''
+-- Fix BOF joker ordering in collection
+if args and args.collection_type == 'Joker' then
+    local bof_items = {}
+    local other_items = {}
+    
+    -- Separate BOF items from others
+    for _, card in ipairs(cards) do
+        if card.key and (card.key:find("_bof_") or (card.mod and card.mod.id == "bundlesoffun")) then
+            table.insert(bof_items, card)
+        else
+            table.insert(other_items, card)
+        end
+    end
+    
+    -- Sort BOF items by their order values
+    table.sort(bof_items, function(a, b)
+        return (a.order or 0) < (b.order or 0)
+    end)
+    
+    -- Combine: other items first, then BOF items
+    cards = {}
+    for _, card in ipairs(other_items) do
+        table.insert(cards, card)
+    end
+    for _, card in ipairs(bof_items) do
+        table.insert(cards, card)
+    end
+end
+'''
+match_indent = true

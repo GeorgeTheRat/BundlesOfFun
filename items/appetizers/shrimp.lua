@@ -1,6 +1,6 @@
 SMODS.Joker {
     key = "a_shrimp",
-    name = "Shrimp",
+    name = "Fried Shrimp",
     config = {
         extra = {
             percent = 40,
@@ -10,6 +10,7 @@ SMODS.Joker {
     pos = { x = 8, y = 0 },
     cost = 1,
     rarity = 2,
+    order = 4,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

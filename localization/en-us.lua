@@ -1,6 +1,15 @@
 return {
     descriptions = {
         Joker = {
+            j_bof_a_dragonfruit = {
+                name = "Dragonfruit",
+                text = {
+                    "Create a permanent copy of",
+                    "all {C:attention}played{} cards next hand",
+                    "or destroy all cards in",
+                    "next {C:attention}discarded{} poker hand"
+                }
+            },
             j_bof_a_apple_core = {
                 name = "Apple Core",
                 text = {
@@ -42,15 +51,6 @@ return {
                     "with {C:tarot}The Fool"
                 }
             },
-            j_bof_a_dragonfruit = {
-                name = "Dragonfruit",
-                text = {
-                    "Create a permanent copy of",
-                    "all {C:attention}played{} cards next hand",
-                    "or destroy all cards in",
-                    "next {C:attention}discarded{} poker hand"
-                }
-            },
             j_bof_a_jelly_beans = {
                 name = "Jelly Beans",
                 text = {
@@ -78,8 +78,8 @@ return {
                     "{C:attention}Mult Cards{} or {C:attention}Lucky Cards{}"
                 }
             },
-            j_bof_a_wondrous_bread = {
-                name = "Wondrous Bread",
+            j_bof_a_wonderous_bread = {
+                name = "Wonderous Bread",
                 text = {
                     "Balance {C:white,B:1}#1#%{} of {C:chips}Chips{} and {C:mult}Mult",
                     "Decreases by {C:white,B:1}-#2#%{} at end of round"
@@ -120,6 +120,14 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
+            j_bof_j_slim_jim = {
+                name = "Slim Jim",
+                text = {
+                    "{C:blue}+#1#{} hand per round",
+                    "{C:red}+#2#{} discard each round",
+                    "{C:attention}#3#{} hand size"
+                }
+            }
         }
     },
     misc = {

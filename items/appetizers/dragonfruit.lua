@@ -1,14 +1,11 @@
 SMODS.Joker {
     key = "a_dragonfruit",
     name = "Dragonfruit",
-    config = {
-        extra = {
-            nommed = false
-        }
-    },
+    config = { extra = { nommed = false } },
     pos = { x = 5, y = 0 },
     cost = 1,
     rarity = 3,
+    order = 1,
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)

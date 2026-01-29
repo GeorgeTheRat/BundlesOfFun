@@ -27,8 +27,56 @@ local function load_directory(relative_path)
     end
 end
 
+local original_orders = {}
+local bof_buffer = {}
+
+local originalSMODSJoker = SMODS.Joker
+SMODS.Joker = function(obj)
+    if obj.key and obj.order then
+        original_orders[obj.key] = obj.order
+    end
+    
+    if obj.key and (obj.key:find("^a_") or obj.key:find("^f_") or obj.key:find("^g_") or obj.key:find("^j_") or obj.key:find("^n_")) then
+        obj.order = (obj.order or 0) + 1e9
+        obj.bof_order = obj.order
+        obj.cry_order = obj.order
+        
+        table.insert(bof_buffer, obj)
+        return obj
+    end
+    
+    return originalSMODSJoker(obj)
+end
+
 load_directory("lib")
 load_directory("items")
+
+local function register_bof_items()
+    if #bof_buffer > 0 then
+        table.sort(bof_buffer, function(a, b)
+            local a_orig = original_orders[a.key] or 999
+            local b_orig = original_orders[b.key] or 999
+            return a_orig < b_orig
+        end)
+        
+        for _, obj in ipairs(bof_buffer) do
+            originalSMODSJoker(obj)
+        end
+        
+        bof_buffer = {}
+    end
+end
+
+local original_injectItems = SMODS.injectItems
+function SMODS.injectItems(...)
+    local result = original_injectItems(...)
+    register_bof_items()
+    return result
+end
+
+if G.P_CENTER_POOLS and G.P_CENTER_POOLS.Joker then
+    register_bof_items()
+end
 
 function BundlesOfFun.is_item_enabled(item_key)
     if not item_key or type(item_key) ~= "string" then 
@@ -95,7 +143,6 @@ if not SMODS.Center.enable then
             end
         end
     end
-
     SMODS.Center._disable = function(self, reason)
         if not self.cry_disabled then
             self.cry_disabled = reason or { type = "manual" }
