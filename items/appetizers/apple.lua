@@ -4,7 +4,7 @@ SMODS.Joker {
     config = {
         extra = {
             mult = 4,
-            drop = 1
+            mult_mod = 1
         }
     },
     pos = { x = 2, y = 0 },
@@ -17,7 +17,7 @@ SMODS.Joker {
         return {
             vars = {
                 card.ability.extra.mult,
-                card.ability.extra.drop
+                card.ability.extra.mult_mod
             }
         }
     end,
@@ -30,9 +30,14 @@ SMODS.Joker {
             }
         end
         if context.end_of_round and context.main_eval then
-            card.ability.extra.mult = card.ability.extra.mult - 1
+            card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.mult_mod
+            local return_message = nil
+            if card.ability.extra.mult - card.ability.extra.mult_mod > 0 then -- rudimentary way of making sure two messages don't happen at once
+                return_message = "-" .. card.ability.extra.mult_mod .. "Mult"
+            end
             return {
-                message = localize("k_bof_nom"),
+                message = return_message,
+                colour = G.C.MULT,
                 func = function ()
                     if card.ability.extra.mult <= 0 then
                         SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)

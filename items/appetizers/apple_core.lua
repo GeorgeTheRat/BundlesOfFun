@@ -35,7 +35,6 @@ SMODS.Joker {
                 end
             }
         end
-
         if context.bof_chips_check and card.ability.extra.count > 0 then
             return {
                 suppress = true
