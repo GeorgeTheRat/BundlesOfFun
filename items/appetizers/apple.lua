@@ -25,10 +25,10 @@ SMODS.Joker {
         if context.individual and context.cardarea == G.play then
             context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) + card.ability.extra.mult
             return {
-                message = localize("k_upgrade_ex")
+                message = localize("k_upgrade_ex"),
+                colour = G.C.MULT
             }
         end
-
         if context.end_of_round and context.main_eval then
             card.ability.extra.mult = card.ability.extra.mult - 1
             return {
