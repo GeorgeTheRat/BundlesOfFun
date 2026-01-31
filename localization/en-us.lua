@@ -22,7 +22,7 @@ return {
                 name = "Apple",
                 text = {
                     "Each scored card",
-                    "gains {C:mult}+#1#{} permanent Mult",
+                    "permanently gains {C:mult}+#1#{} Mult",
                     "Decreases by {C:mult}-#2#{} Mult",
                     "at end of round"
                 }
