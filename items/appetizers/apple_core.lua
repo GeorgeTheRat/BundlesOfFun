@@ -41,6 +41,11 @@ SMODS.Joker {
             }
         end
     end,
+    remove_from_deck = function(self, card)
+        return {
+            suppress = false
+        }
+    end,
     in_pool = function(self, args)
         return false
     end

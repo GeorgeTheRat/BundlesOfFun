@@ -61,8 +61,8 @@ return {
             j_bof_a_shrimp = {
                 name = "Fried Shrimp",
                 text = {
-                    "Prevents Death if",
-                    "chips scored are at least",
+                    "Prevents Death if chips",
+                    "scored are at least",
                     "{C:attention}#1#%{} of required chips,",
                     "decreases by {C:attention}-#2#%",
                     "at end of round",
