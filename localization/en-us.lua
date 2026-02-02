@@ -127,7 +127,15 @@ return {
                     "{C:red}+#2#{} discard each round",
                     "{C:attention}#3#{} hand size"
                 }
-            }
+            },
+            j_bof_j_handy_henry = {
+                name = "Handy Henry",
+                text = {
+                    "{C:blue}#1#{} hand per round",
+                    "and {C:blue}#2#{} hand size",
+                    "for each Joker to the {C:attention}left{}"
+                }
+            },
         }
     },
     misc = {
