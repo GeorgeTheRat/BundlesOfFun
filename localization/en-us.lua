@@ -120,6 +120,15 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
+            j_bof_j_handy_henry = {
+                name = "Handy Henry",
+                text = {
+                    "{C:blue}+#1#{} hand per round",
+                    "and {C:attention}#2#{} hand size",
+                    "for every Joker",
+                    "to the {C:attention}left{}"
+                }
+            },
             j_bof_j_geezer_gary = {
                 name = "Geezer Gary",
                 text = {
@@ -130,20 +139,21 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
+            j_bof_j_mr_golden_sun = {
+                name = "Mr. Golden Sun",
+                text = {
+                    "{C:white,X:mult}X#1#{} Mult",
+                    "Destroy all cards",
+                    "in final {C:attention}discarded{}",
+                    "{C:attention}poker hand{} each round"
+                }
+            },
             j_bof_j_slim_jim = {
                 name = "Slim Jim",
                 text = {
                     "{C:blue}+#1#{} hand per round",
                     "{C:red}+#2#{} discard each round",
                     "{C:attention}#3#{} hand size"
-                }
-            },
-            j_bof_j_handy_henry = {
-                name = "Handy Henry",
-                text = {
-                    "{C:blue}#1#{} hand per round",
-                    "and {C:blue}#2#{} hand size",
-                    "for each Joker to the {C:attention}left{}"
                 }
             },
         }
