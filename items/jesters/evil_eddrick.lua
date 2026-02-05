@@ -7,7 +7,7 @@ SMODS.Joker {
             mult = 10
         }
     },
-    pos = { x = 4, y = 2 },
+    pos = { x = 8, y = 1 },
     cost = 4,
     rarity = 1,
     order = 17,
