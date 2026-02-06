@@ -24,18 +24,17 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if next(context.poker_hands["Flush"]) and not context.blueprint then
+        if context.before and next(context.poker_hands["Flush"]) and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult",
                 scalar_value = "mult_mod",
-                colour = G.C.CHIPS
+                message_colour = G.C.MULT
             })
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult_mod",
                 scalar_value = "mult_mod_mod",
-                colour = G.C.CHIPS,
                 no_message = true
             })
         end

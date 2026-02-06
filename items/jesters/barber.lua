@@ -30,7 +30,7 @@ SMODS.Joker {
                 ref_table = card.ability.extra,
                 ref_value = "dollars",
                 scalar_value = "dollars_mod",
-                colour = G.C.MONEY
+                message_colour = G.C.MONEY
             })
         end
     end,

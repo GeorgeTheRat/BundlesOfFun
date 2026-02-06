@@ -156,6 +156,22 @@ return {
                     "{C:attention}#3#{} hand size"
                 }
             },
+            j_bof_f_legendary_2 = {
+                name = "Placeholder",
+                text = {
+                    "Multiply {C:chips}Chips{} by",
+                    "{C:mult}Mult{} before scoring"
+                }
+            },
+            j_bof_f_legendary_3 = {
+                name = "Placeholder",
+                text = {
+                    "This Joker gains {C:white,X:mult}X#1#{} Mult",
+                    "when hand is played,",
+                    "{C:attention}resets{} at end of round",
+                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                }
+            },
         }
     },
     misc = {

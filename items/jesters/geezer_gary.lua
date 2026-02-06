@@ -29,7 +29,7 @@ SMODS.Joker {
                 ref_table = card.ability.extra,
                 ref_value = "chips",
                 scalar_value = "chips_mod",
-                colour = G.C.CHIPS
+                message_colour = G.C.CHIPS
             })
         end
         if context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss then
@@ -37,7 +37,7 @@ SMODS.Joker {
                 ref_table = card.ability.extra,
                 ref_value = "chips_mod",
                 scalar_value = "chips_mod_mod",
-                colour = G.C.CHIPS
+                message_colour = G.C.CHIPS
             })
         end
         if context.joker_main then
