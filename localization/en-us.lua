@@ -66,7 +66,7 @@ return {
                     "{C:attention}#1#%{} of required chips,",
                     "decreases by {C:attention}-#2#%",
                     "at end of round",
-                    "{C:red,E:1}self destructs"
+                    "{C:red,E:2}self destructs"
                 }
             },
             j_bof_a_tomato = {
@@ -154,6 +154,16 @@ return {
                     "{C:blue}+#1#{} hand per round",
                     "{C:red}+#2#{} discard each round",
                     "{C:attention}#3#{} hand size"
+                }
+            },
+            j_bof_j_crafted = {
+                name = "Crafted Joker",
+                text = {
+                    "Earn money equal",
+                    "to the current number",
+                    "of {C:attention}rounds{} completed",
+                    "when {C:attention}Blind{} is skipped",
+                    "{C:red,E:2}self destructs"
                 }
             },
             j_bof_f_legendary_2 = {
