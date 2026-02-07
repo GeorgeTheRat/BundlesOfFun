@@ -31,7 +31,7 @@ SMODS.Joker {
                                 return true
                             end
                         }))
-                        SMODS.calculate_effect({ message = localize("k_plus_tarot"), colour = G.C.SECONDARY_SET.Spectral }, context.blueprint_card or card)
+                        SMODS.calculate_effect({ message = localize("k_plus_spectral"), colour = G.C.SECONDARY_SET.Spectral }, context.blueprint_card or card)
                         return true
                     end)
                 }))
