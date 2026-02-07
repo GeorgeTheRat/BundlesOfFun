@@ -182,6 +182,15 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
                 }
             },
+            j_bof_f_legendary_4 = {
+                name = "Placeholder",
+                text = {
+                    "{C:attention}+#1#{} consumable slots",
+                    "Fill consumable slots",
+                    "with random {C:spectral}Spectral{} cards",
+                    "when {C:attention}Blind{} is selected"
+                }
+            },
         }
     },
     misc = {
