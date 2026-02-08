@@ -8,7 +8,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 2, y = 0 },
-    cost = 1,
+    cost = 5,
     rarity = 1,
     order = 8,
     blueprint_compat = true,
@@ -29,18 +29,18 @@ SMODS.Joker {
                 colour = G.C.MULT
             }
         end
-        if context.end_of_round and context.main_eval then
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
             card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.mult_mod
             local return_message = nil
             if card.ability.extra.mult - card.ability.extra.mult_mod > 0 then -- rudimentary way of making sure two messages don't happen at once
-                return_message = "-" .. card.ability.extra.mult_mod .. "Mult"
+                return_message = "-" .. card.ability.extra.mult_mod .. " Mult"
             end
             return {
                 message = return_message,
                 colour = G.C.MULT,
                 func = function ()
                     if card.ability.extra.mult <= 0 then
-                        SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
+                        SMODS.calculate_effect({ message = localize("k_eaten_ex") }, card)
                         card:set_ability("j_bof_a_apple_core")
                     end
                 end

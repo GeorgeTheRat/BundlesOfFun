@@ -11,18 +11,12 @@ SMODS.Joker {
     cost = 1,
     rarity = 2,
     order = 4,
-    blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-                card.ability.extra.percent,
-                card.ability.extra.percent_mod
-            }
-        }
+        return { vars = { card.ability.extra, card.ability.extra} }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round and context.main_eval then
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
             if context.game_over then
                 if G.GAME.chips / G.GAME.blind.chips > card.ability.extra.percent / 100 then
                     return {

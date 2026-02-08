@@ -21,18 +21,22 @@ SMODS.Joker {
             }
         }
     end,
-    update = function (self, card, dt)
-        if card.area ~= G.jokers then return end
-        local pos
-        for i,v in ipairs(G.jokers.cards) do
-            if v == card then pos = i break end
-        end
-        if pos ~= card.ability.extra.pos then
-            local delta = (pos - card.ability.extra.pos)
-            G.GAME.round_resets.hands = G.GAME.round_resets.hands + (delta * card.ability.extra.hands)
-            ease_hands_played(delta * card.ability.extra.hands)
-            G.hand:change_size(delta * card.ability.extra.hand_size) -- Somethin janky going on here but I can't work out what
-            card.ability.extra.pos = pos
+    update = function(self, card, dt)
+        if card.area == G.jokers then
+            local pos
+            for i, v in ipairs(G.jokers.cards) do
+                if v == card then
+                    pos = i
+                    break
+                end
+            end
+            if pos ~= card.ability.extra.pos then
+                local delta = (pos - card.ability.extra.pos)
+                G.GAME.round_resets.hands = G.GAME.round_resets.hands + (delta * card.ability.extra.hands)
+                ease_hands_played(delta * card.ability.extra.hands)
+                G.hand:change_size(delta * card.ability.extra.hand_size) -- Somethin janky going on here but I can't work out what
+                card.ability.extra.pos = pos
+            end
         end
     end
 }

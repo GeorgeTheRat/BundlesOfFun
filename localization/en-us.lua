@@ -156,6 +156,14 @@ return {
                     "{C:attention}#3#{} hand size"
                 }
             },
+            j_bof_j_laggard_larry = {
+                name = "Laggard Larry",
+                text = {
+                    "Earn {C:money}$#1#{} when {C:attention}first",
+                    "or {C:attention}final hand",
+                    "is played"
+                }
+            },
             j_bof_j_crafted = {
                 name = "Crafted Joker",
                 text = {

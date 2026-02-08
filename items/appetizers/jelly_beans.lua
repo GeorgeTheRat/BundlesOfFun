@@ -22,7 +22,7 @@ SMODS.Joker {
             add_tag(Tag("tag_juggle"))
             card:juice_up(0.4, 0.4)
             play_sound("tarot1")
-            if card.ability.extra.blinds <= 0 then
+            if card.ability.extra.blinds <= 0 and not context.blueprint then
                 SMODS.destroy_cards(card, true, nil, true)
                 return {
                     message = localize("k_eaten_ex")

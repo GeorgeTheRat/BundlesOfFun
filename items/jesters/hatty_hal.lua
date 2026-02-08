@@ -3,8 +3,8 @@ SMODS.Joker {
     name = "Hatty Hal",
     config = {
         extra = {
-            chip_mod = 1,
-            chip_mod_mod = 1,
+            chips_mod = 1,
+            chips_mod_mod = 1,
             chips = 0
         }
     },
@@ -17,8 +17,8 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chip_mod,
-                card.ability.extra.chip_mod_mod,
+                card.ability.extra.chips_mod,
+                card.ability.extra.chips_mod_mod,
                 card.ability.extra.chips
             }
         }
@@ -28,12 +28,12 @@ SMODS.Joker {
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "chips",
-                scalar_value = "chip_mod",
+                scalar_value = "chips_mod",
                 message_colour = G.C.CHIPS
             })
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
-                ref_value = "chip_mod",
+                ref_value = "chips_mod",
                 scalar_value = "chip_mod_mod",
                 no_message = true
             })
