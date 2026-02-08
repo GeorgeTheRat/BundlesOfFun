@@ -156,6 +156,15 @@ return {
                     "{C:attention}#3#{} hand size"
                 }
             },
+            j_bof_j_gumphrey = {
+                name = "Gumphrey",
+                text = {
+                    "{C:mult}+#1#{} Mult for every",
+                    "{C:attention}Enhanced{} card in",
+                    "your {C:attention}full deck",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
             j_bof_j_laggard_larry = {
                 name = "Laggard Larry",
                 text = {
