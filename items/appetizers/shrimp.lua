@@ -13,7 +13,12 @@ SMODS.Joker {
     order = 4,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra, card.ability.extra} }
+        return {
+            vars = {
+                card.ability.extra.percent,
+                card.ability.extra.percent_mod
+            }
+        }
     end,
     calculate = function(self, card, context)
         if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then

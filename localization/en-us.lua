@@ -168,8 +168,8 @@ return {
             j_bof_j_laggard_larry = {
                 name = "Laggard Larry",
                 text = {
-                    "Earn {C:money}$#1#{} when {C:attention}first",
-                    "or {C:attention}final hand",
+                    "Earn {C:money}$#1#{} when",
+                    "{C:attention}first{} or {C:attention}final hand",
                     "is played"
                 }
             },
