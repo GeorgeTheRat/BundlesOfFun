@@ -8,7 +8,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 0 },
-    cost = 1,
+    cost = 5,
     rarity = 2,
     order = 4,
     atlas = "joker",
@@ -26,12 +26,6 @@ SMODS.Joker {
                 if G.GAME.chips / G.GAME.blind.chips > card.ability.extra.percent / 100 then
                     return {
                         saved = "k_bof_saved_by_shrimp",
-                        message = localize("k_eaten_ex"),
-                        --extra = {
-                            func = function ()
-                                SMODS.destroy_cards(card, true, nil, true)
-                            end
-                        --}
                     }
                 end
             else
