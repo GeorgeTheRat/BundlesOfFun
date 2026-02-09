@@ -34,7 +34,7 @@ SMODS.Joker {
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "chips_mod",
-                scalar_value = "chip_mod_mod",
+                scalar_value = "chips_mod_mod",
                 no_message = true
             })
         end
