@@ -1,9 +1,9 @@
 SMODS.Joker {
-    key = "f_legendary_4",
-    name = "Placeholder",
+    key = "f_taillefer",
+    name = "Taillefer",
     config = {
         extra = {
-            consumable_slots = 3
+            consumable_slots = -1
         }
     },
     pos = { x = 0, y = 0 },

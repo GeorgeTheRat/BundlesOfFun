@@ -65,8 +65,7 @@ return {
                     "scored are at least",
                     "{C:attention}#1#%{} of required chips,",
                     "decreases by {C:attention}-#2#%",
-                    "at end of round",
-                    "{C:red,E:2}self destructs"
+                    "at end of round"
                 }
             },
             j_bof_a_tomato = {
@@ -180,18 +179,18 @@ return {
                     "to the current number",
                     "of {C:attention}rounds{} completed",
                     "when {C:attention}Blind{} is skipped",
-                    "{C:red,E:2}self destructs"
+                    "Self Destructs"
                 }
             },
-            j_bof_f_legendary_2 = {
-                name = "Placeholder",
+            j_bof_f_manqian = {
+                name = "ManQian",
                 text = {
-                    "Multiply {C:chips}Chips{} by",
-                    "{C:mult}Mult{} before scoring"
+                    "Multiply {C:mult}Mult{} by",
+                    "level of most played {C:mult}Poker Hand{} before scoring"
                 }
             },
-            j_bof_f_legendary_3 = {
-                name = "Placeholder",
+            j_bof_f_turold = {
+                name = "Turold",
                 text = {
                     "This Joker gains {C:white,X:mult}X#1#{} Mult",
                     "when hand is played,",
@@ -199,10 +198,10 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
                 }
             },
-            j_bof_f_legendary_4 = {
-                name = "Placeholder",
+            j_bof_f_taillefer = {
+                name = "Taillefer",
                 text = {
-                    "{C:attention}+#1#{} consumable slots",
+                    "{C:attention}-#1#{} consumable slot",
                     "Fill consumable slots",
                     "with random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected"

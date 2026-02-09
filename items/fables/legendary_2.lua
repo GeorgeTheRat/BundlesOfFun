@@ -1,6 +1,6 @@
 SMODS.Joker {
-    key = "f_legendary_2",
-    name = "Placeholder",
+    key = "f_manqian",
+    name = "ManQian",
     pos = { x = 0, y = 0 },
     cost = 20,
     rarity = 4,
@@ -10,7 +10,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.initial_scoring_step then
             return {
-                xchips = mult
+                xmult = $most_played_hand_level
             }
         end
     end

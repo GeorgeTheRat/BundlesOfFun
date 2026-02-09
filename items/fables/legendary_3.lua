@@ -1,9 +1,9 @@
 SMODS.Joker {
-    key = "f_legendary_3",
-    name = "Placeholder",
+    key = "f_turold",
+    name = "Turold",
     config = {
         extra = {
-            xmult_mod = 2,
+            xmult_mod = 1.5,
             xmult = 1
         }
     },
