@@ -114,8 +114,8 @@ return {
                 name = "Hatty Hal",
                 text = {
                     "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
-                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>1#",
-                    "every time a {C:attention}playing card{}",
+                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>2#",
+                    "when a {C:attention}playing card{}",
                     "is added to your deck",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
