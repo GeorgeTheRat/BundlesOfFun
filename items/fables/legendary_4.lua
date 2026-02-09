@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Taillefer",
     config = {
         extra = {
-            consumable_slots = -1
+            consumable_slots = 0
         }
     },
     pos = { x = 0, y = 0 },
