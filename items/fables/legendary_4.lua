@@ -1,20 +1,12 @@
 SMODS.Joker {
     key = "f_taillefer",
     name = "Taillefer",
-    config = {
-        extra = {
-            consumable_slots = 0
-        }
-    },
     pos = { x = 0, y = 0 },
     cost = 20,
     rarity = 4,
     -- order = 0,
     blueprint_compat = true,
     atlas = "placeholder",
-    loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.consumable_slots } }
-    end,
     calculate = function(self, card, context)
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             for i = 1, G.consumeables.config.card_limit - #G.consumeables.cards do
@@ -25,7 +17,7 @@ SMODS.Joker {
                             func = function()
                                 SMODS.add_card {
                                     set = "Spectral",
-                                    key_append = "bof_f_legendary_4"
+                                    key_append = "bof_f_taillefer"
                                 }
                                 G.GAME.consumeable_buffer = 0
                                 return true
@@ -38,11 +30,5 @@ SMODS.Joker {
             end
             return nil, true
         end
-    end,
-    add_to_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.consumable_slots
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.consumable_slots
     end
 }
