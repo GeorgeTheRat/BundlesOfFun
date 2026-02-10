@@ -30,8 +30,8 @@ end
 local original_orders = {}
 local bof_buffer = {}
 
-local originalSMODSJoker = SMODS.Joker
-SMODS.Joker = function(obj)
+local originalSMODSJoker = SMODS.Joker.__call
+function SMODS.Joker:__call(obj)
     if obj.key and obj.order then
         original_orders[obj.key] = obj.order
     end
