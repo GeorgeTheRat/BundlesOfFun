@@ -182,6 +182,33 @@ return {
                     "Self Destructs"
                 }
             },
+            j_bof_j_tumor_tom = {
+                name = "Tumor Tom",
+                text = {
+                    "{C:dark_edition}+#1#{} Joker slots",
+                    "Consumable slots are",
+                    "set to {C:red}0{}",
+                    "{C:red}Cannot{} be sold unless",
+                    "the number of C:attention}occupied",
+                    "Joker slots is equal",
+                    "to {C:attention}maximum{} Joker slots - 1"
+                }
+            },
+            j_bof_j_phony = {
+                name = "Phony",
+                text = {
+                    "{C:mult}+#1#{} Mult",
+                    "{C:chips}-#2#{} Chips"
+                }
+            },
+            j_bof_j_frank_fop = {
+                name = "Frank Fop",
+                text = {
+                    "Create a {C:attention}Double Tag{}",
+                    "when a {C:attention}Blind{} is skipped",
+                    "if no Tags are owned"
+                }
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
