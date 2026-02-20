@@ -7,12 +7,13 @@ SMODS.Joker {
             xmult = 1
         }
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 4 },
+    soul_pos = { x = 2, y = 5 },
     cost = 20,
     rarity = 4,
     -- order = 0,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

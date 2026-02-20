@@ -1,12 +1,13 @@
 SMODS.Joker {
     key = "f_taillefer",
     name = "Taillefer",
-    pos = { x = 0, y = 0 },
+    pos = { x = 3, y = 4 },
+    soul_pos = { x = 3, y = 5 },
     cost = 20,
     rarity = 4,
     -- order = 0,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     calculate = function(self, card, context)
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             for i = 1, G.consumeables.config.card_limit - #G.consumeables.cards do
