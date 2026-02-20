@@ -71,8 +71,8 @@ return {
             j_bof_a_tomato = {
                 name = "Tomato",
                 text = {
-                    "The next {C:attention}#1#{} held",
-                    "in hand cards have a",
+                    "The next {C:attention}#1#{} cards",
+                    "held in hand have a",
                     "{C:green}#2# in #3#{} chance of becoming",
                     "{C:attention}Mult Cards{} or {C:attention}Lucky Cards{}"
                 }
@@ -187,11 +187,7 @@ return {
                 text = {
                     "{C:dark_edition}+#1#{} Joker slots",
                     "Consumable slots are",
-                    "set to {C:red}0{}",
-                    "{C:red}Cannot{} be sold unless",
-                    "the number of C:attention}occupied",
-                    "Joker slots is equal",
-                    "to {C:attention}maximum{} Joker slots - 1"
+                    "set to {C:attention}0",
                 }
             },
             j_bof_j_phony = {
@@ -206,7 +202,7 @@ return {
                 text = {
                     "Create a {C:attention}Double Tag{}",
                     "when a {C:attention}Blind{} is skipped",
-                    "if no Tags are owned"
+                    "if no {C:attention}Tags{} are owned"
                 }
             },
             j_bof_f_manqian = {

@@ -13,22 +13,20 @@ SMODS.Joker {
     rarity = 3,
     order = 13,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local cae = card.ability.extra
         return {
             vars = {
-                cae.joker_slots
+                card.ability.extra.joker_slots
             }
         }
     end,
     add_to_deck = function(self, card, context)
-        local cae = card.ability.extra
-        cae.old = G.consumeables.config.card_limit
+        card.ability.extra.old = G.consumeables.config.card_limit
         G.consumeables.config.card_limit = 0
     end,
     remove_from_deck = function(self, card, context)
-        local cae = card.ability.extra
-        G.consumeables.config.card_limit =  G.consumeables.config.card_limit + cae.old
+        card.ability.extra.old = card.ability.extra.old
+        G.consumeables.config.card_limit =  G.consumeables.config.card_limit + card.ability.extra.old
     end
 }

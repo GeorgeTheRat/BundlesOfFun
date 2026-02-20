@@ -12,22 +12,20 @@ SMODS.Joker {
     rarity = 1,
     order = 31,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local cae = card.ability.extra
         return {
             vars = {
-                cae.mult,
-                cae.chips
+                card.ability.extra.mult,
+                card.ability.extra.chips
             }
         }
     end,
     calculate = function(self,card,context)
-        local cae = card.ability.extra
         if context.joker_main then
             return{
-                mult = cae.mult,
-                chips = -cae.chips
+                mult = card.ability.extra.mult,
+                chips = -card.ability.extra.chips
             }
         end
     end
