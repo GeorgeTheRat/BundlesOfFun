@@ -8,7 +8,7 @@ SMODS.Joker {
         },
         card_limit = 2
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 9, y = 1 },
     cost = 7,
     rarity = 3,
     order = 13,

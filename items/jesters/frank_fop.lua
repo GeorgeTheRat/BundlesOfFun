@@ -5,7 +5,7 @@ SMODS.Joker {
         extra = {
         },
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 1, y = 3 },
     cost = 3,
     rarity = 1,
     order = 31,
