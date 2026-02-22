@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Geezer Gary",
     config = {
         extra = {
-            chips_mod = 3,
+            chips_mod = 2,
             chips_mod_mod = 1,
             chips = 0
         }
@@ -24,7 +24,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.selling_card and not context.blueprint then
+        if context.selling_card and context.card.ability.set == "Joker" and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "chips",
