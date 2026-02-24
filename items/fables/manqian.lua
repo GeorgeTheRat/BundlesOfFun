@@ -21,7 +21,7 @@ SMODS.Joker {
     end,
     
     calculate = function(self, card, context)
-        if context.initial_scoring_step then
+        if context.before then
             local most_played = 0
             local most_played_hand
             for hand, data in pairs(G.GAME.hands) do
