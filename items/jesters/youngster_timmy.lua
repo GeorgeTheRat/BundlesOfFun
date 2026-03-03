@@ -44,7 +44,7 @@ SMODS.Joker {
                 (G.GAME.starting_deck_size or 52),
                 cae.mult,
                 cae.chips
-            }
+            }   
         }
     end,
     calculate = function(self,card,context)

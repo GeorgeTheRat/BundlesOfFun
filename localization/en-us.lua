@@ -230,6 +230,16 @@ return {
                 },
                 },
             },
+            j_bof_j_jack_frost = {
+                name = "Jack Frost",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult,",
+                    "{X:mult,C:white}X#2#{} Mult instead",
+                    "if played {C:attention}poker hand{} has",
+                    "already been played",
+                    "this round"
+                }
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
