@@ -32,6 +32,7 @@ SMODS.Joker({
 				cae.sbalance,
 				cae.sdollars,
 				cae.fchips,
+                colours = { { 0.8, 0.45, 0.85, 1 } }
 			},
 		}
 	end,
