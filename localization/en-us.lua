@@ -272,8 +272,8 @@ return {
                 name = "Furious Joker",
                 text = {
                     "{C:money}+$#1#{} at the end",
-                    "of a round",
-                    "earn no {C:money}interest"
+                    "of  round,",
+                    "Earn no {C:money}Interest"
                 }
             },
             j_bof_j_schlitzohr = {
