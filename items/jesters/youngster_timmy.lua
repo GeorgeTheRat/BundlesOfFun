@@ -29,7 +29,7 @@ SMODS.Joker {
             chips = 4
         },
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 5, y = 1 },
     cost = 4,
     rarity = 2,
     order = 20,

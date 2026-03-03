@@ -20,7 +20,7 @@ SMODS.Joker {
             active = true
         },
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 7, y = 1 },
     rarity = 2,
     order = 18,
     blueprint_compat = false,
