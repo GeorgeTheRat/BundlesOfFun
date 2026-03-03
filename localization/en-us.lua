@@ -273,6 +273,25 @@ return {
                     "earn no {C:money}interest"
                 }
             },
+            j_bof_j_schlitzohr = {
+                name = "Schlitzohr",
+                text = {
+                    "{C:red}Destroys{} a random {C:attention}card{}",
+                    "in played hand",
+                    "{C:attention}Played Cards{} in final hand",
+                    "of a round {C:red}cannot{} be destroyed",
+                    "by this {C:attention}Joker{}"
+                }
+            },
+            j_bof_j_hotboxer = {
+                name = "Hotboxer",
+                text = {
+                    "If last {C:red}discard{}",
+                    "of round is exactly {C:attention}1{} card,",
+                    "either {C:attention}duplicate{}",
+                    "or {C:red}destroy{} it"
+                }
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
@@ -306,6 +325,7 @@ return {
             k_bof_nom = "Nom!",
             bof_active = "Active!",
             bof_ready = "Ready!",
+            k_bof_destroyed = "Destroyed!"
         }
     }
 }
