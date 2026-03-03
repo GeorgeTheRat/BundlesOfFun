@@ -3,12 +3,12 @@ SMODS.Joker {
     name = "Jack Frost",
     config = {
         extra = {
-            mult = 25
+            mult = 27.3
         },
     },
     pos = { x = 2, y = 1 },
     cost = 4,
-    rarity = 2,
+    rarity = 3,
     order = 23,
     blueprint_compat = true,
     atlas = "joker",

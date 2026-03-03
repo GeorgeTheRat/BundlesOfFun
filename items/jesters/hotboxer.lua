@@ -5,7 +5,7 @@ SMODS.Joker({
 		extra = {},
 	},
 	pos = { x = 0, y = 3 },
-	rarity = 3,
+	rarity = 2,
 	order = 27,
 	blueprint_compat = true,
 	atlas = "joker",

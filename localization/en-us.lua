@@ -131,12 +131,16 @@ return {
             j_bof_j_geezer_gary = {
                 name = "Geezer Gary",
                 text = {
+                    {
                     "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
                     "when a Joker is {C:attention}sold{},",
+                    },
+                    {
                     "increases by {C:chips}+#2#{} Chip#<s>2# when",
                     "{C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
-                }
+                    },
+                    },
             },
             j_bof_j_mr_golden_sun = {
                 name = "Mr. Golden Sun",
@@ -179,7 +183,7 @@ return {
                     "to the current number",
                     "of {C:attention}rounds{} completed",
                     "when {C:attention}Blind{} is skipped",
-                    "Self Destructs"
+                    "{C:red}Self Destructs{}"
                 }
             },
             j_bof_j_tumor_tom = {
@@ -201,8 +205,8 @@ return {
                 name = "Frank Fop",
                 text = {
                     "Create a {C:attention}Double Tag{}",
-                    "when a {C:attention}Blind{} is skipped",
-                    "if no {C:attention}Tags{} are owned"
+                    "when a {C:attention}Blind{} is skipped if",
+                    "no {C:attention}Tags{} were previously owned"
                 }
             },
             j_bof_j_super_joker = {
@@ -233,9 +237,9 @@ return {
             j_bof_j_jack_frost = {
                 name = "Jack Frost",
                 text = {
-                    "{C:red}#1#{} Mult if played",
-                    "{C:attention}poker hand{} has ",
-                    "not already been ",
+                    "{C:mult}+#1#{} Mult if played",
+                    "{C:attention}poker hand{}",
+                    "has {C:red}not{} already been ",
                     "played this round"
                 }
             },
