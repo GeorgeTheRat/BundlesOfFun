@@ -243,19 +243,24 @@ return {
             j_bof_j_soothsayer = {
                 name = "Soothsayer",
                 text = {
+                {
                     "Creates a {C:tarot}Tarot{} card",
                     "if a {C:purple}Purple Seal{} is held",
                     "in hand at end of round",
-                    "Increases the {C:green}level{} of",
+                },
+                {
+                    "Increases the level of",
                     "discarded {C:attention}poker hand{}",
                     "if discarded hand contains a {C:blue}Blue Seal",
-                }
+                },
+                },
             },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
-                    "Multiply {C:mult}Mult{} by",
-                    "level of most played {C:mult}Poker Hand{} before scoring"
+                    "{C:white,X:mult}Multiply Mult{} by",
+                    "level of most played",
+                    "{C:mult}poker hand{} before scoring"
                 }
             },
             j_bof_f_turold = {
