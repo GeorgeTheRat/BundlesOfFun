@@ -14,11 +14,11 @@ SMODS.Joker({
 			fchips = 1,
 		},
 	},
-	pos = { x = 0, y = 0 },
+	pos = { x = 6, y = 2 },
 	rarity = 3,
 	order = 27,
 	blueprint_compat = true,
-	atlas = "placeholder",
+	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
 		local cae = card.ability.extra
         local num, den = SMODS.get_probability_vars(card, 1, cae.odds, "seed")

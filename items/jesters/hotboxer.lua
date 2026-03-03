@@ -4,11 +4,11 @@ SMODS.Joker({
 	config = {
 		extra = {},
 	},
-	pos = { x = 0, y = 0 },
+	pos = { x = 0, y = 3 },
 	rarity = 3,
 	order = 27,
 	blueprint_compat = true,
-	atlas = "placeholder",
+	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
 		local cae = card.ability.extra
 		return {

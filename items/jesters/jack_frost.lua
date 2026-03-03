@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Jack Frost",
     config = {
         extra = {
-            xmult = 3
+            mult = 25
         },
     },
     pos = { x = 2, y = 1 },
@@ -16,7 +16,7 @@ SMODS.Joker {
         local cae = card.ability.extra
         return {
             vars = {
-                cae.xmult,
+                cae.mult,
                 0
             }   
         }
@@ -26,11 +26,11 @@ SMODS.Joker {
         if context.joker_main then
             if G.GAME.hands[context.scoring_name].played_this_round<=1 then
                 return{
-                    xmult = cae.xmult
+                    mult = cae.mult
                 }
             else
                 return{
-                    xmult = 0
+                    mult = 0
                 }
             end
         end
