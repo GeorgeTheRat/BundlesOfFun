@@ -265,6 +265,14 @@ return {
                     "otherwise {C:red}-#8#{} chip",
                 }
             },
+            j_bof_j_furious_joker = {
+                name = "Furious Joker",
+                text = {
+                    "{C:money}+$#1#{} at the end",
+                    "of a round",
+                    "earn no {C:money}interest"
+                }
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
