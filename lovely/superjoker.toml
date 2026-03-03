@@ -1,0 +1,34 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -2
+
+# right from cryptid
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1 then
+    G.STATE = G.STATES.NEW_ROUND
+else
+    G.STATE = G.STATES.DRAW_TO_HAND
+end
+'''
+position = "at"
+payload = '''
+if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1 then
+    if (#SMODS.find_card("j_bof_j_super_joker")>0) then
+        if BoF_check_super_jokers() then
+            SMODS.calculate_context({bof_emergency = true})
+            G.STATE = G.STATES.DRAW_TO_HAND
+        else
+            G.STATE = G.STATES.NEW_ROUND
+        end
+    else
+        G.STATE = G.STATES.NEW_ROUND
+    end
+else
+    G.STATE = G.STATES.DRAW_TO_HAND
+end
+'''
+match_indent = true

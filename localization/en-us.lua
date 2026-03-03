@@ -205,6 +205,14 @@ return {
                     "if no {C:attention}Tags{} are owned"
                 }
             },
+            j_bof_j_super_joker = {
+                name = "Super Joker",
+                text = {
+                    "If {C:attention}Blind{} is not won",
+                    "by last hand, {C:blue}+#1#{} hands",
+                    "{C:inactive}(Once per round){}"
+                }
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
@@ -235,6 +243,8 @@ return {
         dictionary = {
             k_bof_saved_by_shrimp = "Saved by delicious shrimp",
             k_bof_nom = "Nom!",
+            bof_active = "Active!",
+            bof_ready = "Ready!",
         }
     }
 }
