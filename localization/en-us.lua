@@ -213,6 +213,23 @@ return {
                     "{C:inactive}(Once per round){}"
                 }
             },
+            j_bof_j_youngster_timmy = {
+                name = "Youngster Timmy",
+                text={
+                {
+                    "{C:red}+#4#{} Mult for each",
+                    "{C:attention}Enhanced{} card in",
+                    "your full deck",
+                    "{C:inactive}(Currently {C:red}+#1#{C:inactive} Mult)",
+                },
+                {
+                    "{C:blue}+#5#{} Chips for each",
+                    "card above {C:attention}#3#{}",
+                    "in your full deck",
+                    "{C:inactive}(Currently {C:blue}+#2#{C:inactive} Chips)",
+                },
+                },
+            },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
