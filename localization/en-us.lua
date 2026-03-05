@@ -30,7 +30,7 @@ return {
             j_bof_a_blueberry = {
                 name = "Blueberry",
                 text = {
-                    "Each card {C:attention}held in hand",
+                    "Each {C:attention}card{} held in hand",
                     "permanently gains {C:chips}+#1#{} Chip#<s>1#",
                     "Decreases by {C:chips}-#2#{} Chip#<s>2#",
                     "at end of round"
@@ -72,7 +72,7 @@ return {
                 name = "Tomato",
                 text = {
                     "The next {C:attention}#1#{} cards",
-                    "{C:attention}held in hand{} have a",
+                    "held in hand have a",
                     "{C:green}#2# in #3#{} chance of becoming",
                     "{C:attention}Mult Cards{} or {C:attention}Lucky Cards{}"
                 }
@@ -131,16 +131,12 @@ return {
             j_bof_j_geezer_gary = {
                 name = "Geezer Gary",
                 text = {
-                    {
                     "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
                     "when a Joker is {C:attention}sold{},",
-                    },
-                    {
                     "increases by {C:chips}+#2#{} Chip#<s>2# when",
                     "{C:attention}Boss Blind{} is defeated",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
-                    },
-                    },
+                }
             },
             j_bof_j_mr_golden_sun = {
                 name = "Mr. Golden Sun",
@@ -252,54 +248,55 @@ return {
                     "in hand at end of round",
                 },
                 {
-                    "Upgrade level of",
-                    "discarded {C:attention}poker hand{} if",
-                    "discarded hand contains a {C:blue}Blue Seal",
+                    "Upgrade level of discarded",
+                    "{C:attention}poker hand{} if discarded",
+                    "hand contains a {C:blue}Blue Seal",
                 },
                 },
             },
             j_bof_j_polymath = {
                 name = "Polymath",
                 text = {
-                    "Each card {C:attention}scored{} and {C:attention}held in hand{}",
-                    "has a {C:green}#1# in #2#{} chance for ",
-                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips",
-                    "{X:mult,C:white}X#5#{} Mult, {C:money}+$#7#{} and", "Balance {C:white,B:1}#6#%{} of {C:chips}Chips{} and {C:mult}Mult{}",
+                    "Each card scored and held in hand",
+                    "has a {C:green}#1# in #2#{} chance to give",
+                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips,",
+                    "{X:mult,C:white}X#5#{} Mult, {C:money}$#7#{}, and",
+                    "balance {C:white,B:1}#6#%{} of {C:chips}Chips{} and {C:mult}Mult{}",
                 }
             },
             j_bof_j_furious_joker = {
                 name = "Furious Joker",
                 text = {
                     "Earn {C:money}$#1#{} at end",
-                    "of round,",
-                    "earn no {C:attention}interest"
+                    "of round",
+                    "Earn no {C:attention}interest"
                 }
             },
             j_bof_j_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
-                    "{C:red}Destroys{} a random {C:attention}card{}",
+                    "Destroy a random {C:attention}card{}",
                     "in played hand",
-                    "{C:attention}Played Cards{} in final hand",
-                    "of a round {C:red}cannot{} be destroyed",
-                    "by this {C:attention}Joker{}"
+                    "This Joker cannot destroy",
+                    "cards played on {C:attention}final hand{} of round"
                 }
             },
             j_bof_j_hotboxer = {
                 name = "Hotboxer",
                 text = {
-                    "If last {C:red}discard{}",
-                    "of round is exactly {C:attention}1{} card,",
-                    "either {C:attention}duplicate{}",
-                    "or {C:red}destroy{} it"
+                    "If {C:attention}final discard{} of",
+                    "round has only {C:attention}#1#{} card,",
+                    "either add a {C:attention}permanent",
+                    "{C:attention}copy{} to deck or destroy it"
                 }
             },
             j_bof_f_manqian = {
                 name = "ManQian",
                 text = {
-                    "{C:white,X:mult}Multiply Mult{} by",
-                    "level of most played",
-                    "{C:mult}poker hand{} before scoring"
+                    "{C:white,X:mult}Multiply{C:mult} Mult{} by",
+                    "level of {C:attention}most played",
+                    "{C:attention}poker hand{} before scoring",
+                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
                 }
             },
             j_bof_f_turold = {
@@ -317,6 +314,14 @@ return {
                     "Fill consumable slots",
                     "with random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected"
+                }
+            },
+            j_bof_j_rogue = {
+                name = "Rogue",
+                text = {
+                    "{C:spades}Spades{} and {C:clubs}Clubs",
+                    "held in hand give",
+                    "{C:money}$#1#{} at end of round"
                 }
             },
         }
