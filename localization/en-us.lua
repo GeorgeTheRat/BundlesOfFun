@@ -214,7 +214,7 @@ return {
                 text = {
                     "If {C:attention}Blind{} is not won",
                     "by last hand, {C:blue}+#1#{} hands",
-                    "{C:inactive}(Once per round){}"
+                    "{s:0.8}May only trigger once per round"
                 }
             },
             j_bof_j_youngster_timmy = {
@@ -239,7 +239,7 @@ return {
                 text = {
                     "{C:mult}+#1#{} Mult if played",
                     "{C:attention}poker hand{}",
-                    "has {C:red}not{} already been ",
+                    "has not already been ",
                     "played this round"
                 }
             },
@@ -247,14 +247,14 @@ return {
                 name = "Soothsayer",
                 text = {
                 {
-                    "Creates a {C:tarot}Tarot{} card",
+                    "Create a {C:tarot}Tarot{} card",
                     "if a {C:purple}Purple Seal{} is held",
                     "in hand at end of round",
                 },
                 {
-                    "Increases the level of",
-                    "discarded {C:attention}poker hand{}",
-                    "if discarded hand contains a {C:blue}Blue Seal",
+                    "Upgrade level of",
+                    "discarded {C:attention}poker hand{} if",
+                    "discarded hand contains a {C:blue}Blue Seal",
                 },
                 },
             },
@@ -271,9 +271,9 @@ return {
             j_bof_j_furious_joker = {
                 name = "Furious Joker",
                 text = {
-                    "{C:money}+$#1#{} at the end",
-                    "of  round,",
-                    "Earn no {C:money}Interest"
+                    "Earn {C:money}$#1#{} at end",
+                    "of round,",
+                    "earn no {C:attention}interest"
                 }
             },
             j_bof_j_schlitzohr = {
