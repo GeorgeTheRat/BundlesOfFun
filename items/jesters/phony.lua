@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Phony",
     config = {
         extra = {
-            mult = 5,
+            mult = 6,
             chips = 10
         },
     },
