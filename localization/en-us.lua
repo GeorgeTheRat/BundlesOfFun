@@ -247,8 +247,8 @@ return {
                 name = "Soothsayer",
                 text = {
                 {
-                    "Create a {C:tarot}Tarot{} card",
-                    "if a {C:purple}Purple Seal{} is held",
+                    "Creates a {C:tarot}Tarot{} card",
+                    "if a {C:tarot}Purple Seal{} is held",
                     "in hand at end of round",
                 },
                 {
@@ -262,10 +262,9 @@ return {
                 name = "Polymath",
                 text = {
                     "Each card {C:attention}scored{} and {C:attention}held in hand{}",
-                    "has a {C:green}#1#{} in {C:green}#2#{} chance for ",
+                    "has a {C:green}#1# in #2#{} chance for ",
                     "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips",
                     "{X:mult,C:white}X#5#{} Mult, {C:money}+$#7#{} and", "Balance {C:white,B:1}#6#%{} of {C:chips}Chips{} and {C:mult}Mult{}",
-                    "otherwise {C:red}-#8#{} chip",
                 }
             },
             j_bof_j_furious_joker = {

@@ -5,13 +5,12 @@ SMODS.Joker({
 		extra = {
 			odds = 5,
 
-			smult = 2,
-			schips = 10,
-			sxchips = 1.2,
+			smult = 3,
+			schips = 12,
+			sxmult = 1.2,
 			sbalance = 5,
 			sdollars = 1,
 
-			fchips = 1,
 		},
 	},
 	pos = { x = 6, y = 2 },
@@ -28,10 +27,9 @@ SMODS.Joker({
                 den,
 				cae.smult,
 				cae.schips,
-				cae.sxchips,
+				cae.sxmult,
 				cae.sbalance,
 				cae.sdollars,
-				cae.fchips,
                 colours = { { 0.8, 0.45, 0.85, 1 } }
 			},
 		}
@@ -43,13 +41,12 @@ SMODS.Joker({
                 return{
                     chips = cae.schips,
                     mult = cae.smult,
-                    xchips = cae.sxchips,
+                    xchips = cae.sxmult,
                     dollarsa = cae.sdollars,
                     bof_balance_percent = cae.sbalance * 0.01
                 }
             else
                 return{
-                    chips = -cae.fchips
                 }
             end
 		end

@@ -1,7 +1,7 @@
 SMODS.Joker {
     key = "j_mr_golden_sun",
     name = "Mr. Golden Sun",
-    config = { extra = { xmult = 0.8 } },
+    config = { extra = { xmult = 0.75 } },
     pos = { x = 3, y = 1 },
     cost = 7,
     rarity = 2,
