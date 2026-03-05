@@ -14,7 +14,7 @@ SMODS.Joker {
     calculate = function(self,card,context)
         if context.joker_main then
             if G.GAME.hands[context.scoring_name].played_this_round <= 1 then
-                return{
+                return {
                     mult = card.ability.extra.mult
                 }
             end

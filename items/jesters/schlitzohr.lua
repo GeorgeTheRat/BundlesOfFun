@@ -1,26 +1,15 @@
 SMODS.Joker({
 	key = "j_schlitzohr",
 	name = "Schlitzohr",
-	config = {
-		extra = {},
-	},
 	pos = { x = 4, y = 2 },
 	rarity = 3,
 	order = 27,
 	blueprint_compat = true,
 	atlas = "joker",
-	loc_vars = function(self, info_queue, card)
-		local cae = card.ability.extra
-		return {
-			vars = {},
-		}
-	end,
 	calculate = function(self, card, context)
-		local cae = card.ability.extra
 		if context.destroy_card and (context.cardarea == G.play or context.cardarea == "unscored") and G.GAME.current_round.hands_left > 0 then
-            local a = pseudorandom_element(G.play.cards, pseudoseed("brr"))
-            if context.destroy_card == a then
-                return{
+            if context.destroy_card == pseudorandom_element(G.play.cards, pseudoseed("j_bof_j_schlitzohr")) then
+                return {
                     remove = true
                 }
             end

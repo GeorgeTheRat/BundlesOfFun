@@ -319,9 +319,20 @@ return {
             j_bof_j_rogue = {
                 name = "Rogue",
                 text = {
-                    "{C:spades}Spades{} and {C:clubs}Clubs",
-                    "held in hand give",
-                    "{C:money}$#1#{} at end of round"
+                    "Cards with {C:spades}Spade",
+                    "or {C:clubs}Club{} suit give",
+                    "{C:money}$#1#{} when held in hand",
+                    "at end of round"
+                }
+            },
+            j_bof_j_luminary = {
+                name = "Luminary",
+                text = {
+                    "Earn {C:money}$#1#{} at end of round",
+                    "Increase payout by {C:money}$#2#{} for each",
+                    "played hand that contains a",
+                    "{C:attention}played{} and {C:attention}unscoring{} card with",
+                    "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
                 }
             },
         }

@@ -40,7 +40,7 @@ SMODS.Joker {
         if G.playing_cards ~= nil then
             local enhanced_count = 0
             for k, v in pairs(G.playing_cards) do
-                if v.config.center ~= G.P_CENTERS.c_base then
+                if next(SMODS.get_enhancements(v)) then
                     enhanced_count = enhanced_count + 1
                 end
             end
