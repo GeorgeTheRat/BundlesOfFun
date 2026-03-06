@@ -335,6 +335,19 @@ return {
                     "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
                 }
             },
+            j_bof_j_eureka = {
+                name = "Emmanuel E. \"Eureka\"",
+                text = {
+                    {
+                        "{C:tarot}Arcana Packs{} may contain",
+                        "{C:attention}consumables{} of all types"
+                    },
+                    {
+                        "{C:spectral}Spectral Packs{} and {C:planet}Celestial Packs{}",
+                        "may contain {C:tarot}Tarot{} cards"
+                    }
+                }
+            }
         }
     },
     misc = {

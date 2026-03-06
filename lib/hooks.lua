@@ -33,7 +33,7 @@ end
 
 local skip_blind_old = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
-    SMODS.calculate_context({bof_pre_skip = true})
+    SMODS.calculate_context({ bof_pre_skip = true })
     G.E_MANAGER:add_event(Event({
         trigger = "after",
         delay = 0.3,
@@ -43,3 +43,106 @@ G.FUNCS.skip_blind = function(e)
         end
     }))
 end
+
+SMODS.Booster:take_ownership_by_kind("Arcana", {
+        create_card = function(self, card, i)
+            local _card
+            if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+                _card = {
+                    set = pseudorandom_element(G.P_CENTER_POOLS.Consumeables, pseudoseed("j_bof_j_eureka")).set,
+                    area = G.pack_cards,
+                    skip_materialize = true,
+                    soulable = false,
+                    key_append = "ar3"
+                }
+            elseif G.GAME.used_vouchers.v_omen_globe and pseudorandom("omen_globe") > 0.8 then
+                _card = {
+                    set = "Spectral",
+                    area = G.pack_cards,
+                    skip_materialize = true,
+                    soulable = true,
+                    key_append = "ar2"
+                }
+			else
+                _card = {
+                    set = "Tarot",
+                    area = G.pack_cards,
+                    skip_materialize = true,
+                    soulable = true,
+                    key_append = "ar1"
+                }
+            end
+            return _card
+        end
+}, true)
+
+SMODS.Booster:take_ownership_by_kind("Celestial", {
+    create_card = function(self, card, i)
+        local _card
+        if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+            _card = {
+                set = "Tarot",
+                area = G.pack_cards,
+                skip_materialize = true,
+                soulable = true,
+                key_append = "pl2"
+            }
+        elseif G.GAME.used_vouchers.v_telescope and i == 1 then
+            local _planet, _hand, _tally = nil, nil, 0
+            for _, handname in ipairs(G.handlist) do
+                if SMODS.is_poker_hand_visible(handname) and G.GAME.hands[handname].played > _tally then
+                    _hand = handname
+                    _tally = G.GAME.hands[handname].played
+                end
+            end
+            if _hand then
+                for _, planet_center in pairs(G.P_CENTER_POOLS.Planet) do
+                    if planet_center.config.hand_type == _hand then
+                        _planet = planet_center.key
+                    end
+                end
+            end
+            _card = {
+                set = "Planet",
+                area = G.pack_cards,
+                skip_materialize = true,
+                soulable = true,
+                key = _planet,
+                key_append = "pl1"
+            }
+        else
+            _card = {
+                set = "Planet",
+                area = G.pack_cards,
+                skip_materialize = true,
+                soulable = true,
+                key_append = "pl1"
+            }
+        end
+        return _card
+    end
+}, true)
+
+SMODS.Booster:take_ownership_by_kind("Spectral", {
+    create_card = function(self, card, i)
+		local _card
+		if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+            _card = {
+                set = "Tarot",
+                area = G.pack_cards,
+                skip_materialize = true,
+                soulable = true,
+                key_append = "spe1"
+            }
+		else
+			_card = {
+				set = "Spectral",
+				area = G.pack_cards,
+				skip_materialize = true,
+				soulable = true,
+				key_append = "spe"
+			}
+		end
+		return _card
+    end
+}, true)
