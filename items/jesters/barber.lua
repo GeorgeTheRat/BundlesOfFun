@@ -11,7 +11,6 @@ SMODS.Joker {
     pos = { x = 1, y = 2 },
     cost = 5,
     rarity = 1,
-    order = 14,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_j_barber")

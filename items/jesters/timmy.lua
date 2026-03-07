@@ -1,15 +1,15 @@
-BoF_amount_of_enhanced = function()
+local function amount_of_enhanced()
     local a = 0
     for k, v in pairs(G.playing_cards) do
-        if v.ability.set == "Enhanced" then
+        if next(SMODS.get_enhancements(v)) then
             a = a + 1
         end
     end
     return a
 end
 
-BoF_cards_above_deck = function()
-    local a,b = (G.GAME.starting_deck_size or 52) ,0
+local function cards_above_deck()
+    local a, b = (G.GAME.starting_deck_size or 52), 0
     for i = 1, #G.playing_cards do
         b = b + 1
     end
@@ -27,32 +27,29 @@ SMODS.Joker {
         extra = {
             mult = 1,
             chips = 4
-        },
+        }
     },
     pos = { x = 5, y = 1 },
     cost = 4,
     rarity = 2,
-    order = 20,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local cae = card.ability.extra
         return {
             vars = {
-                (G.playing_cards and BoF_amount_of_enhanced() or 0)*cae.mult,
-                (G.playing_cards and BoF_cards_above_deck() or 0)*cae.chips,
+                card.ability.extra.mult,
+                (G.playing_cards and amount_of_enhanced() or 0) * card.ability.extra.mult,
+                card.ability.extra.chips,
                 (G.GAME.starting_deck_size or 52),
-                cae.mult,
-                cae.chips
+                (G.playing_cards and cards_above_deck() or 0) * card.ability.extra.chips,
             }   
         }
     end,
-    calculate = function(self,card,context)
-        local cae = card.ability.extra
+    calculate = function(self, card, context)
         if context.joker_main then
-            return{
-                chips = cae.chips * BoF_cards_above_deck(),
-                mult = cae.mult * BoF_amount_of_enhanced()
+            return {
+                chips = card.ability.extra.chips * cards_above_deck(),
+                mult = card.ability.extra.mult * amount_of_enhanced()
             }
         end
     end

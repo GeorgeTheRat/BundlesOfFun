@@ -6,76 +6,100 @@ BundlesOfFun.config.bundles = BundlesOfFun.config.bundles or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
 
-local function load_directory(relative_path)
-    local full_path = SMODS.current_mod.path .. "/" .. relative_path
-    if NFS.getInfo(full_path) and NFS.getInfo(full_path).type == "directory" then
-        local files = NFS.getDirectoryItems(full_path)
-        for _, file in ipairs(files) do
-            local file_path = full_path .. "/" .. file
-            if NFS.getInfo(file_path).type == "directory" then
-                load_directory(relative_path .. "/" .. file)
-            elseif file:sub(-4):lower() == ".lua" then
-                local mod_relative_path = relative_path .. "/" .. file
-                local success, result = pcall(function()
-                    return SMODS.load_file(mod_relative_path)()
-                end)
-                if not success then
-                    print("[Bundles of Fun] Error loading " .. mod_relative_path .. ": " .. tostring(result))
-                end
-            end
+assert(SMODS.load_file("lib/badge.lua"))()
+assert(SMODS.load_file("lib/balance.lua"))()
+assert(SMODS.load_file("lib/compat.lua"))()
+assert(SMODS.load_file("lib/hooks.lua"))()
+assert(SMODS.load_file("lib/plural.lua"))()
+assert(SMODS.load_file("lib/smods.lua"))()
+
+-- function for nil checks on tables - just input a string like "card.ability.extra.whatever" and it'll split it up
+function BundlesOfFun.nil_check(path)
+    local result = ""
+    local current = ""
+
+    for part in path:gmatch("[^%.]+") do
+        if current == "" then
+            current = part
+        else
+            current = current .. "." .. part
+        end
+
+        if result == "" then
+            result = current
+        else
+            result = result .. " and " .. current
         end
     end
-end
 
-local original_orders = {}
-local bof_buffer = {}
-
-local originalSMODSJoker = SMODS.Joker.__call
-function SMODS.Joker:__call(obj)
-    if obj.key and obj.order then
-        original_orders[obj.key] = obj.order
-    end
-    
-    if obj.key and (obj.key:find("^a_") or obj.key:find("^f_") or obj.key:find("^g_") or obj.key:find("^j_") or obj.key:find("^n_")) then
-        obj.order = (obj.order or 0) + 1e9
-        obj.bof_order = obj.order
-        obj.cry_order = obj.order
-        
-        table.insert(bof_buffer, obj)
-        return obj
-    end
-    
-    return originalSMODSJoker(obj)
-end
-
-load_directory("lib")
-load_directory("items")
-
-local function register_bof_items()
-    if #bof_buffer > 0 then
-        table.sort(bof_buffer, function(a, b)
-            local a_orig = original_orders[a.key] or 999
-            local b_orig = original_orders[b.key] or 999
-            return a_orig < b_orig
-        end)
-        
-        for _, obj in ipairs(bof_buffer) do
-            originalSMODSJoker(obj)
-        end
-        
-        bof_buffer = {}
-    end
-end
-
-local original_injectItems = SMODS.injectItems
-function SMODS.injectItems(...)
-    local result = original_injectItems(...)
-    register_bof_items()
     return result
 end
 
-if G.P_CENTER_POOLS and G.P_CENTER_POOLS.Joker then
-    register_bof_items()
+local files = {
+    appetizers = {
+        list = {
+			"dragonfruit",
+            "blueberry",
+            "grapes",
+            "shrimp",
+            "durian",
+            "wonderous_bread",
+            "jelly_beans",
+            "apple",
+            "apple_core",
+            "tomato"
+		}, directory = "items/appetizers/"
+    },
+    jesters = {
+        list = {
+            "hal",
+            "henry",
+            "tom",
+            "barber",
+            "ballbo",
+            "rogue",
+            "eddrick",
+            "super",
+            "eureka",
+            "timmy",
+            "gary",
+            "golden_sun",
+            "jack_frost",
+            "jim",
+            "gumphrey",
+            "soothsayer",
+            "polymath",
+            "luminary",
+            "furious",
+            "larry",
+            "phony",
+            "frank",
+            "crafted",
+            "schlitzohr",
+            "hotboxer"
+        }, directory = "items/jesters/"
+    },
+    -- normalities = {
+    --     list = {
+            
+    --     }, directory = "items/normalities/"
+    -- },
+    fables = {
+        list = {
+            "narr",
+            "manqian",
+            "turold",
+            "taillefer",
+            "dagonet"
+        }, directory = "items/fables/"
+    }
+}
+
+for _, category in ipairs({"appetizers", "jesters", "fables"}) do
+	local set = files[category]
+	for _, name in ipairs(set.list) do
+		assert(SMODS.load_file(set.directory .. name .. ".lua"))()
+	end
 end
 
 function BundlesOfFun.is_item_enabled(item_key)
@@ -90,7 +114,6 @@ function BundlesOfFun.is_item_enabled(item_key)
     local category_map = {
         a = "appetizers",
         f = "fables",
-        g = "geodes",
         j = "jesters",
         n = "normalities"
     }
@@ -162,7 +185,6 @@ local function create_bundles_config_tab()
     local categories = {
         { id = "appetizers", name = "Appetizers", color = G.C.RED },
         { id = "fables", name = "Fables", color = G.C.BLUE },
-        { id = "geodes", name = "Geodes", color = G.C.PURPLE },
         { id = "jesters", name = "Jesters", color = G.C.ORANGE },
         { id = "normalities", name = "Normalities", color = G.C.GREY },
     }

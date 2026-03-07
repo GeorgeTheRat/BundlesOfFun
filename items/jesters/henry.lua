@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "j_handy_henry",
+    key = "j_henry",
     name = "Handy Henry",
     config = {
         extra = {
@@ -11,7 +11,6 @@ SMODS.Joker {
     pos = { x = 3, y = 2 },
     cost = 5,
     rarity = 2,
-    order = 12,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

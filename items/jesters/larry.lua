@@ -1,11 +1,10 @@
 SMODS.Joker {
-    key = "j_laggard_larry",
+    key = "j_larry",
     name = "Laggard Larry",
     config = { extra = { dollars = 3 } },
     pos = { x = 2, y = 3 },
     cost = 5,
     rarity = 1,
-    order = 30,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

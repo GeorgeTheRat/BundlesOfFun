@@ -3,10 +3,9 @@ SMODS.Joker {
     name = "Soothsayer",
     pos = { x = 3, y = 3 },
     rarity = 2,
-    order = 26,
     blueprint_compat = true,
     atlas = "joker",
-    calculate = function(self,card,context)
+    calculate = function(self, card, context)
         if context.end_of_round and context.cardarea == G.hand and context.individual then
             if context.other_card.seal and context.other_card.seal == "Purple" then
                 SMODS.add_card{set = "Tarot"}

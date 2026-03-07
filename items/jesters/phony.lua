@@ -10,7 +10,6 @@ SMODS.Joker {
     pos = { x = 7, y = 2 },
     cost = 3,
     rarity = 1,
-    order = 31,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
@@ -21,7 +20,7 @@ SMODS.Joker {
             }
         }
     end,
-    calculate = function(self,card,context)
+    calculate = function(self, card, context)
         if context.joker_main then
             return {
                 mult = card.ability.extra.mult,

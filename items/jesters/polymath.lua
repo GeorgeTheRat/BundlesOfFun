@@ -13,7 +13,6 @@ SMODS.Joker({
 	},
 	pos = { x = 6, y = 2 },
 	rarity = 3,
-	order = 27,
 	blueprint_compat = true,
 	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
@@ -33,7 +32,7 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.individual and (context.cardarea == G.play or context.cardarea == G.hand) and not context.end_of_round then
-            if SMODS.pseudorandom_probability(card, "j_bof_j_polymath", 1,card.ability.extra.odds) then
+            if SMODS.pseudorandom_probability(card, "j_bof_j_polymath", 1, card.ability.extra.odds) then
                 return {
                     chips = card.ability.extra.chips,
                     mult = card.ability.extra.mult,

@@ -4,7 +4,6 @@ SMODS.Joker {
     pos = { x = 6, y = 0 },
     cost = 1,
     rarity = 2,
-    order = 5,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

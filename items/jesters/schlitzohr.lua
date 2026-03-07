@@ -3,7 +3,6 @@ SMODS.Joker({
 	name = "Schlitzohr",
 	pos = { x = 4, y = 2 },
 	rarity = 3,
-	order = 27,
 	blueprint_compat = true,
 	atlas = "joker",
 	calculate = function(self, card, context)

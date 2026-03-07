@@ -3,7 +3,6 @@ local badge_gradient = SMODS.Gradient{
     colours = {
         HEX("8B4A4A"),  -- appetizers (red)
         HEX("4A6A8B"),  -- fables (blue)
-        HEX("6B5A7A"),  -- geodes (purple)
         HEX("A3744A"),  -- jesters (orange)
         HEX("7A7A7A")   -- normalities (gray)
     }
@@ -15,7 +14,6 @@ local original_create_mod_badges = SMODS.create_mod_badges
 local CATEGORIES = {
     a = { name = "Appetizers", color_idx = 1 },
     f = { name = "Fables", color_idx = 2 },
-    g = { name = "Geodes", color_idx = 3 },
     j = { name = "Jesters", color_idx = 4 },
     n = { name = "Normalities", color_idx = 5 }
 }

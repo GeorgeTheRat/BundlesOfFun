@@ -6,7 +6,7 @@ SMODS.Atlas({
 })
 
 SMODS.Atlas({
-    key = "joker", 
+    key = "bof_joker", 
     path = "joker.png", 
     px = 71,
     py = 95, 

@@ -1,11 +1,10 @@
 SMODS.Joker {
-    key = "j_mr_golden_sun",
+    key = "j_golden_sun",
     name = "Mr. Golden Sun",
     config = { extra = { xmult = 0.75 } },
     pos = { x = 3, y = 1 },
     cost = 7,
     rarity = 2,
-    order = 22,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

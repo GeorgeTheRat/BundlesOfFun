@@ -5,7 +5,6 @@ SMODS.Joker {
     pos = { x = 5, y = 0 },
     cost = 7,
     rarity = 3,
-    order = 1,
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)

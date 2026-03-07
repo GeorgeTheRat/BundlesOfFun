@@ -10,14 +10,13 @@ SMODS.Joker {
     pos = { x = 1, y = 1 },
     cost = 5,
     rarity = 1,
-    order = 25,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local enhanced_count = 0
         if G.playing_cards ~= nil then
             for k, v in pairs(G.playing_cards) do
-                if v.config.center ~= G.P_CENTERS.c_base then
+                if next(SMODS.get_enhancements(v)) then
                     enhanced_count = enhanced_count + 1
                 end
             end
