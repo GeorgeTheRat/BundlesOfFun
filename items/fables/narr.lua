@@ -56,7 +56,11 @@ SMODS.Joker {
     end
 }
 
-SMODS.current_mod.reset_game_globals = function()
+SMODS.current_mod.reset_game_globals = function(init)
     G.GAME.current_round.narr_card = G.GAME.current_round.narr_card or { suit = "Spades" }
     G.GAME.current_round.narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_f_narr")
+
+    if init then
+        G.GAME.bof_bundles = copy_table(BundlesOfFun.config.bundles)
+    end
 end

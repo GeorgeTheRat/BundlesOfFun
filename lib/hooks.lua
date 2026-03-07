@@ -146,3 +146,22 @@ SMODS.Booster:take_ownership_by_kind("Spectral", {
 		return _card
     end
 }, true)
+
+local atpref = SMODS.add_to_pool
+SMODS.add_to_pool = function (prototype_obj, args)
+    local bundle, bundle_inactive, prefix
+    local item_key = prototype_obj.key
+    local category_map = {
+        a = "appetizers",
+        f = "fables",
+        j = "jesters",
+        n = "normalities"
+    }
+    if item_key:sub(1,6) == "j_bof_" then
+        prefix = item_key:sub(7, 7)
+        bundle = category_map[prefix]
+        bundle_inactive = not G.GAME.bof_bundles[bundle]
+    end
+
+    return not (bundle and bundle_inactive) and atpref(prototype_obj, args)
+end

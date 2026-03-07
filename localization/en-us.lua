@@ -374,7 +374,14 @@ return {
             k_bof_nom = "Nom!",
             bof_active = "Active!",
             bof_ready = "Ready!",
-            k_bof_destroyed = "Destroyed!"
+            k_bof_destroyed = "Destroyed!",
+
+            option_bof_appetizers = "Appetizers",
+            option_bof_fables = "Fables",
+            option_bof_jesters = "Jesters",
+            option_bof_normalities = "Normalities",
+            option_bof_jokers = "Jokers",
+            option_bof_geodes = "Geodes",
         }
     }
 }
