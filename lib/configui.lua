@@ -1,20 +1,35 @@
-local function bundle_toggle(item)
-    return create_toggle{
-        label = localize("option_bof_"..item),
-        ref_table = BundlesOfFun.config.bundles,
-        ref_value = item
-    }
+local function bundle_toggle(item, colour)
+    return { n = G.UIT.R, config = { align = "cm" }, nodes = { 
+        create_toggle{
+            label = localize("option_bof_"..item),
+            active_colour = colour,
+            col = true,
+            label_scale = 0.4,
+            ref_table = BundlesOfFun.config.bundles,
+            ref_value = item,
+            align = "cm"
+        }
+    }}
 end
 
 SMODS.current_mod.config_tab = function()
-    return {n = G.UIT.ROOT, config = {r = 0.1, minw = 8, minh = 6, align = "tl", padding = 0.2, colour = G.C.BLACK}, nodes = {
-        {n = G.UIT.C, config = {minw=1, minh=1, align = "tl", colour = G.C.CLEAR, padding = 0.15}, nodes = {
-        bundle_toggle("appetizers"),
-        bundle_toggle("jesters"),
-        bundle_toggle("fables"),
-        bundle_toggle("normalities"),
-        --bundle_toggle("jokers"), --Do these actually exist yet?
-        --bundle_toggle("geodes")
-        }}
-    }}
+    return {
+        n = G.UIT.ROOT,
+        config = {
+            emboss = 0.05,
+            minh = 6,
+            r = 0.1,
+            minw = 10,
+            align = "cm",
+            padding = 0.2,
+            colour = G.C.BLACK,
+        },
+        nodes = {
+            bundle_toggle("appetizers", G.C.RED),
+            bundle_toggle("jesters", G.C.ORANGE),
+            bundle_toggle("fables", G.C.BLUE),
+            bundle_toggle("normalities", G.C.GREY),
+            -- bundle_toggle("flats", G.C.epstein)
+        }
+    }
 end

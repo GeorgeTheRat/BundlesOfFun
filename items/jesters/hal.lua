@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "j_hatty_hal",
+    key = "j_hal",
     name = "Hatty Hal",
     config = {
         extra = {

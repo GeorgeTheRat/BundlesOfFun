@@ -21,7 +21,7 @@ local function cards_above_deck()
 end
 
 SMODS.Joker {
-    key = "j_youngster_timmy",
+    key = "j_timmy",
     name = "Youngster Timmy",
     config = {
         extra = {
