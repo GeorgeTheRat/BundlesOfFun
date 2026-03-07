@@ -160,7 +160,7 @@ SMODS.add_to_pool = function (prototype_obj, args)
     if item_key:sub(1,6) == "j_bof_" then
         prefix = item_key:sub(7, 7)
         bundle = category_map[prefix]
-        bundle_inactive = not G.GAME.bof_bundles[bundle]
+        bundle_inactive = not G.GAME.bof_bundles[bundle or "AAAAA"]
     end
 
     return not (bundle and bundle_inactive) and atpref(prototype_obj, args)
