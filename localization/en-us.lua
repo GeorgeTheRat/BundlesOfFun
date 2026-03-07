@@ -232,14 +232,14 @@ return {
                 name = "Soothsayer",
                 text = {
                 {
-                    "Creates a {C:tarot}Tarot{} card",
-                    "if a {C:tarot}Purple Seal{} is held",
-                    "in hand at end of round",
+                    "Creates a {C:tarot}Tarot{} card if a",
+                    "card with a {C:tarot}Purple Seal{} is",
+                    "held in hand at end of round",
                 },
                 {
                     "Upgrade level of discarded",
-                    "{C:attention}poker hand{} if discarded",
-                    "hand contains a {C:blue}Blue Seal",
+                    "{C:attention}poker hand{} if discarded hand",
+                    "contains a card with a {C:blue}Blue Seal",
                 },
                 },
             },

@@ -2,6 +2,7 @@ SMODS.Joker {
     key = "j_soothsayer",
     name = "Soothsayer",
     pos = { x = 3, y = 3 },
+    cost = 6,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",

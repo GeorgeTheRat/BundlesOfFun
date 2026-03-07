@@ -14,11 +14,7 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-                card.ability.extra.joker_slots
-            }
-        }
+        return { vars = { card.ability.extra.joker_slots } }
     end,
     add_to_deck = function(self, card, context)
         card.ability.extra.old = G.consumeables.config.card_limit

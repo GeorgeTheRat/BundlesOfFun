@@ -2,6 +2,7 @@ SMODS.Joker({
 	key = "j_schlitzohr",
 	name = "Schlitzohr",
 	pos = { x = 4, y = 2 },
+	cost = 8,
 	rarity = 3,
 	blueprint_compat = true,
 	atlas = "joker",

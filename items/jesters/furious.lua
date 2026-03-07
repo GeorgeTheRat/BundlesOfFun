@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Furious Joker",
     config = { extra = { dollars = 8 } },
     pos = { x = 4, y = 3 },
-    cost = 5,
+    cost = 6,
     rarity = 1,
     blueprint_compat = false,
     atlas = "joker",
