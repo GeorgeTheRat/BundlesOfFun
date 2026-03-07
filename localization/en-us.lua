@@ -154,7 +154,7 @@ return {
                 }
             },
             j_bof_j_eureka = {
-                name = "Emmanuel E. \"Eureka\"",
+                name = "Emanuel E. \"Eureka\"",
                 text = {
                     {
                         "{C:tarot}Arcana Packs{} may contain",
@@ -289,18 +289,18 @@ return {
             j_bof_j_frank = {
                 name = "Frank Fop",
                 text = {
-                    "Create a {C:attention}Double Tag{}",
-                    "when {C:attention}Blind{} is skipped if no",
-                    "{C:attention}Tags{} were previously owned"
+                    "Create either a {C:attention}Handy Tag{} or",
+                    "{C:attention}Garbage Tag{} at random when",
+                    "{C:blue}Small Blind{} is selected",
                 }
             },
             j_bof_j_crafted = {
                 name = "Crafted Joker",
                 text = {
-                    "Earn money equal",
-                    "to the current number",
-                    "of {C:attention}rounds{} completed",
-                    "when {C:attention}Blind{} is skipped",
+                    "Earn money equal to",
+                    "the current number of",
+                    "{C:attention}rounds{} completed when any",
+                    "{C:attention}Booster Pack{} is skipped",
                     "{C:red,E:2}self destructs"
                 }
             },
