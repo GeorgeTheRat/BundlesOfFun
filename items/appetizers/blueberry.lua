@@ -25,7 +25,7 @@ SMODS.Joker {
             context.other_card.ability.perma_bonus = context.other_card.ability.perma_bonus or 0
             context.other_card.ability.perma_bonus = context.other_card.ability.perma_bonus + card.ability.extra.perma_bonus
             return {
-                message = "Upgrade!",
+                message = localize("k_upgrade_ex"),
                 colour = G.C.CHIPS,
                 card = context.other_card
             }

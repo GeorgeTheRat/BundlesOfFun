@@ -23,12 +23,14 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if (context.individual and
+        if
+            (context.individual and
+            context.cardarea == G.play and
             not context.other_card.debuff and
             SMODS.has_enhancement(context.other_card, "m_stone")) or
             (context.discard and
             not context.other_card.debuff and
-            SMODS.has_enhancement(context.other_card, "m_steel")) and
+            SMODS.has_enhancement(context.other_card, "m_stone")) and
             not context.blueprint
         then
             SMODS.scale_card(card, {
@@ -38,7 +40,7 @@ SMODS.Joker {
                 message_colour = G.C.MULT
             })
         end
-        if context.individual and not context.other_card.debuff and SMODS.has_enhancement(context.other_card, "m_stone") then
+        if context.individual and not context.other_card.debuff and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, "m_stone") then
             return {
                 mult = card.ability.extra.mult,
                 card = context.other_card

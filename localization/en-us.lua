@@ -290,8 +290,8 @@ return {
                 name = "Frank Fop",
                 text = {
                     "Create a {C:attention}Double Tag{}",
-                    "when a {C:attention}Blind{} is skipped if",
-                    "no {C:attention}Tags{} were previously owned"
+                    "when {C:attention}Blind{} is skipped if no",
+                    "{C:attention}Tags{} were previously owned"
                 }
             },
             j_bof_j_crafted = {
@@ -301,7 +301,7 @@ return {
                     "to the current number",
                     "of {C:attention}rounds{} completed",
                     "when {C:attention}Blind{} is skipped",
-                    "{C:red}Self Destructs{}"
+                    "{C:red,E:2}self destructs"
                 }
             },
             j_bof_j_schlitzohr = {
@@ -309,8 +309,8 @@ return {
                 text = {
                     "Destroy a random {C:attention}card{}",
                     "in played hand",
-                    "This Joker cannot destroy",
-                    "cards played on {C:attention}final hand{} of round"
+                    "This Joker cannot destroy cards",
+                    "played on {C:attention}final hand{} of round"
                 }
             },
             j_bof_j_hotboxer = {

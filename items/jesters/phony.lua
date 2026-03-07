@@ -29,3 +29,28 @@ SMODS.Joker {
         end
     end
 }
+
+SMODS.Joker {
+    key = "j_phony",
+    name = "Phony",
+    config = { extra = { mult = 6 } },
+    pos = { x = 7, y = 2 },
+    cost = 2,
+    rarity = 1,
+    blueprint_compat = true,
+    atlas = "joker",
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.mult } }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main then
+            return {
+                mult = card.ability.extra.mult
+            }
+        end
+    end
+}
+
+return {
+    
+}
