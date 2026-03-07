@@ -25,11 +25,14 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.BLACK,
         },
         nodes = {
-            bundle_toggle("appetizers", G.C.RED),
-            bundle_toggle("jesters", G.C.ORANGE),
-            bundle_toggle("fables", G.C.BLUE),
-            bundle_toggle("normalities", G.C.GREY),
-            -- bundle_toggle("flats", G.C.HAND_LEVELS.6)
+            bundle_toggle("appetizers", G.C.bof_appetizers),
+            bundle_toggle("jesters", G.C.bof_jesters),
+            bundle_toggle("fables", G.C.bof_fables),
+            bundle_toggle("normalities", G.C.bof_normalities),
+            -- bundle_toggle("flats", G.C.bof_flats),
+            -- bundle_toggle("enemies", G.C.bof_enemies),
+            -- bundle_toggle("finishers", G.C.bof_finishers),
+            -- bundle_toggle("coupons", G.C.bof_coupons),
         }
     }
 end

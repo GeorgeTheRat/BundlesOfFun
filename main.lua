@@ -6,17 +6,21 @@ BundlesOfFun.config.bundles = BundlesOfFun.config.bundles or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
 
-local lib = {
-    "badge",
-    "balance",
-    "compat",
-    "hooks",
-    "plural",
-    "smods",
-    "configui",
-}
-for _,file in ipairs(lib) do
-    assert(SMODS.load_file("lib/"..file..".lua"))()
+G.C.bof_appetizers = HEX("bb463c")
+G.C.bof_jesters = HEX("ffc857")
+G.C.bof_fables = HEX("535fc1")
+G.C.bof_normalities = HEX("c4bca5")
+G.C.bof_flats = HEX("ff7a6f")
+G.C.bof_enemies = HEX("626e7a")
+G.C.bof_finishers = HEX("49564c")
+G.C.bof_coupons = HEX("a0cff1")
+
+local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
+for i = 1, #files do
+    local file_name = files[i].name
+    if file_name:sub(-4) == ".lua" then
+        assert(SMODS.load_file("lib/" .. file_name))()
+    end
 end
 
 -- function for nil checks on tables - just input a string like "card.ability.extra.whatever" and it'll split it up
@@ -101,9 +105,14 @@ local files = {
     }
 }
 
-for _, category in ipairs({"appetizers", "jesters", "fables"}) do
-	local set = files[category]
-	for _, name in ipairs(set.list) do
-		assert(SMODS.load_file(set.directory .. name .. ".lua"))()
-	end
+for _, name in ipairs(files["appetizers"].list) do
+    assert(SMODS.load_file(files["appetizers"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["jesters"].list) do
+    assert(SMODS.load_file(files["jesters"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["fables"].list) do
+    assert(SMODS.load_file(files["fables"].directory .. name .. ".lua"))()
 end
