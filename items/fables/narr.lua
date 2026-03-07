@@ -1,5 +1,5 @@
 local function suit()
-    return (G.GAME.current_round.narr_card or {}).suit or "Spades"
+    return (G.GAME.bof_narr_card or {}).suit or "Spades"
 end
 
 local function suit_count()
@@ -56,11 +56,18 @@ SMODS.Joker {
     end
 }
 
-SMODS.current_mod.reset_game_globals = function(init)
-    G.GAME.current_round.narr_card = G.GAME.current_round.narr_card or { suit = "Spades" }
-    G.GAME.current_round.narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_f_narr")
-
-    if init then
-        G.GAME.bof_bundles = copy_table(BundlesOfFun.config.bundles)
-    end
+-- initialize suit at start of run
+local last_start_run = Game.start_run
+function Game:start_run(args)
+    local r = last_start_run(self, args)
+    G.E_MANAGER:add_event(Event({
+        func = function()
+            G.GAME.bof_narr_card = G.GAME.bof_narr_card or {}
+            G.GAME.bof_narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_f_narr")
+            G.GAME.bof_bundles = copy_table(BundlesOfFun.config.bundles)
+            return true
+        end,
+        blocking = false
+    }))
+    return r
 end
