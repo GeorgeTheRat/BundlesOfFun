@@ -29,7 +29,7 @@ SMODS.current_mod.config_tab = function()
             bundle_toggle("jesters", G.C.ORANGE),
             bundle_toggle("fables", G.C.BLUE),
             bundle_toggle("normalities", G.C.GREY),
-            -- bundle_toggle("flats", G.C.epstein)
+            -- bundle_toggle("flats", G.C.HAND_LEVELS.6)
         }
     }
 end
