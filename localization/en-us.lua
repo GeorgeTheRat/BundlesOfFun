@@ -322,6 +322,14 @@ return {
                     "{C:attention}copy{} to deck or destroy it"
                 }
             },
+            j_bof_n_eraser = {
+                name = "Eraser",
+                text = {
+                    "Cards held in hand lose",
+                    "all of their {C:attention}modifications",
+                    "and give {C:mult}+#1#{} Mult"
+                }
+            },
             j_bof_f_narr = {
                 name = "Narr",
                 text = {

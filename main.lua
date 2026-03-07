@@ -27,21 +27,18 @@ end
 function BundlesOfFun.nil_check(path)
     local result = ""
     local current = ""
-
     for part in path:gmatch("[^%.]+") do
         if current == "" then
             current = part
         else
             current = current .. "." .. part
         end
-
         if result == "" then
             result = current
         else
             result = result .. " and " .. current
         end
     end
-
     return result
 end
 
@@ -89,11 +86,11 @@ local files = {
             "hotboxer"
         }, directory = "items/jesters/"
     },
-    -- normalities = {
-    --     list = {
-            
-    --     }, directory = "items/normalities/"
-    -- },
+    normalities = {
+        list = {
+            "eraser"
+        }, directory = "items/normalities/"
+    },
     fables = {
         list = {
             "narr",
@@ -111,6 +108,10 @@ end
 
 for _, name in ipairs(files["jesters"].list) do
     assert(SMODS.load_file(files["jesters"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["normalities"].list) do
+    assert(SMODS.load_file(files["normalities"].directory .. name .. ".lua"))()
 end
 
 for _, name in ipairs(files["fables"].list) do
