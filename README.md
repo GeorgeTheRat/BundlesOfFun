@@ -1,14 +1,14 @@
-# A Mod of 8 Themes using Vanilla Elements
-Themes can be toggled in config if you only want certain groups - A mod that can stay on for everyone depending on what they want
+# A Mod of 8 "Bundles" using Vanilla Elements
+Bundles can be toggled in the mod's config if you only want certain groups - a mod that can stay on for everyone depending on what they want.
 
 We try to keep vanilla balancing in mind, but we don't let that limit our ideas or shorten our scopes; this is a mod that is not meant to be forgotten!
 
-## Themes (Development order is listed order now)
+## Bundles
 - ***1. Appetizers*** (Food Jokers, like popcorn)  - **10 Jokers** **RELEASED**
 - ***2. Jesters*** (Regular, characterized jokers, like chaos the clown)  - **25 Jokers**
-- ***3. Fables*** (Legendaries in one new set)  - **5 Jokers**
-- ***4. Normalities*** (Real life cards; Driver's license, buisiness card)  - **5 Jokers**
-- ***6. Flats*** (Decks to spice up your runs or try for gold stake)  - **15 Decks**
+- ***3. Normalities*** (Real life cards; Driver's license, buisiness card)  - **5 Jokers**
+- ***4. Fables*** (Legendaries in one new set)  - **5 Jokers**
+- ***5. Flats*** (Decks to spice up your runs or try for gold stake)  - **15 Decks**
 - ***6. Tickets*** (Vouchers to fill up your antes)  - **5 Lines of 2, 10 Vouchers**
 - ***7. Enemies*** (Boss blinds)  - **25 Blinds**
 - ***8. Finishers*** (Showdown boss blinds to win your runs with)  - **5 Blinds**
