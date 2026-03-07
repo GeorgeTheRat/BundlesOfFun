@@ -206,8 +206,8 @@ return {
                 name = "Jack Frost",
                 text = {
                     "{C:mult}+#1#{} Mult if played",
-                    "{C:attention}poker hand{}",
-                    "has not already been ",
+                    "{C:attention}poker hand{} has",
+                    "not already been ",
                     "played this round"
                 }
             },
