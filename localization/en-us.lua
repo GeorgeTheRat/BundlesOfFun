@@ -329,6 +329,9 @@ return {
                     "for every {C:attention}card{} with {V:1}#2#{} suit",
                     "in your deck at end of round",
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             },
             j_bof_f_manqian = {
@@ -338,6 +341,9 @@ return {
                     "level of most played",
                     "{C:attention}poker hand{} before scoring",
                     "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             },
             j_bof_f_turold = {
@@ -347,6 +353,9 @@ return {
                     "when hand is played,",
                     "{C:attention}resets{} at end of round",
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             },
             j_bof_f_taillefer = {
@@ -355,6 +364,9 @@ return {
                     "Fill consumable slots",
                     "with random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             },
             j_bof_f_dagonet = {
@@ -364,6 +376,9 @@ return {
                     "{C:mult}+#1#{} Mult when scored,",
                     "increase by {C:mult}+#2#{} Mult when",
                     "a {C:attention}Stone Card{} is discarded"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             }
         }
