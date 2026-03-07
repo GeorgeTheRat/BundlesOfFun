@@ -1,4 +1,4 @@
-# A mod that consists of **8** themes that are based on themes and elements present in the base game
+# A Mod of 8 Themes using Vanilla Elements
 Themes can be toggled in config if you only want certain groups - A mod that can stay on for everyone depending on what they want
 
 We try to keep vanilla balancing in mind, but we don't let that limit our ideas or shorten our scopes; this is a mod that is not meant to be forgotten!
