@@ -17,21 +17,24 @@ SMODS.Joker {
             }
         end
         if context.before then
-            G.E_MANAGER:add_event(Event({
+            return {
+                message = "Erased!",
                 func = function()
                     for k, v in ipairs(G.hand.cards) do
                         if v.base.value then
-                            v:set_ability(G.P_CENTERS.c_base)
-                            v:set_edition(nil)
+                            v:set_ability("c_base", nil, true)
+                            v:set_edition(nil, nil, nil, true)
                             v:set_seal(nil)
-                            v:juice_up()
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    v:juice_up()
+                                    return true
+                                end
+                            }))
                         end
                     end
                     return true
                 end
-            }))
-            return {
-                message = "Erased!"
             }
         end
     end

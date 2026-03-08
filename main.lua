@@ -23,25 +23,6 @@ for i = 1, #files do
     end
 end
 
--- function for nil checks on tables - just input a string like "card.ability.extra.whatever" and it'll split it up
-function BundlesOfFun.nil_check(path)
-    local result = ""
-    local current = ""
-    for part in path:gmatch("[^%.]+") do
-        if current == "" then
-            current = part
-        else
-            current = current .. "." .. part
-        end
-        if result == "" then
-            result = current
-        else
-            result = result .. " and " .. current
-        end
-    end
-    return result
-end
-
 local files = {
     appetizers = {
         list = {

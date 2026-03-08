@@ -1,6 +1,6 @@
 BoF_check_super_jokers = function()
     for k, v in pairs(next(SMODS.find_card("j_bof_j_super_joker"))) do
-        if BundlesOfFun.nil_check("v.ability.extra.active") then
+        if v and v.ability and v.ability.extra and v.ability.extra.active then
             return true
         end
     end
