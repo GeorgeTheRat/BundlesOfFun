@@ -382,7 +382,7 @@ return {
                 text = {
                     "Played {C:attention}Stone Cards{} give",
                     "{C:mult}+#1#{} Mult when scored,",
-                    "increase by {C:mult}+#2#{} Mult when",
+                    "increases by {C:mult}+#2#{} Mult when",
                     "a {C:attention}Stone Card{} is discarded"
                 },
                 unlock = {
