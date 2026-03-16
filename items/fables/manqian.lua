@@ -20,7 +20,7 @@ SMODS.Joker {
         local hand_level = most_played_hand ~= nil and G.GAME.hands[most_played_hand].level or 0
         local hand_name = most_played_hand ~= nil and localize(most_played_hand, "poker_hands") or "None"
         local colour = (hand_level <= 1 and G.C.UI.TEXT_DARK or G.C.HAND_LEVELS[math.min(7, hand_level)])
-        return { 
+        return {
             vars = {
                 hand_name,
                 hand_level,
