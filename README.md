@@ -5,7 +5,7 @@ Bundles can be toggled in the mod's config if you only want certain groups - a m
 We try to keep vanilla balancing in mind, but we don't let that limit our ideas or shorten our scopes; this is a mod that is not meant to be forgotten!
 
 ## Bundles
-- ***1. Appetizers*** (Food Jokers, like Popcorn)  - **10 Jokers** **RELEASED**
+- ***1. Appetizers*** (Food Jokers, like Popcorn)  - **10 Jokers**
 - ***2. Jesters*** (Regular, characterized jokers, like Chaos the Clown)  - **25 Jokers**
 - ***3. Normalities*** (Real life cards; Driver's License, Business Card, etc.)  - **5 Jokers**
 - ***4. Fables*** (Legendaries in one new set)  - **5 Jokers**
