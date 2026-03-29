@@ -32,6 +32,10 @@ SMODS.Joker {
                 cae. active_display = localize("bof_active")
                 cae.active = true
                 card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_bof_alarm") })
+                		local eval = function()
+                            return card.ability.extra.active == true
+                        end
+                        juice_card_until(card, eval, true)
             end
         end
     end
