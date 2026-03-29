@@ -334,7 +334,7 @@ return {
                 name = "Eraser",
                 text = {
                     "All cards held in hand give",
-                    "{C:mult}+#1#{} Mult but"
+                    "{C:mult}+#1#{} Mult but",
                     "{C:red}lose{} all {C:attention}modifications{}"
                 }
             },
