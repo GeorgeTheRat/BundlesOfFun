@@ -31,7 +31,7 @@ return {
                 text = {
                     "Increase all {C:attention}listed",
                     "{C:green,E:1,S:1.1}probabilities{} by {C:green}+#1#{C:inactive} (#3#)",
-                    "{C:red}Decreases{} by -#2#{} when a chance succeeds",
+                    "Decreases by {C:red}-#2#{} when a chance succeeds",
                 }
             },
             j_bof_a_shrimp = {

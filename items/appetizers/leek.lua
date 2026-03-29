@@ -27,6 +27,9 @@ SMODS.Joker {
             }
         end
         if context.pseudorandom_result and context.result then
+            if not card.ability.extra.probabilities_current then --ignore pls
+                card.ability.extra.probabilities_current = card.ability.extra.probabilities_start 
+            end
             SMODS.scale_card(card, {
                 ref_table = cae,
                 ref_value = "probabilities_current",
