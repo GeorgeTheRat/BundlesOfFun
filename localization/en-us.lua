@@ -283,8 +283,8 @@ return {
                 name = "Laggard Larry",
                 text = {
                     "Earn {C:money}$#1#{} when",
-                    "{C:attention}first{} or {C:attention}final hand",
-                    "is played"
+                    "{C:attention}first{} or {C:attention}last hand",
+                    "of round is played"
                 }
             },
             j_bof_j_phony = {
@@ -333,9 +333,9 @@ return {
             j_bof_n_eraser = {
                 name = "Eraser",
                 text = {
-                    "Cards held in hand lose",
-                    "all of their {C:attention}modifications",
-                    "and give {C:mult}+#1#{} Mult"
+                    "All cards held in hand give",
+                    "{C:mult}+#1#{} Mult but"
+                    "{C:red}lose{} all {C:attention}modifications{}"
                 }
             },
             j_bof_n_alarm_clock = {
