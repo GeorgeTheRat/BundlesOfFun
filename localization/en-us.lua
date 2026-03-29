@@ -335,7 +335,7 @@ return {
                 text = {
                     "{X:mult,C:white}X#1#{} Mult every",
                     "other hand",
-                    "{C:inactive}#2#",
+                    "{C:inactive}(#2#)",
                 }
             },
             j_bof_f_narr = {
