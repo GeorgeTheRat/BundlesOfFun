@@ -330,6 +330,14 @@ return {
                     "and give {C:mult}+#1#{} Mult"
                 }
             },
+            j_bof_n_alarm_clock = {
+                name = "Alarm Clock",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult every",
+                    "other hand",
+                    "{C:inactive}#2#",
+                }
+            },
             j_bof_f_narr = {
                 name = "Narr",
                 text = {
@@ -396,8 +404,11 @@ return {
             k_bof_saved_by_shrimp = "Saved by delicious shrimp",
             k_bof_nom = "Nom!",
             bof_active = "Active!",
+            bof_inactive = "Inactive",
             bof_ready = "Ready!",
             k_bof_destroyed = "Destroyed!",
+            k_bof_ring = "Ring ring!",
+            k_bof_alarm = "Alarm set!",
 
             option_bof_appetizers = "Appetizers",
             option_bof_fables = "Fables",

@@ -69,7 +69,8 @@ local files = {
     },
     normalities = {
         list = {
-            "eraser"
+            "eraser",
+            "alarm_clock"
         }, directory = "items/normalities/"
     },
     fables = {
