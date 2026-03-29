@@ -338,6 +338,15 @@ return {
                     "{C:inactive}(#2#)",
                 }
             },
+            j_bof_n_rummikup_tile = {
+                name = "Rummikup Tile",
+                text = {
+                    "If the {C:attention}total{} chips value of {C:attention}played cards",
+                    "equals #3# or more,",
+                    "this {C:attention}Joker{} gains {C:chips}+#2#{} chips",
+                    "{C:inactive}(Currently: {C:chips}+#1#{C:inactive} Chips)" 
+                }
+            },
             j_bof_f_narr = {
                 name = "Narr",
                 text = {
