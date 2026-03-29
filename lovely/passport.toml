@@ -1,0 +1,29 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -2
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''local min_use = 100'''
+position = "before"
+payload = '''
+local leek_blinds = eligible_bosses
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))'''
+position = "at"
+payload = '''
+local _, boss = nil, nil
+if not next(SMODS.find_card("j_bof_n_passport")) then
+ _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
+else
+ _, boss = pseudorandom_element(leek_blinds, pseudoseed('boss'))
+end
+'''
+match_indent = true

@@ -26,6 +26,14 @@ return {
                     "Destroyed when {C:attention}Boss Blind{} defeated"
                 }
             },
+            j_bof_a_leek = {
+                name = "Leek",
+                text = {
+                    "Increase all {C:attention}listed",
+                    "{C:green,E:1,S:1.1}probabilities{} by {C:green}+#1#{C:inactive} (#3#)",
+                    "{C:red}Decreases{} by -#2#{} when a chance succeeds",
+                }
+            },
             j_bof_a_shrimp = {
                 name = "Fried Shrimp",
                 text = {
@@ -355,6 +363,18 @@ return {
                     "{C:inactive}(Currently: {C:chips}+#1#{C:inactive} Chips)" 
                 }
             },
+            j_bof_n_passport = {
+                name = "Passport",
+                text = {
+                      { "This Joker gains {C:chips}+#1#{} chips",
+                       "for each {C:attention}unique{} blind defeated",
+                    "{C:inactive}(Currently: {C:Chips}+#2#{C:inactive} Chips)"},
+                       {
+                        "{C:attention}Boss blinds{} may appear",
+                        "if already defeated"
+                       }
+                }
+            },
             j_bof_f_narr = {
                 name = "Narr",
                 text = {
@@ -426,6 +446,7 @@ return {
             k_bof_destroyed = "Destroyed!",
             k_bof_ring = "Ring ring!",
             k_bof_alarm = "Alarm set!",
+            k_bof_downgrade = "Downgrade!",
 
             option_bof_appetizers = "Appetizers",
             option_bof_fables = "Fables",

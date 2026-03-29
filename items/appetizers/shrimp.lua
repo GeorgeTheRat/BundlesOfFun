@@ -1,4 +1,4 @@
-SMODS.Joker {
+--[[SMODS.Joker {
     key = "a_shrimp",
     name = "Fried Shrimp",
     config = {
@@ -47,3 +47,4 @@ SMODS.Joker {
         end
     end
 }
+]]
