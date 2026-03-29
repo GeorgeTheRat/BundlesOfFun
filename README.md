@@ -14,5 +14,4 @@ We try to keep vanilla balancing in mind, but we don't let that limit our ideas 
 - ***7. Enemies*** (Boss blinds)  - **25 Blinds**
 - ***8. Finishers*** (Showdown Blinds to win your runs with)  - **5 Blinds**
 
-⚠️ **Edit Access:** do **not** grief the ideas doc.
-https://docs.google.com/spreadsheets/d/1NhRUWfKpkZT0loZldpSwlwV3Vs9g6PjnkL2iugaJ_XM/edit?gid=0#gid=0
+
