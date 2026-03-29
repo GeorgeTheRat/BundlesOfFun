@@ -338,6 +338,14 @@ return {
                     "{C:inactive}(#2#)",
                 }
             },
+            j_bof_n_notebook = {
+                name = "Notebook",
+                text = {"Add a {C:dark_edition}sticker{} to a random {C:attention}Joker",
+                            "when {C:attention}Blind{} is selected.",
+                            "{C:red}Remove two stickers when",
+                            "boss blind is defeated and gain {C:money}$#1#"
+                        }
+            },
             j_bof_n_rummikup_tile = {
                 name = "Rummikup Tile",
                 text = {
