@@ -23,13 +23,13 @@ SMODS.Joker {
         local cae = card.ability.extra
         if context.mod_probability and not context.blueprint then
             return {
-                numerator = context.numerator + cae.probabilities
+                numerator = context.numerator + cae.probabilities_current
             }
         end
         if context.pseudorandom_result and context.result then
             SMODS.scale_card(card, {
                 ref_table = cae,
-                ref_value = "probabilities",
+                ref_value = "probabilities_current",
                 scalar_value = "decrease",
                 operation = "-",
                 scaling_message = {

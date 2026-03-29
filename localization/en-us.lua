@@ -368,7 +368,7 @@ return {
                 text = {
                       { "This Joker gains {C:chips}+#1#{} chips",
                        "for each {C:attention}unique{} blind defeated",
-                    "{C:inactive}(Currently: {C:Chips}+#2#{C:inactive} Chips)"},
+                    "{C:inactive}(Currently: {C:chips}+#2#{C:inactive} Chips)"},
                        {
                         "{C:attention}Boss blinds{} may appear",
                         "if already defeated"
