@@ -342,7 +342,7 @@ return {
                 name = "Notebook",
                 text = {"Add a {C:dark_edition}sticker{} to a random {C:attention}Joker",
                             "when {C:attention}Blind{} is selected.",
-                            "{C:red}Remove two stickers when",
+                            "{C:red}Remove{} two stickers when",
                             "boss blind is defeated and gain {C:money}$#1#"
                         }
             },
