@@ -25,7 +25,8 @@ SMODS.Joker{
                 cae.gonna_go = true
             end
         end
-        if context.end_of_round and context.main_eval and cae.gonna_go and not context.blueprint then
+        if context.end_of_round and context.main_eval and cae.gonna_go and not context.blueprint and context.beat_boss then
+            cae.gonna_go = false
           SMODS.scale_card(card, {
             ref_table = cae,
             ref_value = "chips",
