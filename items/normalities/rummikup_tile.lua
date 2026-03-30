@@ -23,7 +23,7 @@ SMODS.Joker {
                 total = total + v.base.nominal
             end
             if total >= cae.chip_threshold  then
-                SMDOS.scale_card(card, {
+                SMODS.scale_card(card, {
                     ref_table = cae,
                     ref_value = "chips",
                     scalar_value = "chip_gain"
