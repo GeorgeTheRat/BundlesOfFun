@@ -70,16 +70,14 @@ SMODS.Joker {
     rarity = 2,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local cae = card.ability.extra
-        return { vars = { cae.dollars} }
+        return { vars = { card.ability.extra.dollars } }
     end,
     calculate = function(self, card, context)
-        local cae = card.ability.extra
         if context.setting_blind and not context.blueprint then
             add_random_sticker(card)
         end
         if context.end_of_round and context.beat_boss and context.main_eval then
-            cae.yes = remove_two_stickers(card)
+            card.ability.extra.yes = remove_two_stickers(card)
         end
     end,
     calc_dollar_bonus = function(self,card)

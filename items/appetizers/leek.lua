@@ -1,52 +1,51 @@
 SMODS.Joker {
     key = "a_leek",
-    name = "Jelly Beans",
+    name = "Leek",
     config = {
         extra = {
-            probabilities_start = 3.9,
-            probabilities_current = nil,
-            decrease = 0.1
+            prob_start = 3.9,
+            prob_current = nil,
+            prob_mod = 0.1
         }
     },
     pos = { x = 8, y = 0 },
-    cost = 3,
+    cost = 4,
     rarity = 2,
-    blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        if not card.ability.extra.probabilities_current then
-            card.ability.extra.probabilities_current = card.ability.extra.probabilities_start 
+        if not card.ability.extra.prob_current then
+            card.ability.extra.prob_current = card.ability.extra.prob_start 
         end
-        return { vars = { card.ability.extra.probabilities_start, card.ability.extra.decrease, card.ability.extra.probabilities_current } }
+        return {
+            vars = {
+                card.ability.extra.prob_current,
+                card.ability.extra.prob_mod
+            } 
+        }
     end,
     calculate = function(self, card, context)
-        local cae = card.ability.extra
         if context.mod_probability and not context.blueprint then
-            card.ability.extra.probabilities_current = card.ability.extra.probabilities_current or card.ability.extra.probabilities_start
+            card.ability.extra.prob_current = card.ability.extra.prob_current or card.ability.extra.prob_start
             return {
-                numerator = context.numerator + cae.probabilities_current
+                numerator = context.numerator + card.ability.extra.prob_current
             }
         end
         if context.pseudorandom_result and context.result then
-           card.ability.extra.probabilities_current = card.ability.extra.probabilities_current or card.ability.extra.probabilities_start
-            if cae.probabilities_current >= (cae.decrease) then
+            card.ability.extra.prob_current = card.ability.extra.prob_current or card.ability.extra.prob_start
+            if card.ability.extra.prob_current >= (card.ability.extra.prob_mod) then
                 SMODS.scale_card(card, {
-                    ref_table = cae,
-                    ref_value = "probabilities_current",
-                    scalar_value = "decrease",
+                    ref_table = card.ability.extra,
+                    ref_value = "prob_current",
+                    scalar_value = "prob_mod",
                     operation = "-",
-                    scaling_message = {
-                        message = localize("k_bof_downgrade"),
-                        colour = G.C.RED
-                    }
+                    no_message = true
                 })
-                else
-                    SMODS.destroy_cards(card, nil, nil, true)
-                    return{
-                        message = localize('k_eaten_ex'),
-                    }
-                end
-         
+            else
+                SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    message = localize("k_eaten_ex"),
+                }
+            end
         end
     end
 }

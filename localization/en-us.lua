@@ -30,15 +30,16 @@ return {
                 name = "Leek",
                 text = {
                     "Increase all {C:attention}listed",
-                    "{C:green}probabilities{} by {C:green}+#3#{}",
-                    "Decreases by {C:red}-#2#{} when a {C:green}probability{} succeeds",
+                    "{C:green,E:1}probabilities{} by {C:green}+#1#",
+                    "Decreases by {C:red}-#2#{} when",
+                    "a {C:green}probability{} succeeds",
                 }
             },
             j_bof_a_durian = {
                 name = "Durian",
                 text = {
                     "Sell this Joker to",
-                    "fill {C:attention}consumable slots{}",
+                    "fill {C:attention}consumable slots",
                     "with {C:tarot}The Fool"
                 }
             },
@@ -68,7 +69,7 @@ return {
             j_bof_a_apple_core = {
                 name = "Apple Core",
                 text = {
-                    "The next {C:attention}#1#{}",
+                    "The next {C:attention}#1#",
                     "cards give {C:mult}+#2#{} Mult",
                     "instead of scoring"
                 }
@@ -79,7 +80,7 @@ return {
                     "The next {C:attention}#1#{} cards",
                     "held in hand have a",
                     "{C:green}#2# in #3#{} chance of becoming",
-                    "{C:attention}Mult Cards{} or {C:attention}Lucky Cards{}"
+                    "{C:attention}Mult Cards{} or {C:attention}Lucky Cards"
                 }
             },
             j_bof_j_hal = {
@@ -87,7 +88,7 @@ return {
                 text = {
                     "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
                     "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>2#",
-                    "when a {C:attention}playing card{}",
+                    "when a {C:attention}playing card",
                     "is added to your deck",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
@@ -98,7 +99,7 @@ return {
                     "{C:blue}+#1#{} hand per round",
                     "and {C:attention}#2#{} hand size",
                     "for every Joker",
-                    "to the {C:attention}left{}"
+                    "to the {C:attention}left"
                 }
             },
             j_bof_j_tom = {
@@ -106,7 +107,7 @@ return {
                 text = {
                     "{C:dark_edition}+#1#{} Joker slots",
                     "{C:attention}Consumable slots{} are",
-                    "set to {C:attention}0{}",
+                    "set to {C:attention}0",
                 }
             },
             j_bof_j_barber = {
@@ -152,14 +153,14 @@ return {
                 }
             },
             j_bof_j_eureka = {
-                name = "Emanuel E. \"Eureka\"",
+                name = "Emmanuel E. \"Eureka\"",
                 text = {
                     {
                         "{C:tarot}Arcana Packs{} may contain",
                         "{C:attention}consumables{} of all types"
                     },
                     {
-                        "{C:spectral}Spectral Packs{} and {C:planet}Celestial Packs{}",
+                        "{C:spectral}Spectral Packs{} and {C:planet}Celestial Packs",
                         "may contain {C:tarot}Tarot{} cards"
                     }
                 }
@@ -167,10 +168,10 @@ return {
             j_bof_j_timmy = {
                 name = "Youngster Timmy",
                 text={
-                    "{C:blue}+#1#{} Chips for each",
-                    "card above {C:attention}#2#{}",
+                    "{C:blue}+#1#{} Chip#<s>1# for each",
+                    "card above {C:attention}#2#",
                     "in your full deck",
-                    "{C:inactive}(Currently {C:blue}+#3#{C:inactive} Chips)",
+                    "{C:inactive}(Currently {C:blue}+#3#{C:inactive} Chips#<s>3#)"
                 },
             },
             j_bof_j_gary = {
@@ -188,7 +189,7 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult",
                     "{C:red}Destroy{} all cards",
-                    "in final {C:attention}discarded{}",
+                    "in final {C:attention}discarded",
                     "{C:attention}poker hand{} each round"
                 }
             },
@@ -238,8 +239,8 @@ return {
                 text = {
                     "Each card scored and held in hand",
                     "has a {C:green}#1# in #2#{} chance to give",
-                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips,",
-                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#7#{}",
+                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips#<s>4#,",
+                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#7#",
                 }
             },
             j_bof_j_luminary = {
@@ -257,7 +258,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} at end",
                     "of round",
-                    "Earn no {C:attention}interest{}"
+                    "Earn no {C:attention}interest"
                 }
             },
             j_bof_j_larry = {
@@ -296,7 +297,7 @@ return {
             j_bof_j_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
-                    "Destroy a random {C:attention}card{}",
+                    "Destroy a random {C:attention}card",
                     "in played hand",
                     "This Joker cannot destroy cards",
                     "played on {C:attention}final hand{} of round"
@@ -311,49 +312,52 @@ return {
                     "{C:attention}copy{} to deck or destroy it"
                 }
             },
+            j_bof_n_notebook = {
+                name = "Notebook",
+                text = {
+                    "Add a {C:dark_edition}sticker{} to a random {C:attention}Joker",
+                    "when {C:attention}Blind{} is selected,",
+                    "{C:red}remove{} two {C:dark_edition}stickers{} when",
+                    "{C:attention}Boss Blind{} is defeated and earn {C:money}$#1#"
+                }
+            },
             j_bof_n_eraser = {
                 name = "Eraser",
                 text = {
                     "All cards held in hand give",
-                    "{C:mult}+#1#{} Mult but {C:red}lose{}",
-                    "any {C:attention}modifications{} they have"
+                    "{C:mult}+#1#{} Mult but {C:red}lose{} any",
+                    "{C:attention}modifications{} they have"
+                }
+            },
+            j_bof_n_rummikub = {
+                name = "Rummikub Tile",
+                text = {
+                    "This {C:attention}Joker{} gains {C:chips}+#1#{} Chip#<s>1#",
+                    "if the {C:attention}total{} chip value of ",
+                    "played cards is at least {C:attention}#2#",
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)" 
                 }
             },
             j_bof_n_alarm_clock = {
                 name = "Alarm Clock",
                 text = {
                     "{X:mult,C:white}X#1#{} Mult every",
-                    "other hand",
-                    "{C:inactive}(#2#)",
-                }
-            },
-            j_bof_n_notebook = {
-                name = "Notebook",
-                text = {"Add a {C:dark_edition}sticker{} to a random {C:attention}Joker",
-                            "when {C:attention}Blind{} is selected.",
-                            "{C:red}Remove{} two stickers when",
-                            "boss blind is defeated and gain {C:money}$#1#"
-                        }
-            },
-            j_bof_n_rummikup_tile = {
-                name = "Rummikub Tile",
-                text = {
-                    "If the {C:attention}total{} chips value of {C:attention}played cards",
-                    "is at least {C:attention}#3#{},",
-                    "this {C:attention}Joker{} gains {C:chips}+#2#{} chips",
-                    "{C:inactive}(Currently: {C:chips}+#1#{C:inactive} Chips)" 
+                    "{C:attention}other{} hand",
+                    "{C:inactive}#2#", -- see: loyalty card
                 }
             },
             j_bof_n_passport = {
                 name = "Passport",
                 text = {
-                      { "This Joker gains {C:chips}+#1#{} chips",
-                       "for each {C:attention}unique{} blind defeated",
-                    "{C:inactive}(Currently: {C:chips}+#2#{C:inactive} Chips)"},
-                       {
-                        "{C:attention}Boss blinds{} may appear",
-                        "if already defeated"
-                       }
+                    {
+                        "This Joker gains {C:chips}+#1#{} Chips",
+                        "for each {C:attention}unique Blind{} defeated",
+                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                    },
+                    {
+                        "{C:attention}Boss Blinds{} may appear",
+                        "multiple times"
+                    }
                 }
             },
             j_bof_f_narr = {
@@ -395,7 +399,7 @@ return {
             j_bof_f_taillefer = {
                 name = "Taillefer",
                 text = {
-                    "Fill {C:attention}consumable slots{}",
+                    "Fill {C:attention}consumable slots",
                     "with random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected"
                 },
@@ -421,19 +425,17 @@ return {
         dictionary = {
             k_bof_nom = "Nom!",
             bof_active = "Active!",
-            bof_inactive = "Inactive",
+            bof_inactive = "Inactive...",
             bof_ready = "Ready!",
             k_bof_destroyed = "Destroyed!",
-            k_bof_ring = "Ring ring!",
-            k_bof_alarm = "Alarm set!",
+            k_bof_ring = "Ring Ring!",
+            k_bof_alarm = "Alarm Set!", -- return things use title capitalization, i believe
             k_bof_downgrade = "Downgrade!",
 
             option_bof_appetizers = "Appetizers",
-            option_bof_fables = "Fables",
             option_bof_jesters = "Jesters",
             option_bof_normalities = "Normalities",
-            option_bof_jokers = "Jokers",
-            option_bof_geodes = "Geodes",
+            option_bof_fables = "Fables"
         }
     }
 }

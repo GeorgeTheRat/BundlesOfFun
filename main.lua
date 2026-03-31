@@ -29,8 +29,7 @@ local files = {
 			"dragonfruit",
             "blueberry",
             "grapes",
-           -- "shrimp",
-           "leek",
+            "leek",
             "durian",
             "wonderous_bread",
             "jelly_beans",
@@ -72,8 +71,8 @@ local files = {
         list = {
             "notebook",
             "eraser",
-             "rummikup_tile",
-             "passport",
+            "rummikub",
+            "passport",
             "alarm_clock",
         }, directory = "items/normalities/"
     },

@@ -1,10 +1,10 @@
 SMODS.Joker {
-    key = "n_rummikub_tile",
+    key = "n_rummikub",
     name = "Rummikub Tile",
     config = { extra = { 
         chips = 0,
-        chip_gain = 5,
-        chip_threshold = 30
+        chips_mod = 5,
+        chips_threshold = 30
     } },
     pos = { x = 7, y = 3 },
     cost = 4,
@@ -12,27 +12,32 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local cae = card.ability.extra
-        return { vars = { cae.chips, cae.chip_gain, cae.chip_threshold } }
+        return {
+            vars = {
+                card.ability.extra.chips_mod,
+                card.ability.extra.chips_threshold,
+                card.ability.extra.chips
+            } 
+        }
     end,
     calculate = function(self, card, context)
-        local cae = card.ability.extra
         if context.before then
             local total = 0
             for k, v in pairs(G.play.cards) do
                 total = total + v.base.nominal
             end
-            if total >= cae.chip_threshold  then
+            if total >= card.ability.extra.chips_threshold  then
                 SMODS.scale_card(card, {
-                    ref_table = cae,
+                    ref_table = card.ability.extra,
                     ref_value = "chips",
-                    scalar_value = "chip_gain"
+                    scalar_value = "chips_mod",
+                    colour = G.C.CHIPS
                 })
             end
         end
         if context.joker_main then
             return{
-                chips = cae.chips
+                chips = card.ability.extra.chips
             }
         end
     end

@@ -1,3 +1,15 @@
+local function cards_above_deck()
+    local a, b = (G.GAME.starting_deck_size or 52), 0
+    for i = 1, #G.playing_cards do
+        b = b + 1
+    end
+
+    if (a - b) < 0 then
+        return -(a - b)
+    end
+    return 0
+end
+
 SMODS.Joker {
     key = "j_timmy",
     name = "Youngster Timmy",

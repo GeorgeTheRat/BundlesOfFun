@@ -26,7 +26,13 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.hand and SMODS.pseudorandom_probability(card, "bof_a_tomato", 1, card.ability.extra.odds) and not context.end_of_round and context.other_card.ability.set == "Default" then 
+        if 
+            context.individual and
+            context.cardarea == G.hand and
+            SMODS.pseudorandom_probability(card, "bof_a_tomato", 1, card.ability.extra.odds) and
+            not context.end_of_round and
+            context.other_card.ability.set == "Default"
+        then 
             if context.other_card and card.ability.extra.amount > 0 then
                 card.ability.extra.change = true
                 card.ability.extra.amount = card.ability.extra.amount - 1
