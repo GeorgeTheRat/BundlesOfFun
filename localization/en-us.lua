@@ -315,10 +315,17 @@ return {
             j_bof_n_notebook = {
                 name = "Notebook",
                 text = {
-                    "Add a {C:dark_edition}sticker{} to a random {C:attention}Joker",
-                    "when {C:attention}Blind{} is selected,",
-                    "{C:red}remove{} two {C:dark_edition}stickers{} when",
-                    "{C:attention}Boss Blind{} is defeated and earn {C:money}$#1#"
+                    {
+                        "Add a {C:dark_edition}sticker{} to",
+                        "a random Joker",
+                        "when {C:attention}Blind{} is selected"
+                    },
+                    {
+                        "{C:red}Remove{} two {C:dark_edition}stickers{}",
+                        "and earn {C:money}$#1#{}",
+                        "when {C:attention}Boss Blind",
+                        "is defeated"
+                    }
                 }
             },
             j_bof_n_eraser = {
@@ -431,6 +438,7 @@ return {
             k_bof_ring = "Ring Ring!",
             k_bof_alarm = "Alarm Set!", -- return things use title capitalization, i believe
             k_bof_downgrade = "Downgrade!",
+            k_bof_sticker_applied = "Sticker Applied!",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",

@@ -1,11 +1,13 @@
 SMODS.Joker {
     key = "n_rummikub",
     name = "Rummikub Tile",
-    config = { extra = { 
-        chips = 0,
-        chips_mod = 5,
-        chips_threshold = 30
-    } },
+    config = {
+        extra = { 
+            chips = 0,
+            chips_mod = 5,
+            chips_threshold = 30
+        }
+    },
     pos = { x = 7, y = 3 },
     cost = 4,
     rarity = 1,

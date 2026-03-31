@@ -81,7 +81,7 @@ function SMODS.create_mod_badges(obj, badges)
     end
 
     local function create_main_badge()
-        local text = "Bundles of Fun"
+        local text = "Bundles Of Fun"
         local base_scale = 0.33 * 0.9
         local size = 0.9
         
