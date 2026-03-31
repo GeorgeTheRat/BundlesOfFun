@@ -1,4 +1,4 @@
- SMODS.Joker {
+SMODS.Joker {
     key = "n_notebook",
     name = "Notebook",
     config = {
