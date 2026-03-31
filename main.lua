@@ -84,6 +84,14 @@ local files = {
             "taillefer",
             "dagonet"
         }, directory = "items/fables/"
+    },
+    flats = {
+        list = {
+            -- "embroidered"
+            "flannel",
+            -- "illusion"
+            -- "fossilized"
+        }, directory = "items/flats/"
     }
 }
 
@@ -101,4 +109,8 @@ end
 
 for _, name in ipairs(files["fables"].list) do
     assert(SMODS.load_file(files["fables"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["flats"].list) do
+    assert(SMODS.load_file(files["flats"].directory .. name .. ".lua"))()
 end

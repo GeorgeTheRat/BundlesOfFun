@@ -1,5 +1,13 @@
 return {
     descriptions = {
+        Back = {
+            b_bof_flannel = {
+                name = "Flannel Deck",
+                text = {
+                    "{C:mult}+#1#{} Mult"
+                }
+            }
+        },
         Joker = {
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
