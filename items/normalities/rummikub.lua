@@ -31,7 +31,7 @@ SMODS.Joker {
                     ref_table = card.ability.extra,
                     ref_value = "chips",
                     scalar_value = "chips_mod",
-                    colour = G.C.CHIPS
+                    message_colour = G.C.CHIPS
                 })
             end
         end

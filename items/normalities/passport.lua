@@ -3,18 +3,23 @@ SMODS.Joker{
     name = "Passport",
     config = {
         extra = {
-            chip_gain = 20,
+            chips_mod = 20,
             chips = 0,
             gonna_go = true
         }
     },
-   pos = { x = 8, y = 3 },
+    pos = { x = 8, y = 3 },
     cost = 5,
     rarity = 3,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.chip_gain, card.ability.extra.chips } }
+        return {
+            vars = {
+                card.ability.extra.chips_mod,
+                card.ability.extra.chips
+            }
+        }
     end,
     calculate = function(self, card, context)
         if context.setting_blind and not context.blueprint then
@@ -24,12 +29,13 @@ SMODS.Joker{
                 card.ability.extra.gonna_go = true
             end
         end
-        if context.end_of_round and context.main_eval and card.ability.extra.gonna_go and not context.blueprint and context.beat_boss then
+        if context.end_of_round and context.main_eval and card.ability.extra.gonna_go and not context.blueprint then
             card.ability.extra.gonna_go = false
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "chips",
-                scalar_value = "chip_gain"
+                scalar_value = "chips_mod",
+                message_colour = G.C.CHIPS
             })
         end
         if context.joker_main then

@@ -239,8 +239,8 @@ return {
                 text = {
                     "Each card scored and held in hand",
                     "has a {C:green}#1# in #2#{} chance to give",
-                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips#<s>4#,",
-                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#7#",
+                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chip#<s>4#,",
+                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#6#",
                 }
             },
             j_bof_j_luminary = {
