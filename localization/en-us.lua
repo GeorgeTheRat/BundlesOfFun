@@ -5,6 +5,11 @@ return {
                 name = "Flannel Deck",
                 text = {
                     "{C:mult}+#1#{} Mult"
+                },
+                unlock = {
+                    "Get the base Mult",
+                    "of any poker hand",
+                    "to at least {C:attention,E:1}75"
                 }
             }
         },
