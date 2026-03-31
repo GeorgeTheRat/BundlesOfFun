@@ -159,3 +159,19 @@ SMODS.add_to_pool = function (prototype_obj, args)
 
     return not (bundle and bundle_inactive) and atpref(prototype_obj, args)
 end
+
+-- soapy deck unlock
+local original_card_remove = Card.remove
+function Card:remove()
+    if next(SMODS.get_enhancements(self)) ~= nil and self.edition ~= nil and self.seal ~= nil then
+        G.GAME.bof_soapy_destroyed = G.GAME.bof_soapy_destroyed or {}
+        G.GAME.bof_soapy_destroyed[self.config.center.key] = true
+        for k, deck in pairs(G.P_CENTERS) do
+            if deck.key == "b_bof_soapy" and deck.check_for_unlock then
+                deck:check_for_unlock()
+                break
+            end
+        end
+    end
+    return original_card_remove(self)
+end

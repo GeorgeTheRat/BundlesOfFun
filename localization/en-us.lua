@@ -11,6 +11,18 @@ return {
                     "of any poker hand",
                     "to at least {C:attention,E:1}75"
                 }
+            },
+            b_bof_soapy = {
+                name = "Soapy Deck",
+                text = {
+                    "{C:attention}Enhanced{} cards are",
+                    "destroyed when {C:attention}discarded"
+                },
+                unlock = {
+                    "Destroy a card with an",
+                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
+                    "and {C:attention}Seal{}"
+                }
             }
         },
         Joker = {

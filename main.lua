@@ -91,6 +91,7 @@ local files = {
             "flannel",
             -- "illusion"
             -- "fossilized"
+            "soapy",
         }, directory = "items/flats/"
     }
 }
