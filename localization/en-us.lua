@@ -9,8 +9,22 @@ return {
                 unlock = {
                     "Get the base Mult",
                     "of any poker hand",
-                    "to at least {C:attention,E:1}75"
+                    "to at least {C:attention}75"
                 }
+            },
+            b_bof_illusion = {
+                name = "Illusion Deck",
+                text = {
+                    "When a {C:attention}Boss Blind",
+                    "is defeated, increase",
+                    "hands or discards by",
+                    "{C:plasma}+#1#{} for the next {C:attention}Ante"
+                },
+                -- unlock = {
+                --     "Win a run with",
+                --     "{C:attention}Blue Deck{} on {C:red}Red Stake{}",
+                --     "or {C:attention}Red Deck{} on {C:blue}Blue Stake"
+                -- }
             },
             b_bof_soapy = {
                 name = "Soapy Deck",
@@ -39,8 +53,8 @@ return {
                 name = "Blueberry",
                 text = {
                     "Each {C:attention}card{} held in hand",
-                    "permanently gains {C:chips}+#1#{} Chip#<s>1#",
-                    "Decreases by {C:chips}-#2#{} Chip#<s>2#",
+                    "permanently gains {C:chips}+#1#{} Chip#<s>1#,",
+                    "decreases by {C:chips}-#2#{} Chip#<s>2#",
                     "at end of round"
                 }
             },
@@ -48,15 +62,15 @@ return {
                 name = "Grapes",
                 text = {
                     "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
-                    "Destroyed when {C:attention}Boss Blind{} defeated"
+                    "Destroyed when {C:attention}Boss Blind{} is defeated"
                 }
             },
             j_bof_a_leek = {
                 name = "Leek",
                 text = {
                     "Increase all {C:attention}listed",
-                    "{C:green,E:1}probabilities{} by {C:green}+#1#",
-                    "Decreases by {C:red}-#2#{} when",
+                    "{C:green,E:1}probabilities{} by {C:green}+#1#,",
+                    "decreases by {C:red}-#2#{} when",
                     "a {C:green}probability{} succeeds",
                 }
             },
@@ -71,8 +85,8 @@ return {
             j_bof_a_wonderous_bread = {
                 name = "Wonderous Bread",
                 text = {
-                    "Balance {C:white,B:1}#1#%{} of {C:chips}Chips{} and {C:mult}Mult",
-                    "Decreases by {C:white,B:1}-#2#%{} at end of round"
+                    "Balance {C:white,B:1}#1#%{} of {C:chips}Chips{} and {C:mult}Mult,",
+                    "decreases by {C:white,B:1}-#2#%{} at end of round"
                 }
             },
             j_bof_a_jelly_beans = {
@@ -264,8 +278,7 @@ return {
                 text = {
                     "Each card scored and held in hand",
                     "has a {C:green}#1# in #2#{} chance to give",
-                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chip#<s>4#,",
-                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#6#",
+                    "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chip#<s>4#, {C:white,X:mult}X#5#{} Mult, and {C:money}$#6#"
                 }
             },
             j_bof_j_luminary = {

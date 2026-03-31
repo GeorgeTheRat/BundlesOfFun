@@ -15,6 +15,9 @@ G.C.bof_enemies = HEX("626e7a")
 G.C.bof_finishers = HEX("49564c")
 G.C.bof_coupons = HEX("a0cff1")
 
+loc_colour()
+G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
+
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
 for i = 1, #files do
     local file_name = files[i].name
@@ -87,10 +90,12 @@ local files = {
     },
     flats = {
         list = {
-            -- "embroidered"
+            -- "embroidered",
             "flannel",
-            -- "illusion"
-            -- "fossilized"
+            "illusion",
+            -- "fossilized",
+            -- "wooden",
+            -- "backgammon",
             "soapy",
         }, directory = "items/flats/"
     }
