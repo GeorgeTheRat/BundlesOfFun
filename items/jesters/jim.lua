@@ -5,7 +5,7 @@ SMODS.Joker {
         extra = {
             hands = 1,
             discards = 1,
-            hand_size = -2
+            hand_size = -1
         }
     },
     pos = { x = 0, y = 1 },

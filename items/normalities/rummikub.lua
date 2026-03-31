@@ -1,9 +1,9 @@
 SMODS.Joker {
-    key = "n_rummikup_tile",
-    name = "Rummikup Tile",
+    key = "n_rummikub_tile",
+    name = "Rummikub Tile",
     config = { extra = { 
         chips = 0,
-        chip_gain = 10,
+        chip_gain = 5,
         chip_threshold = 30
     } },
     pos = { x = 7, y = 3 },

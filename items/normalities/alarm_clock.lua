@@ -2,7 +2,7 @@ SMODS.Joker {
     key = "n_alarm_clock",
     name = "Alarm Clock",
     config = { extra = { 
-        xmult = 2,
+        xmult = 1.75,
         active = false,
         active_display = nil
     } },

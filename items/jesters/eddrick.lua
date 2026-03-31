@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Evil Eddrick",
     config = {
         extra = {
-            chips = 40,
+            chips = 50,
             mult = 10
         }
     },

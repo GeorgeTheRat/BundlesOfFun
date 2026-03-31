@@ -5,7 +5,7 @@ return {
                 name = "Dragonfruit",
                 text = {
                     "Create a permanent copy of",
-                    "all {C:attention}played{} cards next hand",
+                    "all {C:attention}played{} cards next hand to deck",
                     "or destroy all cards in",
                     "next {C:attention}discarded{} poker hand"
                 }
@@ -30,25 +30,15 @@ return {
                 name = "Leek",
                 text = {
                     "Increase all {C:attention}listed",
-                    "{C:green,E:1,S:1.1}probabilities{} by {C:green}+#1#{C:inactive} (#3#)",
-                    "Decreases by {C:red}-#2#{} when a chance succeeds",
-                }
-            },
-            j_bof_a_shrimp = {
-                name = "Fried Shrimp",
-                text = {
-                    "Prevents Death if chips",
-                    "scored are at least",
-                    "{C:attention}#1#%{} of required chips,",
-                    "decreases by {C:attention}-#2#%",
-                    "at end of round"
+                    "{C:green}probabilities{} by {C:green}+#3#{}",
+                    "Decreases by {C:red}-#2#{} when a {C:green}probability{} succeeds",
                 }
             },
             j_bof_a_durian = {
                 name = "Durian",
                 text = {
-                    "Sell this Joker card to",
-                    "fill consumable slots",
+                    "Sell this Joker to",
+                    "fill {C:attention}consumable slots{}",
                     "with {C:tarot}The Fool"
                 }
             },
@@ -115,8 +105,8 @@ return {
                 name = "Tumor Tom",
                 text = {
                     "{C:dark_edition}+#1#{} Joker slots",
-                    "Consumable slots are",
-                    "set to {C:attention}0",
+                    "{C:attention}Consumable slots{} are",
+                    "set to {C:attention}0{}",
                 }
             },
             j_bof_j_barber = {
@@ -124,7 +114,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} at end of round",
                     "{C:green}#2# in #3#{} chance to",
-                    "increase payout by {C:money}$#4#",
+                    "increase {C:money}payout{} by {C:money}$#4#",
                     "when {C:attention}Blind{} is selected"
                 }
             },
@@ -156,9 +146,9 @@ return {
             j_bof_j_super = {
                 name = "Super Joker",
                 text = {
+                    "{C:attention}once{} per round,",
                     "{C:blue}+#1#{} hands if {C:attention}Blind{} is",
-                    "not won by final hand,",
-                    "{s:0.8}may only trigger once per round"
+                    "not won after final hand,",
                 }
             },
             j_bof_j_eureka = {
@@ -177,18 +167,10 @@ return {
             j_bof_j_timmy = {
                 name = "Youngster Timmy",
                 text={
-                {
-                    "{C:red}+#1#{} Mult for each",
-                    "{C:attention}Enhanced{} card in",
-                    "your full deck",
-                    "{C:inactive}(Currently {C:red}+#2#{C:inactive} Mult)",
-                },
-                {
-                    "{C:blue}+#3#{} Chips for each",
-                    "card above {C:attention}#4#{}",
+                    "{C:blue}+#1#{} Chips for each",
+                    "card above {C:attention}#2#{}",
                     "in your full deck",
-                    "{C:inactive}(Currently {C:blue}+#5#{C:inactive} Chips)",
-                },
+                    "{C:inactive}(Currently {C:blue}+#3#{C:inactive} Chips)",
                 },
             },
             j_bof_j_gary = {
@@ -205,7 +187,7 @@ return {
                 name = "Mr. Golden Sun",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult",
-                    "Destroy all cards",
+                    "{C:red}Destroy{} all cards",
                     "in final {C:attention}discarded{}",
                     "{C:attention}poker hand{} each round"
                 }
@@ -257,8 +239,7 @@ return {
                     "Each card scored and held in hand",
                     "has a {C:green}#1# in #2#{} chance to give",
                     "{C:mult}+#3#{} Mult, {C:chips}+#4#{} Chips,",
-                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#7#{}, and",
-                    "balance {C:white,B:1}#6#%{} of {C:chips}Chips{} and {C:mult}Mult{}",
+                    "{C:white,X:mult}X#5#{} Mult, {C:money}$#7#{}",
                 }
             },
             j_bof_j_luminary = {
@@ -276,7 +257,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} at end",
                     "of round",
-                    "Earn no {C:attention}interest"
+                    "Earn no {C:attention}interest{}"
                 }
             },
             j_bof_j_larry = {
@@ -334,8 +315,8 @@ return {
                 name = "Eraser",
                 text = {
                     "All cards held in hand give",
-                    "{C:mult}+#1#{} Mult but",
-                    "{C:red}lose{} all {C:attention}modifications{}"
+                    "{C:mult}+#1#{} Mult but {C:red}lose{}",
+                    "any {C:attention}modifications{} they have"
                 }
             },
             j_bof_n_alarm_clock = {
@@ -355,10 +336,10 @@ return {
                         }
             },
             j_bof_n_rummikup_tile = {
-                name = "Rummikup Tile",
+                name = "Rummikub Tile",
                 text = {
                     "If the {C:attention}total{} chips value of {C:attention}played cards",
-                    "equals #3# or more,",
+                    "is at least {C:attention}#3#{},",
                     "this {C:attention}Joker{} gains {C:chips}+#2#{} chips",
                     "{C:inactive}(Currently: {C:chips}+#1#{C:inactive} Chips)" 
                 }
@@ -391,7 +372,7 @@ return {
                 name = "Manqian",
                 text = {
                     "{C:white,X:mult}Multiply{C:mult} Mult{} by",
-                    "level of most played",
+                    "{C:attention}level{} of most played",
                     "{C:attention}poker hand{} before scoring",
                     "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
                 },
@@ -414,7 +395,7 @@ return {
             j_bof_f_taillefer = {
                 name = "Taillefer",
                 text = {
-                    "Fill consumable slots",
+                    "Fill {C:attention}consumable slots{}",
                     "with random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected"
                 },
@@ -438,7 +419,6 @@ return {
     },
     misc = {
         dictionary = {
-            k_bof_saved_by_shrimp = "Saved by delicious shrimp",
             k_bof_nom = "Nom!",
             bof_active = "Active!",
             bof_inactive = "Inactive",

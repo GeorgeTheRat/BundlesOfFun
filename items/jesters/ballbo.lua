@@ -4,7 +4,7 @@ SMODS.Joker {
     config = {
         extra = {
             mult_mod = 1,
-            mult_mod_mod = 0.5,
+            mult_mod_mod = 1,
             mult = 0
         }
     },

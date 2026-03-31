@@ -62,7 +62,7 @@ SMODS.Joker {
     name = "Notebook",
     blueprint_compat = false,
     config = { extra = { 
-        dollars = 20,
+        dollars = 25,
         yes = false
     } },
     pos = { x = 5, y = 3 },

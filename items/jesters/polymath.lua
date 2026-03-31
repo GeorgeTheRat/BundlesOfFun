@@ -4,10 +4,9 @@ SMODS.Joker({
 	config = {
 		extra = {
 			odds = 5,
-			mult = 3,
-			chips = 12,
-			xmult = 1.2,
-			balance = 5,
+			mult = 5,
+			chips = 25,
+			xmult = 1.25,
 			dollars = 1,
 		},
 	},
@@ -25,7 +24,7 @@ SMODS.Joker({
 				card.ability.extra.mult,
 				card.ability.extra.chips,
 				card.ability.extra.xmult,
-				card.ability.extra.balance,
+
 				card.ability.extra.dollars,
                 colours = { { 0.8, 0.45, 0.85, 1 } }
 			},
@@ -39,7 +38,6 @@ SMODS.Joker({
                     mult = card.ability.extra.mult,
                     xchips = card.ability.extra.xmult,
                     dollars = card.ability.extra.dollars,
-                    bof_balance_percent = card.ability.extra.balance * 0.01
                 }
             end
 		end

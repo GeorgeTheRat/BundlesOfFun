@@ -4,7 +4,7 @@ SMODS.Joker {
     config = {
         extra = {
             dollars = 1,
-            odds = 3,
+            odds = 4,
             dollars_mod = 1,
         }
     },

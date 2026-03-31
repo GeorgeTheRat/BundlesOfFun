@@ -2,7 +2,7 @@ SMODS.Joker {
     key = "a_durian",
     name = "Durian",
     pos = { x = 6, y = 0 },
-    cost = 1,
+    cost = 4,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
