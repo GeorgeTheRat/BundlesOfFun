@@ -335,7 +335,7 @@ return {
                             "boss blind is defeated and gain {C:money}$#1#"
                         }
             },
-            j_bof_n_rummikup_tile = {
+            j_bof_n_rummikub_tile = {
                 name = "Rummikub Tile",
                 text = {
                     "If the {C:attention}total{} chips value of {C:attention}played cards",

@@ -72,7 +72,7 @@ local files = {
         list = {
             "notebook",
             "eraser",
-             "rummikup_tile",
+             "rummikub_tile",
              "passport",
             "alarm_clock",
         }, directory = "items/normalities/"
