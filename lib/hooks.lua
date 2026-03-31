@@ -70,6 +70,7 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
 }, true)
 
 SMODS.Booster:take_ownership_by_kind("Celestial", {
+    draw_hand = true,
     create_card = function(self, card, i)
         local _card
         if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
