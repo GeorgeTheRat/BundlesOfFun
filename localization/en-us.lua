@@ -171,7 +171,7 @@ return {
                     "{C:blue}+#1#{} Chip#<s>1# for each",
                     "card above {C:attention}#2#",
                     "in your full deck",
-                    "{C:inactive}(Currently {C:blue}+#3#{C:inactive} Chips#<s>3#)"
+                    "{C:inactive}(Currently {C:blue}+#3#{C:inactive} Chip#<s>3#)"
                 },
             },
             j_bof_j_gary = {
