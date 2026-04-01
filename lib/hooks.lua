@@ -141,8 +141,39 @@ SMODS.Booster:take_ownership_by_kind("Spectral", {
     end
 }, true)
 
+-- wooden deck effect
+local original_back_apply_to_run = Back.apply_to_run
+function Back:apply_to_run()
+    original_back_apply_to_run(self)
+    if self.effect.config.remove_aces then
+        G.GAME.starting_params.no_aces = true
+    end
+    if self.effect.config.extra_cards then
+        G.GAME.starting_params.extra_cards = G.GAME.starting_params.extra_cards or {}
+        local extra_ranks = self.effect.config.extra_cards or { 2, 3, 4, 5 }
+        local rank_key_map = { [2] = "2", [3] = "3", [4] = "4", [5] = "5" }
+        for _, rank in ipairs(extra_ranks) do
+            local rank_key = rank_key_map[rank]
+            if rank_key then
+                local standard_suits = { "H", "D", "C", "S" }
+                for _, suit_key in ipairs(standard_suits) do
+                    table.insert(G.GAME.starting_params.extra_cards, {
+                        s = suit_key,
+                        r = rank_key
+                    })
+                end
+            end
+        end
+    end
+end
+
 local atpref = SMODS.add_to_pool
 SMODS.add_to_pool = function (prototype_obj, args)
+    if G.GAME and G.GAME.starting_params and (G.GAME.starting_params.wooden_no_aces or G.GAME.starting_params.no_aces) then
+        if args and args.initial_deck and prototype_obj.key == "Ace" then
+            return false
+        end
+    end
     local bundle, bundle_inactive, prefix
     local item_key = prototype_obj.key
     local category_map = {
@@ -156,22 +187,45 @@ SMODS.add_to_pool = function (prototype_obj, args)
         bundle = category_map[prefix]
         bundle_inactive = not (G.GAME.bof_bundles and G.GAME.bof_bundles[bundle or "AAAAA"])
     end
-
-    return not (bundle and bundle_inactive) and atpref(prototype_obj, args)
+    local original_result = atpref(prototype_obj, args)
+    return not (bundle and bundle_inactive) and original_result
 end
 
--- soapy deck unlock
+-- soapy/wooden deck unlock
 local original_card_remove = Card.remove
 function Card:remove()
     if next(SMODS.get_enhancements(self)) ~= nil and self.edition ~= nil and self.seal ~= nil then
         G.GAME.bof_soapy_destroyed = G.GAME.bof_soapy_destroyed or {}
         G.GAME.bof_soapy_destroyed[self.config.center.key] = true
         for k, deck in pairs(G.P_CENTERS) do
-            if deck.key == "b_bof_soapy" and deck.check_for_unlock then
+            if deck.key == "l_soapy" and deck.check_for_unlock then
                 deck:check_for_unlock()
                 break
             end
         end
     end
+    if self:get_id() == 14 then
+        if not G.GAME.bof_wooden_destroyed then
+            G.GAME.bof_wooden_destroyed = 0
+        end
+        G.GAME.bof_wooden_destroyed = G.GAME.bof_wooden_destroyed + 1
+        if G.GAME.bof_wooden_destroyed >= 4 then
+            for k, deck in pairs(G.P_CENTERS) do
+                if deck.key == "b_bof_l_wooden" and deck.check_for_unlock then
+                    local unlocked = deck:check_for_unlock()
+                    if unlocked then
+                        G.GAME.bof_wooden_destroyed = 0
+                    end
+                    break
+                end
+            end
+        end
+    end
     return original_card_remove(self)
+end
+
+local original_end_round = end_round
+function end_round()
+    G.GAME.bof_wooden_destroyed = 0
+    return original_end_round()
 end

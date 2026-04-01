@@ -94,7 +94,7 @@ local files = {
             "flannel",
             "illusion",
             -- "fossilized",
-            -- "wooden",
+            "wooden",
             -- "backgammon",
             "soapy",
         }, directory = "items/flats/"

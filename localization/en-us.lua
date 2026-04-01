@@ -1,18 +1,18 @@
 return {
     descriptions = {
         Back = {
-            b_bof_flannel = {
+            b_bof_l_flannel = {
                 name = "Flannel Deck",
                 text = {
                     "{C:mult}+#1#{} Mult"
                 },
                 unlock = {
-                    "Get the base Mult",
-                    "of any poker hand",
+                    "Get the base {C:mult}Mult",
+                    "of any {C:attention}poker hand",
                     "to at least {C:attention}75"
                 }
             },
-            b_bof_illusion = {
+            b_bof_l_illusion = {
                 name = "Illusion Deck",
                 text = {
                     "When a {C:attention}Boss Blind",
@@ -26,7 +26,7 @@ return {
                     "or {C:attention}#3#{} on {V:2}#4#"
                 }
             },
-            b_bof_soapy = {
+            b_bof_l_soapy = {
                 name = "Soapy Deck",
                 text = {
                     "{C:attention}Enhanced{} cards are",
@@ -36,6 +36,19 @@ return {
                     "Destroy a card with an",
                     "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
                     "and {C:attention}Seal{}"
+                }
+            },
+            b_bof_l_wooden = {
+                name = "Wooden Deck",
+                text = {
+                    "Start with no {C:attention}Aces{}",
+                    "and an additional full",
+                    "rank of {C:attention}2s{}, {C:attention}3s{},",
+                    "{C:attention}4s{}, and {C:attention}5s"
+                },
+                unlock = {
+                    "Destroy {C:attention}5 Aces",
+                    "in one round"
                 }
             }
         },

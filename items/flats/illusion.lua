@@ -1,5 +1,5 @@
 SMODS.Back {
-	key = "illusion",
+	key = "l_illusion",
     name = "Illusion Deck",
     config = { stat_per_ante = 2, result = 0 },
 	atlas = "deck",

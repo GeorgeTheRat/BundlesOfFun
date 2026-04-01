@@ -1,5 +1,5 @@
 SMODS.Back {
-	key = "flannel",
+	key = "l_flannel",
     name = "Flannel Deck",
     config = { mult = 4 },
 	atlas = "deck",

@@ -1,5 +1,5 @@
 SMODS.Back {
-	key = "soapy",
+	key = "l_soapy",
     name = "Soapy Deck",
 	atlas = "deck",
 	pos = { x = 6, y = 0 },
