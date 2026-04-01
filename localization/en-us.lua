@@ -186,9 +186,9 @@ return {
             j_bof_j_super = {
                 name = "Super Joker",
                 text = {
-                    "{C:attention}once{} per round,",
                     "{C:blue}+#1#{} hands if {C:attention}Blind{} is",
-                    "not won after final hand,",
+                    "not won by final hand,",
+                    "{s:0.8}may only trigger once per round"
                 }
             },
             j_bof_j_eureka = {
