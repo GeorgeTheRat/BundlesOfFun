@@ -20,11 +20,11 @@ return {
                     "hands or discards by",
                     "{C:plasma}+#1#{} for the next {C:attention}Ante"
                 },
-                -- unlock = {
-                --     "Win a run with",
-                --     "{C:attention}Blue Deck{} on {C:red}Red Stake{}",
-                --     "or {C:attention}Red Deck{} on {C:blue}Blue Stake"
-                -- }
+                unlock = {
+                    "Win a run with",
+                    "{C:attention}#1#{} on {V:1}#2#",
+                    "or {C:attention}#3#{} on {V:2}#4#"
+                }
             },
             b_bof_soapy = {
                 name = "Soapy Deck",
@@ -354,7 +354,7 @@ return {
                 name = "Notebook",
                 text = {
                     {
-                        "Add a {C:dark_edition}sticker{} to",
+                        "Apply a {C:dark_edition}sticker{} to",
                         "a random Joker",
                         "when {C:attention}Blind{} is selected"
                     },

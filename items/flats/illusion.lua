@@ -4,7 +4,7 @@ SMODS.Back {
     config = { stat_per_ante = 2, result = 0 },
 	atlas = "deck",
 	pos = { x = 4, y = 0 },
-    -- unlocked = false,
+    unlocked = false,
     loc_vars = function(self, info_queue)
 		return { vars = { self.config.stat_per_ante } }
 	end,
@@ -28,13 +28,29 @@ SMODS.Back {
             end
         end
     end,
-    -- check_for_unlock = function(self, args)
-    --     if args.type == "win_deck" and args.deck then
-    --         local deck_key = args.deck.key
-    --         local stake_level = args.stake_level or 1
-            
-    --         return (deck_key == "b_blue" and stake_level == 2) or (deck_key == "b_red" and stake_level == 5)
-    --     end
-    --     return false
-    -- end
+    locked_loc_vars = function(self, info_queue, back)
+        local red_deck = localize('k_unknown')
+        if G.P_CENTERS["b_red"].unlocked then
+            red_deck = localize { type = "name_text", set = "Back", key = "b_red" }
+        end
+        local blue_deck = localize('k_unknown')
+        if G.P_CENTERS["b_blue"].unlocked then
+            blue_deck = localize { type = "name_text", set = "Back", key = "b_blue" }
+        end
+        return {
+            vars = {
+                red_deck,
+                localize { type = "name_text", set = "Stake", key = "stake_blue" },
+                blue_deck,
+                localize { type = "name_text", set = "Stake", key = "stake_red" },
+                colours = {
+                    get_stake_col(5),
+                    get_stake_col(2)
+                }
+            }
+        }
+    end,
+    check_for_unlock = function(self, args)
+        return args.type == "win_stake" and (get_deck_win_stake("b_red") >= 5 or get_deck_win_stake("b_blue") >= 2)
+    end
 }
