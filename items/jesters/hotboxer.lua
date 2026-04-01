@@ -1,4 +1,5 @@
 SMODS.Joker({
+
 	key = "j_hotboxer",
 	name = "Hotboxer",
 	config = {

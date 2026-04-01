@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
     key = "n_passport",
     name = "Passport",
     config = {

@@ -1,3 +1,5 @@
+-- TODO: make it so that items do not appear in the collection when their config is disabled
+
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = { 
         create_toggle{
@@ -29,7 +31,7 @@ SMODS.current_mod.config_tab = function()
             bundle_toggle("jesters", G.C.bof_jesters),
             bundle_toggle("fables", G.C.bof_fables),
             bundle_toggle("normalities", G.C.bof_normalities),
-            -- bundle_toggle("flats", G.C.bof_flats),
+            bundle_toggle("flats", G.C.bof_flats),
             -- bundle_toggle("enemies", G.C.bof_enemies),
             -- bundle_toggle("finishers", G.C.bof_finishers),
             -- bundle_toggle("coupons", G.C.bof_coupons),

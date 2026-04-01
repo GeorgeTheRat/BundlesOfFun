@@ -1,4 +1,5 @@
 SMODS.Joker({
+
 	key = "j_polymath",
 	name = "Polymath",
 	config = {
