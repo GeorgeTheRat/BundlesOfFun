@@ -47,7 +47,7 @@ return {
                     "{C:attention}4s{}, and {C:attention}5s"
                 },
                 unlock = {
-                    "Destroy {C:attention}5 Aces",
+                    "Destroy {C:attention}4 Aces",
                     "in one round"
                 }
             }
