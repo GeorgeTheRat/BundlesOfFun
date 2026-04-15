@@ -18,6 +18,8 @@ G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 
 loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
+G.ARGS.LOC_COLOURS.small = HEX("3a55ab")
+G.ARGS.LOC_COLOURS.big = HEX("e0a23a")
 
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
 for i = 1, #files do
@@ -97,10 +99,26 @@ local files = {
             -- "fossilized",
             "wooden",
             -- "backgammon",
+            -- "retro",
             "soapy",
+            -- "display",
             -- "lightning"
         }, directory = "items/flats/"
-    }
+    },
+    -- coupons = {
+    --     list = {
+    --         "dark_alley",
+    --         "illegal_wares",
+    --         "unboxing",
+    --         "scalping",
+    --         "dumpster_diving",
+    --         "raccoon_tactics",
+    --         "scratch_off",
+    --         "lottery_ticket",
+    --         "phishing",
+    --         "social_engineering"
+    --     }, directory = "items/vouchers/"
+    -- }
 }
 
 for _, name in ipairs(files["appetizers"].list) do
@@ -122,3 +140,7 @@ end
 for _, name in ipairs(files["flats"].list) do
     assert(SMODS.load_file(files["flats"].directory .. name .. ".lua"))()
 end
+
+-- for _, name in ipairs(files["coupons"].list) do
+--     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
+-- end

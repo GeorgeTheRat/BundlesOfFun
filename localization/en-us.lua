@@ -1,70 +1,5 @@
 return {
     descriptions = {
-        Back = {
-            b_bof_l_flannel = {
-                name = "Flannel Deck",
-                text = {
-                    "{C:mult}+#1#{} Mult"
-                },
-                unlock = {
-                    "Get the base {C:mult}Mult",
-                    "of any {C:attention}poker hand",
-                    "to at least {C:attention}75"
-                }
-            },
-            b_bof_l_illusion = {
-                name = "Illusion Deck",
-                text = {
-                    "When a {C:attention}Boss Blind",
-                    "is defeated, increase",
-                    "hands or discards by",
-                    "{C:plasma}+#1#{} for the next {C:attention}Ante"
-                },
-                unlock = {
-                    "Win a run with",
-                    "{C:attention}#1#{} on {V:1}#2#",
-                    "or {C:attention}#3#{} on {V:2}#4#"
-                }
-            },
-            b_bof_l_soapy = {
-                name = "Soapy Deck",
-                text = {
-                    "{C:attention}Enhanced{} cards are",
-                    "destroyed when {C:attention}discarded"
-                },
-                unlock = {
-                    "Destroy a card with an",
-                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
-                    "and {C:attention}Seal{}"
-                }
-            },
-            b_bof_l_wooden = {
-                name = "Wooden Deck",
-                text = {
-                    "Start with no {C:attention}Aces{}",
-                    "and an additional full",
-                    "rank of {C:attention}2s{}, {C:attention}3s{},",
-                    "{C:attention}4s{}, and {C:attention}5s"
-                },
-                unlock = {
-                    "Destroy {C:attention}4 Aces",
-                    "in one round"
-                }
-            },
-            b_bof_l_lightning = {
-                name = "Lightning Deck",
-                text = {
-                    "{C:attention}Face cards{} start as",
-                    "{C:attention}Mult Cards{} and give",
-                    "{C:chips}no chips{} when played"
-                },
-                unlock = {
-                    "Win a run",
-                    "without any {C:mult}Mult{},",
-                    "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
-                }
-            }
-        },
         Joker = {
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
@@ -490,7 +425,175 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             }
-        }
+        },
+        Back = {
+            -- b_bof_l_embroidered = {
+            --     name = "Embroidered Deck",
+            --     text = {
+            --         "Start with one random {C:attention}rank{} missing from deck",
+            --         "When {C:attention}Boss Blind{} is defeated,",
+            --         "add {C:attention}4{} cards to deck with each",
+            --         "{C:attention}suit{} of one random {C:attention}rank",
+            --         "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}K of Diamonds{C:inactive,s:0.8}, {C:attention,s:0.8}K of Clubs{C:inactive,s:0.8})"
+            --     },
+            --     unlock = {
+            --         "Have {C:attention}80{} or more",
+            --         "cards in your deck"
+            --     }
+            -- },
+            b_bof_l_flannel = {
+                name = "Flannel Deck",
+                text = {
+                    "{C:mult}+#1#{} Mult"
+                },
+                unlock = {
+                    "Get the base {C:mult}Mult",
+                    "of any {C:attention}poker hand",
+                    "to at least {C:attention}75"
+                }
+            },
+            b_bof_l_illusion = {
+                name = "Illusion Deck",
+                text = {
+                    "When a {C:attention}Boss Blind",
+                    "is defeated, increase",
+                    "hands or discards by",
+                    "{C:plasma}+#1#{} for the next {C:attention}Ante"
+                },
+                unlock = {
+                    "Win a run with",
+                    "{C:attention}#1#{} on {V:1}#2#",
+                    "or {C:attention}#3#{} on {V:2}#4#"
+                }
+            },
+            -- b_bof_l_fossilized = {
+            --     name = "Fossilized Deck",
+            --     text = {
+            --         "Earn an additional {C:money}+$2{} at",
+            --         "end of round for each {C:attention}consumable{} held",
+            --         "{C:attention}Consumables{} in shop may rarely be {C:dark_edition}Negative"
+            --     },
+            --     unlock = {
+            --         "Have one of each",
+            --         "{C:attention}base consumable type{}",
+            --         "in consumable slots"
+            --     }
+            -- },
+            b_bof_l_wooden = {
+                name = "Wooden Deck",
+                text = {
+                    "Start with no {C:attention}Aces{}",
+                    "and an additional full",
+                    "rank of {C:attention}2s{}, {C:attention}3s{},",
+                    "{C:attention}4s{}, and {C:attention}5s"
+                },
+                unlock = {
+                    "Destroy {C:attention}4 Aces",
+                    "in one round"
+                }
+            },
+            b_bof_l_soapy = {
+                name = "Soapy Deck",
+                text = {
+                    "{C:attention}Enhanced{} cards are",
+                    "destroyed when {C:attention}discarded"
+                },
+                unlock = {
+                    "Destroy a card with an",
+                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
+                    "and {C:attention}Seal{}"
+                }
+            },
+            -- b_bof_l_lightning = {
+            --     name = "Lightning Deck",
+            --     text = {
+            --         "{C:attention}Face cards{} start",
+            --         "as {C:attention}Mult Cards",
+            --         "Played cards do not give their",
+            --         "{C:attention}base chips{} when scored"
+            --     },
+            --     unlock = {
+            --         "Win a run",
+            --         "without any {C:mult}Mult{},",
+            --         "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
+            --     }
+            -- }
+        },
+        -- Voucher = {
+        --     v_bof_dark_alley = {
+        --         name = "Dark Alley",
+        --         text = {
+        --             "{C:inactive}It's dark in here..."
+        --         }
+        --     },
+        --     v_bof_illegal_wares = {
+        --         name = "Illegal Wares",
+        --         text = {
+        --             "{C:spectral}Spectral cards may appear in shop",
+        --             "{C:attention}Consumables{} may rarely appear {C:dark_edition}Negative"
+        --         },
+        --         unlock = {
+        --             "Have at least",
+        --             "{C:attention,E:1}3 Spectral cards",
+        --             "in your consumable slots"
+        --         }
+        --     },
+        --     v_bof_unboxing = {
+        --         name = "Unboxing",
+        --         text = {
+        --             "{C:attention}Regular Booster Packs{} may",
+        --             "appear in shop slots"
+        --         }
+        --     },
+        --     v_bof_scalping = {
+        --         name = "Scalping",
+        --         text = {
+        --             "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
+        --             "may appear in shop slots"
+        --         },
+        --         unlock = {
+        --             "Skip a total of {C:attention,E:1}30",
+        --             "Jumbo or Mega Booster Packs"
+        --         }
+        --     },
+        --     v_bof_dumpster_diving = {
+        --         name = "Dumpster Diving",
+        --         text = {
+        --             "Create a random {C:attention}Tag{} when",
+        --             "{C:attention}Boss Blind{} is selected"
+        --         }
+        --     },
+        --     v_bof_raccoon_tactics = {
+        --         name = "Raccoon Tactics",
+        --         text = {
+        --             "Create a random {C:attention}Tag{} when",
+        --             "{C:attention}Blind{} is selected"
+        --         },
+        --         unlock = {
+        --             "Have at least",
+        --             "{C:attention,E:1}3{} Double Tags"
+        --         }
+        --     },
+        --     v_bof_scratch_off = {
+        --         name = "Scratch-Off",
+        --         text = {
+        --             "Redeem a random {C:attention}Voucher{} if both",
+        --             "{C:small,E:1}Small Blind{} and {C:big,E:1}Big Blind",
+        --             "are skipped in an {C:attention}Ante"
+        --         }
+        --     },
+        --     v_bof_lottery_ticket = {
+        --         name = "Lottery Ticket",
+        --         text = {
+        --             "{C:attention}Vouchers{} may rarely",
+        --             "appear in shop slots"
+        --         },
+        --         unlock = {
+        --             "Have at least",
+        --             "{C:attention,E:1}8{} Vouchers"
+        --         }
+        --     }
+        -- }
     },
     misc = {
         dictionary = {
