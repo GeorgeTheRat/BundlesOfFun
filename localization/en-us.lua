@@ -50,6 +50,19 @@ return {
                     "Destroy {C:attention}4 Aces",
                     "in one round"
                 }
+            },
+            b_bof_l_lightning = {
+                name = "Lightning Deck",
+                text = {
+                    "{C:attention}Face cards{} start as",
+                    "{C:attention}Mult Cards{} and give",
+                    "{C:chips}no chips{} when played"
+                },
+                unlock = {
+                    "Win a run",
+                    "without any {C:mult}Mult{},",
+                    "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
+                }
             }
         },
         Joker = {
@@ -98,8 +111,8 @@ return {
             j_bof_a_wonderous_bread = {
                 name = "Wonderous Bread",
                 text = {
-                    "Balance {C:white,B:1}#1#%{} of {C:chips}Chips{} and {C:mult}Mult,",
-                    "decreases by {C:white,B:1}-#2#%{} at end of round"
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult,",
+                    "decreases by {C:white,X:plasma}-#2#%{} at end of round"
                 }
             },
             j_bof_a_jelly_beans = {

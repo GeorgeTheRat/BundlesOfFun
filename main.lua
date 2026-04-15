@@ -14,6 +14,7 @@ G.C.bof_flats = HEX("ff7a6f")
 G.C.bof_enemies = HEX("626e7a")
 G.C.bof_finishers = HEX("49564c")
 G.C.bof_coupons = HEX("a0cff1")
+G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 
 loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
@@ -97,6 +98,7 @@ local files = {
             "wooden",
             -- "backgammon",
             "soapy",
+            -- "lightning"
         }, directory = "items/flats/"
     }
 }

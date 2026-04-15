@@ -45,8 +45,8 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
     G.E_MANAGER:add_event(Event({
         trigger = 'immediate',
         func = (function()
-            ease_colour(G.C.UI_CHIPS, mix_colours({ 0.8, 0.45, 0.85, 1 }, G.C.UI_CHIPS, amount))
-            ease_colour(G.C.UI_MULT, mix_colours({ 0.8, 0.45, 0.85, 1 }, G.C.UI_MULT, amount))
+            ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount))
+            ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount))
 
             if not bof_balance_mixed then
                 bof_balance_mixed = true
@@ -71,20 +71,19 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
 
     if not effect.remove_default_message then
         if from_edition then
-            card_eval_status_text(scored_card, 'jokers', nil, percent, nil, {
+            card_eval_status_text(scored_card, "jokers", nil, percent, nil, {
                 message = text,
-                colour = { 0.8, 0.45, 0.85, 1 },
-                sound = 'gong',
+                colour = G.C.PLASMA,
+                sound = "gong",
                 edition = true
             })
         else
             card_eval_status_text(
-                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil,
+                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, "extra", nil,
                 percent, nil, {
                     message = text,
-                    colour = { 0.8, 0.45, 0.85, 1 },
-                    sound = 'gong',
-                    edition = true
+                    colour = G.C.PLASMA,
+                    sound = "gong"
                 })
         end
     end

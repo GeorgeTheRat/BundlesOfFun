@@ -11,7 +11,7 @@ SMODS.Joker {
         return { vars = { card.ability.extra.dollars } }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.end_of_round and (context.other_card:is_suit("Spades") or context.other_card:is_suit("Clubs")) then
+        if context.individual and context.cardarea == G.hand and context.end_of_round and (context.other_card:is_suit("Spades") or context.other_card:is_suit("Clubs")) then
             G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.dollars
             return {
                 dollars = card.ability.extra.dollars
