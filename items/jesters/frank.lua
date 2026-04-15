@@ -7,8 +7,8 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_TAGS.tag_handy
-        info_queue[#info_queue+1] = G.P_TAGS.tag_garbage
+        info_queue[#info_queue + 1] = G.P_TAGS.tag_handy
+        info_queue[#info_queue + 1] = G.P_TAGS.tag_garbage
     end,
     calculate = function(self, card, context)
         if context.setting_blind and context.blind.key == "bl_small" then

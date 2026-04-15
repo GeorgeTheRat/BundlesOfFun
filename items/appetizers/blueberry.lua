@@ -26,23 +26,26 @@ SMODS.Joker {
             context.other_card.ability.perma_bonus = context.other_card.ability.perma_bonus + card.ability.extra.perma_bonus
             return {
                 message = localize("k_upgrade_ex"),
-                colour = G.C.CHIPS,
-                card = context.other_card
+                colour = G.C.CHIPS
             }
         end
         if context.end_of_round and not context.game_over and context.main_eval and not context.blueprint then
             if card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 then
                 SMODS.destroy_cards(card, nil, nil, true)
                 return {
-                    message = localize("k_eaten_ex"),
-                    colour = G.C.FILTER,
+                    message = localize("k_eaten_ex")
                 }
             else
-                card.ability.extra.perma_bonus = card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod
-                return {
-                    message = "-" .. card.ability.extra.perma_bonus_mod .. " Chip" .. (card.ability.extra.perma_bonus_mod > 1 and "s" or ""),
-                    colour = G.C.CHIPS
-                }
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "perma_bonus",
+                    scalar_value = "perma_bonus_mod",
+                    operation = "-",
+                    scaling_message = {
+                        message = "-" .. card.ability.extra.perma_bonus_mod .. " Chip" .. (card.ability.extra.perma_bonus_mod > 1 and "s" or ""),
+                        colour = G.C.CHIPS
+                    }
+                })
             end
         end
     end

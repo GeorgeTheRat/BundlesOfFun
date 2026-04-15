@@ -18,7 +18,7 @@ SMODS.Joker {
         if context.setting_blind and not context.blueprint then
             local eligible_jokers = {}
             for _, v in ipairs(G.jokers.cards) do
-                eligible_jokers[#eligible_jokers+1] = v
+                eligible_jokers[#eligible_jokers + 1] = v
             end
             if #eligible_jokers > 0 then
                 local target_joker = pseudorandom_element(eligible_jokers, pseudoseed("j_bof_n_notebook"))
