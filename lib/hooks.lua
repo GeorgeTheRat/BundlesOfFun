@@ -70,7 +70,25 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
 }, true)
 
 SMODS.Booster:take_ownership_by_kind("Celestial", {
-    draw_hand = true,
+    update_pack = function(self, dt)
+        local state_wasnt_complete = not G.STATE_COMPLETE
+        SMODS.Booster.update_pack(self, dt)
+        if next(SMODS.find_card("j_bof_j_eureka")) and state_wasnt_complete then
+            G.E_MANAGER:add_event(Event({
+                trigger = "immediate",
+                func = function()
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "immediate",
+                        func = function()
+                            G.FUNCS.draw_from_deck_to_hand()
+                            return true
+                        end
+                    }))
+                    return true
+                end
+            }))
+        end
+    end,
     create_card = function(self, card, i)
         local _card
         if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
