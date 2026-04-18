@@ -93,15 +93,15 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
-            j_bof_j_henry = {
-                name = "Handy Henry",
-                text = {
-                    "{C:blue}+#1#{} hand per round",
-                    "and {C:attention}#2#{} hand size",
-                    "for every Joker",
-                    "to the {C:attention}left"
-                }
-            },
+            -- j_bof_j_henry = {
+            --     name = "Handy Henry",
+            --     text = {
+            --         "{C:blue}+#1#{} hand per round",
+            --         "and {C:attention}#2#{} hand size",
+            --         "for every Joker",
+            --         "to the {C:attention}left"
+            --     }
+            -- },
             j_bof_j_tom = {
                 name = "Tumor Tom",
                 text = {
@@ -492,6 +492,44 @@ return {
                     "in one round"
                 }
             },
+            -- b_bof_l_backgammon = {
+            --     name = "Backgammon Deck",
+            --     text = {
+            --         "Convert each scored card with",
+            --         "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart{}",
+            --         "or {C:diamonds}Diamond{} suit and vice versa",
+            --         "No effect if Joker slots are full"
+            --     },
+            --     unlock = {
+            --         "Have exactly {C:attention}10{} cards of",
+            --         "each suit in your deck"
+            --     }
+            -- },
+            -- b_bof_l_retro = {
+            --     name = "Retro Deck",
+            --     text = {
+            --         "Increase the level of",
+            --         "{C:attention}#1#{} random {C:attention}poker hands",
+            --         "when {C:attention}Blind{} is skipped"
+            --     },
+            --     unlock = {
+            --         "Play all {C:attention}poker hands",
+            --         "at least once in one run"
+            --     }
+            -- },
+            -- b_bof_l_display = {
+            --     name = "Display Deck",
+            --     text = {
+            --         "Start with all {C:attention}ranks{} of one {C:attention}suit",
+            --         "When {C:attention}Boss Blind{} defeated,",
+            --         "add a copy of every {C:attention}rank",
+            --         "of a random {C:attention}suit{} to deck"
+            --     },
+            --     unlock = {
+            --         "Have only one",
+            --         "{C:attention}rank{} in deck"
+            --     }
+            -- },
             b_bof_l_soapy = {
                 name = "Soapy Deck",
                 text = {
@@ -592,8 +630,25 @@ return {
         --             "Have at least",
         --             "{C:attention,E:1}8{} Vouchers"
         --         }
+        --     },
+        --     v_bof_phishing = {
+        --         name = "Phishing",
+        --         text = {
+        --             "Jokers costing {C:money}$#1#{}",
+        --             "or below are {C:attention}free"
+        --         }
+        --     },
+        --     v_bof_social_engineering = {
+        --         name = "Social Engineering",
+        --         text = {
+        --             "Jokers costing {C:money}$#1#{}",
+        --             "or below are {C:attention}free"
+        --         },
+        --         unlock = {
+        --             "Purchase a Joker costing",
+        --             "{C:attention,E:1}$12{} or more"
+        --         }
         --     }
-        -- }
     },
     misc = {
         dictionary = {

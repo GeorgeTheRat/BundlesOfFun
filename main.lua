@@ -47,7 +47,7 @@ local files = {
     jesters = {
         list = {
             "hal",
-            "henry",
+            -- "henry", -- needs its effect changed
             "tom",
             "barber",
             "ballbo",

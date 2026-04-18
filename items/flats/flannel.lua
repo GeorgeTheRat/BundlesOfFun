@@ -10,14 +10,11 @@ SMODS.Back {
 	end,
     calculate = function(self, back, context)
         if context.final_scoring_step then
-            return {mult = 4}
+            return {
+                mult = 4
+            }
         end
     end,
-    hooks = {
-        level_up_hand = function(self, hand)
-            self:check_for_unlock()
-        end
-    },
     check_for_unlock = function(self)
         if G.GAME and G.GAME.hands then
             for hand_name, hand_data in pairs(G.GAME.hands) do
