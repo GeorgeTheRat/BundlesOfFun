@@ -43,7 +43,7 @@ SMODS.Joker {
                 card.ability.extra.active = true
                 card.ability.extra.juicing = true
                 local eval = function()
-                    return card.ability.extra.juicing == true and not G.RESET_JIGGLES
+                    return card.ability.extra.juicing == true
                 end
                 juice_card_until(card, eval, true)
                 return {
