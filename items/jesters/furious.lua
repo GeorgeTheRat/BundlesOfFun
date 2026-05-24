@@ -9,10 +9,10 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.dollars } }
     end,
-    add_to_deck = function(self, card, from_debuff)
+    add_to_deck = function()
         G.GAME.modifiers.no_interest = true
     end,
-    remove_from_deck = function(self, card, from_debuff)
+    remove_from_deck = function()
         G.GAME.modifiers.no_interest = false
     end,
     calc_dollar_bonus = function(self, card)

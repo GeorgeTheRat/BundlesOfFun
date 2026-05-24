@@ -28,7 +28,6 @@ SMODS.Joker {
             }
         }
     end,
-    
     calculate = function(self, card, context)
         if context.initial_scoring_step then
             local most_played = 0
