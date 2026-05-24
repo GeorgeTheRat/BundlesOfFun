@@ -25,3 +25,10 @@ SMODS.Atlas({
     px = 71,
     py = 95, 
 })
+
+SMODS.Sound({
+	key = "woodendeck",
+	path = "woodendeck.ogg",
+	loop = false,
+	volume = 0.5,
+})

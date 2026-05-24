@@ -247,3 +247,12 @@ function end_round()
     G.GAME.bof_wooden_destroyed = 0
     return original_end_round()
 end
+
+-- testing for now
+local original_play_sound = play_sound
+function play_sound(sound_code, pitch, vol, stop_previous_instance)
+    if false and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" and sound_code == "card1" then
+        sound_code = "woodendeck"
+    end
+    return original_play_sound(sound_code, pitch, vol, stop_previous_instance)
+end
