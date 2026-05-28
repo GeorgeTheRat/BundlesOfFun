@@ -449,8 +449,7 @@ return {
                     {
                         "Create a random {C:white,X:small}Small{} {C:fish}Fish{} when {C:attention}Blind{} is selected",
                         "and a random {C:white,X:big}Large{} {C:fish}Fish{} when {C:attention}Blind{} is defeated",
-                        "if this is the {C:attention}rightmost{} Joker",
-                        "{C:inactive}(Must have room)"
+                        "if this is the {C:attention}rightmost{} Joker"
                     }
                 },
                 unlock = {

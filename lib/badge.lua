@@ -2,11 +2,11 @@ local badge_gradient = SMODS.Gradient{
     key = "badge_gradient",
     colours = {
         G.C.bof_appetizers,
-        G.C.bof_fables,
         G.C.bof_jesters,
         G.C.bof_normalities,
+        G.C.bof_fables,
         G.C.bof_flats,
-        G.C.SET.Fish
+        G.C.bof_fish
     }
 }
 
@@ -15,11 +15,10 @@ local original_create_mod_badges = SMODS.create_mod_badges
 
 local CATEGORIES = {
     a = { name = "Appetizers", color_idx = 1 },
-    f = { name = "Fables", color_idx = 2 },
-    j = { name = "Jesters", color_idx = 3 },
-    n = { name = "Normalities", color_idx = 4 },
-    l = { name = "Flats", color_idx = 5 },
-    i = { name = "Fish", color_idx = 6 }
+    j = { name = "Jesters", color_idx = 2 },
+    n = { name = "Normalities", color_idx = 3 },
+    f = { name = "Fables", color_idx = 4 },
+    l = { name = "Flats", color_idx = 5 }
 }
 
 local function create_category_badge(category_key)

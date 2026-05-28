@@ -11,9 +11,10 @@ G.C.bof_jesters = HEX("ffc857")
 G.C.bof_fables = HEX("535fc1")
 G.C.bof_normalities = HEX("c4bca5")
 G.C.bof_flats = HEX("ff7a6f")
+G.C.bof_fish = { 1.0, 0.6, 0.7, 1 }
+G.C.bof_coupons = HEX("a0cff1")
 G.C.bof_enemies = HEX("626e7a")
 G.C.bof_finishers = HEX("49564c")
-G.C.bof_coupons = HEX("a0cff1")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 
 loc_colour()
