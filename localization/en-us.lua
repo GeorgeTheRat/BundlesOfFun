@@ -576,7 +576,7 @@ return {
             b_bof_l_lightning = {
                 name = "Lightning Deck",
                 text = {
-                    "{C:attention}Face cards{} start",
+                    "{C:attention}Face{} cards start",
                     "as {C:attention}Mult Cards",
                     "Played cards do not give their",
                     "{C:attention}base chips{} when scored"
@@ -735,17 +735,35 @@ return {
         --             "or below are {C:attention}free"
         --         }
         --     },
-        --     v_bof_social_engineering = {
-        --         name = "Social Engineering",
-        --         text = {
-        --             "Jokers costing {C:money}$#1#{}",
-        --             "or below are {C:attention}free"
-        --         },
-        --         unlock = {
-        --             "Purchase a Joker costing",
-        --             "{C:attention,E:1}$12{} or more"
-        --         }
-        --     }
+            -- v_bof_social_engineering = {
+            --     name = "Social Engineering",
+            --     text = {
+            --         "Jokers costing {C:money}$#1#{}",
+            --         "or below are {C:attention}free"
+            --     },
+            --     unlock = {
+            --         "Purchase a Joker costing",
+            --         "{C:attention,E:1}$12{} or more"
+            --     }
+            -- },
+            -- v_bof_ice_bucket = {
+            --     name = "Ice Bucket",
+            --     text = {
+            --         "{C:fish}Fish{} cards last",
+            --         "an {C:attention}additional{} round"
+            --     }
+            -- },
+            -- v_bof_buried_treasure = {
+            --     name = "Buried Treasure",
+            --     text = {
+            --         "{C:fish}Fish{} cards give an",
+            --         "{C:attention}additional{} consumable slot"
+            --     },
+            --     unlock = {
+            --         "Have at least",
+            --         "{C:attention,E:1}3{} Fish cards"
+            --     }
+            -- }
     },
     misc = {
         dictionary = {
