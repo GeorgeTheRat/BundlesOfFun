@@ -573,20 +573,20 @@ return {
                     "and {C:attention}Seal{}"
                 }
             },
-            -- b_bof_l_lightning = {
-            --     name = "Lightning Deck",
-            --     text = {
-            --         "{C:attention}Face cards{} start",
-            --         "as {C:attention}Mult Cards",
-            --         "Played cards do not give their",
-            --         "{C:attention}base chips{} when scored"
-            --     },
-            --     unlock = {
-            --         "Win a run",
-            --         "without any {C:mult}Mult{},",
-            --         "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
-            --     }
-            -- }
+            b_bof_l_lightning = {
+                name = "Lightning Deck",
+                text = {
+                    "{C:attention}Face cards{} start",
+                    "as {C:attention}Mult Cards",
+                    "Played cards do not give their",
+                    "{C:attention}base chips{} when scored"
+                },
+                unlock = {
+                    "Win a run",
+                    "without any {C:mult}Mult{},",
+                    "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
+                }
+            }
         },
         Fish = {
             c_bof_i_bass_s = {
