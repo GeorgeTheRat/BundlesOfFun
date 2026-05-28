@@ -269,12 +269,29 @@ local original_card_set_sprites = Card.set_sprites
 function Card:set_sprites(_center, _front)
     original_card_set_sprites(self, _center, _front)
     if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" and self.config.center and self.config.center.set == "Default" and self.children then
-        if self.children.center then self.children.center:remove() end
+        if self.children.center then
+            self.children.center:remove()
+        end
         self.children.center = SMODS.create_sprite(self.T.x, self.T.y, self.T.w, self.T.h, "bof_wooden", { x = 0, y = 0 })
         self.children.center.states.hover = self.states.hover
         self.children.center.states.click = self.states.click
         self.children.center.states.drag = self.states.drag
         self.children.center.states.collide.can = false
-        self.children.center:set_role({major = self, role_type = "Glued", draw_major = self})
+        self.children.center:set_role({
+            major = self,
+            role_type = "Glued",
+            draw_major = self
+        })
     end
 end
+
+-- hook calculate_repetitions for director functionality (currently tracks all triggers and i can't get it to be otherwise)
+-- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
+-- SMODS.calculate_repetitions = function(card, context, reps)
+--     card.bof_retriggered = nil
+--     local g = oldsmodscalculaterepetitions(card, context, reps)
+--     if next(g) then
+--         card.bof_retriggered = true
+--     end
+--     return g
+-- end

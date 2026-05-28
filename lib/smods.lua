@@ -77,3 +77,7 @@ SMODS.Sound({
 --         letter.r = math.sin((G.TIMERS.REAL + index)*(25 + index*3)) * 0.1
 --     end
 -- }
+
+SMODS.current_mod.optional_features = {
+	retrigger_joker = true
+}
