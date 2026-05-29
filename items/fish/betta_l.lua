@@ -3,11 +3,11 @@ SMODS.Consumable {
     name = "Betta Legendary",
     set = "Fish",
     pools = { ["fish_l"] = true },
-    -- pos = { x = 0, y = 0 },
+    pos = { x = 5, y = 0 },
     config = { extra = { slots = 1 } },
     cost = 20,
     hidden = true,
-    atlas = "placeholder",
+    atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.slots } }
     end,

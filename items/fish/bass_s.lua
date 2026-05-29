@@ -3,7 +3,7 @@ SMODS.Consumable {
     name = "Largemouth Bass Small",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    -- pos = { x = 0, y = 0 },
+    pos = { x = 0, y = 0 },
     config = {
         extra = {
             chips = 30,
@@ -12,7 +12,7 @@ SMODS.Consumable {
         }
     },
     cost = 4,
-    atlas = "placeholder",
+    atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

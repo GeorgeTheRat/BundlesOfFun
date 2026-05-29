@@ -3,8 +3,8 @@ SMODS.Joker {
     name = "Rogue",
     config = { extra = { dollars = 1 } },
     pos = { x = 0, y = 2 },
-    cost = 4,
-    rarity = 1,
+    cost = 6,
+    rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

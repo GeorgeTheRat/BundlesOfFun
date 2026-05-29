@@ -3,7 +3,7 @@ SMODS.Consumable {
     name = "Rainbow Trout Legendary",
     set = "Fish",
     pools = { ["fish_l"] = true },
-    -- pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 1 },
     config = {
         extra = {
             xmult = 1.25,
@@ -12,7 +12,7 @@ SMODS.Consumable {
     },
     cost = 20,
     hidden = true,
-    atlas = "placeholder",
+    atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
