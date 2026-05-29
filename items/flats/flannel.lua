@@ -10,15 +10,14 @@ SMODS.Back {
 	end,
     calculate = function(self, back, context)
         if context.final_scoring_step then
-            return {
-                mult = 4
-            }
+            return { mult = 4 }
         end
     end,
-    check_for_unlock = function(self)
+    -- Now only checks if any hand had reached 75 base mult even if you never played for any reason
+    check_for_unlock = function(self, args)
         if G.GAME and G.GAME.hands then
             for hand_name, hand_data in pairs(G.GAME.hands) do
-                if hand_data.visible and hand_data.mult and hand_data.mult >= 75 then
+                if hand_data.mult and hand_data.mult >= 75 then
                     unlock_card(self)
                     return true
                 end
