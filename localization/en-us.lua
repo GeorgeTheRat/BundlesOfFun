@@ -111,15 +111,15 @@ return {
                     "{C:red}-#2#{} consumable slots"
                 }
             },
-            j_bof_j_barber = {
-                name = "Barber",
-                text = {
-                    "Earn {C:money}$#1#{} at end of round",
-                    "{C:green}#2# in #3#{} chance to",
-                    "increase {C:money}payout{} by {C:money}$#4#",
-                    "when {C:attention}Blind{} is selected"
-                }
-            },
+            -- j_bof_j_barber = {
+            --     name = "Barber",
+            --     text = {
+            --         "Earn {C:money}$#1#{} at end of round",
+            --         "{C:green}#2# in #3#{} chance to",
+            --         "increase {C:money}payout{} by {C:money}$#4#",
+            --         "when {C:attention}Blind{} is selected"
+            --     }
+            -- },
             j_bof_j_ballbo = {
                 name = "Ballbo",
                 text = {
