@@ -489,7 +489,7 @@ return {
                 }
             },
             b_bof_l_display = {
-                name = "Baraja de Exhibición",
+                name = "Baraja Secuencial",
                 text = {
                     "Empiezas con todos los {C:attention}rangos{} de un {C:attention}palo{}",
                     "Cuando se derrota una {C:attention}Ciega Jefe{},",
@@ -516,24 +516,194 @@ return {
             b_bof_l_fossilized = {
                 name = "Baraja Fosilizada",
                 text = {
-                    "Gana {C:money}+$#1#{} adicionales al final de",
-                    "la ronda por cada {C:attention}consumible{} que tengas",
-                    "Los {C:attention}consumibles{} en la tienda pueden ser {C:dark_edition}Negativos"
+                    "Ganas {C:money}+$#1#{} adicionales al final de",
+                    "la ronda por cada {C:attention}consumible{}",
+                    "que tengas. Los {C:attention}consumibles{}",
+                    "en la tienda pueden ser {C:dark_edition}Negativos{}"
                 },
                 unlock = {
                     "Ten un consumible cada tipo",
                     "en las ranuras de consumibles"
                 }
             },
+            b_bof_l_lightning = {
+                name = "Baraja de Rayo",
+                text = {
+                    "{C:attention}Cartas{} de Figura empiezan",
+                    "como {C:attention}Cartas de Multi{}",
+                    "Las cartas jugadas no anotan",
+                    "sus {C:chips}fichas base{}"
+                },
+                unlock = {
+                    "Gana una partida sin usar",
+                    "ninguna fuente de {C:mult}+Multi{},",
+                    "{C:white,s:0.8,X:mult}XMulti{s:0.8} aún puede usarse"
+                }
+            }
+        }
+    },
+    Fish = {
+        c_bof_i_bass_s = {
+            name = "Perca Americana {X:small}Pequeño",
+            text = {
+                "{C:chips}+#1#{} Fichas y",
+                "{C:attention}+#2#{} ranura de consumibles",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_bass_b = {
+            name = "Perca Americana {X:big}Grande",
+            text = {
+                "{C:chips}+#1#{} Fichas y",
+                "{C:attention}+#2#{} ranura de consumibles",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_bass_l = {
+            name = "Largemouth Bass {X:legendary}Legendaria",
+            text = {
+                "otorga {C:chips}+Fichas{} igual a",
+                "el {C:attention}total{} de fichas que",
+                "{C:attention}todas las cartas{} de tu baraja sumen,",
+                "{C:attention}+#1#{} ranura de consumibles#<s>1# mientras se posea"
+            }
+        },
+        c_bof_i_betta_s = {
+            name = "Betta {X:small}Pequeño",
+            text = {
+                "{C:mult}+#1#{} Multi y",
+                "{C:attention}+#2#{} ranura de consumibles#<s>2#",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_betta_b = {
+            name = "Betta {X:big}Grande",
+            text = {
+                "{C:mult}+#1#{} Multi y",
+                "{C:attention}+#2#{} ranura de consumibles#<s>2#",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_betta_l = {
+            name = "Betta {X:legendary}Legendario",
+            text = {
+                "Otorga {C:mult}+Multi{} igual al",
+                "Multi {C:attention}total{} de todas",
+                "las {C:attention}manos de poker{} juntas,",
+                "{C:attention}+#1#{} ranura de consumibles#<s>1# mientras se posea"
+            }
+        },
+        c_bof_i_trout_s = {
+            name = "Trucha Arcoiris {X:small}Pequeña",
+            text = {
+                "{C:white,X:mult}X#1#{} Multi y",
+                "{C:attention}+#2#{} ranura de consumibles#<s>2#",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_trout_b = {
+            name = "Trucha Arcoiris {X:big}Grande",
+            text = {
+                "{C:white,X:mult}X#1#{} Multi y",
+                "{C:attention}+#2#{} ranura de consumibles#<s>2#",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_trout_l = {
+            name = "Trucha Arcoiris {X:legendary}Legendaria",
+            text = {
+                "Los Comodines y otros consumibles",
+                "otorgan {C:white,X:mult}X#1#{} Multi,",
+                "{C:attention}+#2#{} ranura de consumibles mientras se posea"
+            }
+        },
+        c_bof_i_goldfish_s = {
+            name = "Pez Dorado {X:small}Pequeño",
+            text = {
+                "Ganas {C:money}$#1#{} y",
+                "{C:attention}+#2#{} ranura de consumibles#<s>2#",
+                "mientras se posea",
+                "{C:inactive}#3# rondas restantes..."
+            }
+        },
+        c_bof_i_goldfish_b = {
+            name = "Pez Dorado {X:big}Grande",
+            text = {
+                "Earn {C:money}$#1#{} and",
+                "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                "{C:inactive}#3# rounds remaining..."
+            }
+        },
+        c_bof_i_goldfish_l = {
+            name = "Pez Dorado {X:legendary}Legendario",
+            text = {
+                "Ganas dinero igual al",
+                "{C:money}interés{} total {C:attention}acumulado{}",
+                "que se habría ganado,",
+                "{C:attention}+#1#{} ranura de consumibles#<s>1# mientras se posea"
+            }
+        }
+    },
+    Other = {
+        p_bof_i_tackle_normal = {
+            name = "Paquete Pescador",
+            text = {
+                "Escoge {C:attention}#1#{} de hasta",
+                "{C:attention}#2# {C:fish}Peces{}"
+            }
+        },
+        p_bof_i_tackle_jumbo = {
+            name = "Paquete Pescador Jumbo",
+            text = {
+                "Escoge {C:attention}#1#{} de hasta",
+                "{C:attention}#2# {C:fish}Peces{}"
+            }
+        },
+        p_bof_i_fry = {
+            name = "Paquete Frito",
+            text = {
+                "Escoge {C:attention}#1#{} de hasta",
+                "{C:attention}#2# {C:white,X:small}Peces Pequeños{}"
+            }
+        },
+        p_bof_i_hooked = {
+            name = "Paquete de Cebo",
+            text = {
+                "Escoge {C:attention}#1#{} de hasta",
+                "{C:attention}#2# {C:white,X:big}Peces Grandes{}"
+            }
         }
     },
     misc = {
         dictionary = {
-            k_bof_saved_by_shrimp = "Salvado por un delicioso camarón",
             k_bof_nom = "¡Ñam!",
             k_bof_active = "¡Activo!",
             k_bof_ready = "¡Listo!",
-            k_bof_destroyed = "¡Destruido!"
+            k_bof_destroyed = "¡Destruido!",
+            b_fish_cards = "Cartas de Pescador",
+            k_bof_alarm = "¡Alarma lista!",
+            k_bof_downgrade = "¡Desgaste!",
+            k_bof_sticker_applied = "¡Sticker Aplicado!",
+            k_bof_tackle = "Paquete Pescador",
+            k_bof_fry = "Paquete Frito",
+            k_bof_hooked = "Paquete de Cebo",
+            k_fish = "Pez",
+
+            option_bof_appetizers = "Appetizers",
+            option_bof_jesters = "Jesters",
+            option_bof_normalities = "Normalities",
+            option_bof_fables = "Fables",
+            option_bof_flats = "Flats",
+            option_bof_fish = "Fish",
+            -- option_bof_enemies = "Enemies",
+            -- option_bof_finishers = "Finishers",
+            -- option_bof_coupons = "Coupons"
         }
     }
 }
