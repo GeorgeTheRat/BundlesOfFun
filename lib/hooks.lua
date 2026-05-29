@@ -442,3 +442,65 @@ end
 --     end
 --     return g
 -- end
+
+-- -- make it so that perkeo can't copy legendary fish
+-- local legendary_fish_keys = {
+--     "c_bof_i_bass_l",
+--     "c_bof_i_betta_l",
+--     "c_bof_i_goldfish_l",
+--     "c_bof_i_trout_l"
+-- }
+
+-- SMODS.Joker:take_ownership("perkeo", {
+--     loc_vars = function(self, info_queue, card)
+--         local main_end
+--         if G.consumeables and G.consumeables.cards then
+--             for _, consumable in ipairs(G.consumeables.cards) do
+--                 if consumable.config.center and consumable.config.center.key then
+--                     for _, legendary_key in ipairs(legendary_fish_keys) do
+--                         if consumable.config.center.key == legendary_key then
+--                             main_end = {}
+--                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
+--                             break
+--                         end
+--                     end
+--                     if main_end then break end
+--                 end
+--             end
+--         end
+--         return { vars = { card.ability.extra }, main_end = main_end }
+--     end,
+--     calculate = function(self, card, context)
+--         if context.ending_shop and not context.blueprint then
+--             if G.consumeables.cards[1] then
+--                 local valid_consumables = {}
+--                 for _, consumable in ipairs(G.consumeables.cards) do
+--                     local is_legendary = false
+--                     if consumable.config.center and consumable.config.center.key then
+--                         for _, legendary_key in ipairs(legendary_fish_keys) do
+--                             if consumable.config.center.key == legendary_key then
+--                                 is_legendary = true
+--                                 break
+--                             end
+--                         end
+--                     end
+--                     if not is_legendary then
+--                         valid_consumables[#valid_consumables + 1] = consumable
+--                     end
+--                 end
+--                 if #valid_consumables > 0 then
+--                     G.E_MANAGER:add_event(Event({
+--                         func = function()
+--                             local card_to_copy = pseudorandom_element(valid_consumables, pseudoseed('perkeo'))
+--                             local card = copy_card(card_to_copy, nil)
+--                             card:set_edition({negative = true}, true)
+--                             card:add_to_deck()
+--                             G.consumeables:emplace(card)
+--                             return true
+--                         end
+--                     }))
+--                 end
+--             end
+--         end
+--     end
+-- }, true)

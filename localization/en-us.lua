@@ -322,6 +322,15 @@ return {
             --         "played hand that {C:attention}retriggered"
             --     }
             -- },
+            j_bof_j_sword_swallower = {
+                name = "Sword Swallower",
+                text = {
+                    "{C:green}#1# in #2#{} chance to create",
+                    "a non-{C:common}Common{} Joker when",
+                    "a {C:tarot}Tarot{} card is {C:attention}sold",
+                    "{C:inactive}(Must have room)"
+                }
+            },
             -- Normalities
             j_bof_n_notebook = {
                 name = "Notebook",
@@ -863,6 +872,7 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
+            k_bof_perkeo_legendary = "Cannot copy {C:white,X:legendary}Legendary{C:inactive} Fish",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",
