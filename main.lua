@@ -74,7 +74,7 @@ local files = {
             "larry",
             "phony",
             "frank",
-            "crafted",
+            -- "crafted", -- todo: new effect
             "schlitzohr",
             "hotboxer",
             -- "director",
