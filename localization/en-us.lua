@@ -108,8 +108,7 @@ return {
                 name = "Tumor Tom",
                 text = {
                     "{C:dark_edition}+#1#{} Joker slots",
-                    "{C:attention}Consumable slots{} are",
-                    "set to {C:attention}0",
+                    "{C:red}-#2#{} consumable slots"
                 }
             },
             j_bof_j_barber = {

@@ -2,11 +2,10 @@ SMODS.Joker {
     key = "j_tom",
     name = "Tumor Tom",
     config = {
+        card_limit = 2,
         extra = {
-            joker_slots = 2,
-            old = 0
-        },
-        card_limit = 2
+            consumable_slots = 2
+        }
     },
     pos = { x = 9, y = 1 },
     cost = 7,
@@ -14,14 +13,17 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.joker_slots } }
+        return {
+            vars = {
+                card.ability.card_limit,
+                card.ability.extra.consumable_slots
+            }
+        }
     end,
     add_to_deck = function(self, card, context)
-        card.ability.extra.old = G.consumeables.config.card_limit
-        G.consumeables.config.card_limit = 0
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.consumable_slots
     end,
     remove_from_deck = function(self, card, context)
-        card.ability.extra.old = card.ability.extra.old
-        G.consumeables.config.card_limit =  G.consumeables.config.card_limit + card.ability.extra.old
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.consumable_slots
     end
 }
