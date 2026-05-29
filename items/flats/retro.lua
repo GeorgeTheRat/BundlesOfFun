@@ -1,4 +1,3 @@
--- Funny as hell, recomended deck makes skipping way less punishing
 SMODS.Back {
 	key = "l_retro",
     name = "Retro Deck",

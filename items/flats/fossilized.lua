@@ -2,7 +2,7 @@
 SMODS.Back {
 	key = "l_fossilized",
     name = "Fossilized Deck",
-    config = { dollars_per_consumable = 2, negative_chance = 0.03 },
+    config = { dollars_per_consumable = 2 },
 	atlas = "deck",
 	pos = { x = 9, y = 0 },
     unlocked = false,

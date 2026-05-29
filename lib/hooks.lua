@@ -347,7 +347,7 @@ G.FUNCS.skip_blind = function(e)
     end
     local amount = (back.effect.center.config and back.effect.center.config.hands) or 4
     G.E_MANAGER:add_event(Event({
-        trigger = 'immediate',
+        trigger = "immediate",
         func = function()
             local pool = {}
             for hand_name, hand_data in pairs(G.GAME.hands) do
@@ -355,7 +355,7 @@ G.FUNCS.skip_blind = function(e)
             end
             local picks = math.min(amount, #pool)
             for _ = 1, picks do
-                local idx = pseudorandom(pseudoseed("bof_retro"), 1, #pool)
+                local idx = pseudorandom(pseudoseed("b_bof_l_retro"), 1, #pool)
                 local hand = table.remove(pool, idx)
                 level_up_hand(nil, hand, nil, 1)
             end
@@ -369,12 +369,14 @@ local original_create_card_for_shop = create_card_for_shop
 function create_card_for_shop(area)
     local card = original_create_card_for_shop(area)
     local back = G.GAME and G.GAME.selected_back
-    if card and area == G.shop_jokers and back and back.effect and back.effect.center
-        and back.effect.center.key == "b_bof_l_fossilized"
+    if
+        card
+        and area == G.shop_jokers
+        and back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_fossilized"
         and card.ability and card.ability.consumeable
-        and not (card.edition and card.edition.negative) then
-        local chance = (back.effect.center.config and back.effect.center.config.negative_chance) or 0.03
-        if pseudorandom(pseudoseed("bof_fossilized")) < chance then
+        and not (card.edition and card.edition.negative)
+    then
+        if pseudorandom(pseudoseed("b_bof_l_fossilized")) < 0.03 then
             card:set_edition({ negative = true }, true)
         end
     end
