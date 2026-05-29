@@ -157,12 +157,12 @@ SMODS.current_mod.extra_tabs = function()
                                 { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
                                     { n = G.UIT.T, config = { text = "Contributors", scale = 0.45, colour = G.C.WHITE, shadow = true } }
                                 }},
+                                bof_credit_title("Marffe", "Coder & Localizer", G.C.ORANGE),
+                                bof_credit_description("Bug fixes, Spanish translation, many decks"),
                                 bof_credit_title("wingedcatgirl", "Coder", G.C.SET.Fish),
                                 bof_credit_description("Technical code and UI"),
                                 bof_credit_title("CodeRevo", "Coder", G.C.STAKES[6]),
                                 bof_credit_description("Some Jokers' code"),
-                                bof_credit_title("Marffe", "Coder & Localizer", G.C.ORANGE),
-                                bof_credit_description("Fixed bugs and translated to Spanish"),
                                 bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
                                 bof_credit_description("Lightning Deck"),
                             }}

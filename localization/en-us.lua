@@ -519,9 +519,10 @@ return {
             b_bof_l_fossilized = {
                 name = "Fossilized Deck",
                 text = {
-                    "Earn an additional {C:money}+$2{} at",
-                    "end of round for each {C:attention}consumable{} held",
-                    "{C:attention}Consumables{} in shop may rarely be {C:dark_edition}Negative"
+                    "Earn an additional {C:money}$#1#{} at",
+                    "end of round per held {C:attention}consumable",
+                    "{C:attention}Consumables{} in shop may",
+                    "rarely be {C:dark_edition}Negative"
                 },
                 unlock = {
                     "Have one of each",
