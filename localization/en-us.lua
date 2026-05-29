@@ -516,19 +516,19 @@ return {
                     "or {C:attention}#3#{} on {V:2}#4#"
                 }
             },
-            -- b_bof_l_fossilized = {
-            --     name = "Fossilized Deck",
-            --     text = {
-            --         "Earn an additional {C:money}+$2{} at",
-            --         "end of round for each {C:attention}consumable{} held",
-            --         "{C:attention}Consumables{} in shop may rarely be {C:dark_edition}Negative"
-            --     },
-            --     unlock = {
-            --         "Have one of each",
-            --         "{C:attention}base consumable type{}",
-            --         "in consumable slots"
-            --     }
-            -- },
+            b_bof_l_fossilized = {
+                name = "Fossilized Deck",
+                text = {
+                    "Earn an additional {C:money}+$2{} at",
+                    "end of round for each {C:attention}consumable{} held",
+                    "{C:attention}Consumables{} in shop may rarely be {C:dark_edition}Negative"
+                },
+                unlock = {
+                    "Have one of each",
+                    "{C:attention}base consumable type{}",
+                    "in consumable slots"
+                }
+            },
             b_bof_l_wooden = {
                 name = "Wooden Deck",
                 text = {
@@ -555,31 +555,31 @@ return {
             --         "each suit in your deck"
             --     }
             -- },
-            -- b_bof_l_retro = {
-            --     name = "Retro Deck",
-            --     text = {
-            --         "Increase the level of",
-            --         "{C:attention}#1#{} random {C:attention}poker hands",
-            --         "when {C:attention}Blind{} is skipped"
-            --     },
-            --     unlock = {
-            --         "Play all {C:attention}poker hands",
-            --         "at least once in one run"
-            --     }
-            -- },
-            -- b_bof_l_display = {
-            --     name = "Display Deck",
-            --     text = {
-            --         "Start with all {C:attention}ranks{} of one {C:attention}suit",
-            --         "When {C:attention}Boss Blind{} defeated,",
-            --         "add a copy of every {C:attention}rank",
-            --         "of a random {C:attention}suit{} to deck"
-            --     },
-            --     unlock = {
-            --         "Have only one",
-            --         "{C:attention}rank{} in deck"
-            --     }
-            -- },
+            b_bof_l_retro = {
+                name = "Retro Deck",
+                text = {
+                    "Increase the level of",
+                    "{C:attention}#1#{} random {C:attention}poker hands",
+                    "when {C:attention}Blind{} is skipped"
+                },
+                unlock = {
+                    "Play all {C:attention}poker hands",
+                    "at least once in one run"
+                }
+            },
+            b_bof_l_display = {
+                name = "Display Deck",
+                text = {
+                    "Start with all {C:attention}ranks{} of one {C:attention}suit",
+                    "When {C:attention}Boss Blind{} defeated,",
+                    "add a copy of every {C:attention}rank",
+                    "of a random {C:attention}suit{} to deck"
+                },
+                unlock = {
+                    "Have only one",
+                    "{C:attention}rank{} in deck"
+                }
+            },
             b_bof_l_soapy = {
                 name = "Soapy Deck",
                 text = {

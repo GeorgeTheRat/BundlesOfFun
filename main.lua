@@ -104,12 +104,12 @@ local files = {
             -- "embroidered",
             "flannel",
             "illusion",
-            -- "fossilized",
+            "fossilized",
             "wooden",
             -- "backgammon",
-            -- "retro",
+            "retro",
             "soapy",
-            -- "display",
+            "display",
             "lightning"
         }, directory = "items/flats/"
     },

@@ -310,7 +310,7 @@ function Card:remove()
             end
         end
     end
-    if self:get_id() == 14 then
+    if self:get_id() == 14 and G.GAME.blind then
         if not G.GAME.bof_wooden_destroyed then
             G.GAME.bof_wooden_destroyed = 0
         end
@@ -335,6 +335,60 @@ local original_end_round = end_round
 function end_round()
     G.GAME.bof_wooden_destroyed = 0
     return original_end_round()
+end
+
+-- retro deck: level up 4 random poker hands when a blind is skipped
+local original_skip_blind = G.FUNCS.skip_blind
+G.FUNCS.skip_blind = function(e)
+    original_skip_blind(e)
+    local back = G.GAME and G.GAME.selected_back
+    if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_retro") then
+        return
+    end
+    local amount = (back.effect.center.config and back.effect.center.config.hands) or 4
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = function()
+            local pool = {}
+            for hand_name, hand_data in pairs(G.GAME.hands) do
+                if hand_data.visible then pool[#pool + 1] = hand_name end
+            end
+            local picks = math.min(amount, #pool)
+            for _ = 1, picks do
+                local idx = pseudorandom(pseudoseed("bof_retro"), 1, #pool)
+                local hand = table.remove(pool, idx)
+                level_up_hand(nil, hand, nil, 1)
+            end
+            return true
+        end
+    }))
+end
+
+-- fossilized deck: consumables in shop may rarely be Negative
+local original_create_card_for_shop = create_card_for_shop
+function create_card_for_shop(area)
+    local card = original_create_card_for_shop(area)
+    local back = G.GAME and G.GAME.selected_back
+    if card and area == G.shop_jokers and back and back.effect and back.effect.center
+        and back.effect.center.key == "b_bof_l_fossilized"
+        and card.ability and card.ability.consumeable
+        and not (card.edition and card.edition.negative) then
+        local chance = (back.effect.center.config and back.effect.center.config.negative_chance) or 0.03
+        if pseudorandom(pseudoseed("bof_fossilized")) < chance then
+            card:set_edition({ negative = true }, true)
+        end
+    end
+    return card
+end
+
+-- fossilized deck: re-check unlock whenever consumable slots change
+local original_consumeable_emplace = CardArea.emplace
+function CardArea:emplace(card, location, stay_flipped)
+    local ret = original_consumeable_emplace(self, card, location, stay_flipped)
+    if G.consumeables and self == G.consumeables then
+        check_for_unlock({ type = "bof_consumable_held" })
+    end
+    return ret
 end
 
 -- wooden deck card sounds
