@@ -149,7 +149,7 @@ SMODS.current_mod.extra_tabs = function()
                                     { n = G.UIT.T, config = { text = "Creators", scale = 0.45, colour = G.C.WHITE, shadow = true } }
                                 }},
                                 bof_credit_title("George The Rat", "Creator", george),
-                                bof_credit_description("All art, most ideas,"),
+                                bof_credit_description("All art, most ideas"),
                                 bof_credit_title("Glitchkat10", "Co-Creator", glitch),
                                 bof_credit_description("Many ideas, nearly all code"),
                             }},
