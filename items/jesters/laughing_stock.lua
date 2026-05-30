@@ -1,6 +1,6 @@
 SMODS.Joker {
-    key = "j_peter",
-    name = "Pleading Peter",
+    key = "j_laughing_stock",
+    name = "Laughing Stock",
     config = { extra = { blind_reduction = 5 } },
     pos = { x = 7, y = 5 },
     cost = 6,

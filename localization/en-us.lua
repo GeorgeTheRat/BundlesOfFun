@@ -286,16 +286,16 @@ return {
                     "{C:blue}Small Blind{} is selected",
                 }
             },
-            j_bof_j_crafted = {
-                name = "Crafted Joker",
-                text = {
-                    "Earn money equal to",
-                    "the current number of",
-                    "{C:attention}rounds{} completed when any",
-                    "{C:attention}Booster Pack{} is skipped",
-                    "{C:red,E:2}self destructs"
-                }
-            },
+            -- j_bof_j_crafted = {
+            --     name = "Crafted Joker",
+            --     text = {
+            --         "Earn money equal to",
+            --         "the current number of",
+            --         "{C:attention}rounds{} completed when any",
+            --         "{C:attention}Booster Pack{} is skipped",
+            --         "{C:red,E:2}self destructs"
+            --     }
+            -- },
             j_bof_j_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
@@ -331,8 +331,8 @@ return {
                     "{C:inactive}(Must have room)"
                 }
             },
-            j_bof_j_peter = {
-                name = "Pleading Peter",
+            j_bof_j_laughing_stock = {
+                name = "Laughing Stock",
                 text = {
                     "Destroy each played card with",
                     "a {C:attention}seal{} and permanently",
@@ -348,6 +348,15 @@ return {
                     "round exceeds score",
                     "requirement, earn",
                     "{C:money}$#1#{} at end of round"
+                }
+            },
+            j_bof_j_pianoman = {
+                name = "Pianoman",
+                text = {
+                    "Only {C:common}Common {C:attention}Jokers",
+                    "may appear in the shop",
+                    "You may select {C:attention}unlimited",
+                    "cards in {C:attention}Booster Packs"
                 }
             },
             -- Normalities

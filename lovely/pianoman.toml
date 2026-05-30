@@ -1,0 +1,17 @@
+[manifest]
+version = "1.0.0"
+
+# Pianoman joker: unlimited booster pack selection
+# Modify booster pack size when opening booster packs
+# Card:open()
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "local _size = *"
+position = "after"
+match_indent = true
+payload = '''
+if G.GAME.bof_pianoman_unlimited_boosters then
+    G.GAME.pack_choices = _size
+end
+'''

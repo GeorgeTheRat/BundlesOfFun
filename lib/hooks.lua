@@ -432,7 +432,7 @@ function Card:set_sprites(_center, _front)
     end
 end
 
--- knife thrower: reset blind stuff on new run
+-- laughing stock: reset blind stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
     if G.GAME.bof_knife_thrower_original_mult then
@@ -444,6 +444,29 @@ function Game:start_run(arg)
         G.GAME.bof_knife_thrower_original_mult = nil
     end
     return original_game_start_run(self, arg)
+end
+
+-- pianoman: force common jokers
+local original_create_card = create_card
+function create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+    if G.GAME.bof_pianoman_common_only and (forced_type == "Joker" or (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")) then
+        forced_type = "Joker"
+        legendary = nil
+        forced_rarity = 0.7
+        forced_key = nil
+    end
+    return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+end
+
+local original_smods_create_card = SMODS.create_card
+function SMODS.create_card(t)
+    if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
+        t.set = "Joker"
+        t.legendary = nil
+        t.rarity = 0.7
+        t.key = nil
+    end
+    return original_smods_create_card(t)
 end
 
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
