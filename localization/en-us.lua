@@ -70,7 +70,7 @@ return {
             j_bof_a_apple_core = {
                 name = "Apple Core",
                 text = {
-                    "The next {C:attention}#1#",
+                    "The next {C:attention}#1#{} played",
                     "cards give {C:mult}+#2#{} Mult",
                     "instead of scoring"
                 }
