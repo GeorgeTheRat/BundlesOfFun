@@ -79,7 +79,8 @@ local files = {
             "hotboxer",
             -- "director",
             "sword_swallower",
-            "knife_thrower"
+            "knife_thrower",
+            "firedancer"
         }, directory = "items/jesters/"
     },
     normalities = {

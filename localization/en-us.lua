@@ -336,9 +336,18 @@ return {
                 text = {
                     "Destroy each played card with",
                     "a {C:attention}seal{} and permanently",
-                    "decrease the {C:attention}current Blind type's{}",
+                    "decrease the {C:attention}current Blind type{}'s",
                     "score requirement by {C:attention}#1#%{} per card",
                     "{C:inactive}(Multiplicative)"
+                }
+            },
+            j_bof_j_firedancer = {
+                name = "Firedancer",
+                text = {
+                    "If {C:attention}final hand{} of",
+                    "round exceeds score",
+                    "requirement, earn",
+                    "{C:money}$#1#{} at end of round"
                 }
             },
             -- Normalities
@@ -351,8 +360,8 @@ return {
                         "when {C:attention}Blind{} is selected"
                     },
                     {
-                        "{C:red}Remove{} two {C:dark_edition}stickers{}",
-                        "and earn {C:money}$#1#{}",
+                        "{C:red}Remove{} two {C:dark_edition}stickers",
+                        "and earn {C:money}$#1#",
                         "when {C:attention}Boss Blind",
                         "is defeated"
                     }
@@ -466,7 +475,7 @@ return {
                     },
                     {
                         "All {C:attention}listed {C:green,E:1}probabilities{} are",
-                        "{C:green}guaranteed{} during the {C:attention}Boss Blind{}"
+                        "{C:green}guaranteed{} during the {C:attention}Boss Blind"
                     }
                 },
                 unlock = {
@@ -543,14 +552,14 @@ return {
                 },
                 unlock = {
                     "Have one of each",
-                    "{C:attention}base consumable type{}",
+                    "{C:attention}base consumable type",
                     "in consumable slots"
                 }
             },
             b_bof_l_wooden = {
                 name = "Wooden Deck",
                 text = {
-                    "Start with no {C:attention}Aces{}",
+                    "Start with no {C:attention}Aces",
                     "and an additional full",
                     "rank of {C:attention}2s{}, {C:attention}3s{},",
                     "{C:attention}4s{}, and {C:attention}5s"
@@ -564,7 +573,7 @@ return {
             --     name = "Backgammon Deck",
             --     text = {
             --         "Convert each scored card with",
-            --         "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart{}",
+            --         "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart",
             --         "or {C:diamonds}Diamond{} suit and vice versa",
             --         "No effect if Joker slots are full"
             --     },
@@ -607,7 +616,7 @@ return {
                 unlock = {
                     "Destroy a card with an",
                     "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
-                    "and {C:attention}Seal{}"
+                    "and {C:attention}Seal"
                 }
             },
             b_bof_l_lightning = {
@@ -702,39 +711,40 @@ return {
         --     v_bof_phishing = {
         --         name = "Phishing",
         --         text = {
-        --             "Jokers costing {C:money}$#1#{}",
+        --             "Jokers costing {C:money}$#1#",
         --             "or below are {C:attention}free"
         --         }
         --     },
-        -- v_bof_social_engineering = {
-        --     name = "Social Engineering",
-        --     text = {
-        --         "Jokers costing {C:money}$#1#{}",
-        --         "or below are {C:attention}free"
+        --     v_bof_social_engineering = {
+        --         name = "Social Engineering",
+        --         text = {
+        --             "Jokers costing {C:money}$#1#",
+        --             "or below are {C:attention}free"
+        --         },
+        --         unlock = {
+        --             "Purchase a Joker costing",
+        --             "{C:attention,E:1}$12{} or more"
+        --         }
         --     },
-        --     unlock = {
-        --         "Purchase a Joker costing",
-        --         "{C:attention,E:1}$12{} or more"
+        --     v_bof_ice_bucket = {
+        --         name = "Ice Bucket",
+        --         text = {
+        --             "{C:fish}Fish{} cards last",
+        --             "an {C:attention}additional{} round"
+        --         }
+        --     },
+        --     v_bof_buried_treasure = {
+        --         name = "Buried Treasure",
+        --         text = {
+        --             "{C:fish}Fish{} cards give an",
+        --             "{C:attention}additional{} consumable slot"
+        --         },
+        --         unlock = {
+        --             "Have at least",
+        --             "{C:attention,E:1}3{} Fish cards"
+        --         }
         --     }
         -- },
-        -- v_bof_ice_bucket = {
-        --     name = "Ice Bucket",
-        --     text = {
-        --         "{C:fish}Fish{} cards last",
-        --         "an {C:attention}additional{} round"
-        --     }
-        -- },
-        -- v_bof_buried_treasure = {
-        --     name = "Buried Treasure",
-        --     text = {
-        --         "{C:fish}Fish{} cards give an",
-        --         "{C:attention}additional{} consumable slot"
-        --     },
-        --     unlock = {
-        --         "Have at least",
-        --         "{C:attention,E:1}3{} Fish cards"
-        --     }
-        -- }
         Fish = {
             c_bof_i_bass_s = {
                 name = "Largemouth Bass {X:small}Small",
