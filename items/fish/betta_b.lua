@@ -43,7 +43,7 @@ SMODS.Consumable {
                     message = card.ability.extra.rounds_remaining .. " Rounds Remaining!"
                 }
             else
-                SMODS.destroy_cards(card, true, true, true)
+                SMODS.destroy_cards(card, nil, true, true)
                 return {
                     message = localize("k_eaten_ex")
                 }

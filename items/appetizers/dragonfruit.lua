@@ -32,7 +32,7 @@ SMODS.Joker {
         end
 
         if (context.drawing_cards or context.after) and card.ability.extra.nommed then
-            SMODS.destroy_cards(card, true, true, true)
+            SMODS.destroy_cards(card, nil, true, true)
             return {
                 message = localize("k_eaten_ex")
             }

@@ -1,0 +1,13 @@
+[manifest]
+version = "1.0.0"
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:load(cardTable, other_card)"
+position = "after"
+payload = '''
+    if not cardTable then return end
+'''
+match_indent = true
+overwrite = false
