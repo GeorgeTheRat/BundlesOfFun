@@ -24,7 +24,6 @@ payload = """
                                         key_append = "a_shrimp"
                                     }
                                     local fish_s = SMODS.create_card(fish_s_config)
-                                    fish_s:start_materialize({G.C.WHITE, G.C.WHITE}, false, 1.5*G.SETTINGS.GAMESPEED)
                                     G.pack_cards:emplace(fish_s)
                                     local fish_b_config = {
                                         set = "fish_b",
@@ -32,7 +31,6 @@ payload = """
                                         key_append = "a_shrimp"
                                     }
                                     local fish_b = SMODS.create_card(fish_b_config)
-                                    fish_b:start_materialize({G.C.WHITE, G.C.WHITE}, false, 1.5*G.SETTINGS.GAMESPEED)
                                     G.pack_cards:emplace(fish_b)
                                     if shrimp.ability.extra.packs == 0 then
                                         SMODS.calculate_effect({ message = localize("k_eaten_ex") }, shrimp)
