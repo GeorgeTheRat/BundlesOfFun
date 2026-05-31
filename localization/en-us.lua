@@ -294,16 +294,16 @@ return {
                     "{C:blue}Small Blind{} is selected",
                 }
             },
-            -- j_bof_j_crafted = {
-            --     name = "Crafted Joker",
-            --     text = {
-            --         "Earn money equal to",
-            --         "the current number of",
-            --         "{C:attention}rounds{} completed when any",
-            --         "{C:attention}Booster Pack{} is skipped",
-            --         "{C:red,E:2}self destructs"
-            --     }
-            -- },
+            j_bof_j_crafted = {
+                name = "Crafted Joker",
+                text = {
+                    "If played hand is the {C:attention}first{} hand",
+                    "of round, copy all {C:attention}modifications{}",
+                    "from the {C:attention}leftmost{} card to the",
+                    "{C:attention}rightmost{} card in played hand,",
+                    "then {C:red}destroy{} the leftmost card"
+                }
+            },
             j_bof_j_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
