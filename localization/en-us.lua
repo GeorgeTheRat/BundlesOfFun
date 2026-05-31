@@ -85,7 +85,7 @@ return {
                 }
             },
             j_bof_a_shrimp = {
-                name = "Shrimp",
+                name = "Fried Shrimp",
                 text = {
                     "The next {C:attention}#1#{} Booster Pack#<s>1#",
                     "opened #<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} and",

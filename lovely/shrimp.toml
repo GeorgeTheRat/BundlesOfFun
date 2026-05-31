@@ -36,7 +36,6 @@ payload = """
                                         SMODS.calculate_effect({ message = localize("k_eaten_ex") }, shrimp)
                                         SMODS.destroy_cards(shrimp, nil, nil, true)
                                     end
-                                    break
                                 end
                             end
                         end

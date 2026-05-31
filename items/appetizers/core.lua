@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "a_apple_core",
+    key = "a_core",
     name = "Apple Core",
     config = {
         extra = {
