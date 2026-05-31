@@ -476,7 +476,7 @@ function Card:load(cardTable, other_card)
     if not G.P_CENTERS[cardTable.save_fields.center] and cardTable.save_fields.center:find("bof_") then
         error("A Joker from a disabled bundle in Bundles Of Fun is present in your continued run. Please enable all bundles in the mod settings and restart Balatro.")
     end
-    return oldcardload(cardTable, other_card)
+    return oldcardload(self, cardTable, other_card)
 end
 
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
