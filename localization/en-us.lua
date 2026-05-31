@@ -291,7 +291,7 @@ return {
                 text = {
                     "Create either a {C:attention}Handy Tag{} or",
                     "{C:attention}Garbage Tag{} at random when",
-                    "{C:blue}Small Blind{} is selected",
+                    "{C:small}Small Blind{} is selected",
                 }
             },
             j_bof_j_crafted = {
