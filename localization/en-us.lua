@@ -807,9 +807,9 @@ return {
             c_bof_i_betta_l = {
                 name = "Betta {X:legendary}Legendary",
                 text = {
-                    "Gives {C:mult}+Mult{} equal to",
-                    "the {C:attention}total{} amount of Mult",
-                    "that all visible {C:attention}poker hands{} add to,",
+                    "Gives {C:mult}+Mult{} equal to the",
+                    "{C:attention}total{} amount of Mult that",
+                    "all visible {C:attention}poker hands{} add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }
             },
@@ -832,7 +832,7 @@ return {
             c_bof_i_trout_l = {
                 name = "Rainbow Trout {X:legendary}Legendary",
                 text = {
-                    "Jokers and other consumables",
+                    "Jokers and {C:attention}other{} consumables",
                     "each give {C:white,X:mult}X#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot while held"
                 }
