@@ -297,9 +297,10 @@ return {
             j_bof_j_crafted = {
                 name = "Crafted Joker",
                 text = {
-                    "If played hand is the {C:attention}first{} hand of round,",
-                    "copy all {C:attention}modifications{} from the {C:attention}leftmost{} card",
-                    "to the {C:attention}rightmost{} card in played hand,",
+                    "If played hand is the {C:attention}first{} hand",
+                    "of round, copy all {C:attention}modifications{}",
+                    "from the {C:attention}leftmost{} card to the",
+                    "{C:attention}rightmost{} card in played hand,",
                     "then {C:red}destroy{} the leftmost card"
                 }
             },
