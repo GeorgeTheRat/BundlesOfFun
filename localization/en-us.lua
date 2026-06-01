@@ -114,7 +114,7 @@ return {
             j_bof_j_tom = {
                 name = "Tumor Tom",
                 text = {
-                    "{C:dark_edition}+#1#{} Joker slot#<s>1#",
+                    "{C:dark_edition}+#1#{} Joker slot#<s>1#,",
                     "{C:red}-#2#{} consumable slot#<s>2#"
                 }
             },
