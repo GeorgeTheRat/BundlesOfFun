@@ -401,26 +401,26 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)" 
                 }
             },
-            j_bof_n_alarm_clock = {
-                name = "Alarm Clock",
-                text = {
-                    "{X:mult,C:white}X#1#{} Mult every",
-                    "{C:attention}other{} hand",
-                    "{C:inactive,E:bof_alarm}#2#",
-                }
-            },
             j_bof_n_passport = {
                 name = "Passport",
                 text = {
                     {
-                        "This Joker gains {C:chips}+#1#{} Chips",
+                        "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
                         "for each {C:attention}unique Blind{} defeated",
-                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
                     },
                     {
                         "{C:attention}Boss Blinds{} may appear",
                         "multiple times"
                     }
+                }
+            },
+            j_bof_n_clock = {
+                name = "Alarm Clock",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult every",
+                    "{C:attention}other{} hand",
+                    "{C:inactive,E:bof_alarm}#2#",
                 }
             },
             -- Fables

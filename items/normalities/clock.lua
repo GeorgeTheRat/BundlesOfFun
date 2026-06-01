@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "n_alarm_clock",
+    key = "n_clock",
     name = "Alarm Clock",
     config = {
         extra = { 
@@ -11,7 +11,7 @@ SMODS.Joker {
     },
     pos = { x = 9, y = 3 },
     pixel_size = { h = 87 },
-    cost = 4,
+    cost = 5,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
