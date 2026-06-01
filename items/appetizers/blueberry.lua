@@ -8,8 +8,8 @@ SMODS.Joker {
         }
     },
     pos = { x = 0, y = 0 },
-    cost = 5,
-    rarity = 1,
+    cost = 6,
+    rarity = 2,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
@@ -33,7 +33,7 @@ SMODS.Joker {
         end
         if context.end_of_round and not context.game_over and context.main_eval and not context.blueprint then
             if card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 and not context.blueprint then
-                SMODS.destroy_cards(card, nil, nil, true)
+                SMODS.destroy_cards(card, nil, true, true)
                 return {
                     message = localize("k_eaten_ex")
                 }

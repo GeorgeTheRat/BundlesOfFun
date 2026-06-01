@@ -1,4 +1,3 @@
--- Took me like 40 rerolls before getting a negative consumable xd
 SMODS.Back {
 	key = "l_fossilized",
     name = "Fossilized Deck",

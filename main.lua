@@ -90,7 +90,7 @@ local files = {
             "eraser",
             "rummikub",
             "passport",
-            "alarm_clock",
+            "clock",
         }, directory = "items/normalities/"
     },
     fables = {

@@ -23,16 +23,14 @@ SMODS.Joker {
                 message = localize("k_copied_ex"),
             }
         end
-
         if context.discard and not context.blueprint then
             card.ability.extra.nommed = true
             return {
                 remove = true
             }
         end
-
         if (context.drawing_cards or context.after) and card.ability.extra.nommed then
-            SMODS.destroy_cards(card, true, true, true)
+            SMODS.destroy_cards(card, nil, true, true)
             return {
                 message = localize("k_eaten_ex")
             }

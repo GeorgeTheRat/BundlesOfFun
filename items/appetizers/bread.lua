@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "a_wonderous_bread",
+    key = "a_bread",
     name = "Wonderous Bread",
     config = {
         extra = {
@@ -38,7 +38,7 @@ SMODS.Joker {
                     colour = { 0.8, 0.45, 0.85, 1 }
                 }
             else
-                SMODS.destroy_cards(card, nil, nil, true)
+                SMODS.destroy_cards(card, nil, true, true)
                 return {
                     message = localize("k_eaten_ex")
                 }

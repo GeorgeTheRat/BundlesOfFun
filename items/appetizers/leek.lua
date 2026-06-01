@@ -44,7 +44,7 @@ SMODS.Joker {
                     no_message = true
                 })
             else
-                SMODS.destroy_cards(card, nil, nil, true)
+                SMODS.destroy_cards(card, nil, true, true)
                 return {
                     message = localize("k_eaten_ex")
                 }

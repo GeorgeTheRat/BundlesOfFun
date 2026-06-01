@@ -3,9 +3,9 @@ SMODS.Joker {
     name = "Rummikub Tile",
     config = {
         extra = { 
-            chips = 0,
             chips_mod = 5,
-            chips_threshold = 30
+            chips_threshold = 30,
+            chips = 0
         }
     },
     pos = { x = 7, y = 3 },

@@ -5,8 +5,8 @@ return {
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
                 text = {
-                    "Add a permanent copy of",
-                    "all {C:attention}played{} cards next hand to deck",
+                    "Add a permanent copy of all",
+                    "{C:attention}played{} cards next hand to deck",
                     "or destroy all cards in",
                     "next {C:attention}discarded{} poker hand"
                 }
@@ -114,7 +114,7 @@ return {
             j_bof_j_tom = {
                 name = "Tumor Tom",
                 text = {
-                    "{C:dark_edition}+#1#{} Joker slot#<s>1#",
+                    "{C:dark_edition}+#1#{} Joker slot#<s>1#,",
                     "{C:red}-#2#{} consumable slot#<s>2#"
                 }
             },
@@ -291,7 +291,7 @@ return {
                 text = {
                     "Create either a {C:attention}Handy Tag{} or",
                     "{C:attention}Garbage Tag{} at random when",
-                    "{C:blue}Small Blind{} is selected",
+                    "{C:small}Small Blind{} is selected",
                 }
             },
             j_bof_j_crafted = {
@@ -401,26 +401,26 @@ return {
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)" 
                 }
             },
-            j_bof_n_alarm_clock = {
-                name = "Alarm Clock",
-                text = {
-                    "{X:mult,C:white}X#1#{} Mult every",
-                    "{C:attention}other{} hand",
-                    "{C:inactive,E:bof_alarm}#2#",
-                }
-            },
             j_bof_n_passport = {
                 name = "Passport",
                 text = {
                     {
-                        "This Joker gains {C:chips}+#1#{} Chips",
+                        "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
                         "for each {C:attention}unique Blind{} defeated",
-                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
                     },
                     {
                         "{C:attention}Boss Blinds{} may appear",
                         "multiple times"
                     }
+                }
+            },
+            j_bof_n_clock = {
+                name = "Alarm Clock",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult every",
+                    "{C:attention}other{} hand",
+                    "{C:inactive,E:bof_alarm}#2#",
                 }
             },
             -- Fables
@@ -767,16 +767,16 @@ return {
                 name = "Largemouth Bass {X:small}Small",
                 text = {
                     "{C:chips}+#1#{} Chips and",
-                    "{C:attention}+#2#{} consumable slot while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_bass_b = {
                 name = "Largemouth Bass {X:big}Big",
                 text = {
                     "{C:chips}+#1#{} Chips and",
-                    "{C:attention}+#2#{} consumable slot while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_bass_l = {
@@ -793,7 +793,7 @@ return {
                 text = {
                     "{C:mult}+#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_betta_b = {
@@ -801,15 +801,15 @@ return {
                 text = {
                     "{C:mult}+#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_betta_l = {
                 name = "Betta {X:legendary}Legendary",
                 text = {
-                    "Gives {C:mult}+Mult{} equal to",
-                    "the {C:attention}total{} amount of Mult",
-                    "that all {C:attention}poker hands{} add to,",
+                    "Gives {C:mult}+Mult{} equal to the",
+                    "{C:attention}total{} amount of Mult that",
+                    "all visible {C:attention}poker hands{} add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }
             },
@@ -818,7 +818,7 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_trout_b = {
@@ -826,13 +826,13 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_trout_l = {
                 name = "Rainbow Trout {X:legendary}Legendary",
                 text = {
-                    "Jokers and other consumables",
+                    "Jokers and {C:attention}other{} consumables",
                     "each give {C:white,X:mult}X#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot while held"
                 }
@@ -842,7 +842,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_goldfish_b = {
@@ -850,7 +850,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_goldfish_l = {

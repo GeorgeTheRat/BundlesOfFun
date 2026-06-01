@@ -44,7 +44,7 @@ SMODS.Joker {
                         return {
                             message = localize("k_eaten_ex"),
                             func = function()
-                                card:set_ability("j_bof_a_apple_core")
+                                card:set_ability("j_bof_a_core")
                             end
                         }
                     end
