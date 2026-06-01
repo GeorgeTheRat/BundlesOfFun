@@ -5,8 +5,8 @@ return {
             j_bof_a_dragonfruit = {
                 name = "Dragonfruit",
                 text = {
-                    "Add a permanent copy of",
-                    "all {C:attention}played{} cards next hand to deck",
+                    "Add a permanent copy of all",
+                    "{C:attention}played{} cards next hand to deck",
                     "or destroy all cards in",
                     "next {C:attention}discarded{} poker hand"
                 }
