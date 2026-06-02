@@ -641,8 +641,8 @@ return {
                 text = {
                     "{C:attention}Face{} cards start",
                     "as {C:attention}Mult Cards",
-                    "Played cards do not give their",
-                    "{C:attention}base chips{} when scored"
+                    "Played cards do not give",
+                    "their {C:attention}base chips{} when scored"
                 },
                 unlock = {
                     "Win a run",
@@ -782,9 +782,8 @@ return {
             c_bof_i_bass_l = {
                 name = "Largemouth Bass {X:legendary}Legendary",
                 text = {
-                    "Gives {C:chips}+Chips{} equal to",
-                    "the {C:attention}total{} number of chips",
-                    "that {C:attention}all cards{} in deck add to,",
+                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number",
+                    "of chips that {C:attention}all cards{} in deck add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }
             },
@@ -808,8 +807,8 @@ return {
                 name = "Betta {X:legendary}Legendary",
                 text = {
                     "Gives {C:mult}+Mult{} equal to the",
-                    "{C:attention}total{} amount of Mult that",
-                    "all visible {C:attention}poker hands{} add to,",
+                    "{C:attention}total{} Mult that all visible",
+                    "{C:attention}poker hands{} add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }
             },
@@ -856,8 +855,8 @@ return {
             c_bof_i_goldfish_l = {
                 name = "Goldfish {X:legendary}Legendary",
                 text = {
-                    "Earn money equal to",
-                    "the {C:attention}current amount{} of {C:attention}interest",
+                    "Earn money equal to the",
+                    "{C:attention}current amount{} of {C:attention}interest",
                     "that would be earned,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }

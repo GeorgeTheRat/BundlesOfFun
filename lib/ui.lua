@@ -25,13 +25,23 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.BLACK,
         },
         nodes = {
-            { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
+            { n = G.UIT.R, config = { align = "cm", padding = 0.4 }, nodes = {
                 create_toggle {
                     label = "Custom Sounds",
                     ref_table = BundlesOfFun.config,
                     ref_value = "custom_sounds",
                 },
             }},
+            { n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
+                create_toggle {
+                    label = "Custom Wooden Deck Texture",
+                    ref_table = BundlesOfFun.config,
+                    ref_value = "custom_wooden_center",
+                },
+            }},
+            { n = G.UIT.R, config = { align = "cm" }, nodes = {
+                { n = G.UIT.T, config = { text = "(Requires a restart)", scale = 0.25, colour = G.C.WHITE, shadow = true } }
+            }}
         }
     }
 end
