@@ -115,7 +115,7 @@ end
 local can_sell_card_old = G.FUNCS.can_sell_card
 G.FUNCS.can_sell_card = function(e)
 	local card = e.config.ref_table
-	if card.config.center.key == "j_bof_j_tumor_tom" and card:can_sell_card() then
+	if card.config.center.key == "j_bof_j_tom" and card:can_sell_card() then
         if G.jokers and (#G.jokers.cards >= (G.jokers.config.card_limit - 1)) then
             e.config.colour = G.C.GREEN
             e.config.button = "sell_card"   
