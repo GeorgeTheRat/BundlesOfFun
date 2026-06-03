@@ -5,6 +5,7 @@ SMODS.Joker {
     pos = { x = 7, y = 5 },
     cost = 6,
     rarity = 2,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.blind_reduction } }

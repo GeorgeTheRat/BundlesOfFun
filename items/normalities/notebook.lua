@@ -10,6 +10,7 @@ SMODS.Joker {
     pos = { x = 5, y = 3 },
     cost = 8,
     rarity = 2,
+    blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.dollars } }
@@ -21,7 +22,7 @@ SMODS.Joker {
             end
             return joker.ability[sticker_key]
         end
-        if context.setting_blind and not context.blueprint then
+        if context.setting_blind then
             local eligible_jokers = {}
             for _, v in ipairs(G.jokers.cards) do
                 eligible_jokers[#eligible_jokers + 1] = v
