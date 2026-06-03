@@ -96,12 +96,12 @@ local files = {
     },
     flats = {
         list = {
-            -- "embroidered",
+            "embroidered",
             "flannel",
             "illusion",
             -- "fossilized",
             "wooden",
-            -- "backgammon",
+            "backgammon",
             -- "retro",
             "soapy",
             -- "display",

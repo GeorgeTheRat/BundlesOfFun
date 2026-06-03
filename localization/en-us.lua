@@ -459,20 +459,20 @@ return {
             }
         },
         Back = {
-            -- b_bof_l_embroidered = {
-            --     name = "Embroidered Deck",
-            --     text = {
-            --         "Start with one random {C:attention}rank{} missing from deck",
-            --         "When {C:attention}Boss Blind{} is defeated,",
-            --         "add {C:attention}4{} cards to deck with each",
-            --         "{C:attention}suit{} of one random {C:attention}rank",
-            --         "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}K of Diamonds{C:inactive,s:0.8}, {C:attention,s:0.8}K of Clubs{C:inactive,s:0.8})"
-            --     },
-            --     unlock = {
-            --         "Have {C:attention}80{} or more",
-            --         "cards in your deck"
-            --     }
-            -- },
+            b_bof_l_embroidered = {
+                name = "Embroidered Deck",
+                text = {
+                    "Start with one random {C:attention}rank{} missing from deck",
+                    "When {C:attention}Boss Blind{} is defeated,",
+                    "add {C:attention}4{} cards to deck with each",
+                    "{C:attention}suit{} of one random {C:attention}rank",
+                    "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}K of Diamonds{C:inactive,s:0.8}, {C:attention,s:0.8}K of Clubs{C:inactive,s:0.8})"
+                },
+                unlock = {
+                    "Have {C:attention}80{} or more",
+                    "cards in your deck"
+                }
+            },
             b_bof_l_flannel = {
                 name = "Flannel Deck",
                 text = {
@@ -524,19 +524,19 @@ return {
                     "in one round"
                 }
             },
-            -- b_bof_l_backgammon = {
-            --     name = "Backgammon Deck",
-            --     text = {
-            --         "Convert each scored card with",
-            --         "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart{}",
-            --         "or {C:diamonds}Diamond{} suit and vice versa",
-            --         "No effect if Joker slots are full"
-            --     },
-            --     unlock = {
-            --         "Have exactly {C:attention}10{} cards of",
-            --         "each suit in your deck"
-            --     }
-            -- },
+            b_bof_l_backgammon = {
+                name = "Backgammon Deck",
+                text = {
+                    "Convert each scored card with",
+                    "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart{}",
+                    "or {C:diamonds}Diamond{} suit and vice versa",
+                    "No effect if Joker slots are full"
+                },
+                unlock = {
+                    "Have exactly {C:attention}10{} cards of",
+                    "each suit in your deck"
+                }
+            },
             -- b_bof_l_retro = {
             --     name = "Retro Deck",
             --     text = {
