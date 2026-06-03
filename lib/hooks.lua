@@ -310,7 +310,7 @@ function Card:remove()
             end
         end
     end
-    if self:get_id() == 14 and G.GAME.blind then
+    if G.GAME and G.GAME.blind and self:get_id() == 14 then
         if not G.GAME.bof_wooden_destroyed then
             G.GAME.bof_wooden_destroyed = 0
         end

@@ -523,11 +523,12 @@ return {
             b_bof_l_embroidered = {
                 name = "Embroidered Deck",
                 text = {
-                    "Start with one random {C:attention}rank{} missing from deck",
+                    "Start with one random",
+                    "{C:attention}rank{} missing from deck",
                     "When {C:attention}Boss Blind{} is defeated,",
                     "add {C:attention}4{} cards to deck with each",
                     "{C:attention}suit{} of one random {C:attention}rank",
-                    "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}K of Diamonds{C:inactive,s:0.8}, {C:attention,s:0.8}K of Clubs{C:inactive,s:0.8})"
+                    "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}Clubs{C:inactive,s:0.8}, and {C:attention,s:0.8}Diamonds{C:inactive,s:0.8})"
                 },
                 unlock = {
                     "Have {C:attention}80{} or more",
@@ -609,19 +610,6 @@ return {
                 unlock = {
                     "Play all {C:attention}poker hands",
                     "at least once in one run"
-                }
-            },
-            b_bof_l_display = {
-                name = "Display Deck",
-                text = {
-                    "Start with all {C:attention}ranks{} of one {C:attention}suit",
-                    "When {C:attention}Boss Blind{} defeated,",
-                    "add a copy of every {C:attention}rank",
-                    "of a random {C:attention}suit{} to deck"
-                },
-                unlock = {
-                    "Have only one",
-                    "{C:attention}rank{} in deck"
                 }
             },
             b_bof_l_soapy = {

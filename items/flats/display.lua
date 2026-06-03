@@ -4,13 +4,10 @@
 SMODS.Back {
 	key = "l_display",
     name = "Display Deck",
-	atlas = "deck",
 	pos = { x = 5, y = 0 },
     unlocked = false,
+    atlas = "deck",
     initial_deck = { Suits = { "Hearts" } },
-    loc_vars = function(self, info_queue)
-		return { vars = {} }
-	end,
     apply = function(self, back)
         local all_suits = {}
         for _, key in ipairs(SMODS.Suit.obj_buffer) do
@@ -19,7 +16,7 @@ SMODS.Back {
                 all_suits[#all_suits + 1] = s
             end
         end
-        local suit = pseudorandom_element(all_suits, pseudoseed("bof_display_initial"))
+        local suit = pseudorandom_element(all_suits, pseudoseed("b_bof_display"))
         self.initial_deck.Suits = { suit.key }
         G.GAME.bof_display_initial_card_key = suit.card_key
     end,
@@ -41,7 +38,7 @@ SMODS.Back {
                     available[#available + 1] = SMODS.Suits[key]
                 end
             end
-            local suit = pseudorandom_element(available, pseudoseed("bof_display_suit"))
+            local suit = pseudorandom_element(available, pseudoseed("b_bof_display"))
             G.GAME.bof_display_used_suits[suit.card_key] = true
             local suit_key = suit.card_key
             G.E_MANAGER:add_event(Event({
@@ -60,7 +57,6 @@ SMODS.Back {
             }))
         end
     end,
-    -- I think it needs a bit more testing but looks like is working
     check_for_unlock = function(self, args)
         if args and args.type == "modify_deck" and G.GAME and G.GAME.blind then
             local ranks = {}

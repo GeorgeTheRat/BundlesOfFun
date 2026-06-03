@@ -1,24 +1,9 @@
 SMODS.Back {
 	key = "l_backgammon",
     name = "Backgammon Deck",
-    config = { },
 	atlas = "deck",
 	pos = { x = 8, y = 0 },
     unlocked = false,
-    check_for_unlock = function(self, args)
-        if args.type == 'modify_deck' then
-            for _, key in ipairs(SMODS.Suit.obj_buffer) do
-                local count = 0
-                for _, v in pairs(G.playing_cards) do
-                    if v.base.suit == key then count = count + 1 end
-                end
-                if count ~= 10 then
-                    return false
-                end
-            end
-            return true
-        end
-    end,
     calculate = function(self, card, context)
         if context.after and context.scoring_hand and (G.jokers and #G.jokers.cards < G.jokers.config.card_limit) then
             local cards_to_trigger = 0 -- this should be more than 0 unless you're playing with a mod that lets you play a hand without cards, or a mod that adds non-vanilla suits
@@ -64,7 +49,7 @@ SMODS.Back {
                         func = function()
                             if other_card.facing == "back" then
                                 other_card:flip()
-                                play_sound('tarot2', percent, 0.6)
+                                play_sound("tarot2", percent, 0.6)
                                 other_card:juice_up(0.3, 0.3)
                             end
                             return true
@@ -74,6 +59,20 @@ SMODS.Back {
                 delay(0.5)
             end
             return nil, true
+        end
+    end,
+    check_for_unlock = function(self, args)
+        if args.type == "modify_deck" then
+            for _, key in ipairs(SMODS.Suit.obj_buffer) do
+                local count = 0
+                for _, v in pairs(G.playing_cards) do
+                    if v.base.suit == key then count = count + 1 end
+                end
+                if count ~= 10 then
+                    return false
+                end
+            end
+            return true
         end
     end
 }

@@ -174,7 +174,7 @@ SMODS.current_mod.extra_tabs = function()
                                 bof_credit_title("CodeRevo", "Coder", G.C.STAKES[6]),
                                 bof_credit_description("Some Jokers' code"),
                                 bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
-                                bof_credit_description("Lightning Deck"),
+                                bof_credit_description("Multiple Decks"),
                             }}
                         }}
                     }
