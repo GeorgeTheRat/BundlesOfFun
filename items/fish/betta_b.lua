@@ -40,7 +40,7 @@ SMODS.Consumable {
             if card.ability.extra.rounds_remaining > 1 then
                 card.ability.extra.rounds_remaining = card.ability.extra.rounds_remaining - 1
                 return {
-                    message = card.ability.extra.rounds_remaining .. " Rounds Remaining!"
+                    message = card.ability.extra.rounds_remaining .. " Round" .. (card.ability.extra.rounds_remaining > 1 and "s" or "") .. " Remaining!"
                 }
             else
                 SMODS.destroy_cards(card, nil, true, true)
