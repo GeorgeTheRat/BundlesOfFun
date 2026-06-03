@@ -1,39 +1,41 @@
 SMODS.Joker {
     key = "j_barber",
     name = "Barber",
-    config = {
-        extra = {
-            dollars = 1,
-            odds = 4,
-            dollars_mod = 1,
-        }
-    },
     pos = { x = 1, y = 2 },
-    cost = 5,
-    rarity = 1,
+    cost = 6,
+    rarity = 2,
+    blueprint_compat = false,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
-        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_j_barber")
-        return {
-            vars = {
-                card.ability.extra.dollars,
-                numerator,
-                denominator,
-                card.ability.extra.dollars_mod
-            }
-        }
-    end,
     calculate = function(self, card, context)
-        if context.setting_blind and not context.blueprint and SMODS.pseudorandom_probability(card, "bof_j_barber", 1, card.ability.extra.odds) then
-            SMODS.scale_card(card, {
-                ref_table = card.ability.extra,
-                ref_value = "dollars",
-                scalar_value = "dollars_mod",
-                message_colour = G.C.MONEY
-            })
+        if context.setting_blind then
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.4,
+                func = function()
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        delay = 0.4,
+                        func = function()
+                            if G.deck and G.deck.cards and #G.deck.cards > 0 then
+                                local random_index = pseudorandom(pseudoseed("bof_j_barber"))
+                                local card_to_destroy = G.deck.cards[math.floor(random_index * #G.deck.cards) + 1]
+                                card_to_destroy:start_dissolve()
+                                card:juice_up(0.3, 0.5)
+                                G.E_MANAGER:add_event(Event({
+                                    trigger = "after",
+                                    delay = 0.3,
+                                    func = function()
+                                        card_to_destroy:remove()
+                                        return true
+                                    end
+                                }))
+                            end
+                            return true
+                        end
+                    }))
+                    return true
+                end
+            }))
         end
-    end,
-    calc_dollar_bonus = function(self, card)
-        return card.ability.extra.dollars
     end
 }

@@ -2,7 +2,8 @@ SMODS.Consumable {
     key = "i_trout_s",
     name = "Rainbow Trout Small",
     set = "Fish",
-    pos = { x = 0, y = 0 },
+    pools = { ["fish_s"] = true },
+    pos = { x = 0, y = 1 },
     config = {
         extra = {
             xmult = 1.25,
@@ -35,15 +36,17 @@ SMODS.Consumable {
                 xmult = card.ability.extra.xmult
             }
         end
-        if context.end_of_round and context.main_eval then
-            if card.ability.extra.rounds_remaining > 0 then
+        if context.end_of_round and context.main_eval and not context.repetition then
+            if card.ability.extra.rounds_remaining > 1 then
                 card.ability.extra.rounds_remaining = card.ability.extra.rounds_remaining - 1
                 return {
                     message = card.ability.extra.rounds_remaining .. " Rounds Remaining!"
                 }
             else
-                SMODS.calculate_effect({ message = localize("k_eaten_ex") }, card)
-                SMODS.destroy_cards(card, true, true, true)
+                SMODS.destroy_cards(card, nil, true, true)
+                return {
+                    message = localize("k_eaten_ex")
+                }
             end
         end
     end,

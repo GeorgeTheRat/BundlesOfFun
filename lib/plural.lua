@@ -47,17 +47,30 @@ function BundlesOfFun.pluralize(str, vars)
         if not (tonumber(num) or is_number(num)) then
             num = 1
         end
+        local result = plural
         for _, k in ipairs(keys) do
             if fch(checks[k], "=") then
                 if to_big(math.abs(math.abs(num) - k)) < to_big(0.001) then
-                    return string.sub(checks[k], 2, -1)
+                    result = string.sub(checks[k], 2, -1)
+                    break
                 end
             elseif fch(checks[k], "<") then
                 if to_big(num) < to_big(k - 0.001) then
-                    return string.sub(checks[k], 2, -1)
+                    result = string.sub(checks[k], 2, -1)
+                    break
                 end
             end
         end
-        return plural
+        -- process variables within the selected plural string
+        if result and vars then
+            for match in result:gmatch("#(%d+)#") do
+                local var_idx = tonumber(match)
+                if vars[var_idx] then
+                    local formatted = format_ui_value(vars[var_idx])
+                    result = result:gsub("#" .. match .. "#", formatted)
+                end
+            end
+        end
+        return result
     end
 end

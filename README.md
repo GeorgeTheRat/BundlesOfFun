@@ -1,8 +1,8 @@
 # A Mod of 8 "Bundles" using Vanilla Elements
 
-Bundles can be toggled in the mod's config if you only want certain groups - a mod that can stay on for everyone depending on what they want!
+"Bundles" are groups of similarly styled items that can be toggled in the mod's config - a way to customize the mod's additions to your heart's content!
 
-We try to keep vanilla balancing in mind, but we don't let that limit our ideas or shorten our scopes; this is a mod that is not meant to be forgotten!
+We try to keep vanilla balancing *in mind*, but we don't let that limit our ideas or shorten our scopes; this is a mod that is not meant to be forgotten!
 
 ## Bundles
 - ***1. Appetizers*** (Food Jokers, like Popcorn)  - **10 Jokers**
@@ -14,4 +14,4 @@ We try to keep vanilla balancing in mind, but we don't let that limit our ideas 
 - ***7. Enemies*** (Boss blinds)  - **25 Blinds**
 - ***8. Finishers*** (Showdown Blinds to win your runs with)  - **5 Blinds**
 
-
+Join the [Rat Pack Discord](https://discord.gg/Uq3Brc4UaT) for updates and discussion on Bundles Of Fun and its sister mod, [Chimes](https://github.com/GeorgeTheRat/Chimes)!

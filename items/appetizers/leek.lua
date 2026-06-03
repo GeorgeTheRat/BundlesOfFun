@@ -11,6 +11,9 @@ SMODS.Joker {
     pos = { x = 8, y = 0 },
     cost = 4,
     rarity = 2,
+    blueprint_compat = false,
+    eternal_compat = false,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         if not card.ability.extra.prob_current then
@@ -41,9 +44,9 @@ SMODS.Joker {
                     no_message = true
                 })
             else
-                SMODS.destroy_cards(card, nil, nil, true)
+                SMODS.destroy_cards(card, nil, true, true)
                 return {
-                    message = localize("k_eaten_ex"),
+                    message = localize("k_eaten_ex")
                 }
             end
         end

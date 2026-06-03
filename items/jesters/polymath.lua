@@ -1,12 +1,11 @@
 SMODS.Joker({
-
 	key = "j_polymath",
 	name = "Polymath",
 	config = {
 		extra = {
 			odds = 5,
-			mult = 5,
 			chips = 25,
+			mult = 5,
 			xmult = 1.25,
 			dollars = 1,
 		},
@@ -22,12 +21,10 @@ SMODS.Joker({
 			vars = {
 				numerator,
                 denominator,
-				card.ability.extra.mult,
 				card.ability.extra.chips,
+				card.ability.extra.mult,
 				card.ability.extra.xmult,
-
-				card.ability.extra.dollars,
-                colours = { { 0.8, 0.45, 0.85, 1 } }
+				card.ability.extra.dollars
 			},
 		}
 	end,

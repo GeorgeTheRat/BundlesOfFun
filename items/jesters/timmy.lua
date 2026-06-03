@@ -3,7 +3,6 @@ local function cards_above_deck()
     for i = 1, #G.playing_cards do
         b = b + 1
     end
-
     if (a - b) < 0 then
         return -(a - b)
     end
@@ -13,11 +12,7 @@ end
 SMODS.Joker {
     key = "j_timmy",
     name = "Youngster Timmy",
-    config = {
-        extra = {
-            chips = 6,
-        }
-    },
+    config = { extra = { chips = 6 } },
     pos = { x = 5, y = 1 },
     cost = 5,
     rarity = 1,

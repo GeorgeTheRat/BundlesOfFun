@@ -1,0 +1,44 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "for k, v in ipairs(pack_cards) do\n                        G.pack_cards:emplace(v)"
+position = "after"
+payload = """
+                    end
+                    if self.ability.set == "Booster" and not self.bof_shrimp_triggered then
+                        self.bof_shrimp_triggered = true
+                        local shrimp_jokers = SMODS.find_card("j_bof_a_shrimp")
+                        if next(shrimp_jokers) then
+                            for _, shrimp in ipairs(shrimp_jokers) do
+                                if shrimp.ability.extra.packs and shrimp.ability.extra.packs > 0 then
+                                    shrimp.ability.extra.packs = shrimp.ability.extra.packs - 1
+                                    shrimp:juice_up()
+                                    local fish_s_config = {
+                                        set = "fish_s",
+                                        area = G.pack_cards,
+                                        key_append = "a_shrimp"
+                                    }
+                                    local fish_s = SMODS.create_card(fish_s_config)
+                                    G.pack_cards:emplace(fish_s)
+                                    local fish_b_config = {
+                                        set = "fish_b",
+                                        area = G.pack_cards,
+                                        key_append = "a_shrimp"
+                                    }
+                                    local fish_b = SMODS.create_card(fish_b_config)
+                                    G.pack_cards:emplace(fish_b)
+                                    if shrimp.ability.extra.packs == 0 then
+                                        SMODS.calculate_effect({ message = localize("k_eaten_ex") }, shrimp)
+                                        SMODS.destroy_cards(shrimp, nil, nil, true)
+                                    end
+                                end
+                            end
+                        end
+"""
+match_indent = true
+overwrite = false

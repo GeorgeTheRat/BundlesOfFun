@@ -2,16 +2,17 @@ SMODS.Joker {
     key = "a_durian",
     name = "Durian",
     pos = { x = 6, y = 0 },
-    cost = 4,
+    cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.c_fool
     end,
     calculate = function(self, card, context)
         if context.selling_self then
-            for i = 1, G.consumeables.config.card_limit - #G.consumeables.cards do
+            for i = 1, math.min(100, G.consumeables.config.card_limit - #G.consumeables.cards) do
                 G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     func = (function()

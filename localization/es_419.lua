@@ -91,8 +91,8 @@ return {
             j_bof_a_wonderous_bread = {
                 name = "Pan maravilloso",
                 text = {
-                    "Balancea un {C:white,B:1}#1#%{} de {C:chips}Fichas{}",
-                    "y {C:mult}Multi{}, disminuye en {C:white,B:1}-#2#%{}",
+                    "Balancea un {C:white,X:plasma}#1#%{} de {C:chips}Fichas{}",
+                    "y {C:mult}Multi{}, disminuye en {C:white,X:plasma}-#2#%{}",
                     "al final de la ronda"
                 }
             },
@@ -486,6 +486,43 @@ return {
                 unlock = {
                     "Destruye una carta con una",
                     "{C:enhanced}Mejora{}, {C:dark_edition}Edición{} y {C:attention}Sello{}"
+                }
+            },
+            b_bof_l_display = {
+                name = "Baraja de Exhibición",
+                text = {
+                    "Empiezas con todos los {C:attention}rangos{} de un {C:attention}palo{}",
+                    "Cuando se derrota una {C:attention}Ciega Jefe{},",
+                    "añade una copia de cada {C:attention}rango",
+                    "de un {C:attention}palo{} aleatorio al mazo"
+                },
+                unlock = {
+                    "Ten solo una",
+                    "{C:attention}Categoría{} en tu baraja"
+                }
+            },
+            b_bof_l_retro = {
+                name = "Baraja Retro",
+                text = {
+                    "Aumenta el nivel de",
+                    "{C:attention}#1#{} manos de {C:attention}póker{} al azar",
+                    "al omitir una {C:attention}Ciega{}"
+                },
+                unlock = {
+                    "Juega todas las {C:attention}manos de póker",
+                    "al menos una vez en una partida"
+                }
+            },
+            b_bof_l_fossilized = {
+                name = "Baraja Fosilizada",
+                text = {
+                    "Gana {C:money}+$#1#{} adicionales al final de",
+                    "la ronda por cada {C:attention}consumible{} que tengas",
+                    "Los {C:attention}consumibles{} en la tienda pueden ser {C:dark_edition}Negativos"
+                },
+                unlock = {
+                    "Ten un consumible cada tipo",
+                    "en las ranuras de consumibles"
                 }
             },
         }

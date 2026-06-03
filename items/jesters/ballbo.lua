@@ -4,7 +4,7 @@ SMODS.Joker {
     config = {
         extra = {
             mult_mod = 1,
-            mult_mod_mod = 1,
+            mult_mod_mod = 0.5,
             mult = 0
         }
     },
@@ -12,6 +12,7 @@ SMODS.Joker {
     cost = 7,
     rarity = 3,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

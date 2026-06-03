@@ -1,0 +1,45 @@
+SMODS.Consumable {
+    key = "i_betta_l",
+    name = "Betta Legendary",
+    set = "Fish",
+    pools = { ["fish_l"] = true },
+    pos = { x = 5, y = 0 },
+    config = { extra = { slots = 1 } },
+    cost = 20,
+    hidden = true,
+    atlas = "consumable",
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.slots } }
+    end,
+    add_to_deck = function(self, card, deck)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.slots
+                return true
+            end
+        }))
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main then
+            local total_mult = 0
+            if G.GAME and G.GAME.hands then
+                for hand_name, hand_data in pairs(G.GAME.hands) do
+                    if hand_data.visible and hand_data.mult then
+                        total_mult = total_mult + hand_data.mult
+                    end
+                end
+            end
+            return {
+                mult = total_mult
+            }
+        end
+    end,
+    remove_from_deck = function(self, card, deck)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.slots
+                return true
+            end
+        }))
+    end
+}

@@ -12,6 +12,7 @@ SMODS.Joker {
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -35,8 +36,10 @@ SMODS.Joker {
             }
         end
         if context.end_of_round and not context.game_over and context.main_eval and context.beat_boss and not context.blueprint then
-            SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
-            SMODS.destroy_cards(card, true, true, true)
+            SMODS.destroy_cards(card, nil, true, true)
+            return {
+                message = localize("k_eaten_ex")
+            }
         end
     end
 }

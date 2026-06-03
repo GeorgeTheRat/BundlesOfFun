@@ -3,6 +3,7 @@ SMODS.Joker {
     name = "Eraser",
     config = { extra = { mult = 2 } },
     pos = { x = 6, y = 3 },
+    pixel_size = { w = 57 },
     cost = 4,
     rarity = 1,
     blueprint_compat = true,
@@ -16,7 +17,7 @@ SMODS.Joker {
                 mult = card.ability.extra.mult
             }
         end
-        if context.before then
+        if context.before and not context.blueprint then
             return {
                 message = "Erased!",
                 func = function()

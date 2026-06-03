@@ -2,9 +2,10 @@
 --     key = "j_director",
 --     name = "Director",
 --     config = { extra = { xmult = 1.25 } },
---     pos = { x = 5, y = 4 },
+--     pos = { x = 8, y = 4 },
 --     cost = 7,
 --     rarity = 2,
+--     blueprint_compat = truw,
 --     atlas = "joker",
 --     loc_vars = function(self, info_queue, card)
 --         return { vars = { card.ability.extra.xmult } }

@@ -143,7 +143,7 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
                     set = pseudorandom_element(consumeables, pseudoseed("j_bof_j_eureka")).set,
                     area = G.pack_cards,
                     skip_materialize = true,
-                    soulable = false,
+                    soulable = true,
                     key_append = "ar3"
                 }
             elseif G.GAME.used_vouchers.v_omen_globe and pseudorandom("omen_globe") > 0.8 then
@@ -285,7 +285,7 @@ function Back:apply_to_run()
     end
 end
 
--- wooden deck effect cont. & config handling
+-- wooden deck effect cont.
 local atpref = SMODS.add_to_pool
 SMODS.add_to_pool = function (prototype_obj, args)
     if G.GAME and G.GAME.starting_params and (G.GAME.starting_params.wooden_no_aces or G.GAME.starting_params.no_aces) then
@@ -293,21 +293,8 @@ SMODS.add_to_pool = function (prototype_obj, args)
             return false
         end
     end
-    local bundle, bundle_inactive, prefix
-    local item_key = prototype_obj.key
-    local category_map = {
-        a = "appetizers",
-        f = "fables",
-        j = "jesters",
-        n = "normalities"
-    }
-    if item_key:sub(1,6) == "j_bof_" then
-        prefix = item_key:sub(7, 7)
-        bundle = category_map[prefix]
-        bundle_inactive = not (G.GAME.bof_bundles and G.GAME.bof_bundles[bundle or "AAAAA"])
-    end
     local original_result = atpref(prototype_obj, args)
-    return not (bundle and bundle_inactive) and original_result
+    return original_result
 end
 
 -- soapy/wooden deck unlock
@@ -323,7 +310,7 @@ function Card:remove()
             end
         end
     end
-    if self:get_id() == 14 then
+    if self:get_id() == 14 and G.GAME.blind then
         if not G.GAME.bof_wooden_destroyed then
             G.GAME.bof_wooden_destroyed = 0
         end
@@ -350,10 +337,66 @@ function end_round()
     return original_end_round()
 end
 
+-- retro deck: level up 4 random poker hands when a blind is skipped
+local original_skip_blind = G.FUNCS.skip_blind
+G.FUNCS.skip_blind = function(e)
+    original_skip_blind(e)
+    local back = G.GAME and G.GAME.selected_back
+    if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_retro") then
+        return
+    end
+    local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
+    G.E_MANAGER:add_event(Event({
+        trigger = "immediate",
+        func = function()
+            local pool = {}
+            for hand_name, hand_data in pairs(G.GAME.hands) do
+                if hand_data.visible then pool[#pool + 1] = hand_name end
+            end
+            local picks = math.min(amount, #pool)
+            for _ = 1, picks do
+                local idx = pseudorandom(pseudoseed("b_bof_l_retro"), 1, #pool)
+                local hand = table.remove(pool, idx)
+                level_up_hand(nil, hand, nil, 1)
+            end
+            return true
+        end
+    }))
+end
+
+-- fossilized deck: consumables in shop may rarely be Negative
+local original_create_card_for_shop = create_card_for_shop
+function create_card_for_shop(area)
+    local card = original_create_card_for_shop(area)
+    local back = G.GAME and G.GAME.selected_back
+    if
+        card
+        and area == G.shop_jokers
+        and back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_fossilized"
+        and card.ability and card.ability.consumeable
+        and not (card.edition and card.edition.negative)
+    then
+        if pseudorandom(pseudoseed("b_bof_l_fossilized")) < 0.06 then
+            card:set_edition({ negative = true }, true)
+        end
+    end
+    return card
+end
+
+-- fossilized deck: re-check unlock whenever consumable slots change
+local original_consumeable_emplace = CardArea.emplace
+function CardArea:emplace(card, location, stay_flipped)
+    local ret = original_consumeable_emplace(self, card, location, stay_flipped)
+    if G.consumeables and self == G.consumeables then
+        check_for_unlock({ type = "bof_consumable_held" })
+    end
+    return ret
+end
+
 -- wooden deck card sounds
 local original_play_sound = play_sound
 function play_sound(sound_code, pitch, vol, stop_previous_instance)
-    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" then
+    if BundlesOfFun.config.custom_sounds and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -372,7 +415,17 @@ end
 local original_card_set_sprites = Card.set_sprites
 function Card:set_sprites(_center, _front)
     original_card_set_sprites(self, _center, _front)
-    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" and self.config.center and self.config.center.set == "Default" and self.children then
+    if
+        BundlesOfFun.config.custom_wooden_centers and
+        G.GAME and
+        G.GAME.selected_back and
+        G.GAME.selected_back.effect and
+        G.GAME.selected_back.effect.center and
+        G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" and
+        self.config.center and
+        self.config.center.set == "Default" and
+        self.children
+    then
         if self.children.center then
             self.children.center:remove()
         end
@@ -389,6 +442,53 @@ function Card:set_sprites(_center, _front)
     end
 end
 
+-- laughing stock: reset blind stuff on new run
+local original_game_start_run = Game.start_run
+function Game:start_run(arg)
+    if G.GAME.bof_knife_thrower_original_mult then
+        for blind_key, original_mult in pairs(G.GAME.bof_knife_thrower_original_mult) do
+            if G.P_BLINDS[blind_key] then
+                G.P_BLINDS[blind_key].mult = original_mult
+            end
+        end
+        G.GAME.bof_knife_thrower_original_mult = nil
+    end
+    return original_game_start_run(self, arg)
+end
+
+-- pianoman: force common jokers
+local original_create_card = create_card
+function create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+    if G.GAME.bof_pianoman_common_only and (forced_type == "Joker" or (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")) then
+        forced_type = "Joker"
+        legendary = nil
+        forced_rarity = 0.7
+        forced_key = nil
+    end
+    return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+end
+
+-- pianoman: force common jokers cont.
+local original_smods_create_card = SMODS.create_card
+function SMODS.create_card(t)
+    if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
+        t.set = "Joker"
+        t.legendary = nil
+        t.rarity = 0.7
+        t.key = nil
+    end
+    return original_smods_create_card(t)
+end
+
+-- display a custom crash message when a card fails to load
+local oldcardload = Card.load
+function Card:load(cardTable, other_card)
+    if not G.P_CENTERS[cardTable.save_fields.center] and cardTable.save_fields.center:find("bof_") then
+        error("A Joker from a disabled bundle in Bundles Of Fun is present in your continued run. Please enable all bundles in the mod settings and restart Balatro.")
+    end
+    return oldcardload(self, cardTable, other_card)
+end
+
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
 -- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 -- SMODS.calculate_repetitions = function(card, context, reps)
@@ -399,3 +499,55 @@ end
 --     end
 --     return g
 -- end
+
+-- -- make it so that perkeo can't copy legendary fish
+-- local legendary_fish_keys = {
+--     "c_bof_i_bass_l",
+--     "c_bof_i_betta_l",
+--     "c_bof_i_goldfish_l",
+--     "c_bof_i_trout_l"
+-- }
+
+-- SMODS.Joker:take_ownership("perkeo", {
+--     name = "Perkeo (Bundles Of Fun)",
+--     loc_vars = function(self, info_queue, card)
+--         local main_end
+--         if G.consumeables and G.consumeables.cards then
+--             for _, consumable in ipairs(G.consumeables.cards) do
+--                 if consumable.config.center and consumable.config.center.key then
+--                     for _, legendary_key in ipairs(legendary_fish_keys) do
+--                         if consumable.config.center.key == legendary_key then
+--                             main_end = {}
+--                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
+--                             break
+--                         end
+--                     end
+--                     if main_end then break end
+--                 end
+--             end
+--         end
+--         return { vars = { card.ability.extra }, main_end = main_end }
+--     end,
+--     calculate = function(self, card, context)
+--         if context.ending_shop then
+--             local eligibleJokers = {}
+--             for k, v in pairs(G.consumeables.cards) do
+--                 if v.ability.consumeable and not SMODS.in_scoring(v.config.center.key, legendary_fish_keys) then
+--                     table.insert(eligibleJokers, v)
+--                 end
+--             end
+--             if #eligibleJokers > 0 then
+--                 G.E_MANAGER:add_event(Event({
+--                     func = function() 
+--                         local card = copy_card(pseudorandom_element(eligibleJokers, pseudoseed("perkeo")), nil)
+--                         card:set_edition({ negative = true }, true)
+--                         card:add_to_deck()
+--                         G.consumeables:emplace(card) 
+--                         return true
+--                     end}))
+--                 card_eval_status_text(context_blueprint_card or self, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+--                 return nil, true
+--             end
+--         end
+--     end
+-- })

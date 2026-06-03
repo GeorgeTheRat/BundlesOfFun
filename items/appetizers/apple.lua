@@ -11,6 +11,8 @@ SMODS.Joker {
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -37,10 +39,14 @@ SMODS.Joker {
             return {
                 message = return_message,
                 colour = G.C.MULT,
-                func = function ()
+                func = function()
                     if card.ability.extra.mult <= 0 then
-                        SMODS.calculate_effect({ message = localize("k_eaten_ex") }, card)
-                        card:set_ability("j_bof_a_apple_core")
+                        return {
+                            message = localize("k_eaten_ex"),
+                            func = function()
+                                card:set_ability("j_bof_a_core")
+                            end
+                        }
                     end
                 end
             }

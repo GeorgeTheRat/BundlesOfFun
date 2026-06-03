@@ -1,8 +1,8 @@
 SMODS.Joker {
     key = "f_nuwa_fuxi",
     name = "Nüwa & Fuxi",
-    pos = { x = 5, y = 4 },
-    soul_pos = { x = 5, y = 5 },
+    pos = { x = 6, y = 4 },
+    soul_pos = { x = 6, y = 5 },
     cost = 20,
     rarity = 4,
     unlocked = false,
@@ -27,7 +27,7 @@ SMODS.Joker {
                     end
                 }))
             end
-            if context.end_of_round and context.main_eval then
+            if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -52,11 +52,12 @@ SMODS.Joker {
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 1 then
+                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
-                                set = "Fish",
+                                set = "fish_s",
+                                area = G.consumeables,
                                 key_append = "f_nuwa_fuxi"
                             })
                         end
@@ -64,7 +65,7 @@ SMODS.Joker {
                     end
                 }))
             end
-            if context.end_of_round and context.main_eval then
+            if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -73,8 +74,8 @@ SMODS.Joker {
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
-                                set = "Fish",
-                                edition = "e_negative",
+                                set = "fish_b",
+                                area = G.consumeables,
                                 key_append = "f_nuwa_fuxi"
                             })
                         end

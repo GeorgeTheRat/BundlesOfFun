@@ -1,11 +1,4 @@
 SMODS.Atlas({
-    key = "modicon", 
-    path = "icon.png", 
-    px = 34,
-    py = 34,
-})
-
-SMODS.Atlas({
     key = "joker", 
     path = "joker.png", 
     px = 71,
@@ -89,10 +82,28 @@ SMODS.ConsumableType({
     key = "Fish",
     primary_colour = { 1.0, 0.6, 0.7, 1 },
     secondary_colour = { 0.85, 0.45, 0.55, 1 },
-    collection_rows = { 4, 4 },
+    collection_rows = { 6, 6 },
     shop_rate = 0,
-    default = "i_trout_s",
-    no_buy_and_use = true
+    select_card = "consumeables",
+    default = "c_bof_i_bass_s"
+})
+
+SMODS.ObjectType({
+    key = "fish_s",
+    select_card = "consumeables",
+    default = "c_bof_i_bass_s",
+})
+
+SMODS.ObjectType({
+    key = "fish_b",
+    select_card = "consumeables",
+    default = "c_bof_i_bass_b"
+})
+
+SMODS.ObjectType({
+    key = "fish_l",
+    select_card = "consumeables",
+    default = "c_bof_i_bass_l"
 })
 
 SMODS.current_mod.optional_features = {

@@ -1,5 +1,6 @@
-BoF_check_super_jokers = function()
-    for k, v in pairs(next(SMODS.find_card("j_bof_j_super_joker"))) do
+bof_check_super_jokers = function()
+    local cards = SMODS.find_card("j_bof_j_super")
+    for _, v in ipairs(cards) do
         if v and v.ability and v.ability.extra and v.ability.extra.active then
             return true
         end
@@ -12,18 +13,19 @@ SMODS.Joker {
     name = "Super Joker",
     config = {
         extra = {
-            hand_give = 2,
+            hands = 2,
             active = true
         },
     },
     pos = { x = 7, y = 1 },
     cost = 7,
     rarity = 2,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.hand_give,
+                card.ability.extra.hands,
                 card.ability.extra.active
             }
         }
@@ -31,10 +33,11 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.bof_emergency and not context.blueprint then
             if card.ability.extra.active then
-                ease_hands_played(card.ability.extra.hand_give)
+                ease_hands_played(card.ability.extra.hands)
                 card.ability.extra.active = false
                 return {
-                    message = "+" .. card.ability.extra.hand_give .. " " .. localize("k_hud_hands")
+                    message = "+" .. card.ability.extra.hands .. " " .. localize("k_hud_hands"),
+                    colour = G.C.BLUE
                 }
             else
                 G.STATE = G.STATES.NEW_ROUND

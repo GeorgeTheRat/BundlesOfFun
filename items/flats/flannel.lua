@@ -15,10 +15,11 @@ SMODS.Back {
             }
         end
     end,
-    check_for_unlock = function(self)
+    check_for_unlock = function(self, args)
         if G.GAME and G.GAME.hands then
             for hand_name, hand_data in pairs(G.GAME.hands) do
-                if hand_data.visible and hand_data.mult and hand_data.mult >= 75 then
+                if hand_data.mult and hand_data.mult >= 75 then
+                    unlock_card(self)
                     return true
                 end
             end

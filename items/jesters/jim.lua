@@ -9,6 +9,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 0, y = 1 },
+    pixel_size = { w = 65 },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
@@ -23,7 +24,6 @@ SMODS.Joker {
         }
     end,
     add_to_deck = function(self, card, context)
-        
         G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
         ease_discard(card.ability.extra.discards)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands

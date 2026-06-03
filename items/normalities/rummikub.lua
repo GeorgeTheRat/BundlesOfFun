@@ -3,15 +3,16 @@ SMODS.Joker {
     name = "Rummikub Tile",
     config = {
         extra = { 
-            chips = 0,
             chips_mod = 5,
-            chips_threshold = 30
+            chips_threshold = 30,
+            chips = 0
         }
     },
     pos = { x = 7, y = 3 },
     cost = 4,
     rarity = 1,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

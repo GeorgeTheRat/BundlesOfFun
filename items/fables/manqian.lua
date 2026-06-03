@@ -1,6 +1,6 @@
 SMODS.Joker {
     key = "f_manqian",
-    name = "ManQian",
+    name = "Manqian",
     pos = { x = 1, y = 4 },
     soul_pos = { x = 1, y = 5 },
     cost = 20,

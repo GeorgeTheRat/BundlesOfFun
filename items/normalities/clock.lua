@@ -1,5 +1,5 @@
 SMODS.Joker {
-    key = "n_alarm_clock",
+    key = "n_clock",
     name = "Alarm Clock",
     config = {
         extra = { 
@@ -10,7 +10,8 @@ SMODS.Joker {
         }
     },
     pos = { x = 9, y = 3 },
-    cost = 4,
+    pixel_size = { h = 87 },
+    cost = 5,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
@@ -35,7 +36,7 @@ SMODS.Joker {
                     xmult = card.ability.extra.xmult,
                     message = "X" .. card.ability.extra.xmult .. " Mult",
                     colour = G.C.MULT,
-                    sound = "bof_alarm_ring",
+                    sound = BundlesOfFun.config.custom_sounds and "bof_alarm_ring" or "multhit2",
                     remove_default_message = true
                 }
             elseif not card.ability.extra.active and not context.blueprint then
@@ -48,7 +49,7 @@ SMODS.Joker {
                 juice_card_until(card, eval, true)
                 return {
                     message = localize("k_bof_alarm"),
-                    sound = "bof_alarm_wind"
+                    sound = BundlesOfFun.config.custom_sounds and "bof_alarm_wind" or nil
                 }
             end
         end

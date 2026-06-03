@@ -12,6 +12,7 @@ SMODS.Joker {
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -24,10 +25,23 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.playing_card_added and not context.blueprint then
-            card.ability.extra.chips = card.ability.extra.chips + #context.cards * card.ability.extra.chips_mod
-            card.ability.extra.chips_mod = card.ability.extra.chips_mod + #context.cards * card.ability.extra.chips_mod_mod
+            for _, c in ipairs(context.cards) do
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "chips",
+                    scalar_value = "chips_mod",
+                    no_message = true
+                })
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "chips_mod",
+                    scalar_value = "chips_mod_mod",
+                    no_message = true
+                })
+            end
             return {
-                message = localize {"k_upgrade_ex"},
+                message = localize("k_upgrade_ex"),
+                colour = G.C.BLUE
             }
         end
         if context.joker_main then

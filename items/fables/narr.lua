@@ -17,7 +17,7 @@ SMODS.Joker {
     name = "Narr",
     config = {
         extra = { 
-            xmult_mod = 0.01,
+            xmult_mod = 0.02,
             xmult = 1
         } 
     },
@@ -27,6 +27,7 @@ SMODS.Joker {
     rarity = 4,
     unlocked = false,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return { 
@@ -59,14 +60,13 @@ SMODS.Joker {
 }
 
 -- initialize suit at start of run
-local last_start_run = Game.start_run
+local last_start_run = bof_original_start_run or Game.start_run
 function Game:start_run(args)
     local r = last_start_run(self, args)
     G.E_MANAGER:add_event(Event({
         func = function()
             G.GAME.bof_narr_card = G.GAME.bof_narr_card or {}
             G.GAME.bof_narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_f_narr")
-            G.GAME.bof_bundles = copy_table(BundlesOfFun.config.bundles)
             return true
         end,
         blocking = false
