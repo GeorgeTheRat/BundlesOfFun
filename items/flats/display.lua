@@ -16,7 +16,7 @@ SMODS.Back {
                 all_suits[#all_suits + 1] = s
             end
         end
-        local suit = pseudorandom_element(all_suits, pseudoseed("b_bof_display"))
+        local suit = pseudorandom_element(all_suits, pseudoseed("b_bof_display"..os.time()))
         self.initial_deck = { Suits = { suit.key } }
         G.GAME.bof_display_initial_card_key = suit.card_key
     end,
