@@ -17,7 +17,7 @@ SMODS.Joker {
                 mult = card.ability.extra.mult
             }
         end
-        if context.before then
+        if context.before and not context.blueprint then
             return {
                 message = "Erased!",
                 func = function()

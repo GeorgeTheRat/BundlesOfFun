@@ -115,7 +115,7 @@ end
 local can_sell_card_old = G.FUNCS.can_sell_card
 G.FUNCS.can_sell_card = function(e)
 	local card = e.config.ref_table
-	if card.config.center.key == "j_bof_j_tumor_tom" and card:can_sell_card() then
+	if card.config.center.key == "j_bof_j_tom" and card:can_sell_card() then
         if G.jokers and (#G.jokers.cards >= (G.jokers.config.card_limit - 1)) then
             e.config.colour = G.C.GREEN
             e.config.button = "sell_card"   
@@ -310,7 +310,7 @@ function Card:remove()
             end
         end
     end
-    if self:get_id() == 14 and G.GAME.blind then
+    if G.GAME and G.GAME.blind and self:get_id() == 14 then
         if not G.GAME.bof_wooden_destroyed then
             G.GAME.bof_wooden_destroyed = 0
         end
@@ -345,7 +345,7 @@ G.FUNCS.skip_blind = function(e)
     if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_retro") then
         return
     end
-    local amount = (back.effect.center.config and back.effect.center.config.hands) or 4
+    local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
     G.E_MANAGER:add_event(Event({
         trigger = "immediate",
         func = function()

@@ -4,8 +4,8 @@ SMODS.Joker({
 	config = {
 		extra = {
 			odds = 5,
-			mult = 5,
 			chips = 25,
+			mult = 5,
 			xmult = 1.25,
 			dollars = 1,
 		},
@@ -21,8 +21,8 @@ SMODS.Joker({
 			vars = {
 				numerator,
                 denominator,
-				card.ability.extra.mult,
 				card.ability.extra.chips,
+				card.ability.extra.mult,
 				card.ability.extra.xmult,
 				card.ability.extra.dollars
 			},

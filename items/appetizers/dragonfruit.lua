@@ -17,10 +17,15 @@ SMODS.Joker {
 				table.insert(G.playing_cards, new_card)
 				new_card:add_to_deck()
 				G.deck:emplace(new_card)
+                table.insert(G.playing_cards, new_card)
+                new_card.states.visible = nil
+                new_card:start_materialize()
+                SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
             end
             card.ability.extra.nommed = true
             return {
                 message = localize("k_copied_ex"),
+                colour = G.C.BLUE
             }
         end
         if context.discard and not context.blueprint then

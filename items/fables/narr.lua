@@ -17,7 +17,7 @@ SMODS.Joker {
     name = "Narr",
     config = {
         extra = { 
-            xmult_mod = 0.01,
+            xmult_mod = 0.02,
             xmult = 1
         } 
     },

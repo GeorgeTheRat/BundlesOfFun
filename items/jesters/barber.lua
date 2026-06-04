@@ -4,6 +4,7 @@ SMODS.Joker {
     pos = { x = 1, y = 2 },
     cost = 6,
     rarity = 2,
+    blueprint_compat = false,
     atlas = "joker",
     calculate = function(self, card, context)
         if context.setting_blind then

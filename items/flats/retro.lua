@@ -1,12 +1,12 @@
 SMODS.Back {
 	key = "l_retro",
     name = "Retro Deck",
-    config = { hands = 4 },
+    config = { extra = { hands = 4 } },
 	atlas = "deck",
 	pos = { x = 7, y = 0 },
     unlocked = false,
     loc_vars = function(self, info_queue)
-		return { vars = { self.config.hands } }
+		return { vars = { self.config.extra.hands } }
 	end,
     check_for_unlock = function(self, args)
         if args and args.type == "hand" and G.GAME and G.GAME.hands then

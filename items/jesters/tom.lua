@@ -3,14 +3,12 @@ SMODS.Joker {
     name = "Tumor Tom",
     config = {
         card_limit = 2,
-        extra = {
-            consumable_slots = 2
-        }
+        extra = { consumable_slots = 2 }
     },
     pos = { x = 9, y = 1 },
     cost = 7,
     rarity = 3,
-    blueprint_compat = true,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

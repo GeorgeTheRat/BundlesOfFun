@@ -5,6 +5,7 @@
 --     pos = { x = 8, y = 4 },
 --     cost = 7,
 --     rarity = 2,
+--     blueprint_compat = truw,
 --     atlas = "joker",
 --     loc_vars = function(self, info_queue, card)
 --         return { vars = { card.ability.extra.xmult } }
