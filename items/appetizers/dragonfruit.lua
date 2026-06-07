@@ -8,6 +8,7 @@ SMODS.Joker {
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
+    attributes = { "generation", "destruction", "food" },
     calculate = function(self, card, context)
         if context.before then
             card:juice_up(0.3, 0.5)

@@ -15,6 +15,7 @@ SMODS.Joker {
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
+    attributes = { "mod_chance", "scaling", "passive", "food" },
     loc_vars = function(self, info_queue, card)
         if not card.ability.extra.prob_current then
             card.ability.extra.prob_current = card.ability.extra.prob_start 

@@ -14,6 +14,7 @@ SMODS.Joker {
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
+    attributes = { "mult", "chips", "xmult", "boss_blind", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

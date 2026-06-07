@@ -14,6 +14,7 @@ SMODS.Joker {
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
+    attributes = { "balance", "scaling", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

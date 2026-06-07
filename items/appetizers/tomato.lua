@@ -15,6 +15,7 @@ SMODS.Joker {
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
+    attributes = { "scaling", "modify_card", "food" },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky

@@ -7,6 +7,7 @@ SMODS.Joker {
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
+    attributes = { "generation", "tarot", "on_sell", "food" },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.c_fool
     end,
