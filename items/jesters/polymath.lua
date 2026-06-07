@@ -34,7 +34,7 @@ SMODS.Joker({
                 return {
                     chips = card.ability.extra.chips,
                     mult = card.ability.extra.mult,
-                    xchips = card.ability.extra.xmult,
+                    xmult = card.ability.extra.xmult,
                     dollars = card.ability.extra.dollars,
                 }
             end
