@@ -9,7 +9,7 @@ SMODS.Back {
 		return { vars = { self.config.stat_per_ante } }
 	end,
     calculate = function(self, back, context)
-        if context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss then
+        if context.end_of_round and context.main_eval and context.beat_boss then
             if self.config.result == 1 then
                 G.GAME.round_resets.hands = G.GAME.round_resets.hands - self.config.stat_per_ante
                 ease_hands_played(-self.config.stat_per_ante)

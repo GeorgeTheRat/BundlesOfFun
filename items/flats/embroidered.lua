@@ -25,7 +25,7 @@ SMODS.Back {
         }))
     end,
     calculate = function(self, back, context)
-        if context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss then
+        if context.end_of_round and context.main_eval and context.beat_boss then
             local rank = pseudorandom_element(SMODS.Ranks, pseudoseed("bof_embroidered_added_rank"))
             G.E_MANAGER:add_event(Event({
                 func = function()

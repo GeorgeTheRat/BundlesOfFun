@@ -489,31 +489,6 @@ function Card:load(cardTable, other_card)
     return oldcardload(self, cardTable, other_card)
 end
 
--- allow fish cards to be obtained with no space
--- local original_check_for_buy_space = G.FUNCS.check_for_buy_space
--- local original_can_select_card = G.FUNCS.can_select_card
--- G.FUNCS.check_for_buy_space = function(card)
---     if card.config.center and card.config.center.set == "Fish" then
---         return true
---     end
---     return original_check_for_buy_space(card)
--- end
--- G.FUNCS.can_select_card = function(e)
---     if
---         e and
---         e.config and
---         e.config.ref_table and
---         e.config.ref_table.config and
---         e.config.ref_table.config.center and
---         e.config.ref_table.config.center.set == "Fish"
---     then
---         e.config.colour = G.C.GREEN
---         e.config.button = "use_card"
---     else
---         original_can_select_card(e)
---     end
--- end
-
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
 -- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 -- SMODS.calculate_repetitions = function(card, context, reps)

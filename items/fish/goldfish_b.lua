@@ -5,9 +5,9 @@ SMODS.Consumable {
     pools = { ["fish_b"] = true },
     pos = { x = 4, y = 1 },
     config = {
+        card_limit = 1,
         extra = {
             dollars = 2,
-            slots = 1,
             rounds_remaining = 3
         }
     },
@@ -17,18 +17,10 @@ SMODS.Consumable {
         return {
             vars = {
                 card.ability.extra.dollars,
-                card.ability.extra.slots,
+                card.ability.card_limit,
                 card.ability.extra.rounds_remaining
             }
         }
-    end,
-    add_to_deck = function(self, card, deck)
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.slots
-                return true
-            end
-        }))
     end,
     calculate = function(self, card, context)
         if context.joker_main then
@@ -49,13 +41,5 @@ SMODS.Consumable {
                 }
             end
         end
-    end,
-    remove_from_deck = function(self, card, deck)
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.slots
-                return true
-            end
-        }))
     end
 }

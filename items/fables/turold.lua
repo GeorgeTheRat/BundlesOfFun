@@ -36,7 +36,7 @@ SMODS.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+        if context.end_of_round and context.main_eval and not context.blueprint then
             card.ability.extra.xmult = 1
             return {
                 message = "Reset!",

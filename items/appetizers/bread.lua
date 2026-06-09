@@ -31,7 +31,7 @@ SMODS.Joker {
                 }
             end
         end
-        if context.end_of_round and not context.game_over and context.main_eval and not context.blueprint then
+        if context.end_of_round and context.main_eval and not context.blueprint then
             if card.ability.extra.balance - card.ability.extra.balance_mod > 0 then
                 card.ability.extra.balance = card.ability.extra.balance - card.ability.extra.balance_mod
                 return {

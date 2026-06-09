@@ -31,7 +31,7 @@ SMODS.Joker {
                 colour = G.C.MULT
             }
         end
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+        if context.end_of_round and context.main_eval and not context.blueprint then
             card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.mult_mod
             local return_message = nil
             if card.ability.extra.mult - card.ability.extra.mult_mod > 0 then -- rudimentary way of making sure two messages don't happen at once

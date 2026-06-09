@@ -21,7 +21,7 @@ SMODS.Back {
         G.GAME.bof_display_initial_card_key = suit.card_key
     end,
     calculate = function(self, back, context)
-        if context.end_of_round and context.game_over == false and context.main_eval and context.beat_boss then
+        if context.end_of_round and context.main_eval and context.beat_boss then
             if not G.GAME.bof_display_used_suits then
                 G.GAME.bof_display_used_suits = { [G.GAME.bof_display_initial_card_key or "H"] = true }
             end
