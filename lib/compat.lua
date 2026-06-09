@@ -1,4 +1,4 @@
-if not SMODS.find_mod("talisman") or not SMODS.find_mod("amulet") then
+if not SMODS.find_mod("talisman") and not SMODS.find_mod("amulet") then
     to_big = to_big or function(a)
         return a
     end
