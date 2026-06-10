@@ -65,18 +65,11 @@ SMODS.Joker {
                     end
                 }))
             end
-            G.E_MANAGER:add_event(Event({
-                trigger = "after",
-                delay = 0.1,
-                func = function()
-                    SMODS.scale_card(card, {
-                        ref_table = card.ability.extra,
-                        ref_value = "mult",
-                        scalar_value = "mult_mod"
-                    })
-                    return true
-                end
-            }))
+            SMODS.scale_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "mult",
+                scalar_value = "mult_mod"
+            })
         end
         if context.joker_main then
             return {
