@@ -364,7 +364,7 @@ G.FUNCS.skip_blind = function(e)
     }))
 end
 
--- fossilized deck: consumables in shop may rarely be Negative
+-- fossilized deck: consumables in shop may rarely be negative
 local original_create_card_for_shop = create_card_for_shop
 function create_card_for_shop(area)
     local card = original_create_card_for_shop(area)
@@ -467,8 +467,6 @@ function create_card(forced_type, area, legendary, key, forced_rarity, materiali
     end
     return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
 end
-
--- pianoman: force common jokers cont.
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
