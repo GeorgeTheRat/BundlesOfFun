@@ -14,14 +14,12 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        if not card.ability.extra.active_display then
-            card.ability.extra.active_display = localize("k_bof_inactive") 
-        end
-        return { 
+        local is_active = (G.GAME.bof_total_hands_played or 0) % 2 == 1
+        return {
+            key = is_active and "j_bof_n_clock_active" or "j_bof_n_clock_inactive",
             vars = {
-                card.ability.extra.xmult, 
-                card.ability.extra.active_display 
-            } 
+                card.ability.extra.xmult
+            }
         }
     end,
     calculate = function(self, card, context)

@@ -417,12 +417,20 @@ return {
                     }
                 }
             },
-            j_bof_n_clock = {
+            j_bof_n_clock_inactive = {
                 name = "Alarm Clock",
                 text = {
                     "{X:mult,C:white}X#1#{} Mult every",
                     "{C:attention}other{} hand",
-                    "{C:inactive,E:bof_alarm}#2#",
+                    "{C:inactive}Inactive...",
+                }
+            },
+            j_bof_n_clock_active = {
+                name = "Alarm Clock",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult every",
+                    "{C:attention}other{} hand",
+                    "{C:inactive,E:bof_alarm}Active!",
                 }
             },
             -- Fables

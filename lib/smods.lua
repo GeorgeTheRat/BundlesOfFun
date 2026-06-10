@@ -69,14 +69,14 @@ SMODS.Sound({
 	loop = false
 })
 
--- SMODS.DynaTextEffect {
---     key = "alarm",
---     func = function(dynatext, index, letter)
---         letter.offset.x = math.sin((G.TIMERS.REAL + index)*(40 + index*5)) * 3
---         letter.offset.y = math.cos((G.TIMERS.REAL + index)*(45 + index*5)) * 3
---         letter.r = math.sin((G.TIMERS.REAL + index)*(25 + index*3)) * 0.1
---     end
--- }
+SMODS.DynaTextEffect {
+    key = "alarm",
+    func = function(dynatext, index, letter)
+        letter.offset.x = math.sin((G.TIMERS.REAL + index)*(40 + index*5)) * 3
+        letter.offset.y = math.cos((G.TIMERS.REAL + index)*(45 + index*5)) * 3
+        letter.r = math.sin((G.TIMERS.REAL + index)*(25 + index*3)) * 0.1
+    end
+}
 
 SMODS.ConsumableType({
     key = "Fish",
