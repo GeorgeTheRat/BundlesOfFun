@@ -77,7 +77,7 @@ local files = {
             "crafted",
             "schlitzohr",
             "hotboxer",
-            -- "director",
+            "director",
             "zeke",
             "laughing_stock",
             "firedancer",

@@ -488,15 +488,15 @@ function Card:load(cardTable, other_card)
 end
 
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
--- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
--- SMODS.calculate_repetitions = function(card, context, reps)
---     card.bof_retriggered = nil
---     local g = oldsmodscalculaterepetitions(card, context, reps)
---     if next(g) then
---         card.bof_retriggered = true
---     end
---     return g
--- end
+local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
+SMODS.calculate_repetitions = function(card, context, reps)
+    card.bof_retriggered = nil
+    local g = oldsmodscalculaterepetitions(card, context, reps)
+    if #g >= 2 then
+        card.bof_retriggered = true
+    end
+    return g
+end
 
 -- -- make it so that perkeo can't copy legendary fish
 -- local legendary_fish_keys = {

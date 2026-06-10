@@ -324,14 +324,14 @@ return {
                     "{C:attention}copy{} to deck or destroy it"
                 }
             },
-            -- j_bof_j_director = {
-            --     name = "Director",
-            --     text = {
-            --         "{C:white,X:mult}X#1#{} Mult, retriggers",
-            --         "{C:attention}once{} for every card in",
-            --         "played hand that {C:attention}retriggered"
-            --     }
-            -- },
+            j_bof_j_director = {
+                name = "Director",
+                text = {
+                    "{C:white,X:mult}X#1#{} Mult, retriggers",
+                    "{C:attention}once{} for every card in",
+                    "played hand that {C:attention}retriggered"
+                }
+            },
             j_bof_j_zeke = {
                 name = "Zipper Zeke",
                 text = {
