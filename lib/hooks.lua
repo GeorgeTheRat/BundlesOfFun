@@ -416,7 +416,7 @@ local original_card_set_sprites = Card.set_sprites
 function Card:set_sprites(_center, _front)
     original_card_set_sprites(self, _center, _front)
     if
-        BundlesOfFun.config.custom_wooden_centers and
+        BundlesOfFun.config.custom_wooden_center and
         G.GAME and
         G.GAME.selected_back and
         G.GAME.selected_back.effect and
