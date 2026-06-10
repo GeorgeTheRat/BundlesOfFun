@@ -121,10 +121,10 @@ return {
             j_bof_j_barber = {
                 name = "Barber",
                 text = {
-                    "Remove {C:attention}Enhancement{} of",
+                    "When {C:attention}Blind{} is selected,",
+                    "remove {C:attention}Enhancement{} of",
                     "{C:attention}#1#{} random card#<s>1# in deck",
                     "and gain {C:mult}+#2#{} Mult",
-                    "when {C:attention}Blind{} is selected",
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },
@@ -408,12 +408,12 @@ return {
                 text = {
                     {
                         "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
-                        "for each {C:attention}unique Blind{} defeated",
+                        "per {C:attention}unique Blind{} defeated",
                         "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
                     },
                     {
-                        "{C:attention}Boss Blinds{} may appear",
-                        "multiple times"
+                        "{C:attention}Boss Blinds{} may",
+                        "appear multiple times"
                     }
                 }
             },
