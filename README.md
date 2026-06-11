@@ -10,8 +10,10 @@ We try to keep vanilla balancing *in mind*, but we don't let that limit our idea
 - ***3. Normalities*** (Real life cards; Driver's License, Business Card, etc.)  - **5 Jokers**
 - ***4. Fables*** (Legendaries in one new set)  - **5 Jokers**
 - ***5. Flats*** (Decks to spice up your runs or try for Gold Stake)  - **15 Decks**
-- ***6. Tickets*** (Vouchers to fill your shops)  - **5 Lines of 2, 10 Vouchers**
-- ***7. Enemies*** (Boss blinds)  - **25 Blinds**
-- ***8. Finishers*** (Showdown Blinds to win your runs with)  - **5 Blinds**
+- ***6. Fish*** (Consumables made to keep... or eat) - **12 Consumables**
+- ***7. Tickets*** (Vouchers to fill your shops)  - **5 Lines of 2, 10 Vouchers**
+- ***8. Enemies*** (Boss Blinds to fight against)  - **25 Blinds**
+- ***9. Finishers*** (Showdown Blinds to win your runs with)  - **5 Blinds**
+- ***10. Games*** (Challenges to test your skill) - **10 Challenges**
 
 Join the [Rat Pack Discord](https://discord.gg/Uq3Brc4UaT) for updates and discussion on Bundles Of Fun and its sister mod, [Chimes](https://github.com/GeorgeTheRat/Chimes)!
