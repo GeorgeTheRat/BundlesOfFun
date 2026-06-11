@@ -12,7 +12,7 @@ SMODS.Joker {
     pixel_size = { w = 65 },
     cost = 6,
     rarity = 2,
-    blueprint_compat = true,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

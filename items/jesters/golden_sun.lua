@@ -27,7 +27,7 @@ SMODS.Joker {
             }))
             mult = mod_mult(math.max(math.floor(mult * 0.5 + 0.5), 1))
             hand_chips = mod_chips(math.max(math.floor(hand_chips * 0.5 + 0.5), 0))
-            update_hand_text({ }, { chips = hand_chips, mult = mult })
+            update_hand_text({}, { chips = hand_chips, mult = mult })
         end
         if context.discard and G.GAME.current_round.discards_left <= 1 and not context.blueprint then
             return {

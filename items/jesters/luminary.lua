@@ -12,7 +12,7 @@ SMODS.Joker({
 	pos = { x = 9, y = 2 },
 	cost = 6,
 	rarity = 2,
-	blueprint_compat = true,
+	blueprint_compat = false,
 	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
 		return {
@@ -28,6 +28,7 @@ SMODS.Joker({
             context.individual and
             card.ability.extra.hand_triggered == 0 and
             (context.other_card:is_suit("Hearts") or context.other_card:is_suit("Diamonds"))
+            and not context.blueprint
         then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
@@ -38,10 +39,10 @@ SMODS.Joker({
             card.ability.extra.triggered = card.ability.extra.triggered + 1
             card.ability.extra.hand_triggered = 1
 		end
-        if context.after then
+        if context.after and not context.blueprint then
             card.ability.extra.hand_triggered = 0
         end
-        if context.starting_shop then
+        if context.starting_shop and not context.blueprint then
             card.ability.extra.dollars = math.max(1, card.ability.extra.dollars - (card.ability.extra.triggered * card.ability.extra.dollars_mod)) -- this is for compatibility with value manipulation
             card.ability.extra.triggered = 0
         end

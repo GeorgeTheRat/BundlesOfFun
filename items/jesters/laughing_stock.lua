@@ -65,12 +65,12 @@ SMODS.Joker {
                         blind_pool = G.P_CEO_BLINDS
                     end
                     if blind_pool then
-                        G.GAME.bof_laughing_stock_original_mults = G.GAME.bof_laughing_stock_original_mults or {}
-                        G.GAME.bof_laughing_stock_original_mults[blind_type] = G.GAME.bof_laughing_stock_original_mults[blind_type] or {}
+                        G.GAME.bof_laughing_stock_original_mult = G.GAME.bof_laughing_stock_original_mult or {}
+                        G.GAME.bof_laughing_stock_original_mult[blind_type] = G.GAME.bof_laughing_stock_original_mult[blind_type] or {}
                         for key, blind_def in pairs(blind_pool) do
                             if type(blind_def) == "table" and blind_def.mult then
-                                if not G.GAME.bof_laughing_stock_original_mults[blind_type][key] then
-                                    G.GAME.bof_laughing_stock_original_mults[blind_type][key] = blind_def.mult
+                                if not G.GAME.bof_laughing_stock_original_mult[blind_type][key] then
+                                    G.GAME.bof_laughing_stock_original_mult[blind_type][key] = blind_def.mult
                                 end
                                 blind_def.mult = blind_def.mult * reduction_mult
                             end
