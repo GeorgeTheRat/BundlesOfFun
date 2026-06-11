@@ -6,12 +6,10 @@ SMODS.Consumable {
     pos = { x = 2, y = 1 },
     config = {
         card_limit = 1,
-        extra = {
-            xmult = 1.25,
-            slots = 1
-        }
+        extra = { xmult = 1.25 }
     },
     cost = 20,
+    unlock = false,
     hidden = true,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
@@ -19,7 +17,6 @@ SMODS.Consumable {
             vars = {
                 card.ability.extra.xmult,
                 card.ability.card_limit,
-                card.ability.extra.slots
             }
         }
     end,

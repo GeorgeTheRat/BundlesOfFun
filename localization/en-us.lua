@@ -787,26 +787,34 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_i_bass_b = {
-                name = "Largemouth Bass {X:big}Big",
-                text = {
-                    "{C:chips}+#1#{} Chips and",
-                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# round#<s>3# remaining..."
-                }
-            },
-            c_bof_i_bass_l = {
-                name = "Largemouth Bass {X:legendary}Legendary",
-                text = {
-                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number",
-                    "of chips that {C:attention}all cards{} in deck add to,",
-                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
-                }
-            },
             c_bof_i_betta_s = {
                 name = "Betta {X:small}Small",
                 text = {
                     "{C:mult}+#1#{} Mult and",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_i_trout_s = {
+                name = "Rainbow Trout {X:small}Small",
+                text = {
+                    "{C:white,X:mult}X#1#{} Mult and",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_i_goldfish_s = {
+                name = "Goldfish {X:small}Small",
+                text = {
+                    "Earn {C:money}$#1#{} and",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_i_bass_b = {
+                name = "Largemouth Bass {X:big}Big",
+                text = {
+                    "{C:chips}+#1#{} Chips and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -819,43 +827,10 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_i_betta_l = {
-                name = "Betta {X:legendary}Legendary",
-                text = {
-                    "Gives {C:mult}+Mult{} equal to the",
-                    "{C:attention}total{} Mult that all visible",
-                    "{C:attention}poker hands{} add to,",
-                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
-                }
-            },
-            c_bof_i_trout_s = {
-                name = "Rainbow Trout {X:small}Small",
-                text = {
-                    "{C:white,X:mult}X#1#{} Mult and",
-                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# round#<s>3# remaining..."
-                }
-            },
             c_bof_i_trout_b = {
                 name = "Rainbow Trout {X:big}Big",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult and",
-                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# round#<s>3# remaining..."
-                }
-            },
-            c_bof_i_trout_l = {
-                name = "Rainbow Trout {X:legendary}Legendary",
-                text = {
-                    "Jokers and {C:attention}other{} consumables",
-                    "each give {C:white,X:mult}X#1#{} Mult,",
-                    "{C:attention}+#2#{} consumable slot while held"
-                }
-            },
-            c_bof_i_goldfish_s = {
-                name = "Goldfish {X:small}Small",
-                text = {
-                    "Earn {C:money}$#1#{} and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -868,6 +843,40 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
+            c_bof_i_bass_l = {
+                name = "Largemouth Bass {X:legendary}Legendary",
+                text = {
+                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number",
+                    "of chips that {C:attention}all cards{} in deck add to,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_i_betta_l = {
+                name = "Betta {X:legendary}Legendary",
+                text = {
+                    "Gives {C:mult}+Mult{} equal to the",
+                    "{C:attention}total{} Mult that all visible",
+                    "{C:attention}poker hands{} add to,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_i_trout_l = {
+                name = "Rainbow Trout {X:legendary}Legendary",
+                text = {
+                    "Jokers and {C:attention}other{} consumables",
+                    "each give {C:white,X:mult}X#1#{} Mult,",
+                    "{C:attention}+#2#{} consumable slot while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
             c_bof_i_goldfish_l = {
                 name = "Goldfish {X:legendary}Legendary",
                 text = {
@@ -875,6 +884,9 @@ return {
                     "{C:attention}current amount{} of {C:attention}interest",
                     "that would be earned,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
                 }
             }
         },
