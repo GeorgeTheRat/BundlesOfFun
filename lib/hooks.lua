@@ -445,13 +445,13 @@ end
 -- laughing stock: reset blind stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
-    if G.GAME.bof_knife_thrower_original_mult then
-        for blind_key, original_mult in pairs(G.GAME.bof_knife_thrower_original_mult) do
+    if G.GAME.bof_laughing_stock_original_mult then
+        for blind_key, original_mult in pairs(G.GAME.bof_laughing_stock_original_mult) do
             if G.P_BLINDS[blind_key] then
                 G.P_BLINDS[blind_key].mult = original_mult
             end
         end
-        G.GAME.bof_knife_thrower_original_mult = nil
+        G.GAME.bof_laughing_stock_original_mult = nil
     end
     return original_game_start_run(self, arg)
 end
@@ -554,3 +554,14 @@ SMODS.Joker:take_ownership("perkeo", {
         end
     end
 }, true)
+
+-- hotboxer shop hook
+local create_card_ref = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+	if next(SMODS.find_card("j_bof_j_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+		if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
+			return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+		end
+	end
+	return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+end

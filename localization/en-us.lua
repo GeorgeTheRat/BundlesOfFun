@@ -318,10 +318,15 @@ return {
             j_bof_j_hotboxer = {
                 name = "Hotboxer",
                 text = {
-                    "If {C:attention}final discard{} of",
-                    "round has only {C:attention}#1#{} card,",
-                    "either add a {C:attention}permanent",
-                    "{C:attention}copy{} to deck or destroy it"
+                    {
+                        "{C:attention}+#1#{} shop slot#<s>1#",
+                        "The {C:attention}rightmost{} shop slot",
+                        "contains only {C:tarot}Tarot{} cards"
+                    },
+                    {
+                        "Decreases {C:attention}sell value{} by {C:money}$#2#",
+                        "per {C:tarot}Tarot{} card purchased"
+                    }
                 }
             },
             j_bof_j_director = {

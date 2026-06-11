@@ -3,8 +3,9 @@ SMODS.Joker({
 	name = "Hotboxer",
 	config = {
 		extra = {
-			max_highlighted = 1,
-		},
+			shop_slots = 1,
+			sell_cost_mod = 2
+		}
 	},
 	pos = { x = 0, y = 3 },
 	cost = 8,
@@ -13,26 +14,21 @@ SMODS.Joker({
 	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
 		return {
-			vars = { card.ability.extra.max_highlighted },
+			vars = {
+				card.ability.extra.shop_slots,
+				card.ability.extra.sell_cost_mod
+			}
 		}
 	end,
+	add_to_deck = function(self, card, from_debuff)
+		G.GAME.shop.joker_max = G.GAME.shop.joker_max + card.ability.extra.shop_slots
+	end,
 	calculate = function(self, card, context)
-		if context.pre_discard and #context.full_hand == card.ability.extra.max_highlighted and G.GAME.current_round.discards_left == 1 then
-			if pseudorandom_element({"copy", "destroy" }, pseudoseed("j_bof_j_hotboxer")) == "copy" then
-				local new_card = copy_card(context.full_hand[1])
-				G.deck.config.card_limit = G.deck.config.card_limit + 1
-				table.insert(G.playing_cards, new_card)
-				new_card:add_to_deck()
-				G.deck:emplace(new_card)
-				return {
-					message = localize("k_copied_ex"),
-				}
-			else
-                SMODS.destroy_cards(context.full_hand[1])
-                return {
-                    message = localize("k_bof_destroyed")
-                }
-            end
+		if context.buying_card and context.card.ability.set == "Tarot" then
+			card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
 		end
+	end,
+	remove_from_deck = function(self, card, from_debuff)
+		G.GAME.shop.joker_max = G.GAME.shop.joker_max - card.ability.extra.shop_slots
 	end,
 })
