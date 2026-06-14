@@ -1,10 +1,7 @@
 {
   "id": "bundlesoffun",
   "name": "Bundles Of Fun",
-  "author": [
-    "George The Rat",
-    "Glitchkat10"
-  ],
+  "author": [ "George The Rat & Glitchkat10" ],
   "description": "Something for everyone!",
   "prefix": "bof",
   "main_file": "main.lua",

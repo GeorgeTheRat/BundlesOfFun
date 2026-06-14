@@ -171,10 +171,10 @@ SMODS.current_mod.extra_tabs = function()
                                 bof_credit_description("Bug fixes, Spanish translation, many decks"),
                                 bof_credit_title("wingedcatgirl", "Coder", G.C.SET.Fish),
                                 bof_credit_description("Technical code and UI"),
+                                bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
+                                bof_credit_description("Multiple Decks' code"),
                                 bof_credit_title("CodeRevo", "Coder", G.C.STAKES[6]),
                                 bof_credit_description("Some Jokers' code"),
-                                bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
-                                bof_credit_description("Multiple Decks"),
                             }}
                         }}
                     }
