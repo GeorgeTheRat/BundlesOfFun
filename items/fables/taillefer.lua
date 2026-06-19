@@ -10,21 +10,19 @@ SMODS.Joker {
     atlas = "joker",
     calculate = function(self, card, context)
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-            for i = 1, math.min(100, G.consumeables.config.card_limit - #G.consumeables.cards) do
-                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            local num_cards = math.min(100, G.consumeables.config.card_limit - #G.consumeables.cards)
+            if num_cards > 0 then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + num_cards
                 G.E_MANAGER:add_event(Event({
                     func = (function()
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                SMODS.add_card {
-                                    set = "Spectral",
-                                    key_append = "bof_f_taillefer"
-                                }
-                                G.GAME.consumeable_buffer = 0
-                                return true
-                            end
-                        }))
-                        SMODS.calculate_effect({ message = localize("k_plus_spectral"), colour = G.C.SECONDARY_SET.Spectral }, context.blueprint_card or card)
+                        for i = 1, num_cards do
+                            SMODS.add_card {
+                                set = "Spectral",
+                                key_append = "bof_f_taillefer"
+                            }
+                        end
+                        G.GAME.consumeable_buffer = 0
+                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Spectral" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Spectral }, context.blueprint_card or card)
                         return true
                     end)
                 }))
