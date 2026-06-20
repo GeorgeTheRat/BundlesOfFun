@@ -1,6 +1,4 @@
 -- Suits will be selected in sequence until you have 4 unique suits, from there it should be 100% random
--- Also it take me so long to make this one work as I intended T_T
--- You're supposed to have the chance to start with custom suits, but Bunco disables his suits by default, so only paperback and other mod that do no know/use xd
 SMODS.Back {
 	key = "l_display",
     name = "Display Deck",

@@ -99,7 +99,18 @@ SMODS.ConsumableType({
     collection_rows = { 2, 2 },
     shop_rate = 0,
     select_card = "consumeables",
-    default = "c_bof_i_bass_s"
+    default = "c_bof_i_bass_s",
+    loc_txt = {
+        undiscovered = {
+            name = "Not Discovered",
+            text = {
+                "Purchase or use",
+                "this card in an",
+                "unseeded run to",
+                "learn what it does"
+            }
+        }
+    }
 })
 
 SMODS.ObjectType({

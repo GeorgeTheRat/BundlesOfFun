@@ -524,8 +524,8 @@ return {
                         "{C:inactive}(Must have room)"
                     },
                     {
-                        "Create a random {C:white,X:small}Small{} {C:fish}Fish{} when {C:attention}Blind{} is selected",
-                        "and a random {C:white,X:big}Big{} {C:fish}Fish{} when {C:attention}Blind{} is defeated",
+                        "Create a random {C:white,X:small}Small{} {C:fish}Fish{} card when {C:attention}Blind{} is selected",
+                        "and a random {C:white,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
                         "if this is the {C:attention}rightmost{} Joker"
                     }
                 },
