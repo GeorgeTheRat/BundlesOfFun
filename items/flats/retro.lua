@@ -27,9 +27,7 @@ SMODS.Back {
                     return false
                 end
             end
-            unlock_card(self)
             return true
         end
-        return false
     end
 }

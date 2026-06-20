@@ -274,22 +274,6 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- soapy deck unlock
-local original_card_remove = Card.remove
-function Card:remove()
-    if next(SMODS.get_enhancements(self)) ~= nil and self.edition ~= nil and self.seal ~= nil then
-        G.GAME.bof_soapy_destroyed = G.GAME.bof_soapy_destroyed or {}
-        G.GAME.bof_soapy_destroyed[self.config.center.key] = true
-        for k, deck in pairs(G.P_CENTERS) do
-            if deck.key == "l_soapy" and deck.check_for_unlock then
-                deck:check_for_unlock()
-                break
-            end
-        end
-    end
-    return original_card_remove(self)
-end
-
 -- retro deck: level up 4 random poker hands when a blind is skipped
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)

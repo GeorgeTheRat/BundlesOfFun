@@ -31,10 +31,8 @@ SMODS.Back {
                 end
             end
             if has.Tarot and has.Planet and has.Spectral then
-                unlock_card(self)
                 return true
             end
         end
-        return false
     end
 }

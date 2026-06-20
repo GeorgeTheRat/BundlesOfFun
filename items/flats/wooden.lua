@@ -6,10 +6,6 @@ SMODS.Back {
 	pos = { x = 2, y = 0 },
     unlocked = false,
     check_for_unlock = function(self, args)
-        if G.GAME and G.GAME.current_round and G.GAME.current_round.bof_wooden_destroyed and G.GAME.current_round.bof_wooden_destroyed >= 4 then
-            unlock_card(self)
-            return true
-        end
-        return false
+        return args and args.b_bof_l_wooden
     end
 }

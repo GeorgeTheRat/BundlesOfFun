@@ -133,15 +133,15 @@ SMODS.current_mod.calculate = function(self, context)
     if context.remove_playing_cards then
         G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed or 0
         for k, v in pairs(context.removed or {}) do
-            if v:get_id() == 14 then G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed + 1 end
+            if v:get_id() == 14 then
+                G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed + 1
+            end
+            if next(SMODS.get_enhancements(v)) ~= nil and v.edition ~= nil and v.seal ~= nil then
+                check_for_unlock({ b_bof_l_soapy = true })
+            end
         end
         if G.GAME.current_round.bof_wooden_destroyed >= 4 then
-            for k, deck in pairs(G.P_CENTERS) do
-                if deck.key == "b_bof_l_wooden" and deck.check_for_unlock then
-                    deck:check_for_unlock()
-                    break
-                end
-            end
+            check_for_unlock({ b_bof_l_wooden = true })
         end
     end
 end

@@ -69,10 +69,8 @@ SMODS.Back {
                 end
             end
             if count == 1 then
-                unlock_card(self)
                 return true
             end
         end
-        return false
     end
 }
