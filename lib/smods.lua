@@ -127,12 +127,15 @@ SMODS.UndiscoveredSprite({
 })
 
 SMODS.current_mod.calculate = function(self, context)
+    if context.end_of_round and context.main_eval then
+        G.GAME.current_round.bof_wooden_destroyed = 0
+    end
     if context.remove_playing_cards then
-        local aces = 0
+        G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed or 0
         for k, v in pairs(context.removed or {}) do
-            if v:get_id() == 14 then aces = aces + 1 end
+            if v:get_id() == 14 then G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed + 1 end
         end
-        if aces >= 4 then
+        if G.GAME.current_round.bof_wooden_destroyed >= 4 then
             for k, deck in pairs(G.P_CENTERS) do
                 if deck.key == "b_bof_l_wooden" and deck.check_for_unlock then
                     deck:check_for_unlock()
