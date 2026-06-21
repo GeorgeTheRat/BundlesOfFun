@@ -7,6 +7,9 @@ SMODS.Joker {
     rarity = 2,
     atlas = "joker",
     blueprint_compat = false,
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { set = "Other", key = "modification" }
+    end,
     calculate = function(self, card, context)
         if context.before and G.GAME.current_round.hands_played == 0 and not context.blueprint then
             local left_card, right_card = context.full_hand[1], context.full_hand[#context.full_hand]

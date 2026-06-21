@@ -934,7 +934,7 @@ return {
 				name = "Modification",
 				text = {
 					"{C:enhanced}Enhancement{},",
-                    "{C:dark_edition}Edition{}, or {C:attention}Seal"
+                    "{C:dark_edition}Edition{}, {C:attention}Seal"
 				}
 			}
         }
