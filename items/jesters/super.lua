@@ -32,9 +32,11 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.bof_emergency then
-            if card.ability.extra.active then
+            if card.ability and card.ability.extra and card.ability.extra.active then
                 ease_hands_played(card.ability.extra.hands)
-                card.ability.extra.active = false
+                if not context.blueprint then
+                    card.ability.extra.active = false
+                end
                 return {
                     message = "+" .. card.ability.extra.hands .. " " .. localize("k_hud_hands"),
                     colour = G.C.BLUE
