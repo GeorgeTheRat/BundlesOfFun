@@ -20,7 +20,7 @@ SMODS.Joker {
     pos = { x = 7, y = 1 },
     cost = 7,
     rarity = 2,
-    blueprint_compat = false,
+    blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -31,7 +31,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.bof_emergency and not context.blueprint then
+        if context.bof_emergency then
             if card.ability.extra.active then
                 ease_hands_played(card.ability.extra.hands)
                 card.ability.extra.active = false

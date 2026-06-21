@@ -518,8 +518,8 @@ return {
                 name = "Nüwa & Fuxi",
                 text = {
                     {
-                        "Create a random {C:tarot}Tarot{} card when {C:attention}Blind{} is selected",
-                        "and a random {C:dark_edition}Negative {C:tarot}Tarot{} card when {C:attention}Blind{} is defeated",
+                        "Create a random {C:tarot}Tarot{} card when {C:attention}Blind{} is selected and",
+                        "a random {C:dark_edition}Negative {C:tarot}Tarot{} card when {C:attention}Blind{} is defeated",
                         "if this is the {C:attention}leftmost{} Joker",
                         "{C:inactive}(Must have room)"
                     },

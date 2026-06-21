@@ -15,9 +15,8 @@ end
 '''
 position = "at"
 payload = '''
-if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1 then
-    local super_jokers = SMODS.find_card("j_bof_j_super")
-    if next(super_jokers) then
+if G.GAME.current_round.hands_left < 1 then
+    if next(SMODS.find_card("j_bof_j_super")) then
         if bof_check_super_jokers() then
             SMODS.calculate_context({ bof_emergency = true })
             G.STATE = G.STATES.DRAW_TO_HAND
@@ -27,6 +26,8 @@ if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1
     else
         G.STATE = G.STATES.NEW_ROUND
     end
+elseif G.GAME.chips - G.GAME.blind.chips >= 0 then
+    G.STATE = G.STATES.NEW_ROUND
 else
     G.STATE = G.STATES.DRAW_TO_HAND
 end
