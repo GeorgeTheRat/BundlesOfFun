@@ -12,7 +12,6 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			print("Schlitzohr triggered, blueprint:", context.blueprint)
 			local is_blueprint = context.blueprint
 			local a_partridge_in_a_pear_tree = context.blueprint_card or card
 			G.E_MANAGER:add_event(Event({
@@ -44,21 +43,14 @@ SMODS.Joker({
 						delay = 0.15,
 						func = function()
 							if G.deck and G.deck.cards then
-								print("Deck has", #G.deck.cards, "cards")
 								local sorted_cards = {}
 								for _, c in ipairs(G.deck.cards) do
 									table.insert(sorted_cards, c)
 								end
 								table.sort(sorted_cards, function(a, b) return (a:get_id() or 0) < (b:get_id() or 0) end)
-								print("Sorted card IDs:")
-								for i, c in ipairs(sorted_cards) do
-									print(i, c:get_id())
-								end
 								local target_cards = {}
 								local skip_count = is_blueprint and (is_blueprint * card.ability.extra.cards) or 0
-								print("skip_count:", skip_count)
 								for i = 1 + skip_count, math.min(card.ability.extra.cards + skip_count, #sorted_cards) do
-									print("Targeting index", i, "with ID", sorted_cards[i]:get_id())
 									table.insert(target_cards, sorted_cards[i])
 								end
 								for i, target_card in ipairs(target_cards) do
