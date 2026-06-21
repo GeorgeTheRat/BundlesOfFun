@@ -8,7 +8,7 @@ SMODS.Joker {
     atlas = "joker",
     blueprint_compat = false,
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = { set = "Other", key = "modification" }
+        info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_modification" }
     end,
     calculate = function(self, card, context)
         if context.before and G.GAME.current_round.hands_played == 0 and not context.blueprint then

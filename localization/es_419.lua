@@ -682,7 +682,6 @@ return {
     },
     misc = {
         dictionary = {
-            k_bof_nom = "¡Ñam!",
             k_bof_active = "¡Activo!",
             k_bof_ready = "¡Listo!",
             k_bof_destroyed = "¡Destruido!",

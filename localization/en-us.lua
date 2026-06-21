@@ -677,12 +677,12 @@ return {
         --     v_bof_illegal_wares = {
         --         name = "Illegal Wares",
         --         text = {
-        --             "{C:spectral}Spectral cards may appear in shop",
+        --             "{C:spectral}Spectral{} cards may appear in shop",
         --             "{C:attention}Consumables{} may rarely appear {C:dark_edition}Negative"
         --         },
         --         unlock = {
         --             "Have at least",
-        --             "{C:attention,E:1}3 Spectral cards",
+        --             "{C:attention,E:1}3{} Spectral cards",
         --             "in your consumable slots"
         --         }
         --     },
@@ -930,7 +930,7 @@ return {
                     "{C:inactive,s:0.8}(Cannot be sold when slots are full)"
                 }
             },
-            modification = {
+            k_bof_modification = {
 				name = "Modification",
 				text = {
 					"{C:enhanced}Enhancement{},",
@@ -942,7 +942,6 @@ return {
     misc = {
         dictionary = {
             b_fish_cards = "Fish Cards",
-            k_bof_nom = "Nom!",
             k_bof_active = "Active!",
             k_bof_inactive = "Inactive...",
             k_bof_ready = "Ready!",
