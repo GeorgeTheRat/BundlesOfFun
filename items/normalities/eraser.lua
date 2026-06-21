@@ -9,6 +9,7 @@ SMODS.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { set = "Other", key = "modification" }
         return { vars = { card.ability.extra.mult } }
     end,
     calculate = function(self, card, context)

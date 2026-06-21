@@ -393,20 +393,43 @@ function Game:start_run(arg)
     return original_game_start_run(self, arg)
 end
 
--- pianoman: force common jokers
-local original_create_card = create_card
-function create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
-    if G.GAME.bof_pianoman_common_only and (forced_type == "Joker" or (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")) then
-        forced_type = "Joker"
+-- hotboxer: rightmost shop slot is always tarot
+-- pianoman: force common jokers in shop and booster packs
+local create_card_ref = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if next(SMODS.find_card("j_bof_j_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+        if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
+            return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+        end
+    end
+    if
+        G.GAME.bof_pianoman_common_only and
+        (area == G.shop_jokers or area == G.pack_cards) and
+        (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")
+    then
+        _type = "Joker"
         legendary = nil
-        forced_rarity = 0.7
+        _rarity = 0.7
         forced_key = nil
     end
-    return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
-end
+    
+    return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+end 
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
-    if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
+    if next(SMODS.find_card("j_bof_j_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
+        if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
+            t.set = "Tarot"
+            t.key = nil
+        end
+    end
+    if
+        G.GAME.bof_pianoman_common_only and
+        t and
+        t.area and
+        (t.area == G.shop_jokers or t.area == G.pack_cards) and
+        (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker"))
+    then
         t.set = "Joker"
         t.legendary = nil
         t.rarity = 0.7
@@ -486,14 +509,3 @@ SMODS.Joker:take_ownership("perkeo", {
         end
     end
 }, true)
-
--- hotboxer shop hook
-local create_card_ref = create_card
-function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-	if next(SMODS.find_card("j_bof_j_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
-		if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
-			return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-		end
-	end
-	return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-end
