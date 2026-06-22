@@ -37,8 +37,7 @@ SMODS.Joker {
                 if not context.blueprint then
                     card.ability.extra.active = false
                 end
-                SMODS.calculate_effect(
-                    { message = localize { type = "variable", key = "a_hands", vars = { card.ability.extra.hands } } }, context.blueprint_card or card)
+                SMODS.calculate_effect({ message = localize { type = "variable", key = "a_hands", vars = { card.ability.extra.hands } } }, context.blueprint_card or card)
             else
                 G.STATE = G.STATES.NEW_ROUND
             end
