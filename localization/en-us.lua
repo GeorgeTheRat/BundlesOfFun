@@ -948,6 +948,7 @@ return {
             k_bof_destroyed = "Destroyed!",
             k_bof_alarm = "Alarm Set!",
             k_bof_downgrade = "Downgrade!",
+            k_erased = "Erased!",
             k_bof_sticker_applied = "Sticker Applied!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",

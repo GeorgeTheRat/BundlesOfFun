@@ -39,7 +39,7 @@ SMODS.Joker {
         if context.end_of_round and context.main_eval and not context.blueprint then
             card.ability.extra.xmult = 1
             return {
-                message = "Reset!",
+                message = localize("k_reset"),
                 colour = G.C.MULT
             }
         end

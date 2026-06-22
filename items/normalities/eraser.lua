@@ -33,7 +33,7 @@ SMODS.Joker {
                 end
             end
             return {
-                message = "Erased!"
+                message = localize("k_erased")
             }
         end
     end

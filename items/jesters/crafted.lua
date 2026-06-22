@@ -37,7 +37,7 @@ SMODS.Joker {
                 if has_modifications then
                     card.ability.extra.bof_crafted_target = left_card
                     return {
-                        message = "Copied!"
+                        message = localize("k_copied_ex")
                     }
                 end
             end
