@@ -495,22 +495,22 @@ SMODS.Joker:take_ownership("perkeo", {
     end,
     calculate = function(self, card, context)
         if context.ending_shop then
-            local eligibleJokers = {}
+            local eligibleConsumables = {}
             for k, v in pairs(G.consumeables.cards) do
                 if v.ability.consumeable and not SMODS.in_scoring(v.config.center.key, legendary_fish_keys) then
-                    table.insert(eligibleJokers, v)
+                    table.insert(eligibleConsumables, v)
                 end
             end
-            if #eligibleJokers > 0 then
+            if #eligibleConsumables > 0 then
                 G.E_MANAGER:add_event(Event({
-                    func = function() 
-                        local card = copy_card(pseudorandom_element(eligibleJokers, pseudoseed("perkeo")), nil)
+                    func = function()
+                        local card = copy_card(pseudorandom_element(eligibleConsumables, pseudoseed("perkeo")), nil)
                         card:set_edition({ negative = true }, true)
                         card:add_to_deck()
-                        G.consumeables:emplace(card) 
+                        G.consumeables:emplace(card)
                         return true
                     end}))
-                card_eval_status_text(context_blueprint_card or card, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                card_eval_status_text(context.blueprint_card or card, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
                 return nil, true
             else
                 return true

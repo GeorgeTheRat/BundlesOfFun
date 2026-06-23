@@ -60,9 +60,9 @@ SMODS.Joker {
 }
 
 -- initialize suit at start of run
-local last_start_run = bof_original_start_run or Game.start_run
+local bof_original_start_run = bof_original_start_run or Game.start_run
 function Game:start_run(args)
-    local r = last_start_run(self, args)
+    local r = bof_original_start_run(self, args)
     G.E_MANAGER:add_event(Event({
         func = function()
             G.GAME.bof_narr_card = G.GAME.bof_narr_card or {}

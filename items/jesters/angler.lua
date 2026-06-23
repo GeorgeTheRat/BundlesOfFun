@@ -1,7 +1,12 @@
 SMODS.Joker {
     key = "j_angler",
     name = "Angler",
-    config = { extra = { chips = 30, mult = 6 } },
+    config = {
+        extra = {
+            chips = 30,
+            mult = 6
+        }
+    },
     pos = { x = 8, y = 5 },
     cost = 6,
     rarity = 1,
