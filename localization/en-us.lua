@@ -97,8 +97,8 @@ return {
                 name = "Hatty Hal",
                 text = {
                     "This Joker gains {C:chips}+#1#{} Chip#<s>1# and",
-                    "increases its {C:attention}scaling{} by {C:chips}+#2#{} Chip#<s>2#",
-                    "when a {C:attention}playing card",
+                    "increases its {C:attention}scaling{} by",
+                    "{C:chips}+#2#{} Chip#<s>2# when a {C:attention}playing card",
                     "is added to your deck",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
@@ -237,7 +237,7 @@ return {
                 text = {
                     {
                         "Creates a {C:tarot}Tarot{} card if a",
-                        "card with a {C:tarot}Purple Seal{} is",
+                        "card with a {C:purple}Purple Seal{} is",
                         "held in hand at end of round",
                     },
                     {
@@ -361,7 +361,7 @@ return {
                 text = {
                     "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult for",
                     "every {C:fish}Fish{} card held",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips and {C:mult}+#4#{C:inactive} Mult)"
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3# and {C:mult}+#4#{C:inactive} Mult)"
                 }
             },
             j_bof_j_pianoman = {
