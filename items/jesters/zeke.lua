@@ -1,7 +1,7 @@
 SMODS.Joker {
     key = "j_zeke",
     name = "Zipper Zeke",
-    config = { extra = { odds = 3 } },
+    config = { extra = { odds = 2 } },
     pos = { x = 9, y = 4 },
     cost = 6,
     rarity = 1,

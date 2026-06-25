@@ -8,7 +8,8 @@ return {
                     "Add a permanent copy of all",
                     "{C:attention}played{} cards next hand to deck",
                     "or destroy all cards in",
-                    "next {C:attention}discarded{} poker hand"
+                    "next {C:attention}discarded{} poker hand",
+                    "{C:red,E:2}self destructs"
                 }
             },
             j_bof_a_blueberry = {

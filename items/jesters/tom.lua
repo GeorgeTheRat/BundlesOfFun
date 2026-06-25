@@ -6,7 +6,7 @@ SMODS.Joker {
         extra = { consumable_slots = 2 }
     },
     pos = { x = 9, y = 1 },
-    cost = 7,
+    cost = 8,
     rarity = 3,
     blueprint_compat = false,
     atlas = "joker",
