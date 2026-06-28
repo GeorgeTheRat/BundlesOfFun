@@ -405,7 +405,7 @@ return {
                     "This {C:attention}Joker{} gains {C:chips}+#1#{} Chip#<s>1#",
                     "if the {C:attention}total{} chip value of ",
                     "played cards is at least {C:attention}#2#",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)" 
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
             j_bof_passport = {
@@ -416,10 +416,10 @@ return {
                         "per {C:attention}unique Blind{} defeated",
                         "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
                     },
-                    -- {
-                    --     "{C:attention}Boss Blinds{} may",
-                    --     "appear multiple times"
-                    -- }
+                    {
+                        "{C:attention}Boss Blinds{} may",
+                        "appear multiple times"
+                    }
                 }
             },
             j_bof_clock_inactive = {
