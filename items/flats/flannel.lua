@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_flannel",
+BundlesOfFun.Back {
+	key = "flannel",
     name = "Flannel Deck",
+    bundle = "flats",
     config = { mult = 4 },
 	atlas = "deck",
 	pos = { x = 1, y = 0 },

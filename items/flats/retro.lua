@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_retro",
+BundlesOfFun.Back {
+	key = "retro",
     name = "Retro Deck",
+    bundle = "flats",
     config = { extra = { hands = 4 } },
 	atlas = "deck",
 	pos = { x = 7, y = 0 },

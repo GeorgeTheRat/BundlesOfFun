@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_angler",
+BundlesOfFun.Joker {
+    key = "angler",
     name = "Angler",
+    bundle = "jesters",
     config = {
         extra = {
             chips = 30,
@@ -8,7 +9,8 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 5 },
-    cost = 6,
+    attributes = { "mult", "chips", "fish" },
+    cost = 4,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",

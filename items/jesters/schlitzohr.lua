@@ -1,8 +1,10 @@
-SMODS.Joker({
-	key = "j_schlitzohr",
+BundlesOfFun.Joker({
+	key = "schlitzohr",
 	name = "Schlitzohr",
+	bundle = "jesters",
 	config = { extra = { cards = 4 } },
 	pos = { x = 4, y = 2 },
+	attributes = { "full_deck", "modify_card" },
 	cost = 6,
 	rarity = 2,
 	blueprint_compat = true,

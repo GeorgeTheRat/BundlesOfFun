@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "n_rummikub",
+BundlesOfFun.Joker {
+    key = "rummikub",
     name = "Rummikub Tile",
+    bundle = "normalities",
     config = {
         extra = { 
             chips_mod = 5,
@@ -9,6 +10,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 7, y = 3 },
+    attributes = { "chips", "scaling" },
     cost = 4,
     rarity = 1,
     blueprint_compat = true,

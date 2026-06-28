@@ -9,11 +9,13 @@ local function cards_above_deck()
     return 0
 end
 
-SMODS.Joker {
-    key = "j_timmy",
+BundlesOfFun.Joker {
+    key = "timmy",
     name = "Youngster Timmy",
+    bundle = "jesters",
     config = { extra = { chips = 6 } },
     pos = { x = 5, y = 1 },
+    attributes = { "chips", "full_deck" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,

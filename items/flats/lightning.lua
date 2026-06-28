@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_lightning",
+BundlesOfFun.Back {
+	key = "lightning",
     name = "Lightning Deck",
+    bundle = "flats",
 	pos = { x = 0, y = 0 },
     unlocked = false,
     atlas = "deck",

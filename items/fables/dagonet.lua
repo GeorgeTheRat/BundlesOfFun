@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "f_dagonet",
+BundlesOfFun.Joker {
+    key = "dagonet",
     name = "Dagonet",
+    bundle = "fables",
     config = {
         extra = {
             mult = 0,
@@ -9,6 +10,7 @@ SMODS.Joker {
     },
     pos = { x = 4, y = 4 },
     soul_pos = { x = 4, y = 5 },
+    attributes = { "mult", "scaling", "enhancements" },
     cost = 20,
     rarity = 4,
     unlocked = false,

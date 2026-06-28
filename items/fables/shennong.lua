@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "f_shennong",
+BundlesOfFun.Joker {
+    key = "shennong",
     name = "Shennong",
+    bundle = "fables",
     pos = { x = 5, y = 4 },
     soul_pos = { x = 5, y = 5 },
+    attributes = { "mod_chance", "enhancements", "modify_card", "boss_blind" },
     cost = 20,
     rarity = 4,
     unlocked = false,

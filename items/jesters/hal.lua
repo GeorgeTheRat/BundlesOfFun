@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_hal",
+BundlesOfFun.Joker {
+    key = "hal",
     name = "Hatty Hal",
+    bundle = "jesters",
     config = {
         extra = {
             chips_mod = 1,
@@ -9,6 +10,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 2, y = 2 },
+    attributes = { "chips", "scaling", "scale_scaling" },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,

@@ -1,6 +1,7 @@
-SMODS.Consumable {
-    key = "i_trout_b",
+BundlesOfFun.Consumable {
+    key = "trout_b",
     name = "Rainbow Trout Big",
+    bundle = "fish",
     set = "Fish",
     pools = { ["fish_b"] = true },
     pos = { x = 1, y = 1 },

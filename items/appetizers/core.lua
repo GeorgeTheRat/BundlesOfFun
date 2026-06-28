@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_core",
+BundlesOfFun.Joker {
+    key = "core",
     name = "Apple Core",
+    bundle = "appetizers",
     config = {
         extra = {
             count = 20,
@@ -8,13 +9,14 @@ SMODS.Joker {
         }
     },
     pos = { x = 3, y = 0 },
+    attributes = { "mult", "scaling", "passive", "food" },
     cost = 1,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "mult", "scaling", "passive", "food" },
+    
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

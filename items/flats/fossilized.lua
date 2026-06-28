@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_fossilized",
+BundlesOfFun.Back {
+	key = "fossilized",
     name = "Fossilized Deck",
+    bundle = "flats",
     config = { dollars_per_consumable = 1 },
 	atlas = "deck",
 	pos = { x = 9, y = 0 },

@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_leek",
+BundlesOfFun.Joker {
+    key = "leek",
     name = "Leek",
+    bundle = "appetizers",
     config = {
         extra = {
             prob_start = 3.9,
@@ -9,13 +10,13 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 0 },
+    attributes = { "mod_chance", "scaling", "passive", "food" },
     cost = 4,
     rarity = 2,
     blueprint_compat = false,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "mod_chance", "scaling", "passive", "food" },
     loc_vars = function(self, info_queue, card)
         if not card.ability.extra.prob_current then
             card.ability.extra.prob_current = card.ability.extra.prob_start 

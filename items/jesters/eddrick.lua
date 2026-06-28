@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_eddrick",
+BundlesOfFun.Joker {
+    key = "eddrick",
     name = "Evil Eddrick",
+    bundle = "jesters",
     config = {
         extra = {
             chips = 50,
@@ -8,6 +9,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 1 },
+    attributes = { "mult", "chips", "hands" },
     cost = 4,
     rarity = 1,
     blueprint_compat = true,

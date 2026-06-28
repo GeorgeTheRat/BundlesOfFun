@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_ballbo",
+BundlesOfFun.Joker {
+    key = "ballbo",
     name = "Ballbo",
+    bundle = "jesters",
     config = {
         extra = {
             mult_mod = 1,
@@ -9,7 +10,8 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 2 },
-    cost = 7,
+    attributes = { "mult", "scaling", "hand_type", "scale_scaling" },
+    cost = 8,
     rarity = 3,
     blueprint_compat = true,
     perishable_compat = false,

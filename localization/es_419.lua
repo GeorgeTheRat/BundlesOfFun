@@ -1,7 +1,7 @@
 return {
     descriptions = {
         Joker = {
-            j_bof_a_apple = {
+            j_bof_apple = {
                 name = "Manzana",
                 text = {
                     "Cada carta anotada",
@@ -10,7 +10,7 @@ return {
                     "final de la ronda",
                 }
             },
-            j_bof_a_blueberry = {
+            j_bof_blueberry = {
                 name = "Arándano",
                 text = {
                     "Cada {C:attention}carta{} en la mano",
@@ -19,7 +19,7 @@ return {
                     "al final de la ronda"
                 }
             },
-            j_bof_a_grapes = {
+            j_bof_grapes = {
                 name = "Uvas",
                 text = {
                     "{C:chips}+#1#{} Ficha#<s>1#, {C:mult}+#2#{} Multi",
@@ -27,7 +27,7 @@ return {
                     "al derrotar una {C:attention}Ciega Jefe{}"
                 }
             },
-            j_bof_a_durian = {
+            j_bof_durian = {
                 name = "Durián",
                 text = {
                     "Vende este comodín para llenar",
@@ -35,7 +35,7 @@ return {
                     "con {C:tarot}El Loco{}"
                 }
             },
-            j_bof_a_apple_core = {
+            j_bof_apple_core = {
                 name = "Corazón de manzana",
                 text = {
                     "Las siguientes {C:attention}#1#{}",
@@ -43,7 +43,7 @@ return {
                     "en lugar de anotar"
                 }
             },
-            j_bof_a_dragonfruit = {
+            j_bof_dragonfruit = {
                 name = "Pitahaya",
                 text = {
                     "{C:attention}Copia{} todas las cartas en",
@@ -52,7 +52,7 @@ return {
                     "en el siguiente {C:red}descarte{}"
                 }
             },
-            j_bof_a_jelly_beans = {
+            j_bof_jelly_beans = {
                 name = "Grajeas",
                 text = {
                     "Las siguientes {C:attention}2{}",
@@ -60,7 +60,7 @@ return {
                     "{C:attention}Etiqueta de malabar{}",
                 }
             },
-            j_bof_a_leek = {
+            j_bof_leek = {
                 name = "Puerro",
                 text = {
                     "Aumenta todas las {C:green,E:1}probabilidades{}",
@@ -69,7 +69,7 @@ return {
                     "una {C:green}probabilidad{} tiene éxito",
                 }
             },
-            j_bof_a_shrimp = {
+            j_bof_shrimp = {
                 name = "Camarón frito",
                 text = {
                     "{C:mult}Evita la muerte{}",
@@ -79,7 +79,7 @@ return {
                     "{C:mult}Se autodestruye"
                 }
             },
-            j_bof_a_tomato = {
+            j_bof_tomato = {
                 name = "Tomate",
                 text = {
                     "Las siguientes {C:attention}#1#{} cartas",
@@ -88,7 +88,7 @@ return {
                     "{C:attention}Multi{} o {C:attention}de la Suerte{}"
                 }
             },
-            j_bof_a_wonderous_bread = {
+            j_bof_wonderous_bread = {
                 name = "Pan maravilloso",
                 text = {
                     "Balancea un {C:white,X:plasma}#1#%{} de {C:chips}Fichas{}",
@@ -96,7 +96,7 @@ return {
                     "al final de la ronda"
                 }
             },
-            j_bof_j_hal = {
+            j_bof_hal = {
                 name = "Sergio Sombredero",
                 text = {
                     "Gana {C:chips}+#1#{} Fichas",
@@ -106,7 +106,7 @@ return {
                     "{C:inactive}(Actualmente {C:chips}+#3#{C:inactive} Fichas)"
                 }
             },
-            j_bof_j_ballbo = {
+            j_bof_ballbo = {
                 name = "Ballbo",
                 text = {
                     'Gana {C:mult}+#1#{} Multi y aumenta',
@@ -116,7 +116,7 @@ return {
                     "{C:inactive}(Actualmente {C:mult}+#3#{C:inactive} Multi)"
                 }
             },
-            j_bof_j_barber = {
+            j_bof_barber = {
                 name = "Barbero",
                 text = {
                     "Gana {C:money}$#1#{} al final de la ronda",
@@ -125,14 +125,14 @@ return {
                     "al seleccionar una {C:attention}Ciega{}"
                 }
             },
-            j_bof_j_eddrick = {
+            j_bof_eddrick = {
                 name = "Mauricio el Malvado",
                 text = {
                     "{C:chips}+#1#{} Fichas y {C:mult}+#2#{} Multi",
                     "en la {C:attention}mano final{} de la ronda"
                 }
             },
-            j_bof_j_handy_henry = {
+            j_bof_handy_henry = {
                 name = "Martín el Manitas",
                 text = {
                     "{C:blue}+#1#{} mano por ronda",
@@ -141,7 +141,7 @@ return {
                     "{C:attention}izquierda{}"
                 }
             },
-            j_bof_j_gary = {
+            j_bof_gary = {
                 name = "Valerio el Viejito",
                 text = {
                     "Gana {C:chips}+#1#{} Ficha#<s>1#",
@@ -151,7 +151,7 @@ return {
                     "{C:inactive}(Actualmente {C:chips}+#3#{C:inactive} Ficha#<s>3#)"
                 }
             },
-            j_bof_j_golden_sun = {
+            j_bof_golden_sun = {
                 name = "Mr. Golden Sun",
                 text = {
                     "{C:white,X:mult}X#1#{} Multi",
@@ -160,7 +160,7 @@ return {
                     "de {C:attention}póker{} cada ronda"
                 }
             },
-            j_bof_j_jim = {
+            j_bof_jim = {
                 name = "Fabio el Flaco",
                 text = {
                     "{C:blue}+#1#{} mano por ronda",
@@ -168,7 +168,7 @@ return {
                     "{C:attention}#3#{} de tamaño de mano"
                 }
             },
-            j_bof_j_gumphrey = {
+            j_bof_gumphrey = {
                 name = "Gumphrey",
                 text = {
                     "{C:mult}+#1#{} Multi por cada",
@@ -177,7 +177,7 @@ return {
                     "{C:inactive}(Actualmente {C:mult}+#2#{C:inactive} Multi)"
                 }
             },
-            j_bof_j_larry = {
+            j_bof_larry = {
                 name = "Pelayo el Perezoso",
                 text = {
                     "Gana {C:money}$#1#{} cuando",
@@ -185,7 +185,7 @@ return {
                     "{C:attention}última mano{} de la ronda"
                 }
             },
-            j_bof_j_crafted = {
+            j_bof_crafted = {
                 name = "Comodín Artesanal",
                 text = {
                     "Otorga {C:money}dinero{} igual al",
@@ -195,21 +195,21 @@ return {
                     "{C:red,E:2}Se autodestruye{}"
                 }
             },
-            j_bof_j_tom = {
+            j_bof_tom = {
                 name = "Tomás Tumor",
                 text = {
                     "{C:dark_edition}+#1#{} ranuras de comodín,",
                     "no puedes tener {C:attention}consumibles{}",
                 }
             },
-            j_bof_j_phony = {
+            j_bof_phony = {
                 name = "Falso",
                 text = {
                     "{C:mult}+#1#{} Multi",
                     "{C:chips}-#2#{} Fichas"
                 }
             },
-            j_bof_j_frank = {
+            j_bof_frank = {
                 name = "Paolo Petimetre",
                 text = {
                     "Crea una {C:attention}Etiqueta Doble{}",
@@ -217,7 +217,7 @@ return {
                     "no había {C:attention}Etiquetas{} previas"
                 }
             },
-            j_bof_j_super = {
+            j_bof_super = {
                 name = "Súper Comodín",
                 text = {
                     "Si la {C:attention}Ciega{} no se gana",
@@ -225,7 +225,7 @@ return {
                     "{s:0.8}Solo puede activarse una vez por ronda"
                 }
             },
-            j_bof_j_eureka = {
+            j_bof_eureka = {
                 name = 'Emmanuel E. "Eureka"',
                 text = {
                     {
@@ -240,7 +240,7 @@ return {
                     }
                 }
             },
-            j_bof_j_timmy = {
+            j_bof_timmy = {
                 name = "Timoteo el Joven",
                 text = {
                     "{C:blue}+#1#{} Ficha#<s>1# por cada",
@@ -249,7 +249,7 @@ return {
                     "{C:inactive}(Actualmente {C:blue}+#3#{C:inactive} Ficha#<s>3#)"
                 },
             },
-            j_bof_j_jack_frost = {
+            j_bof_jack_frost = {
                 name = "Emilio Frío",
                 text = {
                     "{C:mult}+#1#{} Multi si la mano",
@@ -258,7 +258,7 @@ return {
                     "en esta ronda"
                 }
             },
-            j_bof_j_soothsayer = {
+            j_bof_soothsayer = {
                 name = "Adivino",
                 text = {
                     {
@@ -273,7 +273,7 @@ return {
                     },
                 },
             },
-            j_bof_j_polymath = {
+            j_bof_polymath = {
                 name = "Polímata",
                 text = {
                     "Cada carta anotada y en mano",
@@ -282,7 +282,7 @@ return {
                     "{X:mult,C:white}X#5#{} Multi y {C:money}$#6#"
                 }
             },
-            j_bof_f_manqian = {
+            j_bof_manqian = {
                 name = "Manqian",
                 text = {
                     "Multiplica el {C:mult}Multi{} por",
@@ -294,7 +294,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_f_narr = {
+            j_bof_narr = {
                 name = "Narr",
                 text = {
                     "Gana {C:white,X:mult}X#1#{} Multi por cada",
@@ -306,7 +306,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_f_turold = {
+            j_bof_turold = {
                 name = "Turold",
                 text = {
                     'Gana {C:white,X:mult}X#1#{} Multi',
@@ -318,7 +318,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_f_taillefer = {
+            j_bof_taillefer = {
                 name = "Taillefer",
                 text = {
                     "Llena las ranuras de consumibles",
@@ -329,7 +329,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_f_dagonet = {
+            j_bof_dagonet = {
                 name = "Dagonet",
                 text = {
                     "Las {C:attention}Cartas de Piedra{} anotadas otorgan",
@@ -340,7 +340,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_n_notebook = {
+            j_bof_notebook = {
                 name = "Cuaderno",
                 text = {
                     {
@@ -356,7 +356,7 @@ return {
                     }
                 }
             },
-            j_bof_n_eraser = {
+            j_bof_eraser = {
                 name = "Borrador",
                 text = {
                     "Todas las cartas en mano dan",
@@ -364,7 +364,7 @@ return {
                     "{C:attention}mejora{} que tengan"
                 }
             },
-            j_bof_n_rummikub = {
+            j_bof_rummikub = {
                 name = "Ficha de Rummikub",
                 text = {
                     "Gana {C:chips}+#1#{} Fichas si el",
@@ -373,7 +373,7 @@ return {
                     "{C:inactive}(Actualmente {C:chips}+#3#{C:inactive} Fichas)"
                 }
             },
-            j_bof_n_alarm_clock = {
+            j_bof_alarm_clock = {
                 name = "Despertador",
                 text = {
                     "{X:mult,C:white}X#1#{} Multi cada",
@@ -381,7 +381,7 @@ return {
                     "{C:inactive}#2#{}",
                 }
             },
-            j_bof_n_passport = {
+            j_bof_passport = {
                 name = "Pasaporte",
                 text = {
                     {
@@ -395,7 +395,7 @@ return {
                     }
                 }
             },
-            j_bof_j_rogue = {
+            j_bof_rogue = {
                 name = "Pícaro",
                 text = {
                     "Las cartas de {C:spades}Espada{}",
@@ -404,7 +404,7 @@ return {
                     "al final de la ronda"
                 }
             },
-            j_bof_j_luminary = {
+            j_bof_luminary = {
                 name = "Luminaria",
                 text = {
                     "Gana {C:money}$#1#{} al final de la ronda",
@@ -414,7 +414,7 @@ return {
                     "{C:hearts}Corazón{} o {C:diamonds}Diamante{} esta ronda"
                 }
             },
-            j_bof_j_furious = {
+            j_bof_furious = {
                 name = "Comodín Furioso",
                 text = {
                     "Gana {C:money}$#1#{} al final",
@@ -422,7 +422,7 @@ return {
                     "No ganas {C:money}intereses{}"
                 }
             },
-            j_bof_j_schlitzohr = {
+            j_bof_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
                     "{C:red}Destruye{} una {C:attention}carta{} al",
@@ -431,7 +431,7 @@ return {
                     "cartas en la {C:attention}mano final{} de la ronda"
                 }
             },
-            j_bof_j_hotboxer = {
+            j_bof_hotboxer = {
                 name = "Hotboxer",
                 text = {
                     "Si el último {C:red}descarte{} de",
@@ -543,7 +543,7 @@ return {
         }
     },
     Fish = {
-        c_bof_i_bass_s = {
+        j_bof_bass_s = {
             name = "Perca Americana {X:small}Pequeño",
             text = {
                 "{C:chips}+#1#{} Fichas y",
@@ -552,7 +552,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_bass_b = {
+        j_bof_bass_b = {
             name = "Perca Americana {X:big}Grande",
             text = {
                 "{C:chips}+#1#{} Fichas y",
@@ -561,7 +561,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_bass_l = {
+        j_bof_bass_l = {
             name = "Largemouth Bass {X:legendary}Legendaria",
             text = {
                 "otorga {C:chips}+Fichas{} igual a",
@@ -570,7 +570,7 @@ return {
                 "{C:attention}+#1#{} ranura de consumibles#<s>1# mientras se posea"
             }
         },
-        c_bof_i_betta_s = {
+        j_bof_betta_s = {
             name = "Betta {X:small}Pequeño",
             text = {
                 "{C:mult}+#1#{} Multi y",
@@ -579,7 +579,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_betta_b = {
+        j_bof_betta_b = {
             name = "Betta {X:big}Grande",
             text = {
                 "{C:mult}+#1#{} Multi y",
@@ -588,7 +588,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_betta_l = {
+        j_bof_betta_l = {
             name = "Betta {X:legendary}Legendario",
             text = {
                 "Otorga {C:mult}+Multi{} igual al",
@@ -597,7 +597,7 @@ return {
                 "{C:attention}+#1#{} ranura de consumibles#<s>1# mientras se posea"
             }
         },
-        c_bof_i_trout_s = {
+        j_bof_trout_s = {
             name = "Trucha Arcoiris {X:small}Pequeña",
             text = {
                 "{C:white,X:mult}X#1#{} Multi y",
@@ -606,7 +606,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_trout_b = {
+        j_bof_trout_b = {
             name = "Trucha Arcoiris {X:big}Grande",
             text = {
                 "{C:white,X:mult}X#1#{} Multi y",
@@ -615,7 +615,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_trout_l = {
+        j_bof_trout_l = {
             name = "Trucha Arcoiris {X:legendary}Legendaria",
             text = {
                 "Los Comodines y otros consumibles",
@@ -623,7 +623,7 @@ return {
                 "{C:attention}+#2#{} ranura de consumibles mientras se posea"
             }
         },
-        c_bof_i_goldfish_s = {
+        j_bof_goldfish_s = {
             name = "Pez Dorado {X:small}Pequeño",
             text = {
                 "Ganas {C:money}$#1#{} y",
@@ -632,7 +632,7 @@ return {
                 "{C:inactive}#3# rondas restantes..."
             }
         },
-        c_bof_i_goldfish_b = {
+        j_bof_goldfish_b = {
             name = "Pez Dorado {X:big}Grande",
             text = {
                 "Earn {C:money}$#1#{} and",
@@ -640,7 +640,7 @@ return {
                 "{C:inactive}#3# rounds remaining..."
             }
         },
-        c_bof_i_goldfish_l = {
+        j_bof_goldfish_l = {
             name = "Pez Dorado {X:legendary}Legendario",
             text = {
                 "Ganas dinero igual al",

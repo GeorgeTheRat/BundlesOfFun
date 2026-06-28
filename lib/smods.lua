@@ -47,6 +47,70 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Attribute({
+    key = "scale_scaling"
+})
+
+SMODS.Attribute({
+    key = "consumable_slot"
+})
+
+SMODS.Attribute({
+    key = "fish"
+})
+
+SMODS.Attribute({
+    key = "stickers"
+})
+
+SMODS.ConsumableType({
+    key = "Fish",
+    primary_colour = { 1.0, 0.6, 0.7, 1 },
+    secondary_colour = { 0.85, 0.45, 0.55, 1 },
+    collection_rows = { 2, 2 },
+    shop_rate = 0,
+    select_card = "consumeables",
+    default = "c_bof_bass_s",
+    loc_txt = {
+        undiscovered = {
+            name = "Not Discovered",
+            text = {
+                "Purchase or use",
+                "this card in an",
+                "unseeded run to",
+                "learn what it does"
+            }
+        }
+    }
+})
+
+SMODS.DynaTextEffect {
+    key = "alarm",
+    func = function(dynatext, index, letter)
+        letter.offset.x = math.sin((G.TIMERS.REAL + index)*(40 + index*5)) * 3
+        letter.offset.y = math.cos((G.TIMERS.REAL + index)*(45 + index*5)) * 3
+        letter.r = math.sin((G.TIMERS.REAL + index)*(25 + index*3)) * 0.1
+    end
+}
+
+SMODS.ObjectType({
+    key = "fish_s",
+    select_card = "consumeables",
+    default = "c_bof_bass_s",
+})
+
+SMODS.ObjectType({
+    key = "fish_b",
+    select_card = "consumeables",
+    default = "c_bof_bass_b"
+})
+
+SMODS.ObjectType({
+    key = "fish_l",
+    select_card = "consumeables",
+    default = "c_bof_bass_l"
+})
+
 SMODS.Sound({
 	key = "wooden_1",
 	path = "wooden_1.ogg",
@@ -81,54 +145,6 @@ SMODS.Sound({
 	key = "alarm_wind",
 	path = "alarm_wind.ogg",
 	loop = false
-})
-
-SMODS.DynaTextEffect {
-    key = "alarm",
-    func = function(dynatext, index, letter)
-        letter.offset.x = math.sin((G.TIMERS.REAL + index)*(40 + index*5)) * 3
-        letter.offset.y = math.cos((G.TIMERS.REAL + index)*(45 + index*5)) * 3
-        letter.r = math.sin((G.TIMERS.REAL + index)*(25 + index*3)) * 0.1
-    end
-}
-
-SMODS.ConsumableType({
-    key = "Fish",
-    primary_colour = { 1.0, 0.6, 0.7, 1 },
-    secondary_colour = { 0.85, 0.45, 0.55, 1 },
-    collection_rows = { 2, 2 },
-    shop_rate = 0,
-    select_card = "consumeables",
-    default = "c_bof_i_bass_s",
-    loc_txt = {
-        undiscovered = {
-            name = "Not Discovered",
-            text = {
-                "Purchase or use",
-                "this card in an",
-                "unseeded run to",
-                "learn what it does"
-            }
-        }
-    }
-})
-
-SMODS.ObjectType({
-    key = "fish_s",
-    select_card = "consumeables",
-    default = "c_bof_i_bass_s",
-})
-
-SMODS.ObjectType({
-    key = "fish_b",
-    select_card = "consumeables",
-    default = "c_bof_i_bass_b"
-})
-
-SMODS.ObjectType({
-    key = "fish_l",
-    select_card = "consumeables",
-    default = "c_bof_i_bass_l"
 })
 
 SMODS.UndiscoveredSprite({

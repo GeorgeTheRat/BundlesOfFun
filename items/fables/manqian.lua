@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "f_manqian",
+BundlesOfFun.Joker {
+    key = "manqian",
     name = "Manqian",
+    bundle = "fables",
     pos = { x = 1, y = 4 },
     soul_pos = { x = 1, y = 5 },
+    attributes = { "xmult", "hand_type" },
     cost = 20,
     rarity = 4,
     unlocked = false,

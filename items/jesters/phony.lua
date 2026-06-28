@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_phony",
+BundlesOfFun.Joker {
+    key = "phony",
     name = "Phony",
+    bundle = "jesters",
     config = {
         extra = {
             mult = 6,
@@ -8,6 +9,7 @@ SMODS.Joker {
         },
     },
     pos = { x = 7, y = 2 },
+    attributes = { "mult", "chips" },
     cost = 2,
     rarity = 1,
     blueprint_compat = true,

@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_tomato",
+BundlesOfFun.Joker {
+    key = "tomato",
     name = "Tomato",
+    bundle = "appetizers",
     config = {
         extra = {
             amount = 20,
@@ -9,13 +10,13 @@ SMODS.Joker {
         }
     },
     pos = { x = 4, y = 0 },
+    attributes = { "scaling", "modify_card", "food" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "scaling", "modify_card", "food" },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky

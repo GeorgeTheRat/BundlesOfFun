@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_soapy",
+BundlesOfFun.Back {
+	key = "soapy",
     name = "Soapy Deck",
+    bundle = "flats",
 	atlas = "deck",
 	pos = { x = 6, y = 0 },
     unlocked = false,

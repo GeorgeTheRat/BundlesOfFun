@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_apple",
+BundlesOfFun.Joker {
+    key = "apple",
     name = "Apple",
+    bundle = "appetizers",
     config = {
         extra = {
             perma_mult = 4,
@@ -8,13 +9,13 @@ SMODS.Joker {
         }
     },
     pos = { x = 2, y = 0 },
+    attributes = { "mult", "scaling", "modify_card", "perma_bonus", "food" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "mult", "scaling", "modify_card", "perma_bonus", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -49,7 +50,7 @@ SMODS.Joker {
                     trigger = 'after',
                     delay = 0.4,
                     func = function()
-                        card:set_ability("j_bof_a_core")
+                        card:set_ability("j_bof_core")
                         return true
                     end
                 }))
@@ -61,5 +62,8 @@ SMODS.Joker {
                 message = return_message
             }
         end
+    end,
+    no_collection = function()
+        return BundlesOfFun.config.bundles.appetizers ~= true
     end
 }

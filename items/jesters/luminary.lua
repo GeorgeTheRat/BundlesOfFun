@@ -1,6 +1,7 @@
-SMODS.Joker({
-	key = "j_luminary",
+BundlesOfFun.Joker({
+	key = "luminary",
 	name = "Luminary",
+	bundle = "jesters",
 	config = {
 		extra = {
 			dollars = 1,
@@ -10,7 +11,8 @@ SMODS.Joker({
 		},
 	},
 	pos = { x = 9, y = 2 },
-	cost = 6,
+    attributes = { "economy", "diamonds", "hearts" },
+	cost = 5,
 	rarity = 2,
 	blueprint_compat = false,
 	atlas = "joker",

@@ -1,14 +1,15 @@
-SMODS.Joker {
-    key = "a_dragonfruit",
+BundlesOfFun.Joker {
+    key = "dragonfruit",
     name = "Dragonfruit",
+    bundle = "appetizers",
     config = { extra = { nommed = false } },
     pos = { x = 5, y = 0 },
+    attributes = { "generation", "destruction", "food" },
     cost = 7,
     rarity = 3,
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
-    attributes = { "generation", "destruction", "food" },
     calculate = function(self, card, context)
         if context.before then
             card:juice_up(0.3, 0.5)

@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_bread",
+BundlesOfFun.Joker {
+    key = "bread",
     name = "Wonderous Bread",
+    bundle = "appetizers",
     config = {
         extra = {
             balance = 100,
@@ -8,13 +9,13 @@ SMODS.Joker {
         }
     },
     pos = { x = 9, y = 0 },
+    attributes = { "balance", "scaling", "food" },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "balance", "scaling", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

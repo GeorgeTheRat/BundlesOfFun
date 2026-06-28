@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "n_clock",
+BundlesOfFun.Joker {
+    key = "clock",
     name = "Alarm Clock",
+    bundle = "normalities",
     config = {
         extra = { 
             xmult = 1.75,
@@ -9,6 +10,7 @@ SMODS.Joker {
     },
     pos = { x = 9, y = 3 },
     pixel_size = { h = 87 },
+    attributes = { "xmult", "hands" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
@@ -16,7 +18,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local is_active = (G.GAME.bof_total_hands_played or 0) % 2 == 1
         return {
-            key = is_active and "j_bof_n_clock_active" or "j_bof_n_clock_inactive",
+            key = is_active and "j_bof_clock_active" or "j_bof_clock_inactive",
             vars = {
                 card.ability.extra.xmult
             }

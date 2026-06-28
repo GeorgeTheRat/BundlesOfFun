@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "j_director",
+BundlesOfFun.Joker {
+    key = "director",
     name = "Director",
+    bundle = "jesters",
     config = { extra = { xmult = 1.25 } },
     pos = { x = 8, y = 4 },
+    attributes = { "xmult", "retrigger" },
     cost = 7,
     rarity = 2,
     blueprint_compat = true,

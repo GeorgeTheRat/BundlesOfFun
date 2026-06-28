@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "j_crafted",
+BundlesOfFun.Joker {
+    key = "crafted",
     name = "Crafted Joker",
+    bundle = "jesters",
     config = { extra = { bof_crafted_target = nil } },
     pos = { x = 5, y = 2 },
+    attributes = { "destroy_card", "enhancements", "seals", "editions" },
     cost = 6,
     rarity = 2,
     atlas = "joker",

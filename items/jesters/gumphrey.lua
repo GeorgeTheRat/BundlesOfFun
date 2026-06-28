@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_gumphrey",
+BundlesOfFun.Joker {
+    key = "gumphrey",
     name = "Gumphrey",
+    bundle = "jesters",
     config = {
         extra = {
             mult_mod = 2,
@@ -8,7 +9,8 @@ SMODS.Joker {
         }
     },
     pos = { x = 1, y = 1 },
-    cost = 5,
+    attributes = { "mult", "full_deck", "enhancements" },
+    cost = 4,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",

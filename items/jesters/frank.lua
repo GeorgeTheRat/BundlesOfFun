@@ -1,7 +1,9 @@
-SMODS.Joker {
-    key = "j_frank",
+BundlesOfFun.Joker {
+    key = "frank",
     name = "Frank Fop",
+    bundle = "jesters",
     pos = { x = 1, y = 3 },
+    attributes = { "generation", "tag" },
     cost = 7,
     rarity = 3,
     blueprint_compat = true,

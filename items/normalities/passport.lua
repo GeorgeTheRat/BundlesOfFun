@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "n_passport",
+BundlesOfFun.Joker {
+    key = "passport",
     name = "Passport",
+    bundle = "normalities",
     config = {
         extra = {
             chips_mod = 30,
@@ -9,6 +10,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 8, y = 3 },
+    attributes = { "chips", "scaling", "passive" },
     cost = 7,
     rarity = 3,
     blueprint_compat = true,

@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_backgammon",
+BundlesOfFun.Back {
+	key = "backgammon",
     name = "Backgammon Deck",
+    bundle = "flats",
 	atlas = "deck",
 	pos = { x = 8, y = 0 },
     unlocked = false,

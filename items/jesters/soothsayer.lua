@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "j_soothsayer",
+BundlesOfFun.Joker {
+    key = "soothsayer",
     name = "Soothsayer",
+    bundle = "jesters",
     pos = { x = 3, y = 3 },
-    cost = 6,
+    attributes = { "generation", "tarot", "planet" },
+    cost = 5,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
@@ -11,7 +13,7 @@ SMODS.Joker {
             if context.other_card.seal and context.other_card.seal == "Purple" then
                 SMODS.add_card{
                     set = "Tarot",
-                    key_append = "j_bof_j_soothsayer"
+                    key_append = "soothsayer"
                 }
                 return {
                     message = localize("k_plus_tarot"),

@@ -1,6 +1,7 @@
 SMODS.Booster {
-    key = "i_hooked_1",
+    key = "hooked_1",
     name = "Hooked Pack",
+    bundle = "fish",
     config = {
         extra = 2,
         choose = 1

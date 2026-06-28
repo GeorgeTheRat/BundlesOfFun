@@ -12,9 +12,10 @@ local function suit_count()
     return count
 end
 
-SMODS.Joker {
-    key = "f_narr",
+BundlesOfFun.Joker {
+    key = "narr",
     name = "Narr",
+    bundle = "fables",
     config = {
         extra = { 
             xmult_mod = 0.02,
@@ -23,6 +24,7 @@ SMODS.Joker {
     },
     pos = { x = 0, y = 4 },
     soul_pos = { x = 0, y = 5 },
+    attributes = { "xmult", "scaling", "suit", "full_deck" },
     cost = 20,
     rarity = 4,
     unlocked = false,
@@ -66,7 +68,7 @@ function Game:start_run(args)
     G.E_MANAGER:add_event(Event({
         func = function()
             G.GAME.bof_narr_card = G.GAME.bof_narr_card or {}
-            G.GAME.bof_narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_f_narr")
+            G.GAME.bof_narr_card.suit = pseudorandom_element({ "Spades", "Hearts", "Clubs", "Diamonds" }, "j_bof_narr")
             return true
         end,
         blocking = false

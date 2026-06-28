@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_blueberry",
+BundlesOfFun.Joker {
+    key = "blueberry",
     name = "Blueberry",
+    bundle = "appetizers",
     config = {
         extra = {
             perma_bonus = 6,
@@ -8,13 +9,13 @@ SMODS.Joker {
         }
     },
     pos = { x = 0, y = 0 },
+    attributes = { "chips", "scaling", "modify_card", "perma_bonus", "food" },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "chips", "scaling", "modify_card", "perma_bonus", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

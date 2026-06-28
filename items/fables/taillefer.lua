@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "f_taillefer",
+BundlesOfFun.Joker {
+    key = "taillefer",
     name = "Taillefer",
+    bundle = "fables",
     pos = { x = 3, y = 4 },
     soul_pos = { x = 3, y = 5 },
+    attributes = { "generation", "spectral" },
     cost = 20,
     rarity = 4,
     unlocked = false,

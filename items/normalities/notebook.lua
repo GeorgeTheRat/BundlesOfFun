@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "n_notebook",
+BundlesOfFun.Joker {
+    key = "notebook",
     name = "Notebook",
+    bundle = "normalities",
     config = {
         extra = { 
             dollars = 20,
@@ -8,6 +9,7 @@ SMODS.Joker {
         }
     },
     pos = { x = 5, y = 3 },
+    attributes = { "economy", "stickers" },
     cost = 8,
     rarity = 2,
     blueprint_compat = true,
@@ -32,7 +34,7 @@ SMODS.Joker {
                 for _, v in ipairs(eligible_jokers) do
                     shuffled_jokers[#shuffled_jokers + 1] = v
                 end
-                pseudoshuffle(shuffled_jokers, pseudoseed("j_bof_n_notebook"))
+                pseudoshuffle(shuffled_jokers, pseudoseed("j_bof_notebook"))
                 local sticker_applied = false
                 for _, target_joker in ipairs(shuffled_jokers) do
                     local available_stickers = {}
@@ -42,7 +44,7 @@ SMODS.Joker {
                         end
                     end
                     if #available_stickers > 0 then
-                        local sticker = pseudorandom_element(available_stickers, pseudoseed("j_bof_n_notebook"))
+                        local sticker = pseudorandom_element(available_stickers, pseudoseed("j_bof_notebook"))
                         target_joker:add_sticker(sticker.key, true)
                         target_joker:juice_up()
                         card:juice_up()
@@ -70,7 +72,7 @@ SMODS.Joker {
                     end
                 end
                 if #eligible_jokers > 0 then
-                    local target_joker = pseudorandom_element(eligible_jokers, pseudoseed("j_bof_n_notebook"))
+                    local target_joker = pseudorandom_element(eligible_jokers, pseudoseed("j_bof_notebook"))
                     local stickers_on_card = {}
                     for k, v in pairs(SMODS.Stickers) do
                         if has_sticker(target_joker, k) then
@@ -78,7 +80,7 @@ SMODS.Joker {
                         end
                     end
                     if #stickers_on_card > 0 then
-                        local sticker_to_remove = pseudorandom_element(stickers_on_card, pseudoseed("j_bof_n_notebook"))
+                        local sticker_to_remove = pseudorandom_element(stickers_on_card, pseudoseed("j_bof_notebook"))
                         target_joker:remove_sticker(sticker_to_remove, true)
                         target_joker:juice_up()
                         play_sound("tarot2", 1, 0.6)

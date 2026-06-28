@@ -115,7 +115,7 @@ end
 SMODS.Booster:take_ownership_by_kind("Arcana", {
         create_card = function(self, card, i)
             local _card
-            if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+            if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
                 local consumeables = {}
                 for _, c in pairs(G.P_CENTER_POOLS.Consumeables) do
                     if c.set ~= "Tarot" then
@@ -123,7 +123,7 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
                     end
                 end
                 _card = {
-                    set = pseudorandom_element(consumeables, pseudoseed("j_bof_j_eureka")).set,
+                    set = pseudorandom_element(consumeables, pseudoseed("j_bof_eureka")).set,
                     area = G.pack_cards,
                     skip_materialize = true,
                     soulable = true,
@@ -153,7 +153,7 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
     update_pack = function(self, dt)
         local state_wasnt_complete = not G.STATE_COMPLETE
         SMODS.Booster.update_pack(self, dt)
-        if next(SMODS.find_card("j_bof_j_eureka")) and state_wasnt_complete then
+        if next(SMODS.find_card("eureka")) and state_wasnt_complete then
             G.E_MANAGER:add_event(Event({
                 trigger = "immediate",
                 func = function()
@@ -171,7 +171,7 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
     end,
     create_card = function(self, card, i)
         local _card
-        if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+        if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
             _card = {
                 set = "Tarot",
                 area = G.pack_cards,
@@ -217,7 +217,7 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
 SMODS.Booster:take_ownership_by_kind("Spectral", {
     create_card = function(self, card, i)
 		local _card
-		if next(SMODS.find_card("j_bof_j_eureka")) and pseudorandom("j_bof_j_eureka") > 0.8 then
+		if next(SMODS.find_card("eureka")) and pseudorandom("eureka") > 0.8 then
             _card = {
                 set = "Tarot",
                 area = G.pack_cards,
@@ -397,7 +397,7 @@ end
 -- pianoman: force common jokers in shop and booster packs
 local create_card_ref = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if next(SMODS.find_card("j_bof_j_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
         end
@@ -417,7 +417,7 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 end 
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
-    if next(SMODS.find_card("j_bof_j_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             t.set = "Tarot"
             t.key = nil
@@ -469,10 +469,10 @@ end
 
 -- make it so that perkeo can't copy legendary fish
 local legendary_fish_keys = {
-    "c_bof_i_bass_l",
-    "c_bof_i_betta_l",
-    "c_bof_i_goldfish_l",
-    "c_bof_i_trout_l"
+    "c_bof_bass_l",
+    "c_bof_betta_l",
+    "c_bof_goldfish_l",
+    "c_bof_trout_l"
 }
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",

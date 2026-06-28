@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "j_golden_sun",
+BundlesOfFun.Joker {
+    key = "golden_sun",
     name = "Mr. Golden Sun",
+    bundle = "jesters",
     pos = { x = 3, y = 1 },
-    cost = 7,
+    attributes = { "mult", "chips", "destroy_card" },
+    cost = 8,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",

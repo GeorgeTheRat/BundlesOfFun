@@ -1,7 +1,8 @@
 -- Suits will be selected in sequence until you have 4 unique suits, from there it should be 100% random
-SMODS.Back {
-	key = "l_display",
+BundlesOfFun.Back {
+	key = "display",
     name = "Display Deck",
+    bundle = "flats",
 	pos = { x = 5, y = 0 },
     unlocked = false,
     atlas = "deck",

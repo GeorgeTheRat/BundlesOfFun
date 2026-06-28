@@ -1,6 +1,7 @@
-SMODS.Back {
-	key = "l_embroidered",
+BundlesOfFun.Back {
+	key = "embroidered",
     name = "Embroidered Deck",
+    bundle = "flats",
     pos = { x = 3, y = 0 },
     unlocked = false,
     atlas = "deck",

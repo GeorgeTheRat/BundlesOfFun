@@ -1,6 +1,7 @@
-SMODS.Joker({
-	key = "j_hotboxer",
+BundlesOfFun.Joker({
+	key = "hotboxer",
 	name = "Hotboxer",
+	bundle = "jesters",
 	config = {
 		extra = {
 			shop_slots = 1,
@@ -8,6 +9,7 @@ SMODS.Joker({
 		}
 	},
 	pos = { x = 0, y = 3 },
+	attributes = { "generation", "passive", "tarot" },
 	cost = 8,
 	rarity = 2,
 	blueprint_compat = true,
@@ -30,5 +32,5 @@ SMODS.Joker({
 	end,
 	remove_from_deck = function(self, card, from_debuff)
 		G.GAME.shop.joker_max = G.GAME.shop.joker_max - card.ability.extra.shop_slots
-	end,
+	end
 })

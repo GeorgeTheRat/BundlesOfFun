@@ -1,5 +1,5 @@
 bof_check_super_jokers = function()
-    local cards = SMODS.find_card("j_bof_j_super")
+    local cards = SMODS.find_card("j_bof_super")
     for _, v in ipairs(cards) do
         if v and v.ability and v.ability.extra and v.ability.extra.active then
             return true
@@ -8,9 +8,10 @@ bof_check_super_jokers = function()
     return false
 end
 
-SMODS.Joker {
-    key = "j_super",
+BundlesOfFun.Joker {
+    key = "super",
     name = "Super Joker",
+    bundle = "jesters",
     config = {
         extra = {
             hands = 2,
@@ -18,6 +19,7 @@ SMODS.Joker {
         },
     },
     pos = { x = 7, y = 1 },
+    attributes = { "hands" },
     cost = 7,
     rarity = 2,
     blueprint_compat = true,

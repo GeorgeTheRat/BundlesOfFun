@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "f_turold",
+BundlesOfFun.Joker {
+    key = "turold",
     name = "Turold",
+    bundle = "fables",
     config = {
         extra = {
             xmult_mod = 1.5,
@@ -9,6 +10,7 @@ SMODS.Joker {
     },
     pos = { x = 2, y = 4 },
     soul_pos = { x = 2, y = 5 },
+    attributes = { "xmult", "scaling", "reset" },
     cost = 20,
     rarity = 4,
     unlocked = false,

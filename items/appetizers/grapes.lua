@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_grapes",
+BundlesOfFun.Joker {
+    key = "grapes",
     name = "Grapes",
+    bundle = "appetizers",
     config = {
         extra = {
             chips = 100,
@@ -9,12 +10,12 @@ SMODS.Joker {
         }
     },
     pos = { x = 7, y = 0 },
+    attributes = { "mult", "chips", "xmult", "boss_blind", "food" },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
-    attributes = { "mult", "chips", "xmult", "boss_blind", "food" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

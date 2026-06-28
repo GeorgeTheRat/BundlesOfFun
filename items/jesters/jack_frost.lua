@@ -1,8 +1,10 @@
-SMODS.Joker {
-    key = "j_jack_frost",
+BundlesOfFun.Joker {
+    key = "jack_frost",
     name = "Jack Frost",
+    bundle = "jesters",
     config = { extra = { mult = 27.3 } },
     pos = { x = 2, y = 1 },
+    attributes = { "mult", "hands"},
     cost = 6,
     rarity = 2,
     blueprint_compat = true,

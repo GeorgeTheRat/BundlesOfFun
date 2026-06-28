@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "j_jim",
+BundlesOfFun.Joker {
+    key = "jim",
     name = "Slim Jim",
+    bundle = "jesters",
     config = {
         extra = {
             hands = 1,
@@ -10,6 +11,7 @@ SMODS.Joker {
     },
     pos = { x = 0, y = 1 },
     pixel_size = { w = 65 },
+    attributes = { "hands", "discard", "hand_size", "passive" },
     cost = 6,
     rarity = 2,
     blueprint_compat = false,

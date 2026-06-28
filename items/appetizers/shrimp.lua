@@ -1,6 +1,7 @@
-SMODS.Joker {
-    key = "a_shrimp",
+BundlesOfFun.Joker {
+    key = "shrimp",
     name = "Shrimp",
+    bundle = { "appetizers", { "fish" } },
     config = {
         extra = {
             packs = 5,
@@ -8,12 +9,12 @@ SMODS.Joker {
         }
     },
     pos = { x = 7, y = 4 },
+    attributes = { "scaling", "generation", "passive", "food" },
     cost = 8,
     rarity = 3,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
-    attributes = { "scaling", "generation", "passive", "food" },
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.packs } }
     end,
@@ -28,7 +29,7 @@ SMODS.Joker {
                 return {
                     booster_create_flags = {
                         set = "fish_s",
-                        key_append = "j_bof_a_shrimp",
+                        key_append = "j_bof_shrimp",
                         skip_materialize = true
                     }
                 }
@@ -36,7 +37,7 @@ SMODS.Joker {
                 return {
                     booster_create_flags = {
                         set = "fish_b",
-                        key_append = "j_bof_a_shrimp",
+                        key_append = "j_bof_shrimp",
                         skip_materialize = true
                     }
                 }

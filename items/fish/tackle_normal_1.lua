@@ -1,6 +1,7 @@
 SMODS.Booster {
-    key = "i_tackle_normal_1",
+    key = "tackle_normal_1",
     name = "Tackle Pack",
+    bundle = "fish",
     config = {
         extra = 2,
         choose = 1
@@ -23,7 +24,7 @@ SMODS.Booster {
         }
     end,
     create_card = function(self, card, i)
-        if next(SMODS.find_card("j_bof_j_eureka")) then
+        if next(SMODS.find_card("j_bof_eureka")) then
             return {
                 set = "fish_b",
                 skip_materialize = true,

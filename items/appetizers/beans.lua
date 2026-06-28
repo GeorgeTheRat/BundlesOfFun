@@ -1,18 +1,19 @@
-SMODS.Joker {
-    key = "a_beans",
+BundlesOfFun.Joker {
+    key = "beans",
     name = "Jelly Beans",
+    bundle = "appetizers",
     config = {
         extra = {
             blinds = 2
         }
     },
     pos = { x = 1, y = 0 },
+    attributes = { "scaling", "generation", "tag", "skip", "food" },
     cost = 3,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     atlas = "joker",
-    attributes = { "scaling", "generation", "tag", "skip", "food" },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_TAGS.tag_juggle
         return { vars = { card.ability.extra.blinds } }

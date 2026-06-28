@@ -1,6 +1,7 @@
 SMODS.Booster {
-    key = "i_fry_2",
+    key = "fry_2",
     name = "Fry Pack",
+    bundle = "fish",
     config = {
         extra = 3,
         choose = 1

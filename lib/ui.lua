@@ -92,19 +92,6 @@ SMODS.current_mod.extra_tabs = function()
                         colour = G.C.BLACK,
                     },
                     nodes = {
-                        { n = G.UIT.R, config = { align = "cm" }, nodes = {
-                            { n = G.UIT.O, config = { object = DynaText({
-                                string = { "WARNING" },
-                                colours = { SMODS.Gradients.warning_text },
-                                scale = 1,
-                                shadow = true,
-                                emboss = 0.05,
-                                bump = true
-                            })}}
-                        }},
-                        { n = G.UIT.R, config = { align = "cm" }, nodes = {
-                            { n = G.UIT.T, config = { text = "Continuing a run after disabling a set may crash the game!", scale = 0.4, colour = G.C.RED, shadow = true } }
-                        }},
                         { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
                             { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
                                 bundle_toggle("appetizers", G.C.bof_appetizers),
@@ -117,11 +104,16 @@ SMODS.current_mod.extra_tabs = function()
                                 bundle_toggle("fish", G.C.SET.Fish),
                             }}
                         }},
-                        { n = G.UIT.R, config = { align = "cm" }, nodes = {
-                            { n = G.UIT.T, config = { text = "Changes require a restart", scale = 0.5, colour = G.C.WHITE, shadow = true } }
-                        }},
                         { n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
-                            { n = G.UIT.T, config = { text = "(Some items only appear if multiple sets are enabled)", scale = 0.3, colour = G.C.WHITE, shadow = true } }
+                            { n = G.UIT.O, config = {
+                                object = DynaText({
+                                    string = { "Some items only appear if multiple sets are enabled" },
+                                    colours = { G.C.WHITE },
+                                    scale = 0.4,
+                                    shadow = true,
+                                    bump = true
+                                })
+                            } }
                         }},
                     }
                 }
@@ -146,6 +138,7 @@ SMODS.current_mod.extra_tabs = function()
                             { n = G.UIT.O, config = { object = DynaText({
                                 string = { { string = "Bundles Of Fun" } },
                                 colours = { G.C.GOLD },
+                                silent = true,
                                 scale = 1.5,
                                 shadow = true,
                                 emboss = 0.05,
