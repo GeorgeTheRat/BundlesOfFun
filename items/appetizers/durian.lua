@@ -22,7 +22,7 @@ BundlesOfFun.Joker {
                         for i = 1, num_cards do
                             SMODS.add_card {
                                 key = "c_fool",
-                                key_append = "bof_a_durian"
+                                key_append = "j_bof_durian"
                             }
                         end
                         G.GAME.consumeable_buffer = 0

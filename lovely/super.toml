@@ -16,7 +16,7 @@ end
 position = "at"
 payload = '''
 if G.GAME.current_round.hands_left < 1 then
-    if next(SMODS.find_card("j_bof_j_super")) then
+    if next(SMODS.find_card("j_bof_super")) then
         if bof_check_super_jokers() then
             SMODS.calculate_context({ bof_emergency = true })
             G.STATE = G.STATES.DRAW_TO_HAND

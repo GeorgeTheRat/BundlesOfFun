@@ -10,7 +10,7 @@ match_indent = true
 pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma_bonus or 0)'''
 position = "before"
 payload = '''
-if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_l_lightning" then
+if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning" then
     return self.ability.bonus + (self.ability.perma_bonus or 0)
 end
 '''

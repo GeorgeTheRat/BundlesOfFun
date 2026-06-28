@@ -442,7 +442,7 @@ return {
             }
         },
         Back = {
-            b_bof_l_flannel = {
+            b_bof_flannel = {
                 name = "Baraja Flannel",
                 text = {
                     "{C:mult}+#1#{} Multi"
@@ -452,7 +452,7 @@ return {
                     "mano de {C:attention}póker{} a al menos {C:attention}75{}"
                 }
             },
-            b_bof_l_illusion = {
+            b_bof_illusion = {
                 name = "Baraja de Ilusión",
                 text = {
                     "Cuando se derrota una {C:attention}Ciega Jefe{}",
@@ -465,7 +465,7 @@ return {
                     "o {C:attention}#3#{} en {V:2}#4#{}"
                 }
             },
-            b_bof_l_wooden = {
+            b_bof_wooden = {
                 name = "Baraja de Madera",
                 text = {
                     "Empiezas sin {C:attention}Ases{} y con un",
@@ -477,7 +477,7 @@ return {
                     "en una ronda"
                 }
             },
-            b_bof_l_soapy = {
+            b_bof_soapy = {
                 name = "Baraja Jabonosa",
                 text = {
                     "Las cartas {C:attention}Mejoradas{} se",
@@ -488,7 +488,7 @@ return {
                     "{C:enhanced}Mejora{}, {C:dark_edition}Edición{} y {C:attention}Sello{}"
                 }
             },
-            b_bof_l_display = {
+            b_bof_display = {
                 name = "Baraja Secuencial",
                 text = {
                     "Empiezas con todos los {C:attention}rangos{} de un {C:attention}palo{}",
@@ -501,7 +501,7 @@ return {
                     "{C:attention}Categoría{} en tu baraja"
                 }
             },
-            b_bof_l_retro = {
+            b_bof_retro = {
                 name = "Baraja Retro",
                 text = {
                     "Aumenta el nivel de",
@@ -513,7 +513,7 @@ return {
                     "al menos una vez en una partida"
                 }
             },
-            b_bof_l_fossilized = {
+            b_bof_fossilized = {
                 name = "Baraja Fosilizada",
                 text = {
                     "Ganas {C:money}+$#1#{} adicionales al final de",
@@ -526,7 +526,7 @@ return {
                     "en las ranuras de consumibles"
                 }
             },
-            b_bof_l_lightning = {
+            b_bof_lightning = {
                 name = "Baraja de Rayo",
                 text = {
                     "{C:attention}Cartas{} de Figura empiezan",
@@ -651,28 +651,28 @@ return {
         }
     },
     Other = {
-        p_bof_i_tackle_normal = {
+        p_bof_tackle_normal = {
             name = "Paquete Pescador",
             text = {
                 "Escoge {C:attention}#1#{} de hasta",
                 "{C:attention}#2# {C:fish}Peces{}"
             }
         },
-        p_bof_i_tackle_jumbo = {
+        p_bof_tackle_jumbo = {
             name = "Paquete Pescador Jumbo",
             text = {
                 "Escoge {C:attention}#1#{} de hasta",
                 "{C:attention}#2# {C:fish}Peces{}"
             }
         },
-        p_bof_i_fry = {
+        p_bof_fry = {
             name = "Paquete Frito",
             text = {
                 "Escoge {C:attention}#1#{} de hasta",
                 "{C:attention}#2# {C:white,X:small}Peces Pequeños{}"
             }
         },
-        p_bof_i_hooked = {
+        p_bof_hooked = {
             name = "Paquete de Cebo",
             text = {
                 "Escoge {C:attention}#1#{} de hasta",

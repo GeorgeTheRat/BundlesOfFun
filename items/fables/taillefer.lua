@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
                         for i = 1, num_cards do
                             SMODS.add_card {
                                 set = "Spectral",
-                                key_append = "bof_f_taillefer"
+                                key_append = "bof_taillefer"
                             }
                         end
                         G.GAME.consumeable_buffer = 0

@@ -279,7 +279,7 @@ local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)
     local back = G.GAME and G.GAME.selected_back
-    if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_retro") then
+    if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro") then
         return
     end
     local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
@@ -292,7 +292,7 @@ G.FUNCS.skip_blind = function(e)
             end
             local picks = math.min(amount, #pool)
             for _ = 1, picks do
-                local idx = pseudorandom(pseudoseed("b_bof_l_retro"), 1, #pool)
+                local idx = pseudorandom(pseudoseed("b_bof_retro"), 1, #pool)
                 local hand = table.remove(pool, idx)
                 level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
             end
@@ -309,11 +309,11 @@ function create_card_for_shop(area)
     if
         card
         and area == G.shop_jokers
-        and back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_fossilized"
+        and back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized"
         and card.ability and card.ability.consumeable
         and not (card.edition and card.edition.negative)
     then
-        if pseudorandom(pseudoseed("b_bof_l_fossilized")) < 0.06 then
+        if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
             card:set_edition({ negative = true }, true)
         end
     end
@@ -333,7 +333,7 @@ end
 -- wooden deck card sounds
 local original_play_sound = play_sound
 function play_sound(sound_code, pitch, vol, stop_previous_instance)
-    if BundlesOfFun.config.custom_sounds and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" then
+    if BundlesOfFun.config.custom_sounds and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -358,7 +358,7 @@ function Card:set_sprites(_center, _front)
         G.GAME.selected_back and
         G.GAME.selected_back.effect and
         G.GAME.selected_back.effect.center and
-        G.GAME.selected_back.effect.center.key == "b_bof_l_wooden" and
+        G.GAME.selected_back.effect.center.key == "b_bof_wooden" and
         self.config.center and
         self.config.center.set == "Default" and
         self.children

@@ -20,7 +20,7 @@ pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('b
 position = "at"
 payload = '''
 local _, boss = nil, nil
-if not next(SMODS.find_card("j_bof_n_passport")) then
+if not next(SMODS.find_card("j_bof_passport")) then
     _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
 else
     _, boss = pseudorandom_element(passport_eligible_blinds, pseudoseed('boss'))

@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
-        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_a_tomato")
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomato")
         return {
             vars = {
                 card.ability.extra.amount,
@@ -38,10 +38,10 @@ BundlesOfFun.Joker {
             if context.other_card and card.ability.extra.amount > 0 then
                 card.ability.extra.change = true
                 card.ability.extra.amount = card.ability.extra.amount - 1
-                if SMODS.pseudorandom_probability(card, "bof_a_tomato", 1, card.ability.extra.odds) then
+                if SMODS.pseudorandom_probability(card, "bof_tomato", 1, card.ability.extra.odds) then
                     card:juice_up()
                     context.other_card:juice_up()
-                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_a_tomato")))
+                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomato")))
                 end
             end
         end

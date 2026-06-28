@@ -36,7 +36,7 @@ BundlesOfFun.Back {
                             rank = rank.card_key,
                             area = G.deck,
                             set = "Base",
-                            key_append = "b_bof_l_embroidered"
+                            key_append = "b_bof_embroidered"
                         })
                     end
                     return true

@@ -164,11 +164,11 @@ SMODS.current_mod.calculate = function(self, context)
                 G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed + 1
             end
             if next(SMODS.get_enhancements(v)) ~= nil and v.edition ~= nil and v.seal ~= nil then
-                check_for_unlock({ b_bof_l_soapy = true })
+                check_for_unlock({ b_bof_soapy = true })
             end
         end
         if G.GAME.current_round.bof_wooden_destroyed >= 4 then
-            check_for_unlock({ b_bof_l_wooden = true })
+            check_for_unlock({ b_bof_wooden = true })
         end
     end
 end
