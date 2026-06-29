@@ -518,3 +518,82 @@ SMODS.Joker:take_ownership("perkeo", {
         end
     end
 }, true)
+
+-- Ensure collection tallies are refreshed whenever the mod overlay closes
+if G.FUNCS.exit_mods then
+    local bof_exit_mods_ref = G.FUNCS.exit_mods
+    G.FUNCS.exit_mods = function(...)
+        BundlesOfFun.on_exit_mods()
+        return bof_exit_mods_ref(...)
+    end
+end
+
+-- Wrap set_discover_tallies so our correction runs immediately after vanilla's
+-- count, before the collection UIBox buttons are built. This also fixes centering
+-- on first open (ref_value = 'display' is non-nil when the UIBox measures itself).
+local bof_set_discover_tallies_ref = set_discover_tallies
+function set_discover_tallies()
+    bof_set_discover_tallies_ref()
+    BundlesOfFun.refresh_collection_ui()
+end
+
+-- modsCollectionTally returns { tally, of } with no .display field.
+-- The UIBox_button lovely-patch reads ref_value = 'display', so set it here.
+-- The original also only checks `not v.no_collection` (boolean), so function-type
+-- no_collection items (BundlesOfFun's approach) are always excluded. We add them back.
+local bof_modsCollectionTally_ref = modsCollectionTally
+function modsCollectionTally(pool, set, ignore_discovered)
+    local result = bof_modsCollectionTally_ref(pool, set, ignore_discovered)
+    if pool and G.ACTIVE_MOD_UI then
+        for _, v in pairs(pool) do
+            if v.mod and G.ACTIVE_MOD_UI.id == v.mod.id
+               and type(v.no_collection) == "function" and not v.no_collection() then
+                if set then
+                    if v.set and v.set == set then
+                        result.of = result.of + 1
+                        if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
+                    end
+                else
+                    result.of = result.of + 1
+                    if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
+                end
+            end
+        end
+    end
+    result.display = result.tally .. ' / ' .. result.of
+    return result
+end
+
+-- UIBox_button uses ref_value = 'display' on count objects. modsCollectionTally
+-- and set_discover_tallies set .display on their results, but third-party mods may
+-- pass raw {tally, of} count tables that have no .display. Patch it here as a
+-- catch-all so every collection button has something to render.
+local bof_UIBox_button_ref = UIBox_button
+function UIBox_button(args)
+    if args and args.count and type(args.count) == 'table' and args.count.display == nil then
+        args.count.display = (args.count.tally or 0) .. ' / ' .. (args.count.of or 0)
+    end
+    return bof_UIBox_button_ref(args)
+end
+
+-- In the vanilla collection (G.ACTIVE_MOD_UI nil), consumable_collection_page uses
+-- SMODS.ConsumableType.visible_buffer unfiltered, so bundle-disabled types (like
+-- fish) always show a button even with 0 visible items. Filter the buffer first.
+local bof_consumable_collection_page_ref = G.UIDEF.consumable_collection_page
+G.UIDEF.consumable_collection_page = function(page)
+    if G.ACTIVE_MOD_UI or not G.P_CENTER_POOLS then
+        return bof_consumable_collection_page_ref(page)
+    end
+    local orig = SMODS.ConsumableType.visible_buffer
+    local filtered = {}
+    for _, key in ipairs(orig) do
+        local pool = G.P_CENTER_POOLS[key]
+        if pool and #SMODS.collection_pool(pool) > 0 then
+            filtered[#filtered + 1] = key
+        end
+    end
+    SMODS.ConsumableType.visible_buffer = filtered
+    local result = bof_consumable_collection_page_ref(page)
+    SMODS.ConsumableType.visible_buffer = orig
+    return result
+end

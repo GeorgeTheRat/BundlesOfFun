@@ -1,4 +1,4 @@
-SMODS.Booster {
+BundlesOfFun.Booster {
     key = "hooked_2",
     name = "Hooked Pack",
     bundle = "fish",

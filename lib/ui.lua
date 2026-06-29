@@ -12,6 +12,22 @@ local function bundle_toggle(item, colour)
     }}
 end
 
+-- Captures a reference to the rendered tab content container so
+-- BundlesOfFun.on_bundle_toggle can rebuild it live.
+G.FUNCS.bof_store_tab_ref = function(e)
+    -- Walk up from our hidden node to find the wrapping UIElement that
+    -- SMODS created to hold this tab's content (it has config.object = <UIBox>).
+    local p = e.parent
+    while p do
+        if p.config and p.config.object and p.config.object.UIRoot then
+            BundlesOfFun.tab_content_box = p
+            break
+        end
+        p = p.parent
+    end
+    e.config.func = nil
+end
+
 SMODS.current_mod.config_tab = function()
     return {
         n = G.UIT.ROOT,
@@ -115,6 +131,8 @@ SMODS.current_mod.extra_tabs = function()
                                 })
                             } }
                         }},
+                        -- Capture a reference to the tab content container for live rebuilds
+                        { n = G.UIT.R, config = { func = "bof_store_tab_ref" } },
                     }
                 }
             end

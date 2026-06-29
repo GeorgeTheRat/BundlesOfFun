@@ -1,4 +1,4 @@
-SMODS.Booster {
+BundlesOfFun.Booster {
     key = "tackle_jumbo_1",
     name = "Jumbo Tackle Pack",
     bundle = "fish",
