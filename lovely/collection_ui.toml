@@ -1,0 +1,11 @@
+[manifest]
+version = "1.0.0"
+lovely = "1.0.0"
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "{n=G.UIT.T, config={scale = 0.35,text = args.count.tally..' / '..args.count.of, colour = args.text_colour}}"
+position = "at"
+match_indent = true
+payload = "{n=G.UIT.T, config={scale = 0.35, ref_table = args.count, ref_value = 'display', colour = args.text_colour}}"
