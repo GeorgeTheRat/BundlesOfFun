@@ -21,7 +21,7 @@ target = '''=[SMODS _ "src/game_object.lua"]'''
 match_indent = true
 position = 'after'
 pattern = '''
-if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
+if (key == "mult" or key == "h_mult" or key == "mult_mod") and amount then
 '''
 payload = '''
     G.GAME.mult_scored_this_run = true
