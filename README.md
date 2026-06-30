@@ -11,7 +11,7 @@ We try to keep vanilla balancing *in mind*, but we don't let that limit our idea
 - ***4. Fables*** (Legendaries in one new set)  - **5 Jokers**
 - ***5. Flats*** (Decks to spice up your runs or try for Gold Stake)  - **15 Decks**
 - ***6. Fish*** (Consumables made to keep, but you might get hungry...) - **12 Consumables**
-- ***7. Coupons*** (Vouchers to fill your shops)  - **5 Lines of 2, 10 Vouchers**
+- ***7. Coupons*** (Vouchers to fill your shops)  - **4 Lines of 2, 10 Vouchers**
 - ***8. Enemies*** (Boss Blinds to fight against)  - **25 Blinds**
 - ***9. Finishers*** (Showdown Blinds to win your runs with)  - **5 Blinds**
 - ***10. Games*** (Challenges to test your skill) - **10 Challenges**
