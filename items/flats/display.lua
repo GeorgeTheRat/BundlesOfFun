@@ -42,13 +42,14 @@ BundlesOfFun.Back {
             G.E_MANAGER:add_event(Event({
                 func = function()
                     for _, rank in pairs(SMODS.Ranks) do
-                        SMODS.add_card({
+                        local new_card = SMODS.add_card({
                             suit = suit.card_key,
                             rank = rank.card_key,
                             area = G.deck,
                             set = "Base",
                             key_append = "b_bof_display"
                         })
+                        SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
                     end
                     return true
                 end
