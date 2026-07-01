@@ -1,0 +1,26 @@
+[manifest]
+version = "1.0.0"
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS Troubadour "src/items/wider_collection.lua"]'
+match_indent = true
+position = 'at'
+pattern = '''
+local amt = #TRO.utils.filter(G.P_CENTER_POOLS[con.key], function(v) return not v.no_collection end)
+'''
+payload = '''
+local amt = 0
+for _, v in pairs(G.P_CENTER_POOLS[con.key]) do
+  local no_col = v.no_collection
+  if no_col then
+    if type(no_col) == "function" then
+      if not no_col() then amt = amt + 1 end
+    elseif not no_col then
+      amt = amt + 1
+    end
+  else
+    amt = amt + 1
+  end
+end
+'''
