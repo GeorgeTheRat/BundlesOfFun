@@ -6,12 +6,6 @@
   "prefix": "bof",
   "main_file": "main.lua",
   "version": "0.5.0-alpha",
-  "priority": 0,
-  "badge_colour": "9363bb",
-  "badge_text_colour": "FFFFFF",
   "icon_path": "icon.png",
-  "icon_width": 32,
-  "dependencies": [
-    "Steamodded (>=1.0.0~BETA-1731b)"
-  ]
+  "dependencies": [ "Steamodded (>=1.0.0~BETA-1731b)" ]
 }
