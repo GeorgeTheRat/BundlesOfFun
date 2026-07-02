@@ -667,117 +667,81 @@ return {
                 }
             }
         },
-        -- Voucher = {
-        --     v_bof_dark_alley = {
-        --         name = "Dark Alley",
-        --         text = {
-        --             "{C:inactive}It's dark in here..."
-        --         }
-        --     },
-        --     v_bof_illegal_wares = {
-        --         name = "Illegal Wares",
-        --         text = {
-        --             "{C:spectral}Spectral{} cards may appear in shop",
-        --             "{C:attention}Consumables{} may rarely appear {C:dark_edition}Negative"
-        --         },
-        --         unlock = {
-        --             "Have at least",
-        --             "{C:attention,E:1}3{} Spectral cards",
-        --             "in your consumable slots"
-        --         }
-        --     },
-        --     v_bof_unboxing = {
-        --         name = "Unboxing",
-        --         text = {
-        --             "{C:attention}Regular Booster Packs{} may",
-        --             "appear in shop slots"
-        --         }
-        --     },
-        --     v_bof_scalping = {
-        --         name = "Scalping",
-        --         text = {
-        --             "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
-        --             "may appear in shop slots"
-        --         },
-        --         unlock = {
-        --             "Skip a total of {C:attention,E:1}30",
-        --             "Jumbo or Mega Booster Packs"
-        --         }
-        --     },
-        --     v_bof_dumpster_diving = {
-        --         name = "Dumpster Diving",
-        --         text = {
-        --             "Create a random {C:attention}Tag{} when",
-        --             "{C:attention}Boss Blind{} is selected"
-        --         }
-        --     },
-        --     v_bof_raccoon_tactics = {
-        --         name = "Raccoon Tactics",
-        --         text = {
-        --             "Create a random {C:attention}Tag{} when",
-        --             "{C:attention}Blind{} is selected"
-        --         },
-        --         unlock = {
-        --             "Have at least",
-        --             "{C:attention,E:1}3{} Double Tags"
-        --         }
-        --     },
-        --     v_bof_scratch_off = {
-        --         name = "Scratch-Off",
-        --         text = {
-        --             "Redeem a random {C:attention}Voucher{} if both",
-        --             "{C:small,E:1}Small Blind{} and {C:big,E:1}Big Blind",
-        --             "are skipped in an {C:attention}Ante"
-        --         }
-        --     },
-        --     v_bof_lottery_ticket = {
-        --         name = "Lottery Ticket",
-        --         text = {
-        --             "{C:attention}Vouchers{} may rarely",
-        --             "appear in shop slots"
-        --         },
-        --         unlock = {
-        --             "Have at least",
-        --             "{C:attention,E:1}8{} Vouchers"
-        --         }
-        --     },
-        --     v_bof_phishing = {
-        --         name = "Phishing",
-        --         text = {
-        --             "Jokers costing {C:money}$#1#",
-        --             "or below are {C:attention}free"
-        --         }
-        --     },
-        --     v_bof_social_engineering = {
-        --         name = "Social Engineering",
-        --         text = {
-        --             "Jokers costing {C:money}$#1#",
-        --             "or below are {C:attention}free"
-        --         },
-        --         unlock = {
-        --             "Purchase a Joker costing",
-        --             "{C:attention,E:1}$12{} or more"
-        --         }
-        --     },
-        --     v_bof_ice_bucket = {
-        --         name = "Ice Bucket",
-        --         text = {
-        --             "{C:fish}Fish{} cards last",
-        --             "an {C:attention}additional{} round"
-        --         }
-        --     },
-        --     v_bof_buried_treasure = {
-        --         name = "Buried Treasure",
-        --         text = {
-        --             "{C:fish}Fish{} cards give an",
-        --             "{C:attention}additional{} consumable slot"
-        --         },
-        --         unlock = {
-        --             "Have at least",
-        --             "{C:attention,E:1}3{} Fish cards"
-        --         }
-        --     }
-        -- },
+        Voucher = {
+            v_bof_dark_alley = {
+                name = "Dark Alley",
+                text = {
+                    "{C:inactive}It's dark in here..."
+                }
+            },
+            v_bof_illegal_wares = {
+                name = "Illegal Wares",
+                text = {
+                    "{C:spectral}Spectral{} cards may appear in shop",
+                    "{C:attention}Consumables{} may rarely appear {C:dark_edition}Negative"
+                },
+                unlock = {
+                    "Have at least",
+                    "{C:attention,E:1}3{} Spectral cards",
+                    "in your consumable slots"
+                }
+            },
+            v_bof_unboxing = {
+                name = "Unboxing",
+                text = {
+                    "{C:attention}Regular Booster Packs{} may",
+                    "appear in shop slots"
+                }
+            },
+            v_bof_scalping = {
+                name = "Scalping",
+                text = {
+                    "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
+                    "may appear in shop slots"
+                },
+                unlock = {
+                    "Skip a total of {C:attention,E:1}30",
+                    "Jumbo or Mega Booster Packs"
+                }
+            },
+            v_bof_scratch_off = {
+                name = "Scratch-Off",
+                text = {
+                    "Redeem a random {C:attention}Voucher{} if both",
+                    "{C:small,E:1}Small Blind{} and {C:big,E:1}Big Blind",
+                    "are skipped in an {C:attention}Ante"
+                }
+            },
+            v_bof_lottery_ticket = {
+                name = "Lottery Ticket",
+                text = {
+                    "{C:attention}Vouchers{} may rarely",
+                    "appear in shop slots"
+                },
+                unlock = {
+                    "Have at least",
+                    "{C:attention,E:1}8{} Vouchers"
+                }
+            },
+            v_bof_ice_bucket = {
+                name = "Ice Bucket",
+                text = {
+                    "{C:fish}Fish{} cards last",
+                    "an {C:attention}additional{} round"
+                }
+            },
+            v_bof_buried_treasure = {
+                name = "Buried Treasure",
+                text = {
+                    "{C:fish}Fish{} cards give an",
+                    "{C:attention}additional{} consumable slot"
+                },
+                unlock = {
+                    "Have at least",
+                    "{C:attention,E:1}3{} Fish cards"
+                }
+            }
+        },
         Fish = {
             c_bof_bass_s = {
                 name = "Largemouth Bass {X:small}Small",

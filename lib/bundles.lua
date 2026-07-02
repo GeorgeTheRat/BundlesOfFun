@@ -57,15 +57,6 @@ BundlesOfFun.Joker = SMODS.Joker:extend({
     end
 })
 
-BundlesOfFun.Consumable = SMODS.Consumable:extend({
-    inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
-        SMODS.Consumable.inject(self)
-    end
-})
-
 BundlesOfFun.Back = SMODS.Back:extend({
     inject = function(self)
         if self.bundle and not self.no_collection then
@@ -75,12 +66,30 @@ BundlesOfFun.Back = SMODS.Back:extend({
     end
 })
 
+BundlesOfFun.Consumable = SMODS.Consumable:extend({
+    inject = function(self)
+        if self.bundle and not self.no_collection then
+            self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        SMODS.Consumable.inject(self)
+    end
+})
+
 BundlesOfFun.Booster = SMODS.Booster:extend({
     inject = function(self)
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
         SMODS.Booster.inject(self)
+    end
+})
+
+BundlesOfFun.Voucher = SMODS.Voucher:extend({
+    inject = function(self)
+        if self.bundle and not self.no_collection then
+            self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        SMODS.Voucher.inject(self)
     end
 })
 

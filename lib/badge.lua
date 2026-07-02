@@ -7,7 +7,8 @@ local badge_gradient = SMODS.Gradient{
         G.C.bof_normalities,
         G.C.bof_fables,
         G.C.bof_flats,
-        G.C.bof_fish
+        G.C.bof_fish,
+        G.C.bof_coupons
     }
 }
 
@@ -22,7 +23,8 @@ local CATEGORIES = {
     normalities = { name = "Normalities", color_idx = 3 },
     fables = { name = "Fables", color_idx = 4 },
     flats = { name = "Flats", color_idx = 5 },
-    fish = { name = "Fish", color_idx = 6 }
+    fish = { name = "Fish", color_idx = 6 },
+    coupons = { name = "Coupons", color_idx = 7 }
 }
 
 -- calculate text scaling to fit badge width

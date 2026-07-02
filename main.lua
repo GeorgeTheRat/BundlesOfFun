@@ -150,9 +150,9 @@ local files = {
             "hooked_2"
         }, directory = "items/fish/"
     },
-    -- coupons = {
-    --     list = {
-    --         "dark_alley",
+    coupons = {
+        list = {
+            "dark_alley",
     --         "illegal_wares",
     --         "unboxing",
     --         "scalping",
@@ -162,8 +162,8 @@ local files = {
     --         "lottery_ticket",
     --         "phishing",
     --         "social_engineering"
-    --     }, directory = "items/vouchers/"
-    -- }
+        }, directory = "items/coupons/"
+    }
 }
 
 -- load all bundle items
@@ -191,7 +191,6 @@ for _, name in ipairs(files["fish"].list) do
     assert(SMODS.load_file(files["fish"].directory .. name .. ".lua"))()
 end
 
--- coupons bundle not yet implemented
--- for _, name in ipairs(files["coupons"].list) do
---     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
--- end
+for _, name in ipairs(files["coupons"].list) do
+    assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
+end
