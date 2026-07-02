@@ -11,6 +11,7 @@ pattern = '''
 local amt = #TRO.utils.filter(G.P_CENTER_POOLS[con.key], function(v) return not v.no_collection end)
 '''
 payload = '''
+-- patched by bundles of fun
 local amt = 0
 for _, v in pairs(G.P_CENTER_POOLS[con.key]) do
   local no_col = v.no_collection

@@ -10,6 +10,7 @@ target = "functions/common_events.lua"
 pattern = '''local min_use = 100'''
 position = "before"
 payload = '''
+-- patched by bundles of fun
 local passport_eligible_blinds = eligible_bosses
 '''
 match_indent = true
@@ -21,6 +22,7 @@ target = "functions/common_events.lua"
 pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))'''
 position = "at"
 payload = '''
+-- patched by bundles of fun
 local _, boss = nil, nil
 if not next(SMODS.find_card("j_bof_passport")) then
     _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))

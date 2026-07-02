@@ -15,6 +15,7 @@ end
 '''
 position = "at"
 payload = '''
+-- patched by bundles of fun
 if G.GAME.current_round.hands_left < 1 then
     if next(SMODS.find_card("j_bof_super")) then
         if bof_check_super_jokers() then

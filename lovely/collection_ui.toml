@@ -5,8 +5,37 @@ lovely = "1.0.0"
 # collection ui needs to show dynamic tallies
 [[patches]]
 [patches.pattern]
-target = 'functions/UI_definitions.lua'
+target = "functions/UI_definitions.lua"
 pattern = "{n=G.UIT.T, config={scale = 0.35,text = args.count.tally..' / '..args.count.of, colour = args.text_colour}}"
 position = "at"
 match_indent = true
-payload = "{n=G.UIT.T, config={scale = 0.35, ref_table = args.count, ref_value = 'display', colour = args.text_colour}}"
+payload = '''
+-- patched by bundles of fun
+{n=G.UIT.T, config={scale = 0.35, ref_table = args.count, ref_value = 'display', colour = args.text_colour}}
+'''
+
+# hide card limit info_queue for bof items
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if not hide_desc and card and card.ability and (card.ability.extra_slots_used or 0) ~= 0 then
+'''
+payload = '''
+-- patched by bundles of fun
+if not hide_desc and card and card.ability and (card.ability.extra_slots_used or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, 'bof_')) then
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+match_indent = true
+position = 'at'
+pattern = '''
+if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~= 0 then
+'''
+payload = '''
+-- patched by bundles of fun
+if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, 'bof_')) then
+'''

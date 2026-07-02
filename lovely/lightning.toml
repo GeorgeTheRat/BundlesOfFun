@@ -11,6 +11,7 @@ match_indent = true
 pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma_bonus or 0)'''
 position = "before"
 payload = '''
+-- patched by bundles of fun
 if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning" then
     return self.ability.bonus + (self.ability.perma_bonus or 0)
 end
@@ -26,5 +27,6 @@ pattern = '''
 if (key == "mult" or key == "h_mult" or key == "mult_mod") and amount then
 '''
 payload = '''
+-- patched by bundles of fun
     G.GAME.mult_scored_this_run = true
 '''
