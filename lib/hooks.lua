@@ -274,12 +274,24 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
+-- laughing stock: reset blind stuff on new run
+-- scratch-off skip reset
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
+    if G.GAME.bof_laughing_stock_original_mult then
+        for blind_key, original_mult in pairs(G.GAME.bof_laughing_stock_original_mult) do
+            if G.P_BLINDS[blind_key] then
+                G.P_BLINDS[blind_key].mult = original_mult
+            end
+        end
+        G.GAME.bof_laughing_stock_original_mult = nil
+    end
     G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
     return original_game_start_run(self, arg)
 end
 
+-- retro deck main effect
+-- scratch-off skip tracking
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)
@@ -328,7 +340,6 @@ G.FUNCS.skip_blind = function(e)
         end
     end
 end
-
 
 -- fossilized deck: consumables in shop may rarely be negative
 local original_create_card_for_shop = create_card_for_shop
@@ -406,20 +417,6 @@ function Card:set_sprites(_center, _front)
             draw_major = self
         })
     end
-end
-
--- laughing stock: reset blind stuff on new run
-local original_game_start_run = Game.start_run
-function Game:start_run(arg)
-    if G.GAME.bof_laughing_stock_original_mult then
-        for blind_key, original_mult in pairs(G.GAME.bof_laughing_stock_original_mult) do
-            if G.P_BLINDS[blind_key] then
-                G.P_BLINDS[blind_key].mult = original_mult
-            end
-        end
-        G.GAME.bof_laughing_stock_original_mult = nil
-    end
-    return original_game_start_run(self, arg)
 end
 
 -- hotboxer: rightmost shop slot is always tarot
@@ -550,7 +547,7 @@ end
 
 -- Wrap set_discover_tallies so our correction runs immediately after vanilla's
 -- count, before the collection UIBox buttons are built. This also fixes centering
--- on first open (ref_value = 'display' is non-nil when the UIBox measures itself).
+-- on first open (ref_value = "display" is non-nil when the UIBox measures itself).
 local bof_set_discover_tallies_ref = set_discover_tallies
 function set_discover_tallies()
     bof_set_discover_tallies_ref()
@@ -558,7 +555,7 @@ function set_discover_tallies()
 end
 
 -- modsCollectionTally returns { tally, of } with no .display field.
--- The UIBox_button lovely-patch reads ref_value = 'display', so set it here.
+-- The UIBox_button lovely-patch reads ref_value = "display", so set it here.
 -- The original also only checks `not v.no_collection` (boolean), so function-type
 -- no_collection items (BundlesOfFun's approach) are always excluded. We add them back.
 local bof_modsCollectionTally_ref = modsCollectionTally
@@ -579,18 +576,18 @@ function modsCollectionTally(pool, set, ignore_discovered)
             end
         end
     end
-    result.display = result.tally .. ' / ' .. result.of
+    result.display = result.tally .. " / " .. result.of
     return result
 end
 
--- UIBox_button uses ref_value = 'display' on count objects. modsCollectionTally
+-- UIBox_button uses ref_value = "display" on count objects. modsCollectionTally
 -- and set_discover_tallies set .display on their results, but third-party mods may
 -- pass raw {tally, of} count tables that have no .display. Patch it here as a
 -- catch-all so every collection button has something to render.
 local bof_UIBox_button_ref = UIBox_button
 function UIBox_button(args)
-    if args and args.count and type(args.count) == 'table' and args.count.display == nil then
-        args.count.display = (args.count.tally or 0) .. ' / ' .. (args.count.of or 0)
+    if args and args.count and type(args.count) == "table" and args.count.display == nil then
+        args.count.display = (args.count.tally or 0) .. " / " .. (args.count.of or 0)
     end
     return bof_UIBox_button_ref(args)
 end
