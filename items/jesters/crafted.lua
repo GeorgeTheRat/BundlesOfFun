@@ -13,7 +13,7 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_modification" }
     end,
     calculate = function(self, card, context)
-        if context.before and G.GAME.current_round.hands_played == 0 and not context.blueprint then
+        if context.final_scoring_step and G.GAME.current_round.hands_played == 0 and not context.blueprint then
             local left_card, right_card = context.full_hand[1], context.full_hand[#context.full_hand]
             if left_card and right_card and left_card ~= right_card then
                 local has_modifications = false
@@ -28,12 +28,21 @@ BundlesOfFun.Joker {
                     has_modifications = true
                 end
                 if left_card.edition and left_card.edition ~= "Base" then
-                    right_card:set_edition(left_card.edition, true, true)
+                    right_card:set_edition(left_card.edition, nil, nil, true)
                     has_modifications = true
                 end
                 local seal = left_card:get_seal(true)
                 if seal then
-                    right_card:set_seal(seal, true, true)
+                    -- match Eraser: prevent seal-trigger while we copy it
+                    right_card.ability = right_card.ability or {}
+                    right_card.ability.bof_delay_seal_removal = true
+                    right_card:set_seal(seal)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            right_card.ability.bof_delay_seal_removal = nil
+                            return true
+                        end
+                    }))
                     has_modifications = true
                 end
                 if has_modifications then
@@ -44,10 +53,15 @@ BundlesOfFun.Joker {
                 end
             end
         end
-        if context.destroy_card and context.cardarea == G.play and card.ability.extra.bof_crafted_target then
+        if context.destroy_card and (context.cardarea == G.play or context.cardarea == "unscored") and card.ability.extra.bof_crafted_target then
             if context.destroy_card == card.ability.extra.bof_crafted_target then
                 card.ability.extra.bof_crafted_target = nil
-                card:juice_up(0.3, 0.5)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end
+                }))
                 return {
                     remove = true
                 }
