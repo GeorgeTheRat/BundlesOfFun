@@ -274,32 +274,61 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- retro deck: level up 4 random poker hands when a blind is skipped
+local original_game_start_run = Game.start_run
+function Game:start_run(arg)
+    G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
+    return original_game_start_run(self, arg)
+end
+
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)
     local back = G.GAME and G.GAME.selected_back
-    if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro") then
-        return
+    if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
+        local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
+        G.E_MANAGER:add_event(Event({
+            trigger = "immediate",
+            func = function()
+                local pool = {}
+                for hand_name, hand_data in pairs(G.GAME.hands) do
+                    if hand_data.visible then pool[#pool + 1] = hand_name end
+                end
+                local picks = math.min(amount, #pool)
+                for _ = 1, picks do
+                    local idx = pseudorandom(pseudoseed("b_bof_retro"), 1, #pool)
+                    local hand = table.remove(pool, idx)
+                    level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
+                end
+                return true
+            end
+        }))
     end
-    local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
-    G.E_MANAGER:add_event(Event({
-        trigger = "immediate",
-        func = function()
-            local pool = {}
-            for hand_name, hand_data in pairs(G.GAME.hands) do
-                if hand_data.visible then pool[#pool + 1] = hand_name end
-            end
-            local picks = math.min(amount, #pool)
-            for _ = 1, picks do
-                local idx = pseudorandom(pseudoseed("b_bof_retro"), 1, #pool)
-                local hand = table.remove(pool, idx)
-                level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
-            end
-            return true
+    if G.GAME and G.GAME.blind then
+        if not G.GAME.bof_scratch_off_skips then
+            G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
         end
-    }))
+        G.GAME.bof_scratch_off_skips.skip_count = G.GAME.bof_scratch_off_skips.skip_count + 1
+        if G.GAME.bof_scratch_off_skips.skip_count == 1 then
+            G.GAME.bof_scratch_off_skips.small = true
+        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
+            G.GAME.bof_scratch_off_skips.big = true
+        end
+        if G.GAME.bof_scratch_off_skips.small and G.GAME.bof_scratch_off_skips.big and G.GAME.used_vouchers.v_bof_scratch_off then
+            local scratch_off = G.P_CENTERS.v_bof_scratch_off
+            if scratch_off and scratch_off.apply then
+                scratch_off:apply(nil, nil)
+            end
+            G.GAME.bof_scratch_off_skips.small = false
+            G.GAME.bof_scratch_off_skips.big = false
+            G.GAME.bof_scratch_off_skips.skip_count = 0
+        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
+            G.GAME.bof_scratch_off_skips.small = false
+            G.GAME.bof_scratch_off_skips.big = false
+            G.GAME.bof_scratch_off_skips.skip_count = 0
+        end
+    end
 end
+
 
 -- fossilized deck: consumables in shop may rarely be negative
 local original_create_card_for_shop = create_card_for_shop

@@ -153,12 +153,12 @@ local files = {
     coupons = {
         list = {
             "dark_alley",
+            "scratch_off",
     --         "illegal_wares",
     --         "unboxing",
     --         "scalping",
     --         "dumpster_diving",
     --         "raccoon_tactics",
-    --         "scratch_off",
     --         "lottery_ticket",
     --         "phishing",
     --         "social_engineering"
