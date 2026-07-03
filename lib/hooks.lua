@@ -274,73 +274,6 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- laughing stock: reset blind stuff on new run
--- scratch-off skip reset
-local original_game_start_run = Game.start_run
-function Game:start_run(arg)
-    if G.GAME.bof_laughing_stock_original_mult then
-        for blind_key, original_mult in pairs(G.GAME.bof_laughing_stock_original_mult) do
-            if G.P_BLINDS[blind_key] then
-                G.P_BLINDS[blind_key].mult = original_mult
-            end
-        end
-        G.GAME.bof_laughing_stock_original_mult = nil
-    end
-    G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
-    return original_game_start_run(self, arg)
-end
-
--- retro deck main effect
--- scratch-off skip tracking
-local original_skip_blind = G.FUNCS.skip_blind
-G.FUNCS.skip_blind = function(e)
-    original_skip_blind(e)
-    local back = G.GAME and G.GAME.selected_back
-    if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
-        local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
-        G.E_MANAGER:add_event(Event({
-            trigger = "immediate",
-            func = function()
-                local pool = {}
-                for hand_name, hand_data in pairs(G.GAME.hands) do
-                    if hand_data.visible then pool[#pool + 1] = hand_name end
-                end
-                local picks = math.min(amount, #pool)
-                for _ = 1, picks do
-                    local idx = pseudorandom(pseudoseed("b_bof_retro"), 1, #pool)
-                    local hand = table.remove(pool, idx)
-                    level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
-                end
-                return true
-            end
-        }))
-    end
-    if G.GAME and G.GAME.blind then
-        if not G.GAME.bof_scratch_off_skips then
-            G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
-        end
-        G.GAME.bof_scratch_off_skips.skip_count = G.GAME.bof_scratch_off_skips.skip_count + 1
-        if G.GAME.bof_scratch_off_skips.skip_count == 1 then
-            G.GAME.bof_scratch_off_skips.small = true
-        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
-            G.GAME.bof_scratch_off_skips.big = true
-        end
-        if G.GAME.bof_scratch_off_skips.small and G.GAME.bof_scratch_off_skips.big and G.GAME.used_vouchers.v_bof_scratch_off then
-            local scratch_off = G.P_CENTERS.v_bof_scratch_off
-            if scratch_off and scratch_off.apply then
-                scratch_off:apply(nil, nil)
-            end
-            G.GAME.bof_scratch_off_skips.small = false
-            G.GAME.bof_scratch_off_skips.big = false
-            G.GAME.bof_scratch_off_skips.skip_count = 0
-        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
-            G.GAME.bof_scratch_off_skips.small = false
-            G.GAME.bof_scratch_off_skips.big = false
-            G.GAME.bof_scratch_off_skips.skip_count = 0
-        end
-    end
-end
-
 -- fossilized deck: consumables in shop may rarely be negative
 local original_create_card_for_shop = create_card_for_shop
 function create_card_for_shop(area)
@@ -416,6 +349,81 @@ function Card:set_sprites(_center, _front)
             role_type = "Glued",
             draw_major = self
         })
+    end
+end
+
+-- laughing stock: reset blind stuff on new run
+local original_game_start_run = Game.start_run
+function Game:start_run(arg)
+    if G.GAME.bof_laughing_stock_original_mult then
+        for _, blind_table in pairs(G.GAME.bof_laughing_stock_original_mult) do
+            for key, original_mult in pairs(blind_table) do
+                if type(original_mult) ~= "number" then
+                    return
+                end
+                if G.P_BLINDS and G.P_BLINDS[key] then
+                    G.P_BLINDS[key].mult = original_mult
+                elseif G.P_TEENY_BLINDS and G.P_TEENY_BLINDS[key] then
+                    G.P_TEENY_BLINDS[key].mult = original_mult
+                elseif G.P_CEO_BLINDS and G.P_CEO_BLINDS[key] then
+                    G.P_CEO_BLINDS[key].mult = original_mult
+                end
+            end
+        end
+        G.GAME.bof_laughing_stock_original_mult = nil
+    end
+    G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
+    return original_game_start_run(self, arg)
+end
+
+-- retro deck main effect
+-- scratch-off skip tracking
+local original_skip_blind = G.FUNCS.skip_blind
+G.FUNCS.skip_blind = function(e)
+    original_skip_blind(e)
+    local back = G.GAME and G.GAME.selected_back
+    if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
+        local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
+        G.E_MANAGER:add_event(Event({
+            trigger = "immediate",
+            func = function()
+                local pool = {}
+                for hand_name, hand_data in pairs(G.GAME.hands) do
+                    if hand_data.visible then pool[#pool + 1] = hand_name end
+                end
+                local picks = math.min(amount, #pool)
+                for _ = 1, picks do
+                    local idx = pseudorandom(pseudoseed("b_bof_retro"), 1, #pool)
+                    local hand = table.remove(pool, idx)
+                    level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
+                end
+                return true
+            end
+        }))
+    end
+    if G.GAME and G.GAME.blind then
+        if not G.GAME.bof_scratch_off_skips then
+            G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
+        end
+        G.GAME.bof_scratch_off_skips.skip_count = G.GAME.bof_scratch_off_skips.skip_count + 1
+        if G.GAME.bof_scratch_off_skips.skip_count == 1 then
+            G.GAME.bof_scratch_off_skips.small = true
+        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
+            G.GAME.bof_scratch_off_skips.big = true
+        end
+        if G.GAME.bof_scratch_off_skips.small and G.GAME.bof_scratch_off_skips.big and G.GAME.used_vouchers.v_bof_scratch_off then
+            local scratch_off = G.P_CENTERS.v_bof_scratch_off
+            if scratch_off and scratch_off.apply then
+                scratch_off:apply(nil, nil)
+            end
+            G.GAME.bof_scratch_off_skips.small = false
+            G.GAME.bof_scratch_off_skips.big = false
+            G.GAME.bof_scratch_off_skips.skip_count = 0
+        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
+            G.GAME.bof_scratch_off_skips.small = false
+            G.GAME.bof_scratch_off_skips.big = false
+            G.GAME.bof_scratch_off_skips.skip_count = 0
+        end
     end
 end
 
