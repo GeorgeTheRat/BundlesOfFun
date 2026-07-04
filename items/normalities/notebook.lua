@@ -43,12 +43,26 @@ BundlesOfFun.Joker {
                         end
                     end
                     if #available_stickers > 0 then
-                        local sticker = pseudorandom_element(available_stickers, pseudoseed("j_bof_notebook"))
-                        target_joker:add_sticker(sticker.key, true)
-                        target_joker:juice_up()
-                        card:juice_up()
-                        card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_bof_sticker_applied") })
-                        break
+                        G.E_MANAGER:add_event(Event({
+                            trigger = "after",
+                            delay = 0.4,
+                            func = function()
+                                local sticker = pseudorandom_element(available_stickers, pseudoseed("j_bof_notebook"))
+                                target_joker:add_sticker(sticker.key, true)
+                                if target_joker ~= card then
+                                    target_joker:juice_up()
+                                end
+                                -- on the third day of christmas, my true love gave to me
+                                local three_french_hens = context.blueprint_card or card
+                                -- two_turtle_doves
+                                -- and a_partridge_in_a_pear_tree
+                                three_french_hens:juice_up()
+                                return true
+                            end
+                        }))
+                        return {
+                            message = localize("k_bof_sticker_applied")
+                        }
                     end
                 end
             end
