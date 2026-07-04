@@ -48,6 +48,13 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Atlas({
+    key = "voucher", 
+    path = "voucher.png", 
+    px = 71,
+    py = 95,
+})
+
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"

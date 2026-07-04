@@ -2,7 +2,8 @@ BundlesOfFun.Voucher {
     key = "scratch_off",
     name = "Scratch-Off",
     bundle = "coupons",
-    atlas = "placeholder",
+    atlas = "voucher",
+    pos = { x = 2, y = 0 },
     apply = function(self, card, area)
         if G.GAME.bof_scratch_off_skips and G.GAME.bof_scratch_off_skips.small and G.GAME.bof_scratch_off_skips.big then
             local eligible = {}

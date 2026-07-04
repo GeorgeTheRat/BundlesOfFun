@@ -280,13 +280,17 @@ function create_card_for_shop(area)
     local card = original_create_card_for_shop(area)
     local back = G.GAME and G.GAME.selected_back
     if
-        card
-        and area == G.shop_jokers
-        and back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized"
-        and card.ability and card.ability.consumeable
-        and not (card.edition and card.edition.negative)
+        card and
+        area == G.shop_jokers and
+        (
+            back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized"
+        ) or (
+            G.GAME.used_vouchers["v_bof_dark_alley"]
+        ) and
+        card.ability and card.ability.consumeable and
+        not (card.edition and card.edition.negative)
     then
-        if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
+        if pseudorandom(pseudoseed("bof_negative_consumable")) < 0.06 then
             card:set_edition({ negative = true }, true)
         end
     end

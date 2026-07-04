@@ -534,6 +534,7 @@ return {
                 }
             }
         },
+        -- flats
         Back = {
             b_bof_embroidered = {
                 name = "Embroidered Deck",
@@ -581,7 +582,7 @@ return {
                     "Earn an additional {C:money}$#1#{} at",
                     "end of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
-                    "rarely be {C:dark_edition}Negative"
+                    "rarely appear {C:dark_edition}Negative"
                 },
                 unlock = {
                     "Have one of each",
@@ -667,11 +668,13 @@ return {
                 }
             }
         },
+        -- coupons
         Voucher = {
             v_bof_dark_alley = {
                 name = "Dark Alley",
                 text = {
-                    "{C:inactive}It's dark in here..."
+                    "{C:attention}Consumables{} in shop may",
+                    "rarely appear {C:dark_edition}Negative"
                 }
             },
             v_bof_illegal_wares = {
