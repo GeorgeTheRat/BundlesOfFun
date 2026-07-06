@@ -7,7 +7,10 @@ BundlesOfFun.Consumable {
     pos = { x = 2, y = 1 },
     config = {
         card_limit = 1,
-        extra = { xmult = 1.25 }
+        extra = {
+            xmult = 1.25,
+            consumable_slots = 0
+        }
     },
     cost = 20,
     unlocked = false,

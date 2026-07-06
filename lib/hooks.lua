@@ -373,6 +373,8 @@ function Game:start_run(arg)
         G.GAME.bof_laughing_stock_original_mult = nil
     end
     G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
+    G.GAME.bof_fish_extra_rounds = 0
+    G.GAME.bof_fish_extra_consumable_slots = 0
     return original_game_start_run(self, arg)
 end
 
@@ -423,7 +425,38 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     end
     
     return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-end 
+end
+
+-- continuation of hotboxer
+-- ice bucket and buried treasure logic
+local function bof_apply_fish_voucher_state(card)
+    if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
+        return
+    end
+    local extra_rounds = (G.GAME and G.GAME.bof_fish_extra_rounds) or 0
+    local extra_slots = (G.GAME and G.GAME.bof_fish_extra_consumable_slots) or 0
+    local applied_rounds = card.ability.bof_fish_extra_rounds_applied or 0
+    local applied_slots = card.ability.bof_fish_extra_slots_applied or 0
+    local round_delta = extra_rounds - applied_rounds
+    local slot_delta = extra_slots - applied_slots
+    if round_delta ~= 0 and card.ability.extra.rounds_remaining then
+        card.ability.extra.rounds_remaining = card.ability.extra.rounds_remaining + round_delta
+    end
+    if slot_delta ~= 0 then
+        card.ability.card_limit = (card.ability.card_limit or 0) + slot_delta
+        card.ability.extra.consumable_slots = (card.ability.extra.consumable_slots or 0) + slot_delta
+    end
+    card.ability.bof_fish_extra_rounds_applied = extra_rounds
+    card.ability.bof_fish_extra_slots_applied = extra_slots
+end
+BundlesOfFun.apply_fish_voucher_state = bof_apply_fish_voucher_state
+
+local original_card_set_ability = Card.set_ability
+function Card:set_ability(center, initial, delay_sprites)
+    original_card_set_ability(self, center, initial, delay_sprites)
+    bof_apply_fish_voucher_state(self)
+end
+
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if next(SMODS.find_card("j_bof_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
@@ -444,7 +477,26 @@ function SMODS.create_card(t)
         t.rarity = 0.7
         t.key = nil
     end
-    return original_smods_create_card(t)
+    local card = original_smods_create_card(t)
+    bof_apply_fish_voucher_state(card)
+    return card
+end
+local original_card_add_to_deck = Card.add_to_deck
+function Card:add_to_deck(from_debuff)
+    local was_added = not self.added_to_deck
+    original_card_add_to_deck(self, from_debuff)
+    if was_added and self.added_to_deck and self.area == G.consumeables and self.ability and type(self.ability.extra) == "table" and self.ability.extra.consumable_slots then
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit + self.ability.extra.consumable_slots
+    end
+end
+local original_card_remove_from_deck = Card.remove_from_deck
+function Card:remove_from_deck(from_debuff)
+    local was_in_consumeables = self.area == G.consumeables
+    local extra_slots = self.ability and type(self.ability.extra) == "table" and self.ability.extra.consumable_slots or 0
+    original_card_remove_from_deck(self, from_debuff)
+    if was_in_consumeables and extra_slots > 0 and G.consumeables then
+        G.consumeables.config.card_limit = G.consumeables.config.card_limit - extra_slots
+    end
 end
 
 -- eraser: prevent seal from triggering when marked for removal
@@ -665,6 +717,16 @@ function modsCollectionTally(pool, set, ignore_discovered)
     end
     result.display = result.tally .. " / " .. result.of
     return result
+end
+
+-- track fish expiration for buried treasure unlock
+local original_smods_destroy_cards = SMODS.destroy_cards
+function SMODS.destroy_cards(card, args)
+    if card and card.ability and card.ability.set == "Fish" then
+        G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
+        check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
+    end
+    return original_smods_destroy_cards(card, args)
 end
 
 -- UIBox_button uses ref_value = "display" on count objects. modsCollectionTally

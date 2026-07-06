@@ -153,15 +153,14 @@ local files = {
     coupons = {
         list = {
             "dark_alley",
-            "scratch_off",
+
     --         "illegal_wares",
     --         "unboxing",
     --         "scalping",
-    --         "dumpster_diving",
-    --         "raccoon_tactics",
     --         "lottery_ticket",
-    --         "phishing",
-    --         "social_engineering"
+                "scratch_off",
+                "ice_bucket",
+                "buried_treasure"
         }, directory = "items/coupons/"
     }
 }

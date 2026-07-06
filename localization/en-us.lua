@@ -668,88 +668,6 @@ return {
                 }
             }
         },
-        -- coupons
-        Voucher = {
-            v_bof_dark_alley = {
-                name = "Dark Alley",
-                text = {
-                    {
-                        "{C:attention}Consumables{} in shop may",
-                        "rarely appear {C:dark_edition}Negative"
-                    },
-                    {
-                        "{C:spectral}Spectral{} cards may rarely",
-                        "appear in the shop"
-                    }
-                }
-            },
-            v_bof_illegal_wares = {
-                name = "Illegal Wares",
-                text = {
-                    "{C:spectral}Spectral{} cards, {C:dark_edition}Negative{} consumables,",
-                    "and {C:dark_edition}Negative{} Jokers appear {C:attention}3X{} more often"
-                },
-                unlock = {
-                    "Have at least",
-                    "{C:attention,E:1}3{} Spectral cards",
-                    "in your consumable slots"
-                }
-            },
-            v_bof_unboxing = {
-                name = "Unboxing",
-                text = {
-                    "{C:attention}Regular Booster Packs{} may",
-                    "appear in shop slots"
-                }
-            },
-            v_bof_scalping = {
-                name = "Scalping",
-                text = {
-                    "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
-                    "may appear in shop slots"
-                },
-                unlock = {
-                    "Skip a total of {C:attention,E:1}30",
-                    "Jumbo or Mega Booster Packs"
-                }
-            },
-            v_bof_scratch_off = {
-                name = "Scratch-Off",
-                text = {
-                    "Every {C:attention}6th{} reroll in the shop,",
-                    "{C:attention}restock{} all present {C:attention}Vouchers"
-                }
-            },
-            v_bof_lottery_ticket = {
-                name = "Lottery Ticket",
-                text = {
-                    "{C:attention}Vouchers{} may rarely",
-                    "appear in shop slots"
-                },
-                unlock = {
-                    "Have at least",
-                    "{C:attention,E:1}8{} Vouchers"
-                }
-            },
-            v_bof_ice_bucket = {
-                name = "Ice Bucket",
-                text = {
-                    "{C:fish}Fish{} cards last",
-                    "an {C:attention}additional{} round"
-                }
-            },
-            v_bof_buried_treasure = {
-                name = "Buried Treasure",
-                text = {
-                    "{C:fish}Fish{} cards give an",
-                    "{C:attention}additional{} consumable slot"
-                },
-                unlock = {
-                    "Have at least",
-                    "{C:attention,E:1}3{} Fish cards"
-                }
-            }
-        },
         Fish = {
             c_bof_bass_s = {
                 name = "Largemouth Bass {X:small}Small",
@@ -859,6 +777,89 @@ return {
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",
+                }
+            }
+        },
+        -- coupons
+        Voucher = {
+            v_bof_dark_alley = {
+                name = "Dark Alley",
+                text = {
+                    {
+                        "{C:attention}Consumables{} in shop may",
+                        "rarely appear {C:dark_edition}Negative"
+                    },
+                    {
+                        "{C:spectral}Spectral{} cards may rarely",
+                        "appear in the shop"
+                    }
+                }
+            },
+            v_bof_illegal_wares = {
+                name = "Illegal Wares",
+                text = {
+                    "{C:spectral}Spectral{} cards, {C:dark_edition}Negative{} consumables,",
+                    "and {C:dark_edition}Negative{} Jokers appear {C:attention}3X{} more often"
+                },
+                unlock = {
+                    "Have at least",
+                    "{C:attention,E:1}3{} Spectral cards",
+                    "in your consumable slots"
+                }
+            },
+            v_bof_unboxing = {
+                name = "Unboxing",
+                text = {
+                    "{C:attention}Regular Booster Packs{} may",
+                    "appear in shop slots"
+                }
+            },
+            v_bof_scalping = {
+                name = "Scalping",
+                text = {
+                    "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
+                    "may appear in shop slots"
+                },
+                unlock = {
+                    "Skip a total of {C:attention,E:1}30",
+                    "Jumbo or Mega Booster Packs"
+                }
+            },
+            v_bof_scratch_off = {
+                name = "Scratch-Off",
+                text = {
+                    "Every {C:attention}6th{} reroll in the shop,",
+                    "{C:attention}restock{} all present {C:attention}Vouchers"
+                }
+            },
+            v_bof_lottery_ticket = {
+                name = "Lottery Ticket",
+                text = {
+                    "{C:attention}Vouchers{} may rarely",
+                    "appear in shop slots"
+                },
+                unlock = {
+                    "Have at least",
+                    "{C:attention,E:1}8{} Vouchers"
+                }
+            },
+            v_bof_ice_bucket = {
+                name = "Ice Bucket",
+                text = {
+                    "{C:fish}Fish{} cards last",
+                    "an {C:attention}additional{} round"
+                }
+            },
+            v_bof_buried_treasure = {
+                name = "Buried Treasure",
+                text = {
+                    "{C:fish}Fish{} cards give an",
+                    "{C:attention}additional{} consumable slot"
+                },
+                unlock = {
+                    "Have {C:attention,E:1}5 Fish",
+                    "cards expire",
+                    "{C:inactive}(#1#)"
                 }
             }
         },

@@ -56,7 +56,7 @@ BundlesOfFun.Joker {
                     scalar_value = "packs_mod",
                     operation = "-",
                     scaling_message = {
-                        message = (card.ability.extra.packs - 1) .. " Pack" .. ((card.ability.extra.packs - 1) == 1 and "" or "s") .. " Remaining!"
+                        message = card.ability.extra.packs - 1
                     }
                 })
             end
