@@ -6,6 +6,8 @@ BundlesOfFun.Voucher {
     pos = { x = 0, y = 0 },
     atlas = "voucher",
     redeem = function(self, card, area)
-        G.GAME.spectral_rate = self.config.spectral_rate
+        if G.GAME.spectral_rate < self.config.spectral_rate then
+            G.GAME.spectral_rate = self.config.spectral_rate
+        end
     end
 }
