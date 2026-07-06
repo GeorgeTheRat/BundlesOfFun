@@ -811,19 +811,20 @@ return {
             v_bof_unboxing = {
                 name = "Unboxing",
                 text = {
-                    "{C:attention}Regular Booster Packs{} may",
+                    "{C:attention}Booster Packs{} may",
                     "appear in shop slots"
                 }
             },
             v_bof_scalping = {
                 name = "Scalping",
                 text = {
-                    "{C:attention}Jumbo{} and {C:attention}Mega Booster Packs",
-                    "may appear in shop slots"
+                    "{C:attention}Vouchers{} may rarely",
+                    "appear in shop slots"
                 },
                 unlock = {
-                    "Skip a total of {C:attention,E:1}30",
-                    "Jumbo or Mega Booster Packs"
+                    "Skip a total of",
+                    "{C:attention,E:1}30{} Booster Packs",
+                    "{C:inactive}(#1#)"
                 }
             },
             v_bof_scratch_off = {
@@ -836,12 +837,12 @@ return {
             v_bof_lottery_ticket = {
                 name = "Lottery Ticket",
                 text = {
-                    "{C:attention}Vouchers{} may rarely",
-                    "appear in shop slots"
+                    "Every {C:attention}6th{} reroll in the shop,",
+                    "{C:attention}restock{} all present {C:attention}Booster Packs"
                 },
                 unlock = {
                     "Have at least",
-                    "{C:attention,E:1}8{} Vouchers"
+                    "{C:attention,E:1}10{} Vouchers"
                 }
             },
             v_bof_ice_bucket = {
