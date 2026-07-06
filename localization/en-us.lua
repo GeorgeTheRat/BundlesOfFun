@@ -673,15 +673,21 @@ return {
             v_bof_dark_alley = {
                 name = "Dark Alley",
                 text = {
-                    "{C:attention}Consumables{} in shop may",
-                    "rarely appear {C:dark_edition}Negative"
+                    {
+                        "{C:attention}Consumables{} in shop may",
+                        "rarely appear {C:dark_edition}Negative"
+                    },
+                    {
+                        "{C:spectral}Spectral{} cards may rarely",
+                        "appear in the shop"
+                    }
                 }
             },
             v_bof_illegal_wares = {
                 name = "Illegal Wares",
                 text = {
-                    "{C:spectral}Spectral{} cards may appear in shop",
-                    "{C:attention}Consumables{} may rarely appear {C:dark_edition}Negative"
+                    "{C:spectral}Spectral{} cards, {C:dark_edition}Negative{} consumables,",
+                    "and {C:dark_edition}Negative{} Jokers appear {C:attention}3X{} more often"
                 },
                 unlock = {
                     "Have at least",

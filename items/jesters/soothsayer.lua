@@ -8,6 +8,10 @@ BundlesOfFun.Joker {
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
+    loc_vars = function(self, info_queue, card)
+        table.insert(info_queue, G.P_SEALS["Purple"])
+        table.insert(info_queue, G.P_SEALS["Blue"])
+    end,
     calculate = function(self, card, context)
         if context.end_of_round and context.cardarea == G.hand and context.individual then
             if context.other_card.seal and context.other_card.seal == "Purple" then

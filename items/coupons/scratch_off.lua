@@ -35,8 +35,7 @@ BundlesOfFun.Voucher {
                 end
             end
             if #eligible > 0 then
-                local idx = pseudorandom(pseudoseed("bof_scratch_off"), 1, #eligible)
-                local voucher = eligible[idx]
+                local voucher = eligible[pseudorandom(pseudoseed("bof_scratch_off"), 1, #eligible)]
                 if voucher then
                     G.GAME.used_vouchers[voucher.key] = true
                     G.E_MANAGER:add_event(Event({
