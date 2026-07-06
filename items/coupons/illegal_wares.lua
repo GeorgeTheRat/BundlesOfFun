@@ -2,6 +2,7 @@ BundlesOfFun.Voucher {
     key = "illegal_wares",
     name = "Illegal Wares",
     bundle = "coupons",
+    requires = { "v_bof_dark_alley" },
     config = { extra = { spectral_rate = 3 } },
     pos = { x = 0, y = 1 },
     atlas = "voucher",
