@@ -380,6 +380,7 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
+    G.GAME.bof_lottery_ticket_shop_reroll_count = 0
     return original_game_start_run(self, arg)
 end
 
@@ -598,13 +599,6 @@ SMODS.Joker:take_ownership("perkeo", {
 }, true)
 
 -- scratch-off logic
-local original_ease_ante = ease_ante
-function ease_ante(mod)
-    if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
-        G.GAME.bof_scratch_off_shop_reroll_count = 0
-    end
-    return original_ease_ante(mod)
-end
 local function bof_get_random_voucher_key(excluded, seed_suffix)
     local _pool, _pool_key = get_current_pool("Voucher")
     local candidates = {}
@@ -672,21 +666,60 @@ local function bof_scratch_off_reroll_vouchers()
     end
     G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
 end
+
+local function bof_lottery_ticket_reroll_boosters()
+    if not G.shop_booster then
+        return
+    end
+    local booster_cards = {}
+    for i = #G.shop_booster.cards, 1, -1 do
+        local c = G.shop_booster.cards[i]
+        if c.ability and c.ability.set == "Booster" then
+            booster_cards[#booster_cards + 1] = c
+        end
+    end
+    local replace_count = #booster_cards
+    if replace_count == 0 then
+        replace_count = 1
+    end
+    for _, booster_card in ipairs(booster_cards) do
+        G.shop_booster:remove_card(booster_card)
+        booster_card:remove()
+    end
+    for i = 1, replace_count do
+        local key = get_pack("shop_pack").key
+        if key and G.P_CENTERS[key] then
+            local new_card = Card(
+                G.shop_booster.T.x + G.shop_booster.T.w / 2,
+                G.shop_booster.T.y,
+                G.CARD_W * 1.27,
+                G.CARD_H * 1.27,
+                G.P_CARDS.empty,
+                G.P_CENTERS[key],
+                { bypass_discovery_center = true, bypass_discovery_ui = true }
+            )
+            create_shop_card_ui(new_card, "Booster", G.shop_booster)
+            new_card.ability.booster_pos = i
+            new_card:start_materialize()
+            G.shop_booster:emplace(new_card)
+        end
+    end
+end
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then
     G.FUNCS.reroll_shop = function(e)
         if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
             G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
-            if G.GAME.bof_scratch_off_shop_reroll_count >= 6 then
+            if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 6) then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.45,
-                    func = function()
-                        bof_scratch_off_reroll_vouchers()
-                        return true
-                    end
-                }))
+                bof_scratch_off_reroll_vouchers()
+            end
+        end
+        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_lottery_ticket then
+            G.GAME.bof_lottery_ticket_shop_reroll_count = (G.GAME.bof_lottery_ticket_shop_reroll_count or 0) + 1
+            if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 4) then
+                G.GAME.bof_lottery_ticket_shop_reroll_count = 0
+                bof_lottery_ticket_reroll_boosters()
             end
         end
         return bof_reroll_shop_ref(e)

@@ -830,14 +830,14 @@ return {
             v_bof_scratch_off = {
                 name = "Scratch-Off",
                 text = {
-                    "Every {C:attention}6th{} reroll in the shop,",
+                    "Every {C:attention}#<o>1#{} reroll in the shop,",
                     "{C:attention}restock{} all present {C:attention}Vouchers"
                 }
             },
             v_bof_lottery_ticket = {
                 name = "Lottery Ticket",
                 text = {
-                    "Every {C:attention}6th{} reroll in the shop,",
+                    "Every {C:attention}#<o>1#{} reroll in the shop,",
                     "{C:attention}restock{} all present {C:attention}Booster Packs"
                 },
                 unlock = {

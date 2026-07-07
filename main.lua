@@ -157,7 +157,7 @@ local files = {
 --         "unboxing",
 --         "scalping",
             "scratch_off",
---         "lottery_ticket",
+            "lottery_ticket",
             "ice_bucket",
             "buried_treasure"
         }, directory = "items/coupons/"

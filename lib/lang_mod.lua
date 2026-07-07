@@ -74,3 +74,40 @@ function BundlesOfFun.pluralize(str, vars)
         return result
     end
 end
+
+-- ordinal suffix function for localization (1st, 2nd, 3rd, etc.)
+function BundlesOfFun.ordinalize(num)
+    if type(num) == "string" then
+        num = (Big and tonumber(to_big(num))) or tonumber(num)
+    end
+    num = tonumber(num) or 1
+    
+    local abs_n = math.abs(num)
+    local last_two = abs_n % 100
+    local last_one = abs_n % 10
+    
+    local suffix = "th"
+    if last_two ~= 11 and last_two ~= 12 and last_two ~= 13 then
+        if last_one == 1 then
+            suffix = "st"
+        elseif last_one == 2 then
+            suffix = "nd"
+        elseif last_one == 3 then
+            suffix = "rd"
+        end
+    end
+    
+    return tostring(num) .. suffix
+end
+-- wrapper to detect <o> prefix and call ordinalize
+function BundlesOfFun.process_ordinal(str, vars)
+    local inside = str:match("<(.-)>")
+    if inside and inside == "o" then
+        local num_str = string.match(str, ">(%d+)")
+        if num_str then
+            local num = vars[tonumber(num_str)]
+            return BundlesOfFun.ordinalize(num)
+        end
+    end
+    return nil
+end
