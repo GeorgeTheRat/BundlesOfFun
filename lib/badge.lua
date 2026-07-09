@@ -88,6 +88,10 @@ function SMODS.create_mod_badges(obj, badges)
         return
     end
 
+    if obj and obj.set == "Back" and obj.unlocked == false then
+        return
+    end
+
     -- calculate scale factor for text to fit badge
     local function calculate_scale_fac(text)
         local base_scale = 0.33 * 0.9
