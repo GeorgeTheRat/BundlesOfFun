@@ -6,7 +6,7 @@ return {
         fables = true,
         flats = true,
         fish = true,
-        coupons = false
+        coupons = true
     },
     custom_sounds = true,
     custom_wooden_center = true
