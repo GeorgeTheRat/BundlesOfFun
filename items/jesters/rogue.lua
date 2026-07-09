@@ -6,7 +6,7 @@ BundlesOfFun.Joker {
     pos = { x = 0, y = 2 },
     attributes = { "economy", "spades", "clubs" },
     cost = 6,
-    rarity = 2,
+    rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
