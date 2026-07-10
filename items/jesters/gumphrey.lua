@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     pos = { x = 1, y = 1 },
     attributes = { "mult", "full_deck", "enhancements" },
     cost = 4,
-    rarity = 2,
+    rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)

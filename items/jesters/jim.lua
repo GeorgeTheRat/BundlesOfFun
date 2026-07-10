@@ -12,7 +12,7 @@ BundlesOfFun.Joker {
     pos = { x = 0, y = 1 },
     pixel_size = { w = 65 },
     attributes = { "hands", "discard", "hand_size", "passive" },
-    cost = 6,
+    cost = 7,
     rarity = 2,
     blueprint_compat = false,
     atlas = "joker",

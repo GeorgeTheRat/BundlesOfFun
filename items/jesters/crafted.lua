@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = { extra = { bof_crafted_target = nil } },
     pos = { x = 5, y = 2 },
     attributes = { "destroy_card", "enhancements", "seals", "editions" },
-    cost = 6,
+    cost = 5,
     rarity = 2,
     atlas = "joker",
     blueprint_compat = false,

@@ -10,7 +10,7 @@ BundlesOfFun.Joker({
 	},
 	pos = { x = 0, y = 3 },
 	attributes = { "generation", "passive", "tarot" },
-	cost = 8,
+	cost = 7,
 	rarity = 2,
 	blueprint_compat = true,
 	atlas = "joker",

@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     },
     pos = { x = 2, y = 2 },
     attributes = { "chips", "scaling", "scale_scaling" },
-    cost = 6,
+    cost = 7,
     rarity = 2,
     blueprint_compat = true,
     perishable_compat = false,

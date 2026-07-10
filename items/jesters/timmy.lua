@@ -16,7 +16,7 @@ BundlesOfFun.Joker {
     config = { extra = { chips = 6 } },
     pos = { x = 5, y = 1 },
     attributes = { "chips", "full_deck" },
-    cost = 5,
+    cost = 4,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
