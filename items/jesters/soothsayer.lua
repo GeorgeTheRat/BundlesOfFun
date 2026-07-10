@@ -2,6 +2,7 @@ BundlesOfFun.Joker {
     key = "soothsayer",
     name = "Soothsayer",
     bundle = "jesters",
+    config = { extra = { required = 2 } },
     pos = { x = 3, y = 3 },
     attributes = { "generation", "tarot", "planet" },
     cost = 5,
@@ -11,6 +12,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         table.insert(info_queue, G.P_SEALS["Purple"])
         table.insert(info_queue, G.P_SEALS["Blue"])
+        return { vars = { card.ability.extra.required } }
     end,
     calculate = function(self, card, context)
         if context.end_of_round and context.cardarea == G.hand and context.individual then
@@ -26,15 +28,18 @@ BundlesOfFun.Joker {
                 }
             end
         end
-        if context.pre_discard and not context.hook then
+        if context.pre_discard then
+            local blue_seal_count = 0
             for k, v in pairs(context.full_hand) do
                 if v.seal and v.seal == "Blue" then
-                    local text, _ = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
-                    return {
-                        level_up = true,
-                        level_up_hand = text
-                    }
+                    blue_seal_count = blue_seal_count + 1
                 end
+            end
+            if blue_seal_count >= card.ability.extra.required then
+                return {
+                    level_up = true,
+                    level_up_hand = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
+                }
             end
         end
     end

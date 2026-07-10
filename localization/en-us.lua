@@ -244,7 +244,7 @@ return {
                     {
                         "Upgrade level of discarded",
                         "{C:attention}poker hand{} if discarded hand",
-                        "contains a card with a {C:blue}Blue Seal",
+                        "contains {C:attention}#1#{} cards with {C:blue}Blue Seals",
                     },
                 },
             },
