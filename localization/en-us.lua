@@ -866,6 +866,16 @@ return {
                 }
             }
         },
+        -- enemies (& finishers)
+        Blind = {
+            bl_bof_prime = {
+                name = "The Prime",
+                text = {
+                    "Cannot play cards",
+                    "with a Seal"
+                }
+            }
+        },
         Other = {
             p_bof_tackle_normal = {
                 name = "Tackle Pack",
@@ -930,6 +940,7 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
+            bl_bof_prime = "Must not play cards with Seals",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",
@@ -937,9 +948,10 @@ return {
             option_bof_fables = "Fables",
             option_bof_flats = "Flats",
             option_bof_fish = "Fish",
-            option_bof_coupons = "Coupons"
-            -- option_bof_enemies = "Enemies",
+            option_bof_coupons = "Coupons",
+            option_bof_enemies = "Enemies",
             -- option_bof_finishers = "Finishers",
+            -- option_bof_games = "Games"
         }
     }
 }

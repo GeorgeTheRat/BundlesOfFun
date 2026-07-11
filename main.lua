@@ -16,8 +16,9 @@ G.C.bof_normalities = HEX("c4bca5")
 G.C.bof_flats = HEX("ff7a6f")
 G.C.bof_fish = { 1.0, 0.6, 0.7, 1 }
 G.C.bof_coupons = HEX("69aad8")
-G.C.bof_enemies = HEX("626e7a")
-G.C.bof_finishers = HEX("49564c")
+G.C.bof_enemies = HEX("497760")
+G.C.bof_finishers = HEX("5e5f45")
+G.C.bof_games = HEX("43cb32")
 G.C.bof_george_1 = HEX("67bf9d")
 G.C.bof_george_2 = HEX("1e9ae9")
 G.C.bof_glitch_1 = HEX("f04360")
@@ -161,6 +162,35 @@ local files = {
             "ice_bucket",
             "buried_treasure"
         }, directory = "items/coupons/"
+    },
+    enemies = {
+        list = {
+            "prime",
+            -- "decay",
+            -- "irradiated",
+            -- "change",
+            -- "tiny",
+            -- "damping",
+            -- "viscous",
+            -- "angle",
+            -- "index",
+            -- "curve",
+            -- "decay",
+            -- "average",
+            -- "frequent",
+            -- "random",
+            -- "useless",
+            -- "irrational",
+            -- "dense",
+            -- "stress",
+            -- "terminal",
+            -- "circuit",
+            -- "particle",
+            -- "golden",
+            -- "square",
+            -- "wave",
+            -- "resistance"
+        }, directory = "items/enemies/"
     }
 }
 
@@ -191,4 +221,8 @@ end
 
 for _, name in ipairs(files["coupons"].list) do
     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["enemies"].list) do
+    assert(SMODS.load_file(files["enemies"].directory .. name .. ".lua"))()
 end

@@ -55,6 +55,15 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Atlas {
+	key = "blind",
+    atlas_table = "ANIMATION_ATLAS",
+	path = "blind.png",
+	px = 34,
+	py = 34,
+	frames = 21
+}
+
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"

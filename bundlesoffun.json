@@ -5,11 +5,11 @@
   "description": "Something for everyone!",
   "prefix": "bof",
   "main_file": "main.lua",
-  "version": "0.5.0b",
+  "version": "0.6.0-alpha",
   "icon_path": "icon.png",
   "dependencies": [
     "Steamodded (>=1.0.0~BETA-1731b)",
     "Steamodded (<<1.0.0~BETA-1827b)"
   ],
-  "tags": ["vanilla_balance"]
+  "tags": [ "vanilla_balance" ]
 }
