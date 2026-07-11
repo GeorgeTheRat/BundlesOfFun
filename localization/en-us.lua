@@ -598,10 +598,10 @@ return {
             b_bof_wooden = {
                 name = "Wooden Deck",
                 text = {
-                    "Start with no {C:attention}Aces",
-                    "and an additional full",
-                    "rank of {C:attention}2s{}, {C:attention}3s{},",
-                    "{C:attention}4s{}, and {C:attention}5s"
+                    "Start with no {C:attention}Aces{}",
+                    "and an additional full rank",
+                    "of {C:attention}2s{}, {C:attention}3s{}, {C:attention}4s{}, and {C:attention}5s",
+                    "All cards start {C:attention,T:m_bof_wooden}Wooden"
                 },
                 unlock = {
                     "Destroy {C:attention}4 Aces",
@@ -673,6 +673,16 @@ return {
                 }
             }
         },
+        -- wooden (for, what do you know, wooden deck)
+        Enhanced = {
+            m_bof_wooden = {
+                name = "Wooden",
+                text = {
+                    "{C:chips}+#1#{} extra chips"
+                }
+            }
+        },
+        -- fih
         Fish = {
             c_bof_bass_s = {
                 name = "Largemouth Bass {X:small}Small",

@@ -152,7 +152,7 @@ function SMODS.create_mod_badges(obj, badges)
         }
     end
 
-    if obj and obj.bundle then
+    if obj and (obj.bundle or obj.key == "m_bof_wooden") then
         local category_name
         if type(obj.bundle) == "string" then
             category_name = obj.bundle

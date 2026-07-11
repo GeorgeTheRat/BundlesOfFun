@@ -12,7 +12,7 @@ BundlesOfFun.Back {
     calculate = function(self, back, context)
         if context.initial_scoring_step then
             return {
-                mult = 4
+                mult = self.config.mult
             }
         end
     end,
