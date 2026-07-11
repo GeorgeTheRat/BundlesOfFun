@@ -85,6 +85,7 @@ local function create_category_badge(category_key, shared_scale_fac)
     }
 end
 
+-- todo: make this work in-blind by patching G.FUNCS.HUD_blind_badge
 function SMODS.create_mod_badges(obj, badges)
     if SMODS.config.no_mod_badges then
         return

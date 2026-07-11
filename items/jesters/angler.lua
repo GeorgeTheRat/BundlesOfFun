@@ -23,14 +23,12 @@ BundlesOfFun.Joker {
                 end
             end
         end
-        local multiplier = fish_count
-        -- hello everybody my name is multiplier
         return {
             vars = {
                 card.ability.extra.chips,
+                card.ability.extra.chips * fish_count,
                 card.ability.extra.mult,
-                card.ability.extra.chips * multiplier,
-                card.ability.extra.mult * multiplier
+                card.ability.extra.mult * (G.GAME.bof_fish_expired or 0)
             }
         }
     end,
@@ -44,11 +42,10 @@ BundlesOfFun.Joker {
                     end
                 end
             end
-            local multiplier = fish_count
             return {
-                chips = card.ability.extra.chips * multiplier,
+                chips = card.ability.extra.chips * fish_count,
                 extra = {
-                    mult = card.ability.extra.mult * multiplier
+                    mult = card.ability.extra.mult * (G.GAME.bof_fish_expired or 0)
                 }
             }
         end

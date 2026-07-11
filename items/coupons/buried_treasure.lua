@@ -1,7 +1,7 @@
 BundlesOfFun.Voucher {
     key = "buried_treasure",
     name = "Buried Treasure",
-    bundle = "coupons",
+    bundle = { "coupons", { "fish" } },
     requires = { "v_bof_ice_bucket" },
     pos = { x = 3, y = 1 },
     unlocked = false,

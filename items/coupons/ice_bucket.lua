@@ -1,7 +1,7 @@
 BundlesOfFun.Voucher {
     key = "ice_bucket",
     name = "Ice Bucket",
-    bundle = "coupons",
+    bundle = { "coupons", { "fish" } },
     pos = { x = 3, y = 0 },
     atlas = "voucher",
     redeem = function(self, card, area)

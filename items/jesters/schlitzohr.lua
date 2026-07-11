@@ -14,7 +14,6 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			local blueprint = context.blueprint
 			-- on the fourth day of christmas, my true love gave to me
 			local four_calling_birds = context.blueprint_card or card
 			-- three_french_hens
@@ -32,7 +31,7 @@ BundlesOfFun.Joker({
 			for i = 1, card.ability.extra.cards do
 				local percent = 1.15 - (i - 0.999) / (card.ability.extra.cards - 0.998) * 0.3
 				G.E_MANAGER:add_event(Event({
-					trigger = 'after',
+					trigger = "after",
 					delay = 0.15,
 					func = function()
 						play_sound("card1", percent)
@@ -50,12 +49,14 @@ BundlesOfFun.Joker({
 						func = function()
 							if G.deck and G.deck.cards then
 								local sorted_cards = {}
-								for _, c in ipairs(G.deck.cards) do
-									table.insert(sorted_cards, c)
+								for _, c in ipairs(G.deck.cards) do -- todo: make this compatible with other mods that add ranks by using the same function as "Sort Hand: Rank"
+									if not SMODS.has_no_rank(c) then
+										table.insert(sorted_cards, c)
+									end
 								end
 								table.sort(sorted_cards, function(a, b) return (a:get_id() or 0) < (b:get_id() or 0) end)
 								local target_cards = {}
-								local skip_count = blueprint and (blueprint * card.ability.extra.cards) or 0
+								local skip_count = context.blueprint and (context.blueprint * card.ability.extra.cards) or 0
 								for i = 1 + skip_count, math.min(card.ability.extra.cards + skip_count, #sorted_cards) do
 									table.insert(target_cards, sorted_cards[i])
 								end

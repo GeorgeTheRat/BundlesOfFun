@@ -360,9 +360,14 @@ return {
             j_bof_angler = {
                 name = "Angler",
                 text = {
-                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult for",
-                    "every {C:fish}Fish{} card held",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3# and {C:mult}+#4#{C:inactive} Mult)"
+                    {
+                        "{C:chips}+#1#{} Chips per {C:fish}Fish{} card held",
+                        "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
+                    },
+                    {
+                        "{C:mult}+#3#{} Mult per {C:fish}Fish{} card expired",
+                        "{C:inactive}(Currently {C:mult}+#4#{C:inactive} Mult)"
+                    }
                 }
             },
             j_bof_pianoman = {
@@ -696,7 +701,7 @@ return {
             c_bof_goldfish_s = {
                 name = "Goldfish {X:small}Small",
                 text = {
-                    "Earn {C:money}$#1#{} and",
+                    "Earn {C:money}$#1#{} when hand played and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -728,7 +733,7 @@ return {
             c_bof_goldfish_b = {
                 name = "Goldfish {X:big}Big",
                 text = {
-                    "Earn {C:money}$#1#{} and",
+                    "Earn {C:money}$#1#{} when hand played and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -771,8 +776,8 @@ return {
                 name = "Goldfish {X:legendary}Legendary",
                 text = {
                     "Earn money equal to the",
-                    "{C:attention}current amount{} of {C:attention}interest",
-                    "that would be earned,",
+                    "{C:attention}current amount{} of {C:attention}interest{} that",
+                    "would be earned when hand played,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 },
                 unlock = {
