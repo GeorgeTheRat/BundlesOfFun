@@ -1,7 +1,6 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 0
 
 # remove base potato chips from lightning deck
 [[patches]]
@@ -12,7 +11,7 @@ pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma
 position = "before"
 payload = '''
 -- patched by bundles of fun
-if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning" then
+if (G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning") or (G.GAME.blind and G.GAME.blind.name == "The Irradiated" and not G.GAME.blind.disabled) then
     return self.ability.bonus + (self.ability.perma_bonus or 0)
 end
 '''

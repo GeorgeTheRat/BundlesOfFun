@@ -2,10 +2,10 @@ SMODS.Blind {
     key = "prime",
     name = "The Prime",
     bundle = "enemies",
-    pos = { x = 0, y = 0 },
+    pos = { y = 0 },
     atlas = "blind",
     boss = { min = 3 },
-    boss_colour = HEX("3a55ab"),
+    boss_colour = HEX("508e76"),
 	calculate = function(self, blind, context)
         if not blind.disabled and context.debuff_hand then
             local seal = false

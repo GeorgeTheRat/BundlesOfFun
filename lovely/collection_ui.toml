@@ -1,6 +1,6 @@
 [manifest]
 version = "1.0.0"
-lovely = "1.0.0"
+dump_lua = true
 
 # collection ui needs to show dynamic tallies
 [[patches]]

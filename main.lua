@@ -166,8 +166,8 @@ local files = {
     enemies = {
         list = {
             "prime",
-            -- "decay",
-            -- "irradiated",
+            "decay",
+            "irradiated",
             -- "change",
             -- "tiny",
             -- "damping",

@@ -85,7 +85,6 @@ local function create_category_badge(category_key, shared_scale_fac)
     }
 end
 
--- todo: make this work in-blind by patching G.FUNCS.HUD_blind_badge
 function SMODS.create_mod_badges(obj, badges)
     if SMODS.config.no_mod_badges then
         return
@@ -187,4 +186,46 @@ function SMODS.create_mod_badges(obj, badges)
     else
         original_create_mod_badges(obj, badges)
     end
+end
+
+local original_HUD_blind_badge = G.FUNCS.HUD_blind_badge
+G.FUNCS.HUD_blind_badge = function(e)
+    if G.GAME.blind.in_blind and G.GAME.blind.config.blind and G.GAME.blind.config.blind.bundle then
+        if not e.bof_badges_created then
+            local blind = G.GAME.blind.config.blind
+            local badges = {}
+            SMODS.create_mod_badges(blind, badges)
+            if #badges > 0 then
+                local unwrapped_badges = {}
+                for i = 1, #badges do
+                    if badges[i].nodes and #badges[i].nodes > 0 then
+                        for j = 1, #badges[i].nodes do
+                            local badge = badges[i].nodes[j]
+                            if badge.config then
+                                badge.config.minw = nil
+                                badge.config.maxw = nil
+                            end
+                            if badge.nodes and #badge.nodes > 0 then
+                                for k = 1, #badge.nodes do
+                                    if badge.nodes[k].config then
+                                        badge.nodes[k].config.minw = 5
+                                        badge.nodes[k].config.maxw = 5
+                                    end
+                                end
+                            end
+                            table.insert(unwrapped_badges, badge)
+                        end
+                    end
+                end
+                e.config.colour = G.C.TRANSPARENT
+                e.config.emboss = 0
+                for i = 1, #unwrapped_badges do
+                    e.UIBox:add_child(unwrapped_badges[i], e)
+                end
+                e.bof_badges_created = true
+            end
+        end
+        return
+    end
+    original_HUD_blind_badge(e)
 end

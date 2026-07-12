@@ -49,12 +49,12 @@ BundlesOfFun.Joker({
 						func = function()
 							if G.deck and G.deck.cards then
 								local sorted_cards = {}
-								for _, c in ipairs(G.deck.cards) do -- todo: make this compatible with other mods that add ranks by using the same function as "Sort Hand: Rank"
+								for _, c in ipairs(G.deck.cards) do
 									if not SMODS.has_no_rank(c) then
 										table.insert(sorted_cards, c)
 									end
 								end
-								table.sort(sorted_cards, function(a, b) return (a:get_id() or 0) < (b:get_id() or 0) end)
+								table.sort(sorted_cards, function(a, b) return (SMODS.Ranks[a.base.value] and SMODS.Ranks[a.base.value].sort_nominal or 0) < (SMODS.Ranks[b.base.value] and SMODS.Ranks[b.base.value].sort_nominal or 0) end)
 								local target_cards = {}
 								local skip_count = context.blueprint and (context.blueprint * card.ability.extra.cards) or 0
 								for i = 1 + skip_count, math.min(card.ability.extra.cards + skip_count, #sorted_cards) do

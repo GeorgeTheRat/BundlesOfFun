@@ -1,0 +1,23 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# decay update function
+[[patches]] 
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:update(dt)"
+position = "after"
+payload = '''
+-- patched by bundles of fun
+    if G.jokers and self.area == G.jokers and G.GAME and G.GAME.blind and G.GAME.blind.name == "The Decay" and not G.GAME.blind.disabled then
+        local rightmost = false
+        if self == G.jokers.cards[#G.jokers.cards] then
+            rightmost = true
+        end
+        if self.debuff ~= rightmost then
+            self:set_debuff(rightmost)
+        end
+    end
+'''
+match_indent = true

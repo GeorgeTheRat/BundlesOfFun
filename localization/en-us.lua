@@ -886,8 +886,23 @@ return {
             bl_bof_prime = {
                 name = "The Prime",
                 text = {
-                    "Cannot play cards",
-                    "with a Seal"
+                    "Must play cards",
+                    "without a Seal"
+                }
+            },
+            bl_bof_decay = {
+                name = "The Decay",
+                text = {
+                    "Rightmost Joker",
+                    "is disabled"
+                }
+            },
+            bl_bof_irradiated = {
+                name = "The Irradiated",
+                text = {
+                    "Played cards do",
+                    "not give ther base",
+                    "chips when scored"
                 }
             }
         },
