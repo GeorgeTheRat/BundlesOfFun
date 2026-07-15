@@ -24,7 +24,7 @@ BundlesOfFun.Joker {
                 trigger = "after",
                 delay = 0.4,
                 func = function()
-                    if G.jokers.config.card_limit - #G.jokers.cards >= 1 then
+                    if #G.jokers.cards < G.jokers.config.card_limit then
                         local rarity = 1
                         while rarity == 1 or rarity == 4 do
                             rarity = SMODS.poll_rarity("Joker", "j_bof_zeke")
@@ -33,12 +33,12 @@ BundlesOfFun.Joker {
                             local rarity_names = { [2] = "Uncommon", [3] = "Rare" }
                             rarity = rarity_names[rarity]
                         end
-                        SMODS.add_card {
+                        local new_card = SMODS.add_card {
                             set = "Joker",
                             rarity = rarity,
-                            key_append = "j_bof_zeke",
-                            allow_duplicates = false
+                            key_append = "j_bof_zeke"
                         }
+                        new_card:start_materialize()
                         card:juice_up(0.3, 0.5)
                     end
                     return true

@@ -12,8 +12,6 @@ match_indent = true
 payload = '''
 -- patched by bundles of fun
 if G.GAME.bof_pianoman_unlimited_boosters and not (G.GAME.jest_change_booster_options and (G.GAME.jest_change_booster_options.trigger or G.GAME.jest_change_booster_options.pack_choices == "unlimited")) then
-    local shrimp_jokers = SMODS.find_card("j_bof_shrimp")
-    local shrimp_count = shrimp_jokers and #shrimp_jokers or 0
-    G.GAME.pack_choices = _size + (shrimp_count * 2)
+    G.GAME.pack_choices = _size
 end
 '''
