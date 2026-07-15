@@ -31,5 +31,6 @@ else
         G.GAME.bosses_used[boss] = 0
     end
 end
+G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
 '''
 match_indent = true

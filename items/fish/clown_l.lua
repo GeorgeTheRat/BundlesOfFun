@@ -24,11 +24,12 @@ BundlesOfFun.Consumable {
             if #G.jokers.cards < G.jokers.config.card_limit then
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        SMODS.add_card {
+                        local new_card = SMODS.add_card {
                             set = "Joker",
                             rarity = rarity,
                             key_append = "bof_clown_l"
                         }
+                        new_card:start_materialize()
                         return true
                     end
                 }))
