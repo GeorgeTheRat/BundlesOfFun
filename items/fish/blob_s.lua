@@ -1,10 +1,10 @@
 BundlesOfFun.Consumable {
-    key = "clown_s",
-    name = "Clownfish Small",
+    key = "blob_s",
+    name = "Blobfish Small",
     bundle = "fish",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    pos = { x = 5, y = 0 },
+    pos = { x = 6, y = 0 },
     config = {
         card_limit = 1,
         extra = { rounds_remaining = 1 }
@@ -21,21 +21,19 @@ BundlesOfFun.Consumable {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            if #G.jokers.cards < G.jokers.config.card_limit then
+            if #G.consumeables.cards < G.consumeables.config.card_limit then
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        local new_card = SMODS.add_card {
-                            set = "Joker",
-                            rarity = "Common",
-                            key_append = "bof_clown_s"
+                        SMODS.add_card {
+                            set = "Planet",
+                            key_append = "bof_blob_s"
                         }
-                        new_card:start_materialize()
                         return true
                     end
                 }))
                 return {
-                    message = localize("k_plus_joker"),
-                    colour = G.C.BLUE
+                    message = localize("k_plus_planet"),
+                    colour = G.C.SECONDARY_SET.Planet
                 }
             end
         end

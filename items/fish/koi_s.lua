@@ -1,19 +1,23 @@
 BundlesOfFun.Consumable {
-    key = "clown_s",
-    name = "Clownfish Small",
+    key = "koi_s",
+    name = "Koi Small",
     bundle = "fish",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    pos = { x = 5, y = 0 },
+    pos = { x = 6, y = 0 },
     config = {
         card_limit = 1,
-        extra = { rounds_remaining = 1 }
+        extra = {
+            balance_percent = 10,
+            rounds_remaining = 2
+        }
     },
     cost = 4,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
+                card.ability.extra.balance_percent,
                 card.ability.card_limit,
                 card.ability.extra.rounds_remaining
             }
@@ -21,23 +25,9 @@ BundlesOfFun.Consumable {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            if #G.jokers.cards < G.jokers.config.card_limit then
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        local new_card = SMODS.add_card {
-                            set = "Joker",
-                            rarity = "Common",
-                            key_append = "bof_clown_s"
-                        }
-                        new_card:start_materialize()
-                        return true
-                    end
-                }))
-                return {
-                    message = localize("k_plus_joker"),
-                    colour = G.C.BLUE
-                }
-            end
+            return {
+                bof_balance_percent = card.ability.extra.balance_percent
+            }
         end
         if context.end_of_round and context.main_eval and not context.repetition then
             if card.ability.extra.rounds_remaining > 1 then

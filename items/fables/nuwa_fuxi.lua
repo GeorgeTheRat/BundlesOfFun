@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 1 then
+                        if #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
@@ -31,13 +31,17 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
+                return {
+                    message = localize("k_plus_tarot"),
+                    colour = G.C.SET.Tarot
+                }
             end
             if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
+                        if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
@@ -49,6 +53,10 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
+                return {
+                    message = localize("k_plus_tarot"),
+                    colour = G.C.SET.Tarot
+                }
             end
         end
         if G.jokers.cards[#G.jokers.cards] == card then
@@ -57,7 +65,7 @@ BundlesOfFun.Joker {
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
+                        if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
@@ -69,13 +77,17 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
+                return {
+                    message = localize("k_plus_fish"),
+                    colour = G.C.SET.Fish
+                }
             end
             if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
+                        if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
                             card:juice_up(0.3, 0.5)
                             SMODS.add_card({
@@ -87,6 +99,10 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
+                return {
+                    message = localize("k_plus_fish"),
+                    colour = G.C.SET.Fish
+                }
             end
         end
     end

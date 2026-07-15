@@ -4,7 +4,7 @@ BundlesOfFun.Consumable {
     bundle = "fish",
     set = "Fish",
     pools = { ["fish_b"] = true },
-    pos = { x = 4, y = 1 },
+    pos = { x = 5, y = 1 },
     config = {
         card_limit = 1,
         extra = { rounds_remaining = 2 }
@@ -26,7 +26,7 @@ BundlesOfFun.Consumable {
                     func = function()
                         local new_card = SMODS.add_card {
                             set = "Joker",
-                            rarity = "Common",
+                            rarity = "Uncommon",
                             key_append = "bof_clown_b"
                         }
                         new_card:start_materialize()

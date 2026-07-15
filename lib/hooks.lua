@@ -770,6 +770,23 @@ function SMODS.destroy_cards(card, args)
     if card and card.ability and card.ability.set == "Fish" then
         G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
         check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
+        
+        local fish_key = card.config.center.key
+        
+        for _, octopus in ipairs(G.consumeables.cards) do
+            if octopus.config.center.key:find("octopus") and octopus ~= card then
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.1,
+                    func = function()
+                        if octopus and octopus.config.center and octopus.config.center.trigger then
+                            octopus.config.center.trigger(octopus, fish_key)
+                        end
+                        return true
+                    end
+                }))
+            end
+        end
     end
     return original_smods_destroy_cards(card, args)
 end

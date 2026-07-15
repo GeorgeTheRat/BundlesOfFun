@@ -529,8 +529,8 @@ return {
                         "{C:inactive}(Must have room)"
                     },
                     {
-                        "Create a random {C:white,X:small}Small{} {C:fish}Fish{} card when {C:attention}Blind{} is selected",
-                        "and a random {C:white,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
+                        "Create a random {C:white,E:1,X:small}Small{} {C:fish}Fish{} card when {C:attention}Blind{} is selected",
+                        "and a random {C:white,E:1,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
                         "if this is the {C:attention}rightmost{} Joker"
                     }
                 },
@@ -716,6 +716,14 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
+            c_bof_koi_s = {
+                name = "Koi {X:small}Small",
+                text = {
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
             c_bof_clown_s = {
                 name = "Clownfish {X:small}Small",
                 text = {
@@ -723,6 +731,24 @@ return {
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_blob_s = {
+                name = "Blobfish {X:small}Small",
+                text = {
+                    "Create a {C:planet}Planet{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_octopus_s = {
+                name = "Octopus {X:small}Small",
+                text = {
+                    "Create a {C:white,E:1,X:small}Small{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
                 }
             },
             c_bof_bass_b = {
@@ -757,6 +783,14 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
+            c_bof_koi_b = {
+                name = "Koi {X:big}Big",
+                text = {
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
             c_bof_clown_b = {
                 name = "Clownfish {X:big}Big",
                 text = {
@@ -764,6 +798,24 @@ return {
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_blob_b = {
+                name = "Blobfish {X:big}Big",
+                text = {
+                    "Create a {C:tarot}Tarot{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_octopus_b = {
+                name = "Octopus {X:big}Big",
+                text = {
+                    "Create a {C:white,E:1,X:big}Big{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
                 }
             },
             c_bof_bass_l = {
@@ -812,12 +864,45 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
+            c_bof_koi_l = {
+                name = "Koi {X:legendary}Legendary",
+                text = {
+                    "Balance {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
             c_bof_clown_l = {
                 name = "Clownfish {X:legendary}Legendary",
                 text = {
                     "Create a non-{C:common}Common{} {C:attention}Joker{} when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_blob_l = {
+                name = "Blobfish {X:legendary}Legendary",
+                text = {
+                    "Create a {C:spectral}Spectral{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_octopus_l = {
+                name = "Octopus {X:legendary}Legendary",
+                text = {
+                    "Create a {C:white,E:1,X:legendary}Legendary{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",
@@ -968,6 +1053,7 @@ return {
             k_bof_destroyed = "Destroyed!",
             k_bof_alarm = "Alarm Set!",
             k_bof_downgrade = "Downgrade!",
+            k_plus_fish = "+1 Fish",
             k_erased = "Erased!",
             k_bof_sticker_applied = "Sticker Applied!",
             k_bof_expired = "Expired!",
