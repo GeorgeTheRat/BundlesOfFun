@@ -166,7 +166,7 @@ local files = {
     enemies = {
         list = {
             "dominant",
-            "regression",
+            "risk",
             "irradiated",
             "change",
             -- "tiny",

@@ -890,8 +890,8 @@ return {
                     "without a Seal"
                 }
             },
-            bl_bof_regression = {
-                name = "The Regression",
+            bl_bof_risk = {
+                name = "The Risk",
                 text = {
                     "Rightmost Joker",
                     "is disabled"
