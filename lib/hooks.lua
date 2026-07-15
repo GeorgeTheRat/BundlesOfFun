@@ -779,8 +779,9 @@ function SMODS.destroy_cards(card, args)
                     trigger = "after",
                     delay = 0.1,
                     func = function()
-                        if octopus and octopus.config.center and octopus.config.center.trigger then
-                            octopus.config.center.trigger(octopus, fish_key)
+                        local effect = octopus.config.center.trigger(octopus, fish_key)
+                        if effect then
+                            SMODS.calculate_effect(effect, octopus)
                         end
                         return true
                     end

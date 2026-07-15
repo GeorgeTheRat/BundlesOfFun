@@ -29,7 +29,9 @@ BundlesOfFun.Consumable {
             }))
             card_eval_status_text(self, "extra", nil, nil, nil, { message = localize("k_plus_fish"), colour = G.C.SET.Fish })
             SMODS.destroy_cards(self, { pinch_anim = true })
-            card_eval_status_text(self, "extra", nil, nil, nil, { message = localize("k_bof_expired") })
+            return {
+                message = localize("k_bof_expired")
+            }
         end
     end
 }
