@@ -111,8 +111,7 @@ SMODS.current_mod.extra_tabs = function()
                             { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
                                 bundle_toggle("flats", G.C.bof_flats),
                                 bundle_toggle("fish", G.C.bof_fish),
-                                bundle_toggle("coupons", G.C.bof_coupons),
-                                bundle_toggle("enemies", G.C.bof_enemies),
+                                bundle_toggle("coupons", G.C.bof_coupons)
                             }}
                         }},
                         { n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
