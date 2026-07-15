@@ -12,7 +12,7 @@ pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma
 position = "before"
 payload = '''
 -- patched by bundles of fun
-if (G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning") or (G.GAME.blind and G.GAME.blind.name == "The Irradiated" and not G.GAME.blind.disabled) then
+if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning" then
     return self.ability.bonus + (self.ability.perma_bonus or 0)
 end
 '''

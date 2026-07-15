@@ -162,35 +162,6 @@ local files = {
             "ice_bucket",
             "buried_treasure"
         }, directory = "items/coupons/"
-    },
-    enemies = {
-        list = {
-            "prime",
-            "decay",
-            "irradiated",
-            "change",
-            -- "tiny",
-            -- "damping",
-            -- "viscous",
-            -- "angle",
-            -- "index",
-            -- "curve",
-            -- "decay",
-            -- "average",
-            -- "frequent",
-            -- "random",
-            -- "useless",
-            -- "irrational",
-            -- "dense",
-            -- "stress",
-            -- "terminal",
-            -- "circuit",
-            -- "particle",
-            -- "golden",
-            -- "square",
-            -- "wave",
-            -- "resistance"
-        }, directory = "items/enemies/"
     }
 }
 
@@ -221,8 +192,4 @@ end
 
 for _, name in ipairs(files["coupons"].list) do
     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
-end
-
-for _, name in ipairs(files["enemies"].list) do
-    assert(SMODS.load_file(files["enemies"].directory .. name .. ".lua"))()
 end

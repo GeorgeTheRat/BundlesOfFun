@@ -881,51 +881,6 @@ return {
                 }
             }
         },
-        -- enemies (& finishers)
-        Blind = {
-            bl_bof_prime = {
-                name = "The Prime",
-                text = {
-                    "Must play cards",
-                    "without a Seal"
-                }
-            },
-            bl_bof_decay = {
-                name = "The Decay",
-                text = {
-                    "Rightmost Joker",
-                    "is disabled"
-                }
-            },
-            bl_bof_irradiated = {
-                name = "The Irradiated",
-                text = {
-                    "Played cards do not give",
-                    "their base chips when scored"
-                }
-            },
-            bl_bof_change = {
-                name = "The Change",
-                text = {
-                    "Enhanced cards are",
-                    "drawn face down"
-                }
-            },
-            bl_bof_damping = {
-                name = "The Damping",
-                text = {
-                    "Rare Jokers are disabled",
-                    "until final hand"
-                }
-            },
-            bl_bof_viscous = {
-                name = "The Viscous",
-                text = {
-                    "Permanently debuff random",
-                    "scoring card per hand"
-                }
-            }
-        },
         Other = {
             p_bof_tackle_normal = {
                 name = "Tackle Pack",
