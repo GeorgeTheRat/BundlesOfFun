@@ -1,6 +1,6 @@
 BundlesOfFun.Consumable {
-    key = "goldfish_s",
-    name = "Goldfish Small",
+    key = "clown_s",
+    name = "Clownfish Small",
     bundle = "fish",
     set = "Fish",
     pools = { ["fish_s"] = true },
@@ -8,11 +8,11 @@ BundlesOfFun.Consumable {
     config = {
         card_limit = 1,
         extra = {
-            dollars = 1,
-            rounds_remaining = 2
+            dollars = 2,
+            rounds_remaining = 3
         }
     },
-    cost = 4,
+    cost = 6,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
@@ -25,9 +25,7 @@ BundlesOfFun.Consumable {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            return {
-                dollars = card.ability.extra.dollars
-            }
+            
         end
         if context.end_of_round and context.main_eval and not context.repetition then
             if card.ability.extra.rounds_remaining > 1 then
@@ -38,7 +36,7 @@ BundlesOfFun.Consumable {
             else
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
-                    message = localize("k_eaten_ex")
+                    message = localize("k_bof_expired")
                 }
             end
         end

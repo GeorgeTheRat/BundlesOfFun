@@ -1,5 +1,5 @@
 BundlesOfFun.Consumable {
-    key = "goldfish_b",
+    key = "gold_b",
     name = "Goldfish Big",
     bundle = "fish",
     set = "Fish",
@@ -38,7 +38,7 @@ BundlesOfFun.Consumable {
             else
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
-                    message = localize("k_eaten_ex")
+                    message = localize("k_bof_expired")
                 }
             end
         end

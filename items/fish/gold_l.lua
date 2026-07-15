@@ -1,5 +1,5 @@
 BundlesOfFun.Consumable {
-    key = "goldfish_l",
+    key = "gold_l",
     name = "Goldfish Legendary",
     bundle = "fish",
     set = "Fish",

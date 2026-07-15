@@ -708,7 +708,7 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_goldfish_s = {
+            c_bof_gold_s = {
                 name = "Goldfish {X:small}Small",
                 text = {
                     "Earn {C:money}$#1#{} when hand played and",
@@ -740,7 +740,7 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_goldfish_b = {
+            c_bof_gold_b = {
                 name = "Goldfish {X:big}Big",
                 text = {
                     "Earn {C:money}$#1#{} when hand played and",
@@ -782,7 +782,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            c_bof_goldfish_l = {
+            c_bof_gold_l = {
                 name = "Goldfish {X:legendary}Legendary",
                 text = {
                     "Earn money equal to the",
@@ -941,6 +941,7 @@ return {
             k_bof_downgrade = "Downgrade!",
             k_erased = "Erased!",
             k_bof_sticker_applied = "Sticker Applied!",
+            k_bof_expired = "Expired!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",

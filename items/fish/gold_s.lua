@@ -1,15 +1,15 @@
 BundlesOfFun.Consumable {
-    key = "bass_s",
-    name = "Largemouth Bass Small",
+    key = "gold_s",
+    name = "Goldfish Small",
     bundle = "fish",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    pos = { x = 0, y = 0 },
+    pos = { x = 3, y = 1 },
     config = {
         card_limit = 1,
         extra = {
-            chips = 30,
-            rounds_remaining = 4
+            dollars = 1,
+            rounds_remaining = 2
         }
     },
     cost = 4,
@@ -17,7 +17,7 @@ BundlesOfFun.Consumable {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
+                card.ability.extra.dollars,
                 card.ability.card_limit,
                 card.ability.extra.rounds_remaining
             }
@@ -26,7 +26,7 @@ BundlesOfFun.Consumable {
     calculate = function(self, card, context)
         if context.joker_main then
             return {
-                chips = card.ability.extra.chips
+                dollars = card.ability.extra.dollars
             }
         end
         if context.end_of_round and context.main_eval and not context.repetition then

@@ -5,7 +5,7 @@
   "description": "Something for everyone!",
   "prefix": "bof",
   "main_file": "main.lua",
-  "version": "0.6.0-alpha",
+  "version": "0.7.0-alpha",
   "icon_path": "icon.png",
   "dependencies": [
     "Steamodded (>=1.0.0~BETA-1731b)",
