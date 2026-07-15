@@ -33,3 +33,15 @@ else
 end
 '''
 match_indent = true
+
+# fix nil crash
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] + 1'''
+position = "at"
+payload = '''
+-- patched by bundles of fun
+G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
+'''
+match_indent = true
