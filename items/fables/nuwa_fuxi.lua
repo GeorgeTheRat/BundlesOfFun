@@ -22,7 +22,6 @@ BundlesOfFun.Joker {
                     func = function()
                         if #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
                                 set = "Tarot",
                                 key_append = "f_nuwa_fuxi"
@@ -43,7 +42,6 @@ BundlesOfFun.Joker {
                     func = function()
                         if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
                                 set = "Tarot",
                                 edition = "e_negative",
@@ -67,7 +65,6 @@ BundlesOfFun.Joker {
                     func = function()
                         if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
                                 set = "fish_s",
                                 area = G.consumeables,
@@ -89,7 +86,6 @@ BundlesOfFun.Joker {
                     func = function()
                         if #G.consumeables.cards < G.consumeables.config.card_limit then
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
                                 set = "fish_b",
                                 area = G.consumeables,
