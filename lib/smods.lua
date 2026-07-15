@@ -55,15 +55,6 @@ SMODS.Atlas({
     py = 95,
 })
 
-SMODS.Atlas {
-	key = "blind",
-    atlas_table = "ANIMATION_ATLAS",
-	path = "blind.png",
-	px = 34,
-	py = 34,
-	frames = 21
-}
-
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"
@@ -89,7 +80,7 @@ SMODS.ConsumableType({
     key = "Fish",
     primary_colour = { 1.0, 0.6, 0.7, 1 },
     secondary_colour = { 1.0, 0.6, 0.7, 1 },
-    collection_rows = { 2, 2 },
+    collection_rows = { 2, 3 },
     shop_rate = 0,
     select_card = "consumeables",
     default = "c_bof_bass_s",

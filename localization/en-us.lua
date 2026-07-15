@@ -687,7 +687,7 @@ return {
             c_bof_bass_s = {
                 name = "Largemouth Bass {X:small}Small",
                 text = {
-                    "{C:chips}+#1#{} Chips and",
+                    "{C:chips}+#1#{} Chips,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -695,7 +695,7 @@ return {
             c_bof_betta_s = {
                 name = "Betta {X:small}Small",
                 text = {
-                    "{C:mult}+#1#{} Mult and",
+                    "{C:mult}+#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -703,7 +703,7 @@ return {
             c_bof_trout_s = {
                 name = "Rainbow Trout {X:small}Small",
                 text = {
-                    "{C:white,X:mult}X#1#{} Mult and",
+                    "{C:white,X:mult}X#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -711,15 +711,24 @@ return {
             c_bof_gold_s = {
                 name = "Goldfish {X:small}Small",
                 text = {
-                    "Earn {C:money}$#1#{} when hand played and",
+                    "Earn {C:money}$#1#{} when hand played,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_clown_s = {
+                name = "Clownfish {X:small}Small",
+                text = {
+                    "Create a {C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
                 }
             },
             c_bof_bass_b = {
                 name = "Largemouth Bass {X:big}Big",
                 text = {
-                    "{C:chips}+#1#{} Chips and",
+                    "{C:chips}+#1#{} Chips,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -727,7 +736,7 @@ return {
             c_bof_betta_b = {
                 name = "Betta {X:big}Big",
                 text = {
-                    "{C:mult}+#1#{} Mult and",
+                    "{C:mult}+#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -735,7 +744,7 @@ return {
             c_bof_trout_b = {
                 name = "Rainbow Trout {X:big}Big",
                 text = {
-                    "{C:white,X:mult}X#1#{} Mult and",
+                    "{C:white,X:mult}X#1#{} Mult,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
@@ -743,9 +752,18 @@ return {
             c_bof_gold_b = {
                 name = "Goldfish {X:big}Big",
                 text = {
-                    "Earn {C:money}$#1#{} when hand played and",
+                    "Earn {C:money}$#1#{} when hand played,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_clown_b = {
+                name = "Clownfish {X:big}Big",
+                text = {
+                    "Create an {C:uncommon}Uncommon{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
                 }
             },
             c_bof_bass_l = {
@@ -793,7 +811,18 @@ return {
                 unlock = {
                     "{E:1,s:1.3}?????",
                 }
-            }
+            },
+            c_bof_clown_l = {
+                name = "Clownfish {X:legendary}Legendary",
+                text = {
+                    "Create a non-{C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
         },
         -- coupons
         Voucher = {
@@ -955,7 +984,7 @@ return {
             option_bof_flats = "Flats",
             option_bof_fish = "Fish",
             option_bof_coupons = "Coupons",
-            option_bof_enemies = "Enemies",
+            -- option_bof_enemies = "Enemies",
             -- option_bof_finishers = "Finishers",
             -- option_bof_games = "Games"
         }
