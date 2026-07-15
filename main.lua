@@ -168,7 +168,7 @@ local files = {
             "prime",
             "decay",
             "irradiated",
-            -- "change",
+            "change",
             -- "tiny",
             -- "damping",
             -- "viscous",

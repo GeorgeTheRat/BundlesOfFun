@@ -3,6 +3,7 @@ version = "1.0.0"
 dump_lua = true
 
 # remove base potato chips from lightning deck
+# also irradiated function for disabling base chips
 [[patches]]
 [patches.pattern]
 target = "card.lua"

@@ -2,7 +2,7 @@
 version = "1.0.0"
 dump_lua = true
 
-# decay update function
+# decay update function to disable rightmost joker at all times
 [[patches]] 
 [patches.pattern]
 target = "card.lua"

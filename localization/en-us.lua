@@ -900,9 +900,29 @@ return {
             bl_bof_irradiated = {
                 name = "The Irradiated",
                 text = {
-                    "Played cards do",
-                    "not give ther base",
-                    "chips when scored"
+                    "Played cards do not give",
+                    "their base chips when scored"
+                }
+            },
+            bl_bof_change = {
+                name = "The Change",
+                text = {
+                    "Enhanced cards are",
+                    "drawn face down"
+                }
+            },
+            bl_bof_damping = {
+                name = "The Damping",
+                text = {
+                    "Rare Jokers are disabled",
+                    "until final hand"
+                }
+            },
+            bl_bof_viscous = {
+                name = "The Viscous",
+                text = {
+                    "Permanently debuff random",
+                    "scoring card per hand"
                 }
             }
         },
