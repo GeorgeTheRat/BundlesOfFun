@@ -47,23 +47,48 @@ BundlesOfFun.Joker {
             end
             if card.ability.extra.perma_mult <= 0 then
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.4,
+                    trigger = "after",
+                    delay = 0.1,
+                    func = function()
+                        play_sound("tarot1")
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end
+                }))
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        card:flip()
+                        play_sound("card1", 1)
+                        card:juice_up(0.3, 0.3)
+                        return true
+                    end
+                }))
+                delay(0.2)
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.1,
                     func = function()
                         card:set_ability("j_bof_core")
                         return true
                     end
                 }))
-                return {
-                    message = localize("k_eaten_ex")
-                }
+                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_eaten_ex") })
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        card:flip()
+                        play_sound("tarot2", 1, 0.6)
+                        card:juice_up(0.3, 0.3)
+                        return true
+                    end
+                }))
             end
             return {
                 message = return_message
             }
         end
-    end,
-    no_collection = function()
-        return BundlesOfFun.config.bundles.appetizers ~= true
     end
 }
