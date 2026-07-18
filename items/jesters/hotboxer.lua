@@ -32,7 +32,7 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.buying_card and context.card.ability.set == "Tarot" then
-			-- on the third day day of christmas, my true love gave to me
+			-- on the third day of christmas, my true love gave to me
 			local three_french_hens = context.blueprint_card or card
 			-- two_turtle_doves
 			-- and a_partridge_in_a_pear_tree
