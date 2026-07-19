@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
     },
     pos = { x = 2, y = 0 },
     attributes = { "mult", "scaling", "modify_card", "perma_bonus", "food" },
-    cost = 6,
+    cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
