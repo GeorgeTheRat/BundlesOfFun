@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)
-        if context.modify_hand then
+        if context.final_scoring_step then
             G.E_MANAGER:add_event(Event({
                 func = function()
                     card:juice_up(0.3, 0.5)
@@ -32,6 +32,7 @@ BundlesOfFun.Joker {
             update_hand_text({}, { chips = hand_chips, mult = mult })
         end
         if context.discard and G.GAME.current_round.discards_left <= 1 and not context.blueprint then
+            card:juice_up(0.3, 0.5)
             return {
                 remove = true
             }

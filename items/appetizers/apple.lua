@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "appetizers",
     config = {
         extra = {
-            perma_mult = 4,
+            perma_mult = 3,
             perma_mult_mod = 1
         }
     },

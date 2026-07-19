@@ -201,10 +201,14 @@ return {
             j_bof_golden_sun = {
                 name = "Mr. Golden Sun",
                 text = {
-                    "Halve base {C:chips}Chips{} and {C:mult}Mult",
-                    "{C:red}Destroy{} all cards",
-                    "in final {C:attention}discarded",
-                    "{C:attention} hand{} each round"
+                    {
+                        "{C:red}Destroy{} all cards in final",
+                        "{C:attention}discarded hand{} each round"
+                    },
+                    {
+                        "Halve {C:chips}Chips{} and {C:mult}Mult{} when",
+                        "calculating score for played hand"
+                    }
                 }
             },
             j_bof_jack_frost = {
