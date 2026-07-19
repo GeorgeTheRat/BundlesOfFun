@@ -100,6 +100,9 @@ local files = {
             "rummikub",
             "passport",
             "clock",
+            -- "billy_bass",
+            "fish_bowl",
+            "dead_fish_bowl"
         }, directory = "items/normalities/"
     },
     fables = {

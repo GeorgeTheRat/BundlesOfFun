@@ -5,7 +5,7 @@ BundlesOfFun.Consumable {
     set = "Fish",
     soul_set = "Fish",
     pools = { ["fish_l"] = true },
-    pos = { x = 6, y = 2 },
+    pos = { x = 7, y = 2 },
     config = { card_limit = 1 },
     cost = 20,
     unlocked = false,
@@ -33,5 +33,8 @@ BundlesOfFun.Consumable {
                 message = localize("k_bof_expired")
             }
         end
+    end,
+    set_card_type_badge = function(self, card, badges)
+        badges[#badges + 1] = create_badge(localize("k_fish_q"), get_type_colour(card.config.center or card.config, card), G.C.FISH, 1.2)
     end
 }

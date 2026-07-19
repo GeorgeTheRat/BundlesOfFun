@@ -443,6 +443,31 @@ return {
                     "{C:inactive,E:bof_alarm}Active!",
                 }
             },
+            j_bof_billy_bass = {
+                name = "Big Mouth Billy Bass",
+                text = {
+                    "Retrigger all {C:attention}held{}",
+                    "{C:fish}Fish{} card abilities"
+                }
+            },
+            j_bof_fish_bowl = {
+                name = "Fish in a Bowl",
+                text = {
+                    "Gains {C:money}$#1#{} of sell value",
+                    "at end of round",
+                    "{C:green}#2# in #3#{} chance to {C:red}die{} instead,",
+                    "retaining this Joker's {C:attention}sell value"
+                }
+            },
+            j_bof_dead_fish_bowl = {
+                name = "Dead Fish in a Bowl",
+                text = {
+                    "Creates a {C:white,E:1,X:small}Small{} {C:attention}Goldfish{} and loses",
+                    "{C:money}$#1#{} of sell value at end of round",
+                    "This card is {C:red}destroyed{} when",
+                    "its {C:attention}sell value{} reaches {C:money}$#1#"
+                }
+            },
             -- Fables
             j_bof_narr = {
                 name = "Narr",
@@ -1061,7 +1086,7 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
-            bl_bof_prime = "Must not play cards with Seals",
+            k_fish_q = "Fish?",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",
