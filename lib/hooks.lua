@@ -408,7 +408,7 @@ end
 -- pianoman: force common jokers in shop and booster packs
 local create_card_ref = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if next(SMODS.find_card("j_bof_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and area == G.shop_jokers and _type ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
         end
@@ -423,7 +423,6 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
         _rarity = 0.7
         forced_key = nil
     end
-    
     return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
@@ -459,7 +458,7 @@ end
 
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
-    if next(SMODS.find_card("j_bof_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and t.area == G.shop_jokers and t.set ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             t.set = "Tarot"
             t.key = nil

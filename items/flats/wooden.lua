@@ -21,6 +21,7 @@ BundlesOfFun.Back {
     end
 }
 
+-- todo: make it so that wooden doesnt count for stuff like gumphrey using SMODS.get_enhancements
 SMODS.Enhancement {
     key = "wooden",
     name = "Wooden",
@@ -30,5 +31,7 @@ SMODS.Enhancement {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.bonus } }
     end,
-    in_pool = false
+    in_pool = function()
+        return false
+    end
 }

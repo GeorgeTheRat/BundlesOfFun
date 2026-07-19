@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
 	bundle = "jesters",
 	config = {
 		extra = {
-			odds = 5,
+			odds = 4,
 			chips = 25,
 			mult = 5,
 			xmult = 1.25,
