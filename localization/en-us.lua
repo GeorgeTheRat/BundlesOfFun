@@ -478,7 +478,7 @@ return {
                     "Creates a {C:white,E:1,X:small}Small{} {C:attention}Goldfish{} and loses",
                     "{C:money}$#1#{} of sell value at end of round",
                     "This card is {C:red}destroyed{} when",
-                    "its {C:attention}sell value{} reaches {C:money}$#1#"
+                    "its {C:attention}sell value{} reaches {C:money}$#2#"
                 }
             },
             -- Fables
