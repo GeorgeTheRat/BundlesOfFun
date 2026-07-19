@@ -421,7 +421,6 @@ function Game:start_run(arg)
     G.GAME.bof_lottery_ticket_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
-    G.GAME.bof_octopus_claimed_fish = nil
     G.GAME.bof_octopus_triggered = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
