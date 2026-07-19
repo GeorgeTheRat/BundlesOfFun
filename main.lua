@@ -90,7 +90,8 @@ local files = {
             "zeke",
             "laughing_stock",
             "angler",
-            "pianoman"
+            "pianoman",
+            "matey"
         }, directory = "items/jesters/"
     },
     normalities = {
@@ -127,7 +128,8 @@ local files = {
             "retro",
             "soapy",
             "display",
-            "lightning"
+            "lightning",
+            "scaly"
         }, directory = "items/flats/"
     },
     fish = {

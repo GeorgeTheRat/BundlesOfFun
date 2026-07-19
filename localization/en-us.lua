@@ -175,8 +175,21 @@ return {
                     },
                     {
                         "{C:fish}Tackle Packs{} always contain",
-                        "only {C:white,X:big}Big{} {C:fish}Fish{} cards"
-                    }
+                        "only {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
+                    },
+                    -- {
+                    --     "{C:attention}Unenhanced{} cards in",
+                    --     "{C:attention}Standard Packs{} become {C:attention}Wooden{}"
+                    -- }
+                }
+            },
+            j_bof_matey = {
+                name = "Matey",
+                text = {
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
+                    "into their respective",
+                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
+                    "instead of expiring"
                 }
             },
             j_bof_timmy = {
@@ -644,6 +657,17 @@ return {
                 unlock = {
                     "Have exactly {C:attention}10{} cards of",
                     "each suit in your deck"
+                }
+            },
+            b_bof_scaly = {
+                name = "Scaly Deck",
+                text = {
+                    "Start with {C:attention,T:v_bof_ice_bucket}Ice Bucket{} and",
+                    "{C:attention}2{} copies of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
+                },
+                unlock = {
+                    "Discover a",
+                    "{C:white,E:1,X:legendary}Legendary{} {C:fish}Fish{} card"
                 }
             },
             b_bof_retro = {

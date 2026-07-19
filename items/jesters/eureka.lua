@@ -7,5 +7,8 @@ BundlesOfFun.Joker {
     cost = 8,
     rarity = 3,
     blueprint_compat = false,
-    atlas = "joker"
+    atlas = "joker",
+    -- loc_vars = function(self, info_queue, card)
+    --     info_queue[#info_queue + 1] = G.P_CENTERS.m_bof_wooden
+    -- end
 }

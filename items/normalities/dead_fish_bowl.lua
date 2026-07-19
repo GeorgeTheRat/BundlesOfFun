@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = false
         }
     },
-    pos = { x = 2, y = 6 },
+    pos = { x = 3, y = 6 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "fish" },
     cost = 1,
@@ -63,5 +63,7 @@ BundlesOfFun.Joker {
     remove_from_deck = function(self, card, context)
         G.GAME.bof_fish_bowl_sell_cost = nil
     end,
-    in_pool = false
+    in_pool = function()
+        return false
+    end
 }

@@ -3,7 +3,7 @@
 --     key = "billy_bass",
 --     name = "Billy Bass",
 --     bundle = { "normalities", { "fish" } },
---     pos = { x = 0, y = 6 },
+--     pos = { x = 1, y = 6 },
 --     attributes = { "retrigger", "fish" },
 --     cost = 8,
 --     rarity = 2,

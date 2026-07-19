@@ -177,8 +177,21 @@ return {
                     },
                     {
                         "Los {C:fish}Paquetes de Pescador{}",
-                        "siempre contienen {C:fish}Peces{} {C:white,X:big}Grandes{}"
-                    }
+                        "siempre contienen {C:fish}Peces{} {C:white,E:1,X:big}Grandes{}"
+                    },
+                    -- {
+                    --     "Las cartas {C:attention}sin mejoras{} en",
+                    --     "los {C:attention}Paquetes Estándar{} se vuelven {C:enhanced}Madera{}"
+                    -- }
+                }
+            },
+            j_bof_matey = {
+                name = "Camarada",
+                text = {
+                    "Las cartas de {C:fish}Pez{} {C:white,E:1,X:big}Grandes{}",
+                    "se transforman en su",
+                    "carta de {C:fish}Pez{} {C:white,E:1,X:small}Pequeña{}",
+                    "en lugar de expirar"
                 }
             },
             j_bof_timmy = {
@@ -610,6 +623,17 @@ return {
                 unlock = {
                     "Ten exactamente {C:attention}10{} cartas de",
                     "cada palo en tu baraja"
+                }
+            },
+            b_bof_scaly = {
+                name = "Baraja Escamosa",
+                text = {
+                    "Empiezas con {C:attention,T:v_bof_ice_bucket}Cubo de Hielo{} y",
+                    "{C:attention}2{} copias de {C:fish,T:c_bof_octopus_b}Pulpo {C:white,E:1,X:big}Grande"
+                },
+                unlock = {
+                    "Descubre una",
+                    "carta de {C:fish}Pez{} {C:white,E:1,X:legendary}Legendaria{}"
                 }
             },
             b_bof_retro = {

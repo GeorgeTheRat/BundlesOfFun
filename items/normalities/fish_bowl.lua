@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             odds = 3
         }
     },
-    pos = { x = 1, y = 6 },
+    pos = { x = 2, y = 6 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "chance", "fish" },
     cost = 5,
