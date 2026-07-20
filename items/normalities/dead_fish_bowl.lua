@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = false
         }
     },
-    pos = { x = 3, y = 6 },
+    pos = { x = 4, y = 6 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "fish" },
     cost = 1,
@@ -30,7 +30,7 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.end_of_round and context.main_eval and not context.blueprint then
-            if #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
+            if #G.consumeables.cards < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,

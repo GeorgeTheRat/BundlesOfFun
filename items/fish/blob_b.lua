@@ -20,22 +20,22 @@ BundlesOfFun.Consumable {
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            if #G.consumeables.cards < G.consumeables.config.card_limit then
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        SMODS.add_card {
-                            set = "Tarot",
-                            key_append = "bof_blob_b"
-                        }
-                        return true
-                    end
-                }))
-                return {
-                    message = localize("k_plus_tarot"),
-                    colour = G.C.SECONDARY_SET.Tarot
-                }
-            end
+        if context.joker_main and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    SMODS.add_card {
+                        set = "Tarot",
+                        key_append = "bof_blob_b"
+                    }
+                    G.GAME.consumeable_buffer = 0
+                    return true
+                end
+            }))
+            return {
+                message = localize("k_plus_tarot"),
+                colour = G.C.SECONDARY_SET.Tarot
+            }
         end
         if context.end_of_round and context.main_eval and not context.repetition then
             if card.ability.extra.rounds_remaining > 1 then

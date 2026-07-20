@@ -14,22 +14,22 @@ BundlesOfFun.Consumable {
         return { vars = { card.ability.card_limit } }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            if #G.consumeables.cards < G.consumeables.config.card_limit then
-                G.E_MANAGER:add_event(Event({
-                    func = function()
-                        SMODS.add_card {
-                            set = "Spectral",
-                            key_append = "bof_blob_l"
-                        }
-                        return true
-                    end
-                }))
-                return {
-                    message = localize("k_plus_spectral"),
-                    colour = G.C.SECONDARY_SET.Spectral
-                }
-            end
+        if context.joker_main and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    SMODS.add_card {
+                        set = "Spectral",
+                        key_append = "bof_blob_l"
+                    }
+                    G.GAME.consumeable_buffer = 0
+                    return true
+                end
+            }))
+            return {
+                message = localize("k_plus_spectral"),
+                colour = G.C.SECONDARY_SET.Spectral
+            }
         end
     end
 }

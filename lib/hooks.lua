@@ -482,30 +482,6 @@ G.FUNCS.skip_blind = function(e)
     end
 end
 
--- hotboxer: rightmost shop slot is always tarot
--- pianoman: force common jokers in shop and booster packs
-local create_card_ref = create_card
-function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if next(SMODS.find_card("j_bof_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
-        if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
-            return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-        end
-    end
-    if
-        G.GAME.bof_pianoman_common_only and
-        (area == G.shop_jokers or area == G.pack_cards) and
-        (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")
-    then
-        _type = "Joker"
-        legendary = nil
-        _rarity = 0.7
-        forced_key = nil
-    end
-    
-    return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-end
-
--- continuation of hotboxer
 -- ice bucket and buried treasure logic
 local function bof_apply_fish_voucher_state(card)
     if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
@@ -528,13 +504,13 @@ local function bof_apply_fish_voucher_state(card)
     card.ability.bof_fish_extra_slots_applied = extra_slots
 end
 BundlesOfFun.apply_fish_voucher_state = bof_apply_fish_voucher_state
-
 local original_card_set_ability = Card.set_ability
 function Card:set_ability(center, initial, delay_sprites)
     original_card_set_ability(self, center, initial, delay_sprites)
     bof_apply_fish_voucher_state(self)
 end
 
+-- continuation of hotboxer
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if next(SMODS.find_card("j_bof_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
@@ -559,6 +535,8 @@ function SMODS.create_card(t)
     bof_apply_fish_voucher_state(card)
     return card
 end
+
+-- continuation of ice bucket and buried treasure
 local original_card_add_to_deck = Card.add_to_deck
 function Card:add_to_deck(from_debuff)
     local was_added = not self.added_to_deck
@@ -597,14 +575,6 @@ SMODS.calculate_repetitions = function(card, context, reps)
     return g
 end
 
--- make it so that perkeo can't copy legendary fish
-local legendary_fish_keys = {
-    "c_bof_bass_l",
-    "c_bof_betta_l",
-    "c_bof_goldfish_l",
-    "c_bof_trout_l"
-}
-
 -- illegal wares: triple negative edition weight
 local negative_weight_ref = G.P_CENTERS.e_negative.get_weight
 SMODS.Edition:take_ownership("e_negative", {
@@ -616,6 +586,14 @@ SMODS.Edition:take_ownership("e_negative", {
         return base_weight
     end
 }, true)
+
+-- make it so that perkeo can't copy legendary fish
+local legendary_fish_keys = {
+    "c_bof_bass_l",
+    "c_bof_betta_l",
+    "c_bof_goldfish_l",
+    "c_bof_trout_l"
+}
 
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",

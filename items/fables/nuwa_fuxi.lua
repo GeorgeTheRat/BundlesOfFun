@@ -15,7 +15,8 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if G.jokers.cards[1] == card then
-            if context.setting_blind and #G.consumeables.cards < G.consumeables.config.card_limit then
+            if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -25,6 +26,7 @@ BundlesOfFun.Joker {
                             set = "Tarot",
                             key_append = "bof_nuwa_fuxi"
                         })
+                        G.GAME.consumeable_buffer = 0
                         return true
                     end
                 }))
@@ -33,7 +35,8 @@ BundlesOfFun.Joker {
                     colour = G.C.SET.Tarot
                 }
             end
-            if context.blind_defeated and #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
+            if context.blind_defeated and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -44,6 +47,7 @@ BundlesOfFun.Joker {
                             edition = "e_negative",
                             key_append = "bof_nuwa_fuxi"
                         })
+                        G.GAME.consumeable_buffer = 0
                         return true
                     end
                 }))
@@ -54,7 +58,8 @@ BundlesOfFun.Joker {
             end
         end
         if G.jokers.cards[#G.jokers.cards] == card then
-            if context.setting_blind and #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
+            if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -65,6 +70,7 @@ BundlesOfFun.Joker {
                             area = G.consumeables,
                             key_append = "bof_nuwa_fuxi"
                         })
+                        G.GAME.consumeable_buffer = 0
                         return true
                     end
                 }))
@@ -73,7 +79,8 @@ BundlesOfFun.Joker {
                     colour = G.C.SET.Fish
                 }
             end
-            if context.blind_defeated and #G.consumeables.cards < G.consumeables.config.card_limit + 1 then
+            if context.blind_defeated and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
+                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -84,6 +91,7 @@ BundlesOfFun.Joker {
                             area = G.consumeables,
                             key_append = "bof_nuwa_fuxi"
                         })
+                        G.GAME.consumeable_buffer = 0
                         return true
                     end
                 }))

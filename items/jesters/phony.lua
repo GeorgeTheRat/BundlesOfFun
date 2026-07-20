@@ -23,11 +23,13 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
+        if context.joker_main and hand_chips then
+            -- make sure chips do not fall into the negatives
+            local chips_to_remove = math.min(card.ability.extra.chips, hand_chips - 1)
             return {
                 mult = card.ability.extra.mult,
                 extra = {
-                    chips = -card.ability.extra.chips
+                    chips = -chips_to_remove
                 }
             }
         end

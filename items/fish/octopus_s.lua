@@ -13,7 +13,8 @@ BundlesOfFun.Consumable {
         return { vars = { card.ability.card_limit } }
     end,
     trigger = function(self, fish_key)
-        if #G.consumeables.cards < G.consumeables.config.card_limit then
+        if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
             G.E_MANAGER:add_event(Event({
                 func = function()
                     local base_key = fish_key:sub(1, -3)
@@ -22,6 +23,7 @@ BundlesOfFun.Consumable {
                         key = base_key .. "_s",
                         key_append = "bof_octopus"
                     }
+                    G.GAME.consumeable_buffer = 0
                     return true
                 end
             }))
