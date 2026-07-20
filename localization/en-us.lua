@@ -89,8 +89,8 @@ return {
                 name = "Fried Shrimp",
                 text = {
                     "The next {C:attention}#1#{} Booster Pack#<s>1# opened",
-                    "#<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} card and a",
-                    "{C:white,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
+                    "#<have,has>1# a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card and a",
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
                 }
             },
             -- Jesters
