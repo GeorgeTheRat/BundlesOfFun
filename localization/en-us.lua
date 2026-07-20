@@ -1063,14 +1063,14 @@ return {
                 name = "Fry Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:white,X:small}Small{} {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:white,E:1,X:small}Small{} {C:fish}Fish{} cards"
                 }
             },
             p_bof_hooked = {
                 name = "Hooked Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:white,X:big}Big{} {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
                 }
             },
             k_bof_perkeo_legendary = {
