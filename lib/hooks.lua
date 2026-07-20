@@ -482,6 +482,29 @@ G.FUNCS.skip_blind = function(e)
     end
 end
 
+-- hotboxer: rightmost shop slot is always tarot
+-- pianoman: force common jokers in shop and booster packs
+local create_card_ref = create_card
+function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+    if next(SMODS.find_card("j_bof_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+        if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
+            return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+        end
+    end
+    if
+        G.GAME.bof_pianoman_common_only and
+        (area == G.shop_jokers or area == G.pack_cards) and
+        (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")
+    then
+        _type = "Joker"
+        legendary = nil
+        _rarity = 0.7
+        forced_key = nil
+    end
+    
+    return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
+end
+
 -- ice bucket and buried treasure logic
 local function bof_apply_fish_voucher_state(card)
     if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
