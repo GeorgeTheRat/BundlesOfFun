@@ -134,7 +134,7 @@ return {
                 text = {
                     "This Joker gains {C:mult}+#1#{} Mult and",
                     "increases its {C:attention}scaling{} by {C:mult}+#2#{} Mult",
-                    "if played hand contains a {C:attention}Flush",
+                    "if played hand is a {C:attention}Flush",
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },

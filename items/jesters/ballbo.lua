@@ -26,7 +26,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before and next(context.poker_hands["Flush"]) and not context.blueprint then
+        if context.before and context.scoring_name == "Flush" and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult",
