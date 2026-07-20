@@ -662,7 +662,8 @@ return {
             b_bof_scaly = {
                 name = "Scaly Deck",
                 text = {
-                    "Start with {C:attention,T:v_bof_ice_bucket}Ice Bucket{} and",
+                    "Start run with the",
+                    "{C:attention,T:v_bof_ice_bucket}Ice Bucket{} voucher and",
                     "{C:attention}2{} copies of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
                 },
                 unlock = {
@@ -1125,3 +1126,4 @@ return {
         }
     }
 }
+
