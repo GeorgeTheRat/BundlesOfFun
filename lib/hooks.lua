@@ -892,6 +892,7 @@ function SMODS.destroy_cards(card, args)
                         if effect then
                             SMODS.calculate_effect(effect, octopus)
                         end
+                        G.GAME.bof_octopus_triggered[octopus] = nil
                         return true
                     end
                 }))
