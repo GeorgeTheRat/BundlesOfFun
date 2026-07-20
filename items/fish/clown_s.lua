@@ -21,7 +21,8 @@ BundlesOfFun.Consumable {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            if #G.jokers.cards < G.jokers.config.card_limit then
+            if #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit then
+                G.GAME.joker_buffer = G.GAME.joker_buffer + 1
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         local new_card = SMODS.add_card {
@@ -30,6 +31,7 @@ BundlesOfFun.Consumable {
                             key_append = "bof_clown_s"
                         }
                         new_card:start_materialize()
+                        G.GAME.joker_buffer = 0
                         return true
                     end
                 }))

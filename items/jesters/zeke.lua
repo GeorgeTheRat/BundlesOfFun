@@ -20,30 +20,33 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.selling_card and context.card and context.card.ability and context.card.ability.set == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
-            G.E_MANAGER:add_event(Event({
-                trigger = "after",
-                delay = 0.4,
-                func = function()
-                    if G.jokers.config.card_limit - #G.jokers.cards >= 1 then
-                        local rarity = 1
-                        while rarity == 1 or rarity == 4 do
-                            rarity = SMODS.poll_rarity("Joker", "j_bof_zeke")
-                        end
-                        if type(rarity) == "number" and rarity > 1 and rarity < 4 then
-                            local rarity_names = { [2] = "Uncommon", [3] = "Rare" }
-                            rarity = rarity_names[rarity]
-                        end
-                        SMODS.add_card {
+            local rarity = 1
+            while rarity == 1 or rarity == 4 do
+                rarity = SMODS.poll_rarity("Joker", "bof_zeke")
+            end
+            if type(rarity) == "number" and rarity > 1 and rarity < 4 then
+                local rarity_names = { [2] = "Uncommon", [3] = "Rare" }
+                rarity = rarity_names[rarity]
+            end
+            if #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit then
+                G.GAME.joker_buffer = G.GAME.joker_buffer + 1
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        local new_card = SMODS.add_card {
                             set = "Joker",
                             rarity = rarity,
-                            key_append = "j_bof_zeke",
-                            allow_duplicates = false
+                            key_append = "bof_zeke"
                         }
-                        card:juice_up(0.3, 0.5)
+                        new_card:start_materialize()
+                        G.GAME.joker_buffer = 0
+                        return true
                     end
-                    return true
-                end
-            }))
+                }))
+                return {
+                    message = localize("k_plus_joker"),
+                    colour = G.C.RARITY[rarity] or G.C.FILTER
+                }
+            end
         end
     end
 }
