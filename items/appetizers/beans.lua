@@ -2,11 +2,7 @@ BundlesOfFun.Joker {
     key = "beans",
     name = "Jelly Beans",
     bundle = "appetizers",
-    config = {
-        extra = {
-            blinds = 2
-        }
-    },
+    config = { extra = { blinds = 3 } },
     pos = { x = 1, y = 0 },
     attributes = { "scaling", "generation", "tag", "skip", "food" },
     cost = 3,
