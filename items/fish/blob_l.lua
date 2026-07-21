@@ -5,9 +5,7 @@ BundlesOfFun.Consumable {
     set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 6, y = 2 },
-    config = {
-        card_limit = 1
-    },
+    config = { card_limit = 1 },
     cost = 20,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)

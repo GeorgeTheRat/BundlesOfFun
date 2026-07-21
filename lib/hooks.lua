@@ -507,8 +507,11 @@ end
 
 -- ice bucket and buried treasure logic
 local function bof_apply_fish_voucher_state(card)
-    if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
+    if not card or not card.ability or card.ability.set ~= "Fish" then
         return
+    end
+    if type(card.ability.extra) ~= "table" then
+        card.ability.extra = {}
     end
     local extra_rounds = (G.GAME and G.GAME.bof_fish_extra_rounds) or 0
     local extra_slots = (G.GAME and G.GAME.bof_fish_extra_consumable_slots) or 0
