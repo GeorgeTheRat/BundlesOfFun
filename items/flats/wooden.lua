@@ -30,5 +30,7 @@ SMODS.Enhancement {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.bonus } }
     end,
-    in_pool = false
+    in_pool = function()
+        return false
+    end
 }
