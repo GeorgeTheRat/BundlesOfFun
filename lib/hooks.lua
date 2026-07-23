@@ -346,10 +346,9 @@ function Game:start_run(arg)
         end
         G.GAME.bof_laughing_stock_original_mult = nil
     end
-    G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
-    G.GAME.bof_lottery_ticket_shop_reroll_count = 0
+    G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
@@ -373,7 +372,7 @@ function G.FUNCS.use_card(e, mute, nosave)
     return original_use_card(e, mute, nosave)
 end
 
--- track booster skips for scalping unlock
+-- track booster skips for shoplifting unlock
 local original_skip_booster = G.FUNCS.skip_booster
 function G.FUNCS.skip_booster(e)
     inc_career_stat("bof_boosters_skipped", 1)
@@ -703,16 +702,16 @@ if bof_reroll_shop_ref then
     G.FUNCS.reroll_shop = function(e)
         if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
             G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
-            if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 6) then
+            if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 3) then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
-                bof_scratch_off_reroll_vouchers()
+                bof_lottery_ticket_reroll_boosters()
             end
         end
         if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_lottery_ticket then
             G.GAME.bof_lottery_ticket_shop_reroll_count = (G.GAME.bof_lottery_ticket_shop_reroll_count or 0) + 1
-            if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 4) then
+            if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 6) then
                 G.GAME.bof_lottery_ticket_shop_reroll_count = 0
-                bof_lottery_ticket_reroll_boosters()
+                bof_scratch_off_reroll_vouchers()
             end
         end
         return bof_reroll_shop_ref(e)

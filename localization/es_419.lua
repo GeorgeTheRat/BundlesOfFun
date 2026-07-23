@@ -811,7 +811,7 @@ return {
                     "aparecer en las ranuras de la tienda",
                 }
             },
-            v_bof_scalping = {
+            v_bof_shoplifting = {
                 name = "Reventa",
                 text = {
                     "Los {C:attention}Vales{} pueden aparecer",
@@ -826,15 +826,15 @@ return {
             v_bof_scratch_off = {
                 name = "Raspa y Gana",
                 text = {
-                    "Cada {C:attention}#1#{} renovaciones en la tienda,",
-                    "{C:attention}reestablece{} todos los {C:attention}Vales{}"
+                    "Cada {C:attention}#<o>1#{} renovaciones en la tienda,",
+                    "{C:attention}reestablece{} todos los {C:attention}Paquetes Potenciadores{} presentes"
                 }
             },
             v_bof_lottery_ticket = {
                 name = "Boleto de Lotería",
                 text = {
                     "Cada {C:attention}#<o>1#{} renovaciones en la tienda,",
-                    "{C:attention}reestablece{} todos los {C:attention}Paquetes Potenciadores{} presentes"
+                    "{C:attention}reestablece{} todos los {C:attention}Vales{} presentes"
                 },
                 unlock = {
                     "Canjea {C:attention}3{} Vales",

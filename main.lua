@@ -156,7 +156,7 @@ local files = {
             "dark_alley",
             "illegal_wares",
             "unboxing",
-            "scalping",
+            "shoplifting",
             "scratch_off",
             "lottery_ticket",
             "ice_bucket",

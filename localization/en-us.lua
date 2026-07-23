@@ -835,8 +835,8 @@ return {
                     "appear in shop slots"
                 }
             },
-            v_bof_scalping = {
-                name = "Scalping",
+            v_bof_shoplifting = {
+                name = "Shoplifting",
                 text = {
                     "{C:attention}Vouchers{} may rarely",
                     "appear in shop slots"
@@ -851,14 +851,14 @@ return {
                 name = "Scratch-Off",
                 text = {
                     "Every {C:attention}#<o>1#{} reroll in the shop,",
-                    "{C:attention}restock{} all present {C:attention}Vouchers"
+                    "{C:attention}restock{} all present {C:attention}Booster Packs"
                 }
             },
             v_bof_lottery_ticket = {
                 name = "Lottery Ticket",
                 text = {
                     "Every {C:attention}#<o>1#{} reroll in the shop,",
-                    "{C:attention}restock{} all present {C:attention}Booster Packs"
+                    "{C:attention}restock{} all present {C:attention}Vouchers"
                 },
                 unlock = {
                     "Redeem {C:attention}3{} Vouchers",

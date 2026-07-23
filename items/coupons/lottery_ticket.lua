@@ -3,7 +3,7 @@ BundlesOfFun.Voucher {
     name = "Lottery Ticket",
     bundle = "coupons",
     requires = { "v_bof_scratch_off" },
-    config = { extra = { reroll_count = 3 } },
+    config = { extra = { reroll_count = 6 } },
     pos = { x = 2, y = 1 },
     unlocked = false,
     atlas = "voucher",

@@ -1,13 +1,13 @@
 BundlesOfFun.Voucher {
-    key = "scalping",
-    name = "scalping",
+    key = "shoplifting",
+    name = "Shoplifting",
     bundle = "coupons",
     requires = { "v_bof_unboxing" },
     pos = { x = 1, y = 1 },
     unlocked = false,
     atlas = "voucher",
     redeem = function(self, card, area)
-        G.GAME.voucher_rate = 1
+        G.GAME.voucher_rate = 0.5
     end,
     unredeem = function(self, card, area)
         G.GAME.voucher_rate = nil
