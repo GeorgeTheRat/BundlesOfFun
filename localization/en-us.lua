@@ -460,14 +460,14 @@ return {
                 name = "Garden Gnome",
                 text = {
                     "Cards with an {C:dark_edition}Edition",
-                    "in the shop are {C:money}free{}"
+                    "in the shop are {C:attention}free{}"
                 }
             },
             -- j_bof_doorstopper = {
             --     name = "Doorstopper",
             --     text = {
             --         "{C:attention}Booster Packs{} do not close",
-            --         "when all picks have been taken"
+            --         "when all {C:attention}picks{} have been taken"
             --     }
             -- },
             -- Fables
