@@ -37,7 +37,7 @@ BundlesOfFun.Joker {
                     chips = card.ability.extra.chips,
                     mult = card.ability.extra.mult,
                     xmult = card.ability.extra.xmult,
-                    dollars = card.ability.extra.dollars,
+                    dollars = card.ability.extra.dollars
                 }
             end
 		end
