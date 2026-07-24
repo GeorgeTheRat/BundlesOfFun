@@ -100,6 +100,9 @@ local files = {
             "rummikub",
             "passport",
             "clock",
+            "keyboard",
+            "gnome",
+            -- "doorstopper"
         }, directory = "items/normalities/"
     },
     fables = {

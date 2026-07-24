@@ -351,14 +351,22 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
+    G.GAME.bof_doorstopper_active = false
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
 
 -- track voucher purchases for lottery ticket unlock
+-- doorstopper: prevent booster from closing when all picks taken
 local original_use_card = G.FUNCS.use_card
 function G.FUNCS.use_card(e, mute, nosave)
     local card = e.config.ref_table
+    if card and card.ability and card.ability.consumeable and card.area == G.pack_cards and next(SMODS.find_card("j_bof_doorstopper")) then
+        if G.GAME.pack_choices and G.GAME.pack_choices == 1 then
+            G.GAME.bof_doorstopper_active = true
+        end
+    end
+    local result = original_use_card(e, mute, nosave)
     if card and card.ability and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
         local current_ante = G.GAME.round_resets.ante or 1
         if current_ante ~= G.GAME.bof_current_ante then
@@ -369,15 +377,30 @@ function G.FUNCS.use_card(e, mute, nosave)
         G.GAME.bof_vouchers_redeemed_this_ante = (G.GAME.bof_vouchers_redeemed_this_ante or 0) + 1
         check_for_unlock({ bof_vouchers_redeemed_this_ante = G.GAME.bof_vouchers_redeemed_this_ante })
     end
-    return original_use_card(e, mute, nosave)
+    return result
 end
 
 -- track booster skips for shoplifting unlock
+-- doorstopper: reset flag when skipping booster
 local original_skip_booster = G.FUNCS.skip_booster
 function G.FUNCS.skip_booster(e)
+    G.GAME.bof_doorstopper_active = false
     inc_career_stat("bof_boosters_skipped", 1)
     return original_skip_booster(e)
 end
+
+-- doorstopper: prevent selecting from booster when all picks taken
+local original_can_select_from_booster = G.FUNCS.can_select_from_booster
+function G.FUNCS.can_select_from_booster(e)
+    if G.GAME.bof_doorstopper_active then
+        e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.button = nil
+        return
+    end
+    return original_can_select_from_booster(e)
+end
+
+-- retro deck logic
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)

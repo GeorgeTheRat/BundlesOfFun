@@ -1,0 +1,17 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# doorstopper: prevent booster from closing when all picks taken
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = "G.FUNCS.end_consumeable(nil, delay_fac)"
+position = "before"
+payload = '''
+-- patched by bundles of fun
+if G.GAME.bof_doorstopper_active and next(SMODS.find_card("j_bof_doorstopper")) then
+    return
+end
+'''
+match_indent = true

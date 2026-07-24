@@ -447,6 +447,29 @@ return {
                     "{C:inactive,E:bof_alarm}Active!",
                 }
             },
+            j_bof_keyboard = {
+                name = "Keyboard",
+                text = {
+                    "Played {C:attention}8s{} give {C:mult}+#1#{} Mult",
+                    "for every {C:attention}8{} in your",
+                    "remaining deck when scored",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
+            j_bof_gnome = {
+                name = "Garden Gnome",
+                text = {
+                    "Cards with an {C:dark_edition}Edition",
+                    "in the shop are {C:money}free{}"
+                }
+            },
+            -- j_bof_doorstopper = {
+            --     name = "Doorstopper",
+            --     text = {
+            --         "{C:attention}Booster Packs{} do not close",
+            --         "when all picks have been taken"
+            --     }
+            -- },
             -- Fables
             j_bof_narr = {
                 name = "Narr",

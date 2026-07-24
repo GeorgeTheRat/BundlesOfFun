@@ -1,0 +1,11 @@
+-- BundlesOfFun.Joker {
+--     key = "doorstopper",
+--     name = "Doorstopper",
+--     bundle = "normalities",
+--     -- pos = { x = 0, y = 0 },
+--     attributes = { "passive" },
+--     cost = 5,
+--     rarity = 1,
+--     blueprint_compat = false,
+--     atlas = "placeholder"
+-- }
