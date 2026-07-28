@@ -33,7 +33,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.initial_scoring_step then
             local most_played = 0
-            local most_played_hand
+            local most_played_hand = "High Card"
             for hand, data in pairs(G.GAME.hands) do
                 if data.played > most_played then
                     most_played = data.played

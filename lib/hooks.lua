@@ -279,7 +279,7 @@ end
 local original_create_card_for_shop = create_card_for_shop
 function create_card_for_shop(area)
     local card = original_create_card_for_shop(area)
-    if card and area == G.shop_jokers and card.ability and card.ability.consumeable and not (card.edition and card.edition.negative) then
+    if card and area == G.shop_jokers and card.ability and card.ability.consumeable and not card.edition then
         local back = G.GAME and G.GAME.selected_back
         if G.GAME.used_vouchers["v_bof_illegal_wares"] then
             if pseudorandom(pseudoseed("b_bof_illegal_wares")) < 0.09 then

@@ -27,7 +27,7 @@ BundlesOfFun.Joker {
 				card.ability.extra.mult,
 				card.ability.extra.xmult,
 				card.ability.extra.dollars
-			},
+			}
 		}
 	end,
 	calculate = function(self, card, context)
@@ -37,7 +37,7 @@ BundlesOfFun.Joker {
                     chips = card.ability.extra.chips,
                     mult = card.ability.extra.mult,
                     xmult = card.ability.extra.xmult,
-                    dollars = card.ability.extra.dollars,
+                    dollars = card.ability.extra.dollars
                 }
             end
 		end

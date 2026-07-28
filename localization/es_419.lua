@@ -436,6 +436,22 @@ return {
                     "{C:inactive,E:bof_alarm}¡Activo!",
                 }
             },
+            j_bof_keyboard = {
+                name = "Teclado",
+                text = {
+                    "Las {C:attention}8{} jugadas dan {C:mult}+#1#{} Multi",
+                    "por cada {C:attention}8{} en tu",
+                    "baraja restante al puntuar",
+                    "{C:inactive}(Actualmente {C:mult}+#2#{C:inactive} Multi)"
+                }
+            },
+            j_bof_gnome = {
+                name = "Gnomo de jardín",
+                text = {
+                    "Las cartas con una {C:dark_edition}Edición",
+                    "en la tienda son {C:attention}gratis{}"
+                }
+            },
             j_bof_narr = {
                 name = "Narr",
                 text = {
@@ -663,6 +679,14 @@ return {
                 }
             }
         },
+        Enhanced = {
+            m_bof_wooden = {
+                name = "Madera",
+                text = {
+                    "{C:chips}+#1#{} fichas extra"
+                }
+            }
+        },
         Fish = {
             c_bof_bass_s = {
                 name = "Perca Americana {X:small}Pequeña",
@@ -857,6 +881,50 @@ return {
                 unlock = {
                     "Deja que {C:attention}5 cartas {C:fish}Pez{}",
                     "caduquen en una partida"
+                }
+            }
+        },
+        Blind = {
+            bl_bof_dominant = {
+                name = "El Dominante",
+                text = {
+                    "Debes jugar cartas",
+                    "sin un Sello"
+                }
+            },
+            bl_bof_risk = {
+                name = "El Riesgo",
+                text = {
+                    "El comodín del extremo derecho",
+                    "está deshabilitado"
+                }
+            },
+            bl_bof_irradiated = {
+                name = "El Irradiado",
+                text = {
+                    "Las cartas jugadas no dan",
+                    "sus fichas base al puntuar"
+                }
+            },
+            bl_bof_change = {
+                name = "El Cambio",
+                text = {
+                    "Las cartas mejoradas se",
+                    "roban boca abajo"
+                }
+            },
+            bl_bof_damping = {
+                name = "La Amortiguación",
+                text = {
+                    "Los comodines Raros están",
+                    "deshabilitados hasta la mano final"
+                }
+            },
+            bl_bof_viscous = {
+                name = "La Viscosa",
+                text = {
+                    "Aplica permanentemente un debilitamiento",
+                    "a una carta que puntúe al azar por mano"
                 }
             }
         },
