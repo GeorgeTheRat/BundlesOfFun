@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "blueberry",
-    name = "Blueberry",
+    key = "blueberries",
+    name = "Blueberries",
     bundle = "appetizers",
     config = {
         extra = {

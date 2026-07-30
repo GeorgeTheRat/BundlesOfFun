@@ -47,12 +47,12 @@ local files = {
     appetizers = {
         list = {
 			"dragonfruit",
-            "blueberry",
+            "blueberries",
             "grapes",
             "leek",
             "durian",
             "bread",
-            "beans",
+            "candy",
             "apple",
             "core",
             "tomato",
@@ -90,7 +90,8 @@ local files = {
             "zeke",
             "laughing_stock",
             "angler",
-            "pianoman"
+            "pianoman",
+            "elephant"
         }, directory = "items/jesters/"
     },
     normalities = {

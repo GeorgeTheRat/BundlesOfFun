@@ -12,8 +12,8 @@ return {
                     "{C:red,E:2}self destructs"
                 }
             },
-            j_bof_blueberry = {
-                name = "Blueberry",
+            j_bof_blueberries = {
+                name = "Blueberries",
                 text = {
                     "Each {C:attention}card{} held in hand",
                     "permanently gains {C:chips}+#1#{} Chip#<s>1#,",
@@ -52,8 +52,8 @@ return {
                     "decreases by {C:white,X:plasma}-#2#%{} at end of round"
                 }
             },
-            j_bof_beans = {
-                name = "Jelly Beans",
+            j_bof_candy = {
+                name = "Pocket Candy",
                 text = {
                     "The next {C:attention}#1# Blind#<s>1#{} skipped,",
                     "create a {C:attention}Juggle Tag"
@@ -383,6 +383,14 @@ return {
                     "cards in {C:attention}Booster Packs"
                 }
             },
+            j_bof_elephant = {
+                name = "Elephant",
+                text = {
+                    "{C:chips}+#1#{} Chips if all",
+                    "{C:attention}played{} cards are",
+                    "the same {C:attention}rank"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
@@ -457,19 +465,12 @@ return {
                 }
             },
             j_bof_gnome = {
-                name = "Garden Gnome",
+                name = "Card-en Gnome",
                 text = {
                     "Cards with an {C:dark_edition}Edition",
                     "in the shop are {C:attention}free{}"
                 }
             },
-            -- j_bof_doorstopper = {
-            --     name = "Doorstopper",
-            --     text = {
-            --         "{C:attention}Booster Packs{} do not close",
-            --         "when all {C:attention}picks{} have been taken"
-            --     }
-            -- },
             -- Fables
             j_bof_narr = {
                 name = "Narr",

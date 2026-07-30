@@ -3,12 +3,12 @@ BundlesOfFun.Joker {
     name = "Keyboard",
     bundle = "normalities",
     config = { extra = { mult = 8 } },
-    -- pos = { x = 0, y = 0 },
+    pos = { x = 5, y = 6 },
     attributes = { "mult", "rank", "eight" },
     cost = 8,
     rarity = 3,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local eight_tally = 0
         if G.deck and G.deck.cards then
