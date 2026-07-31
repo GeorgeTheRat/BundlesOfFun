@@ -21,7 +21,7 @@ BundlesOfFun.Joker {
                     else
                         add_tag(Tag("tag_garbage"))
                     end
-                    card:juice_up(0.4, 0.4)
+                    card:juice_up(0.3, 0.5)
                     play_sound("generic1", 0.9 + math.random() * 0.1, 0.8)
                     play_sound("holo1", 1.2 + math.random() * 0.1, 0.4)
                     return true
