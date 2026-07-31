@@ -474,8 +474,8 @@ return {
             j_bof_astrolabe = {
                 name = "Astrolabe",
                 text = {
-                    "When a {C:planet}Planet{} card is",
-                    "used in a {C:planet}Celestial Pack{},",
+                    "When a {C:planet}Planet{} card in a",
+                    "{C:planet}Celestial Pack{} is used,",
                     "create a random {C:planet}Planet{} card"
                 }
             },
