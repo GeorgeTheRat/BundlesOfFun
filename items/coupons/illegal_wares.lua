@@ -32,5 +32,17 @@ BundlesOfFun.Voucher {
                 end
             end
         end
+    end,
+    calculate = function(self, card, context)
+        if context.modify_shop_card and context.card.ability.consumeable and not context.card.edition then
+            if pseudorandom(pseudoseed("b_bof_illegal_wares")) < 0.09 then
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        context.card:set_edition("e_negative", true)
+                        return true
+                    end
+                }))
+            end
+        end
     end
 }

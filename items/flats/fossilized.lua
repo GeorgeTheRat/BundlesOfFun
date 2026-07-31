@@ -35,5 +35,19 @@ BundlesOfFun.Back {
                 return true
             end
         end
+    end,
+    calculate = function(self, back, context)
+        if context.modify_shop_card and context.card.ability.consumeable and not context.card.edition then
+            if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
+                if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            context.card:set_edition("e_negative", true)
+                            return true
+                        end
+                    }))
+                end
+            end
+        end
     end
 }

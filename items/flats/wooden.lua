@@ -21,7 +21,7 @@ BundlesOfFun.Back {
     end
 }
 
--- todo: make it so that wooden doesnt count for stuff like gumphrey using SMODS.get_enhancements
+-- todo: make localization merge with hiker like with bonus
 SMODS.Enhancement {
     key = "wooden",
     name = "Wooden",

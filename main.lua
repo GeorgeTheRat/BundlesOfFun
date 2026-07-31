@@ -103,7 +103,7 @@ local files = {
             "clock",
             "keyboard",
             "gnome",
-            -- "doorstopper"
+            "astrolabe"
         }, directory = "items/normalities/"
     },
     fables = {

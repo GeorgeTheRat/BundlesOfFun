@@ -471,6 +471,14 @@ return {
                     "in the shop are {C:attention}free{}"
                 }
             },
+            j_bof_astrolabe = {
+                name = "Astrolabe",
+                text = {
+                    "When a {C:planet}Planet{} card is",
+                    "used in a {C:planet}Celestial Pack{},",
+                    "create a random {C:planet}Planet{} card"
+                }
+            },
             -- Fables
             j_bof_narr = {
                 name = "Narr",
@@ -706,7 +714,9 @@ return {
             m_bof_wooden = {
                 name = "Wooden",
                 text = {
-                    "{C:chips}+#1#{} extra chips"
+                    "{C:chips}+#1#{} extra chips,",
+                    "{s:0.8}does not count for",
+                    "{C:attention,s:0.8}enhancement{s:0.8} effects"
                 }
             }
         },

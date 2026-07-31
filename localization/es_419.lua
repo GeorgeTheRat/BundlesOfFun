@@ -608,7 +608,8 @@ return {
                 text = {
                     "Empiezas sin {C:attention}Ases{} y con un",
                     "grupo de {C:attention}2, {C:attention}3,",
-                    "{C:attention}4{} y {C:attention}5{} adicionales"
+                    "{C:attention}4{} y {C:attention}5{} adicionales",
+                    "Todas las cartas empiezan {C:attention,T:m_bof_wooden}de Madera"
                 },
                 unlock = {
                     "Destruye {C:attention}4 Ases{}",

@@ -274,30 +274,6 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- fossilized deck: consumables in shop may rarely be negative
--- dark alley & illegal wares: consumables in shop may rarely be negative
-local original_create_card_for_shop = create_card_for_shop
-function create_card_for_shop(area)
-    local card = original_create_card_for_shop(area)
-    if card and area == G.shop_jokers and card.ability and card.ability.consumeable and not card.edition then
-        local back = G.GAME and G.GAME.selected_back
-        if G.GAME.used_vouchers["v_bof_illegal_wares"] then
-            if pseudorandom(pseudoseed("b_bof_illegal_wares")) < 0.09 then
-                card:set_edition("e_negative", true)
-            end
-        elseif back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized" then
-            if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
-                card:set_edition("e_negative", true)
-            end
-        elseif G.GAME.used_vouchers["v_bof_dark_alley"] then 
-            if pseudorandom(pseudoseed("b_bof_dark_alley")) < 0.03 then
-                card:set_edition("e_negative", true)
-            end
-        end
-    end
-    return card
-end
-
 -- fossilized deck: re-check unlock whenever consumable slots change
 local original_consumeable_emplace = CardArea.emplace
 function CardArea:emplace(card, location, stay_flipped)
@@ -719,6 +695,22 @@ if bof_reroll_shop_ref then
         end
         return bof_reroll_shop_ref(e)
     end
+end
+
+-- make wooden cards not count as an enhancement
+local get_enhancements_ref = SMODS.get_enhancements
+function SMODS.get_enhancements(card, ...)
+    local enhancements = get_enhancements_ref(card, ...)
+    if enhancements then
+        local filtered = {}
+        for k, v in pairs(enhancements) do
+            if k ~= "m_bof_wooden" then
+                filtered[k] = v
+            end
+        end
+        return filtered
+    end
+    return enhancements
 end
 
 -- Ensure collection tallies are refreshed whenever the mod overlay closes
