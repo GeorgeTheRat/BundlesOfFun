@@ -427,13 +427,11 @@ local function bof_apply_fish_voucher_state(card)
     card.ability.bof_fish_extra_slots_applied = extra_slots
 end
 BundlesOfFun.apply_fish_voucher_state = bof_apply_fish_voucher_state
-
 local original_card_set_ability = Card.set_ability
 function Card:set_ability(center, initial, delay_sprites)
     original_card_set_ability(self, center, initial, delay_sprites)
     bof_apply_fish_voucher_state(self)
 end
-
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and t.area == G.shop_jokers and t.set ~= "Tarot" then
@@ -496,14 +494,6 @@ SMODS.calculate_repetitions = function(card, context, reps)
     return g
 end
 
--- make it so that perkeo can't copy legendary fish
-local legendary_fish_keys = {
-    "c_bof_bass_l",
-    "c_bof_betta_l",
-    "c_bof_goldfish_l",
-    "c_bof_trout_l"
-}
-
 -- illegal wares: triple negative edition weight
 local negative_weight_ref = G.P_CENTERS.e_negative.get_weight
 SMODS.Edition:take_ownership("e_negative", {
@@ -516,6 +506,13 @@ SMODS.Edition:take_ownership("e_negative", {
     end
 }, true)
 
+-- make it so that perkeo can't copy legendary fish
+local legendary_fish_keys = {
+    "c_bof_bass_l",
+    "c_bof_betta_l",
+    "c_bof_goldfish_l",
+    "c_bof_trout_l"
+}
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     loc_vars = function(self, info_queue, card)
@@ -571,6 +568,46 @@ SMODS.Joker:take_ownership("perkeo", {
 }, true)
 
 -- scratch-off logic
+local function bof_scratch_off_reroll_boosters()
+    if not G.shop_booster then
+        return
+    end
+    local booster_cards = {}
+    for i = #G.shop_booster.cards, 1, -1 do
+        local c = G.shop_booster.cards[i]
+        if c.ability and c.ability.set == "Booster" then
+            booster_cards[#booster_cards + 1] = c
+        end
+    end
+    local replace_count = #booster_cards
+    if replace_count == 0 then
+        replace_count = 1
+    end
+    for _, booster_card in ipairs(booster_cards) do
+        G.shop_booster:remove_card(booster_card)
+        booster_card:remove()
+    end
+    for i = 1, replace_count do
+        local key = get_pack("shop_pack").key
+        if key and G.P_CENTERS[key] then
+            local new_card = Card(
+                G.shop_booster.T.x + G.shop_booster.T.w / 2,
+                G.shop_booster.T.y,
+                G.CARD_W * 1.27,
+                G.CARD_H * 1.27,
+                G.P_CARDS.empty,
+                G.P_CENTERS[key],
+                { bypass_discovery_center = true, bypass_discovery_ui = true }
+            )
+            create_shop_card_ui(new_card, "Booster", G.shop_booster)
+            new_card.ability.booster_pos = i
+            new_card:start_materialize()
+            G.shop_booster:emplace(new_card)
+        end
+    end
+end
+
+-- lottery ticket logic
 local function bof_get_random_voucher_key(excluded, seed_suffix)
     local _pool, _pool_key = get_current_pool("Voucher")
     local candidates = {}
@@ -591,7 +628,7 @@ local function bof_get_random_voucher_key(excluded, seed_suffix)
     end
     return pseudorandom_element(candidates, pseudoseed(_pool_key .. seed_suffix))
 end
-local function bof_scratch_off_reroll_vouchers()
+local function bof_lottery_ticket_reroll_vouchers()
     if not G.shop_vouchers then
         return
     end
@@ -639,44 +676,7 @@ local function bof_scratch_off_reroll_vouchers()
     G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
 end
 
-local function bof_lottery_ticket_reroll_boosters()
-    if not G.shop_booster then
-        return
-    end
-    local booster_cards = {}
-    for i = #G.shop_booster.cards, 1, -1 do
-        local c = G.shop_booster.cards[i]
-        if c.ability and c.ability.set == "Booster" then
-            booster_cards[#booster_cards + 1] = c
-        end
-    end
-    local replace_count = #booster_cards
-    if replace_count == 0 then
-        replace_count = 1
-    end
-    for _, booster_card in ipairs(booster_cards) do
-        G.shop_booster:remove_card(booster_card)
-        booster_card:remove()
-    end
-    for i = 1, replace_count do
-        local key = get_pack("shop_pack").key
-        if key and G.P_CENTERS[key] then
-            local new_card = Card(
-                G.shop_booster.T.x + G.shop_booster.T.w / 2,
-                G.shop_booster.T.y,
-                G.CARD_W * 1.27,
-                G.CARD_H * 1.27,
-                G.P_CARDS.empty,
-                G.P_CENTERS[key],
-                { bypass_discovery_center = true, bypass_discovery_ui = true }
-            )
-            create_shop_card_ui(new_card, "Booster", G.shop_booster)
-            new_card.ability.booster_pos = i
-            new_card:start_materialize()
-            G.shop_booster:emplace(new_card)
-        end
-    end
-end
+-- scratch-off & lottery ticket logic cont.
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then
     G.FUNCS.reroll_shop = function(e)
@@ -684,14 +684,14 @@ if bof_reroll_shop_ref then
             G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
             if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 3) then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
-                bof_lottery_ticket_reroll_boosters()
+                bof_scratch_off_reroll_boosters()
             end
         end
         if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_lottery_ticket then
             G.GAME.bof_lottery_ticket_shop_reroll_count = (G.GAME.bof_lottery_ticket_shop_reroll_count or 0) + 1
             if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 6) then
                 G.GAME.bof_lottery_ticket_shop_reroll_count = 0
-                bof_scratch_off_reroll_vouchers()
+                bof_lottery_ticket_reroll_vouchers()
             end
         end
         return bof_reroll_shop_ref(e)
@@ -710,6 +710,9 @@ function SMODS.get_enhancements(card, ...)
             end
         end
         return filtered
+    end
+    if card.vampired then
+        return {}
     end
     return enhancements
 end
