@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             balance_mod = 20
         }
     },
-    pos = { x = 9, y = 0 },
+    pos = { x = 5, y = 0 },
     attributes = { "balance", "scaling", "food" },
     cost = 6,
     rarity = 2,

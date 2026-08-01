@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             packs_mod = 1
         }
     },
-    pos = { x = 7, y = 4 },
+    pos = { x = 0, y = 1 },
     attributes = { "scaling", "generation", "passive", "food" },
     cost = 8,
     rarity = 3,

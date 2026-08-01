@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             perma_bonus_mod = 1
         }
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 1, y = 0 },
     attributes = { "chips", "scaling", "modify_card", "perma_bonus", "food" },
     cost = 6,
     rarity = 2,

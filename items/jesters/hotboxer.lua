@@ -8,7 +8,7 @@ BundlesOfFun.Joker({
 			sell_cost_mod = 1
 		}
 	},
-	pos = { x = 0, y = 3 },
+	pos = { x = 4, y = 4 },
 	attributes = { "generation", "passive", "tarot" },
 	cost = 7,
 	rarity = 2,

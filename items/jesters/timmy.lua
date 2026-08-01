@@ -14,7 +14,7 @@ BundlesOfFun.Joker {
     name = "Youngster Timmy",
     bundle = "jesters",
     config = { extra = { chips = 8 } },
-    pos = { x = 5, y = 1 },
+    pos = { x = 9, y = 2 },
     attributes = { "chips", "full_deck" },
     cost = 4,
     rarity = 1,

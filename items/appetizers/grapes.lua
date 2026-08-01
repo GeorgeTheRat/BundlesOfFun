@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             xmult = 3
         }
     },
-    pos = { x = 7, y = 0 },
+    pos = { x = 2, y = 0 },
     attributes = { "mult", "chips", "xmult", "boss_blind", "food" },
     cost = 6,
     rarity = 2,

@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Dragonfruit",
     bundle = "appetizers",
     config = { extra = { nommed = false } },
-    pos = { x = 5, y = 0 },
+    pos = { x = 0, y = 0 },
     attributes = { "generation", "destruction", "food" },
     cost = 7,
     rarity = 3,

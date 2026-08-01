@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             chips = 0
         }
     },
-    pos = { x = 4, y = 1 },
+    pos = { x = 0, y = 3 },
     attributes = { "chips", "scaling", "joker", "scale_scaling" },
     cost = 6,
     rarity = 1,

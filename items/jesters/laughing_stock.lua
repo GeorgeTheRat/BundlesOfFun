@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Laughing Stock",
     bundle = "jesters",
     config = { extra = { blind_reduction = 5 } },
-    pos = { x = 7, y = 5 },
+    pos = { x = 7, y = 4 },
     attributes = { "xblindsize", "destroy_card", "seals" },
     cost = 6,
     rarity = 2,

@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             prob_mod = 0.1
         }
     },
-    pos = { x = 8, y = 0 },
+    pos = { x = 3, y = 0 },
     attributes = { "mod_chance", "scaling", "passive", "food" },
     cost = 4,
     rarity = 2,

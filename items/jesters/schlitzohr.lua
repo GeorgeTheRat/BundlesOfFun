@@ -3,7 +3,7 @@ BundlesOfFun.Joker({
 	name = "Schlitzohr",
 	bundle = "jesters",
 	config = { extra = { cards = 4 } },
-	pos = { x = 4, y = 2 },
+	pos = { x = 3, y = 4 },
 	attributes = { "full_deck", "modify_card" },
 	cost = 5,
 	rarity = 2,

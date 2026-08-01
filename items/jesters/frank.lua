@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "frank",
     name = "Frank Fop",
     bundle = "jesters",
-    pos = { x = 1, y = 3 },
+    pos = { x = 1, y = 4 },
     attributes = { "generation", "tag" },
     cost = 7,
     rarity = 3,
@@ -22,8 +22,23 @@ BundlesOfFun.Joker {
                         add_tag(Tag("tag_garbage"))
                     end
                     card:juice_up(0.3, 0.5)
-                    play_sound("generic1", 0.9 + math.random() * 0.1, 0.8)
-                    play_sound("holo1", 1.2 + math.random() * 0.1, 0.4)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            for i = 1, #G.GAME.tags do
+                                local tag = G.GAME.tags[i]
+                                if tag.key == "tag_handy" or tag.key == "tag_garbage" then
+                                    tag:apply_to_run({ type = "immediate" })
+                                end
+                            end
+                            G.E_MANAGER:add_event(Event({
+                                func = function()
+                                    card:juice_up(0.3, 0.5)
+                                    return true
+                                end
+                            }))
+                            return true
+                        end
+                    }))
                     return true
                 end
             }))

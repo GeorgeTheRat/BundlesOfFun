@@ -6,7 +6,7 @@ BundlesOfFun.Joker {
         card_limit = 2,
         extra = { consumable_slots = 2 }
     },
-    pos = { x = 9, y = 1 },
+    pos = { x = 2, y = 2 },
     attributes = { "joker_slot", "consumable_slot" },
     cost = 8,
     rarity = 3,

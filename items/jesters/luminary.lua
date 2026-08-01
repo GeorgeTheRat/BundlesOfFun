@@ -10,7 +10,7 @@ BundlesOfFun.Joker({
             hand_triggered = 0
 		},
 	},
-	pos = { x = 9, y = 2 },
+	pos = { x = 7, y = 3 },
     attributes = { "economy", "diamonds", "hearts" },
 	cost = 6,
 	rarity = 1,

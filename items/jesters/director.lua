@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Director",
     bundle = "jesters",
     config = { extra = { xmult = 1.25 } },
-    pos = { x = 8, y = 4 },
+    pos = { x = 5, y = 4 },
     attributes = { "xmult", "retrigger" },
     cost = 7,
     rarity = 2,

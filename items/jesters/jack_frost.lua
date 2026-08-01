@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Jack Frost",
     bundle = "jesters",
     config = { extra = { mult = 27.3 } },
-    pos = { x = 2, y = 1 },
+    pos = { x = 2, y = 3 },
     attributes = { "mult", "hands"},
     cost = 6,
     rarity = 2,

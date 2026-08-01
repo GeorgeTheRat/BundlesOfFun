@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Soothsayer",
     bundle = "jesters",
     config = { extra = { required = 2 } },
-    pos = { x = 3, y = 3 },
+    pos = { x = 5, y = 3 },
     attributes = { "generation", "tarot", "planet" },
     cost = 5,
     rarity = 2,

@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             change = false
         }
     },
-    pos = { x = 4, y = 0 },
+    pos = { x = 9, y = 0 },
     attributes = { "scaling", "modify_card", "food" },
     cost = 5,
     rarity = 1,

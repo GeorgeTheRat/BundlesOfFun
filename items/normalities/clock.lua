@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             active_display = nil
         }
     },
-    pos = { x = 9, y = 3 },
+    pos = { x = 4, y = 8 },
     pixel_size = { h = 87 },
     attributes = { "xmult", "hands" },
     cost = 6,
