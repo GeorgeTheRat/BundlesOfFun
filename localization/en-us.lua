@@ -238,16 +238,10 @@ return {
             j_bof_soothsayer = {
                 name = "Soothsayer",
                 text = {
-                    {
-                        "Creates a {C:tarot}Tarot{} card if a",
-                        "card with a {C:purple}Purple Seal{} is",
-                        "held in hand at end of round",
-                    },
-                    {
-                        "Upgrade level of discarded",
-                        "{C:attention}poker hand{} if discarded hand",
-                        "contains {C:attention}#1#{} cards with {C:blue}Blue Seals",
-                    },
+                    "Create the {C:planet}Planet{} card for",
+                    "discarded {C:attention}poker hand{} if it",
+                    "contains a card with a {C:blue}Blue Seal",
+                    "{C:inactive}(Must have room)"
                 },
             },
             j_bof_polymath = {
