@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = { "appetizers", { "fish" } },
     config = {
         extra = {
-            packs = 5,
+            packs = 7,
             packs_mod = 1
         }
     },
