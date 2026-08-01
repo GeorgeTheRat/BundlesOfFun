@@ -466,10 +466,9 @@ function Card:add_to_deck(from_debuff)
 end
 local original_card_remove_from_deck = Card.remove_from_deck
 function Card:remove_from_deck(from_debuff)
-    local was_in_consumeables = self.area == G.consumeables
-    local extra_slots = self.ability and type(self.ability.extra) == "table" and self.ability.extra.consumable_slots or 0
+    local extra_slots = self.ability and type(self.ability.extra) == "table" and tonumber(self.ability.extra.consumable_slots) or 0
     original_card_remove_from_deck(self, from_debuff)
-    if was_in_consumeables and extra_slots > 0 and G.consumeables then
+    if self.area == G.consumeables and extra_slots > 0 and G.consumeables then
         G.consumeables.config.card_limit = G.consumeables.config.card_limit - extra_slots
     end
 end
