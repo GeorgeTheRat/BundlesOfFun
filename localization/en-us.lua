@@ -190,11 +190,10 @@ return {
             j_bof_gary = {
                 name = "Geezer Gary",
                 text = {
-                    "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
-                    "when a Joker is {C:attention}sold{},",
-                    "increases by {C:chips}+#2#{} Chip#<s>2# when",
-                    "{C:attention}Boss Blind{} is defeated",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
+                    "This Joker gains {C:chips}+Chips",
+                    "equal to the {C:attention}current Ante",
+                    "when a Joker is {C:attention}sold",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chip#<s>1#)"
                 }
             },
             j_bof_golden_sun = {

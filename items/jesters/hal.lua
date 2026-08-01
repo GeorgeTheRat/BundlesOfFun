@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            chips_mod = 5,
+            chips_mod = 3,
             chips_mod_mod = 1,
             chips = 0
         }
