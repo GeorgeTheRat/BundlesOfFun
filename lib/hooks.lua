@@ -519,6 +519,7 @@ SMODS.Edition:take_ownership("e_negative", {
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         local main_end = {}
         if G.consumeables and G.consumeables.cards then
             for _, consumable in ipairs(G.consumeables.cards) do

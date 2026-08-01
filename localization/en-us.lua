@@ -383,6 +383,14 @@ return {
                     "cards in {C:attention}Booster Packs"
                 }
             },
+            j_bof_bouncer = {
+                name = "Bouncer",
+                text = {
+                    "{C:mult}+#1#{} Mult if you have at",
+                    "least {C:attention}#2#{} card#<s>2# with the",
+                    "same {C:attention}suit{} in your {C:attention}full deck"
+                }
+            },
             j_bof_elephant = {
                 name = "Elephant",
                 text = {
@@ -623,7 +631,7 @@ return {
                     "Earn an additional {C:money}$#1#{} at",
                     "end of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
-                    "rarely appear {C:dark_edition}Negative"
+                    "rarely appear {C:dark_edition,T:e_negative}Negative"
                 },
                 unlock = {
                     "Have one of each",

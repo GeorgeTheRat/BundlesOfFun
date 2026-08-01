@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             balance = 100,
-            balance_mod = 20
+            balance_mod = 25
         }
     },
     pos = { x = 5, y = 0 },

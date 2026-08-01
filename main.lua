@@ -91,6 +91,7 @@ local files = {
             "laughing_stock",
             "angler",
             "pianoman",
+            "bouncer",
             "elephant"
         }, directory = "items/jesters/"
     },

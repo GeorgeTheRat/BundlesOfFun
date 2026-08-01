@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         card_limit = 2,
-        extra = { consumable_slots = 2 }
+        extra = { consumable_slots = 1 }
     },
     pos = { x = 2, y = 2 },
     attributes = { "joker_slot", "consumable_slot" },
