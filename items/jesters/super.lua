@@ -14,7 +14,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            hands = 2,
+            hands = 1,
             active = true
         },
     },
