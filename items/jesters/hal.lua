@@ -40,6 +40,19 @@ BundlesOfFun.Joker {
                     scalar_value = "chips_mod_mod",
                     no_message = true
                 })
+                if card.children.center and card.children.center.sprite_pos and card.children.center.sprite_pos.x ~= 9 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            if card.children.center.atlas == G.ASSET_ATLAS["bof_joker"] then
+                                card.children.center.atlas = G.ASSET_ATLAS["bof_hal"]
+                                card.children.center:set_sprite_pos({ x = 0, y = 0 })
+                            else
+                                card.children.center:set_sprite_pos({ x = card.children.center.sprite_pos.x + 1, y = 0 })
+                            end
+                            return true
+                        end
+                    }))
+                end
             end
             return {
                 message = localize("k_upgrade_ex"),

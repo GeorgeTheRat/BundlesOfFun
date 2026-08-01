@@ -1,14 +1,20 @@
 SMODS.Atlas({
+    key = "placeholder", 
+    path = "placeholder.png", 
+    px = 71,
+    py = 95, 
+})
+
+SMODS.Atlas({
     key = "joker", 
     path = "joker.png", 
     px = 71,
     py = 95, 
 })
 
--- placeholder :)
 SMODS.Atlas({
-    key = "placeholder", 
-    path = "placeholder.png", 
+    key = "hal", 
+    path = "hal.png", 
     px = 71,
     py = 95, 
 })
