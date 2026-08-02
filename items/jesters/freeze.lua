@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
     },
     pos = { x = 4, y = 5 },
     attributes = { "xmult", "hand_type", "planet" },
-    cost = 7,
+    cost = 5,
     rarity = 2,
     blueprint_compat = true,
     perishable_compat = false,
