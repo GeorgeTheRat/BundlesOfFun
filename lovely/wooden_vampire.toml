@@ -2,7 +2,7 @@
 version = "1.0.0"
 dump_lua = true
 
-# Patch Vampire joker to ignore wooden cards
+# patch vampire joker to ignore wooden cards
 [[patches]]
 [patches.pattern]
 target = "card.lua"

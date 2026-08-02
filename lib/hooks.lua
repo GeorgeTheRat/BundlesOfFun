@@ -710,9 +710,6 @@ function SMODS.get_enhancements(card, ...)
         end
         return filtered
     end
-    if card.vampired then
-        return {}
-    end
     return enhancements
 end
 
