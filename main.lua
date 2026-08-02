@@ -92,7 +92,8 @@ local files = {
             "angler",
             "pianoman",
             "bouncer",
-            "elephant"
+            "elephant",
+            "freeze"
         }, directory = "items/jesters/"
     },
     normalities = {

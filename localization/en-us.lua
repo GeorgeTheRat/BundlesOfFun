@@ -391,6 +391,16 @@ return {
                     "the same {C:attention}rank"
                 }
             },
+            j_bof_freeze = {
+                name = "Brain Freeze",
+                text = {
+                    "This Joker decreases the",
+                    "{C:attention}level{} of a random {C:attention}poker hand",
+                    "and gains {C:white,X:mult}X#1#{} Mult when",
+                    "a {C:planet}Planet{} card is sold",
+                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
