@@ -4,7 +4,6 @@ BundlesOfFun.Back {
     bundle = "flats",
 	atlas = "deck",
 	pos = { x = 6, y = 0 },
-    pixel_size = { w = 59 },
     unlocked = false,
     calculate = function(self, back, context)
         if context.discard then
