@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "elephant",
     name = "Elephant",
     bundle = "jesters",
-    config = { extra = { chips = 80 } },
+    config = { extra = { chips = 70 } },
     pos = { x = 0, y = 5 },
     attributes = { "chips" },
     cost = 4,

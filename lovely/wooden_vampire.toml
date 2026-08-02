@@ -1,0 +1,12 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# Patch Vampire joker to ignore wooden cards
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired then"
+position = "at"
+payload = '''if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then'''
+match_indent = true

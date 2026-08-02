@@ -93,6 +93,8 @@ local files = {
             "pianoman",
             "bouncer",
             "elephant",
+            "prom_king",
+            "prom_queen",
             "freeze"
         }, directory = "items/jesters/"
     },

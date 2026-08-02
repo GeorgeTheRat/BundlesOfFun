@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            mult = 45,
+            mult = 42,
             amount = 21
         }
     },

@@ -346,11 +346,11 @@ return {
             j_bof_laughing_stock = {
                 name = "Laughing Stock",
                 text = {
-                    "{C:red}Destroy{} each played card with",
-                    "a {C:attention}Seal{} and permanently",
-                    "decrease the {C:attention}current Blind type{}'s",
-                    "score requirement by {C:attention}#1#%{} per card",
-                    "{C:inactive}(Multiplicative)"
+                    "{C:red}Destroy{} each played {C:attention}#1#",
+                    "and permanently decrease",
+                    "{C:attention}current Blind type{}'s score",
+                    "requirement by {C:attention}#2#%{} per card,",
+                    "{C:attention,s:0.8}Enhancement{s:0.8} changes every round"
                 }
             },
             j_bof_angler = {
@@ -389,6 +389,23 @@ return {
                     "{C:chips}+#1#{} Chips if all",
                     "{C:attention}played{} cards are",
                     "the same {C:attention}rank"
+                }
+            },
+            j_bof_prom_king = {
+                name = "Prom King",
+                text = {
+                    "Played {C:attention}Kings{} give an",
+                    "additional {X:mult,C:white}X#1#{} Mult",
+                    "when scored per {C:attention}Queen{}",
+                    "played or held in hand"
+                }
+            },
+            j_bof_prom_queen = {
+                name = "Prom Queen",
+                text = {
+                    "Each {C:attention}Queen{} held in hand",
+                    "gives {C:chips}+#1#{} Chips per {C:attention}King{}",
+                    "played or held in hand"
                 }
             },
             j_bof_freeze = {
