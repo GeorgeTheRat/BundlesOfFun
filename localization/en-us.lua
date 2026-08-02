@@ -24,7 +24,7 @@ return {
                 name = "Grapes",
                 text = {
                     "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
-                    "Destroyed when {C:attention}Boss Blind{} is defeated"
+                    "{C:red}Destroyed{} when {C:attention}Boss Blind{} is defeated"
                 }
             },
             j_bof_leek = {
@@ -347,7 +347,7 @@ return {
                 name = "Laughing Stock",
                 text = {
                     "{C:red}Destroy{} each played card with",
-                    "a {C:attention}seal{} and permanently",
+                    "a {C:attention}Seal{} and permanently",
                     "decrease the {C:attention}current Blind type{}'s",
                     "score requirement by {C:attention}#1#%{} per card",
                     "{C:inactive}(Multiplicative)"
@@ -682,8 +682,9 @@ return {
             b_bof_soapy = {
                 name = "Soapy Deck",
                 text = {
-                    "{C:attention}Enhanced{} cards are",
-                    "destroyed when {C:attention}discarded"
+                    "{C:attention}Enhanced{} cards",
+                    "are {C:red}destroyed",
+                    "when {C:attention}discarded"
                 },
                 unlock = {
                     "Destroy a card with",
