@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            mult_mod = 3,
+            mult_mod = 4,
             cards = 1,
             mult = 0,
         }
