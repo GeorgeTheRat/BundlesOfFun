@@ -680,8 +680,8 @@ return {
                     "No effect if Joker slots are full"
                 },
                 unlock = {
-                    "Have exactly {C:attention}10{} cards of",
-                    "each suit in your deck"
+                    "Have only one",
+                    "{C:attention}suit{} in deck"
                 }
             },
             b_bof_retro = {
@@ -712,14 +712,12 @@ return {
             b_bof_display = {
                 name = "Display Deck",
                 text = {
-                    "Start with all {C:attention}ranks{} of one {C:attention}suit",
-                    "When {C:attention}Boss Blind{} defeated,",
-                    "add a copy of every {C:attention}rank",
-                    "of a random {C:attention}suit{} to deck"
+                    "Preview the next {C:attention}Showdown Blind",
+                    "and next {C:attention}Boss Blind{} at any time",
+                    "{C:inactive}(See Run Info)"
                 },
                 unlock = {
-                    "Have only one",
-                    "{C:attention}rank{} in deck"
+                    "Reroll a {C:attention}Showdown Blind{}"
                 }
             },
             b_bof_lightning = {

@@ -757,6 +757,257 @@ function modsCollectionTally(pool, set, ignore_discovered)
     return result
 end
 
+-- display deck blind prediction system
+-- doesn't really work right now i kinda hate everything
+function BundlesOfFun.get_next_showdown_ante()
+    local current_ante = G.GAME.round_resets.ante or 1
+    local win_ante = G.GAME.win_ante or 8
+    for i = current_ante + 1, current_ante + 8 do
+        if i % win_ante == 0 then
+            return i
+        end
+    end
+    return win_ante
+end
+
+function BundlesOfFun.is_showdown_ante(ante)
+    local win_ante = G.GAME and G.GAME.win_ante or 8
+    return ante and ante >= 2 and win_ante > 0 and ante % win_ante == 0
+end
+
+function BundlesOfFun.is_eligible_boss_blind(blind_def, ante)
+    if type(blind_def) ~= "table" or not blind_def.boss then
+        return false
+    end
+    local win_ante = G.GAME and G.GAME.win_ante or 8
+    local ante_value = math.max(1, ante or 1)
+    local res, options = SMODS.add_to_pool(blind_def)
+    options = options or {}
+    if options.ignore_showdown_check then
+        return res and true or false
+    end
+    local is_showdown = blind_def.boss.showdown or false
+    if blind_def.in_pool and type(blind_def.in_pool) == "function" then
+        if ((ante_value % win_ante == 0 and ante_value >= 2) == is_showdown) then
+            return res and true or false
+        end
+        return false
+    end
+    if not is_showdown and blind_def.boss.min and blind_def.boss.min <= ante_value and (ante_value % win_ante ~= 0 or ante_value < 2) then
+        return res and true or false
+    end
+    if is_showdown and ante_value % win_ante == 0 and ante_value >= 2 then
+        return res and true or false
+    end
+    return false
+end
+
+function BundlesOfFun.predict_next_boss()
+    local next_ante = (G.GAME.round_resets.ante or 1) + 1
+    if BundlesOfFun.is_showdown_ante(next_ante) then
+        G.GAME.bof_predicted_boss = nil
+        G.GAME.bof_predicted_ante = nil
+        G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+        G.GAME.perscribed_bosses[next_ante] = nil
+        return
+    end
+    local boss_pool = {}
+    for key, blind_def in pairs(G.P_BLINDS or {}) do
+        if BundlesOfFun.is_eligible_boss_blind(blind_def, next_ante) then
+            boss_pool[key] = blind_def
+        end
+    end
+    local eligible_bosses = boss_pool
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    if G.GAME.bof_predicted_ante == next_ante and G.GAME.bof_predicted_boss and eligible_bosses[G.GAME.bof_predicted_boss] then
+        G.GAME.perscribed_bosses[next_ante] = G.GAME.bof_predicted_boss
+    elseif next(eligible_bosses) then
+        local _, boss_key = pseudorandom_element(eligible_bosses, pseudoseed("bof_display_boss_"..next_ante))
+        G.GAME.bof_predicted_boss = boss_key
+        G.GAME.bof_predicted_ante = next_ante
+        G.GAME.perscribed_bosses[next_ante] = boss_key
+    else
+        G.GAME.bof_predicted_boss = nil
+        G.GAME.bof_predicted_ante = nil
+        G.GAME.perscribed_bosses[next_ante] = nil
+    end
+end
+
+function BundlesOfFun.predict_next_showdown()
+    local showdown_ante = BundlesOfFun.get_next_showdown_ante()
+    G.GAME.bof_showdown_ante = showdown_ante
+    local showdown_pool = {}
+    for key, blind_def in pairs(G.P_BLINDS or {}) do
+        if BundlesOfFun.is_eligible_boss_blind(blind_def, showdown_ante) and ((blind_def.boss and blind_def.boss.showdown) or blind_def.showdown) then
+            showdown_pool[key] = blind_def
+        end
+    end
+    if G.GAME.bof_predicted_showdown_ante == showdown_ante and G.GAME.bof_predicted_showdown and showdown_pool[G.GAME.bof_predicted_showdown] then
+    elseif next(showdown_pool) then
+        local _, showdown_key = pseudorandom_element(showdown_pool, pseudoseed("bof_display_showdown_"..showdown_ante))
+        G.GAME.bof_predicted_showdown = showdown_key
+        G.GAME.bof_predicted_showdown_ante = showdown_ante
+    else
+        G.GAME.bof_predicted_showdown = nil
+        G.GAME.bof_predicted_showdown_ante = nil
+    end
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    if G.GAME.bof_predicted_showdown then
+        G.GAME.perscribed_bosses[showdown_ante] = G.GAME.bof_predicted_showdown
+    end
+end
+
+function BundlesOfFun.update_predictions()
+    BundlesOfFun.predict_next_boss()
+    BundlesOfFun.predict_next_showdown()
+end
+
+-- antepreview compat
+local function bof_is_new_boss_preview_call()
+    if type(debug) ~= "table" or type(debug.getinfo) ~= "function" then
+        return false
+    end
+    local depth = 2
+    while true do
+        local info = debug.getinfo(depth, "nSl")
+        if not info then
+            break
+        end
+        local source = (info.source or ""):lower()
+        local name = info.name or ""
+        if source:find("antepreview", 1, true) or source:find("ante_preview", 1, true) or name == "predict_next_ante" or name == "create_ante_preview" then
+            return true
+        end
+        depth = depth + 1
+        if depth > 12 then
+            break
+        end
+    end
+    return false
+end
+
+local function bof_get_predicted_boss_for_ante(ante)
+    if type(ante) ~= "number" then
+        return nil
+    end
+    if G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[ante] then
+        return G.GAME.perscribed_bosses[ante]
+    end
+    if G.GAME.bof_predicted_ante == ante and G.GAME.bof_predicted_boss then
+        return G.GAME.bof_predicted_boss
+    end
+    if G.GAME.bof_predicted_showdown_ante == ante and G.GAME.bof_predicted_showdown then
+        return G.GAME.bof_predicted_showdown
+    end
+    return nil
+end
+
+function BundlesOfFun.create_predicted_blind_choice(type, blind_key, blind_ante, run_info)
+    if not blind_key or not blind_ante then
+        return nil
+    end
+    G.GAME.round_resets.blind_choices = G.GAME.round_resets.blind_choices or {}
+    G.GAME.round_resets.blind_states = G.GAME.round_resets.blind_states or {}
+    local old_choice = G.GAME.round_resets.blind_choices[type]
+    local old_ante = G.GAME.round_resets.blind_ante
+    local old_state = G.GAME.round_resets.blind_states[type]
+    G.GAME.round_resets.blind_choices[type] = blind_key
+    G.GAME.round_resets.blind_ante = blind_ante
+    G.GAME.round_resets.blind_states[type] = "Upcoming"
+    local choice = create_UIBox_blind_choice(type, run_info)
+    G.GAME.round_resets.blind_choices[type] = old_choice
+    G.GAME.round_resets.blind_ante = old_ante
+    G.GAME.round_resets.blind_states[type] = old_state
+    return choice
+end
+
+local function bof_install_get_new_boss_hook()
+    if BundlesOfFun.get_new_boss_hooked then
+        return
+    end
+    if type(get_new_boss) ~= "function" then
+        return
+    end
+    BundlesOfFun.original_get_new_boss = get_new_boss
+    get_new_boss = function(...)
+        local is_preview = bof_is_new_boss_preview_call()
+        if G.GAME and G.GAME.round_resets then
+            local current_ante = G.GAME.round_resets.ante or 1
+            if G.GAME.round_resets.boss_rerolled then
+                G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+                G.GAME.perscribed_bosses[current_ante] = nil
+            end
+            local ante = current_ante
+            if is_preview then
+                ante = current_ante + 1
+            end
+            local boss = bof_get_predicted_boss_for_ante(ante)
+            if boss then
+                if is_preview then
+                    G.GAME.bosses_used = G.GAME.bosses_used or {}
+                    G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
+                    if SMODS.find_mod("cartomancer") and type(G.GAME.cartomancer_bosses_list) ~= "table" then
+                        G.GAME.cartomancer_bosses_list = {}
+                    end
+                    return boss
+                end
+                G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+                G.GAME.perscribed_bosses[current_ante] = nil
+                G.GAME.bosses_used = G.GAME.bosses_used or {}
+                G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
+                return boss
+            end
+        end
+        return BundlesOfFun.original_get_new_boss(...)
+    end
+    BundlesOfFun.get_new_boss_hooked = true
+end
+
+if type(G.FUNCS) == "table" and type(G.FUNCS.evaluate_round) == "function" then
+    local bof_evaluate_round_ref = G.FUNCS.evaluate_round
+    G.FUNCS.evaluate_round = function(...)
+        bof_install_get_new_boss_hook()
+        return bof_evaluate_round_ref(...)
+    end
+end
+
+-- hook current_blinds to add prediction ui
+local G_UIDEF_current_blinds_ref = G.UIDEF.current_blinds
+function G.UIDEF.current_blinds()
+    local value = G_UIDEF_current_blinds_ref()
+    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_display" then
+        G.GAME.bof_predicted_boss = G.GAME.bof_predicted_boss or nil
+        G.GAME.bof_predicted_showdown = G.GAME.bof_predicted_showdown or nil
+        G.GAME.bof_showdown_ante = G.GAME.bof_showdown_ante or 8
+        if G.GAME.bof_predicted_ante ~= (G.GAME.round_resets.ante or 1) + 1 or not G.GAME.bof_predicted_boss then
+            BundlesOfFun.predict_next_boss()
+        end
+        if G.GAME.bof_predicted_showdown_ante ~= G.GAME.bof_showdown_ante or not G.GAME.bof_predicted_showdown then
+            BundlesOfFun.predict_next_showdown()
+        end
+        bof_install_get_new_boss_hook()
+        local next_ante = (G.GAME.round_resets.ante or 1) + 1
+        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.bof_predicted_boss, next_ante, true)
+        local boss_node = boss_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No boss", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
+        local boss_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.BLUE }, nodes = {
+            { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. next_ante, scale = 0.4, colour = G.C.BLUE, shadow = true } } } },
+            boss_node
+        } }
+        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.bof_predicted_showdown, G.GAME.bof_showdown_ante, true)
+        local showdown_node = showdown_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No showdown", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
+        local showdown_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.RED }, nodes = {
+            { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. G.GAME.bof_showdown_ante, scale = 0.4, colour = G.C.RED, shadow = true } } } },
+            showdown_node
+        } }
+        local prediction_row = { n = G.UIT.C, config = { align = "cm", padding = 0.2 }, nodes = {
+            boss_section,
+            showdown_section
+        } }
+        table.insert(value.nodes, prediction_row)
+    end
+    return value
+end
+
 -- track fish expiration for buried treasure unlock
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)

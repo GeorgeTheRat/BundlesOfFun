@@ -1,0 +1,33 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# hook the game start to initialize predictions
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''G.GAME.starting_params = {'''
+position = "after"
+payload = '''
+G.GAME.bof_predicted_boss = nil
+G.GAME.bof_predicted_showdown = nil
+G.GAME.bof_predicted_ante = nil
+G.GAME.bof_predicted_showdown_ante = nil
+G.GAME.bof_showdown_ante = 8
+'''
+match_indent = true
+
+# track showdown rerolls for unlock condition
+# BUT IT NO WORKIE FOR SOME REASONDHWAUGHDHGSAIUYDHGWAUIYHGSD
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''G.FUNCS.reroll_boss = function(e)'''
+position = "after"
+payload = '''
+    if G.GAME.blind and G.GAME.blind.config and G.GAME.blind.config.blind and G.GAME.blind.config.blind.spawn_info and G.GAME.blind.config.blind.spawn_info.showdown then
+        G.GAME.bof_rerolled_showdown = true
+        check_for_unlock({ type = "modify_deck" })
+    end
+'''
+match_indent = true

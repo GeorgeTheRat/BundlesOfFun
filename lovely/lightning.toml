@@ -27,6 +27,6 @@ pattern = '''
 if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
 '''
 payload = '''
--- patched by bundles of fun
+    -- patched by bundles of fun
     G.GAME.mult_scored_this_run = true
 '''
