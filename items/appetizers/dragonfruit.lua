@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = { extra = { nommed = false } },
     pos = { x = 0, y = 0 },
     attributes = { "generation", "destruction", "food" },
-    cost = 7,
+    cost = 8,
     rarity = 3,
     blueprint_compat = true,
     eternal_compat = false,
