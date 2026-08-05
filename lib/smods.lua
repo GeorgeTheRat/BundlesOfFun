@@ -70,6 +70,13 @@ SMODS.Atlas {
 	frames = 21
 }
 
+SMODS.Atlas({
+    key = "pinned",
+    path = "pinned.png",
+    px = 71,
+    py = 95,
+})
+
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"
