@@ -82,7 +82,7 @@ local files = {
             "felix",
             "larry",
             "phony",
-            "frank",
+            "fancy",
             "crafted",
             "schlitzohr",
             "hotboxer",

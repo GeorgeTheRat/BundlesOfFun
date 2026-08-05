@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "frank",
-    name = "Frank Fop",
+    key = "fancy",
+    name = "Fancy Pants",
     bundle = "jesters",
     pos = { x = 1, y = 4 },
     attributes = { "generation", "tag" },

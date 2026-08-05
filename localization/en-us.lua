@@ -285,8 +285,8 @@ return {
                     "{C:chips}-#2#{} Chips"
                 }
             },
-            j_bof_frank = {
-                name = "Frank Fop",
+            j_bof_fancy = {
+                name = "Fancy Pants",
                 text = {
                     "Create either a {C:attention}Handy Tag{} or",
                     "{C:attention}Garbage Tag{} at random when",

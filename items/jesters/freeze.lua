@@ -4,13 +4,13 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            xmult_mod = 0.25,
+            xmult_mod = 0.5,
             xmult = 1
         }
     },
     pos = { x = 4, y = 5 },
     attributes = { "xmult", "hand_type", "planet" },
-    cost = 5,
+    cost = 8,
     rarity = 2,
     blueprint_compat = true,
     perishable_compat = false,
