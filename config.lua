@@ -7,7 +7,7 @@ return {
         flats = true,
         fish = true,
         coupons = true,
-        enemies = false
+        enemies = true
     },
     custom_sounds = true,
     custom_wooden_center = true
