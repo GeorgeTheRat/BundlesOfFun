@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = { extra = { dollars = 3 } },
     pos = { x = 9, y = 3 },
     attributes = { "economy", "hands" },
-    cost = 5,
+    cost = 6,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
