@@ -95,7 +95,8 @@ local files = {
             "elephant",
             "prom_king",
             "prom_queen",
-            "freeze"
+            "freeze",
+            "satanist"
         }, directory = "items/jesters/"
     },
     normalities = {

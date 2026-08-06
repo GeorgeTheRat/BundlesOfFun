@@ -418,6 +418,14 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
                 }
             },
+            j_bof_satanist = {
+                name = "Satanist",
+                text = {
+                    "Retrigger each played",
+                    "card {C:attention}once{} for every",
+                    "{C:attention}6{} in played hand"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
