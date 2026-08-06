@@ -422,6 +422,7 @@ function Game:start_run(arg)
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
     G.GAME.bof_octopus_triggered = nil
+    G.GAME.bof_nuwa_fuxi_trigger = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
@@ -431,6 +432,7 @@ local original_game_start_round = Game.start_round
 function Game:start_round()
     G.GAME.bof_octopus_claimed_fish = nil
     G.GAME.bof_octopus_triggered = nil
+    G.GAME.bof_nuwa_fuxi_trigger = nil
     return original_game_start_round and original_game_start_round(self)
 end
 
@@ -850,11 +852,14 @@ end
 -- octopus trigger/general logic
 -- todo: make it so that the messages from octopus trigger immediately after the fish it copies
 -- matey: big fish transform to small fish
+-- nuwa & fuxi: track fish expiration for card creation
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)
     if card and card.ability and card.ability.set == "Fish" then
         local fish_key = card.config.center.key
-        local is_big_fish = fish_key:match("_b$") and not fish_key:match("octopus")
+        local is_big_fish = fish_key:match("_b$")
+        local is_small_fish = fish_key:match("_s$")
+        local is_octopus = fish_key:match("octopus")
         
         if is_big_fish and next(SMODS.find_card("j_bof_matey")) then
             card.ability.bof_matey_transforming = true
@@ -907,9 +912,31 @@ function SMODS.destroy_cards(card, args)
         G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
         check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
         
+        if is_small_fish then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.GAME.bof_small_fish_expired = (G.GAME.bof_small_fish_expired or 0) + 1
+                    G.GAME.bof_nuwa_fuxi_trigger = G.GAME.bof_nuwa_fuxi_trigger or {}
+                    G.GAME.bof_nuwa_fuxi_trigger.tarot = true
+                    return true
+                end
+            }))
+        end
+        if is_big_fish then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.GAME.bof_big_fish_expired = (G.GAME.bof_big_fish_expired or 0) + 1
+                    G.GAME.bof_nuwa_fuxi_trigger = G.GAME.bof_nuwa_fuxi_trigger or {}
+                    G.GAME.bof_nuwa_fuxi_trigger.spectral = true
+                    return true
+                end
+            }))
+        end
+
+        
         G.GAME.bof_octopus_triggered = G.GAME.bof_octopus_triggered or {}
         for _, octopus in ipairs(G.consumeables.cards) do
-            if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not fish_key:find("octopus") then
+            if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not is_octopus then
                 G.GAME.bof_octopus_triggered[octopus] = true
                 G.E_MANAGER:add_event(Event({
                     trigger = "immediate",

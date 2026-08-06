@@ -561,15 +561,12 @@ return {
                 name = "Nüwa & Fuxi",
                 text = {
                     {
-                        "Create a random {C:tarot}Tarot{} card when {C:attention}Blind{} is selected and",
-                        "a random {C:dark_edition}Negative {C:tarot}Tarot{} card when {C:attention}Blind{} is defeated",
-                        "if this is the {C:attention}leftmost{} Joker",
-                        "{C:inactive}(Must have room)"
+                        "Create a {C:dark_edition}Negative {C:tarot}Tarot{} card",
+                        "when a {C:white,X:small}Small{} {C:fish}Fish{} card expires"
                     },
                     {
-                        "Create a random {C:white,E:1,X:small}Small{} {C:fish}Fish{} card when {C:attention}Blind{} is selected",
-                        "and a random {C:white,E:1,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
-                        "if this is the {C:attention}rightmost{} Joker"
+                        "Create a {C:dark_edition}Negative {C:spectral}Spectral{} card",
+                        "when a {C:white,X:big}Big{} {C:fish}Fish{} card expires"
                     }
                 },
                 unlock = {
