@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             mult = 0,
-            mult_mod = 2
+            mult_mod = 3
         }
     },
     pos = { x = 4, y = 6 },
