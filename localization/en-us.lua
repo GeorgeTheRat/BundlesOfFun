@@ -950,8 +950,8 @@ return {
             bl_bof_dominant = {
                 name = "The Dominant",
                 text = {
-                    "Must play cards",
-                    "without a Seal"
+                    "Seals have",
+                    "no effect"
                 }
             },
             bl_bof_risk = {
@@ -975,18 +975,151 @@ return {
                     "drawn face down"
                 }
             },
+            bl_bof_tiny = {
+                name = "The Tiny",
+                text = {
+                    "Small Blind next Ante",
+                    "is unskippable and large"
+                }
+            },
             bl_bof_damping = {
                 name = "The Damping",
                 text = {
-                    "Rare Jokers are disabled",
+                    "All Rare Jokers are disabled",
                     "until final hand"
                 }
             },
             bl_bof_viscous = {
                 name = "The Viscous",
                 text = {
-                    "Permanently debuff random",
+                    "Permanently debuff one random",
                     "scoring card per hand"
+                }
+            },
+            bl_bof_angle = {
+                name = "The Angle",
+                text = {
+                    "Blind size +0.1X per card discarded,",
+                    "-1 discard"
+                }
+            },
+            bl_bof_index = {
+                name = "The Index",
+                text = {
+                    "Scoring a card destroys",
+                    "a random consumable"
+                }
+            },
+            bl_bof_curve = {
+                name = "The Curve",
+                text = {
+                    "Decrease level of",
+                    "discarded poker hands"
+                }
+            },
+            bl_bof_decay_b = {
+                name = "The Decay",
+                text = {
+                    "Cards cannot be",
+                    "rearranged"
+                }
+            },
+            bl_bof_average = {
+                name = "The Average",
+                text = {
+                    "#1# in #2# chance to discard",
+                    "modified cards when drawn"
+                }
+            },
+            bl_bof_frequent = {
+                name = "The Frequent",
+                text = {
+                    "Cards with the most common",
+                    "suit are drawn face down"
+                }
+            },
+            bl_bof_random = {
+                name = "The Random",
+                text = {
+                    "Shuffle cards in",
+                    "played hand"
+                }
+            },
+            bl_bof_useless = {
+                name = "The Useless",
+                text = {
+                    "Halve the sell value",
+                    "of all Jokers"
+                }
+            },
+            bl_bof_irrational = {
+                name = "The Irrational",
+                text = {
+                    "Cards held in hand",
+                    "are shuffled"
+                }
+            },
+            bl_bof_dense = {
+                name = "The Dense",
+                text = {
+                    "Leftmost card in",
+                    "scoring hand is debuffed"
+                }
+            },
+            bl_bof_stress = {
+                name = "The Stress",
+                text = {
+                    "Voucher cannot be",
+                    "restocked next Ante"
+                }
+            },
+            bl_bof_terminal = {
+                name = "The Terminal",
+                text = {
+                    "Last scored rank is",
+                    "debuffed next hand"
+                }
+            },
+            bl_bof_circuit = {
+                name = "The Circuit",
+                text = {
+                    "Only three cards may",
+                    "be visible at once"
+                }
+            },
+            bl_bof_particle = {
+                name = "The Particle",
+                text = {
+                    "Blinds next Ante",
+                    "are unskippable"
+                }
+            },
+            bl_bof_golden = {
+                name = "The Golden",
+                text = {
+                    "Cards held in hand at",
+                    "end of round give -$3"
+                }
+            },
+            bl_bof_square = {
+                name = "The Square",
+                text = {
+                    "Played hand must contain",
+                    "at least 4 scoring cards"
+                }
+            },
+            bl_bof_wave = {
+                name = "The Wave",
+                text = {
+                    "Leftmost Joker becomes",
+                    "Pinned when final hand played"
+                }
+            },
+            bl_bof_resistance = {
+                name = "The Resistance",
+                text = {
+                    "No payout from Blind, Hands,",
+                    "Discards, or Interest"
                 }
             }
         },
@@ -1054,7 +1187,8 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
-            bl_bof_dominant = "Must not play cards with Seals",
+            bl_bof_square = "Must contain 4 scoring cards",
+            bl_bof_terminal = "Last scored rank is debuffed",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",

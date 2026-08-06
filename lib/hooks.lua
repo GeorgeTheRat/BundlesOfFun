@@ -3,7 +3,7 @@ local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
 function G.UIDEF.use_and_sell_buttons(card)
     local abc = G_UIDEF_use_and_sell_buttons_ref(card)
     local sell = nil
-    if (card.area == G.consumeables and card.ability.set == "Fish") then 
+    if (card.area == G.consumeables and card.ability.set == "Fish") then
         sell = {
             n = G.UIT.C,
             config = { align = "cm" },
@@ -106,9 +106,13 @@ function Card:get_chip_bonus()
 	end
 	if suppress then
 		return 0
-	else
-		return getchip(self)
 	end
+	local chips = getchip(self)
+	-- Irradiated's "no base chips" effect is already implemented directly in
+	-- card.lua by lovely/lightning.toml (name-matched, shared with the Wooden/
+	-- Lightning deck base-chip removal) - do not also subtract it here, or it
+	-- gets removed twice (chips go negative instead of landing at 0).
+	return chips
 end
 
 -- eureka logic
@@ -327,8 +331,180 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
+    G.GAME.bof_tiny_active = nil
+    G.GAME.bof_particle_active = nil
+    G.GAME.bof_stress_locked_ante = nil
+    G.GAME.bof_risk_joker = nil
+    G.GAME.bof_viscous_hand_done = nil
+    G.GAME.bof_frequent_suit = nil
+    G.GAME.bof_terminal_debuffed_rank = nil
+    G.GAME.bof_resistance_active = nil
+    G.GAME.bof_angle_base_chips = nil
+    G.GAME.bof_angle_discarded_cards = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
+end
+
+-- tiny: the blind-select screen preview (used by the lovely/enemies.toml
+-- patch to functions/UI_definitions.lua) computes its own chip amount
+-- independently of Blind:set_blind, so it needs the same multiplier applied
+-- here to match what the fight will actually require.
+function BundlesOfFun.blind_amount_preview(blind_choice, amount)
+    if blind_choice == 'Small' and G.GAME.bof_tiny_active then
+        amount = math.floor(amount * 1.5)
+    end
+    return amount
+end
+
+-- tiny: Small Blind next Ante is 1.5x as large (applied when it is faced)
+-- particle: flag cleared once the next Ante's boss is reached
+-- stress: voucher lock applies to every shop through the whole next Ante
+--   (Small, Big, and its Boss), not just the first one - see the
+--   bof_stress_locked_ante comment near where it's set, in stress.lua
+local original_blind_set_blind = Blind.set_blind
+function Blind:set_blind(blind, reset, silent)
+    local ret = original_blind_set_blind(self, blind, reset, silent)
+    if not reset and blind and blind.key then
+        if blind.key == "bl_small" and G.GAME.bof_tiny_active then
+            self.chips = math.floor(self.chips * 1.5)
+            self.chip_text = number_format(self.chips)
+            G.GAME.bof_tiny_active = nil
+        end
+        if blind.boss and G.GAME.bof_particle_active then
+            G.GAME.bof_particle_active = nil
+        end
+        if blind.boss and G.GAME.bof_stress_locked_ante and G.GAME.round_resets.ante > G.GAME.bof_stress_locked_ante then
+            G.GAME.bof_stress_locked_ante = nil
+        end
+    end
+    return ret
+end
+
+-- stress: no voucher restocks anywhere in the locked Ante (Voucher Tags still
+-- call with _from_tag). The lock is scoped by ante number rather than a plain
+-- boolean so it naturally stays active across the Small Blind shop, the Big
+-- Blind shop, AND the Boss's shop of that same Ante, only lifting once we've
+-- actually moved into the ante after that (see Blind:set_blind above).
+function BundlesOfFun.stress_locked()
+    return G.GAME and G.GAME.bof_stress_locked_ante and G.GAME.round_resets
+        and G.GAME.round_resets.ante == G.GAME.bof_stress_locked_ante
+end
+
+local original_get_next_voucher_key = get_next_voucher_key
+function get_next_voucher_key(_from_tag)
+    if not _from_tag and BundlesOfFun.stress_locked() then
+        return nil
+    end
+    return original_get_next_voucher_key(_from_tag)
+end
+
+-- stress: blocks the shop card, not SMODS.get_next_vouchers/current_round.voucher
+-- itself - vanilla Card:redeem() unconditionally indexes current_round.voucher[1]
+-- for Voucher Tag purchases, so leaving that empty would crash the tag purchase.
+-- Voucher Tags create their card directly (not via add_voucher_to_shop) anyway,
+-- so they're unaffected by this block either way.
+local original_add_voucher_to_shop = SMODS.add_voucher_to_shop
+function SMODS.add_voucher_to_shop(key, dont_save)
+    if BundlesOfFun.stress_locked() then
+        return
+    end
+    return original_add_voucher_to_shop(key, dont_save)
+end
+
+-- resistance: no payout from the blind, hands, interest, or discards at end of round,
+-- joker bonuses are untouched. Flag is set by resistance.lua's calculate() on
+-- context.end_of_round (which fires before the payout screen). money_per_discard
+-- is what actually gates the discard bonus row (there's no no_extra_discard_money
+-- the way hands has no_extra_hand_money), so it's cleared instead of flagged off.
+-- no_interest short-circuits vanilla's whole interest block (row, dollars, AND
+-- the interest-cap-streak stat), so nothing partial leaks through.
+local original_evaluate_round = G.FUNCS.evaluate_round
+G.FUNCS.evaluate_round = function()
+    if G.GAME and G.GAME.bof_resistance_active then
+        local original_blind_dollars = G.GAME.blind.dollars
+        local original_no_extra_hand_money = G.GAME.modifiers.no_extra_hand_money
+        local original_money_per_discard = G.GAME.modifiers.money_per_discard
+        local original_no_interest = G.GAME.modifiers.no_interest
+        G.GAME.blind.dollars = 0
+        G.GAME.modifiers.no_extra_hand_money = true
+        G.GAME.modifiers.money_per_discard = nil
+        G.GAME.modifiers.no_interest = true
+        original_evaluate_round()
+        G.GAME.blind.dollars = original_blind_dollars
+        G.GAME.modifiers.no_extra_hand_money = original_no_extra_hand_money
+        G.GAME.modifiers.money_per_discard = original_money_per_discard
+        G.GAME.modifiers.no_interest = original_no_interest
+        G.GAME.bof_resistance_active = nil
+        return
+    end
+    return original_evaluate_round()
+end
+
+-- dense: clears the bof_dense_marked flag from every card in G.play/G.hand/
+-- G.discard/G.deck (wherever a marked card from a previous hand might now
+-- be), un-debuffing it via SMODS.recalc_debuff on the way. Deliberately does
+-- NOT track "the current target" via a card reference in G.GAME (see
+-- items/enemies/dense.lua for why); shared with dense.lua's
+-- blind_defeated/blind_disabled cleanup.
+function BundlesOfFun.dense_clear_marks()
+    for _, area in ipairs({ G.deck, G.hand, G.play, G.discard }) do
+        if area and area.cards then
+            for _, card in ipairs(area.cards) do
+                if card.ability and card.ability.bof_dense_marked then
+                    card.ability.bof_dense_marked = nil
+                    SMODS.recalc_debuff(card)
+                end
+            end
+        end
+    end
+end
+
+-- random & dense: both need G.play.cards to already contain the full played
+-- hand. context.press_play fires as soon as Blind:press_play() is called, but
+-- that happens synchronously right after queuing the (delayed/animated)
+-- draw_card events that move cards from G.hand to G.play - those haven't
+-- resolved yet, so G.play.cards can still be empty or partial at that point.
+-- G.FUNCS.evaluate_play is the first point after that where G.play.cards is
+-- guaranteed to be the complete, final played hand, so both blinds hook it
+-- here instead of using their own calculate() for this part.
+local original_evaluate_play = G.FUNCS.evaluate_play
+G.FUNCS.evaluate_play = function(e)
+    if G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
+        and G.GAME.blind.config.blind then
+        local key = G.GAME.blind.config.blind.key
+        if key == "bl_bof_random" then
+            G.play:shuffle("bof_random")
+        elseif key == "bl_bof_dense" then
+            BundlesOfFun.dense_clear_marks()
+            local _, _, _, scoring_hand = G.FUNCS.get_poker_hand_info(G.play.cards)
+            local target = nil
+            for _, card in ipairs(G.play.cards) do
+                if SMODS.in_scoring(card, scoring_hand) then
+                    target = card
+                    break
+                end
+            end
+            if target then
+                target.ability.bof_dense_marked = true
+                SMODS.recalc_debuff(target)
+                G.GAME.blind:wiggle()
+            end
+        end
+    end
+    return original_evaluate_play(e)
+end
+
+-- decay: hand cards cannot be rearranged while the blind is active
+local original_set_ranks = CardArea.set_ranks
+function CardArea:set_ranks()
+    original_set_ranks(self)
+    if self == G.hand and G.GAME and G.GAME.blind and G.GAME.blind.config
+        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+        and not G.GAME.blind.disabled then
+        for _, card in ipairs(self.cards) do
+            card.states.drag.can = false
+        end
+    end
 end
 
 -- track voucher purchases for lottery ticket unlock
@@ -357,8 +533,53 @@ function G.FUNCS.skip_booster(e)
 end
 
 -- retro deck logic
+-- tiny/particle blinds can make upcoming blinds unskippable
+-- the skip button UI consults these to hide the skip button (and reward) for
+-- blinds that cannot be skipped
+function BundlesOfFun.blind_skip_locked(blind_choice)
+    if not G.GAME then return false end
+    if G.GAME.bof_tiny_active then
+        -- Only the Small Blind itself is unskippable; Big is unaffected
+        return blind_choice == 'Small'
+    end
+    if G.GAME.bof_particle_active and (blind_choice == 'Small' or blind_choice == 'Big') then return true end
+    return false
+end
+
+-- when locked, the ENTIRE tag UI (icon, "or" text, and this button) is
+-- hidden by the create_UIBox_blind_tag hook below, so this function only ever
+-- needs to handle the two vanilla cases (skippable / run_info review screen).
+function BundlesOfFun.blind_skip_ui(blind_choice, run_info, _tag)
+    if not run_info then
+        return { n = G.UIT.C, config = { align = "cm", colour = G.C.UI.BACKGROUND_INACTIVE, minh = 0.6, minw = 2, maxw = 2, padding = 0.07, r = 0.1, shadow = true, hover = true, one_press = true, button = 'skip_blind', func = 'hover_tag_proxy', ref_table = _tag }, nodes = {
+            { n = G.UIT.T, config = { text = localize('b_skip_blind'), scale = 0.4, colour = G.C.UI.TEXT_INACTIVE } }
+        } }
+    else
+        return { n = G.UIT.C, config = { align = "cm", padding = 0.1, emboss = 0.05, colour = mix_colours(G.C.BLUE, G.C.BLACK, 0.4), r = 0.1, maxw = 2 }, nodes = {
+            { n = G.UIT.T, config = { text = localize('b_skip_reward'), scale = 0.35, colour = G.C.WHITE } },
+        } }
+    end
+end
+
+-- tiny/particle: hide the whole tag/skip UI block (icon + "or" text + skip
+-- button) for blind choices that cannot be skipped, instead of showing a
+-- non-functional skip button. This also sidesteps the vanilla button-handler
+-- code that expects that UI block to exist when a tag is present.
+local original_create_UIBox_blind_tag = create_UIBox_blind_tag
+function create_UIBox_blind_tag(blind_choice, run_info)
+    if not run_info and BundlesOfFun.blind_skip_locked(blind_choice) then
+        return nil
+    end
+    return original_create_UIBox_blind_tag(blind_choice, run_info)
+end
+
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
+    local blind_on_deck = G.GAME and G.GAME.blind_on_deck
+    if (G.GAME.bof_tiny_active and blind_on_deck == 'Small')
+        or (G.GAME.bof_particle_active and (blind_on_deck == 'Small' or blind_on_deck == 'Big')) then
+        return
+    end
     original_skip_blind(e)
     local back = G.GAME and G.GAME.selected_back
     if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
@@ -482,6 +703,51 @@ function Card:calculate_seal(context, ...)
     return old_calculate_seal(self, context, ...)
 end
 
+-- dominant: seals have no effect - Red retrigger, Gold $3, Purple
+-- tarot-on-discard, Blue end-of-round planet, all suppressed by hiding self.seal
+-- for the one vanilla call that reads it, then putting it back (touching the
+-- real field would desync the sprite/save state)
+local function bof_dominant_active()
+    return G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
+        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_dominant"
+end
+
+local dominant_calculate_seal = Card.calculate_seal
+function Card:calculate_seal(context, ...)
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local a, b = dominant_calculate_seal(self, context, ...)
+        self.seal = seal
+        return a, b
+    end
+    return dominant_calculate_seal(self, context, ...)
+end
+
+local dominant_get_p_dollars = Card.get_p_dollars
+function Card:get_p_dollars()
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local ret = dominant_get_p_dollars(self)
+        self.seal = seal
+        return ret
+    end
+    return dominant_get_p_dollars(self)
+end
+
+local dominant_get_end_of_round_effect = Card.get_end_of_round_effect
+function Card:get_end_of_round_effect(context)
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local ret = dominant_get_end_of_round_effect(self, context)
+        self.seal = seal
+        return ret
+    end
+    return dominant_get_end_of_round_effect(self, context)
+end
+
 -- director condition logic
 local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 SMODS.calculate_repetitions = function(card, context, reps)
@@ -514,6 +780,7 @@ local legendary_fish_keys = {
 }
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    -- did i genuinely just get rick rolled by a take_ownership call for perkeo
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         local main_end = {}
@@ -628,6 +895,10 @@ local function bof_get_random_voucher_key(excluded, seed_suffix)
     return pseudorandom_element(candidates, pseudoseed(_pool_key .. seed_suffix))
 end
 local function bof_lottery_ticket_reroll_vouchers()
+    -- Lottery Ticket's own "every 6 shop rerolls" ability - replaces the shop's voucher
+    -- card(s) directly instead of going through add_voucher_to_shop, so without this
+    -- check it was the one way a new voucher could sneak into a locked shop
+    if BundlesOfFun.stress_locked() then return end
     if not G.shop_vouchers then
         return
     end

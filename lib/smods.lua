@@ -77,6 +77,32 @@ SMODS.Atlas({
     py = 95,
 })
 
+-- Steamodded already registers "pinned" as a real Sticker (it's what backs vanilla's
+-- card.pinned), just pointed at an out-of-bounds placeholder position since the base
+-- game has no art for it - point it at ours instead. This is enough for
+-- SMODS.Sticker's own inject() to build the sprite into G.shared_stickers.pinned.
+SMODS.Sticker:take_ownership("pinned", {
+    atlas = "pinned",
+    pos = { x = 0, y = 0 },
+})
+
+-- Steamodded replaces Card:draw entirely with SMODS.DrawSteps, and its own built-in
+-- 'stickers' step (order 40) only draws stickers stored in card.ability[key] - but
+-- "pinned"'s apply sets the top-level card.pinned field instead, so it's skipped by
+-- that generic loop too. A dedicated step, checking the right field, is needed.
+SMODS.DrawStep {
+    key = "bof_pinned",
+    order = 41,
+    func = function(self, layer)
+        if self.pinned and G.shared_stickers.pinned then
+            G.shared_stickers.pinned.role.draw_major = self
+            G.shared_stickers.pinned:draw_shader('dissolve', nil, nil, nil, self.children.center)
+            G.shared_stickers.pinned:draw_shader('voucher', nil, self.ARGS.send_to_shader, nil, self.children.center)
+        end
+    end,
+    conditions = { vortex = false, facing = 'front' },
+}
+
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"
