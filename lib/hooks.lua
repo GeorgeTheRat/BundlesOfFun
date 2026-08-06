@@ -471,10 +471,7 @@ local original_evaluate_play = G.FUNCS.evaluate_play
 G.FUNCS.evaluate_play = function(e)
     if G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
         and G.GAME.blind.config.blind then
-        local key = G.GAME.blind.config.blind.key
-        if key == "bl_bof_random" then
-            G.play:shuffle("bof_random")
-        elseif key == "bl_bof_dense" then
+        if G.GAME.blind.config.blind.key == "bl_bof_dense" then
             BundlesOfFun.dense_clear_marks()
             local _, _, _, scoring_hand = G.FUNCS.get_poker_hand_info(G.play.cards)
             local target = nil
@@ -494,7 +491,28 @@ G.FUNCS.evaluate_play = function(e)
     return original_evaluate_play(e)
 end
 
--- decay: hand cards cannot be rearranged while the blind is active
+-- frequent: update most common suit at the beginning of each ante
+local original_ease_ante = ease_ante
+function ease_ante(mod)
+    local ret = original_ease_ante(mod)
+    if G.GAME and G.playing_cards then
+        local suit_counts = {}
+        for _, c in ipairs(G.playing_cards) do
+            local s = c.base.suit
+            suit_counts[s] = (suit_counts[s] or 0) + 1
+        end
+        local most_common = nil
+        local most_count = 0
+        for suit, count in pairs(suit_counts) do
+            if count > most_count then
+                most_common = suit
+                most_count = count
+            end
+        end
+        G.GAME.bof_frequent_suit = most_common
+    end
+    return ret
+end
 local original_set_ranks = CardArea.set_ranks
 function CardArea:set_ranks()
     original_set_ranks(self)
@@ -503,7 +521,7 @@ function CardArea:set_ranks()
         and not G.GAME.blind.disabled then
         for _, card in ipairs(self.cards) do
             card.states.drag.can = false
-        end
+        end 
     end
 end
 

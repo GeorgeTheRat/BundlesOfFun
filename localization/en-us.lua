@@ -647,8 +647,8 @@ return {
             b_bof_fossilized = {
                 name = "Fossilized Deck",
                 text = {
-                    "Earn an additional {C:money}$#1#{} at",
-                    "end of round per held {C:attention}consumable",
+                    "Earn an additional {C:money}$#1#{} at end",
+                    "of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
                     "rarely appear {C:dark_edition,T:e_negative}Negative"
                 },
@@ -661,8 +661,8 @@ return {
             b_bof_wooden = {
                 name = "Wooden Deck",
                 text = {
-                    "Start with no {C:attention}Aces{}",
-                    "and an additional full rank",
+                    "Start with no {C:attention}Aces{} and",
+                    "an additional full rank",
                     "of {C:attention}2s{}, {C:attention}3s{}, {C:attention}4s{}, and {C:attention}5s",
                     "All cards start {C:attention,T:m_bof_wooden}Wooden"
                 },
@@ -985,8 +985,8 @@ return {
             bl_bof_damping = {
                 name = "The Damping",
                 text = {
-                    "All Rare Jokers are disabled",
-                    "until final hand"
+                    "All Rare Jokers are",
+                    "disabled until final hand"
                 }
             },
             bl_bof_viscous = {
@@ -999,15 +999,15 @@ return {
             bl_bof_angle = {
                 name = "The Angle",
                 text = {
-                    "Blind size +0.1X per card discarded,",
-                    "-1 discard"
+                    "Blind size increases by X0.1",
+                    "per card discarded, -1 hand"
                 }
             },
-            bl_bof_index = {
-                name = "The Index",
+            bl_bof_array = {
+                name = "The Array",
                 text = {
-                    "Scoring a card destroys",
-                    "a random consumable"
+                    "Destroy a random consumable",
+                    "when hand played"
                 }
             },
             bl_bof_curve = {
@@ -1017,7 +1017,7 @@ return {
                     "discarded poker hands"
                 }
             },
-            bl_bof_decay_b = {
+            bl_bof_decay = {
                 name = "The Decay",
                 text = {
                     "Cards cannot be",
@@ -1034,7 +1034,7 @@ return {
             bl_bof_frequent = {
                 name = "The Frequent",
                 text = {
-                    "Cards with the most common",
+                    "Cards with #1#",
                     "suit are drawn face down"
                 }
             },
@@ -1083,7 +1083,7 @@ return {
             bl_bof_circuit = {
                 name = "The Circuit",
                 text = {
-                    "Only three cards may",
+                    "Only four cards may",
                     "be visible at once"
                 }
             },
@@ -1104,14 +1104,14 @@ return {
             bl_bof_square = {
                 name = "The Square",
                 text = {
-                    "Played hand must contain",
-                    "at least 4 scoring cards"
+                    "Hand must contain",
+                    "4 scoring cards"
                 }
             },
             bl_bof_wave = {
                 name = "The Wave",
                 text = {
-                    "Leftmost Joker becomes",
+                    "Rightmost Joker becomes",
                     "Pinned when final hand played"
                 }
             },
@@ -1189,6 +1189,7 @@ return {
             k_fish = "Fish",
             bl_bof_square = "Must contain 4 scoring cards",
             bl_bof_terminal = "Last scored rank is debuffed",
+            bof_most_common_suit = "(most common suit in deck)",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",

@@ -8,5 +8,12 @@ BundlesOfFun.Blind {
     pos = { y = 13 },
     atlas = "blind",
     boss = { min = 2 },
-    boss_colour = HEX("88b8b8")
+    boss_colour = HEX("88b8b8"),
+    calculate = function(self, blind, context)
+        if blind.disabled then return end
+
+        if context.before then
+            G.play:shuffle("bof_random")
+        end
+    end
 }

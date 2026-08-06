@@ -8,7 +8,7 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 16 },
     atlas = "blind",
-    boss = { min = 2 },
+    boss = { min = 0 },
     boss_colour = HEX("689898"),
     calculate = function(self, blind, context)
         if context.blind_defeated or context.blind_disabled then
@@ -20,7 +20,9 @@ BundlesOfFun.Blind {
         -- whether the card being asked about is the one that got marked
         if context.debuff_card then
             if context.debuff_card.ability and context.debuff_card.ability.bof_dense_marked then
-                return { debuff = true }
+                return {
+                    debuff = true
+                }
             end
         end
     end

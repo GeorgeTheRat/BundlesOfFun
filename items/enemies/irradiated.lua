@@ -8,6 +8,6 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 2 },
     atlas = "blind",
-    boss = { min = 3 },
+    boss = { min = 0 },
     boss_colour = HEX("e8dfc4")
 }

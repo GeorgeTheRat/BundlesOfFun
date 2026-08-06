@@ -5,7 +5,7 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 23 },
     atlas = "blind",
-    boss = { min = 3 },
+    boss = { min = 2 },
     boss_colour = HEX("b8d878"),
     calculate = function(self, blind, context)
         if blind.disabled then return end
@@ -14,7 +14,7 @@ BundlesOfFun.Blind {
         -- queued hands_left decrement has actually run - context.before (dispatched
         -- later, from evaluate_play_main) is the consistent "final hand" check
         if context.before and G.GAME.current_round.hands_left <= 0 then
-            local target = G.jokers.cards[1]
+            local target = G.jokers.cards[#G.jokers.cards]
             if target and not target.pinned then
                 target.pinned = true
                 blind:wiggle()

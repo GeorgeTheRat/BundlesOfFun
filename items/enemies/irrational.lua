@@ -11,8 +11,7 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
-        -- vanilla CardArea:shuffle handles re-running set_ranks so the new order sticks
-        if context.hand_drawn then
+        if context.before then
             G.hand:shuffle("bof_irrational")
         end
     end

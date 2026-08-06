@@ -5,7 +5,7 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 11 },
     atlas = "blind",
-    boss = { min = 2 },
+    boss = { min = 4 },
     boss_colour = HEX("588878"),
     vars = { 1, 4 },
     calculate = function(self, blind, context)

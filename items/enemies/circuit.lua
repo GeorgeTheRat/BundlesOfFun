@@ -1,4 +1,4 @@
--- only three cards may be visible at once
+-- only four cards may be visible at once
 BundlesOfFun.Blind {
     key = "circuit",
     name = "The Circuit",
@@ -10,7 +10,7 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
-        -- deal face down whenever 3 cards already in hand are face up
+        -- deal face down whenever 4 cards already in hand are face up
         -- (counts currently face-up cards, so more get revealed as
         -- visible ones are played/discarded across the round)
         if context.stay_flipped and context.to_area == G.hand then
@@ -18,7 +18,7 @@ BundlesOfFun.Blind {
             for _, c in ipairs(G.hand.cards) do
                 if c.facing == 'front' then visible = visible + 1 end
             end
-            if visible >= 3 then
+            if visible >= 4 then
                 return { stay_flipped = true }
             end
         end

@@ -15,8 +15,11 @@ BundlesOfFun.Blind {
             local hand_name = G.FUNCS.get_poker_hand_info(context.full_hand)
             local hand_data = hand_name and G.GAME.hands[hand_name]
             if hand_data and hand_data.level > 1 then
-                hand_data.level = hand_data.level - 1
-                blind:wiggle()
+                SMODS.upgrade_poker_hands({
+                    hands = hand_name,
+                    level_up = -1,
+                    from = blind
+                })
             end
         end
     end

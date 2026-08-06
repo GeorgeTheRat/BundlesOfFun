@@ -23,7 +23,7 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 18 },
     atlas = "blind",
-    boss = { min = 4 },
+    boss = { min = 3 },
     boss_colour = HEX("588888"),
     calculate = function(self, blind, context)
         if context.blind_defeated or context.blind_disabled then

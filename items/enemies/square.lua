@@ -6,7 +6,7 @@ BundlesOfFun.Blind {
     bundle = "enemies",
     pos = { y = 22 },
     atlas = "blind",
-    boss = { min = 3 },
+    boss = { min = 0 },
     boss_colour = HEX("b89898"),
     calculate = function(self, blind, context)
         -- context.scoring_hand only has the cards that actually form the scored hand
