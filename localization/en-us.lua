@@ -557,10 +557,10 @@ return {
             j_bof_dagonet = {
                 name = "Dagonet",
                 text = {
-                    "Played {C:attention}Stone Cards{} give",
+                    "Played {C:attention}Enhanced{} cards give",
                     "{C:mult}+#1#{} Mult when scored,",
                     "increases by {C:mult}+#2#{} Mult when",
-                    "a {C:attention}Stone Card{} is discarded"
+                    "a {C:attention}Enhanced{} card is discarded"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",

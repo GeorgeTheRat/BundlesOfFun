@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             mult = 0,
-            mult_mod = 5
+            mult_mod = 2
         }
     },
     pos = { x = 4, y = 6 },
@@ -18,7 +18,6 @@ BundlesOfFun.Joker {
     perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = G.P_CENTERS.m_stone
         return {
             vars = {
                 card.ability.extra.mult,
@@ -27,7 +26,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.discard and not context.other_card.debuff and SMODS.has_enhancement(context.other_card, "m_stone") and not context.blueprint then
+        if context.discard and not context.other_card.debuff and next(SMODS.get_enhancements(context.other_card)) and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult",
@@ -35,7 +34,7 @@ BundlesOfFun.Joker {
                 message_colour = G.C.MULT
             })
         end
-        if context.individual and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, "m_stone") then
+        if context.individual and context.cardarea == G.play and next(SMODS.get_enhancements(context.other_card)) then
             return {
                 mult = card.ability.extra.mult
             }
