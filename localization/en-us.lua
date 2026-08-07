@@ -940,7 +940,7 @@ return {
                     "{C:attention}restock{} all present {C:attention}Vouchers"
                 },
                 unlock = {
-                    "Redeem {C:attention}3{} Vouchers",
+                    "Redeem {C:attention}2{} Vouchers",
                     "in the same Ante"
                 }
             },
