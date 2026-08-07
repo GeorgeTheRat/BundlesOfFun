@@ -31,5 +31,16 @@ BundlesOfFun.Joker {
                 }
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            -- unconditional every joker_main, no restriction to account for
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult",  colour = G.C.MULT },
+                { text = ", -" },
+                { ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS }
+            }
+        }
     end
 }

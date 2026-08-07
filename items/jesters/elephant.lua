@@ -28,5 +28,30 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            -- mirrors calculate: only fires if every card in the currently selected hand
+            -- shares the same rank
+            text = {
+                { text = "+" },
+                { ref_table = "card.joker_display_values", ref_value = "chips", colour = G.C.CHIPS }
+            },
+            calc_function = function(card)
+                local hand = JokerDisplay.current_hand
+                local active = false
+                if hand and #hand > 0 then
+                    active = true
+                    local first_rank = hand[1].base.value
+                    for _, c in ipairs(hand) do
+                        if c.base.value ~= first_rank then
+                            active = false
+                            break
+                        end
+                    end
+                end
+                card.joker_display_values.chips = active and card.ability.extra.chips or 0
+            end
+        }
     end
 }
