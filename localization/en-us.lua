@@ -1210,8 +1210,8 @@ return {
     misc = {
         dictionary = {
             b_fish_cards = "Fish Cards",
-            k_bof_active = "Active!",
-            k_bof_inactive = "Inactive...",
+            k_active_ex = "Active!",
+            k_inactive_el = "Inactive...",
             k_ready_ex = "Ready!",
             k_destroyed_ex = "Destroyed!",
             k_alarm_ex = "Alarm Set!",

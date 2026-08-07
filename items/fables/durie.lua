@@ -14,7 +14,7 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { key = "e_negative_playing_card", set = "Edition", config = { extra = 1 } }
     end,
     calculate = function(self, card, context)
-        if context.pre_discard then
+        if context.durie then
             card:juice_up(0.3, 0.5)
         end
         if context.blind_defeated then

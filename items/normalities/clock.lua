@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
             if not context.blueprint then
                 G.GAME.bof_total_hands_played = (G.GAME.bof_total_hands_played or 0) + 1
                 if G.GAME.bof_total_hands_played % 2 == 0 then
-                    card.ability.extra.active_display = localize("k_bof_inactive")
+                    card.ability.extra.active_display = localize("k_inactive_el")
                     if not BundlesOfFun.config.custom_sounds then
                         return {
                             xmult = card.ability.extra.xmult
@@ -51,7 +51,7 @@ BundlesOfFun.Joker {
                         }
                     end
                 else
-                    card.ability.extra.active_display = localize("k_bof_active")
+                    card.ability.extra.active_display = localize("k_active_ex")
                     local eval = function()
                         return G.GAME.bof_total_hands_played % 2 == 1
                     end
@@ -64,7 +64,7 @@ BundlesOfFun.Joker {
             else
                 G.GAME.bof_blueprint_total_hands_played = (G.GAME.bof_total_hands_played or 0) + 1
                 if G.GAME.bof_blueprint_total_hands_played % 2 == 0 then
-                    card.ability.extra.active_display = localize("k_bof_inactive")
+                    card.ability.extra.active_display = localize("k_inactive_el")
                     return {
                         xmult = card.ability.extra.xmult
                     }

@@ -1315,7 +1315,7 @@ G.FUNCS.discard_cards_from_highlighted = function(e, hook)
         end
         local selected = G.hand.highlighted
         if #selected > 0 then
-            SMODS.calculate_context({ pre_discard = true, full_hand = selected })
+            SMODS.calculate_context({ durie = true })
             for _, card in ipairs(selected) do
                 if not (card.edition and card.edition.negative) then
                     card:set_edition("e_negative", nil, true)
@@ -1341,9 +1341,8 @@ G.FUNCS.discard_cards_from_highlighted = function(e, hook)
             }))
             return
         end
-    else
-        return original_discard(e, hook)
     end
+    return original_discard(e, hook)
 end
 
 -- track fish expiration for buried treasure unlock
