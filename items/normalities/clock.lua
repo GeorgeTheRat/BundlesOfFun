@@ -57,7 +57,7 @@ BundlesOfFun.Joker {
                     end
                     juice_card_until(card, eval, true)
                     return {
-                        message = localize("k_bof_alarm"),
+                        message = localize("k_alarm_ex"),
                         sound = BundlesOfFun.config.custom_sounds and "bof_alarm_wind" or nil
                     }
                 end

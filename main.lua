@@ -120,6 +120,7 @@ local files = {
             "dagonet",
             "shennong",
             "nuwa_fuxi",
+            "durie",
             "placeholder"
         }, directory = "items/fables/"
     },

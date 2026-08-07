@@ -39,7 +39,7 @@ BundlesOfFun.Joker {
                 end
             end
             return {
-                message = localize("k_erased")
+                message = localize("k_erased_ex")
             }
         end
         if context.individual and context.cardarea == G.hand and not context.end_of_round then

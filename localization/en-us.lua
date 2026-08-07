@@ -609,6 +609,22 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
+            j_bof_durie = {
+                name = "Durie",
+                text = {
+                    {
+                        "Pressing {C:white,X:red}Discard{} instead applies",
+                        "{C:dark_edition}Negative{} to all selected cards"
+                    },
+                    {
+                        "{C:dark_edition}Negative{} playing cards {C:red}lose",
+                        "their {C:dark_edition}Edition{} at end of round"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
             j_bof_placeholder = {
                 name = "Placeholder",
                 text = {
@@ -984,7 +1000,7 @@ return {
                 name = "The Irradiated",
                 text = {
                     "Played cards do not give",
-                    "their base chips when scored"
+                    "base chips when scored"
                 }
             },
             bl_bof_change = {
@@ -1025,7 +1041,7 @@ return {
             bl_bof_array = {
                 name = "The Array",
                 text = {
-                    "Destroy a random consumable",
+                    "Destroy a consumable",
                     "when hand played"
                 }
             },
@@ -1039,8 +1055,8 @@ return {
             bl_bof_decay = {
                 name = "The Decay",
                 text = {
-                    "Cards cannot be",
-                    "rearranged"
+                    "Cards cannot",
+                    "be rearranged"
                 }
             },
             bl_bof_average = {
@@ -1081,8 +1097,8 @@ return {
             bl_bof_dense = {
                 name = "The Dense",
                 text = {
-                    "Leftmost card in",
-                    "scoring hand is debuffed"
+                    "First card used in",
+                    "scoring is debuffed"
                 }
             },
             bl_bof_stress = {
@@ -1131,7 +1147,7 @@ return {
                 name = "The Wave",
                 text = {
                     "Rightmost Joker becomes",
-                    "Pinned when final hand played"
+                    "Pinned when last hand played"
                 }
             },
             bl_bof_resistance = {
@@ -1196,12 +1212,11 @@ return {
             b_fish_cards = "Fish Cards",
             k_bof_active = "Active!",
             k_bof_inactive = "Inactive...",
-            k_bof_ready = "Ready!",
-            k_bof_destroyed = "Destroyed!",
-            k_bof_alarm = "Alarm Set!",
-            k_bof_downgrade = "Downgrade!",
-            k_erased = "Erased!",
-            k_bof_sticker_applied = "Sticker Applied!",
+            k_ready_ex = "Ready!",
+            k_destroyed_ex = "Destroyed!",
+            k_alarm_ex = "Alarm Set!",
+            k_erased_ex = "Erased!",
+            k_sticker_ex = "Sticker Applied!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",

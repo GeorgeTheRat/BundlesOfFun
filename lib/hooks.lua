@@ -290,8 +290,15 @@ end
 
 -- wooden deck card sounds
 local original_play_sound = play_sound
-function play_sound(sound_code, pitch, vol, stop_previous_instance)
-    if BundlesOfFun.config.custom_sounds and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
+function play_sound(sound_code, per, vol)
+    if
+        BundlesOfFun.config.custom_sounds and
+        G.GAME and
+        G.GAME.selected_back and
+        G.GAME.selected_back.effect and
+        G.GAME.selected_back.effect.center and
+        G.GAME.selected_back.effect.center.key == "b_bof_wooden"
+    then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -303,7 +310,7 @@ function play_sound(sound_code, pitch, vol, stop_previous_instance)
             sound_code = "bof_wooden_4"
         end
     end
-    return original_play_sound(sound_code, pitch, vol, stop_previous_instance)
+    return original_play_sound(sound_code, per, vol)
 end
 
 -- laughing stock: reset blind stuff on new run
@@ -1295,6 +1302,48 @@ function G.UIDEF.current_blinds()
         table.insert(value.nodes, prediction_row)
     end
     return value
+end
+
+-- durie: make cards negative instead of discarding
+local original_discard = G.FUNCS.discard_cards_from_highlighted
+G.FUNCS.discard_cards_from_highlighted = function(e, hook)
+    if next(SMODS.find_card("j_bof_durie")) then
+        G.CONTROLLER.interrupt.focus = true
+        G.CONTROLLER:save_cardarea_focus("hand")
+        for k, v in ipairs(G.playing_cards) do
+            v.ability.forced_selection = nil
+        end
+        local selected = G.hand.highlighted
+        if #selected > 0 then
+            SMODS.calculate_context({ pre_discard = true, full_hand = selected })
+            for _, card in ipairs(selected) do
+                if not (card.edition and card.edition.negative) then
+                    card:set_edition("e_negative", nil, true)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            card:juice_up(1, 0.5)
+                            return true
+                        end
+                    }))
+                end
+            end
+            play_sound("negative", 1.5, 0.4)
+            G.hand:unhighlight_all()
+            ease_discard(-1)
+            G.GAME.current_round.discards_used = G.GAME.current_round.discards_used + 1
+            G.STATE = G.STATES.DRAW_TO_HAND
+            G.E_MANAGER:add_event(Event({
+                trigger = "immediate",
+                func = function()
+                    G.STATE_COMPLETE = false
+                    return true
+                end
+            }))
+            return
+        end
+    else
+        return original_discard(e, hook)
+    end
 end
 
 -- track fish expiration for buried treasure unlock

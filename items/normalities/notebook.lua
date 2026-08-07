@@ -64,7 +64,7 @@ BundlesOfFun.Joker {
                             end
                         }))
                         return {
-                            message = localize("k_bof_sticker_applied")
+                            message = localize("k_sticker_ex")
                         }
                     end
                 end

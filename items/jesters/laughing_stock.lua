@@ -130,7 +130,7 @@ BundlesOfFun.Joker {
                         end
                     }))
                     return {
-                        message = localize("k_bof_destroyed")
+                        message = localize("k_destroyed_ex")
                     }
                 end
             end
