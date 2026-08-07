@@ -421,9 +421,9 @@ return {
             j_bof_satanist = {
                 name = "Satanist",
                 text = {
-                    "Retrigger each played",
-                    "card {C:attention}once{} for every",
-                    "{C:attention}6{} in played hand"
+                    "Retrigger each other ",
+                    "played card {C:attention}once{} for",
+                    "every {C:attention}6{} in played hand"
                 }
             },
             -- Normalities
@@ -604,6 +604,17 @@ return {
                         "and a random {C:white,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
                         "if this is the {C:attention}rightmost{} Joker"
                     }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            j_bof_placeholder = {
+                name = "Placeholder",
+                text = {
+                    "Create a {C:dark_edition}Negative",
+                    "copy of {C:planet}Planet{} card",
+                    "for played hand"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",

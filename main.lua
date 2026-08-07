@@ -119,7 +119,8 @@ local files = {
             "taillefer",
             "dagonet",
             "shennong",
-            "nuwa_fuxi"
+            "nuwa_fuxi",
+            "placeholder"
         }, directory = "items/fables/"
     },
     flats = {

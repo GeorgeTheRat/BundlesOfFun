@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Satanist",
     bundle = "jesters",
     pos = { x = 9, y = 5 },
-    attributes = { "sixes", "retrigger" },
+    attributes = { "six", "retrigger" },
     cost = 8,
     rarity = 3,
     blueprint_compat = true,
@@ -16,7 +16,7 @@ BundlesOfFun.Joker {
                     six_count = six_count + 1
                 end
             end
-            if six_count > 0 then
+            if six_count > 0 and context.other_card.base.id ~= 6 then
                 return {
                     repetitions = six_count
                 }
