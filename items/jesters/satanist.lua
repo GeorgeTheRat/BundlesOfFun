@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     pos = { x = 9, y = 5 },
     attributes = { "six", "retrigger" },
-    cost = 8,
+    cost = 9,
     rarity = 3,
     blueprint_compat = true,
     atlas = "joker",
