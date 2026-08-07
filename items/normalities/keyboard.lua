@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Keyboard",
     bundle = "normalities",
     config = { extra = { mult = 8 } },
-    pos = { x = 5, y = 8 },
+    pos = { x = 5, y = 9 },
     attributes = { "mult", "rank", "eight" },
     cost = 8,
     rarity = 3,

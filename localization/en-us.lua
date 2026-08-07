@@ -574,8 +574,8 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_shennong = {
-                name = "Shennong",
+            j_bof_gonella = {
+                name = "Gonella",
                 text = {
                     {
                         "{C:attention}Bottommost{} card in deck becomes a",
@@ -625,8 +625,8 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_placeholder = {
-                name = "Placeholder",
+            j_bof_mezzetino = {
+                name = "Mezzetino",
                 text = {
                     "Create a {C:dark_edition}Negative",
                     "copy of {C:planet}Planet{} card",

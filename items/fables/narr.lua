@@ -22,8 +22,8 @@ BundlesOfFun.Joker {
             xmult = 1
         } 
     },
-    pos = { x = 0, y = 6 },
-    soul_pos = { x = 0, y = 7 },
+    pos = { x = 0, y = 7 },
+    soul_pos = { x = 0, y = 8 },
     attributes = { "xmult", "scaling", "suit", "full_deck" },
     cost = 20,
     rarity = 4,

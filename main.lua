@@ -118,10 +118,10 @@ local files = {
             "turold",
             "taillefer",
             "dagonet",
-            "shennong",
+            "gonella",
             "nuwa_fuxi",
             "durie",
-            "placeholder"
+            "mezzetino"
         }, directory = "items/fables/"
     },
     flats = {

@@ -8,8 +8,8 @@ BundlesOfFun.Joker {
             mult_mod = 3
         }
     },
-    pos = { x = 4, y = 6 },
-    soul_pos = { x = 4, y = 7 },
+    pos = { x = 4, y = 7 },
+    soul_pos = { x = 4, y = 8 },
     attributes = { "mult", "scaling", "enhancements" },
     cost = 20,
     rarity = 4,

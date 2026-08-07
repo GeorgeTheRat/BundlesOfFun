@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "gnome",
     name = "Garden Gnome",
     bundle = "normalities",
-    pos = { x = 6, y = 8 },
+    pos = { x = 6, y = 9 },
     attributes = { "passive", "economy" },
     cost = 6,
     rarity = 1,

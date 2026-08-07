@@ -1,9 +1,9 @@
 BundlesOfFun.Joker {
-    key = "shennong",
-    name = "Shennong",
+    key = "gonella",
+    name = "Gonella",
     bundle = "fables",
-    pos = { x = 5, y = 6 },
-    soul_pos = { x = 5, y = 7 },
+    pos = { x = 5, y = 7 },
+    soul_pos = { x = 5, y = 8 },
     attributes = { "mod_chance", "enhancements", "modify_card", "boss_blind" },
     cost = 20,
     rarity = 4,

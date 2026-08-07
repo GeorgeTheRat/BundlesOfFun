@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             yes = false
         }
     },
-    pos = { x = 0, y = 8 },
+    pos = { x = 0, y = 9 },
     attributes = { "economy", "stickers" },
     cost = 8,
     rarity = 2,
