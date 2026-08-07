@@ -3,12 +3,13 @@
 -- implementations that kept finding new gaps, and eventually a live-card-in-G.GAME crash;
 -- "last scored rank" keeps the "last X" theme but needs no evaluation-order tracking at all)
 --
--- recalc debuff status for everything currently in hand/play
+-- recalc debuff status for every card in the deck (draw pile, hand, play, discard)
+-- cause I'm dumb and didn't think about in the deck somehow
 --
 -- this shit was annoying; but still infinitely easier too make than the old effect,
 -- that had it's own problems anyways though
 local function bof_terminal_recalc_all()
-    for _, area in ipairs({ G.hand, G.play }) do
+    for _, area in ipairs({ G.deck, G.hand, G.play, G.discard }) do
         if area and area.cards then
             for _, card in ipairs(area.cards) do
                 SMODS.recalc_debuff(card)
