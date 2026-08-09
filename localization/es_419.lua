@@ -993,17 +993,15 @@ return {
             k_bof_hooked = "Paquete de Cebo",
             k_fish = "Pez",
 
-            bof_bof = "Paquetes De La Suerte",
-            bof_appetizers = "Aperitivos",
-            bof_jesters = "Bufones",
-            bof_normalities = "Normalidades",
-            bof_fables = "Fábulas",
-            bof_enemies = "Enemigos",
-            bof_flats = "Planicies",
-            bof_fish = "Peces",
-            bof_coupons = "Cupones",
-            -- bof_finishers = "Finishers"
-            -- bof_games = "Games"
+            option_bof_appetizers = "Aperitivos",
+            option_bof_jesters = "Bufones",
+            option_bof_normalities = "Normalidades",
+            option_bof_fables = "Fábulas",
+            option_bof_flats = "Planicies",
+            option_bof_fish = "Peces",
+            option_bof_coupons = "Cupones",
+            -- option_bof_enemies = "Enemies",
+            -- option_bof_finishers = "Finishers"
         }
     }
 }

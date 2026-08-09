@@ -252,8 +252,6 @@ SMODS.current_mod.calculate = function(self, context)
     end
 end
 
-SMODS.config.no_mod_badges = true
-
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true
 }

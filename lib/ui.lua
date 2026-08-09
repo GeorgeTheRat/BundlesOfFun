@@ -2,7 +2,7 @@
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = {
         create_toggle{
-            label = localize("bof_" .. item),
+            label = localize("option_bof_" .. item),
             active_colour = colour,
             col = true,
             label_scale = 0.4,
@@ -110,7 +110,7 @@ SMODS.current_mod.extra_tabs = function()
                             }},
                             { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
                                 bundle_toggle("flats", G.C.bof_flats),
-                                bundle_toggle("minnows", G.C.bof_minnows),
+                                bundle_toggle("fish", G.C.bof_fish),
                                 bundle_toggle("coupons", G.C.bof_coupons),
                                 bundle_toggle("enemies", G.C.bof_enemies),
                             }}
