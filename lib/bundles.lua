@@ -7,7 +7,7 @@ local bundle_badges = {
     normalities = { name = "bof_normalities", color = G.C.bof_normalities },
     fables = { name = "bof_fables", color = G.C.bof_fables },
     flats = { name = "bof_flats", color = G.C.bof_flats },
-    fish = { name = "bof_fish", color = G.C.bof_fish },
+    fish = { name = "bof_minnows", color = G.C.bof_minnows },
     coupons = { name = "bof_coupons", color = G.C.bof_coupons },
     enemies = { name = "bof_enemies", color = G.C.bof_enemies }
 }

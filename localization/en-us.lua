@@ -1231,7 +1231,7 @@ return {
             bof_normalities = "Normalities",
             bof_fables = "Fables",
             bof_flats = "Flats",
-            bof_fish = "Fish",
+            bof_minnows = "Minnows",
             bof_coupons = "Coupons",
             bof_enemies = "Enemies",
             -- bof_finishers = "Finishers",
