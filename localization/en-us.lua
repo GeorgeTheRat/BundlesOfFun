@@ -421,7 +421,7 @@ return {
             j_bof_satanist = {
                 name = "Satanist",
                 text = {
-                    "Retrigger each other ",
+                    "Retrigger each {C:attention}other",
                     "played card {C:attention}once{} for",
                     "every {C:attention}6{} in played hand"
                 }
@@ -1225,16 +1225,17 @@ return {
             bl_bof_terminal = "Last scored rank is debuffed",
             bof_most_common_suit = "(most common suit in deck)",
 
-            option_bof_appetizers = "Appetizers",
-            option_bof_jesters = "Jesters",
-            option_bof_normalities = "Normalities",
-            option_bof_fables = "Fables",
-            option_bof_flats = "Flats",
-            option_bof_fish = "Fish",
-            option_bof_coupons = "Coupons",
-            option_bof_enemies = "Enemies",
-            -- option_bof_finishers = "Finishers",
-            -- option_bof_games = "Games"
+            bof_bof = "Bundles Of Fun",
+            bof_appetizers = "Appetizers",
+            bof_jesters = "Jesters",
+            bof_normalities = "Normalities",
+            bof_fables = "Fables",
+            bof_flats = "Flats",
+            bof_fish = "Fish",
+            bof_coupons = "Coupons",
+            bof_enemies = "Enemies",
+            -- bof_finishers = "Finishers",
+            -- bof_games = "Games"
         }
     }
 }

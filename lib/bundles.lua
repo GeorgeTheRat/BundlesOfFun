@@ -1,6 +1,17 @@
 -- use bundle == "bundle_name" to attach an object to a bundle
 -- use bundle == { "bundle_name", { "bundle_dependency_1", "bundle_dependency_2", ... } } to have an object rely on other bundles to be visible
 
+local bundle_badges = {
+    appetizers = { name = "bof_appetizers", color = G.C.bof_appetizers },
+    jesters = { name = "bof_jesters", color = G.C.bof_jesters },
+    normalities = { name = "bof_normalities", color = G.C.bof_normalities },
+    fables = { name = "bof_fables", color = G.C.bof_fables },
+    flats = { name = "bof_flats", color = G.C.bof_flats },
+    fish = { name = "bof_fish", color = G.C.bof_fish },
+    coupons = { name = "bof_coupons", color = G.C.bof_coupons },
+    enemies = { name = "bof_enemies", color = G.C.bof_enemies }
+}
+
 -- extract primary bundle and dependencies from bundle field
 local function parse_bundle(bundle)
     if type(bundle) == "string" then
@@ -53,6 +64,15 @@ BundlesOfFun.Joker = SMODS.Joker:extend({
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
+        end
         SMODS.Joker.inject(self)
     end
 })
@@ -62,7 +82,31 @@ BundlesOfFun.Back = SMODS.Back:extend({
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
+        end
         SMODS.Back.inject(self)
+    end
+})
+
+BundlesOfFun.Enhancement = SMODS.Enhancement:extend({
+    inject = function(self)
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
+        end
+        SMODS.Enhancement.inject(self)
     end
 })
 
@@ -70,6 +114,15 @@ BundlesOfFun.Consumable = SMODS.Consumable:extend({
     inject = function(self)
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
         end
         SMODS.Consumable.inject(self)
     end
@@ -80,6 +133,15 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
+        end
         SMODS.Booster.inject(self)
     end
 })
@@ -89,6 +151,15 @@ BundlesOfFun.Voucher = SMODS.Voucher:extend({
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
+        end
         SMODS.Voucher.inject(self)
     end
 })
@@ -97,6 +168,15 @@ BundlesOfFun.Blind = SMODS.Blind:extend({
     inject = function(self, i)
         if self.bundle and not self.no_collection then
             self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        if self.bundle and not self.set_badges then
+            local primary = parse_bundle(self.bundle)
+            if primary and bundle_badges[primary] then
+                local badge_data = bundle_badges[primary]
+                self.set_badges = function(self, card, badges)
+                    badges[#badges + 1] = create_badge(localize(badge_data.name), badge_data.color, nil, 0.8)
+                end
+            end
         end
         SMODS.Blind.inject(self, i)
         if not self._discovered_unlocked_overwritten then
