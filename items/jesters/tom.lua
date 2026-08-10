@@ -25,10 +25,10 @@ BundlesOfFun.Joker {
             main_end = main_end[1]
         }
     end,
-    add_to_deck = function(self, card, context)
+    add_to_deck = function(self, card, from_debuff)
         G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.consumable_slots
     end,
-    remove_from_deck = function(self, card, context)
+    remove_from_deck = function(self, card, from_debuff)
         G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.consumable_slots
     end,
     can_sell = function(self, card, context)
