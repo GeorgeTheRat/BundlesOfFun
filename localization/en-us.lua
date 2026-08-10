@@ -421,7 +421,7 @@ return {
             j_bof_satanist = {
                 name = "Satanist",
                 text = {
-                    "Retrigger each other ",
+                    "Retrigger each {C:attention}other",
                     "played card {C:attention}once{} for",
                     "every {C:attention}6{} in played hand"
                 }
@@ -643,13 +643,14 @@ return {
                     {
                         "Cards held in hand at",
                         "end of round create {C:attention}Tags",
-                        "dependent on their {C:attention}suit"
+                        "dependent on their {C:attention}suit",
+                        "{C:inactive,s:0.8}(Cannot create more than {C:attention,s:0.8}#1#{C:inactive,s:0.8} Tag#<s>1# at once)"
                     },
                     {
-                        "{C:spades}Spades{} create {C:tag_buffoon}Buffoon Tags",
-                        "{C:hearts}Hearts{} create {C:tarot}Charm Tags",
-                        "{C:clubs}Clubs{} create {C:planet}Meteor tags",
-                        "{C:diamonds}Diamonds{} create {C:attention}Standard Tags"
+                        "{C:spades,s:0.9}Spades{s:0.9} create {C:dark_edition,s:0.9}Polychrome Tags",
+                        "{C:hearts,s:0.9}Hearts{s:0.9} create {C:red,s:0.9}Garbage Tags",
+                        "{C:clubs,s:0.9}Clubs{s:0.9} create {C:planet,s:0.9}Orbital Tags",
+                        "{C:diamonds,s:0.9}Diamonds{s:0.9} create {C:attention,s:0.9}Standard Tags"
                     }
                 },
                 unlock = {

@@ -7,7 +7,7 @@ BundlesOfFun.Joker {
 			odds = 4,
 			chips = 25,
 			mult = 5,
-			xmult = 1.25,
+			xmult = 1.5,
 			dollars = 1,
 		},
 	},

@@ -29,7 +29,6 @@ G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 -- register localization colors
 loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
-G.ARGS.LOC_COLOURS.tag_buffoon = HEX("9faec9")
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
 
