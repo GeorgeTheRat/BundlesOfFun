@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "angler",
     name = "Angler",
-    bundle = { "jesters", { "fish" } },
+    bundle = { "jesters", { "minnows" } },
     config = {
         extra = {
             chips = 30,

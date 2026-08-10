@@ -5,7 +5,7 @@ return {
         normalities = true,
         fables = true,
         flats = true,
-        fish = true,
+        minnows = true,
         coupons = true,
         enemies = true
     },

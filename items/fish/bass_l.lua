@@ -1,7 +1,7 @@
 BundlesOfFun.Consumable {
     key = "bass_l",
     name = "Largemouth Bass Legendary",
-    bundle = "fish",
+    bundle = "minnows",
     set = "Fish",
     soul_set = "Fish",
     pools = { ["fish_l"] = true },
