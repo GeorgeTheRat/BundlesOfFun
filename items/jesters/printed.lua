@@ -14,12 +14,12 @@ BundlesOfFun.Joker {
             if other_joker ~= card and other_joker:is_rarity(1) then
                 local effect = SMODS.blueprint_effect(card, other_joker, context)
                 if effect then
-                    table.insert(effects, { effect })
+                    table.insert(effects, effect)
                 end
             end
         end
         if #effects > 0 then
-            local ret = SMODS.merge_effects(unpack(effects))
+            local ret = SMODS.merge_effects(effects)
             ret.colour = G.C.PURPLE
             return ret
         end
