@@ -1,7 +1,7 @@
 BundlesOfFun.Consumable {
     key = "trout_l",
     name = "Rainbow Trout Legendary",
-    bundle = "fish",
+    bundle = "minnows",
     set = "Fish",
     soul_set = "Fish",
     pools = { ["fish_l"] = true },

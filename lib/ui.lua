@@ -2,7 +2,7 @@
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = {
         create_toggle{
-            label = localize("option_bof_" .. item),
+            label = localize("bof_" .. item),
             active_colour = colour,
             col = true,
             label_scale = 0.4,
@@ -110,7 +110,7 @@ SMODS.current_mod.extra_tabs = function()
                             }},
                             { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
                                 bundle_toggle("flats", G.C.bof_flats),
-                                bundle_toggle("fish", G.C.bof_fish),
+                                bundle_toggle("minnows", G.C.bof_minnows),
                                 bundle_toggle("coupons", G.C.bof_coupons),
                                 bundle_toggle("enemies", G.C.bof_enemies),
                             }}
@@ -178,7 +178,7 @@ SMODS.current_mod.extra_tabs = function()
                                 bof_credit_description("Bug fixes, Spanish translation, many decks"),
                                 bof_credit_title("arc", "Musician", G.C.bof_ColonParen),
                                 bof_credit_description("Music played in Fish-related packs"),
-                                bof_credit_title("wingedcatgirl", "Coder", G.C.SET.Fish),
+                                bof_credit_title("wingedcatgirl", "Coder", G.C.bof_minnows),
                                 bof_credit_description("Technical code and UI"),
                                 bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
                                 bof_credit_description("Multiple Decks' code"),

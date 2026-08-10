@@ -524,7 +524,7 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_manqian = {
@@ -536,7 +536,7 @@ return {
                     "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_turold = {
@@ -548,7 +548,7 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_taillefer = {
@@ -556,10 +556,11 @@ return {
                 text = {
                     "Fill {C:attention}consumable slots",
                     "with random {C:spectral}Spectral{} cards",
-                    "when {C:attention}Blind{} is selected"
+                    "when {C:attention}Blind{} is selected,",
+                    "{C:attention}+#1#{} consumable slot"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_dagonet = {
@@ -571,7 +572,7 @@ return {
                     "a {C:attention}Enhanced{} card is discarded"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_gonella = {
@@ -587,7 +588,7 @@ return {
                     }
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_nuwa_fuxi = {
@@ -606,7 +607,7 @@ return {
                     }
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_durie = {
@@ -622,7 +623,7 @@ return {
                     }
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_mezzetino = {
@@ -633,7 +634,26 @@ return {
                     "for played hand"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_beltrame = {
+                name = "Beltrame",
+                text = {
+                    {
+                        "Cards held in hand at",
+                        "end of round create {C:attention}Tags",
+                        "dependent on their {C:attention}suit"
+                    },
+                    {
+                        "{C:spades}Spades{} create {C:tag_buffoon}Buffoon Tags",
+                        "{C:hearts}Hearts{} create {C:tarot}Charm Tags",
+                        "{C:clubs}Clubs{} create {C:planet}Meteor tags",
+                        "{C:diamonds}Diamonds{} create {C:attention}Standard Tags"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
                 }
             }
         },
@@ -1204,7 +1224,39 @@ return {
 					"{C:enhanced}Enhancement{},",
                     "{C:dark_edition}Edition{}, {C:attention}Seal"
 				}
-			}
+			},
+            bof_baltrame_spades = {
+                name = "Spades",
+                text = {
+                    "Played cards with",
+                    "{C:spades}Spade{} suit create an",
+                    "{C:spectral}Ethereal Tag{} when scored"
+                }
+            },
+            bof_baltrame_hearts = {
+                name = "Hearts",
+                text = {
+                    "Played cards with",
+                    "{C:hearts}Heart{} suit create an",
+                    "{C:tarot}Charm Tag{} when scored"
+                }
+            },
+            bof_baltrame_clubs = {
+                name = "Clubs",
+                text = {
+                    "Played cards with",
+                    "{C:clubs}Clubs{} suit create an",
+                    "{C:planet}Meteor Tag{} when scored"
+                }
+            },
+            bof_baltrame_diamonds = {
+                name = "Diamonds",
+                text = {
+                    "Played cards with",
+                    "{C:diamonds}Diamond{} suit create an",
+                    "{C:attention}Standard Tag{} when scored"
+                }
+            },
         }
     },
     misc = {
@@ -1225,16 +1277,17 @@ return {
             bl_bof_terminal = "Last scored rank is debuffed",
             bof_most_common_suit = "(most common suit in deck)",
 
-            option_bof_appetizers = "Appetizers",
-            option_bof_jesters = "Jesters",
-            option_bof_normalities = "Normalities",
-            option_bof_fables = "Fables",
-            option_bof_flats = "Flats",
-            option_bof_fish = "Fish",
-            option_bof_coupons = "Coupons",
-            option_bof_enemies = "Enemies",
-            -- option_bof_finishers = "Finishers",
-            -- option_bof_games = "Games"
+            bof_bof = "Bundles Of Fun",
+            bof_appetizers = "Appetizers",
+            bof_jesters = "Jesters",
+            bof_normalities = "Normalities",
+            bof_fables = "Fables",
+            bof_flats = "Flats",
+            bof_minnows = "Minnows",
+            bof_coupons = "Coupons",
+            bof_enemies = "Enemies",
+            -- bof_finishers = "Finishers",
+            -- bof_games = "Games"
         }
     }
 }

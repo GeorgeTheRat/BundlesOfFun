@@ -14,7 +14,7 @@ G.C.bof_jesters = HEX("ffc857")
 G.C.bof_fables = HEX("535fc1")
 G.C.bof_normalities = HEX("c4bca5")
 G.C.bof_flats = HEX("ff7a6f")
-G.C.bof_fish = { 1.0, 0.6, 0.7, 1 }
+G.C.bof_minnows = { 1.0, 0.6, 0.7, 1 }
 G.C.bof_coupons = HEX("69aad8")
 G.C.bof_enemies = HEX("497760")
 G.C.bof_finishers = HEX("5e5f45")
@@ -29,6 +29,7 @@ G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 -- register localization colors
 loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
+G.ARGS.LOC_COLOURS.tag_buffoon = HEX("9faec9")
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
 
@@ -121,7 +122,8 @@ local files = {
             "gonella",
             "nuwa_fuxi",
             "durie",
-            "mezzetino"
+            "mezzetino",
+            "beltrame"
         }, directory = "items/fables/"
     },
     flats = {
@@ -138,7 +140,7 @@ local files = {
             "lightning"
         }, directory = "items/flats/"
     },
-    fish = {
+    minnows = {
         list = {
             "bass_s",
             "betta_s",
@@ -226,8 +228,8 @@ for _, name in ipairs(files["flats"].list) do
     assert(SMODS.load_file(files["flats"].directory .. name .. ".lua"))()
 end
 
-for _, name in ipairs(files["fish"].list) do
-    assert(SMODS.load_file(files["fish"].directory .. name .. ".lua"))()
+for _, name in ipairs(files["minnows"].list) do
+    assert(SMODS.load_file(files["minnows"].directory .. name .. ".lua"))()
 end
 
 for _, name in ipairs(files["coupons"].list) do

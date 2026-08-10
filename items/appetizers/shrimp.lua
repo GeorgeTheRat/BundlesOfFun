@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "shrimp",
     name = "Shrimp",
-    bundle = { "appetizers", { "fish" } },
+    bundle = { "appetizers", { "minnows" } },
     config = {
         extra = {
             packs = 5,

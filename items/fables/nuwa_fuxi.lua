@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "nuwa_fuxi",
     name = "Nüwa & Fuxi",
-    bundle = { "fables", { "fish" } },
+    bundle = { "fables", { "minnows" } },
     pos = { x = 6, y = 7 },
     soul_pos = { x = 6, y = 8 },
     attributes = { "generation", "tarot", "fish" },
