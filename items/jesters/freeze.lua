@@ -6,7 +6,6 @@ BundlesOfFun.Joker {
         extra = {
             xmult_mod = 0.5,
             active = false,
-            waiting_for_planet = false,
             xmult = 1
         }
     },
@@ -29,7 +28,6 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.selling_card and context.card.ability.set == "Planet" and not context.blueprint then
             if card.ability.extra.active then
-                card.ability.extra.waiting_for_planet = false
                 local available_hands = {}
                 for hand, value in pairs(G.GAME.hands) do
                     if SMODS.is_poker_hand_visible(hand) and G.GAME.hands[hand].level > 1 then
@@ -53,11 +51,9 @@ BundlesOfFun.Joker {
                 card.ability.extra.active = false
             else
                 card.ability.extra.active = true
-                card.ability.extra.waiting_for_planet = true
-                local eval = function()
-                    return card.ability.extra.waiting_for_planet
-                end
-                juice_card_until(card, eval, true)
+                return {
+                    message = localize("k_active_ex")
+                }
             end
         end
         if context.joker_main then
