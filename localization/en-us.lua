@@ -413,9 +413,10 @@ return {
                 text = {
                     "This Joker decreases the",
                     "{C:attention}level{} of a random {C:attention}poker hand",
-                    "and gains {C:white,X:mult}X#1#{} Mult when",
-                    "a {C:planet}Planet{} card is sold",
-                    "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
+                    "and gains {C:white,X:mult}X#1#{} Mult every",
+                    "{C:attention}other {C:planet}Planet{} card sold",
+                    "{C:inactive,s:0.8}#2#",
+                    "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
                 }
             },
             j_bof_satanist = {
