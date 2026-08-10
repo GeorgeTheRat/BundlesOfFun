@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "prom_queen",
     name = "Prom Queen",
     bundle = "jesters",
-    config = { extra = { chips = 25 } },
+    config = { extra = { chips = 50 } },
     pos = { x = 3, y = 5 },
     attributes = { "chips", "queen" },
     cost = 8,
