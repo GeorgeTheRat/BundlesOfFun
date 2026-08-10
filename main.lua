@@ -96,7 +96,8 @@ local files = {
             "prom_king",
             "prom_queen",
             "freeze",
-            "satanist"
+            "satanist",
+            "printed"
         }, directory = "items/jesters/"
     },
     normalities = {

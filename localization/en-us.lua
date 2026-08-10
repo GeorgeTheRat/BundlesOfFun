@@ -427,6 +427,13 @@ return {
                     "every {C:attention}6{} in played hand"
                 }
             },
+            j_bof_printed = {
+                name = "3D-Printed Joker",
+                text = {
+                    "Copies abilities of all",
+                    "held {C:common}Common {C:attention}Jokers"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
