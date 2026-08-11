@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             xmult_mod = 0.5,
-            active = false,
+            active = true,
             xmult = 1
         }
     },

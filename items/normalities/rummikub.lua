@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
         if context.before then
             local total = 0
             for k, v in pairs(G.play.cards) do
-                total = total + v.base.nominal
+                total = total + v.base.nominal + v.ability.bonus + (v.ability.perma_bonus or 0)
             end
             if total >= card.ability.extra.chips_threshold  then
                 SMODS.scale_card(card, {
