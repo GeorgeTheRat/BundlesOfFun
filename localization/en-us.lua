@@ -212,10 +212,10 @@ return {
             j_bof_jack_frost = {
                 name = "Jack Frost",
                 text = {
-                    "{C:mult}+#1#{} Mult if played",
-                    "{C:attention}poker hand{} has",
-                    "not already been ",
-                    "played this round"
+                    "This Joker gains {C:white,X:mult}X#1#{} Mult per",
+                    "{C:attention}#2# {C:inactive}[#3#]{} chips from {C:attention}scoring",
+                    "cards in played hands",
+                    "{C:inactive}(Currently {C:white,X:mult}X#4#{C:inactive} Mult)"
                 }
             },
             j_bof_jim = {
@@ -417,6 +417,19 @@ return {
                     "{C:attention}other {C:planet}Planet{} card sold",
                     "{C:inactive,s:0.8}#2#",
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
+                }
+            },
+            j_bof_fnesen = {
+                name = "Fnesen",
+                text = {
+                    {
+                        "{C:red}Debuff{} a random {C:attention}Joker",
+                        "every hand played"
+                    },
+                    {
+                        "If this Joker is debuffed,",
+                        "it instead gives {C:white,X:mult}X#1#{} Mult"
+                    }
                 }
             },
             j_bof_satanist = {

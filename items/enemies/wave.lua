@@ -16,7 +16,7 @@ BundlesOfFun.Blind {
         if context.before and G.GAME.current_round.hands_left <= 0 then
             local target = G.jokers.cards[#G.jokers.cards]
             if target and not target.pinned then
-                target.pinned = true
+                target:add_sticker("pinned", true)
                 blind:wiggle()
             end
         end

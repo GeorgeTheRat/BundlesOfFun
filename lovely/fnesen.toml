@@ -1,0 +1,38 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = '''-- TARGET : Add extra conditions here'''
+position = "after"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+if self.config and self.config.center and self.config.center.key == "j_bof_fnesen" then
+    return true
+end
+'''
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/common_events.lua"
+# pattern = '''elseif _c.generate_ui and type(_c.generate_ui) == 'function' then
+#     local specific_vars = specific_vars or {}
+#     -- TODO: refactor the multiple generate_ui cases to work off a base implementation
+#     _c:generate_ui(info_queue, card, desc_nodes, specific_vars, full_UI_table)
+#     if specific_vars and specific_vars.pinned then info_queue[#info_queue+1] = {key = 'pinned_left', set = 'Other'} end
+#     if specific_vars and specific_vars.sticker then info_queue[#info_queue+1] = {key = string.lower(specific_vars.sticker)..'_sticker', set = 'Other'} end
+# elseif specific_vars and specific_vars.debuffed then'''
+# position = "at"
+# match_indent = true
+# payload = '''elseif _c.generate_ui and type(_c.generate_ui) == 'function' then
+#     local specific_vars = specific_vars or {}
+#     -- TODO: refactor the multiple generate_ui cases to work off a base implementation
+#     if not (specific_vars and specific_vars.debuffed and _c.key == "j_bof_fnesen") then
+#         _c:generate_ui(info_queue, card, desc_nodes, specific_vars, full_UI_table)
+#     end
+#     if specific_vars and specific_vars.pinned then info_queue[#info_queue+1] = {key = 'pinned_left', set = 'Other'} end
+#     if specific_vars and specific_vars.sticker then info_queue[#info_queue+1] = {key = string.lower(specific_vars.sticker)..'_sticker', set = 'Other'} end
+# elseif specific_vars and specific_vars.debuffed then'''
