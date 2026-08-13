@@ -51,7 +51,7 @@ BundlesOfFun.Joker {
                                 _poker_hands[#_poker_hands + 1] = k
                             end
                         end
-                        Tag("tag_orbital").ability.orbital_hand = pseudorandom_element(_poker_hands, "fpr_sugar_free_cola")
+                        Tag("tag_orbital").ability.orbital_hand = pseudorandom_element(_poker_hands, "bof_beltrame")
                         Tag("tag_orbital"):set_ability()
                         add_tag(Tag("tag_orbital"))
                         return true
@@ -77,6 +77,7 @@ BundlesOfFun.Joker {
                 end 
             }))
             card.ability.extra.count = card.ability.extra.count + 1
+            return nil, true
         end
         if context.blind_defeated then
             card.ability.extra.count = 0
