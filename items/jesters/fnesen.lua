@@ -27,6 +27,10 @@ BundlesOfFun.Joker {
             card.ability.extra.prepped = true
         end
         if context.hand_drawn and card.ability.extra.prepped then
+            for _, joker in pairs(G.jokers.cards) do
+                joker.ability.fnesen_chosen = nil
+                SMODS.recalc_debuff(joker)
+            end
             card.ability.extra.prepped = false
             local prev_chosen_set = {}
             local fallback_jokers = {}
@@ -35,7 +39,9 @@ BundlesOfFun.Joker {
                 if G.jokers.cards[i].ability.fnesen_chosen then
                     prev_chosen_set[G.jokers.cards[i]] = true
                     G.jokers.cards[i].ability.fnesen_chosen = nil
-                    if G.jokers.cards[i].debuff then SMODS.recalc_debuff(G.jokers.cards[i]) end
+                    if G.jokers.cards[i].debuff then
+                        SMODS.recalc_debuff(G.jokers.cards[i])
+                    end
                 end
             end
             for i = 1, #G.jokers.cards do
