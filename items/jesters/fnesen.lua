@@ -4,14 +4,14 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            xmult = 3,
+            xmult = 4,
             prepped = true
         }
     },
     pos = { x = 5, y = 5 },
     attributes = { "xmult" },
     cost = 5,
-    rarity = 1,
+    rarity = 2,
     blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
@@ -66,7 +66,7 @@ BundlesOfFun.Joker {
                 play_sound("tarot2", 1, 0.4)
             end
         end
-        if context.selling_card or context.blind_defeated then
+        if context.selling_self or context.blind_defeated then
             for _, joker in pairs(G.jokers.cards) do
                 if joker.ability.fnesen_chosen then
                     G.E_MANAGER:add_event(Event({
