@@ -55,7 +55,7 @@ local files = {
             "candy",
             "apple",
             "core",
-            "tomato",
+            "tomatoes",
             "shrimp"
 		}, directory = "items/appetizers/"
     },
@@ -79,7 +79,7 @@ local files = {
             "soothsayer",
             "polymath",
             "luminary",
-            "felix",
+            "furious",
             "larry",
             "phony",
             "fancy",

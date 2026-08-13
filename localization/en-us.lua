@@ -75,8 +75,8 @@ return {
                     "instead of scoring"
                 }
             },
-            j_bof_tomato = {
-                name = "Tomato",
+            j_bof_tomatoes = {
+                name = "Tomatoes",
                 text = {
                     "The next {C:attention}#1#{} cards",
                     "held in hand have a",
@@ -262,8 +262,8 @@ return {
                     "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
                 }
             },
-            j_bof_felix = {
-                name = "Furious Felix",
+            j_bof_furious = {
+                name = "Furious Joker",
                 text = {
                     "Earn {C:money}$#1#{} at",
                     "end of round",

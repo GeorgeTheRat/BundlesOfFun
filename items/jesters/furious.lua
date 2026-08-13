@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "felix",
-    name = "Furious Felix",
+    key = "furious",
+    name = "Furious Joker",
     bundle = "jesters",
     config = { extra = { dollars = 8 } },
     pos = { x = 8, y = 3 },
