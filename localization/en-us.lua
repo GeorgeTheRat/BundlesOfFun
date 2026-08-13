@@ -432,6 +432,20 @@ return {
                     }
                 }
             },
+            j_bof_jocker = {
+                name = "Jocker",
+                text = {
+                    {
+                        "Earn {C:money}$#1#{} when a",
+                        "{C:common}Common{} or {C:uncommon}Uncommon",
+                        "{C:attention}Joker{} is purchased"
+                    },
+                    {
+                        "{C:rare}Rare {C:attention}Jokers{} cost",
+                        "{C:attention}double{} in the shop"
+                    }
+                }
+            },
             j_bof_satanist = {
                 name = "Satanist",
                 text = {
@@ -1132,8 +1146,8 @@ return {
             bl_bof_irrational = {
                 name = "The Irrational",
                 text = {
-                    "Cards held in hand",
-                    "are shuffled"
+                    "Shuffle cards",
+                    "held in hand"
                 }
             },
             bl_bof_dense = {

@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         local effects = {}
         for _, other_joker in ipairs(G.jokers.cards) do
-            if other_joker ~= card and other_joker:is_rarity(1) then
+            if other_joker ~= card and other_joker:is_rarity("Common") then
                 local effect = SMODS.blueprint_effect(card, other_joker, context)
                 if effect then
                     table.insert(effects, effect)

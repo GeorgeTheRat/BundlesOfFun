@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''self.cost = math.max(1, math.floor((self.base_cost + self.extra_cost + 0.5)*(100-G.GAME.discount_percent)/100))'''
+position = "after"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+if next(SMODS.find_card("j_bof_jocker")) and self:is_rarity("Rare") then
+    self.cost = self.cost * 2
+end
+'''

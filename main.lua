@@ -97,6 +97,7 @@ local files = {
             "prom_queen",
             "freeze",
             "fnesen",
+            "jocker",
             "satanist",
             "printed"
         }, directory = "items/jesters/"
