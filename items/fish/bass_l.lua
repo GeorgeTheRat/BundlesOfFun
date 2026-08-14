@@ -22,9 +22,12 @@ BundlesOfFun.Consumable {
             local total_chips = 0
             if G.playing_cards then
                 for i, c in ipairs(G.playing_cards) do
-                    total_chips = total_chips + c:get_chip_bonus()
-                    if c.ability and c.ability.perma_bonus then
-                        total_chips = total_chips + c.ability.perma_bonus
+                    local rank = SMODS.Ranks[c.base.rank]
+                    if c.base.rank ~= "Ace" and not rank.face then
+                        total_chips = total_chips + c:get_chip_bonus()
+                        if c.ability and c.ability.perma_bonus then
+                            total_chips = total_chips + c.ability.perma_bonus
+                        end
                     end
                 end
             end

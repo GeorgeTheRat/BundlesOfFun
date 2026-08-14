@@ -868,8 +868,8 @@ return {
             c_bof_bass_l = {
                 name = "Largemouth Bass {X:legendary}Legendary",
                 text = {
-                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number",
-                    "of chips that {C:attention}all cards{} in deck add to,",
+                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number of",
+                    "chips that {C:attention}numbered cards{} in deck add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 },
                 unlock = {
