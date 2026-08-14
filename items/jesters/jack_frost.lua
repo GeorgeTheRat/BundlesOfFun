@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            xmult_mod = 1,
+            xmult_mod = 0.75,
             requirement = 273,
             current = 0,
             xmult = 1,
