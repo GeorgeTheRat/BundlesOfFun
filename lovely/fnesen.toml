@@ -15,14 +15,12 @@ if self.config and self.config.center and self.config.center.key == "j_bof_fnese
 end
 '''
 
-# [[patches]]
-# [patches.pattern]
-# target = "functions/common_events.lua"
-# pattern = '''_c:generate_ui(info_queue, card, desc_nodes, specific_vars, full_UI_table)'''
-# position = "at"
-# match_indent = true
-# payload = '''
-#     if not (specific_vars and specific_vars.debuffed and _c.key == "j_bof_fnesen") then
-#         _c:generate_ui(info_queue, card, desc_nodes, specific_vars, full_UI_table)
-#     end
-# '''
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/game_object.lua"]'
+pattern = '''if specific_vars and specific_vars.debuffed and not res.replace_debuff then'''
+position = "at"
+match_indent = true
+payload = '''
+    if specific_vars and specific_vars.debuffed and not res.replace_debuff and self.config and self.config.center and self.config.center.key ~= "j_bof_fnesen" then
+'''
