@@ -13,7 +13,6 @@ payload = '''
 -- patched by bundles of fun
 if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then
 '''
-match_indent = true
 
 # hook the game start to initialize display deck predictions
 [[patches]]
