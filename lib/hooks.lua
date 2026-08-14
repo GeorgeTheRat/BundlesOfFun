@@ -971,6 +971,24 @@ local function bof_lottery_ticket_reroll_vouchers()
     G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
 end
 
+-- postman: first four played cards count as additional suits
+local original_smeared_check = SMODS.smeared_check
+function SMODS.smeared_check(card, suit)
+    if next(SMODS.find_card("j_bof_postman")) and G.play and G.play.cards then
+        for i, played_card in ipairs(G.play.cards) do
+            if played_card == card and i <= 4 then
+                local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+                local assigned_suit = postman_suits[i]
+                if suit == assigned_suit then
+                    return true
+                end
+            end
+        end
+    end
+    
+    return original_smeared_check(card, suit)
+end
+
 -- scratch-off & lottery ticket logic cont.
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then

@@ -14,6 +14,7 @@ BundlesOfFun.Joker {
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

@@ -423,7 +423,7 @@ return {
                 name = "Fnesen",
                 text = {
                     {
-                        "{C:red}Debuff{} a random {C:attention}Joker",
+                        "{C:debuff}Debuff{} a random {C:attention}Joker",
                         "every hand played"
                     },
                     {
@@ -444,6 +444,16 @@ return {
                         "{C:rare}Rare {C:attention}Jokers{} cost",
                         "{C:attention}double{} in the shop"
                     }
+                }
+            },
+            j_bof_postman = {
+                name = "Postman",
+                text = {
+                    "First {C:attention}four{} played",
+                    "cards additionally",
+                    "count as a {C:spades}Spade{},",
+                    "{C:hearts}Heart{}, {C:clubs}Club{}, or",
+                    "{C:diamonds}Diamond{} respectively"
                 }
             },
             j_bof_satanist = {

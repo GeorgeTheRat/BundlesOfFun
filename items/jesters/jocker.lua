@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = { extra = { dollars = 5 } },
     pos = { x = 7, y = 5 },
-    attributes = { "economy" },
+    attributes = { "economy", "passive" },
     cost = 7,
     rarity = 2,
     blueprint_compat = true,
@@ -18,6 +18,6 @@ BundlesOfFun.Joker {
                 dollars = card.ability.extra.dollars
             }
         end
-        -- rare doubling logic is located in lovely/jocker.toml
+        -- rare doubling logic is located in lovely/jesters.toml
     end
 }

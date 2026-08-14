@@ -31,6 +31,7 @@ loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
+G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
 
 -- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
@@ -98,6 +99,7 @@ local files = {
             "freeze",
             "fnesen",
             "jocker",
+            "postman",
             "satanist",
             "printed"
         }, directory = "items/jesters/"
