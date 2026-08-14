@@ -974,13 +974,31 @@ end
 -- postman: first four played cards count as additional suits
 local original_smeared_check = SMODS.smeared_check
 function SMODS.smeared_check(card, suit)
-    if next(SMODS.find_card("j_bof_postman")) and G.play and G.play.cards then
-        for i, played_card in ipairs(G.play.cards) do
-            if played_card == card and i <= 4 then
-                local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
-                local assigned_suit = postman_suits[i]
-                if suit == assigned_suit then
-                    return true
+    if next(SMODS.find_card("j_bof_postman")) then
+        if G.play and G.play.cards then
+            for i, played_card in ipairs(G.play.cards) do
+                if played_card == card and i <= 4 then
+                    local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+                    local assigned_suit = postman_suits[i]
+                    if suit == assigned_suit then
+                        return true
+                    end
+                end
+            end
+        end
+        if G.hand and G.hand.highlighted then
+            local highlighted_copy = {}
+            for _, c in ipairs(G.hand.highlighted) do
+                table.insert(highlighted_copy, c)
+            end
+            table.sort(highlighted_copy, function(a, b) return a.T.x < b.T.x end)
+            for i, highlighted_card in ipairs(highlighted_copy) do
+                if highlighted_card == card and i <= 4 then
+                    local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+                    local assigned_suit = postman_suits[i]
+                    if suit == assigned_suit then
+                        return true
+                    end
                 end
             end
         end
