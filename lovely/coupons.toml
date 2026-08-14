@@ -1,9 +1,9 @@
-# taken directly from how entropy does it
-
 [manifest]
 version = "1.0.0"
 dump_lua = true
 
+# function to allow booster packs and vouchers to appear in the shop
+# taken directly from entropy with minor changes
 [[patches]]
 [patches.pattern]
 target = 'functions/UI_definitions.lua'
@@ -15,6 +15,7 @@ for _, v in ipairs(SMODS.ConsumableType.obj_buffer) do
 end
 '''
 position = 'before'
+match_indent = true
 payload = '''
 -- patched by bundles of fun
 if G.GAME.booster_rate then
@@ -24,8 +25,8 @@ if G.GAME.voucher_rate then
     table.insert(rates, { type = "Voucher", val = G.GAME.voucher_rate })
 end
 '''
-match_indent = true
 
+# prev cont.
 [[patches]]
 [patches.pattern]
 target = 'functions/UI_definitions.lua'
@@ -33,6 +34,7 @@ pattern = '''
 local args = {set = v.type, area = area, key_append = 'sho', front = false}
 '''
 position = 'after'
+match_indent = true
 payload = '''
 -- patched by bundles of fun
 if G.GAME.booster_rate then
@@ -42,4 +44,3 @@ if G.GAME.voucher_rate then
     if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then args.set = "Voucher" end
 end
 '''
-match_indent = true

@@ -1,0 +1,77 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# patch vampire to ignore wooden cards
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired then"
+position = "at"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then
+'''
+match_indent = true
+
+# hook the game start to initialize display deck predictions
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''G.GAME.starting_params = {'''
+position = "after"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+G.GAME.bof_predicted_boss = nil
+G.GAME.bof_predicted_showdown = nil
+G.GAME.bof_predicted_ante = nil
+G.GAME.bof_predicted_showdown_ante = nil
+G.GAME.bof_showdown_ante = 8
+'''
+
+# track showdown rerolls for display deck unlock
+# BUT IT NO WORKIE FOR SOME REASONDHWAUGHDHGSAIU
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''G.FUNCS.reroll_boss = function(e)'''
+position = "after"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+    if G.GAME.blind and G.GAME.blind.config and G.GAME.blind.config.blind and G.GAME.blind.config.blind.spawn_info and G.GAME.blind.config.blind.spawn_info.showdown then
+        G.GAME.bof_rerolled_showdown = true
+        check_for_unlock({ type = "modify_deck" })
+    end
+'''
+
+# remove base potato chips from lightning deck
+# also irradiated function for disabling base chips
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma_bonus or 0)'''
+position = "before"
+match_indent = true
+payload = '''
+-- patched by bundles of fun
+if (G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning") or (G.GAME.blind and G.GAME.blind.name == "The Irradiated" and not G.GAME.blind.disabled) then
+    return self.ability.bonus + (self.ability.perma_bonus or 0)
+end
+'''
+
+# track if mult scored for lightning unlock
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/game_object.lua"]'''
+position = 'after'
+match_indent = true
+pattern = '''
+if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
+'''
+payload = '''
+    -- patched by bundles of fun
+    G.GAME.mult_scored_this_run = true
+'''

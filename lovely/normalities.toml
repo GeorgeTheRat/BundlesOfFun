@@ -8,11 +8,11 @@ dump_lua = true
 target = "functions/common_events.lua"
 pattern = '''local min_use = 100'''
 position = "before"
+match_indent = true
 payload = '''
 -- patched by bundles of fun
 local passport_eligible_blinds = eligible_bosses
 '''
-match_indent = true
 
 # ok now we mess with it (lets duplicate bosses spawn)
 [[patches]]
@@ -20,6 +20,7 @@ match_indent = true
 target = "functions/common_events.lua"
 pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))'''
 position = "at"
+match_indent = true
 payload = '''
 -- patched by bundles of fun
 local _, boss = nil, nil
@@ -32,16 +33,15 @@ else
     end
 end
 '''
-match_indent = true
 
-# fix nil crash
+# fix nil crash with passport
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
 pattern = '''G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] + 1'''
 position = "at"
+match_indent = true
 payload = '''
 -- patched by bundles of fun
 G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
 '''
-match_indent = true
