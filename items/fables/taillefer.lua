@@ -15,7 +15,7 @@ BundlesOfFun.Joker {
         return { vars = { card.ability.extra.consumable_slots } }
     end,
     add_to_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.consumable_slots
+        G.consumeables:change_size(card.ability.extra.consumable_slots)
     end,
     calculate = function(self, card, context)
         if context.setting_blind and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
@@ -42,6 +42,6 @@ BundlesOfFun.Joker {
         end
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.consumable_slots
+        G.consumeables:change_size(-card.ability.extra.consumable_slots)
     end
 }

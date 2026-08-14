@@ -46,6 +46,12 @@ BundlesOfFun.Joker {
                     has_modifications = true
                 end
                 if has_modifications then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            right_card:juice_up(0.3, 0.5)
+                            return true
+                        end
+                    }))
                     card.ability.extra.bof_crafted_target = left_card
                     return {
                         message = localize("k_copied_ex")

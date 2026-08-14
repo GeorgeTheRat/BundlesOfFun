@@ -26,10 +26,10 @@ BundlesOfFun.Joker {
         }
     end,
     add_to_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.consumable_slots
+        G.consumeables:change_size(-card.ability.extra.consumable_slots)
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.consumable_slots
+        G.consumeables:change_size(card.ability.extra.consumable_slots)
     end,
     can_sell = function(self, card, context)
         if G.jokers and (#G.jokers.cards >= G.jokers.config.card_limit) then
