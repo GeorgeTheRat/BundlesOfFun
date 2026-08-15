@@ -1007,6 +1007,48 @@ function SMODS.smeared_check(card, suit)
     return original_smeared_check(card, suit)
 end
 
+-- postman: trigger poker hand check when cards are released or sorted
+local original_card_release = Node.release
+function Node:release(dragged)
+    local result = original_card_release(self, dragged)
+    if next(SMODS.find_card("j_bof_postman")) and dragged:is(Node) and dragged.area == G.hand then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+        
+    end
+    return result
+end
+local original_sort_hand_suit = G.FUNCS.sort_hand_suit
+function G.FUNCS.sort_hand_suit(e)
+    local result = original_sort_hand_suit(e)
+    if next(SMODS.find_card("j_bof_postman")) then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+    end
+    return result
+end
+local original_sort_hand_value = G.FUNCS.sort_hand_value
+function G.FUNCS.sort_hand_value(e)
+    local result = original_sort_hand_value(e)
+    if next(SMODS.find_card("j_bof_postman")) then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+    end
+    return result
+end
+
 -- scratch-off & lottery ticket logic cont.
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then
