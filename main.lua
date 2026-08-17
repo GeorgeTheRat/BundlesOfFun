@@ -98,6 +98,7 @@ local files = {
             "prom_queen",
             "freeze",
             "fnesen",
+            "nerd",
             "jocker",
             "postman",
             "satanist",

@@ -29,12 +29,8 @@ BundlesOfFun.Joker {
         if context.joker_main then
             return {
                 chips = card.ability.extra.chips,
-                extra = {
-                    mult = card.ability.extra.mult,
-                    extra = {
-                        xmult = card.ability.extra.xmult
-                    }
-                }
+                mult = card.ability.extra.mult,
+                xmult = card.ability.extra.xmult
             }
         end
         if context.beat_boss and context.main_eval and not context.blueprint then

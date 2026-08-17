@@ -61,8 +61,8 @@ return {
             j_bof_apple = {
                 name = "Apple",
                 text = {
-                    "Each scored card",
-                    "permanently gains {C:mult}+#1#{} Mult,",
+                    "Every played {C:attention}card{} permanently",
+                    "gains {C:mult}+#1#{} Mult when scored,",
                     "decreases by {C:mult}-#2#{} Mult",
                     "at end of round"
                 }
@@ -444,6 +444,14 @@ return {
                         "{C:rare}Rare {C:attention}Jokers{} cost",
                         "{C:attention}double{} in the shop"
                     }
+                }
+            },
+            j_bof_nerd = {
+                name = "Nerd",
+                text = {
+                    "Every {C:attention}#<o>1#{} reroll in",
+                    "the shop is {C:green,E:1}guaranteed",
+                    "to contain a {C:rare}Rare {C:attention}Joker"
                 }
             },
             j_bof_postman = {

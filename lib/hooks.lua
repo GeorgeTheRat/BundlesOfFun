@@ -107,12 +107,7 @@ function Card:get_chip_bonus()
 	if suppress then
 		return 0
 	end
-	local chips = getchip(self)
-	-- Irradiated's "no base chips" effect is already implemented directly in
-	-- card.lua by lovely/lightning.toml (name-matched, shared with the Wooden/
-	-- Lightning deck base-chip removal) - do not also subtract it here, or it
-	-- gets removed twice (chips go negative instead of landing at 0).
-	return chips
+	return getchip(self)
 end
 
 -- eureka logic
@@ -338,6 +333,7 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
+    G.GAME.bof_nerd_guarantee_rare = nil
     G.GAME.bof_tiny_active = nil
     G.GAME.bof_particle_active = nil
     G.GAME.bof_stress_locked_ante = nil

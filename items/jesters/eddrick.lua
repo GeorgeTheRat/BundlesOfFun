@@ -26,9 +26,7 @@ BundlesOfFun.Joker {
         if context.joker_main and G.GAME.current_round.hands_left == 0 then
             return {
                 chips = card.ability.extra.chips,
-                extra = {
-                    mult = card.ability.extra.mult
-                }
+                mult = card.ability.extra.mult
             }
         end
     end,
