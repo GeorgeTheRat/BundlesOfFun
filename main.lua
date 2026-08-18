@@ -89,7 +89,7 @@ local files = {
             "hotboxer",
             "director",
             "zeke",
-            "laughing_stock",
+            "stock",
             "angler",
             "pianoman",
             "bouncer",

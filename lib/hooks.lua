@@ -311,8 +311,8 @@ end
 -- laughing stock: reset blind stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
-    if G.GAME.bof_laughing_stock_original_mult then
-        for _, blind_table in pairs(G.GAME.bof_laughing_stock_original_mult) do
+    if G.GAME.bof_stock_original_mult then
+        for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
             for key, original_mult in pairs(blind_table) do
                 if type(original_mult) ~= "number" then
                     return
@@ -326,7 +326,7 @@ function Game:start_run(arg)
                 end
             end
         end
-        G.GAME.bof_laughing_stock_original_mult = nil
+        G.GAME.bof_stock_original_mult = nil
     end
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0

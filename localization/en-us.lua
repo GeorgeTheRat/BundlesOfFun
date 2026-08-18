@@ -343,7 +343,7 @@ return {
                     "{C:inactive}(Must have room)"
                 }
             },
-            j_bof_laughing_stock = {
+            j_bof_stock = {
                 name = "Laughing Stock",
                 text = {
                     "{C:red}Destroy{} each played {C:attention}#1#",
@@ -1287,38 +1287,13 @@ return {
                     "{C:dark_edition}Edition{}, {C:attention}Seal"
 				}
 			},
-            bof_baltrame_spades = {
-                name = "Spades",
+            k_bof_blind_type = {
+                name = "Blind Types",
                 text = {
-                    "Played cards with",
-                    "{C:spades}Spade{} suit create an",
-                    "{C:spectral}Ethereal Tag{} when scored"
+                    "{C:small,E:1}Small{}, {C:big,E:1}Big{}, and",
+                    "{E:1,V:1}Boss{}/{E:1,V:2}Showdown"
                 }
-            },
-            bof_baltrame_hearts = {
-                name = "Hearts",
-                text = {
-                    "Played cards with",
-                    "{C:hearts}Heart{} suit create an",
-                    "{C:tarot}Charm Tag{} when scored"
-                }
-            },
-            bof_baltrame_clubs = {
-                name = "Clubs",
-                text = {
-                    "Played cards with",
-                    "{C:clubs}Clubs{} suit create an",
-                    "{C:planet}Meteor Tag{} when scored"
-                }
-            },
-            bof_baltrame_diamonds = {
-                name = "Diamonds",
-                text = {
-                    "Played cards with",
-                    "{C:diamonds}Diamond{} suit create an",
-                    "{C:attention}Standard Tag{} when scored"
-                }
-            },
+            }
         }
     },
     misc = {
