@@ -479,6 +479,14 @@ return {
                     "held {C:common}Common {C:attention}Jokers"
                 }
             },
+            j_bof_band = {
+                name = "One-Man Band",
+                text = {
+                    "All played cards give",
+                    "{C:mult}+#1#{} Mult when scored if",
+                    "played hand is a {C:attention}High Card{}"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",

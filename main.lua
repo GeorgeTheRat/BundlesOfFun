@@ -102,7 +102,8 @@ local files = {
             "jocker",
             "postman",
             "satanist",
-            "printed"
+            "printed",
+            "band"
         }, directory = "items/jesters/"
     },
     normalities = {
