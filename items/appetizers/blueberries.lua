@@ -46,7 +46,7 @@ BundlesOfFun.Joker {
                     scalar_value = "perma_bonus_mod",
                     operation = "-",
                     scaling_message = {
-                        message = "-" .. card.ability.extra.perma_bonus_mod .. " Chip" .. (card.ability.extra.perma_bonus_mod > 1 and "s" or ""),
+                        message = localize{ type = "variable", key = "a_chips_minus", vars = { card.ability.extra.perma_bonus_mod } },
                         colour = G.C.CHIPS
                     }
                 })

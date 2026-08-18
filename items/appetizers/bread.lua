@@ -36,7 +36,7 @@ BundlesOfFun.Joker {
             if card.ability.extra.balance - card.ability.extra.balance_mod > 0 then
                 card.ability.extra.balance = card.ability.extra.balance - card.ability.extra.balance_mod
                 return {
-                    message = "-" .. card.ability.extra.balance_mod .. "%",
+                    message = localize{ type = "variable", key = "a_bof_balance_minus", vars = { card.ability.extra.balance_mod } },
                     colour = G.C.PLASMA
                 }
             else

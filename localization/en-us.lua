@@ -1306,6 +1306,7 @@ return {
             k_alarm_ex = "Alarm Set!",
             k_erased_ex = "Erased!",
             k_sticker_ex = "Sticker Applied!",
+            k_bof_val_down = "Value Down!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
@@ -1325,6 +1326,10 @@ return {
             bof_enemies = "Enemies",
             -- bof_finishers = "Finishers",
             -- bof_games = "Games"
+        },
+        v_dictionary = {
+            a_bof_balance = "Balanced #1#%",
+            a_bof_balance_minus = "-#1#%"
         }
     }
 }

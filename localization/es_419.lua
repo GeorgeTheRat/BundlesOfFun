@@ -975,6 +975,13 @@ return {
                     "{C:enhanced}Mejora{},",
                     "{C:dark_edition}Edición{}, {C:attention}Sello{}"
                 }
+            },
+            k_bof_blind_type = {
+                name = "Tipos de Ciego",
+                text = {
+                    "{C:small,E:1}Pequeña{}, {C:big,E:1}Grande{}, y",
+                    "{E:1,V:1}Jefe{}/{E:1,V:2}Confrontación"
+                }
             }
         }
     },
@@ -988,12 +995,13 @@ return {
             k_alarm_ex = "¡Alarma lista!",
             k_erased_ex = "¡Borrado!",
             k_sticker_ex = "¡Sticker aplicado!",
+            k_bof_val_down = "¡Disminución del valor!",
             k_bof_tackle = "Paquete de Pescador",
             k_bof_fry = "Paquete Frito",
             k_bof_hooked = "Paquete de Cebo",
             k_fish = "Pez",
 
-            bof_bof = "Montones de diversión",
+            bof_bof = "Montones De Diversión",
             bof_appetizers = "Aperitivos",
             bof_jesters = "Bufones",
             bof_normalities = "Normalidades",
@@ -1003,6 +1011,10 @@ return {
             bof_coupons = "Cupones",
             -- bof_enemies = "Enemies",
             -- bof_finishers = "Finishers"
+        },
+        v_dictionary = {
+            a_bof_balance = "Equilibra #1#%",
+            a_bof_balance_minus = "-#1#%"
         }
     }
 }

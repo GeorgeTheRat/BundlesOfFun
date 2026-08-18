@@ -43,7 +43,7 @@ BundlesOfFun.Joker {
             })
             local return_message = nil
             if mult_before > card.ability.extra.perma_mult_mod then
-                return_message = "-" .. card.ability.extra.perma_mult_mod .. " Mult"
+                return_message = localize{ type = "variable", key = "a_mult_minus", vars = { card.ability.extra.perma_mult_mod } }
             end
             if card.ability.extra.perma_mult <= 0 then
                 G.E_MANAGER:add_event(Event({
