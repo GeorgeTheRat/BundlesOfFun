@@ -52,7 +52,12 @@ BundlesOfFun.Joker {
                                 if target_joker ~= card then
                                     target_joker:juice_up()
                                 end
-
+                                -- on the fifth day of christmas, my true love gave to me
+                                local five_gold_rings = context.blueprint_card or card
+                                -- four_calling_birds
+                                -- three_french_hens
+                                -- two_turtle_doves
+                                -- and a_partridge_in_a_pear_tree
                                 five_gold_rings:juice_up()
                                 return true
                             end
