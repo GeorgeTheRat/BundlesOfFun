@@ -449,7 +449,7 @@ return {
             j_bof_nerd = {
                 name = "Nerd",
                 text = {
-                    "Every {C:attention}#<o>1#{} reroll in",
+                    "Every {C:attention}#<o>1# {C:inactive}[#2#]{} reroll in",
                     "the shop is {C:green,E:1}guaranteed",
                     "to contain a {C:rare}Rare {C:attention}Joker"
                 }
