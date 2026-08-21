@@ -1,5 +1,94 @@
 return {
     descriptions = {
+        -- Credits
+        Tag = {
+            tag_bof_credit_george = {
+                name = "{C:george}George The Rat",
+                text = {
+                    {
+                        "{C:dark_edition,E:2,s:1.2}Creator of Bundles Of Fun"
+                    },
+                    {
+                        "Did all {C:red,E:1}art{} {C:inactive}(with few exceptions)",
+                        "most {C:attention,E:1}ideas{}, and a lot of {C:plasma,E:1}balancing"
+                    }
+                }
+            },
+            tag_bof_credit_glitch = {
+                name = "{C:glitch}Glitchkat10",
+                text = {
+                    {
+                        "{C:dark_edition,E:2}Co-creator of Bundles Of Fun"
+                    },
+                    {
+                        "Did nearly all {C:green,E:1}code{}, many",
+                        "{C:attention,E:1}ideas{}, a lot of {C:plasma,E:1}balancing{},",
+                        "and a tiny amount of {C:red,E:1}art"
+                    }
+                }
+            },
+            tag_bof_credit_marffe = {
+                name = "Marffe",
+                text = {
+                    "Did the Spanish",
+                    "{C:blue,E:1}localizations{} and some",
+                    "miscellaneous {C:green,E:1}code"
+                }
+            },
+            tag_bof_credit_minty = {
+                name = "Minty",
+                text = {
+                    "Did some miscellaneous",
+                    "{C:green,E:1}code{}, especially with UI"
+                }
+            },
+            tag_bof_credit_sophe = {
+                name = "Sophe",
+                text = {
+                    "Did a large amount",
+                    "of {C:green,E:1}code{}, especially",
+                    "pertaining to decks"
+                }
+            },
+            tag_bof_credit_lapsem = {
+                name = "Lapsem",
+                text = {
+                    "Did all of the",
+                    "Blind icon {C:red,E:1}art"
+                }
+            },
+            tag_bof_credit_arc = {
+                name = "Arc",
+                text = {
+                    "Did the {C:fish,E:1}music{} for",
+                    "all Fish-related",
+                    "Booster Pack themes"
+                }
+            },
+            tag_bof_credit_revo = {
+                name = "Revo",
+                text = {
+                    "Did the {C:green,E:1}code{} for",
+                    "multiple Jokers in",
+                    "early development"
+                }
+            },
+            tag_bof_credit_amo = {
+                name = "Amo",
+                text = {
+                    "Did a massive amount",
+                    "of {C:green,E:1}code{} and bug fixes,",
+                    "especially with Blinds"
+                }
+            },
+            tag_bof_credit_drunk = {
+                name = "The Drunk",
+                text = {
+                    "Did a significant",
+                    "number of {C:attention,E:1}ideas"
+                }
+            },
+        },
         Joker = {
             -- Appetizers
             j_bof_dragonfruit = {
