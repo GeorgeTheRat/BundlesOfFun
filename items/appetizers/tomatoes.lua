@@ -30,13 +30,8 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if
-            context.individual and
-            context.cardarea == G.hand and
-            not context.end_of_round
-        then
+        if context.individual and context.cardarea == G.hand and not context.end_of_round then
             if context.other_card and card.ability.extra.amount > 0 then
-                card.ability.extra.change = true
                 card.ability.extra.amount = card.ability.extra.amount - 1
                 if SMODS.pseudorandom_probability(card, "bof_tomato", 1, card.ability.extra.odds) then
                     card:juice_up()
@@ -45,7 +40,7 @@ BundlesOfFun.Joker {
                 end
             end
         end
-        if context.final_scoring_step and not context.blueprint and card.ability.extra.change then
+        if context.after and not context.blueprint then
             if card.ability.extra.amount <= 0 then
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
@@ -53,5 +48,30 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+            { text = "(" },
+            { ref_table = "card.ability.extra", ref_value = "amount" },
+            { text = "/" },
+            { ref_table = "card.joker_display_values", ref_value = "start_count" },
+            { text = ")" },
+        },
+        reminder_text_config = { scale = 0.35 },
+        calc_function = function(card)
+            card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.amount
+        end,
+        style_function = function(card, text, reminder_text, extra)
+            local children = reminder_text and reminder_text.children
+            if not children then return end
+
+            local colour = (card.ability.extra.amount == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+            for i = 2, 4 do 
+                local child = children[i]
+                if child then child.config.colour = colour end
+            end
+        end
+        }
     end
 }

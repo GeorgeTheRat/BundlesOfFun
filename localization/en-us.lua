@@ -9,7 +9,7 @@ return {
                         "{C:dark_edition,E:2,s:1.2}Creator of Bundles Of Fun"
                     },
                     {
-                        "Did all {C:red,E:1}art{} {C:inactive}(with few exceptions)",
+                        "Did all {C:red,E:1}art{} {C:inactive}(with few exceptions){},",
                         "most {C:attention,E:1}ideas{}, and a lot of {C:plasma,E:1}balancing"
                     }
                 }

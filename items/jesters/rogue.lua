@@ -30,6 +30,7 @@ BundlesOfFun.Joker {
                 { text = "+$" },
                 { ref_table = "card.joker_display_values", ref_value = "dollars", colour = G.C.GOLD }
             },
+            text_config = { colour = G.C.GOLD },
             calc_function = function(card)
                 local playing_hand = next(G.play.cards)
                 local count = 0
