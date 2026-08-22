@@ -121,6 +121,7 @@ local files = {
             "postman",
             "satanist",
             "printed",
+            "hypnotic",
             "band"
         }, directory = "items/jesters/"
     },

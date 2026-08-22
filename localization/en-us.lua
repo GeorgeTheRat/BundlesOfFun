@@ -567,6 +567,15 @@ return {
                     "held {C:common}Common {C:attention}Jokers"
                 }
             },
+            j_bof_hypnotic = {
+                name = "Hypnotic Joker",
+                text = {
+                    "{C:attention}+#1#{} hand size",
+                    "if most played",
+                    "hand normally has",
+                    "{C:attention}#2#{} scoring cards"
+                }
+            },
             j_bof_band = {
                 name = "One-Man Band",
                 text = {
