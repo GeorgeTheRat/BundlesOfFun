@@ -20,6 +20,16 @@ SMODS.Tag {
     end
 }
 SMODS.Tag {
+    key = "credit_amo",
+    pos = { x = 3, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
     key = "credit_marffe",
     pos = { x = 2, y = 0 },
     atlas = "credit",
@@ -30,8 +40,18 @@ SMODS.Tag {
     end
 }
 SMODS.Tag {
-    key = "credit_minty",
-    pos = { x = 3, y = 0 },
+    key = "credit_revo",
+    pos = { x = 2, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_arc",
+    pos = { x = 1, y = 1 },
     atlas = "credit",
     no_collection = true,
     no_mod_badges = true,
@@ -60,28 +80,8 @@ SMODS.Tag {
     end
 }
 SMODS.Tag {
-    key = "credit_arc",
-    pos = { x = 1, y = 1 },
-    atlas = "credit",
-    no_collection = true,
-    no_mod_badges = true,
-    in_pool = function()
-        return false
-    end
-}
-SMODS.Tag {
-    key = "credit_revo",
-    pos = { x = 2, y = 1 },
-    atlas = "credit",
-    no_collection = true,
-    no_mod_badges = true,
-    in_pool = function()
-        return false
-    end
-}
-SMODS.Tag {
-    key = "credit_amo",
-    pos = { x = 3, y = 1 },
+    key = "credit_minty",
+    pos = { x = 3, y = 0 },
     atlas = "credit",
     no_collection = true,
     no_mod_badges = true,
@@ -315,16 +315,16 @@ SMODS.current_mod.extra_tabs = function()
                             { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
                                 credit_tag_sprite("credit_george", { x = 0, y = 0 }),
                                 credit_tag_sprite("credit_glitch", { x = 1, y = 0 }),
-                                credit_tag_sprite("credit_marffe", { x = 2, y = 0 }),
-                                credit_tag_sprite("credit_minty", { x = 3, y = 0 }),
-                                credit_tag_sprite("credit_sophe", { x = 4, y = 0 }),
+                                credit_tag_sprite("credit_amo", { x = 2, y = 0 }),
+                                credit_tag_sprite("credit_marffe", { x = 3, y = 0 }),
+                                credit_tag_sprite("credit_revo", { x = 4, y = 0 }),
                             }},
                             -- Bottom Row
                             { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
-                                credit_tag_sprite("credit_lapsem", { x = 0, y = 1 }),
-                                credit_tag_sprite("credit_arc", { x = 1, y = 1 }),
-                                credit_tag_sprite("credit_revo", { x = 2, y = 1 }),
-                                credit_tag_sprite("credit_amo", { x = 3, y = 1 }),
+                                credit_tag_sprite("credit_arc", { x = 0, y = 1 }),
+                                credit_tag_sprite("credit_sophe", { x = 1, y = 1 }),
+                                credit_tag_sprite("credit_lapsem", { x = 2, y = 1 }),
+                                credit_tag_sprite("credit_minty", { x = 3, y = 1 }),
                                 credit_tag_sprite("credit_drunk", { x = 4, y = 1 }),
                             }}
                         }}

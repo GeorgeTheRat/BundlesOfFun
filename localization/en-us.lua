@@ -35,34 +35,12 @@ return {
                     "miscellaneous {C:green,E:1}code"
                 }
             },
-            tag_bof_credit_minty = {
-                name = "Minty",
+            tag_bof_credit_amo = {
+                name = "Amo",
                 text = {
-                    "Did some miscellaneous",
-                    "{C:green,E:1}code{}, especially with UI"
-                }
-            },
-            tag_bof_credit_sophe = {
-                name = "Sophe",
-                text = {
-                    "Did a large amount",
-                    "of {C:green,E:1}code{}, especially",
-                    "pertaining to decks"
-                }
-            },
-            tag_bof_credit_lapsem = {
-                name = "Lapsem",
-                text = {
-                    "Did all of the",
-                    "Blind icon {C:red,E:1}art"
-                }
-            },
-            tag_bof_credit_arc = {
-                name = "Arc",
-                text = {
-                    "Did the {C:fish,E:1}music{} for",
-                    "all Fish-related",
-                    "Booster Pack themes"
+                    "Did a massive amount",
+                    "of {C:green,E:1}code{} and bug fixes,",
+                    "especially with Blinds"
                 }
             },
             tag_bof_credit_revo = {
@@ -73,12 +51,33 @@ return {
                     "early development"
                 }
             },
-            tag_bof_credit_amo = {
-                name = "Amo",
+            tag_bof_credit_arc = {
+                name = "Arc",
                 text = {
-                    "Did a massive amount",
-                    "of {C:green,E:1}code{} and bug fixes,",
-                    "especially with Blinds"
+                    "Did the {C:fish,E:1}music{} for",
+                    "all Fish-related",
+                    "Booster Pack themes"
+                }
+            },
+            tag_bof_credit_sophe = {
+                name = "Sophe",
+                text = {
+                    "Did some needed {C:green,E:1}code{},",
+                    "especially with decks"
+                }
+            },
+            tag_bof_credit_lapsem = {
+                name = "Lapsem",
+                text = {
+                    "Did all of the",
+                    "Blind icon {C:red,E:1}art"
+                }
+            },
+            tag_bof_credit_minty = {
+                name = "Minty",
+                text = {
+                    "Did some miscellaneous",
+                    "{C:green,E:1}code{}, especially with UI"
                 }
             },
             tag_bof_credit_drunk = {
