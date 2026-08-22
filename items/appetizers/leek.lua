@@ -70,7 +70,7 @@ BundlesOfFun.Joker {
                 if not children then
                     return
                 end
-                local colour = (card.ability.extra.prob == 0.1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                local colour = (math.round(card.ability.extra.prob * 10) == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
                 for i = 2, 4 do 
                     local child = children[i]
                     if child then child.config.colour = colour end
