@@ -13,7 +13,7 @@ BundlesOfFun.Blind {
     pos = { y = 24 },
     atlas = "blind",
     boss = { min = 2 },
-    boss_colour = HEX("28a8d8"),
+    boss_colour = HEX("65b3dd"),
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
