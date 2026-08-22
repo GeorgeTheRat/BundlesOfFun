@@ -55,12 +55,12 @@ BundlesOfFun.Joker {
                 { text = "(" },
                 { ref_table = "card.ability.extra", ref_value = "count" },
                 { text = "/" },
-                { ref_table = "card.joker_display_values", ref_value = "start_count" },
+                { ref_table = "card.joker_display_values", ref_value = "start_count_core" },
                 { text = ")" },
             },
             reminder_text_config = { scale = 0.35 },
             calc_function = function(card)
-                card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.count
+                card.joker_display_values.start_count_core = card.joker_display_values.start_count_core or card.ability.extra.count
             end,
             style_function = function(card, text, reminder_text, extra)
                 local children = reminder_text and reminder_text.children
