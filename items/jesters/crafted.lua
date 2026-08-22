@@ -13,6 +13,12 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_modification" }
     end,
     calculate = function(self, card, context)
+        if context.first_hand_drawn then
+            local eval = function()
+                return G.GAME.current_round.hands_played == 0 and not G.RESET_JIGGLES
+            end
+            juice_card_until(card, eval, true)
+        end
         if context.final_scoring_step and G.GAME.current_round.hands_played == 0 and not context.blueprint then
             local left_card, right_card = context.full_hand[1], context.full_hand[#context.full_hand]
             if left_card and right_card and left_card ~= right_card then
@@ -33,7 +39,7 @@ BundlesOfFun.Joker {
                 end
                 local seal = left_card:get_seal(true)
                 if seal then
-                    -- match Eraser: prevent seal-trigger while we copy it
+                    -- match eraser: prevent seal-trigger while it's copied
                     right_card.ability = right_card.ability or {}
                     right_card.ability.bof_delay_seal_removal = true
                     right_card:set_seal(seal)
