@@ -56,7 +56,32 @@ BundlesOfFun.Joker {
                 { ref_table = "card.joker_display_values", ref_value = "mult", retrigger_type = "mult" }
             },
             text_config = { colour = G.C.MULT },
-            
+            calc_function = function(card)
+                local suits = {}
+                for _, key in ipairs(SMODS.Suit.obj_buffer) do
+                    local s = SMODS.Suits[key]
+                    suits[s.card_key] = 0
+                end
+                for _, playing_card in pairs(G.playing_cards) do
+                    if playing_card.base and playing_card.base.suit then
+                        local suit_obj = SMODS.Suits[playing_card.base.suit]
+                        if suit_obj then
+                            local suit_card_key = suit_obj.card_key
+                            if suits[suit_card_key] ~= nil then
+                                suits[suit_card_key] = suits[suit_card_key] + 1
+                            end
+                        end
+                    end
+                end
+                for _, count in pairs(suits) do
+                    if count >= card.ability.extra.amount then
+                        card.joker_display_values.mult = card.ability.extra.mult
+                        break
+                    else
+                        card.joker_display_values.mult = 0
+                    end
+                end
+            end
         }
     end
 }
