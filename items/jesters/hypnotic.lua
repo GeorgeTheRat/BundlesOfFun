@@ -13,7 +13,7 @@ BundlesOfFun.Joker {
     attributes = { "hand_type" },
     cost = 8,
     rarity = 3,
-    blueprint_compat = true,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
