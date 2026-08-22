@@ -125,10 +125,6 @@ local function credit_tag_sprite(tag_key, tag_pos)
             break
         end
     end
-    if not full_key or not G.P_TAGS[full_key] then
-        print("Bundles of Fun: Could not find tag " .. tostring(tag_key))
-        return { n = G.UIT.C, config = { align = "cm" }, nodes = {} }
-    end
     local tag_def = G.P_TAGS[full_key]
     local tag_sprite = SMODS.create_sprite(
         0, 0,
