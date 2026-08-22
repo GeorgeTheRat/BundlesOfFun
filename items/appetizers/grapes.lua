@@ -39,5 +39,22 @@ BundlesOfFun.Joker {
                 message = localize("k_eaten_ex")
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+", colour = G.C.CHIPS },
+                { ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS },
+                { text = " +", colour = G.C.MULT },
+                { ref_table = "card.ability.extra", ref_value = "mult", colour = G.C.MULT },
+                { text = " " }, -- for spacing
+                {
+                    border_nodes = {
+                        { text = "X" },
+                        { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "xmult" }
+                    }
+                }
+            },
+        }
     end
 }

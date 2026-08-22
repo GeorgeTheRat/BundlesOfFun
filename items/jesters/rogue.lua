@@ -28,7 +28,7 @@ BundlesOfFun.Joker {
             -- JokerDisplay's own vanilla Reserved Parking definition uses for its held-in-hand count.
             text = {
                 { text = "+$" },
-                { ref_table = "card.joker_display_values", ref_value = "dollars", colour = G.C.GOLD }
+                { ref_table = "card.joker_display_values", ref_value = "dollars" }
             },
             text_config = { colour = G.C.GOLD },
             calc_function = function(card)

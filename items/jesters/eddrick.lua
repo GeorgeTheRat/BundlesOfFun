@@ -39,10 +39,10 @@ BundlesOfFun.Joker {
             -- become 0), and only once G.play.cards is populated (hand already resolving) does
             -- hands_left == 0 directly match what calculate itself checks.
             text = {
-                { text = "+" },
+                { text = "+", colour = G.C.CHIPS },
                 { ref_table = "card.joker_display_values", ref_value = "chips", colour = G.C.CHIPS },
-                { text = ", +" },
-                { ref_table = "card.joker_display_values", ref_value = "mult",  colour = G.C.MULT }
+                { text = " +", colour = G.C.MULT },
+                { ref_table = "card.joker_display_values", ref_value = "mult", colour = G.C.MULT }
             },
             calc_function = function(card)
                 local playing_hand = next(G.play.cards)

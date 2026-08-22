@@ -27,5 +27,31 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "blinds" },
+                { text = "/" },
+                { ref_table = "card.joker_display_values", ref_value = "start_count" },
+                { text = ")" },
+            },
+            reminder_text_config = { scale = 0.35 },
+            calc_function = function(card)
+                card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.blinds
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local children = reminder_text and reminder_text.children
+                if not children then
+                    return
+                end
+                local colour = (card.ability.extra.blinds == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do 
+                    local child = children[i]
+                    if child then child.config.colour = colour end
+                end
+            end
+        }
     end
 }

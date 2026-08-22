@@ -4,8 +4,7 @@ BundlesOfFun.Joker {
     bundle = "appetizers",
     config = {
         extra = {
-            prob_start = 3.9,
-            prob_current = nil,
+            prob = 3.9,
             prob_mod = 0.1
         }
     },
@@ -18,29 +17,24 @@ BundlesOfFun.Joker {
     perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        if not card.ability.extra.prob_current then
-            card.ability.extra.prob_current = card.ability.extra.prob_start 
-        end
         return {
             vars = {
-                card.ability.extra.prob_current,
+                card.ability.extra.prob,
                 card.ability.extra.prob_mod
             } 
         }
     end,
     calculate = function(self, card, context)
         if context.mod_probability and not context.blueprint then
-            card.ability.extra.prob_current = card.ability.extra.prob_current or card.ability.extra.prob_start
             return {
-                numerator = context.numerator + card.ability.extra.prob_current
+                numerator = context.numerator + card.ability.extra.prob
             }
         end
         if context.pseudorandom_result and context.result then
-            card.ability.extra.prob_current = card.ability.extra.prob_current or card.ability.extra.prob_start
-            if card.ability.extra.prob_current >= (card.ability.extra.prob_mod) then
+            if card.ability.extra.prob >= 0 then
                 SMODS.scale_card(card, {
                     ref_table = card.ability.extra,
-                    ref_value = "prob_current",
+                    ref_value = "prob",
                     scalar_value = "prob_mod",
                     operation = "-",
                     no_message = true
@@ -52,5 +46,36 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    update = function(self, card, dt) -- has to do this due to 
+        if not card.ability.extra.prob_current then
+            card.ability.extra.prob_current = card.ability.extra.prob_start 
+        end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "prob" },
+                { text = "/" },
+                { ref_table = "card.joker_display_values", ref_value = "start_count" },
+                { text = ")" },
+            },
+            reminder_text_config = { scale = 0.35 },
+            calc_function = function(card)
+                card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.prob
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local children = reminder_text and reminder_text.children
+                if not children then
+                    return
+                end
+                local colour = (card.ability.extra.prob == 0.1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do 
+                    local child = children[i]
+                    if child then child.config.colour = colour end
+                end
+            end
+        }
     end
 }
