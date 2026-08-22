@@ -1,3 +1,105 @@
+-- credit tags
+SMODS.Tag {
+    key = "credit_george",
+    pos = { x = 0, y = 0 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_glitch",
+    pos = { x = 1, y = 0 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_marffe",
+    pos = { x = 2, y = 0 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_minty",
+    pos = { x = 3, y = 0 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_sophe",
+    pos = { x = 4, y = 0 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_lapsem",
+    pos = { x = 0, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_arc",
+    pos = { x = 1, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_revo",
+    pos = { x = 2, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_amo",
+    pos = { x = 3, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+SMODS.Tag {
+    key = "credit_drunk",
+    pos = { x = 4, y = 1 },
+    atlas = "credit",
+    no_collection = true,
+    no_mod_badges = true,
+    in_pool = function()
+        return false
+    end
+}
+
 -- create toggle ui element for bundle
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = {
@@ -11,6 +113,103 @@ local function bundle_toggle(item, colour)
             align = "cm"
         }
     }}
+end
+
+-- basically just copying the function in engine/ui.lua to generate tags in the collection
+-- works well though
+local function credit_tag_sprite(tag_key, tag_pos)
+    local full_key = nil
+    for k, _ in pairs(G.P_TAGS) do
+        if k:sub(-#tag_key) == tag_key then
+            full_key = k
+            break
+        end
+    end
+    if not full_key or not G.P_TAGS[full_key] then
+        print("Bundles of Fun: Could not find tag " .. tostring(tag_key))
+        return { n = G.UIT.C, config = { align = "cm" }, nodes = {} }
+    end
+    local tag_def = G.P_TAGS[full_key]
+    local tag_sprite = SMODS.create_sprite(
+        0, 0,
+        1.5, 1.5,
+        SMODS.get_atlas(tag_def.atlas),
+        tag_pos
+    )
+    tag_sprite.T.scale = 1
+    tag_sprite:define_draw_steps({
+        { shader = "dissolve", shadow_height = 0.05 },
+        { shader = "dissolve" },
+    })
+    tag_sprite.float = true
+    tag_sprite.states.hover.can = true
+    tag_sprite.states.drag.can = false
+    tag_sprite.states.collide.can = true
+    tag_sprite.config = {
+        tag = tag_def,
+        force_focus = true
+    }
+    tag_sprite.hover = function(self)
+        if not G.CONTROLLER.dragging.target
+        and not G.CONTROLLER.using_touch
+        and not self.hovering
+        and self.states.visible then
+            self.hovering = true
+            self.hover_tilt = 3
+            self:juice_up(0.05, 0.02)
+            play_sound("paper1", math.random() * 0.1 + 0.55, 0.42)
+            play_sound("tarot2", math.random() * 0.1 + 0.55, 0.09)
+            self.ability_UIBox_table = generate_card_ui(
+                tag_def,
+                nil,
+                {},
+                'Tag',
+                nil,
+                false,
+                nil,
+                nil,
+                tag_def
+            )
+            self.config.h_popup = G.UIDEF.card_h_popup(self)
+            self.config.h_popup_config =
+                (self.T.x > G.ROOM.T.w * 0.4)
+                and {
+                    align = 'cl',
+                    offset = { x = -0.1, y = 0 },
+                    parent = self
+                }
+                or {
+                    align = 'cr',
+                    offset = { x = 0.1, y = 0 },
+                    parent = self
+                }
+            Node.hover(self)
+        end
+    end
+    tag_sprite.stop_hover = function(self)
+        self.hovering = false
+        Node.stop_hover(self)
+        self.hover_tilt = 0
+    end
+    tag_sprite:juice_up()
+    return {
+        n = G.UIT.C,
+        config = {
+            align = "cm",
+            padding = 0.1
+        },
+        nodes = {
+            {
+                n = G.UIT.O,
+                config = {
+                    object = tag_sprite,
+                    focus_with_object = true,
+                    w = 1.5,
+                    h = 1.5
+                }
+            }
+        }
+    }
 end
 
 -- store reference to tab content
@@ -51,39 +250,7 @@ SMODS.current_mod.config_tab = function()
     }
 end
 
--- create credit title
-local function bof_credit_title(name, role, colour)
-    return { n = G.UIT.R, config = { align = "cm", padding = 0.1 }, nodes = {
-        { n = G.UIT.T, config = { text = name .. " - " .. role, scale = 0.4, colour = colour, shadow = true } }
-    }}
-end
-
--- create credit description
-local function bof_credit_description(description)
-    return { n = G.UIT.R, config = { align = "cm", padding = 0.05 }, nodes = {
-        { n = G.UIT.T, config = { text = description, scale = 0.3, colour = G.C.WHITE, shadow = true } }
-    }}
-end
-
--- gradient colors for The Goats
-local george = SMODS.Gradient{
-    key = "george_the_rat",
-    colours = {
-        G.C.bof_george_1,
-        G.C.bof_george_2
-    },
-    cycle = 5
-}
-local glitch = SMODS.Gradient {
-    key = "glitchkat10",
-    colours = {
-        G.C.bof_glitch_1,
-        G.C.bof_glitch_2
-    },
-    cycle = 5
-}
-
--- actually define the tabs for bundles and credits
+-- define the tabs for bundles and credits
 SMODS.current_mod.extra_tabs = function()
     return {
         {
@@ -146,44 +313,23 @@ SMODS.current_mod.extra_tabs = function()
                         colour = G.C.BLACK,
                     },
                     nodes = {
-                        { n = G.UIT.R, config = { align = "cm", padding = 0.3 }, nodes = {
-                            { n = G.UIT.O, config = { object = DynaText({
-                                string = { { string = "Bundles Of Fun" } },
-                                colours = { G.C.GOLD },
-                                silent = true,
-                                scale = 1.5,
-                                shadow = true,
-                                emboss = 0.05,
-                                float = true,
-                                pop_in = 0.1
-                            })}}
-                        }},
-                        { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
-                            { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
-                                { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
-                                    { n = G.UIT.T, config = { text = "Creators", scale = 0.45, colour = G.C.WHITE, shadow = true } }
-                                }},
-                                bof_credit_title("George The Rat", "Creator", george),
-                                bof_credit_description("All art, most ideas"),
-                                bof_credit_title("Glitchkat10", "Co-Creator", glitch),
-                                bof_credit_description("Many ideas, nearly all code"),
+                        -- The outer container is a Column (C) to stack the two rows vertically
+                        { n = G.UIT.C, config = { align = "cm", padding = 0.2 }, nodes = {
+                            -- Top Row
+                            { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
+                                credit_tag_sprite("credit_george", { x = 0, y = 0 }),
+                                credit_tag_sprite("credit_glitch", { x = 1, y = 0 }),
+                                credit_tag_sprite("credit_marffe", { x = 2, y = 0 }),
+                                credit_tag_sprite("credit_minty", { x = 3, y = 0 }),
+                                credit_tag_sprite("credit_sophe", { x = 4, y = 0 }),
                             }},
-                            { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
-                                { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
-                                    { n = G.UIT.T, config = { text = "Contributors", scale = 0.45, colour = G.C.WHITE, shadow = true } }
-                                }},
-                                bof_credit_title("Amo", "Coder", G.C.HAND_LEVELS[3]),
-                                bof_credit_description("Many needed bug fixes"),
-                                bof_credit_title("Marffe", "Coder & Localizer", G.C.ORANGE),
-                                bof_credit_description("Bug fixes, Spanish translation, many decks"),
-                                bof_credit_title("arc", "Musician", G.C.bof_ColonParen),
-                                bof_credit_description("Music played in Fish-related packs"),
-                                bof_credit_title("wingedcatgirl", "Coder", G.C.bof_minnows),
-                                bof_credit_description("Technical code and UI"),
-                                bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),
-                                bof_credit_description("Multiple Decks' code"),
-                                bof_credit_title("CodeRevo", "Coder", G.C.STAKES[6]),
-                                bof_credit_description("Some Jokers' code"),
+                            -- Bottom Row
+                            { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
+                                credit_tag_sprite("credit_lapsem", { x = 0, y = 1 }),
+                                credit_tag_sprite("credit_arc", { x = 1, y = 1 }),
+                                credit_tag_sprite("credit_revo", { x = 2, y = 1 }),
+                                credit_tag_sprite("credit_amo", { x = 3, y = 1 }),
+                                credit_tag_sprite("credit_drunk", { x = 4, y = 1 }),
                             }}
                         }}
                     }
