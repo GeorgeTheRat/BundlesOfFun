@@ -35,8 +35,9 @@ BundlesOfFun.Joker {
             -- shares the same rank
             text = {
                 { text = "+" },
-                { ref_table = "card.joker_display_values", ref_value = "chips", colour = G.C.CHIPS }
+                { ref_table = "card.joker_display_values", ref_value = "chips", retrigger_type = "chips" }
             },
+            text_config = { colour = G.C.CHIPS },
             calc_function = function(card)
                 local hand = JokerDisplay.current_hand
                 local active = false
