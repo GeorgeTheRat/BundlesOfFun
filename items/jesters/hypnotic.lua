@@ -29,9 +29,11 @@ BundlesOfFun.Joker {
         local most_played_count = math.huge
         for hand, data in pairs(G.GAME.hands) do
             local true_count = 0
-            for _, hand_card in ipairs(data.example) do
-                if hand_card[2] == true then
-                    true_count = true_count + 1
+            if data.example then
+                for _, hand_card in ipairs(data.example) do
+                    if hand_card[2] == true then
+                        true_count = true_count + 1
+                    end
                 end
             end
             if data.played > most_played then
@@ -102,10 +104,7 @@ BundlesOfFun.Joker {
                         most_played_count = true_count
                     end
                 end
-                card.joker_display_values.hand_size =
-                    most_played_count == card.ability.extra.count
-                    and card.ability.extra.hand_size
-                    or 0
+                card.joker_display_values.hand_size = most_played_count == card.ability.extra.count and card.ability.extra.hand_size or 0
                 card.joker_display_values.most_played_hand = most_played_hand
             end
         }
