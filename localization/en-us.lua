@@ -234,8 +234,8 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_eddrick = {
-                name = "Evil Eddrick",
+            j_bof_evil = {
+                name = "Evil Joker",
                 text = {
                     "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
                     "on {C:attention}final hand{} of round"

@@ -1,11 +1,11 @@
 BundlesOfFun.Joker {
-    key = "eddrick",
-    name = "Evil Eddrick",
+    key = "evil",
+    name = "Evil Joker",
     bundle = "jesters",
     config = {
         extra = {
-            chips = 50,
-            mult = 10
+            chips = 80,
+            mult = 15
         }
     },
     pos = { x = 6, y = 2 },

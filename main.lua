@@ -86,7 +86,7 @@ local files = {
             "barber",
             "ballbo",
             "rogue",
-            "eddrick",
+            "evil",
             "super",
             "eureka",
             "timmy",
