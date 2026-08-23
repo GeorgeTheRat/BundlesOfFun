@@ -933,8 +933,9 @@ return {
             b_bof_display = {
                 name = "Display Deck",
                 text = {
-                    "Preview the next {C:attention}Showdown Blind",
-                    "and next {C:attention}Boss Blind{} at any time",
+                    "Preview the next",
+                    "{C:attention}Showdown Blind{} and next",
+                    "{C:attention}Boss Blind{} at any time",
                     "{C:inactive}(See Run Info)"
                 },
                 unlock = {
