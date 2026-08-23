@@ -20,5 +20,7 @@ BundlesOfFun.Joker {
                 end
             }))
         end
+    end,
+    JokerDisplay = function()
     end
 }

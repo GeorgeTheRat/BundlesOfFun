@@ -14,8 +14,9 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			-- on the fourth day of christmas, my true love gave to me
-			local four_calling_birds = context.blueprint_card or card
+			-- on the fifth day of christmas, my true love gave to me
+			local five_gold_rings = context.blueprint_card or card
+			-- four_calling_birds
 			-- three_french_hens
 			-- two_turtle_doves
 			-- and a_partridge_in_a_pear_tree
@@ -24,7 +25,7 @@ BundlesOfFun.Joker({
 			delay = 0.4,
 			func = function()
 				play_sound("tarot1")
-				four_calling_birds:juice_up(0.3, 0.5)
+				five_gold_rings:juice_up(0.3, 0.5)
 				return true
 			end
 			}))

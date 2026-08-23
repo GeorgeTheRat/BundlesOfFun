@@ -14,6 +14,11 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind and context.blind.key == "bl_small" then
+            -- on the fourth day of christmas, my true love gave to me
+            local four_calling_birds = context.blueprint_card or card
+            -- three_french_hens
+            -- two_turtle_doves
+            -- and a_partridge_in_a_pear_tree
             G.E_MANAGER:add_event(Event({
                 func = function()
                     if pseudorandom("j_bof_frank") < 0.5 then
@@ -21,7 +26,7 @@ BundlesOfFun.Joker {
                     else
                         add_tag(Tag("tag_garbage"))
                     end
-                    card:juice_up(0.3, 0.5)
+                    four_calling_birds:juice_up(0.3, 0.5)
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             for i = 1, #G.GAME.tags do
@@ -32,7 +37,7 @@ BundlesOfFun.Joker {
                             end
                             G.E_MANAGER:add_event(Event({
                                 func = function()
-                                    card:juice_up(0.3, 0.5)
+                                    four_calling_birds:juice_up(0.3, 0.5)
                                     return true
                                 end
                             }))

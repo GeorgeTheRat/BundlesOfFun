@@ -838,13 +838,15 @@ SMODS.Joker:take_ownership("perkeo", {
                         return true
                     end}))
                 -- on the sixth day of christmas, my true love gave to me
-                local six_geese_a_laying = context.blueprint_card or card
+                local eight_maids_a_milking = context.blueprint_card or card
+                -- seven_swans_a_swimming
+                -- six_geese_a_laying
                 -- five_gold_rings
                 -- four_calling_birds
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                card_eval_status_text(six_geese_a_laying, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                card_eval_status_text(eight_maids_a_milking, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
                 return nil, true
             else
                 return true
