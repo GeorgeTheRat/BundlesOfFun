@@ -241,6 +241,11 @@ SMODS.current_mod.config_tab = function()
                     ref_table = BundlesOfFun.config,
                     ref_value = "custom_sounds",
                 },
+                create_toggle {
+                    label = "evil dih",
+                    ref_table = BundlesOfFun.config,
+                    ref_value = "evil_dih",
+                },
             }}
         }
     }

@@ -241,6 +241,13 @@ return {
                     "on {C:attention}final hand{} of round"
                 }
             },
+            j_bof_evil_dih = {
+                name = "Evil Dih",
+                text = {
+                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
+                    "on {C:attention}final hand{} of round"
+                }
+            },
             j_bof_super = {
                 name = "Super Joker",
                 text = {

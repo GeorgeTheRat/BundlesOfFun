@@ -16,6 +16,7 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
+            key = BundlesOfFun.config.evil_dih and "j_bof_evil_dih" or "j_bof_evil",
             vars = {
                 card.ability.extra.chips,
                 card.ability.extra.mult

@@ -10,5 +10,5 @@ return {
         enemies = true
     },
     custom_sounds = true,
-    custom_wooden_center = true
+    evil_dih = false
 }
