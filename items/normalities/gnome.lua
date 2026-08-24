@@ -21,6 +21,6 @@ BundlesOfFun.Joker {
             }))
         end
     end,
-    JokerDisplay = function()
+    joker_display_def = function(JokerDisplay)
     end
 }

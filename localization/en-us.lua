@@ -871,7 +871,7 @@ return {
                     "Earn an additional {C:money}$#1#{} at end",
                     "of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
-                    "rarely appear {C:dark_edition,T:e_negative}Negative"
+                    "rarely appear {C:dark_edition,T:e_negative_consumable,T_set:Edition,T_config_extra:1}Negative"
                 },
                 unlock = {
                     "Have one of each",

@@ -13,7 +13,7 @@ BundlesOfFun.Joker {
         return { vars = { card.ability.extra.dollars } }
     end,
     calculate = function(self, card, context)
-        if context.buying_card and (context.card:is_rarity("Common") or context.card:is_rarity("Uncommon")) then
+        if context.buying_card and (context.card:is_rarity("Common") or context.card:is_rarity("Uncommon")) and context.card ~= card then
             return {
                 dollars = card.ability.extra.dollars
             }
