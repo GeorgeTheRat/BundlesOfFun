@@ -15,7 +15,7 @@ BundlesOfFun.Blind {
         -- (pseudorandom_probability, not a raw pseudorandom roll, so Oops! All 6s etc. still apply)
         if context.hand_drawn then
             local to_discard = {}
-            for _, card in ipairs(G.hand.cards) do
+            for _, card in ipairs(context.hand_drawn) do
                 local modified = next(SMODS.get_enhancements(card))
                     or (card.edition and card.edition ~= "Base")
                     or card:get_seal(true)

@@ -15,6 +15,11 @@ payload = '''
         local rightmost = self == G.jokers.cards[#G.jokers.cards]
         if self.debuff ~= rightmost then
             self:set_debuff(rightmost)
+            if rightmost then
+                self:juice_up()
+                G.GAME.blind:juice_up()
+                play_sound('cancel', 0.7, 0.7)
+            end
         end
         if rightmost then
             G.GAME.bof_risk_joker = self

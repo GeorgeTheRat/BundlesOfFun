@@ -28,6 +28,7 @@ BundlesOfFun.Blind {
     boss_colour = HEX("588888"),
     calculate = function(self, blind, context)
         if context.blind_defeated or context.blind_disabled then
+            G.GAME.bof_terminal_pending_rank = nil
             if G.GAME.bof_terminal_debuffed_rank then
                 G.GAME.bof_terminal_debuffed_rank = nil
                 bof_terminal_recalc_all()
@@ -43,6 +44,17 @@ BundlesOfFun.Blind {
                 return { debuff = true }
             end
             return
+        end
+
+        -- applies the rank computed by the previous hand's context.after, right as the
+        -- next hand is drawn - context.hand_drawn fires once per hand drawn (not once
+        -- per encounter, despite what an earlier version of this comment assumed), so
+        -- this needs no artificial delay to avoid flashing over the still-visible scored cards
+        if context.hand_drawn and G.GAME.bof_terminal_pending_rank then
+            G.GAME.bof_terminal_debuffed_rank = G.GAME.bof_terminal_pending_rank
+            G.GAME.bof_terminal_pending_rank = nil
+            bof_terminal_recalc_all()
+            blind:wiggle()
         end
 
         -- fires once per hand, after scoring's fully resolved - walk scoring_hand backward
@@ -61,19 +73,7 @@ BundlesOfFun.Blind {
             end
             local new_rank = last_card and last_card.base and last_card.base.id
             if new_rank then
-                G.GAME.bof_terminal_debuffed_rank = new_rank
-                -- delay the actual swap so it doesn't flash while the scored cards are still on screen
-                -- (context.hand_drawn looked like the right trigger for this but only fires once
-                -- per encounter, not once per hand, so it can't be relied on here)
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.6 * G.SETTINGS.GAMESPEED,
-                    func = function()
-                        bof_terminal_recalc_all()
-                        blind:wiggle()
-                        return true
-                    end
-                }))
+                G.GAME.bof_terminal_pending_rank = new_rank
             end
         end
 

@@ -13,7 +13,7 @@ BundlesOfFun.Blind {
         if context.setting_blind then
             G.GAME.bof_angle_base_chips = G.GAME.blind.chips
             G.GAME.bof_angle_discarded_cards = {}
-            G.GAME.current_round.discards_left = math.max(0, G.GAME.current_round.discards_left - 1)
+            G.GAME.current_round.hands_left = math.max(0, G.GAME.current_round.hands_left - 1)
         end
 
         if blind.disabled then return end
@@ -27,8 +27,13 @@ BundlesOfFun.Blind {
                 local base = G.GAME.bof_angle_base_chips or G.GAME.blind.chips
                 G.GAME.blind.chips = math.floor(G.GAME.blind.chips + base * 0.05)
                 G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-                blind:wiggle()
             end
+        end
+
+        -- fires once for the whole discard action, so multiple discarded cards
+        -- only wiggle/play the sound once instead of stacking N times
+        if context.pre_discard then
+            blind:wiggle()
         end
     end
 }
