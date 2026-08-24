@@ -9,7 +9,7 @@
   "icon_path": "icon.png",
   "dependencies": [
     "Steamodded (>=1.0.0~BETA-1731b)",
-    "Steamodded (<<1.0.0~BETA-1814a)"
+    "Steamodded (<=1.0.0~BETA-1814a)"
   ],
   "tags": [ "vanilla_balance" ]
 }
