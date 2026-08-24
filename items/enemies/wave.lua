@@ -10,10 +10,8 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
-        -- end_of_round + main_eval fires once the round is fully resolved (same
-        -- "round actually over" hook used by stress.lua/apple.lua), rather than
-        -- context.before which fires while the final hand's scoring is still animating
-        if context.end_of_round and context.main_eval and G.GAME.current_round.hands_left <= 0 then
+        -- fires on context.after
+        if context.after and G.GAME.current_round.hands_left <= 0 then
             local target = G.jokers.cards[#G.jokers.cards]
             if target and not target.pinned then
                 target:add_sticker("pinned", true)

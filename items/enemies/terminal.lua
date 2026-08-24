@@ -40,7 +40,6 @@ BundlesOfFun.Blind {
         -- whether the card being asked about matches the tracked rank
         if context.debuff_card then
             local rank = G.GAME.bof_terminal_debuffed_rank
-            print("[bof_terminal] debuff_card check: card_rank=" .. tostring(context.debuff_card.base and context.debuff_card.base.id) .. " tracked_rank=" .. tostring(rank))
             if rank and context.debuff_card.base and context.debuff_card.base.id == rank then
                 return { debuff = true }
             end
@@ -51,11 +50,9 @@ BundlesOfFun.Blind {
         -- next hand is drawn - context.hand_drawn fires once per hand drawn (not once
         -- per encounter, despite what an earlier version of this comment assumed), so
         -- this needs no artificial delay to avoid flashing over the still-visible scored cards
-        print("[bof_terminal] hand_drawn=" .. tostring(context.hand_drawn ~= nil) .. " pending_rank=" .. tostring(G.GAME.bof_terminal_pending_rank))
         if context.hand_drawn and G.GAME.bof_terminal_pending_rank then
             G.GAME.bof_terminal_debuffed_rank = G.GAME.bof_terminal_pending_rank
             G.GAME.bof_terminal_pending_rank = nil
-            print("[bof_terminal] promoted pending_rank -> debuffed_rank=" .. tostring(G.GAME.bof_terminal_debuffed_rank))
             bof_terminal_recalc_all()
             blind:wiggle()
         end
@@ -75,7 +72,6 @@ BundlesOfFun.Blind {
                 end
             end
             local new_rank = last_card and last_card.base and last_card.base.id
-            print("[bof_terminal] context.after: scoring_hand=" .. tostring(scoring_hand and #scoring_hand) .. " new_rank=" .. tostring(new_rank))
             if new_rank then
                 G.GAME.bof_terminal_pending_rank = new_rank
             end
