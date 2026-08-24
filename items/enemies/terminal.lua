@@ -28,6 +28,7 @@ BundlesOfFun.Blind {
     boss_colour = HEX("588888"),
     calculate = function(self, blind, context)
         if context.blind_defeated or context.blind_disabled then
+            G.GAME.bof_terminal_pending_rank = nil
             if G.GAME.bof_terminal_debuffed_rank then
                 G.GAME.bof_terminal_debuffed_rank = nil
                 bof_terminal_recalc_all()
@@ -39,10 +40,24 @@ BundlesOfFun.Blind {
         -- whether the card being asked about matches the tracked rank
         if context.debuff_card then
             local rank = G.GAME.bof_terminal_debuffed_rank
+            print("[bof_terminal] debuff_card check: card_rank=" .. tostring(context.debuff_card.base and context.debuff_card.base.id) .. " tracked_rank=" .. tostring(rank))
             if rank and context.debuff_card.base and context.debuff_card.base.id == rank then
                 return { debuff = true }
             end
             return
+        end
+
+        -- applies the rank computed by the previous hand's context.after, right as the
+        -- next hand is drawn - context.hand_drawn fires once per hand drawn (not once
+        -- per encounter, despite what an earlier version of this comment assumed), so
+        -- this needs no artificial delay to avoid flashing over the still-visible scored cards
+        print("[bof_terminal] hand_drawn=" .. tostring(context.hand_drawn ~= nil) .. " pending_rank=" .. tostring(G.GAME.bof_terminal_pending_rank))
+        if context.hand_drawn and G.GAME.bof_terminal_pending_rank then
+            G.GAME.bof_terminal_debuffed_rank = G.GAME.bof_terminal_pending_rank
+            G.GAME.bof_terminal_pending_rank = nil
+            print("[bof_terminal] promoted pending_rank -> debuffed_rank=" .. tostring(G.GAME.bof_terminal_debuffed_rank))
+            bof_terminal_recalc_all()
+            blind:wiggle()
         end
 
         -- fires once per hand, after scoring's fully resolved - walk scoring_hand backward
@@ -60,20 +75,9 @@ BundlesOfFun.Blind {
                 end
             end
             local new_rank = last_card and last_card.base and last_card.base.id
+            print("[bof_terminal] context.after: scoring_hand=" .. tostring(scoring_hand and #scoring_hand) .. " new_rank=" .. tostring(new_rank))
             if new_rank then
-                G.GAME.bof_terminal_debuffed_rank = new_rank
-                -- delay the actual swap so it doesn't flash while the scored cards are still on screen
-                -- (context.hand_drawn looked like the right trigger for this but only fires once
-                -- per encounter, not once per hand, so it can't be relied on here)
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.6 * G.SETTINGS.GAMESPEED,
-                    func = function()
-                        bof_terminal_recalc_all()
-                        blind:wiggle()
-                        return true
-                    end
-                }))
+                G.GAME.bof_terminal_pending_rank = new_rank
             end
         end
 

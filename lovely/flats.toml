@@ -14,7 +14,8 @@ payload = '''
 if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then
 '''
 
-# hook the game start to initialize display deck predictions
+# hook the game start to clear stale display deck boss predictions from a
+# previous run
 [[patches]]
 [patches.pattern]
 target = "game.lua"
@@ -23,11 +24,7 @@ position = "after"
 match_indent = true
 payload = '''
 -- patched by bundles of fun
-G.GAME.bof_predicted_boss = nil
-G.GAME.bof_predicted_showdown = nil
-G.GAME.bof_predicted_ante = nil
-G.GAME.bof_predicted_showdown_ante = nil
-G.GAME.bof_showdown_ante = 8
+G.GAME.perscribed_bosses = {}
 '''
 
 # track showdown rerolls for display deck unlock

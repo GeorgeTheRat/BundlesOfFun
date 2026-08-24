@@ -30,6 +30,7 @@ BundlesOfFun.Blind {
         -- flag every rare joker for debuff, except on the final hand of the round
         if context.hand_drawn then
             local is_final_hand = G.GAME.current_round.hands_left == 1
+            local changed = false
 
             for _, joker in ipairs(G.jokers.cards) do
                 local center = joker.config and joker.config.center
@@ -40,9 +41,10 @@ BundlesOfFun.Blind {
                     joker.ability.damping_chosen = should_debuff
                     SMODS.recalc_debuff(joker)
                     if should_debuff then joker:juice_up() end
+                    changed = true
                 end
             end
-            blind:wiggle()
+            if changed then blind:wiggle() end
         end
     end
 }
