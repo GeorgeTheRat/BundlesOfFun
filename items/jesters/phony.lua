@@ -33,11 +33,11 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+", colour = G.C.CHIPS },
+                { text = "-", colour = G.C.CHIPS },
                 { ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS },
                 { text = " +", colour = G.C.MULT },
                 { ref_table = "card.ability.extra", ref_value = "mult", colour = G.C.MULT }
-            },
+            }
         }
     end
 }

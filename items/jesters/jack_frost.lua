@@ -61,5 +61,24 @@ BundlesOfFun.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    border_nodes = {
+                        { text = "X" },
+                        { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "xmult" }
+                    }
+                }
+            },
+            reminder_text = {
+                { text = "[" },
+                { ref_table = "card.ability.extra", ref_value = "current" },
+                { text = "/" },
+                { ref_table = "card.ability.extra", ref_value = "requirement" },
+                { text = "]" }
+            }
+        }
     end
 }
