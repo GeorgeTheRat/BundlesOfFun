@@ -84,6 +84,13 @@ SMODS.Atlas({
     py = 95,
 })
 
+SMODS.Atlas({ -- evil dih
+    key = "evil_dih",
+    path = "evil_dih.png",
+    px = 71,
+    py = 95,
+})
+
 -- Steamodded already registers "pinned" as a real Sticker (it's what backs vanilla's
 -- card.pinned), just pointed at an out-of-bounds placeholder position since the base
 -- game has no art for it - point it at ours instead. This is enough for

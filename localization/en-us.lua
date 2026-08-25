@@ -243,7 +243,7 @@ return {
                     "on {C:attention}final hand{} of round"
                 }
             },
-            j_bof_evil_dih = {
+            j_bof_evil_dih = { -- evil dih (original)
                 name = "Evil Dih",
                 text = {
                     "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
@@ -382,6 +382,13 @@ return {
                     "{C:chips}-#2#{} Chips"
                 }
             },
+            j_bof_gucci_morty = { -- evil dih
+                name = "Gucci Morty",
+                text = {
+                    "{C:mult}+#1#{} Mult",
+                    "{C:chips}-#2#{} Chips"
+                }
+            },
             j_bof_fancy = {
                 name = "Fancy Pants",
                 text = {
@@ -507,6 +514,17 @@ return {
             },
             j_bof_freeze = {
                 name = "Brain Freeze",
+                text = {
+                    "This Joker decreases the",
+                    "{C:attention}level{} of a random {C:attention}poker hand",
+                    "and gains {C:white,X:mult}X#1#{} Mult every",
+                    "{C:attention}other {C:planet}Planet{} card sold",
+                    "{C:inactive,s:0.8}#2#",
+                    "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
+                }
+            },
+            j_bof_brian = { -- evil dih
+                name = "Brian Freeze",
                 text = {
                     "This Joker decreases the",
                     "{C:attention}level{} of a random {C:attention}poker hand",
@@ -934,6 +952,18 @@ return {
             },
             b_bof_display = {
                 name = "Display Deck",
+                text = {
+                    "Preview the next",
+                    "{C:attention}Showdown Blind{} and next",
+                    "{C:attention}Boss Blind{} at any time",
+                    "{C:inactive}(See Run Info)"
+                },
+                unlock = {
+                    "Reroll a {C:attention}Showdown Blind{}"
+                }
+            },
+            b_bof_spaghetti_dih = { -- evil dih
+                name = "Spaghetti Dih",
                 text = {
                     "Preview the next",
                     "{C:attention}Showdown Blind{} and next",

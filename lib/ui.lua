@@ -242,10 +242,10 @@ SMODS.current_mod.config_tab = function()
                     ref_value = "custom_sounds",
                 },
                 create_toggle {
-                    label = "evil dih",
+                    label = "evil dih (joke setting)",
                     ref_table = BundlesOfFun.config,
                     ref_value = "evil_dih",
-                },
+                }
             }}
         }
     }

@@ -18,6 +18,7 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
+            key = BundlesOfFun.config.evil_dih and "j_bof_brian" or "j_bof_freeze",
             vars = {
                 card.ability.extra.xmult_mod,
                 card.ability.extra.active and localize("k_active_ex") or localize("k_inactive_el"),
