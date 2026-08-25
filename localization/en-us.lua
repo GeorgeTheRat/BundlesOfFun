@@ -132,11 +132,13 @@ return {
                     "with {C:tarot}The Fool"
                 }
             },
-            j_bof_bread = {
-                name = "Wonderous Bread",
+            j_bof_macarons = {
+                name = "Macarons",
                 text = {
-                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
-                    "decreases by {C:white,X:plasma}-#2#%{} at end of round"
+                    "Balance {C:white,X:plasma}#1#%{} of",
+                    "{C:chips}Chips{} and {C:mult}Mult{},",
+                    "decreases by {C:white,X:plasma}-#2#%{}",
+                    "at end of round"
                 }
             },
             j_bof_candy = {
