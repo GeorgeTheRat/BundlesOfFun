@@ -199,7 +199,7 @@ local files = {
             "fry_2",
             "hooked_1",
             "hooked_2"
-        }, directory = "items/fish/"
+        }, directory = "items/minnows/"
     },
     coupons = {
         list = {
