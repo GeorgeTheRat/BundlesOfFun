@@ -255,7 +255,7 @@ return {
                 text = {
                     "{C:blue}+#1#{} hand#<s>1# if {C:attention}Blind{} is",
                     "not won by {C:attention}final hand",
-                    "{C:inactive,s:0.8}(May only trigger once per round)"
+                    "{C:inactive,s:0.8}(May trigger {C:attention,s:0.8}#2#{C:inactive,s:0.8} times per round)"
                 }
             },
             j_bof_eureka = {
