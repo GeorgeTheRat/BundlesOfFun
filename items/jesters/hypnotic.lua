@@ -45,28 +45,30 @@ BundlesOfFun.Joker {
                 most_played_count = true_count
             end
         end
-        local current_has_five = false
-        local example = G.GAME.hands[most_played_hand].example
-        local true_count = 0
-        for _, hand_card in ipairs(example) do
-            if hand_card[2] == true then
-                true_count = true_count + 1
+        if most_played > 0 then
+            local current_has_five = false
+            local example = G.GAME.hands[most_played_hand].example
+            local true_count = 0
+            for _, hand_card in ipairs(example) do
+                if hand_card[2] == true then
+                    true_count = true_count + 1
+                end
             end
-        end
-        if true_count == card.ability.extra.count then
-            current_has_five = true
-        end
-        if card.ability.extra.previous_has_five == nil then
-            card.ability.extra.previous_has_five = current_has_five
-        end
-        if current_has_five ~= card.ability.extra.previous_has_five then
-            card.ability.extra.previous_has_five = current_has_five
-            if current_has_five then
-                G.hand:change_size(card.ability.extra.hand_size)
-                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize", vars = { card.ability.extra.hand_size } }) })
-            else
-                G.hand:change_size(-card.ability.extra.hand_size)
-                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize_minus", vars = { card.ability.extra.hand_size } }) })
+            if true_count == card.ability.extra.count then
+                current_has_five = true
+            end
+            if card.ability.extra.previous_has_five == nil then
+                card.ability.extra.previous_has_five = current_has_five
+            end
+            if current_has_five ~= card.ability.extra.previous_has_five then
+                card.ability.extra.previous_has_five = current_has_five
+                if current_has_five then
+                    G.hand:change_size(card.ability.extra.hand_size)
+                    card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize", vars = { card.ability.extra.hand_size } }) })
+                else
+                    G.hand:change_size(-card.ability.extra.hand_size)
+                    card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize_minus", vars = { card.ability.extra.hand_size } }) })
+                end
             end
         end
     end,
@@ -79,7 +81,7 @@ BundlesOfFun.Joker {
             text_config = { colour = G.C.FILTER },
             reminder_text = {
                 { text = "(" },
-                { ref_table = "card.joker_display_values", ref_value = "most_played_hand" },
+                { ref_table = "card.joker_display_values", ref_value = "most_played_hand", colour = G.C.FILTER },
                 { text = ")" },
             },
             calc_function = function(card)
@@ -104,8 +106,13 @@ BundlesOfFun.Joker {
                         most_played_count = true_count
                     end
                 end
-                card.joker_display_values.hand_size = most_played_count == card.ability.extra.count and card.ability.extra.hand_size or 0
-                card.joker_display_values.most_played_hand = most_played_hand
+                if most_played == 0 then
+                    card.joker_display_values.hand_size = 0
+                    card.joker_display_values.most_played_hand = "None"
+                else
+                    card.joker_display_values.hand_size = most_played_count == card.ability.extra.count and card.ability.extra.hand_size or 0
+                    card.joker_display_values.most_played_hand = most_played_hand
+                end
             end
         }
     end
