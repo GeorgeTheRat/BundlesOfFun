@@ -263,9 +263,9 @@ function Back:apply_to_run()
     end
 end
 local atpref = SMODS.add_to_pool
-SMODS.add_to_pool = function (prototype_obj, args)
-    if G.GAME and G.GAME.starting_params and (G.GAME.starting_params.wooden_no_aces or G.GAME.starting_params.no_aces) then
-        if args and args.initial_deck and prototype_obj.key == "Ace" then
+SMODS.add_to_pool = function(prototype_obj, args)
+    if BOF.nc(G.GAME, "starting_params", "no_aces") then
+        if BOF.nc(args, "initial_deck") and prototype_obj.key == "Ace" then
             return false
         end
     end
@@ -286,14 +286,7 @@ end
 -- wooden deck card sounds
 local original_play_sound = play_sound
 function play_sound(sound_code, per, vol)
-    if
-        BundlesOfFun.config.custom_sounds and
-        G.GAME and
-        G.GAME.selected_back and
-        G.GAME.selected_back.effect and
-        G.GAME.selected_back.effect.center and
-        G.GAME.selected_back.effect.center.key == "b_bof_wooden"
-    then
+    if BundlesOfFun.config.custom_sounds and BOF.nc(G.GAME, "selected_back", "effect", "center") and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -308,7 +301,7 @@ function play_sound(sound_code, per, vol)
     return original_play_sound(sound_code, per, vol)
 end
 
--- laughing stock: reset blind stuff on new run
+-- reset stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
     if G.GAME.bof_stock_original_mult then
@@ -374,7 +367,7 @@ end
 local original_blind_set_blind = Blind.set_blind
 function Blind:set_blind(blind, reset, silent)
     local ret = original_blind_set_blind(self, blind, reset, silent)
-    if not reset and blind and blind.key then
+    if not reset and BOF.nc(blind, "key") then
         if blind.key == "bl_small" and G.GAME.bof_tiny_active then
             self.chips = math.floor(self.chips * 1.5)
             self.chip_text = number_format(self.chips)
@@ -459,7 +452,7 @@ end
 -- blind_defeated/blind_disabled cleanup.
 function BundlesOfFun.dense_clear_marks()
     for _, area in ipairs({ G.deck, G.hand, G.play, G.discard }) do
-        if area and area.cards then
+        if BOF.nc(area, "cards") then
             for _, card in ipairs(area.cards) do
                 if card.ability and card.ability.bof_dense_marked then
                     card.ability.bof_dense_marked = nil
@@ -480,7 +473,7 @@ end
 -- here instead of using their own calculate() for this part.
 local original_evaluate_play = G.FUNCS.evaluate_play
 G.FUNCS.evaluate_play = function(e)
-    if G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
+    if BOF.nc(G.GAME, "blind", "config", "blind") and not G.GAME.blind.disabled 
         and G.GAME.blind.config.blind then
         if G.GAME.blind.config.blind.key == "bl_bof_dense" then
             BundlesOfFun.dense_clear_marks()
@@ -532,8 +525,7 @@ end
 local original_set_ranks = CardArea.set_ranks
 function CardArea:set_ranks()
     original_set_ranks(self)
-    if self == G.hand and G.GAME and G.GAME.blind and G.GAME.blind.config
-        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
         and not G.GAME.blind.disabled then
         for k, card in ipairs(self.cards) do
             card.bof_decay_locked_index = k
@@ -550,8 +542,7 @@ end
 local original_align_cards = CardArea.align_cards
 function CardArea:align_cards()
     original_align_cards(self)
-    if self == G.hand and G.GAME and G.GAME.blind and G.GAME.blind.config
-        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
         and not G.GAME.blind.disabled then
         table.sort(self.cards, function(a, b)
             return (a.bof_decay_locked_index or 0) < (b.bof_decay_locked_index or 0)
@@ -564,7 +555,7 @@ local original_use_card = G.FUNCS.use_card
 function G.FUNCS.use_card(e, mute, nosave)
     local card = e.config.ref_table
     local result = original_use_card(e, mute, nosave)
-    if card and card.ability and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
+    if BOF.nc(card, "ability") and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
         local current_ante = G.GAME.round_resets.ante or 1
         if current_ante ~= G.GAME.bof_current_ante then
             G.GAME.bof_vouchers_redeemed_this_ante = 0
@@ -629,15 +620,15 @@ end
 
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
-    local blind_on_deck = G.GAME and G.GAME.blind_on_deck
+    local blind_on_deck = BOF.nc(G.GAME, "blind_on_deck")
     if (G.GAME.bof_tiny_active and blind_on_deck == 'Small')
         or (G.GAME.bof_particle_active and (blind_on_deck == 'Small' or blind_on_deck == 'Big')) then
         return
     end
     original_skip_blind(e)
     local back = G.GAME and G.GAME.selected_back
-    if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
-        local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
+    if BOF.nc(back, "effect", "center") and back.effect.center.key == "b_bof_retro" then
+        local amount = BOF.nc(back.effect.center.config, "extra", "hands") or 4
         G.E_MANAGER:add_event(Event({
             trigger = "immediate",
             func = function()
@@ -661,7 +652,7 @@ end
 -- pianoman: force common jokers in shop and booster packs
 local create_card_ref = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and area == G.shop_jokers and _type ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and BOF.nc(G.shop_jokers, "cards") and area == G.shop_jokers and _type ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
         end
@@ -685,8 +676,8 @@ local function bof_apply_fish_voucher_state(card)
     if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
         return
     end
-    local extra_rounds = (G.GAME and G.GAME.bof_fish_extra_rounds) or 0
-    local extra_slots = (G.GAME and G.GAME.bof_fish_extra_consumable_slots) or 0
+    local extra_rounds = BOF.nc(G.GAME, "bof_fish_extra_rounds") or 0
+    local extra_slots = BOF.nc(G.GAME, "bof_fish_extra_consumable_slots") or 0
     local applied_rounds = card.ability.bof_fish_extra_rounds_applied or 0
     local applied_slots = card.ability.bof_fish_extra_slots_applied or 0
     local round_delta = extra_rounds - applied_rounds
@@ -840,7 +831,7 @@ SMODS.Joker:take_ownership("perkeo", {
         local main_end = {}
         if G.consumeables and G.consumeables.cards then
             for _, consumable in ipairs(G.consumeables.cards) do
-                if consumable.config.center and consumable.config.center.key then
+                if BOF.nc(consumable.config.center, "key") then
                     for _, legendary_key in ipairs(legendary_fish_keys) do
                         if consumable.config.center.key == legendary_key then
                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
@@ -970,7 +961,7 @@ local function bof_lottery_ticket_reroll_vouchers()
     end
     local excluded_keys = {}
     for _, voucher_card in ipairs(voucher_cards) do
-        if voucher_card.config and voucher_card.config.center_key then
+        if BOF.nc(voucher_card.config, "center_key") then
             excluded_keys[voucher_card.config.center_key] = true
         end
         G.shop_vouchers:remove_card(voucher_card)
@@ -1083,14 +1074,14 @@ end
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then
     G.FUNCS.reroll_shop = function(e)
-        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
+        if BOF.nc(G.GAME, "used_vouchers", "v_bof_scratch_off") then
             G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
             if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 3) then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
                 bof_scratch_off_reroll_boosters()
             end
         end
-        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_lottery_ticket then
+        if BOF.nc(G.GAME, "used_vouchers", "v_bof_lottery_ticket") then
             G.GAME.bof_lottery_ticket_shop_reroll_count = (G.GAME.bof_lottery_ticket_shop_reroll_count or 0) + 1
             if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 6) then
                 G.GAME.bof_lottery_ticket_shop_reroll_count = 0

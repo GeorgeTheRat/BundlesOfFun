@@ -16,24 +16,14 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local function bof_boss_colour()
-            if
-                G.P_BLINDS and
-                G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss] and
-                G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour and
-                not G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
-            then
+            if BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss_colour") and not BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss", "showdown") then
                 return G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour
             else
                 return G.C.ORANGE
             end
         end
         local function bof_showdown_colour()
-            if
-                G.P_BLINDS and
-                G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss] and
-                G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour and
-                G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown
-            then
+            if BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss_colour") and BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss", "showdown") then
                 return G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour
             else
                 return G.C.ORANGE

@@ -1,12 +1,24 @@
 -- initialize mod namespace and config
 if not BundlesOfFun then BundlesOfFun = {} end
 SMODS.BundlesOfFun = BundlesOfFun
+BOF = BundlesOfFun
 
 BundlesOfFun.config = SMODS.current_mod.config or {}
 BundlesOfFun.config.bundles = BundlesOfFun.config.bundles or {}
 BundlesOfFun.config.custom_sounds = BundlesOfFun.config.custom_sounds or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
+
+-- nil check function
+function BOF.nc(value, ...)
+    for i = 1, select("#", ...) do
+        if value == nil then
+            return nil
+        end
+        value = value[select(i, ...)]
+    end
+    return value
+end
 
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")

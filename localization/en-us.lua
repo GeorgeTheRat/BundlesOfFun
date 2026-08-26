@@ -1466,7 +1466,8 @@ return {
         },
         v_dictionary = {
             a_bof_balance = "Balanced #1#%",
-            a_bof_balance_minus = "-#1#%"
+            a_bof_balance_minus = "-#1#%",
+            a_bof_hand = "+#1# Hand"
         }
     }
 }

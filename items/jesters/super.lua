@@ -1,7 +1,7 @@
 bof_check_super_jokers = function()
     local cards = SMODS.find_card("j_bof_super")
     for _, v in ipairs(cards) do
-        if v and v.ability and v.ability.extra and v.ability.extra.active then
+        if BOF.nc(v, "ability", "extra", "active") then
             return true
         end
     end
@@ -34,7 +34,7 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.bof_emergency then
-            if card.ability and card.ability.extra and card.ability.extra.active then
+            if card.ability.extra.active then
                 ease_hands_played(card.ability.extra.hands)
                 if not context.blueprint then
                     card.ability.extra.active = false
@@ -46,7 +46,7 @@ BundlesOfFun.Joker {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                SMODS.calculate_effect({ message = localize { type = "variable", key = "a_hands", vars = { card.ability.extra.hands } } }, six_geese_a_laying)
+                SMODS.calculate_effect({ message = localize{ type = "variable", key = (card.ability.extra.hands == 1 and "a_bof_hand" or "a_hands"), vars = { card.ability.extra.hands } } }, six_geese_a_laying)
             else
                 G.STATE = G.STATES.NEW_ROUND
             end
@@ -57,5 +57,19 @@ BundlesOfFun.Joker {
                 message = localize("k_ready_ex")
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+", colour = G.C.BLUE },
+                { ref_table = "card.joker_display_values", ref_value = "hands", colour = G.C.BLUE }
+            },
+            calc_function = function(card)
+                local playing_hand = next(G.play.cards)
+                local hands_left = G.GAME.current_round and G.GAME.current_round.hands_left
+                local active = playing_hand and hands_left == 0 or not playing_hand and hands_left == 1 and card.ability.extra.active
+                card.joker_display_values.hands = active and card.ability.extra.hands or 0
+            end
+        }
     end
 }
