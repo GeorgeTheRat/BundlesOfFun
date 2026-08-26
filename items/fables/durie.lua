@@ -25,7 +25,7 @@ BundlesOfFun.Joker {
                 end
             }))
             for _, c in ipairs(G.playing_cards) do
-                if c.edition and c.edition.negative then
+                if BOF.nc(c.edition, "negative") then
                     G.E_MANAGER:add_event(Event({
                         trigger = "after",
                         delay = 0.1,

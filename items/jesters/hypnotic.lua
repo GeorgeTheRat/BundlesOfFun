@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             previous_has_five = nil
         }
     },
-    pos = { x = 2, y = 6 },
+    pos = { x = 3, y = 6 },
     attributes = { "hand_type" },
     cost = 8,
     rarity = 3,

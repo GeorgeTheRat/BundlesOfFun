@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "printed",
     name = "3D-Printed Joker",
     bundle = "jesters",
-    pos = { x = 0, y = 6 },
+    pos = { x = 1, y = 6 },
     attributes = { "mult", "chips" },
     cost = 10,
     rarity = 3,

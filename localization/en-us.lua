@@ -587,6 +587,13 @@ return {
                     "every {C:attention}6{} in played hand"
                 }
             },
+            j_bof_doctor = {
+                name = "Doctor",
+                text = {
+                    "Create a non-{C:rare}Rare{} Joker",
+                    "when a card is {C:attention}Enhanced"
+                }
+            },
             j_bof_printed = {
                 name = "3D-Printed Joker",
                 text = {
