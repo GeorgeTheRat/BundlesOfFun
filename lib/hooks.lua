@@ -273,6 +273,43 @@ SMODS.add_to_pool = function(prototype_obj, args)
     return original_result
 end
 
+-- deck loc_vars() key overrides (e.g. Display Deck's evil_dih -> Spaghetti
+-- Dih swap) only ever reach the description text, never the deck's actual
+-- displayed name: Back:get_name()/.loc_name (read directly by several
+-- vanilla/SMODS panels - the run-setup deck header, the pause-menu deck
+-- readout, etc) is derived once from the deck's raw key and cached, and
+-- Back:generate_UI only consults loc_vars() for the body text below it. Redo
+-- that derivation ourselves everywhere vanilla assigns loc_name, so a key
+-- override actually shows up in the name too
+local function bof_refresh_back_loc_name(back)
+    local center = back and back.effect and back.effect.center
+    if not center or not center.unlocked or type(center.loc_vars) ~= "function" then
+        return
+    end
+    local res = center:loc_vars() or {}
+    if res.key then
+        back.loc_name = localize({ type = "name_text", set = "Back", key = res.key })
+    end
+end
+
+local original_back_init = Back.init
+function Back:init(selected_back)
+    original_back_init(self, selected_back)
+    bof_refresh_back_loc_name(self)
+end
+
+local original_back_change_to = Back.change_to
+function Back:change_to(new_back)
+    original_back_change_to(self, new_back)
+    bof_refresh_back_loc_name(self)
+end
+
+local original_back_load = Back.load
+function Back:load(backTable)
+    original_back_load(self, backTable)
+    bof_refresh_back_loc_name(self)
+end
+
 -- fossilized deck: re-check unlock whenever consumable slots change
 local original_consumeable_emplace = CardArea.emplace
 function CardArea:emplace(card, location, stay_flipped)
@@ -339,6 +376,7 @@ function Game:start_run(arg)
     G.GAME.bof_resistance_active = nil
     G.GAME.bof_angle_base_chips = nil
     G.GAME.bof_angle_discarded_cards = nil
+    G.GAME.bof_rerolled_showdown = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
@@ -1199,12 +1237,45 @@ local function bof_pregenerate_boss(target_ante)
     end
 end
 
+-- compat: some other mods (e.g. Next Ante Preview) show their own upcoming-
+-- ante preview by calling vanilla's get_new_boss() directly right after a
+-- Boss blind is defeated (round_resets.ante has already ticked over to the
+-- next ante by then, via end_round's ease_ante(1), before that mod's hook
+-- runs) - the same moment our own pregenerated entry for that ante is
+-- sitting in G.GAME.perscribed_bosses waiting for OUR reset_blinds hook
+-- below to hand it to the real blind_choices.Boss assignment. Since
+-- get_new_boss() deletes the perscribed_bosses entry the instant it's read,
+-- whichever of us calls it first silently steals the other's answer; other
+-- mods generally only undo the pseudorandom/bosses_used side effects of
+-- their peek (see Next Ante Preview's predict_next_ante), not this cache,
+-- so our real commit is left to roll a fresh (and possibly different) boss
+-- than whatever was already shown on the Run Info panel. bof_committing_boss
+-- is only true while OUR real commit (inside original_reset_blinds, via
+-- vanilla's own `blind_choices.Boss = get_new_boss()`) is running, so any
+-- other caller's consumption of our cached entry gets restored afterward;
+-- legitimate rerolls (Director's Cut/Retcon/Boss Tag) are unaffected since
+-- by the time those can run, reset_blinds has already consumed that ante's
+-- entry for real and there's nothing left to restore.
+local bof_committing_boss = false
+local original_get_new_boss = get_new_boss
+function get_new_boss()
+    local ante = G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante
+    local pending = ante and G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[ante]
+    local result = original_get_new_boss()
+    if pending and not bof_committing_boss then
+        G.GAME.perscribed_bosses[ante] = pending
+    end
+    return result
+end
+
 -- the moment the real ante's boss is decided, also generate next ante's
 -- boss (and the next showdown's, if further out) so the display deck can
 -- show the real answer instead of a guess
 local original_reset_blinds = reset_blinds
 function reset_blinds()
+    bof_committing_boss = true
     original_reset_blinds()
+    bof_committing_boss = false
     if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
         bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
         bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
