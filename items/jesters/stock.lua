@@ -98,12 +98,12 @@ BundlesOfFun.Joker {
                 if SMODS.find_mod("Cold-Beans") and Colonparen and Colonparen.get_blind_type then
                     blind_type = Colonparen.get_blind_type(blind)
                 else
-                    local b_key = blind and blind.config and blind.config.blind and blind.config.blind.key
+                    local b_key = BOF.nc(blind, "config", "blind", "key")
                     if b_key == "bl_small" or blind.name == "Small Blind" then
                         blind_type = "Small"
                     elseif b_key == "bl_big" or blind.name == "Big Blind" then
                         blind_type = "Big"
-                    elseif blind.config and blind.config.blind and blind.config.blind.boss then
+                    elseif BOF.nc(blind.config, "blind", "boss") then
                         blind_type = "Boss"
                     end
                 end
@@ -117,7 +117,7 @@ BundlesOfFun.Joker {
                     if blind_type == "Boss" then
                         pools.Boss = {}
                         for k, v in pairs(G.P_BLINDS) do
-                            if type(v) == "table" and (v.boss or (v.spawn_info and v.spawn_info.showdown)) then
+                            if type(v) == "table" and (v.boss or BOF.nc(v.spawn_info, "showdown")) then
                                 pools.Boss[k] = v
                             end
                         end
