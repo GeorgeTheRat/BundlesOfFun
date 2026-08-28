@@ -51,7 +51,11 @@ BundlesOfFun.Joker {
         end
         if context.individual and context.cardarea == G.play and context.other_card:is_face() then
             card.sell_cost = card.sell_cost + card.ability.extra.sell_cost_mod
-            card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.GOLD })
+            return {
+                func = function()
+                    card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.GOLD })
+                end
+            }
         end
     end
 }
