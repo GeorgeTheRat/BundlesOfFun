@@ -23,9 +23,8 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    calculate = function(self, card, context)
+    add_to_deck = function(self, card, from_debuff)
         local most_played = 0
-        local most_played_hand = "High Card"
         local most_played_count = math.huge
         for hand, data in pairs(G.GAME.hands) do
             local true_count = 0
@@ -38,28 +37,37 @@ BundlesOfFun.Joker {
             end
             if data.played > most_played then
                 most_played = data.played
-                most_played_hand = hand
                 most_played_count = true_count
             elseif data.played == most_played and true_count < most_played_count then
-                most_played_hand = hand
+                most_played_count = true_count
+            end
+        end
+        card.ability.extra.previous_has_five = most_played > 0 and most_played_count == card.ability.extra.count or false
+        if card.ability.extra.previous_has_five then
+            G.hand:change_size(card.ability.extra.hand_size)
+        end
+    end,
+    calculate = function(self, card, context)
+        local most_played = 0
+        local most_played_count = math.huge
+        for hand, data in pairs(G.GAME.hands) do
+            local true_count = 0
+            if data.example then
+                for _, hand_card in ipairs(data.example) do
+                    if hand_card[2] == true then
+                        true_count = true_count + 1
+                    end
+                end
+            end
+            if data.played > most_played then
+                most_played = data.played
+                most_played_count = true_count
+            elseif data.played == most_played and true_count < most_played_count then
                 most_played_count = true_count
             end
         end
         if most_played > 0 then
-            local current_has_five = false
-            local example = G.GAME.hands[most_played_hand].example
-            local true_count = 0
-            for _, hand_card in ipairs(example) do
-                if hand_card[2] == true then
-                    true_count = true_count + 1
-                end
-            end
-            if true_count == card.ability.extra.count then
-                current_has_five = true
-            end
-            if card.ability.extra.previous_has_five == nil then
-                card.ability.extra.previous_has_five = current_has_five
-            end
+            local current_has_five = most_played_count == card.ability.extra.count
             if current_has_five ~= card.ability.extra.previous_has_five then
                 card.ability.extra.previous_has_five = current_has_five
                 if current_has_five then
@@ -71,6 +79,12 @@ BundlesOfFun.Joker {
                 end
             end
         end
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        if card.ability.extra.previous_has_five then
+            G.hand:change_size(-card.ability.extra.hand_size)
+        end
+        card.ability.extra.previous_has_five = nil
     end,
     joker_display_def = function(JokerDisplay)
         return {
