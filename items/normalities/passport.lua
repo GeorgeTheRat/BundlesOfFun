@@ -42,7 +42,7 @@ BundlesOfFun.Joker {
             })
         end
         if context.joker_main then
-            return{
+            return {
                 chips = card.ability.extra.chips
             }
         end

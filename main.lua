@@ -148,6 +148,7 @@ local files = {
             "clock",
             "keyboard",
             "gnome",
+            "ticket",
             "astrolabe"
         }, directory = "items/normalities/"
     },
