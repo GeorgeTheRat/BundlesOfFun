@@ -84,7 +84,7 @@ BundlesOfFun.Joker {
         end
         if context.after then
             local target_enh, destroyed = card.ability.extra.enhancement or "m_bonus", {}
-            for _, c in ipairs(context.scoring_hand or G.play.cards or {}) do
+            for _, c in ipairs(context.full_hand) do
                 if SMODS.get_enhancements(c)[target_enh] then
                     destroyed[#destroyed + 1] = c
                 end
