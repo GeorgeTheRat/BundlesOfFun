@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "appetizers",
     pos = { x = 0, y = 0 },
     attributes = { "generation", "destruction", "food" },
-    cost = 8,
+    cost = 7,
     rarity = 3,
     blueprint_compat = true,
     eternal_compat = false,

@@ -182,6 +182,14 @@ return {
                     "{C:white,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
                 }
             },
+            j_bof_melon = {
+                name = "Royal Melon",
+                text = {
+                    "The next {C:attention}#1#{} played {C:attention}face",
+                    "{C:attention}cards{} increase this Joker's",
+                    "sell value by {C:money}$#2#{} when scored"
+                }
+            },
             -- Jesters
             j_bof_hal = {
                 name = "Hatty Hal",
