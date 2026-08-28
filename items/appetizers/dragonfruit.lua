@@ -2,7 +2,6 @@ BundlesOfFun.Joker {
     key = "dragonfruit",
     name = "Dragonfruit",
     bundle = "appetizers",
-    config = { extra = { nommed = false } },
     pos = { x = 0, y = 0 },
     attributes = { "generation", "destruction", "food" },
     cost = 8,
@@ -18,13 +17,12 @@ BundlesOfFun.Joker {
                 new_card:start_materialize()
                 SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
             end
-            card.ability.extra.nommed = true
             return {
                 message = localize("k_copied_ex"),
                 colour = G.C.BLUE
             }
         end
-        if (context.drawing_cards or context.after) and card.ability.extra.nommed then
+        if context.after then
             SMODS.destroy_cards(card, { pinch_anim = true })
             return {
                 message = localize("k_eaten_ex")
