@@ -609,6 +609,14 @@ return {
                     "held {C:common}Common {C:attention}Jokers"
                 }
             },
+            j_bof_hooked = {
+                name = "Hooked Joker",
+                text = {
+                    "{C:fish}Tackle{}, {C:fish}Fry{}, and {C:fish}Hooked Packs",
+                    "appear {C:attention}#1#X{} more often in the shop,",
+                    "increases by {C:attention}#2#X{} per {C:fish}Fish{} card held"
+                }
+            },
             j_bof_hypnotic = {
                 name = "Hypnotic Joker",
                 text = {

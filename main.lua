@@ -135,6 +135,7 @@ local files = {
             "satanist",
             "doctor",
             "printed",
+            "hooked",
             "hypnotic",
             "band"
         }, directory = "items/jesters/"

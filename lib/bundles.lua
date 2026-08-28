@@ -81,6 +81,24 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
         SMODS.Booster.inject(self)
+    end,
+    get_weight = function(self)
+        if self.kind ~= "bof_fish" then
+            return self.weight
+        end
+        local fish_count = 0
+        if BOF.nc(G.consumeables, "cards") then
+            for _, card in ipairs(G.consumeables.cards) do
+                if card.ability and card.ability.set == "Fish" then
+                    fish_count = fish_count + 1
+                end
+            end
+        end
+        local multiplier = 1
+        for _, hooked in ipairs(SMODS.find_card("j_bof_hooked")) do
+            multiplier = multiplier * (hooked.ability.extra.appearance + fish_count * hooked.ability.extra.appearance_mod)
+        end
+        return self.weight * multiplier
     end
 })
 
