@@ -1,6 +1,6 @@
 [manifest]
 version = "1.0.0"
-priority = 4.2069e10
+priority = -42069
 dump_lua = true
 
 # lang mod (pluralization & ordinalization) for older smods
