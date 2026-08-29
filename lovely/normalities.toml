@@ -10,8 +10,9 @@ pattern = '''local min_use = 100'''
 position = "before"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 local passport_eligible_blinds = eligible_bosses
+-- patch end
 '''
 
 # ok now we mess with it (lets duplicate bosses spawn)
@@ -22,7 +23,7 @@ pattern = '''local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('b
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 local _, boss = nil, nil
 if not next(SMODS.find_card("j_bof_passport")) then
     _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))
@@ -32,6 +33,7 @@ else
         G.GAME.bosses_used[boss] = 0
     end
 end
+-- patch end
 '''
 
 # fix nil crash with passport
@@ -42,6 +44,7 @@ pattern = '''G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] + 1'''
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 G.GAME.bosses_used[boss] = (G.GAME.bosses_used[boss] or 0) + 1
+-- patch end
 '''

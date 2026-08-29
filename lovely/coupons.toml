@@ -17,13 +17,14 @@ end
 position = 'before'
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if G.GAME.booster_rate then
     table.insert(rates, { type = "Booster", val = G.GAME.booster_rate })
 end
 if G.GAME.voucher_rate then
     table.insert(rates, { type = "Voucher", val = G.GAME.voucher_rate })
 end
+-- patch end
 '''
 
 # prev cont.
@@ -36,11 +37,12 @@ local args = {set = v.type, area = area, key_append = 'sho', front = false}
 position = 'after'
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if G.GAME.booster_rate then
     if pseudorandom("bof_shop_booster") < G.GAME.booster_rate / total_rate then args.set = "Booster" end
 end
 if G.GAME.voucher_rate then
     if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then args.set = "Voucher" end
 end
+-- patch end
 '''

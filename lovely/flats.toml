@@ -10,8 +10,9 @@ pattern = "if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.v
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then
+-- patch end
 '''
 
 # hook the game start to clear stale display deck boss predictions from a
@@ -23,8 +24,9 @@ pattern = '''G.GAME.starting_params = {'''
 position = "after"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 G.GAME.perscribed_bosses = {}
+-- patch end
 '''
 
 # track showdown rerolls for display deck unlock
@@ -41,11 +43,12 @@ pattern = '''G.FUNCS.reroll_boss = function(e)'''
 position = "after"
 match_indent = true
 payload = '''
--- patched by bundles of fun
-    if G.P_BLINDS and G.GAME.round_resets.blind_choices.Boss and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss] and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown then
-        G.GAME.bof_rerolled_showdown = true
-        check_for_unlock({ type = "modify_deck" })
-    end
+-- bof patch
+if G.P_BLINDS and G.GAME.round_resets.blind_choices.Boss and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss] and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown then
+    G.GAME.bof_rerolled_showdown = true
+    check_for_unlock({ type = "modify_deck" })
+end
+-- patch end
 '''
 
 # remove base potato chips from lightning deck
@@ -57,10 +60,11 @@ pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma
 position = "before"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if (G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning") or (G.GAME.blind and G.GAME.blind.name == "The Irradiated" and not G.GAME.blind.disabled) then
     return self.ability.bonus + (self.ability.perma_bonus or 0)
 end
+-- patch end
 '''
 
 # track if mult scored for lightning unlock
@@ -73,6 +77,7 @@ pattern = '''
 if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
 '''
 payload = '''
-    -- patched by bundles of fun
-    G.GAME.mult_scored_this_run = true
+-- bof patch
+G.GAME.mult_scored_this_run = true
+-- patch end
 '''

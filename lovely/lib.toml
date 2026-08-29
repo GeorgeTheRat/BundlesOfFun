@@ -1,5 +1,6 @@
 [manifest]
 version = "1.0.0"
+priority = -4.20e69
 dump_lua = true
 
 # lang mod (pluralization & ordinalization) for older smods
@@ -11,11 +12,12 @@ pattern = '''
 assembled_string = assembled_string..(type(subpart) == 'string' and subpart or format_ui_value(args.vars[tonumber(subpart[1])]) or 'ERROR')
 '''
 position = "at"
-payload = '''
--- patched by bundles of fun
-assembled_string = assembled_string..(type(subpart) == 'string' and subpart or (BundlesOfFun.process_ordinal and BundlesOfFun.process_ordinal(subpart[1], args.vars)) or (BundlesOfFun.pluralize and BundlesOfFun.pluralize(subpart[1], args.vars)) or format_ui_value(args.vars[tonumber(subpart[1])]) or 'ERROR')
-'''
 match_indent = true
+payload = '''
+-- bof patch
+assembled_string = assembled_string..(type(subpart) == 'string' and subpart or (BundlesOfFun.process_ordinal and BundlesOfFun.process_ordinal(subpart[1], args.vars)) or (BundlesOfFun.pluralize and BundlesOfFun.pluralize(subpart[1], args.vars)) or format_ui_value(args.vars[tonumber(subpart[1])]) or 'ERROR')
+-- patch end
+'''
 
 # prev but for newer smods
 [[patches]]
@@ -27,8 +29,9 @@ assembled_string = assembled_string..(type(subpart) == 'string' and subpart or f
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 assembled_string = assembled_string..(type(subpart) == 'string' and subpart or (BundlesOfFun.process_ordinal and BundlesOfFun.process_ordinal(subpart[1], args.vars)) or (BundlesOfFun.pluralize and BundlesOfFun.pluralize(subpart[1], args.vars)) or format_ui_value(args.vars[tonumber(subpart[1])]) or 'ERROR')
+-- patch end
 '''
 
 # collection ui needs to show dynamic tallies
@@ -39,8 +42,9 @@ pattern = "{n=G.UIT.T, config={scale = 0.35,text = args.count.tally..' / '..args
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
-{n=G.UIT.T, config={scale = 0.35, ref_table = args.count, ref_value = 'display', colour = args.text_colour}}
+-- bof patch
+{ n = G.UIT.T, config = { scale = 0.35, ref_table = args.count, ref_value = "display", colour = args.text_colour } }
+-- patch end
 '''
 
 # hide card limit info_queue for bof items
@@ -53,8 +57,9 @@ pattern = '''
 if not hide_desc and card and card.ability and (card.ability.extra_slots_used or 0) ~= 0 then
 '''
 payload = '''
--- patched by bundles of fun
-if not hide_desc and card and card.ability and (card.ability.extra_slots_used or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, 'bof_')) then
+-- bof patch
+if not hide_desc and card and card.ability and (card.ability.extra_slots_used or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, "bof_")) then
+-- patch end
 '''
 
 # prev cont.
@@ -67,8 +72,9 @@ pattern = '''
 if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~= 0 then
 '''
 payload = '''
--- patched by bundles of fun
-if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, 'bof_')) then
+-- bof patch
+if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~= 0 and not (card.config.center and card.config.center.key and string.find(card.config.center.key, "bof_")) then
+-- patch end
 '''
 
 # fix troubadour mod for bundles of fun
@@ -81,7 +87,7 @@ pattern = '''
 local amt = #TRO.utils.filter(G.P_CENTER_POOLS[con.key], function(v) return not v.no_collection end)
 '''
 payload = '''
--- patched by bundles of fun
+-- bof patch
 local amt = 0
 for _, v in pairs(G.P_CENTER_POOLS[con.key]) do
   local no_col = v.no_collection
@@ -95,6 +101,7 @@ for _, v in pairs(G.P_CENTER_POOLS[con.key]) do
     amt = amt + 1
   end
 end
+-- patch end
 '''
 
 # make it so that fossilized can display the negative consumable {T:}
@@ -107,7 +114,9 @@ T.vars = {}
 position = "after"
 match_indent = true
 payload = '''
+-- bof patch
 T.config = part.control.T_config_extra and {extra = part.control.T_config_extra}
+-- patch end
 '''
 [[patches]]
 [patches.pattern]
@@ -118,5 +127,7 @@ key = part.control.T,
 position = "after"
 match_indent = true
 payload = '''
+-- bof patch
 config = part.control.T_config_extra and {extra = part.control.T_config_extra},
+-- patch end
 '''

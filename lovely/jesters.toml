@@ -16,7 +16,7 @@ end
 position = "at"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if G.GAME.chips - G.GAME.blind.chips >= 0 then
     G.STATE = G.STATES.NEW_ROUND
 elseif G.GAME.current_round.hands_left < 1 then
@@ -33,6 +33,7 @@ elseif G.GAME.current_round.hands_left < 1 then
 else
     G.STATE = G.STATES.DRAW_TO_HAND
 end
+-- patch end
 '''
 
 # pianoman more choice logic
@@ -43,10 +44,11 @@ pattern = "local _size = *"
 position = "after"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if G.GAME.bof_pianoman_unlimited_boosters and not (G.GAME.jest_change_booster_options and (G.GAME.jest_change_booster_options.trigger or G.GAME.jest_change_booster_options.pack_choices == "unlimited")) then
     G.GAME.pack_choices = _size
 end
+-- patch end
 '''
 
 # make fnesen ignore debuffed functionally
@@ -57,10 +59,11 @@ pattern = '''-- TARGET : Add extra conditions here'''
 position = "after"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if self.config and self.config.center and self.config.center.key == "j_bof_fnesen" then
     return true
 end
+-- patch end
 '''
 
 # make fnesen ignore debuff localizationally (i just made that word up)
@@ -71,7 +74,9 @@ pattern = '''if specific_vars and specific_vars.debuffed and not res.replace_deb
 position = "at"
 match_indent = true
 payload = '''
-    if specific_vars and specific_vars.debuffed and not res.replace_debuff and self.config and self.config.center and self.config.center.key ~= "j_bof_fnesen" then
+-- bof patch
+if specific_vars and specific_vars.debuffed and not res.replace_debuff and self.config and self.config.center and self.config.center.key ~= "j_bof_fnesen" then
+-- patch end
 '''
 
 # rare jokers cost double with jocker owned
@@ -82,8 +87,9 @@ pattern = '''self.cost = math.max(1, math.floor((self.base_cost + self.extra_cos
 position = "after"
 match_indent = true
 payload = '''
--- patched by bundles of fun
+-- bof patch
 if next(SMODS.find_card("j_bof_jocker")) and self:is_rarity("Rare") then
     self.cost = self.cost * 2
 end
+-- patch end
 '''
