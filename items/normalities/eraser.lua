@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Eraser",
     bundle = "normalities",
     config = { extra = { mult = 2 } },
-    pos = { x = 6, y = 3 },
+    pos = { x = 1, y = 9 },
     pixel_size = { w = 57 },
     attributes = { "mult", "enhancements", "seals", "editions" },
     cost = 3,
@@ -39,7 +39,7 @@ BundlesOfFun.Joker {
                 end
             end
             return {
-                message = localize("k_erased")
+                message = localize("k_erased_ex")
             }
         end
         if context.individual and context.cardarea == G.hand and not context.end_of_round then

@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             mult = 0
         }
     },
-    pos = { x = 1, y = 1 },
+    pos = { x = 4, y = 3 },
     attributes = { "mult", "full_deck", "enhancements" },
     cost = 4,
     rarity = 1,
@@ -47,5 +47,14 @@ BundlesOfFun.Joker {
             end
             card.ability.extra.mult = enhanced_count * card.ability.extra.mult_mod
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
+            },
+            text_config = { colour = G.C.MULT },
+        }
     end
 }

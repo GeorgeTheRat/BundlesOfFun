@@ -1,0 +1,78 @@
+BundlesOfFun.Joker {
+    key = "tomatoes",
+    name = "Tomatoes",
+    bundle = "appetizers",
+    config = {
+        extra = {
+            amount = 20,
+            odds = 2,
+            change = false
+        }
+    },
+    pos = { x = 9, y = 0 },
+    attributes = { "scaling", "modify_card", "food" },
+    cost = 5,
+    rarity = 1,
+    blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
+    atlas = "joker",
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomato")
+        return {
+            vars = {
+                card.ability.extra.amount,
+                numerator,
+                denominator
+            }
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.hand and not context.end_of_round then
+            if context.other_card and card.ability.extra.amount > 0 then
+                card.ability.extra.amount = card.ability.extra.amount - 1
+                if SMODS.pseudorandom_probability(card, "bof_tomato", 1, card.ability.extra.odds) then
+                    card:juice_up()
+                    context.other_card:juice_up()
+                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomato")))
+                end
+            end
+        end
+        if context.after and not context.blueprint then
+            if card.ability.extra.amount <= 0 then
+                SMODS.destroy_cards(card, { pinch_anim = true })
+                return {
+                    message = localize("k_eaten_ex")
+                }
+            end
+        end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "amount" },
+                { text = "/" },
+                { ref_table = "card.joker_display_values", ref_value = "start_count" },
+                { text = ")" },
+            },
+            reminder_text_config = { scale = 0.35 },
+            calc_function = function(card)
+                card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.amount
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local children = reminder_text and reminder_text.children
+                if not children then
+                    return
+                end
+                local colour = (card.ability.extra.amount == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do 
+                    local child = children[i]
+                    if child then child.config.colour = colour end
+                end
+            end
+        }
+    end
+}

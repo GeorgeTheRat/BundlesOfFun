@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             xmult = 3
         }
     },
-    pos = { x = 7, y = 0 },
+    pos = { x = 2, y = 0 },
     attributes = { "mult", "chips", "xmult", "boss_blind", "food" },
     cost = 6,
     rarity = 2,
@@ -29,12 +29,8 @@ BundlesOfFun.Joker {
         if context.joker_main then
             return {
                 chips = card.ability.extra.chips,
-                extra = {
-                    mult = card.ability.extra.mult,
-                    extra = {
-                        xmult = card.ability.extra.xmult
-                    }
-                }
+                mult = card.ability.extra.mult,
+                xmult = card.ability.extra.xmult
             }
         end
         if context.beat_boss and context.main_eval and not context.blueprint then
@@ -43,5 +39,22 @@ BundlesOfFun.Joker {
                 message = localize("k_eaten_ex")
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+", colour = G.C.CHIPS },
+                { ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS },
+                { text = " +", colour = G.C.MULT },
+                { ref_table = "card.ability.extra", ref_value = "mult", colour = G.C.MULT },
+                { text = " " }, -- for spacing
+                {
+                    border_nodes = {
+                        { text = "X" },
+                        { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "xmult" }
+                    }
+                }
+            },
+        }
     end
 }

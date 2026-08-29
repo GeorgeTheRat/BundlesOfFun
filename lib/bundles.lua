@@ -81,6 +81,24 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
         SMODS.Booster.inject(self)
+    end,
+    get_weight = function(self)
+        if self.kind ~= "bof_fish" then
+            return self.weight
+        end
+        local fish_count = 0
+        if BOF.nc(G.consumeables, "cards") then
+            for _, card in ipairs(G.consumeables.cards) do
+                if card.ability and card.ability.set == "Fish" then
+                    fish_count = fish_count + 1
+                end
+            end
+        end
+        local multiplier = 1
+        for _, hooked in ipairs(SMODS.find_card("j_bof_hooked")) do
+            multiplier = multiplier * (hooked.ability.extra.appearance + fish_count * hooked.ability.extra.appearance_mod)
+        end
+        return self.weight * multiplier
     end
 })
 
@@ -90,6 +108,20 @@ BundlesOfFun.Voucher = SMODS.Voucher:extend({
             self.no_collection = get_bundle_no_collection(self.bundle)
         end
         SMODS.Voucher.inject(self)
+    end
+})
+
+BundlesOfFun.Blind = SMODS.Blind:extend({
+    inject = function(self, i)
+        if self.bundle and not self.no_collection then
+            self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        SMODS.Blind.inject(self, i)
+        if not self._discovered_unlocked_overwritten then
+            self._discovered_unlocked_overwritten = true
+            self._d, self._u = self.discovered, self.unlocked
+            self._saved_d_u = true
+        end
     end
 })
 
@@ -191,6 +223,20 @@ function BundlesOfFun.refresh_collection_ui()
                         sub.of = sub.of + 1
                         if v.discovered then sub.tally = sub.tally + 1 end
                     end
+                end
+            end
+        end
+    end
+    -- special check for blinds specifically since they aren't part of G.P_CENTERS
+    if G.P_BLINDS then
+        for _, v in pairs(G.P_BLINDS) do
+            if not v.omit and type(v.no_collection) == "function" and not v.no_collection() then
+                local tally = G.DISCOVER_TALLIES.blinds
+                if tally then
+                    tally.of = tally.of + 1
+                    if v.discovered then tally.tally = tally.tally + 1 end
+                    G.DISCOVER_TALLIES.total.of = G.DISCOVER_TALLIES.total.of + 1
+                    if v.discovered then G.DISCOVER_TALLIES.total.tally = G.DISCOVER_TALLIES.total.tally + 1 end
                 end
             end
         end

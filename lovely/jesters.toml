@@ -1,0 +1,95 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# super joker custom context.bof_emergency call
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1 then
+    G.STATE = G.STATES.NEW_ROUND
+else
+    G.STATE = G.STATES.DRAW_TO_HAND
+end
+'''
+position = "at"
+match_indent = true
+payload = '''
+-- bof patch
+if G.GAME.chips - G.GAME.blind.chips >= 0 then
+    G.STATE = G.STATES.NEW_ROUND
+elseif G.GAME.current_round.hands_left < 1 then
+    if next(SMODS.find_card("j_bof_super")) then
+        if bof_check_super_jokers() then
+            SMODS.calculate_context({ bof_emergency = true })
+            G.STATE = G.STATES.DRAW_TO_HAND
+        else
+            G.STATE = G.STATES.NEW_ROUND
+        end
+    else
+        G.STATE = G.STATES.NEW_ROUND
+    end
+else
+    G.STATE = G.STATES.DRAW_TO_HAND
+end
+-- patch end
+'''
+
+# pianoman more choice logic
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "local _size = *"
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+if G.GAME.bof_pianoman_unlimited_boosters and not (G.GAME.jest_change_booster_options and (G.GAME.jest_change_booster_options.trigger or G.GAME.jest_change_booster_options.pack_choices == "unlimited")) then
+    G.GAME.pack_choices = _size
+end
+-- patch end
+'''
+
+# make fnesen ignore debuffed functionally
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = '''-- TARGET : Add extra conditions here'''
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+if self.config and self.config.center and self.config.center.key == "j_bof_fnesen" then
+    return true
+end
+-- patch end
+'''
+
+# make fnesen ignore debuff localizationally (i just made that word up)
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/game_object.lua"]'
+pattern = '''if specific_vars and specific_vars.debuffed and not res.replace_debuff then'''
+position = "at"
+match_indent = true
+payload = '''
+-- bof patch
+if specific_vars and specific_vars.debuffed and not res.replace_debuff and self.config and self.config.center and self.config.center.key ~= "j_bof_fnesen" then
+-- patch end
+'''
+
+# rare jokers cost double with jocker owned
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''self.cost = math.max(1, math.floor((self.base_cost + self.extra_cost + 0.5)*(100-G.GAME.discount_percent)/100))'''
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+if next(SMODS.find_card("j_bof_jocker")) and self:is_rarity("Rare") then
+    self.cost = self.cost * 2
+end
+-- patch end
+'''

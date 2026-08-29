@@ -4,14 +4,14 @@ BundlesOfFun.Joker {
 	bundle = "jesters",
 	config = {
 		extra = {
-			odds = 5,
+			odds = 4,
 			chips = 25,
 			mult = 5,
-			xmult = 1.25,
+			xmult = 1.5,
 			dollars = 1,
 		},
 	},
-	pos = { x = 6, y = 2 },
+	pos = { x = 6, y = 3 },
 	attributes = { "mult", "chips", "xmult", "economy", "chance" },
 	cost = 9,
 	rarity = 3,
@@ -27,7 +27,7 @@ BundlesOfFun.Joker {
 				card.ability.extra.mult,
 				card.ability.extra.xmult,
 				card.ability.extra.dollars
-			},
+			}
 		}
 	end,
 	calculate = function(self, card, context)

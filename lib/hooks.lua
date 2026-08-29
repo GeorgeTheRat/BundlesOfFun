@@ -3,7 +3,7 @@ local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
 function G.UIDEF.use_and_sell_buttons(card)
     local abc = G_UIDEF_use_and_sell_buttons_ref(card)
     local sell = nil
-    if (card.area == G.consumeables and card.ability.set == "Fish") then 
+    if (card.area == G.consumeables and card.ability.set == "Fish") then
         sell = {
             n = G.UIT.C,
             config = { align = "cm" },
@@ -106,9 +106,8 @@ function Card:get_chip_bonus()
 	end
 	if suppress then
 		return 0
-	else
-		return getchip(self)
 	end
+	return getchip(self)
 end
 
 -- eureka logic
@@ -329,9 +328,9 @@ function Back:apply_to_run()
     end
 end
 local atpref = SMODS.add_to_pool
-SMODS.add_to_pool = function (prototype_obj, args)
-    if G.GAME and G.GAME.starting_params and (G.GAME.starting_params.wooden_no_aces or G.GAME.starting_params.no_aces) then
-        if args and args.initial_deck and prototype_obj.key == "Ace" then
+SMODS.add_to_pool = function(prototype_obj, args)
+    if BOF.nc(G.GAME, "starting_params", "no_aces") then
+        if BOF.nc(args, "initial_deck") and prototype_obj.key == "Ace" then
             return false
         end
     end
@@ -339,28 +338,41 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- fossilized deck: consumables in shop may rarely be negative
--- dark alley & illegal wares: consumables in shop may rarely be negative
-local original_create_card_for_shop = create_card_for_shop
-function create_card_for_shop(area)
-    local card = original_create_card_for_shop(area)
-    if card and area == G.shop_jokers and card.ability and card.ability.consumeable and not (card.edition and card.edition.negative) then
-        local back = G.GAME and G.GAME.selected_back
-        if G.GAME.used_vouchers["v_bof_illegal_wares"] then
-            if pseudorandom(pseudoseed("b_bof_illegal_wares")) < 0.09 then
-                card:set_edition("e_negative", true)
-            end
-        elseif back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized" then
-            if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
-                card:set_edition("e_negative", true)
-            end
-        elseif G.GAME.used_vouchers["v_bof_dark_alley"] then 
-            if pseudorandom(pseudoseed("b_bof_dark_alley")) < 0.03 then
-                card:set_edition("e_negative", true)
-            end
-        end
+-- deck loc_vars() key overrides (e.g. Display Deck's evil_dih -> Spaghetti
+-- Dih swap) only ever reach the description text, never the deck's actual
+-- displayed name: Back:get_name()/.loc_name (read directly by several
+-- vanilla/SMODS panels - the run-setup deck header, the pause-menu deck
+-- readout, etc) is derived once from the deck's raw key and cached, and
+-- Back:generate_UI only consults loc_vars() for the body text below it. Redo
+-- that derivation ourselves everywhere vanilla assigns loc_name, so a key
+-- override actually shows up in the name too
+local function bof_refresh_back_loc_name(back)
+    local center = back and back.effect and back.effect.center
+    if not center or not center.unlocked or type(center.loc_vars) ~= "function" then
+        return
     end
-    return card
+    local res = center:loc_vars() or {}
+    if res.key then
+        back.loc_name = localize({ type = "name_text", set = "Back", key = res.key })
+    end
+end
+
+local original_back_init = Back.init
+function Back:init(selected_back)
+    original_back_init(self, selected_back)
+    bof_refresh_back_loc_name(self)
+end
+
+local original_back_change_to = Back.change_to
+function Back:change_to(new_back)
+    original_back_change_to(self, new_back)
+    bof_refresh_back_loc_name(self)
+end
+
+local original_back_load = Back.load
+function Back:load(backTable)
+    original_back_load(self, backTable)
+    bof_refresh_back_loc_name(self)
 end
 
 -- fossilized deck: re-check unlock whenever consumable slots change
@@ -379,8 +391,8 @@ end
 
 -- wooden deck card sounds
 local original_play_sound = play_sound
-function play_sound(sound_code, pitch, vol, stop_previous_instance)
-    if BundlesOfFun.config.custom_sounds and G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
+function play_sound(sound_code, per, vol)
+    if BundlesOfFun.config.custom_sounds and BOF.nc(G.GAME, "selected_back", "effect", "center") and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -392,14 +404,14 @@ function play_sound(sound_code, pitch, vol, stop_previous_instance)
             sound_code = "bof_wooden_4"
         end
     end
-    return original_play_sound(sound_code, pitch, vol, stop_previous_instance)
+    return original_play_sound(sound_code, per, vol)
 end
 
--- laughing stock: reset blind stuff on new run
+-- reset stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
-    if G.GAME.bof_laughing_stock_original_mult then
-        for _, blind_table in pairs(G.GAME.bof_laughing_stock_original_mult) do
+    if G.GAME.bof_stock_original_mult then
+        for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
             for key, original_mult in pairs(blind_table) do
                 if type(original_mult) ~= "number" then
                     return
@@ -413,16 +425,29 @@ function Game:start_run(arg)
                 end
             end
         end
-        G.GAME.bof_laughing_stock_original_mult = nil
+        G.GAME.bof_stock_original_mult = nil
     end
-    G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
-    G.GAME.bof_lottery_ticket_shop_reroll_count = 0
+    G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
     G.GAME.bof_octopus_triggered = nil
     G.GAME.bof_nuwa_fuxi_trigger = nil
+    G.GAME.bof_nerd_guarantee_rare = nil
+    G.GAME.bof_tiny_active = nil
+    G.GAME.bof_tiny_scaled_ante = nil
+    G.GAME.bof_particle_active = nil
+    G.GAME.bof_stress_locked_ante = nil
+    G.GAME.bof_risk_joker = nil
+    G.GAME.bof_viscous_pending_card_id = nil
+    G.GAME.bof_frequent_suit = nil
+    G.GAME.bof_terminal_debuffed_rank = nil
+    G.GAME.bof_terminal_pending_rank = nil
+    G.GAME.bof_resistance_active = nil
+    G.GAME.bof_angle_base_chips = nil
+    G.GAME.bof_angle_discarded_cards = nil
+    G.GAME.bof_rerolled_showdown = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
@@ -436,11 +461,219 @@ function Game:start_round()
     return original_game_start_round and original_game_start_round(self)
 end
 
+-- tiny: the blind-select screen preview (used by the lovely/enemies.toml
+-- patch to functions/UI_definitions.lua) computes its own chip amount
+-- independently of Blind:set_blind, so it needs the same multiplier applied
+-- here to match what the fight will actually require. bof_tiny_active only
+-- covers the "about to be faced" case - it gets cleared the moment the Small
+-- Blind is actually set, so re-viewing an already-Defeated Small Blind for
+-- this same ante (e.g. via the Run Info panel) also needs to check
+-- bof_tiny_scaled_ante, which remembers which ante got scaled and isn't
+-- cleared until the next run.
+function BundlesOfFun.blind_amount_preview(blind_choice, amount)
+    if blind_choice == 'Small' and (G.GAME.bof_tiny_active or G.GAME.bof_tiny_scaled_ante == G.GAME.round_resets.ante) then
+        amount = math.floor(amount * 1.5)
+    end
+    return amount
+end
+
+-- tiny: Small Blind next Ante is 1.5x as large (applied when it is faced)
+-- particle: flag cleared once the next Ante's boss is reached
+-- stress: voucher lock applies to every shop through the whole next Ante
+--   (Small, Big, and its Boss), not just the first one - see the
+--   bof_stress_locked_ante comment near where it's set, in stress.lua
+local original_blind_set_blind = Blind.set_blind
+function Blind:set_blind(blind, reset, silent)
+    local ret = original_blind_set_blind(self, blind, reset, silent)
+    if not reset and BOF.nc(blind, "key") then
+        if blind.key == "bl_small" and G.GAME.bof_tiny_active then
+            self.chips = math.floor(self.chips * 1.5)
+            self.chip_text = number_format(self.chips)
+            G.GAME.bof_tiny_scaled_ante = G.GAME.round_resets.ante
+            G.GAME.bof_tiny_active = nil
+        end
+        if blind.boss and G.GAME.bof_particle_active then
+            G.GAME.bof_particle_active = nil
+        end
+        if blind.boss and G.GAME.bof_stress_locked_ante and G.GAME.round_resets.ante > G.GAME.bof_stress_locked_ante then
+            G.GAME.bof_stress_locked_ante = nil
+        end
+    end
+    return ret
+end
+
+-- stress: no voucher restocks anywhere in the locked Ante (Voucher Tags still
+-- call with _from_tag). The lock is scoped by ante number rather than a plain
+-- boolean so it naturally stays active across the Small Blind shop, the Big
+-- Blind shop, AND the Boss's shop of that same Ante, only lifting once we've
+-- actually moved into the ante after that (see Blind:set_blind above).
+function BundlesOfFun.stress_locked()
+    return G.GAME and G.GAME.bof_stress_locked_ante and G.GAME.round_resets
+        and G.GAME.round_resets.ante == G.GAME.bof_stress_locked_ante
+end
+
+local original_get_next_voucher_key = get_next_voucher_key
+function get_next_voucher_key(_from_tag)
+    if not _from_tag and BundlesOfFun.stress_locked() then
+        return nil
+    end
+    return original_get_next_voucher_key(_from_tag)
+end
+
+-- stress: blocks the shop card, not SMODS.get_next_vouchers/current_round.voucher
+-- itself - vanilla Card:redeem() unconditionally indexes current_round.voucher[1]
+-- for Voucher Tag purchases, so leaving that empty would crash the tag purchase.
+-- Voucher Tags create their card directly (not via add_voucher_to_shop) anyway,
+-- so they're unaffected by this block either way.
+local original_add_voucher_to_shop = SMODS.add_voucher_to_shop
+function SMODS.add_voucher_to_shop(key, dont_save)
+    if BundlesOfFun.stress_locked() then
+        return
+    end
+    return original_add_voucher_to_shop(key, dont_save)
+end
+
+-- resistance: no payout from the blind, hands, interest, or discards at end of round,
+-- joker bonuses are untouched. Flag is set by resistance.lua's calculate() on
+-- context.end_of_round (which fires before the payout screen). money_per_discard
+-- is what actually gates the discard bonus row (there's no no_extra_discard_money
+-- the way hands has no_extra_hand_money), so it's cleared instead of flagged off.
+-- no_interest short-circuits vanilla's whole interest block (row, dollars, AND
+-- the interest-cap-streak stat), so nothing partial leaks through.
+local original_evaluate_round = G.FUNCS.evaluate_round
+G.FUNCS.evaluate_round = function()
+    if G.GAME and G.GAME.bof_resistance_active then
+        local original_blind_dollars = G.GAME.blind.dollars
+        local original_no_extra_hand_money = G.GAME.modifiers.no_extra_hand_money
+        local original_money_per_discard = G.GAME.modifiers.money_per_discard
+        local original_no_interest = G.GAME.modifiers.no_interest
+        G.GAME.blind.dollars = 0
+        G.GAME.modifiers.no_extra_hand_money = true
+        G.GAME.modifiers.money_per_discard = nil
+        G.GAME.modifiers.no_interest = true
+        original_evaluate_round()
+        G.GAME.blind.dollars = original_blind_dollars
+        G.GAME.modifiers.no_extra_hand_money = original_no_extra_hand_money
+        G.GAME.modifiers.money_per_discard = original_money_per_discard
+        G.GAME.modifiers.no_interest = original_no_interest
+        G.GAME.bof_resistance_active = nil
+        return
+    end
+    return original_evaluate_round()
+end
+
+-- dense: clears the bof_dense_marked flag from every card in G.play/G.hand/
+-- G.discard/G.deck (wherever a marked card from a previous hand might now
+-- be), un-debuffing it via SMODS.recalc_debuff on the way. Deliberately does
+-- NOT track "the current target" via a card reference in G.GAME (see
+-- items/enemies/dense.lua for why); shared with dense.lua's
+-- blind_defeated/blind_disabled cleanup.
+function BundlesOfFun.dense_clear_marks()
+    for _, area in ipairs({ G.deck, G.hand, G.play, G.discard }) do
+        if BOF.nc(area, "cards") then
+            for _, card in ipairs(area.cards) do
+                if card.ability and card.ability.bof_dense_marked then
+                    card.ability.bof_dense_marked = nil
+                    SMODS.recalc_debuff(card)
+                end
+            end
+        end
+    end
+end
+
+-- random & dense: both need G.play.cards to already contain the full played
+-- hand. context.press_play fires as soon as Blind:press_play() is called, but
+-- that happens synchronously right after queuing the (delayed/animated)
+-- draw_card events that move cards from G.hand to G.play - those haven't
+-- resolved yet, so G.play.cards can still be empty or partial at that point.
+-- G.FUNCS.evaluate_play is the first point after that where G.play.cards is
+-- guaranteed to be the complete, final played hand, so both blinds hook it
+-- here instead of using their own calculate() for this part.
+local original_evaluate_play = G.FUNCS.evaluate_play
+G.FUNCS.evaluate_play = function(e)
+    if BOF.nc(G.GAME, "blind", "config", "blind") and not G.GAME.blind.disabled 
+        and G.GAME.blind.config.blind then
+        if G.GAME.blind.config.blind.key == "bl_bof_dense" then
+            BundlesOfFun.dense_clear_marks()
+            local _, _, _, scoring_hand = G.FUNCS.get_poker_hand_info(G.play.cards)
+            local target = nil
+            for _, card in ipairs(G.play.cards) do
+                if SMODS.in_scoring(card, scoring_hand) then
+                    target = card
+                    break
+                end
+            end
+            if target then
+                target.ability.bof_dense_marked = true
+                SMODS.recalc_debuff(target)
+                target:juice_up()
+                G.GAME.blind:wiggle()
+            end
+        end
+    end
+    return original_evaluate_play(e)
+end
+
+-- frequent: update most common suit at the beginning of each ante
+local original_ease_ante = ease_ante
+function ease_ante(mod)
+    local ret = original_ease_ante(mod)
+    if G.GAME and G.playing_cards then
+        local suit_counts = {}
+        for _, c in ipairs(G.playing_cards) do
+            local s = c.base.suit
+            suit_counts[s] = (suit_counts[s] or 0) + 1
+        end
+        -- seeding the accumulator with Spades means a tie can't dethrone it (strict >),
+        -- instead of falling to whatever pairs()'s unordered iteration visits first
+        local most_common, most_count = "Spades", (suit_counts["Spades"] or 0)
+        for suit, count in pairs(suit_counts) do
+            if count > most_count then
+                most_common = suit
+                most_count = count
+            end
+        end
+        G.GAME.bof_frequent_suit = most_common
+    end
+    return ret
+end
+-- decay: hand cards stay draggable but always ease back to their original slot.
+-- set_ranks is called whenever the hand's composition/order actually changes, so it's
+-- the right point to (re)capture the canonical order as a locked index per card.
+local original_set_ranks = CardArea.set_ranks
+function CardArea:set_ranks()
+    original_set_ranks(self)
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+        and not G.GAME.blind.disabled then
+        for k, card in ipairs(self.cards) do
+            card.bof_decay_locked_index = k
+        end
+    end
+end
+
+-- align_cards only skips T.x/T.y assignment for the card currently being dragged (drag
+-- physics owns its position directly); it's vanilla's own post-loop table.sort (based on
+-- live x position) that permanently reorders self.cards, which is what makes a drop
+-- "stick" as a reorder. Re-sorting back to the locked index every frame means the array
+-- order never actually changes, so a dropped card eases back to its original slot on
+-- the next align_cards call - draggable, but always snaps back.
+local original_align_cards = CardArea.align_cards
+function CardArea:align_cards()
+    original_align_cards(self)
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+        and not G.GAME.blind.disabled then
+        table.sort(self.cards, function(a, b)
+            return (a.bof_decay_locked_index or 0) < (b.bof_decay_locked_index or 0)
+        end)
+    end
+end
+
 -- track voucher purchases for lottery ticket unlock
 local original_use_card = G.FUNCS.use_card
 function G.FUNCS.use_card(e, mute, nosave)
     local card = e.config.ref_table
-    if card and card.ability and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
+    local result = original_use_card(e, mute, nosave)
+    if BOF.nc(card, "ability") and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
         local current_ante = G.GAME.round_resets.ante or 1
         if current_ante ~= G.GAME.bof_current_ante then
             G.GAME.bof_vouchers_redeemed_this_ante = 0
@@ -450,21 +683,70 @@ function G.FUNCS.use_card(e, mute, nosave)
         G.GAME.bof_vouchers_redeemed_this_ante = (G.GAME.bof_vouchers_redeemed_this_ante or 0) + 1
         check_for_unlock({ bof_vouchers_redeemed_this_ante = G.GAME.bof_vouchers_redeemed_this_ante })
     end
-    return original_use_card(e, mute, nosave)
+    return result
 end
 
--- track booster skips for scalping unlock
+-- track booster skips for shoplifting unlock
 local original_skip_booster = G.FUNCS.skip_booster
 function G.FUNCS.skip_booster(e)
     inc_career_stat("bof_boosters_skipped", 1)
     return original_skip_booster(e)
 end
+
+-- retro deck logic
+-- tiny/particle blinds can make upcoming blinds unskippable
+-- the skip button UI consults these to hide the skip button (and reward) for
+-- blinds that cannot be skipped
+function BundlesOfFun.blind_skip_locked(blind_choice)
+    if not G.GAME then return false end
+    if G.GAME.bof_tiny_active then
+        -- Only the Small Blind itself is unskippable; Big is unaffected
+        return blind_choice == 'Small'
+    end
+    if G.GAME.bof_particle_active and (blind_choice == 'Small' or blind_choice == 'Big') then return true end
+    return false
+end
+
+-- when locked, the ENTIRE tag UI (icon, "or" text, and this button) is
+-- hidden by the create_UIBox_blind_tag hook below, so this function only ever
+-- needs to handle the two vanilla cases (skippable / run_info review screen).
+function BundlesOfFun.blind_skip_ui(blind_choice, run_info, _tag)
+    if not run_info then
+        return { n = G.UIT.C, config = { align = "cm", colour = G.C.UI.BACKGROUND_INACTIVE, minh = 0.6, minw = 2, maxw = 2, padding = 0.07, r = 0.1, shadow = true, hover = true, one_press = true, button = 'skip_blind', func = 'hover_tag_proxy', ref_table = _tag }, nodes = {
+            { n = G.UIT.T, config = { text = localize('b_skip_blind'), scale = 0.4, colour = G.C.UI.TEXT_INACTIVE } }
+        } }
+    else
+        return { n = G.UIT.C, config = { align = "cm", padding = 0.1, emboss = 0.05, colour = mix_colours(G.C.BLUE, G.C.BLACK, 0.4), r = 0.1, maxw = 2 }, nodes = {
+            { n = G.UIT.T, config = { text = localize('b_skip_reward'), scale = 0.35, colour = G.C.WHITE } },
+        } }
+    end
+end
+
+-- tiny/particle: hide the whole tag/skip UI block (icon + "or" text + skip
+-- button, or on the Run Info panel, the read-only reward-preview box vanilla
+-- shows instead) for blind choices that cannot be skipped. On the live
+-- blind-select screen this also sidesteps the vanilla button-handler code
+-- that expects that UI block to exist when a tag is present; on Run Info,
+-- it stops the reward preview from implying a skip that was never possible.
+local original_create_UIBox_blind_tag = create_UIBox_blind_tag
+function create_UIBox_blind_tag(blind_choice, run_info)
+    if BundlesOfFun.blind_skip_locked(blind_choice) then
+        return nil
+    end
+    return original_create_UIBox_blind_tag(blind_choice, run_info)
+end
+
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
+    local blind_on_deck = BOF.nc(G.GAME, "blind_on_deck")
+    if (G.GAME.bof_tiny_active and blind_on_deck == 'Small')
+        or (G.GAME.bof_particle_active and (blind_on_deck == 'Small' or blind_on_deck == 'Big')) then
+        return
+    end
     original_skip_blind(e)
     local back = G.GAME and G.GAME.selected_back
-    if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_retro" then
-        local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
+    if BOF.nc(back, "effect", "center") and back.effect.center.key == "b_bof_retro" then
+        local amount = BOF.nc(back.effect.center.config, "extra", "hands") or 4
         G.E_MANAGER:add_event(Event({
             trigger = "immediate",
             func = function()
@@ -488,7 +770,7 @@ end
 -- pianoman: force common jokers in shop and booster packs
 local create_card_ref = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-    if next(SMODS.find_card("j_bof_hotboxer")) and area == G.shop_jokers and _type ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and BOF.nc(G.shop_jokers, "cards") and area == G.shop_jokers and _type ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             return create_card_ref("Tarot", area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
         end
@@ -503,7 +785,6 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
         _rarity = 0.7
         forced_key = nil
     end
-    
     return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
@@ -515,8 +796,8 @@ local function bof_apply_fish_voucher_state(card)
     if type(card.ability.extra) ~= "table" then
         card.ability.extra = {}
     end
-    local extra_rounds = (G.GAME and G.GAME.bof_fish_extra_rounds) or 0
-    local extra_slots = (G.GAME and G.GAME.bof_fish_extra_consumable_slots) or 0
+    local extra_rounds = BOF.nc(G.GAME, "bof_fish_extra_rounds") or 0
+    local extra_slots = BOF.nc(G.GAME, "bof_fish_extra_consumable_slots") or 0
     local applied_rounds = card.ability.bof_fish_extra_rounds_applied or 0
     local applied_slots = card.ability.bof_fish_extra_slots_applied or 0
     local round_delta = extra_rounds - applied_rounds
@@ -541,7 +822,7 @@ end
 -- continuation of hotboxer
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
-    if next(SMODS.find_card("j_bof_hotboxer")) and t.area == G.shop_jokers and t.set ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and t.area == G.shop_jokers and t.set ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             t.set = "Tarot"
             t.key = nil
@@ -575,10 +856,9 @@ function Card:add_to_deck(from_debuff)
 end
 local original_card_remove_from_deck = Card.remove_from_deck
 function Card:remove_from_deck(from_debuff)
-    local was_in_consumeables = self.area == G.consumeables
-    local extra_slots = self.ability and type(self.ability.extra) == "table" and self.ability.extra.consumable_slots or 0
+    local extra_slots = self.ability and type(self.ability.extra) == "table" and tonumber(self.ability.extra.consumable_slots) or 0
     original_card_remove_from_deck(self, from_debuff)
-    if was_in_consumeables and extra_slots > 0 and G.consumeables then
+    if self.area == G.consumeables and extra_slots > 0 and G.consumeables then
         G.consumeables.config.card_limit = G.consumeables.config.card_limit - extra_slots
     end
 end
@@ -592,12 +872,57 @@ function Card:calculate_seal(context, ...)
     return old_calculate_seal(self, context, ...)
 end
 
+-- dominant: seals have no effect - Red retrigger, Gold $3, Purple
+-- tarot-on-discard, Blue end-of-round planet, all suppressed by hiding self.seal
+-- for the one vanilla call that reads it, then putting it back (touching the
+-- real field would desync the sprite/save state)
+local function bof_dominant_active()
+    return G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
+        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_dominant"
+end
+
+local dominant_calculate_seal = Card.calculate_seal
+function Card:calculate_seal(context, ...)
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local a, b = dominant_calculate_seal(self, context, ...)
+        self.seal = seal
+        return a, b
+    end
+    return dominant_calculate_seal(self, context, ...)
+end
+
+local dominant_get_p_dollars = Card.get_p_dollars
+function Card:get_p_dollars()
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local ret = dominant_get_p_dollars(self)
+        self.seal = seal
+        return ret
+    end
+    return dominant_get_p_dollars(self)
+end
+
+local dominant_get_end_of_round_effect = Card.get_end_of_round_effect
+function Card:get_end_of_round_effect(context)
+    if bof_dominant_active() and self.seal then
+        local seal = self.seal
+        self.seal = nil
+        local ret = dominant_get_end_of_round_effect(self, context)
+        self.seal = seal
+        return ret
+    end
+    return dominant_get_end_of_round_effect(self, context)
+end
+
 -- director condition logic
 local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 SMODS.calculate_repetitions = function(card, context, reps)
     card.bof_retriggered = nil
     local g = oldsmodscalculaterepetitions(card, context, reps)
-    if #g >= 2 then
+    if #(g or reps) >= 2 then
         card.bof_retriggered = true
     end
     return g
@@ -622,14 +947,15 @@ local legendary_fish_keys = {
     "c_bof_goldfish_l",
     "c_bof_trout_l"
 }
-
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    -- did i genuinely just get rick rolled by a take_ownership call for perkeo
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         local main_end = {}
         if G.consumeables and G.consumeables.cards then
             for _, consumable in ipairs(G.consumeables.cards) do
-                if consumable.config.center and consumable.config.center.key then
+                if BOF.nc(consumable.config.center, "key") then
                     for _, legendary_key in ipairs(legendary_fish_keys) do
                         if consumable.config.center.key == legendary_key then
                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
@@ -659,15 +985,16 @@ SMODS.Joker:take_ownership("perkeo", {
                         G.consumeables:emplace(card)
                         return true
                     end}))
-                -- on the seventh day of christmas, my true love gave to me
-                local seven_swans_a_swimming = context.blueprint_card or card
+                -- on the sixth day of christmas, my true love gave to me
+                local eight_maids_a_milking = context.blueprint_card or card
+                -- seven_swans_a_swimming
                 -- six_geese_a_laying
                 -- five_gold_rings
                 -- four_calling_birds
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                card_eval_status_text(seven_swans_a_swimming, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                card_eval_status_text(eight_maids_a_milking, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
                 return nil, true
             else
                 return true
@@ -677,75 +1004,7 @@ SMODS.Joker:take_ownership("perkeo", {
 }, true)
 
 -- scratch-off logic
-local function bof_get_random_voucher_key(excluded, seed_suffix)
-    local _pool, _pool_key = get_current_pool("Voucher")
-    local candidates = {}
-    for _, v in ipairs(_pool) do
-        if v ~= "UNAVAILABLE" and (not excluded or not excluded[v]) then
-            candidates[#candidates + 1] = v
-        end
-    end
-    if #candidates == 0 then
-        for _, v in ipairs(_pool) do
-            if v ~= "UNAVAILABLE" then
-                candidates[#candidates + 1] = v
-            end
-        end
-    end
-    if #candidates == 0 then
-        return "UNAVAILABLE"
-    end
-    return pseudorandom_element(candidates, pseudoseed(_pool_key .. seed_suffix))
-end
-local function bof_scratch_off_reroll_vouchers()
-    if not G.shop_vouchers then
-        return
-    end
-    local voucher_cards = {}
-    for i = #G.shop_vouchers.cards, 1, -1 do
-        local c = G.shop_vouchers.cards[i]
-        if c.ability and c.ability.set == "Voucher" then
-            voucher_cards[#voucher_cards + 1] = c
-        end
-    end
-    local replace_count = #voucher_cards
-    if replace_count == 0 then
-        replace_count = 1
-    end
-    local excluded_keys = {}
-    for _, voucher_card in ipairs(voucher_cards) do
-        if voucher_card.config and voucher_card.config.center_key then
-            excluded_keys[voucher_card.config.center_key] = true
-        end
-        G.shop_vouchers:remove_card(voucher_card)
-        voucher_card:remove()
-    end
-    G.GAME.current_round.voucher = { spawn = {} }
-    for i = 1, replace_count do
-        local key = bof_get_random_voucher_key(excluded_keys, "scratch_off_" .. i)
-        if key == "UNAVAILABLE" or not G.P_CENTERS[key] then
-            return
-        end
-        G.GAME.current_round.voucher[#G.GAME.current_round.voucher + 1] = key
-        G.GAME.current_round.voucher.spawn[key] = true
-        local new_card = Card(
-            G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2,
-            G.shop_vouchers.T.y,
-            G.CARD_W,
-            G.CARD_H,
-            G.P_CARDS.empty,
-            G.P_CENTERS[key],
-            { bypass_discovery_center = true, bypass_discovery_ui = true }
-        )
-        new_card.shop_voucher = true
-        create_shop_card_ui(new_card, "Voucher", G.shop_vouchers)
-        new_card:start_materialize()
-        G.shop_vouchers:emplace(new_card)
-    end
-    G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
-end
-
-local function bof_lottery_ticket_reroll_boosters()
+local function bof_scratch_off_reroll_boosters()
     if not G.shop_booster then
         return
     end
@@ -783,25 +1042,194 @@ local function bof_lottery_ticket_reroll_boosters()
         end
     end
 end
+
+-- lottery ticket logic
+local function bof_get_random_voucher_key(excluded, seed_suffix)
+    local _pool, _pool_key = get_current_pool("Voucher")
+    local candidates = {}
+    for _, v in ipairs(_pool) do
+        if v ~= "UNAVAILABLE" and (not excluded or not excluded[v]) then
+            candidates[#candidates + 1] = v
+        end
+    end
+    if #candidates == 0 then
+        for _, v in ipairs(_pool) do
+            if v ~= "UNAVAILABLE" then
+                candidates[#candidates + 1] = v
+            end
+        end
+    end
+    if #candidates == 0 then
+        return "UNAVAILABLE"
+    end
+    return pseudorandom_element(candidates, pseudoseed(_pool_key .. seed_suffix))
+end
+local function bof_lottery_ticket_reroll_vouchers()
+    -- Lottery Ticket's own "every 6 shop rerolls" ability - replaces the shop's voucher
+    -- card(s) directly instead of going through add_voucher_to_shop, so without this
+    -- check it was the one way a new voucher could sneak into a locked shop
+    if BundlesOfFun.stress_locked() then return end
+    if not G.shop_vouchers then
+        return
+    end
+    local voucher_cards = {}
+    for i = #G.shop_vouchers.cards, 1, -1 do
+        local c = G.shop_vouchers.cards[i]
+        if c.ability and c.ability.set == "Voucher" then
+            voucher_cards[#voucher_cards + 1] = c
+        end
+    end
+    local replace_count = #voucher_cards
+    if replace_count == 0 then
+        replace_count = 1
+    end
+    local excluded_keys = {}
+    for _, voucher_card in ipairs(voucher_cards) do
+        if BOF.nc(voucher_card.config, "center_key") then
+            excluded_keys[voucher_card.config.center_key] = true
+        end
+        G.shop_vouchers:remove_card(voucher_card)
+        voucher_card:remove()
+    end
+    G.GAME.current_round.voucher = { spawn = {} }
+    for i = 1, replace_count do
+        local key = bof_get_random_voucher_key(excluded_keys, "scratch_off_" .. i)
+        if key == "UNAVAILABLE" or not G.P_CENTERS[key] then
+            return
+        end
+        G.GAME.current_round.voucher[#G.GAME.current_round.voucher + 1] = key
+        G.GAME.current_round.voucher.spawn[key] = true
+        local new_card = Card(
+            G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2,
+            G.shop_vouchers.T.y,
+            G.CARD_W,
+            G.CARD_H,
+            G.P_CARDS.empty,
+            G.P_CENTERS[key],
+            { bypass_discovery_center = true, bypass_discovery_ui = true }
+        )
+        new_card.shop_voucher = true
+        create_shop_card_ui(new_card, "Voucher", G.shop_vouchers)
+        new_card:start_materialize()
+        G.shop_vouchers:emplace(new_card)
+    end
+    G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
+end
+
+-- postman: first four played cards count as additional suits
+local original_smeared_check = SMODS.smeared_check
+function SMODS.smeared_check(card, suit)
+    if next(SMODS.find_card("j_bof_postman")) then
+        if G.play and G.play.cards then
+            for i, played_card in ipairs(G.play.cards) do
+                if played_card == card and i <= 4 then
+                    local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+                    local assigned_suit = postman_suits[i]
+                    if suit == assigned_suit then
+                        return true
+                    end
+                end
+            end
+        end
+        if G.hand and G.hand.highlighted then
+            local highlighted_copy = {}
+            for _, c in ipairs(G.hand.highlighted) do
+                table.insert(highlighted_copy, c)
+            end
+            table.sort(highlighted_copy, function(a, b) return a.T.x < b.T.x end)
+            for i, highlighted_card in ipairs(highlighted_copy) do
+                if highlighted_card == card and i <= 4 then
+                    local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+                    local assigned_suit = postman_suits[i]
+                    if suit == assigned_suit then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+    
+    return original_smeared_check(card, suit)
+end
+
+-- postman: trigger poker hand check when cards are released or sorted
+local original_card_release = Node.release
+function Node:release(dragged)
+    local result = original_card_release(self, dragged)
+    if next(SMODS.find_card("j_bof_postman")) and dragged:is(Node) and dragged.area == G.hand then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+        
+    end
+    return result
+end
+local original_sort_hand_suit = G.FUNCS.sort_hand_suit
+function G.FUNCS.sort_hand_suit(e)
+    local result = original_sort_hand_suit(e)
+    if next(SMODS.find_card("j_bof_postman")) then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+    end
+    return result
+end
+local original_sort_hand_value = G.FUNCS.sort_hand_value
+function G.FUNCS.sort_hand_value(e)
+    local result = original_sort_hand_value(e)
+    if next(SMODS.find_card("j_bof_postman")) then
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.hand:parse_highlighted()
+                return true
+            end
+        }))
+    end
+    return result
+end
+
+-- scratch-off & lottery ticket logic cont.
 local bof_reroll_shop_ref = G.FUNCS.reroll_shop
 if bof_reroll_shop_ref then
     G.FUNCS.reroll_shop = function(e)
-        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
+        if BOF.nc(G.GAME, "used_vouchers", "v_bof_scratch_off") then
             G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
-            if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 6) then
+            if G.GAME.bof_scratch_off_shop_reroll_count >= (G.P_CENTERS.v_bof_scratch_off.config.extra.reroll_count or 3) then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
-                bof_scratch_off_reroll_vouchers()
+                bof_scratch_off_reroll_boosters()
             end
         end
-        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_lottery_ticket then
+        if BOF.nc(G.GAME, "used_vouchers", "v_bof_lottery_ticket") then
             G.GAME.bof_lottery_ticket_shop_reroll_count = (G.GAME.bof_lottery_ticket_shop_reroll_count or 0) + 1
-            if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 4) then
+            if G.GAME.bof_lottery_ticket_shop_reroll_count >= (G.P_CENTERS.v_bof_lottery_ticket.config.extra.reroll_count or 6) then
                 G.GAME.bof_lottery_ticket_shop_reroll_count = 0
-                bof_lottery_ticket_reroll_boosters()
+                bof_lottery_ticket_reroll_vouchers()
             end
         end
         return bof_reroll_shop_ref(e)
     end
+end
+
+-- make wooden cards not count as an enhancement
+local get_enhancements_ref = SMODS.get_enhancements
+function SMODS.get_enhancements(card, ...)
+    local enhancements = get_enhancements_ref(card, ...)
+    if enhancements then
+        local filtered = {}
+        for k, v in pairs(enhancements) do
+            if k ~= "m_bof_wooden" then
+                filtered[k] = v
+            end
+        end
+        return filtered
+    end
+    return enhancements
 end
 
 -- Ensure collection tallies are refreshed whenever the mod overlay closes
@@ -846,6 +1274,190 @@ function modsCollectionTally(pool, set, ignore_discovered)
     end
     result.display = result.tally .. " / " .. result.of
     return result
+end
+
+-- display deck blind prediction system
+-- rather than guessing what the next boss/showdown will be (which could
+-- desync from the real pick, see the git history on this block), we
+-- actually generate them ahead of time using SMODS's real selection logic
+-- (SMODS.poll_object, the same call Steamodded's own "Bypass get_new_boss()"
+-- patch uses) and stash the result in G.GAME.perscribed_bosses. that table
+-- is a real vanilla field - vanilla's get_new_boss (patched in place by
+-- Steamodded, not replaced) already checks it before rolling fresh, so
+-- nothing else needs to hook into boss selection to make a pregenerated
+-- entry actually get used once its ante comes around
+function BundlesOfFun.get_next_showdown_ante()
+    local current_ante = G.GAME.round_resets.ante or 1
+    local win_ante = G.GAME.win_ante or 8
+    for i = current_ante + 1, current_ante + win_ante do
+        if i % win_ante == 0 then
+            return i
+        end
+    end
+    return win_ante
+end
+
+-- generates target_ante's boss for real via SMODS.poll_object (temporarily
+-- pointing round_resets.ante at it, since that's what SMODS.create_blind_pool
+-- and SMODS.is_showdown_ante read to decide eligibility/showdown-ness) and
+-- locks it into perscribed_bosses. deliberately does NOT bump
+-- G.GAME.bosses_used here - vanilla's get_new_boss bumps it once, for real,
+-- when it actually consumes this preseeded entry; bumping here too would
+-- double-count this boss as "used" against the anti-repeat weighting for a
+-- single real fight. safe to call repeatedly - it's a no-op once an ante's
+-- entry exists
+local function bof_pregenerate_boss(target_ante)
+    if type(target_ante) ~= "number" then
+        return
+    end
+    G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+    if G.GAME.perscribed_bosses[target_ante] then
+        return
+    end
+    local saved_ante = G.GAME.round_resets.ante
+    G.GAME.round_resets.ante = target_ante
+    local ok, boss = pcall(SMODS.poll_object, { type = "Blind", seed = "boss" })
+    G.GAME.round_resets.ante = saved_ante
+    if ok and boss then
+        G.GAME.perscribed_bosses[target_ante] = boss
+    end
+end
+
+-- compat: some other mods (e.g. Next Ante Preview) show their own upcoming-
+-- ante preview by calling vanilla's get_new_boss() directly right after a
+-- Boss blind is defeated (round_resets.ante has already ticked over to the
+-- next ante by then, via end_round's ease_ante(1), before that mod's hook
+-- runs) - the same moment our own pregenerated entry for that ante is
+-- sitting in G.GAME.perscribed_bosses waiting for OUR reset_blinds hook
+-- below to hand it to the real blind_choices.Boss assignment. Since
+-- get_new_boss() deletes the perscribed_bosses entry the instant it's read,
+-- whichever of us calls it first silently steals the other's answer; other
+-- mods generally only undo the pseudorandom/bosses_used side effects of
+-- their peek (see Next Ante Preview's predict_next_ante), not this cache,
+-- so our real commit is left to roll a fresh (and possibly different) boss
+-- than whatever was already shown on the Run Info panel. bof_committing_boss
+-- is only true while OUR real commit (inside original_reset_blinds, via
+-- vanilla's own `blind_choices.Boss = get_new_boss()`) is running, so any
+-- other caller's consumption of our cached entry gets restored afterward;
+-- legitimate rerolls (Director's Cut/Retcon/Boss Tag) are unaffected since
+-- by the time those can run, reset_blinds has already consumed that ante's
+-- entry for real and there's nothing left to restore.
+local bof_committing_boss = false
+local original_get_new_boss = get_new_boss
+function get_new_boss()
+    local ante = G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante
+    local pending = ante and G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[ante]
+    local result = original_get_new_boss()
+    if pending and not bof_committing_boss then
+        G.GAME.perscribed_bosses[ante] = pending
+    end
+    return result
+end
+
+-- the moment the real ante's boss is decided, also generate next ante's
+-- boss (and the next showdown's, if further out) so the display deck can
+-- show the real answer instead of a guess
+local original_reset_blinds = reset_blinds
+function reset_blinds()
+    bof_committing_boss = true
+    original_reset_blinds()
+    bof_committing_boss = false
+    if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
+        bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
+        bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
+    end
+end
+
+function BundlesOfFun.create_predicted_blind_choice(type, blind_key, blind_ante, run_info)
+    if not blind_key or not blind_ante then
+        return nil
+    end
+    G.GAME.round_resets.blind_choices = G.GAME.round_resets.blind_choices or {}
+    G.GAME.round_resets.blind_states = G.GAME.round_resets.blind_states or {}
+    local old_choice = G.GAME.round_resets.blind_choices[type]
+    local old_ante = G.GAME.round_resets.blind_ante
+    local old_state = G.GAME.round_resets.blind_states[type]
+    G.GAME.round_resets.blind_choices[type] = blind_key
+    G.GAME.round_resets.blind_ante = blind_ante
+    G.GAME.round_resets.blind_states[type] = "Upcoming"
+    local choice = create_UIBox_blind_choice(type, run_info)
+    G.GAME.round_resets.blind_choices[type] = old_choice
+    G.GAME.round_resets.blind_ante = old_ante
+    G.GAME.round_resets.blind_states[type] = old_state
+    return choice
+end
+
+-- hook current_blinds to add prediction ui
+local G_UIDEF_current_blinds_ref = G.UIDEF.current_blinds
+function G.UIDEF.current_blinds()
+    local value = G_UIDEF_current_blinds_ref()
+    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_display" then
+        G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
+        local next_ante = (G.GAME.round_resets.ante or 1) + 1
+        local showdown_ante = BundlesOfFun.get_next_showdown_ante()
+        bof_pregenerate_boss(next_ante)
+        bof_pregenerate_boss(showdown_ante)
+
+        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[next_ante], next_ante, true)
+        local boss_node = boss_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No boss", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
+        local boss_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.BLUE }, nodes = {
+            { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. next_ante, scale = 0.4, colour = G.C.BLUE, shadow = true } } } },
+            boss_node
+        } }
+        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[showdown_ante], showdown_ante, true)
+        local showdown_node = showdown_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No showdown", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
+        local showdown_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.RED }, nodes = {
+            { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. showdown_ante, scale = 0.4, colour = G.C.RED, shadow = true } } } },
+            showdown_node
+        } }
+        local prediction_row = { n = G.UIT.C, config = { align = "cm", padding = 0.2 }, nodes = {
+            boss_section,
+            showdown_section
+        } }
+        table.insert(value.nodes, prediction_row)
+    end
+    return value
+end
+
+-- durie: make cards negative instead of discarding
+local original_discard = G.FUNCS.discard_cards_from_highlighted
+G.FUNCS.discard_cards_from_highlighted = function(e, hook)
+    if next(SMODS.find_card("j_bof_durie")) then
+        G.CONTROLLER.interrupt.focus = true
+        G.CONTROLLER:save_cardarea_focus("hand")
+        for k, v in ipairs(G.playing_cards) do
+            v.ability.forced_selection = nil
+        end
+        local selected = G.hand.highlighted
+        if #selected > 0 then
+            SMODS.calculate_context({ durie = true })
+            for _, card in ipairs(selected) do
+                if not (card.edition and card.edition.negative) then
+                    card:set_edition("e_negative", nil, true)
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            card:juice_up(1, 0.5)
+                            return true
+                        end
+                    }))
+                end
+            end
+            play_sound("negative", 1.5, 0.4)
+            G.hand:unhighlight_all()
+            ease_discard(-1)
+            G.GAME.current_round.discards_used = G.GAME.current_round.discards_used + 1
+            G.STATE = G.STATES.DRAW_TO_HAND
+            G.E_MANAGER:add_event(Event({
+                trigger = "immediate",
+                func = function()
+                    G.STATE_COMPLETE = false
+                    return true
+                end
+            }))
+            return
+        end
+    end
+    return original_discard(e, hook)
 end
 
 -- track fish expiration for buried treasure unlock

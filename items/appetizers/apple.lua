@@ -4,13 +4,13 @@ BundlesOfFun.Joker {
     bundle = "appetizers",
     config = {
         extra = {
-            perma_mult = 4,
+            perma_mult = 3,
             perma_mult_mod = 1
         }
     },
-    pos = { x = 2, y = 0 },
+    pos = { x = 7, y = 0 },
     attributes = { "mult", "scaling", "modify_card", "perma_bonus", "food" },
-    cost = 6,
+    cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
@@ -43,27 +43,78 @@ BundlesOfFun.Joker {
             })
             local return_message = nil
             if mult_before > card.ability.extra.perma_mult_mod then
-                return_message = "-" .. card.ability.extra.perma_mult_mod .. " Mult"
+                return_message = localize{ type = "variable", key = "a_mult_minus", vars = { card.ability.extra.perma_mult_mod } }
             end
             if card.ability.extra.perma_mult <= 0 then
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
-                    delay = 0.4,
+                    trigger = "after",
+                    delay = 0.1,
+                    func = function()
+                        play_sound("tarot1")
+                        card:juice_up(0.3, 0.5)
+                        return true
+                    end
+                }))
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        card:flip()
+                        play_sound("card1", 1)
+                        card:juice_up(0.3, 0.3)
+                        return true
+                    end
+                }))
+                delay(0.2)
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.1,
                     func = function()
                         card:set_ability("j_bof_core")
                         return true
                     end
                 }))
-                return {
-                    message = localize("k_eaten_ex")
-                }
+                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_eaten_ex") })
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        card:flip()
+                        play_sound("tarot2", 1, 0.6)
+                        card:juice_up(0.3, 0.3)
+                        return true
+                    end
+                }))
             end
             return {
                 message = return_message
             }
         end
     end,
-    no_collection = function()
-        return BundlesOfFun.config.bundles.appetizers ~= true
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "perma_mult" },
+                { text = "/" },
+                { ref_table = "card.joker_display_values", ref_value = "start_count_apple" },
+                { text = ")" },
+            },
+            reminder_text_config = { scale = 0.35 },
+            calc_function = function(card)
+                card.joker_display_values.start_count_apple = card.joker_display_values.start_count_apple or card.ability.extra.perma_mult
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local children = reminder_text and reminder_text.children
+                if not children then
+                    return
+                end
+                local colour = (card.ability.extra.perma_mult == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do 
+                    local child = children[i]
+                    if child then child.config.colour = colour end
+                end
+            end
+        }
     end
 }

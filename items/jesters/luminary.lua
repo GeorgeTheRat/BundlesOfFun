@@ -7,10 +7,9 @@ BundlesOfFun.Joker({
 			dollars = 1,
             dollars_mod = 2,
             triggered = 0,
-            hand_triggered = 0
 		},
 	},
-	pos = { x = 9, y = 2 },
+	pos = { x = 7, y = 3 },
     attributes = { "economy", "diamonds", "hearts" },
 	cost = 6,
 	rarity = 1,
@@ -25,21 +24,19 @@ BundlesOfFun.Joker({
 		}
 	end,
 	calculate = function(self, card, context)
-		if
-            context.cardarea == "unscored" and
-            context.individual and
-            card.ability.extra.hand_triggered == 0 and
-            (context.other_card:is_suit("Hearts") or context.other_card:is_suit("Diamonds"))
-            and not context.blueprint
-        then
-            SMODS.scale_card(card, {
-                ref_table = card.ability.extra,
-                ref_value = "dollars",
-                scalar_value = "dollars_mod",
-                message_colour = G.C.MONEY
-            })
-            card.ability.extra.triggered = card.ability.extra.triggered + 1
-            card.ability.extra.hand_triggered = 1
+		if context.before then
+            for _, v in pairs(context.full_hand) do
+                if not SMODS.in_scoring(v, context.scoring_hand) and (v:is_suit("Hearts") or v:is_suit("Diamonds")) then
+                    SMODS.scale_card(card, {
+                        ref_table = card.ability.extra,
+                        ref_value = "dollars",
+                        scalar_value = "dollars_mod",
+                        message_colour = G.C.MONEY
+                    })
+                    card.ability.extra.triggered = card.ability.extra.triggered + 1
+                    break
+                end
+            end
 		end
         if context.after and not context.blueprint then
             card.ability.extra.hand_triggered = 0

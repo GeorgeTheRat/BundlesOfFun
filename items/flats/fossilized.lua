@@ -35,5 +35,14 @@ BundlesOfFun.Back {
                 return true
             end
         end
+    end,
+    calculate = function(self, back, context)
+        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
+            if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
+                if pseudorandom(pseudoseed("bof_fossilized")) < 0.06 then
+                    return { shop_create_flags = { edition = "e_negative" } }
+                end
+            end
+        end
     end
 }

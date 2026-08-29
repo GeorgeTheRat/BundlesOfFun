@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             mult = 0
         }
     },
-    pos = { x = 8, y = 2 },
+    pos = { x = 4, y = 2 },
     attributes = { "mult", "scaling", "hand_type", "scale_scaling" },
     cost = 8,
     rarity = 3,
@@ -26,7 +26,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before and next(context.poker_hands["Flush"]) and not context.blueprint then
+        if context.before and context.scoring_name == "Flush" and not context.blueprint then
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "mult",
@@ -45,5 +45,14 @@ BundlesOfFun.Joker {
                 mult = card.ability.extra.mult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
+            },
+            text_config = { colour = G.C.MULT }
+        }
     end
 }

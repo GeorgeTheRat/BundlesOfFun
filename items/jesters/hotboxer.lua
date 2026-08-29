@@ -8,11 +8,11 @@ BundlesOfFun.Joker({
 			sell_cost_mod = 1
 		}
 	},
-	pos = { x = 0, y = 3 },
+	pos = { x = 4, y = 4 },
 	attributes = { "generation", "passive", "tarot" },
 	cost = 7,
 	rarity = 2,
-	blueprint_compat = true,
+	blueprint_compat = false,
 	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
 		return {
@@ -32,13 +32,9 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.buying_card and context.card.ability.set == "Tarot" then
-			-- on the third day day of christmas, my true love gave to me
-			local three_french_hens = context.blueprint_card or card
-			-- two_turtle_doves
-			-- and a_partridge_in_a_pear_tree
-			three_french_hens.sell_cost = three_french_hens.sell_cost - card.ability.extra.sell_cost_mod
+			card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
 			return {
-				message = "Value Down!",
+				message = localize("k_bof_val_down"),
 				colour = G.C.RED
 			}
 		end

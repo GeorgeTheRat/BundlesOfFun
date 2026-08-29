@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             hand_size = -1
         }
     },
-    pos = { x = 0, y = 1 },
+    pos = { x = 3, y = 3 },
     pixel_size = { w = 65 },
     attributes = { "hands", "discard", "hand_size", "passive" },
     cost = 7,
@@ -25,14 +25,14 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    add_to_deck = function(self, card, context)
+    add_to_deck = function(self, card, from_debuff)
         G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
         ease_discard(card.ability.extra.discards)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
         ease_hands_played(card.ability.extra.hands)
         G.hand:change_size(card.ability.extra.hand_size)
     end,
-    remove_from_deck = function(self, card, context)
+    remove_from_deck = function(self, card, from_debuff)
         G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.discards
         ease_discard(-card.ability.extra.discards)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands

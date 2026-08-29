@@ -4,12 +4,12 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            chips_mod = 1,
+            chips_mod = 3,
             chips_mod_mod = 1,
             chips = 0
         }
     },
-    pos = { x = 2, y = 2 },
+    pos = { x = 0, y = 2 },
     attributes = { "chips", "scaling", "scale_scaling" },
     cost = 7,
     rarity = 2,
@@ -40,6 +40,19 @@ BundlesOfFun.Joker {
                     scalar_value = "chips_mod_mod",
                     no_message = true
                 })
+                if card.children.center and card.children.center.sprite_pos and card.children.center.sprite_pos.x ~= 9 then
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            if card.children.center.atlas == G.ASSET_ATLAS["bof_joker"] then
+                                card.children.center.atlas = G.ASSET_ATLAS["bof_hal"]
+                                card.children.center:set_sprite_pos({ x = 0, y = 0 })
+                            else
+                                card.children.center:set_sprite_pos({ x = card.children.center.sprite_pos.x + 1, y = 0 })
+                            end
+                            return true
+                        end
+                    }))
+                end
             end
             return {
                 message = localize("k_upgrade_ex"),
@@ -51,5 +64,14 @@ BundlesOfFun.Joker {
                 chips = card.ability.extra.chips
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "chips" }
+            },
+            text_config = { colour = G.C.CHIPS },
+        }
     end
 }

@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = true
         }
     },
-    pos = { x = 8, y = 3 },
+    pos = { x = 3, y = 9 },
     attributes = { "chips", "scaling", "passive" },
     cost = 7,
     rarity = 3,
@@ -42,9 +42,18 @@ BundlesOfFun.Joker {
             })
         end
         if context.joker_main then
-            return{
+            return {
                 chips = card.ability.extra.chips
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "chips" }
+            },
+            text_config = { colour = G.C.CHIPS },
+        }
     end
 }

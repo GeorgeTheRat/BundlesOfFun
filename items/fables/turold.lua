@@ -8,8 +8,8 @@ BundlesOfFun.Joker {
             xmult = 1
         }
     },
-    pos = { x = 2, y = 4 },
-    soul_pos = { x = 2, y = 5 },
+    pos = { x = 2, y = 7 },
+    soul_pos = { x = 2, y = 8 },
     attributes = { "xmult", "scaling", "reset" },
     cost = 20,
     rarity = 4,

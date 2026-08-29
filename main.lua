@@ -1,6 +1,7 @@
 -- initialize mod namespace and config
 if not BundlesOfFun then BundlesOfFun = {} end
 SMODS.BundlesOfFun = BundlesOfFun
+BOF = BundlesOfFun
 
 BundlesOfFun.config = SMODS.current_mod.config or {}
 BundlesOfFun.config.bundles = BundlesOfFun.config.bundles or {}
@@ -8,13 +9,24 @@ BundlesOfFun.config.custom_sounds = BundlesOfFun.config.custom_sounds or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
 
+-- nil check function
+function BOF.nc(value, ...)
+    for i = 1, select("#", ...) do
+        if value == nil then
+            return nil
+        end
+        value = value[select(i, ...)]
+    end
+    return value
+end
+
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
 G.C.bof_fables = HEX("535fc1")
 G.C.bof_normalities = HEX("c4bca5")
 G.C.bof_flats = HEX("ff7a6f")
-G.C.bof_fish = { 1.0, 0.6, 0.7, 1 }
+G.C.bof_minnows = { 1.0, 0.6, 0.7, 1 }
 G.C.bof_coupons = HEX("69aad8")
 G.C.bof_enemies = HEX("497760")
 G.C.bof_finishers = HEX("5e5f45")
@@ -25,12 +37,31 @@ G.C.bof_glitch_1 = HEX("f04360")
 G.C.bof_glitch_2 = HEX("855a82")
 G.C.bof_ColonParen = HEX("3498db")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
+local george = SMODS.Gradient{
+    key = "george_the_rat",
+    colours = {
+        G.C.bof_george_1,
+        G.C.bof_george_2
+    },
+    cycle = 5
+}
+local glitch = SMODS.Gradient {
+    key = "glitchkat10",
+    colours = {
+        G.C.bof_glitch_1,
+        G.C.bof_glitch_2
+    },
+    cycle = 5
+}
 
 -- register localization colors
 loc_colour()
+G.ARGS.LOC_COLOURS.george = george
+G.ARGS.LOC_COLOURS.glitch = glitch
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
+G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
 
 -- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
@@ -47,16 +78,17 @@ local files = {
     appetizers = {
         list = {
 			"dragonfruit",
-            "blueberry",
+            "blueberries",
             "grapes",
             "leek",
             "durian",
-            "bread",
-            "beans",
+            "macarons",
+            "gnocchi",
             "apple",
             "core",
-            "tomato",
-            "shrimp"
+            "tomatoes",
+            "shrimp",
+            "melon"
 		}, directory = "items/appetizers/"
     },
     jesters = {
@@ -67,7 +99,7 @@ local files = {
             "barber",
             "ballbo",
             "rogue",
-            "eddrick",
+            "evil",
             "super",
             "eureka",
             "timmy",
@@ -79,18 +111,33 @@ local files = {
             "soothsayer",
             "polymath",
             "luminary",
-            "felix",
+            "furious",
             "larry",
             "phony",
-            "frank",
+            "fancy",
             "crafted",
             "schlitzohr",
             "hotboxer",
             "director",
             "zeke",
-            "laughing_stock",
+            "stock",
             "angler",
             "pianoman",
+            "bouncer",
+            "elephant",
+            "prom_king",
+            "prom_queen",
+            "freeze",
+            "fnesen",
+            "nerd",
+            "jocker",
+            "postman",
+            "satanist",
+            -- "doctor",
+            "printed",
+            "hooked",
+            "hypnotic",
+            "band",
             "matey"
         }, directory = "items/jesters/"
     },
@@ -101,9 +148,13 @@ local files = {
             "rummikub",
             "passport",
             "clock",
+            "gnome",
+            "ticket",
+            "astrolabe",
             -- "billy_bass",
             "fish_bowl",
-            "dead_fish_bowl"
+            "dead_fish_bowl",
+            "keyboard"
         }, directory = "items/normalities/"
     },
     fables = {
@@ -113,8 +164,11 @@ local files = {
             "turold",
             "taillefer",
             "dagonet",
-            "shennong",
-            "nuwa_fuxi"
+            "gonella",
+            "nuwa_fuxi",
+            "durie",
+            "mezzetino",
+            "beltrame"
         }, directory = "items/fables/"
     },
     flats = {
@@ -132,7 +186,7 @@ local files = {
             "scaly"
         }, directory = "items/flats/"
     },
-    fish = {
+    minnows = {
         list = {
             "bass_s",
             "betta_s",
@@ -166,19 +220,48 @@ local files = {
             "fry_2",
             "hooked_1",
             "hooked_2"
-        }, directory = "items/fish/"
+        }, directory = "items/minnows/"
     },
     coupons = {
         list = {
             "dark_alley",
             "illegal_wares",
             "unboxing",
-            "scalping",
+            "shoplifting",
             "scratch_off",
             "lottery_ticket",
             "ice_bucket",
             "buried_treasure"
         }, directory = "items/coupons/"
+    },
+    enemies = {
+        list = {
+            "dominant",
+            "risk",
+            "irradiated",
+            "change",
+            "tiny",
+            "damping",
+            "viscous",
+            "angle",
+            "array",
+            "curve",
+            "decay",
+            "average",
+            "frequent",
+            "random",
+            "useless",
+            "irrational",
+            "dense",
+            "stress",
+            "terminal",
+            "circuit",
+            "particle",
+            "golden",
+            "square",
+            "wave",
+            "resistance"
+        }, directory = "items/enemies/"
     }
 }
 
@@ -203,8 +286,8 @@ for _, name in ipairs(files["flats"].list) do
     assert(SMODS.load_file(files["flats"].directory .. name .. ".lua"))()
 end
 
-for _, name in ipairs(files["fish"].list) do
-    assert(SMODS.load_file(files["fish"].directory .. name .. ".lua"))()
+for _, name in ipairs(files["minnows"].list) do
+    assert(SMODS.load_file(files["minnows"].directory .. name .. ".lua"))()
 end
 
 for _, name in ipairs(files["coupons"].list) do

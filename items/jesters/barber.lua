@@ -4,16 +4,17 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            mult_mod = 3,
+            mult_mod = 4,
             cards = 1,
             mult = 0,
         }
     },
-    pos = { x = 1, y = 2 },
+    pos = { x = 3, y = 2 },
     attributes = { "mult", "scaling", "full_deck", "enhancements", "modify_card" },
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -37,13 +38,16 @@ BundlesOfFun.Joker {
             end
             if trigger then
                 for i = 1, card.ability.extra.cards do
-                    local card = context.blueprint_card or card
+                    -- on the third day of christmas, my true love gave to me
+                    local three_french_hens = context.blueprint_card or card
+                    -- two_turtle_doves
+                    -- and a_partridge_in_a_pear_tree
                     G.E_MANAGER:add_event(Event({
                         trigger = "after",
                         delay = 0.4,
                         func = function()
                             play_sound("tarot1")
-                            card:juice_up(0.3, 0.5)
+                            three_french_hens:juice_up(0.3, 0.5)
                             return true
                         end
                     }))
@@ -92,6 +96,14 @@ BundlesOfFun.Joker {
                 mult = card.ability.extra.mult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
+            },
+            text_config = { colour = G.C.MULT }
+        }
     end
-
 }

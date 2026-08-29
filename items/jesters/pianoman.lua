@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "pianoman",
     name = "Pianoman",
     bundle = "jesters",
-    pos = { x = 9, y = 5 },
+    pos = { x = 9, y = 4 },
     cost = 9,
     rarity = 3,
     blueprint_compat = false,

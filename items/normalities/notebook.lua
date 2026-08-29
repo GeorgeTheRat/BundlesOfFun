@@ -4,11 +4,11 @@ BundlesOfFun.Joker {
     bundle = "normalities",
     config = {
         extra = { 
-            dollars = 20,
+            dollars = 25,
             yes = false
         }
     },
-    pos = { x = 5, y = 3 },
+    pos = { x = 0, y = 9 },
     attributes = { "economy", "stickers" },
     cost = 8,
     rarity = 2,
@@ -53,18 +53,19 @@ BundlesOfFun.Joker {
                                     target_joker:juice_up()
                                 end
                                 -- on the sixth day of christmas, my true love gave to me
-                                local six_geese_a_laying = context.blueprint_card or card
+                                local seven_swans_a_swimming = context.blueprint_card or card
+                                -- six_geese_a_laying
                                 -- five_gold_rings
                                 -- four_calling_birds
                                 -- three_french_hens
                                 -- two_turtle_doves
                                 -- and a_partridge_in_a_pear_tree
-                                six_geese_a_laying:juice_up()
+                                seven_swans_a_swimming:juice_up()
                                 return true
                             end
                         }))
                         return {
-                            message = localize("k_bof_sticker_applied")
+                            message = localize("k_sticker_ex")
                         }
                     end
                 end

@@ -2,45 +2,53 @@ BundlesOfFun.Joker {
     key = "soothsayer",
     name = "Soothsayer",
     bundle = "jesters",
-    config = { extra = { required = 2 } },
-    pos = { x = 3, y = 3 },
-    attributes = { "generation", "tarot", "planet" },
+    pos = { x = 5, y = 3 },
+    attributes = { "generation", "planet", "seals" },
+    config = { extra = { hand = nil } },
     cost = 5,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        table.insert(info_queue, G.P_SEALS["Purple"])
         table.insert(info_queue, G.P_SEALS["Blue"])
-        return { vars = { card.ability.extra.required } }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round and context.cardarea == G.hand and context.individual then
-            if context.other_card.seal and context.other_card.seal == "Purple" then
-                SMODS.add_card{
-                    set = "Tarot",
-                    key_append = "soothsayer"
-                }
-                return {
-                    message = localize("k_plus_tarot"),
-                    colour = G.C.PURPLE,
-                    message_card = context.other_card
-                }
-            end
-        end
         if context.pre_discard then
-            local blue_seal_count = 0
-            for k, v in pairs(context.full_hand) do
-                if v.seal and v.seal == "Blue" then
-                    blue_seal_count = blue_seal_count + 1
+            card.ability.extra.hand = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
+        end
+        if context.discard and context.other_card.seal and context.other_card.seal == "Blue" and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    local _planet = nil
+                    for _, planet_center in pairs(G.P_CENTER_POOLS.Planet) do
+                        if planet_center.config.hand_type == card.ability.extra.hand then
+                            _planet = planet_center.key
+                        end
+                    end
+                    if _planet then
+                        SMODS.add_card({ key = _planet })
+                    end
+                    G.GAME.consumeable_buffer = 0
+                    return true
                 end
-            end
-            if blue_seal_count >= card.ability.extra.required then
-                return {
-                    level_up = true,
-                    level_up_hand = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
-                }
+            }))
+            return {
+                message = localize("k_plus_planet"),
+                colour = G.C.SECONDARY_SET.Planet,
+                card = context.other_card
+            }
+        end
+    end,
+    in_pool = function(self, args)
+        if not G.deck then
+            return false
+        end
+        for k, v in pairs(G.deck.cards) do
+            if v.seal and v.seal == "Blue" then
+                return true
             end
         end
+        return false
     end
 }

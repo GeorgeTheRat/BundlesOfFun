@@ -1,19 +1,106 @@
 return {
     descriptions = {
+        -- Credits
+        Tag = {
+            tag_bof_credit_george = {
+                name = "{C:george}George The Rat",
+                text = {
+                    {
+                        "{C:dark_edition,E:2,s:1.2}Creator of Bundles Of Fun"
+                    },
+                    {
+                        "Did all {C:red,E:1}art{} {C:inactive}(with few exceptions){},",
+                        "most {C:attention,E:1}ideas{}, and a lot of {C:plasma,E:1}balancing"
+                    }
+                }
+            },
+            tag_bof_credit_glitch = {
+                name = "{C:glitch}Glitchkat10",
+                text = {
+                    {
+                        "{C:dark_edition,E:2}Co-creator of Bundles Of Fun"
+                    },
+                    {
+                        "Did nearly all {C:green,E:1}code{}, many",
+                        "{C:attention,E:1}ideas{}, a lot of {C:plasma,E:1}balancing{},",
+                        "and a tiny amount of {C:red,E:1}art"
+                    }
+                }
+            },
+            tag_bof_credit_marffe = {
+                name = "Marffe",
+                text = {
+                    "Did the Spanish",
+                    "{C:blue,E:1}localizations{} and some",
+                    "miscellaneous {C:green,E:1}code"
+                }
+            },
+            tag_bof_credit_amo = {
+                name = "Amo",
+                text = {
+                    "Did a massive amount",
+                    "of {C:green,E:1}code{} and bug fixes,",
+                    "especially with Blinds"
+                }
+            },
+            tag_bof_credit_revo = {
+                name = "Revo",
+                text = {
+                    "Did the {C:green,E:1}code{} for",
+                    "multiple Jokers in",
+                    "early development"
+                }
+            },
+            tag_bof_credit_arc = {
+                name = "Arc",
+                text = {
+                    "Did the {C:fish,E:1}music{} for",
+                    "all Fish-related",
+                    "Booster Pack themes"
+                }
+            },
+            tag_bof_credit_sophe = {
+                name = "Sophe",
+                text = {
+                    "Did some needed {C:green,E:1}code{},",
+                    "especially with decks"
+                }
+            },
+            tag_bof_credit_lapsem = {
+                name = "Lapsem",
+                text = {
+                    "Did all of the",
+                    "Blind icon {C:red,E:1}art"
+                }
+            },
+            tag_bof_credit_minty = {
+                name = "Minty",
+                text = {
+                    "Did some miscellaneous",
+                    "{C:green,E:1}code{}, especially with UI"
+                }
+            },
+            tag_bof_credit_drunk = {
+                name = "The Drunk",
+                text = {
+                    "Did a significant",
+                    "number of {C:attention,E:1}ideas"
+                }
+            },
+        },
         Joker = {
             -- Appetizers
             j_bof_dragonfruit = {
                 name = "Dragonfruit",
                 text = {
-                    "Add a permanent copy of all",
-                    "{C:attention}played{} cards next hand to deck",
-                    "or destroy all cards in",
-                    "next {C:attention}discarded{} poker hand",
+                    "Add a permanent copy",
+                    "of all {C:attention}played{} cards",
+                    "next hand to hand,",
                     "{C:red,E:2}self destructs"
                 }
             },
-            j_bof_blueberry = {
-                name = "Blueberry",
+            j_bof_blueberries = {
+                name = "Blueberries",
                 text = {
                     "Each {C:attention}card{} held in hand",
                     "permanently gains {C:chips}+#1#{} Chip#<s>1#,",
@@ -25,7 +112,7 @@ return {
                 name = "Grapes",
                 text = {
                     "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
-                    "Destroyed when {C:attention}Boss Blind{} is defeated"
+                    "{C:red}Destroyed{} when {C:attention}Boss Blind{} is defeated"
                 }
             },
             j_bof_leek = {
@@ -45,15 +132,17 @@ return {
                     "with {C:tarot}The Fool"
                 }
             },
-            j_bof_bread = {
-                name = "Wonderous Bread",
+            j_bof_macarons = {
+                name = "Macarons",
                 text = {
-                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
-                    "decreases by {C:white,X:plasma}-#2#%{} at end of round"
+                    "Balance {C:white,X:plasma}#1#%{} of",
+                    "{C:chips}Chips{} and {C:mult}Mult{},",
+                    "decreases by {C:white,X:plasma}-#2#%{}",
+                    "at end of round"
                 }
             },
-            j_bof_beans = {
-                name = "Jelly Beans",
+            j_bof_gnocchi = {
+                name = "Gnocchi",
                 text = {
                     "The next {C:attention}#1# Blind#<s>1#{} skipped,",
                     "create a {C:attention}Juggle Tag"
@@ -62,8 +151,8 @@ return {
             j_bof_apple = {
                 name = "Apple",
                 text = {
-                    "Each scored card",
-                    "permanently gains {C:mult}+#1#{} Mult,",
+                    "Every played {C:attention}card{} permanently",
+                    "gains {C:mult}+#1#{} Mult when scored,",
                     "decreases by {C:mult}-#2#{} Mult",
                     "at end of round"
                 }
@@ -76,8 +165,8 @@ return {
                     "instead of scoring"
                 }
             },
-            j_bof_tomato = {
-                name = "Tomato",
+            j_bof_tomatoes = {
+                name = "Tomatoes",
                 text = {
                     "The next {C:attention}#1#{} cards",
                     "held in hand have a",
@@ -91,6 +180,14 @@ return {
                     "The next {C:attention}#1#{} Booster Pack#<s>1# opened",
                     "#<have,has>1# a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card and a",
                     "{C:white,E:1,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
+                }
+            },
+            j_bof_melon = {
+                name = "Royal Melon",
+                text = {
+                    "The next {C:attention}#1#{} played {C:attention}face",
+                    "{C:attention}card#<s>1#{} increase this Joker's",
+                    "sell value by {C:money}$#2#{} when scored"
                 }
             },
             -- Jesters
@@ -134,7 +231,7 @@ return {
                 text = {
                     "This Joker gains {C:mult}+#1#{} Mult and",
                     "increases its {C:attention}scaling{} by {C:mult}+#2#{} Mult",
-                    "if played hand contains a {C:attention}Flush",
+                    "if played hand is a {C:attention}Flush",
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },
@@ -147,8 +244,15 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_eddrick = {
-                name = "Evil Eddrick",
+            j_bof_evil = {
+                name = "Evil Joker",
+                text = {
+                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
+                    "on {C:attention}final hand{} of round"
+                }
+            },
+            j_bof_evil_dih = { -- evil dih (original)
+                name = "Evil Dih",
                 text = {
                     "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
                     "on {C:attention}final hand{} of round"
@@ -157,9 +261,9 @@ return {
             j_bof_super = {
                 name = "Super Joker",
                 text = {
-                    "{C:blue}+#1#{} hands if {C:attention}Blind{} is",
+                    "{C:blue}+#1#{} hand#<s>1# if {C:attention}Blind{} is",
                     "not won by {C:attention}final hand",
-                    "{C:inactive,s:0.8}(May only trigger once per round)"
+                    "{C:inactive,s:0.8}(May trigger {C:attention,s:0.8}#2#{C:inactive,s:0.8} times per round)"
                 }
             },
             j_bof_eureka = {
@@ -204,29 +308,32 @@ return {
             j_bof_gary = {
                 name = "Geezer Gary",
                 text = {
-                    "This Joker gains {C:chips}+#1#{} Chip#<s>1#",
-                    "when a Joker is {C:attention}sold{},",
-                    "increases by {C:chips}+#2#{} Chip#<s>2# when",
-                    "{C:attention}Boss Blind{} is defeated",
-                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
+                    "This Joker gains {C:chips}+Chips",
+                    "equal to the {C:attention}current Ante",
+                    "when a Joker is {C:attention}sold",
+                    "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chip#<s>1#)"
                 }
             },
             j_bof_golden_sun = {
                 name = "Mr. Golden Sun",
                 text = {
-                    "Halve base {C:chips}Chips{} and {C:mult}Mult",
-                    "{C:red}Destroy{} all cards",
-                    "in final {C:attention}discarded",
-                    "{C:attention}poker hand{} each round"
+                    {
+                        "{C:red}Destroy{} all cards in final",
+                        "{C:attention}discarded hand{} each round"
+                    },
+                    {
+                        "Halve {C:chips}Chips{} and {C:mult}Mult{} when",
+                        "calculating score for played hand"
+                    }
                 }
             },
             j_bof_jack_frost = {
                 name = "Jack Frost",
                 text = {
-                    "{C:mult}+#1#{} Mult if played",
-                    "{C:attention}poker hand{} has",
-                    "not already been ",
-                    "played this round"
+                    "This Joker gains {C:white,X:mult}X#1#{} Mult per",
+                    "{C:attention}#2# {C:inactive}[#3#]{} chips from {C:attention}scoring",
+                    "cards in played hands",
+                    "{C:inactive}(Currently {C:white,X:mult}X#4#{C:inactive} Mult)"
                 }
             },
             j_bof_jim = {
@@ -249,16 +356,10 @@ return {
             j_bof_soothsayer = {
                 name = "Soothsayer",
                 text = {
-                    {
-                        "Creates a {C:tarot}Tarot{} card if a",
-                        "card with a {C:purple}Purple Seal{} is",
-                        "held in hand at end of round",
-                    },
-                    {
-                        "Upgrade level of discarded",
-                        "{C:attention}poker hand{} if discarded hand",
-                        "contains {C:attention}#1#{} cards with {C:blue}Blue Seals",
-                    },
+                    "Create the {C:planet}Planet{} card for",
+                    "discarded {C:attention}poker hand{} if it",
+                    "contains a card with a {C:blue}Blue Seal",
+                    "{C:inactive}(Must have room)"
                 },
             },
             j_bof_polymath = {
@@ -279,8 +380,8 @@ return {
                     "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
                 }
             },
-            j_bof_felix = {
-                name = "Furious Felix",
+            j_bof_furious = {
+                name = "Furious Joker",
                 text = {
                     "Earn {C:money}$#1#{} at",
                     "end of round",
@@ -302,8 +403,15 @@ return {
                     "{C:chips}-#2#{} Chips"
                 }
             },
-            j_bof_frank = {
-                name = "Frank Fop",
+            j_bof_gucci_morty = { -- evil dih
+                name = "Gucci Morty",
+                text = {
+                    "{C:mult}+#1#{} Mult",
+                    "{C:chips}-#2#{} Chips"
+                }
+            },
+            j_bof_fancy = {
+                name = "Fancy Pants",
                 text = {
                     "Create either a {C:attention}Handy Tag{} or",
                     "{C:attention}Garbage Tag{} at random when",
@@ -360,14 +468,14 @@ return {
                     "{C:inactive}(Must have room)"
                 }
             },
-            j_bof_laughing_stock = {
+            j_bof_stock = {
                 name = "Laughing Stock",
                 text = {
-                    "{C:red}Destroy{} each played card with",
-                    "a {C:attention}seal{} and permanently",
-                    "decrease the {C:attention}current Blind type{}'s",
-                    "score requirement by {C:attention}#1#%{} per card",
-                    "{C:inactive}(Multiplicative)"
+                    "{C:red}Destroy{} each played {C:attention}#1#",
+                    "and permanently decrease",
+                    "{C:attention}current Blind type{}'s score",
+                    "requirement by {C:attention}#2#%{} per card,",
+                    "{C:attention,s:0.8}Enhancement{s:0.8} changes every round"
                 }
             },
             j_bof_angler = {
@@ -390,6 +498,153 @@ return {
                     "may appear in the shop",
                     "You may select {C:attention}unlimited",
                     "cards in {C:attention}Booster Packs"
+                }
+            },
+            j_bof_bouncer = {
+                name = "Bouncer",
+                text = {
+                    "{C:mult}+#1#{} Mult if you have at",
+                    "least {C:attention}#2#{} card#<s>2# with the",
+                    "same {C:attention}suit{} in your {C:attention}full deck"
+                }
+            },
+            j_bof_elephant = {
+                name = "Elephant",
+                text = {
+                    "{C:chips}+#1#{} Chips if all",
+                    "{C:attention}played{} cards are",
+                    "the same {C:attention}rank"
+                }
+            },
+            j_bof_prom_king = {
+                name = "Prom King",
+                text = {
+                    "Played {C:attention}Kings{} give an",
+                    "additional {X:mult,C:white}X#1#{} Mult",
+                    "when scored per {C:attention}Queen{}",
+                    "played or held in hand"
+                }
+            },
+            j_bof_prom_queen = {
+                name = "Prom Queen",
+                text = {
+                    "Each {C:attention}Queen{} held in hand",
+                    "gives {C:chips}+#1#{} Chips per {C:attention}King{}",
+                    "played or held in hand"
+                }
+            },
+            j_bof_freeze = {
+                name = "Brain Freeze",
+                text = {
+                    "This Joker decreases the",
+                    "{C:attention}level{} of a random {C:attention}poker hand",
+                    "and gains {C:white,X:mult}X#1#{} Mult every",
+                    "{C:attention}other {C:planet}Planet{} card sold",
+                    "{C:inactive,s:0.8}#2#",
+                    "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
+                }
+            },
+            j_bof_brian = { -- evil dih
+                name = "Brian Freeze",
+                text = {
+                    "This Joker decreases the",
+                    "{C:attention}level{} of a random {C:attention}poker hand",
+                    "and gains {C:white,X:mult}X#1#{} Mult every",
+                    "{C:attention}other {C:planet}Planet{} card sold",
+                    "{C:inactive,s:0.8}#2#",
+                    "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
+                }
+            },
+            j_bof_fnesen = {
+                name = "Fnesen",
+                text = {
+                    {
+                        "{C:debuff}Debuff{} a random {C:attention}Joker",
+                        "every hand played"
+                    },
+                    {
+                        "If this Joker is debuffed,",
+                        "it instead gives {C:white,X:mult}X#1#{} Mult"
+                    }
+                }
+            },
+            j_bof_jocker = {
+                name = "Jocker",
+                text = {
+                    {
+                        "Earn {C:money}$#1#{} when a",
+                        "{C:common}Common{} or {C:uncommon}Uncommon",
+                        "{C:attention}Joker{} is purchased"
+                    },
+                    {
+                        "{C:rare}Rare {C:attention}Jokers{} cost",
+                        "{C:attention}double{} in the shop"
+                    }
+                }
+            },
+            j_bof_nerd = {
+                name = "Nerd",
+                text = {
+                    "Every {C:attention}#<o>1# {C:inactive}[#2#]{} reroll in",
+                    "the shop is {C:green,E:1}guaranteed",
+                    "to contain a {C:rare}Rare {C:attention}Joker"
+                }
+            },
+            j_bof_postman = {
+                name = "Postman",
+                text = {
+                    "First {C:attention}four{} played",
+                    "cards additionally",
+                    "count as a {C:spades}Spade{},",
+                    "{C:hearts}Heart{}, {C:clubs}Club{}, or",
+                    "{C:diamonds}Diamond{} respectively"
+                }
+            },
+            j_bof_satanist = {
+                name = "Satanist",
+                text = {
+                    "Retrigger each {C:attention}other",
+                    "played card {C:attention}once{} for",
+                    "every {C:attention}6{} in played hand"
+                }
+            },
+            j_bof_doctor = {
+                name = "Doctor",
+                text = {
+                    "Create a non-{C:rare}Rare{} Joker",
+                    "when a card is {C:attention}Enhanced"
+                }
+            },
+            j_bof_printed = {
+                name = "3D-Printed Joker",
+                text = {
+                    "Copies abilities of all",
+                    "held {C:common}Common {C:attention}Jokers"
+                }
+            },
+            j_bof_hooked = {
+                name = "Hooked Joker",
+                text = {
+                    "{C:fish}Tackle{}, {C:fish}Fry{}, and {C:fish}Hooked Packs",
+                    "appear {C:attention}#1#X{} more often in the shop,",
+                    "increases by {C:attention}#2#X{} per {C:fish}Fish{} card held"
+                }
+            },
+            j_bof_hypnotic = {
+                name = "Hypnotic Joker",
+                text = {
+                    "{C:attention}+#1#{} hand size",
+                    "if most played",
+                    "hand normally has",
+                    "{C:attention}#2#{} scoring cards"
+                }
+            },
+            j_bof_band = {
+                name = "One-Man Band",
+                text = {
+                    "All played cards give",
+                    "{C:mult}+#1#{} Mult when scored if",
+                    "played hand is a {C:attention}High Card{}"
                 }
             },
             -- Normalities
@@ -456,6 +711,40 @@ return {
                     "{C:inactive,E:bof_alarm}Active!",
                 }
             },
+            j_bof_keyboard = {
+                name = "Keyboard",
+                text = {
+                    "Played {C:attention}8s{} give {C:mult}+#1#{} Mult",
+                    "for every {C:attention}8{} in your",
+                    "remaining deck when scored",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
+            j_bof_gnome = {
+                name = "Card-en Gnome",
+                text = {
+                    "Cards with an {C:dark_edition}Edition",
+                    "in the shop are {C:attention}free{}"
+                }
+            },
+            j_bof_ticket = {
+                name = "Parking Ticket",
+                text = {
+                    "This Joker gains {C:mult}+#1#{} Mult",
+                    "when hand is played,",
+                    "resets when a {C:attention}face card{} is",
+                    "discarded or held in hand",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
+            j_bof_astrolabe = {
+                name = "Astrolabe",
+                text = {
+                    "When a {C:planet}Planet{} card in a",
+                    "{C:planet}Celestial Pack{} is used,",
+                    "create a random {C:planet}Planet{} card"
+                }
+            },
             j_bof_billy_bass = {
                 name = "Big Mouth Billy Bass",
                 text = {
@@ -491,7 +780,7 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_manqian = {
@@ -503,7 +792,7 @@ return {
                     "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_turold = {
@@ -515,7 +804,7 @@ return {
                     "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_taillefer = {
@@ -523,26 +812,27 @@ return {
                 text = {
                     "Fill {C:attention}consumable slots",
                     "with random {C:spectral}Spectral{} cards",
-                    "when {C:attention}Blind{} is selected"
+                    "when {C:attention}Blind{} is selected,",
+                    "{C:attention}+#1#{} consumable slot"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_dagonet = {
                 name = "Dagonet",
                 text = {
-                    "Played {C:attention}Stone Cards{} give",
+                    "Played {C:attention}Enhanced{} cards give",
                     "{C:mult}+#1#{} Mult when scored,",
                     "increases by {C:mult}+#2#{} Mult when",
-                    "a {C:attention}Stone Card{} is discarded"
+                    "a {C:attention}Enhanced{} card is discarded"
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_shennong = {
-                name = "Shennong",
+            j_bof_gonella = {
+                name = "Gonella",
                 text = {
                     {
                         "{C:attention}Bottommost{} card in deck becomes a",
@@ -554,7 +844,7 @@ return {
                     }
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
                 }
             },
             j_bof_nuwa_fuxi = {
@@ -562,15 +852,62 @@ return {
                 text = {
                     {
                         "Create a {C:dark_edition}Negative {C:tarot}Tarot{} card",
-                        "when a {C:white,X:small}Small{} {C:fish}Fish{} card expires"
+                        "when a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card expires"
                     },
                     {
                         "Create a {C:dark_edition}Negative {C:spectral}Spectral{} card",
-                        "when a {C:white,X:big}Big{} {C:fish}Fish{} card expires"
+                        "when a {C:white,E:1,X:big}Big{} {C:fish}Fish{} card expires"
                     }
                 },
                 unlock = {
-                    "{E:1,s:1.3}?????",
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_durie = {
+                name = "Durie",
+                text = {
+                    {
+                        "Pressing {C:white,X:red}Discard{} instead applies",
+                        "{C:dark_edition}Negative{} to all selected cards"
+                    },
+                    {
+                        "{C:dark_edition}Negative{} playing cards {C:red}lose",
+                        "their {C:dark_edition}Edition{} at end of round"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_mezzetino = {
+                name = "Mezzetino",
+                text = {
+                    "Create a {C:dark_edition}Negative",
+                    "copy of {C:planet}Planet{} card",
+                    "for played hand"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_beltrame = {
+                name = "Beltrame",
+                text = {
+                    {
+                        "Cards held in hand at",
+                        "end of round create {C:attention}Tags",
+                        "dependent on their {C:attention}suit",
+                        "{C:inactive,s:0.8}(Cannot create more than {C:attention,s:0.8}#1#{C:inactive,s:0.8} Tag#<s>1# at once)"
+                    },
+                    {
+                        "{C:spades,s:0.9}Spades{s:0.9} create {C:dark_edition,s:0.9}Polychrome Tags",
+                        "{C:hearts,s:0.9}Hearts{s:0.9} create {C:red,s:0.9}Garbage Tags",
+                        "{C:clubs,s:0.9}Clubs{s:0.9} create {C:planet,s:0.9}Orbital Tags",
+                        "{C:diamonds,s:0.9}Diamonds{s:0.9} create {C:attention,s:0.9}Standard Tags"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
                 }
             }
         },
@@ -619,10 +956,10 @@ return {
             b_bof_fossilized = {
                 name = "Fossilized Deck",
                 text = {
-                    "Earn an additional {C:money}$#1#{} at",
-                    "end of round per held {C:attention}consumable",
+                    "Earn an additional {C:money}$#1#{} at end",
+                    "of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
-                    "rarely appear {C:dark_edition}Negative"
+                    "rarely appear {C:dark_edition,T:e_negative}Negative" -- todo: make this display e_negative_consumable instead
                 },
                 unlock = {
                     "Have one of each",
@@ -633,8 +970,8 @@ return {
             b_bof_wooden = {
                 name = "Wooden Deck",
                 text = {
-                    "Start with no {C:attention}Aces{}",
-                    "and an additional full rank",
+                    "Start with no {C:attention}Aces{} and",
+                    "an additional full rank",
                     "of {C:attention}2s{}, {C:attention}3s{}, {C:attention}4s{}, and {C:attention}5s",
                     "All cards start {C:attention,T:m_bof_wooden}Wooden"
                 },
@@ -652,8 +989,8 @@ return {
                     "No effect if Joker slots are full"
                 },
                 unlock = {
-                    "Have exactly {C:attention}10{} cards of",
-                    "each suit in your deck"
+                    "Have only one",
+                    "{C:attention}suit{} in deck"
                 }
             },
             b_bof_scaly = {
@@ -683,8 +1020,9 @@ return {
             b_bof_soapy = {
                 name = "Soapy Deck",
                 text = {
-                    "{C:attention}Enhanced{} cards are",
-                    "destroyed when {C:attention}discarded"
+                    "{C:attention}Enhanced{} cards",
+                    "are {C:red}destroyed",
+                    "when {C:attention}discarded"
                 },
                 unlock = {
                     "Destroy a card with",
@@ -695,14 +1033,25 @@ return {
             b_bof_display = {
                 name = "Display Deck",
                 text = {
-                    "Start with all {C:attention}ranks{} of one {C:attention}suit",
-                    "When {C:attention}Boss Blind{} defeated,",
-                    "add a copy of every {C:attention}rank",
-                    "of a random {C:attention}suit{} to deck"
+                    "Preview the next",
+                    "{C:attention}Showdown Blind{} and next",
+                    "{C:attention}Boss Blind{} at any time",
+                    "{C:inactive}(See Run Info)"
                 },
                 unlock = {
-                    "Have only one",
-                    "{C:attention}rank{} in deck"
+                    "Reroll a {C:attention}Showdown Blind{}"
+                }
+            },
+            b_bof_spaghetti_dih = { -- evil dih
+                name = "Spaghetti Dih",
+                text = {
+                    "Preview the next",
+                    "{C:attention}Showdown Blind{} and next",
+                    "{C:attention}Boss Blind{} at any time",
+                    "{C:inactive}(See Run Info)"
+                },
+                unlock = {
+                    "Reroll a {C:attention}Showdown Blind{}"
                 }
             },
             b_bof_lightning = {
@@ -725,7 +1074,9 @@ return {
             m_bof_wooden = {
                 name = "Wooden",
                 text = {
-                    "{C:chips}+#1#{} extra chips"
+                    "{C:chips}+#1#{} extra chips,",
+                    "{s:0.8}does not count for",
+                    "{C:attention,s:0.8}enhancement{s:0.8} effects"
                 }
             }
         },
@@ -992,8 +1343,8 @@ return {
                     "appear in shop slots"
                 }
             },
-            v_bof_scalping = {
-                name = "Scalping",
+            v_bof_shoplifting = {
+                name = "Shoplifting",
                 text = {
                     "{C:attention}Vouchers{} may rarely",
                     "appear in shop slots"
@@ -1008,17 +1359,17 @@ return {
                 name = "Scratch-Off",
                 text = {
                     "Every {C:attention}#<o>1#{} reroll in the shop,",
-                    "{C:attention}restock{} all present {C:attention}Vouchers"
+                    "{C:attention}restock{} all present {C:attention}Booster Packs"
                 }
             },
             v_bof_lottery_ticket = {
                 name = "Lottery Ticket",
                 text = {
                     "Every {C:attention}#<o>1#{} reroll in the shop,",
-                    "{C:attention}restock{} all present {C:attention}Booster Packs"
+                    "{C:attention}restock{} all present {C:attention}Vouchers"
                 },
                 unlock = {
-                    "Redeem {C:attention}3{} Vouchers",
+                    "Redeem {C:attention}2{} Vouchers",
                     "in the same Ante"
                 }
             },
@@ -1039,6 +1390,184 @@ return {
                     "Have {C:attention}5 {C:fish}Fish",
                     "cards expire",
                     "in one run"
+                }
+            }
+        },
+        -- enemies (& finishers)
+        Blind = {
+            bl_bof_dominant = {
+                name = "The Dominant",
+                text = {
+                    "Seals have",
+                    "no effect"
+                }
+            },
+            bl_bof_risk = {
+                name = "The Risk",
+                text = {
+                    "Rightmost Joker",
+                    "is disabled"
+                }
+            },
+            bl_bof_irradiated = {
+                name = "The Irradiated",
+                text = {
+                    "Played cards do not give",
+                    "base chips when scored"
+                }
+            },
+            bl_bof_change = {
+                name = "The Change",
+                text = {
+                    "Enhanced cards are",
+                    "drawn face down"
+                }
+            },
+            bl_bof_tiny = {
+                name = "The Tiny",
+                text = {
+                    "Small Blind next Ante",
+                    "is unskippable and large"
+                }
+            },
+            bl_bof_damping = {
+                name = "The Damping",
+                text = {
+                    "All Rare Jokers are",
+                    "disabled until final hand"
+                }
+            },
+            bl_bof_viscous = {
+                name = "The Viscous",
+                text = {
+                    "Permanently debuff one random",
+                    "scoring card per hand"
+                }
+            },
+            bl_bof_angle = {
+                name = "The Angle",
+                text = {
+                    "Blind size increases by X0.1",
+                    "per card discarded, -1 hand"
+                }
+            },
+            bl_bof_array = {
+                name = "The Array",
+                text = {
+                    "Destroy a consumable",
+                    "when hand played"
+                }
+            },
+            bl_bof_curve = {
+                name = "The Curve",
+                text = {
+                    "Decrease level of",
+                    "discarded poker hands"
+                }
+            },
+            bl_bof_decay = {
+                name = "The Decay",
+                text = {
+                    "Cards cannot",
+                    "be rearranged"
+                }
+            },
+            bl_bof_average = {
+                name = "The Average",
+                text = {
+                    "#1# in #2# chance to discard",
+                    "modified cards when drawn"
+                }
+            },
+            bl_bof_frequent = {
+                name = "The Frequent",
+                text = {
+                    "Cards with #1#",
+                    "suit are drawn face down"
+                }
+            },
+            bl_bof_random = {
+                name = "The Random",
+                text = {
+                    "Shuffle cards in",
+                    "played hand"
+                }
+            },
+            bl_bof_useless = {
+                name = "The Useless",
+                text = {
+                    "Halve the sell value",
+                    "of all Jokers"
+                }
+            },
+            bl_bof_irrational = {
+                name = "The Irrational",
+                text = {
+                    "Shuffle cards",
+                    "held in hand"
+                }
+            },
+            bl_bof_dense = {
+                name = "The Dense",
+                text = {
+                    "First card used in",
+                    "scoring is debuffed"
+                }
+            },
+            bl_bof_stress = {
+                name = "The Stress",
+                text = {
+                    "Voucher cannot be",
+                    "restocked next Ante"
+                }
+            },
+            bl_bof_terminal = {
+                name = "The Terminal",
+                text = {
+                    "Last scored rank is",
+                    "debuffed next hand"
+                }
+            },
+            bl_bof_circuit = {
+                name = "The Circuit",
+                text = {
+                    "Only four cards may",
+                    "be visible at once"
+                }
+            },
+            bl_bof_particle = {
+                name = "The Particle",
+                text = {
+                    "Blinds next Ante",
+                    "are unskippable"
+                }
+            },
+            bl_bof_golden = {
+                name = "The Golden",
+                text = {
+                    "Cards held in hand at",
+                    "end of round give -$3"
+                }
+            },
+            bl_bof_square = {
+                name = "The Square",
+                text = {
+                    "Hand must contain",
+                    "4 scoring cards"
+                }
+            },
+            bl_bof_wave = {
+                name = "The Wave",
+                text = {
+                    "Rightmost Joker becomes",
+                    "Pinned when last hand played"
+                }
+            },
+            bl_bof_resistance = {
+                name = "The Resistance",
+                text = {
+                    "No payout from Blind, Hands,",
+                    "Discards, or Interest"
                 }
             }
         },
@@ -1088,39 +1617,55 @@ return {
 					"{C:enhanced}Enhancement{},",
                     "{C:dark_edition}Edition{}, {C:attention}Seal"
 				}
-			}
+			},
+            k_bof_blind_type = {
+                name = "Blind Types",
+                text = {
+                    "{C:small,E:1}Small{}, {C:big,E:1}Big{}, and",
+                    "{E:1,V:1}Boss{}/{E:1,V:2}Showdown"
+                }
+            }
         }
     },
     misc = {
         dictionary = {
             b_fish_cards = "Fish Cards",
-            k_bof_active = "Active!",
-            k_bof_inactive = "Inactive...",
-            k_bof_ready = "Ready!",
-            k_bof_destroyed = "Destroyed!",
-            k_bof_alarm = "Alarm Set!",
-            k_bof_downgrade = "Downgrade!",
-            k_plus_fish = "+1 Fish",
-            k_erased = "Erased!",
-            k_bof_sticker_applied = "Sticker Applied!",
-            k_bof_expired = "Expired!",
+            k_active_ex = "Active!",
+            k_inactive_el = "Inactive...",
+            k_ready_ex = "Ready!",
+            k_destroyed_ex = "Destroyed!",
+            k_alarm_ex = "Alarm Set!",
+            k_erased_ex = "Erased!",
+            k_sticker_ex = "Sticker Applied!",
+            k_val_down_ex = "Value Down!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
+            k_plus_fish = "+1 Fish",
+            k_expired_ex = "Expired!",
             k_fish_q = "Fish?",
 
-            option_bof_appetizers = "Appetizers",
-            option_bof_jesters = "Jesters",
-            option_bof_normalities = "Normalities",
-            option_bof_fables = "Fables",
-            option_bof_flats = "Flats",
-            option_bof_fish = "Fish",
-            option_bof_coupons = "Coupons",
-            -- option_bof_enemies = "Enemies",
-            -- option_bof_finishers = "Finishers",
-            -- option_bof_games = "Games"
+            bl_bof_square = "Must contain 4 scoring cards",
+            bl_bof_terminal = "Last scored rank is debuffed",
+            bof_most_common_suit = "(most common suit in deck)",
+
+            bof_bof = "Bundles Of Fun",
+            bof_appetizers = "Appetizers",
+            bof_jesters = "Jesters",
+            bof_normalities = "Normalities",
+            bof_fables = "Fables",
+            bof_flats = "Flats",
+            bof_minnows = "Minnows",
+            bof_coupons = "Coupons",
+            bof_enemies = "Enemies",
+            -- bof_finishers = "Finishers",
+            -- bof_games = "Games"
+        },
+        v_dictionary = {
+            a_bof_balance = "Balanced #1#%",
+            a_bof_balance_minus = "-#1#%",
+            a_bof_hand = "+#1# Hand"
         }
     }
 }
-

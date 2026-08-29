@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Director",
     bundle = "jesters",
     config = { extra = { xmult = 1.25 } },
-    pos = { x = 8, y = 4 },
+    pos = { x = 5, y = 4 },
     attributes = { "xmult", "retrigger" },
     cost = 7,
     rarity = 2,
@@ -31,5 +31,34 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            -- effective xmult, accounting for Director's own repetitions: xmult is reapplied
+            -- once per played card that would retrigger (mirrors the bof_retriggered count in
+            -- calculate). JokerDisplay.calculate_card_triggers is the pre-play equivalent of the
+            -- SMODS.calculate_repetitions hook that sets bof_retriggered, so it's used here to
+            -- predict the same count before the hand actually resolves.
+            text = {
+                {
+                    border_nodes = {
+                        { text = "X" },
+                        { ref_table = "card.joker_display_values", ref_value = "xmult", retrigger_type = "xmult" }
+                    }
+                }
+            },
+            calc_function = function(card)
+                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+                local retriggered_count = 0
+                if text ~= "Unknown" then
+                    for _, scoring_card in pairs(scoring_hand) do
+                        if JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand) >= 2 then
+                            retriggered_count = retriggered_count + 1
+                        end
+                    end
+                end
+                card.joker_display_values.xmult = card.ability.extra.xmult ^ (1 + retriggered_count)
+            end
+        }
     end
 }

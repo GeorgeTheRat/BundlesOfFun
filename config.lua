@@ -5,10 +5,10 @@ return {
         normalities = true,
         fables = true,
         flats = true,
-        fish = true,
+        minnows = true,
         coupons = true,
-        enemies = false
+        enemies = true
     },
     custom_sounds = true,
-    custom_wooden_center = true
+    evil_dih = false
 }

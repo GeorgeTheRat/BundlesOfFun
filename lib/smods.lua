@@ -1,14 +1,34 @@
 SMODS.Atlas({
+    key = "credit", 
+    path = "credit.png", 
+    px = 68,
+    py = 68, 
+})
+
+SMODS.Atlas({
+    key = "placeholder", 
+    path = "placeholder.png", 
+    px = 71,
+    py = 95, 
+})
+
+SMODS.Atlas({
     key = "joker", 
     path = "joker.png", 
     px = 71,
     py = 95, 
 })
 
--- placeholder :)
 SMODS.Atlas({
-    key = "placeholder", 
-    path = "placeholder.png", 
+    key = "hal", 
+    path = "hal.png", 
+    px = 71,
+    py = 95, 
+})
+
+SMODS.Atlas({
+    key = "matey_alt", 
+    path = "matey_alt.png", 
     px = 71,
     py = 95, 
 })
@@ -54,6 +74,55 @@ SMODS.Atlas({
     px = 71,
     py = 95,
 })
+
+SMODS.Atlas {
+	key = "blind",
+    atlas_table = "ANIMATION_ATLAS",
+	path = "blind.png",
+	px = 34,
+	py = 34,
+	frames = 21
+}
+
+SMODS.Atlas({
+    key = "pinned",
+    path = "pinned.png",
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({ -- evil dih
+    key = "evil_dih",
+    path = "evil_dih.png",
+    px = 71,
+    py = 95,
+})
+
+-- Steamodded already registers "pinned" as a real Sticker (it's what backs vanilla's
+-- card.pinned), just pointed at an out-of-bounds placeholder position since the base
+-- game has no art for it - point it at ours instead. This is enough for
+-- SMODS.Sticker's own inject() to build the sprite into G.shared_stickers.pinned.
+SMODS.Sticker:take_ownership("pinned", {
+    atlas = "pinned",
+    pos = { x = 0, y = 0 },
+})
+
+-- Steamodded replaces Card:draw entirely with SMODS.DrawSteps, and its own built-in
+-- 'stickers' step (order 40) only draws stickers stored in card.ability[key] - but
+-- "pinned"'s apply sets the top-level card.pinned field instead, so it's skipped by
+-- that generic loop too. A dedicated step, checking the right field, is needed.
+SMODS.DrawStep {
+    key = "bof_pinned",
+    order = 41,
+    func = function(self, layer)
+        if self.pinned and G.shared_stickers.pinned then
+            G.shared_stickers.pinned.role.draw_major = self
+            G.shared_stickers.pinned:draw_shader('dissolve', nil, nil, nil, self.children.center)
+            G.shared_stickers.pinned:draw_shader('voucher', nil, self.ARGS.send_to_shader, nil, self.children.center)
+        end
+    end,
+    conditions = { vortex = false, facing = 'front' },
+}
 
 -- for jokers that scale its scaling effect
 SMODS.Attribute({

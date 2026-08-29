@@ -63,17 +63,21 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        if args.type == "modify_deck" then
-            for _, key in ipairs(SMODS.Suit.obj_buffer) do
-                local count = 0
-                for _, v in pairs(G.playing_cards) do
-                    if v.base.suit == key then count = count + 1 end
-                end
-                if count ~= 10 then
-                    return false
+        if args and args.type == "modify_deck" and G.GAME and G.GAME.blind then
+            local first_suit = nil
+            for _, card in ipairs(G.playing_cards or {}) do
+                local suit = card.base and card.base.suit
+                if suit then
+                    if not first_suit then
+                        first_suit = suit
+                    elseif suit ~= first_suit then
+                        return false
+                    end
                 end
             end
-            return true
+            if first_suit then
+                return true
+            end
         end
     end
 }

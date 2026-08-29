@@ -1,0 +1,83 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# patch vampire to ignore wooden cards
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired then"
+position = "at"
+match_indent = true
+payload = '''
+-- bof patch
+if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and v.config.center.key ~= "m_bof_wooden" then
+-- patch end
+'''
+
+# hook the game start to clear stale display deck boss predictions from a
+# previous run
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''G.GAME.starting_params = {'''
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+G.GAME.perscribed_bosses = {}
+-- patch end
+'''
+
+# track showdown rerolls for display deck unlock
+# G.GAME.blind isn't reassigned to the upcoming boss until the blind is
+# actually selected (Blind:set_blind is only called from state_events.lua's
+# select-blind transition), so at reroll time it still holds the *previous*
+# round's blind. The pending boss choice lives in
+# G.GAME.round_resets.blind_choices.Boss instead - check that key's
+# P_BLINDS entry, same as Laughing Stock's loc_vars does.
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = '''G.FUNCS.reroll_boss = function(e)'''
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+if G.P_BLINDS and G.GAME.round_resets.blind_choices.Boss and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss] and G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss.showdown then
+    G.GAME.bof_rerolled_showdown = true
+    check_for_unlock({ type = "modify_deck" })
+end
+-- patch end
+'''
+
+# remove base potato chips from lightning deck
+# also irradiated function for disabling base chips
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''return self.base.nominal + self.ability.bonus + (self.ability.perma_bonus or 0)'''
+position = "before"
+match_indent = true
+payload = '''
+-- bof patch
+if (G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lightning") or (G.GAME.blind and G.GAME.blind.name == "The Irradiated" and not G.GAME.blind.disabled) then
+    return self.ability.bonus + (self.ability.perma_bonus or 0)
+end
+-- patch end
+'''
+
+# track if mult scored for lightning unlock
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/game_object.lua"]'''
+position = 'after'
+match_indent = true
+pattern = '''
+if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
+'''
+payload = '''
+-- bof patch
+G.GAME.mult_scored_this_run = true
+-- patch end
+'''

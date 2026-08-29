@@ -1,0 +1,48 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# function to allow booster packs and vouchers to appear in the shop
+# taken directly from entropy with minor changes
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+for _, v in ipairs(SMODS.ConsumableType.obj_buffer) do
+    if not (v == 'Tarot' or v == 'Planet' or v == 'Spectral') then
+        table.insert(rates, { type = v, val = G.GAME[v:lower()..'_rate'] })
+    end
+end
+'''
+position = 'before'
+match_indent = true
+payload = '''
+-- bof patch
+if G.GAME.booster_rate then
+    table.insert(rates, { type = "Booster", val = G.GAME.booster_rate })
+end
+if G.GAME.voucher_rate then
+    table.insert(rates, { type = "Voucher", val = G.GAME.voucher_rate })
+end
+-- patch end
+'''
+
+# prev cont.
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+local args = {set = v.type, area = area, key_append = 'sho', front = false}
+'''
+position = 'after'
+match_indent = true
+payload = '''
+-- bof patch
+if G.GAME.booster_rate then
+    if pseudorandom("bof_shop_booster") < G.GAME.booster_rate / total_rate then args.set = "Booster" end
+end
+if G.GAME.voucher_rate then
+    if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then args.set = "Voucher" end
+end
+-- patch end
+'''

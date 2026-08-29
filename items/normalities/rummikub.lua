@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             chips = 0
         }
     },
-    pos = { x = 7, y = 3 },
+    pos = { x = 2, y = 9 },
     attributes = { "chips", "scaling" },
     cost = 4,
     rarity = 1,
@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
         if context.before then
             local total = 0
             for k, v in pairs(G.play.cards) do
-                total = total + v.base.nominal
+                total = total + v.base.nominal + v.ability.bonus + (v.ability.perma_bonus or 0)
             end
             if total >= card.ability.extra.chips_threshold  then
                 SMODS.scale_card(card, {
@@ -41,7 +41,7 @@ BundlesOfFun.Joker {
             end
         end
         if context.joker_main then
-            return{
+            return {
                 chips = card.ability.extra.chips
             }
         end

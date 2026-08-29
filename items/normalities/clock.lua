@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             active_display = nil
         }
     },
-    pos = { x = 9, y = 3 },
+    pos = { x = 4, y = 9 },
     pixel_size = { h = 87 },
     attributes = { "xmult", "hands" },
     cost = 6,
@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
             if not context.blueprint then
                 G.GAME.bof_total_hands_played = (G.GAME.bof_total_hands_played or 0) + 1
                 if G.GAME.bof_total_hands_played % 2 == 0 then
-                    card.ability.extra.active_display = localize("k_bof_inactive")
+                    card.ability.extra.active_display = localize("k_inactive_el")
                     if not BundlesOfFun.config.custom_sounds then
                         return {
                             xmult = card.ability.extra.xmult
@@ -51,20 +51,20 @@ BundlesOfFun.Joker {
                         }
                     end
                 else
-                    card.ability.extra.active_display = localize("k_bof_active")
+                    card.ability.extra.active_display = localize("k_active_ex")
                     local eval = function()
                         return G.GAME.bof_total_hands_played % 2 == 1
                     end
                     juice_card_until(card, eval, true)
                     return {
-                        message = localize("k_bof_alarm"),
+                        message = localize("k_alarm_ex"),
                         sound = BundlesOfFun.config.custom_sounds and "bof_alarm_wind" or nil
                     }
                 end
             else
                 G.GAME.bof_blueprint_total_hands_played = (G.GAME.bof_total_hands_played or 0) + 1
                 if G.GAME.bof_blueprint_total_hands_played % 2 == 0 then
-                    card.ability.extra.active_display = localize("k_bof_inactive")
+                    card.ability.extra.active_display = localize("k_inactive_el")
                     return {
                         xmult = card.ability.extra.xmult
                     }

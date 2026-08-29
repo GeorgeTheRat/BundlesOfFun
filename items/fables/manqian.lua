@@ -2,8 +2,8 @@ BundlesOfFun.Joker {
     key = "manqian",
     name = "Manqian",
     bundle = "fables",
-    pos = { x = 1, y = 4 },
-    soul_pos = { x = 1, y = 5 },
+    pos = { x = 1, y = 7 },
+    soul_pos = { x = 1, y = 8 },
     attributes = { "xmult", "hand_type" },
     cost = 20,
     rarity = 4,
@@ -33,7 +33,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.initial_scoring_step then
             local most_played = 0
-            local most_played_hand
+            local most_played_hand = "High Card"
             for hand, data in pairs(G.GAME.hands) do
                 if data.played > most_played then
                     most_played = data.played

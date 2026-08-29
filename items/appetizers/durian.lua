@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "durian",
     name = "Durian",
     bundle = "appetizers",
-    pos = { x = 6, y = 0 },
+    pos = { x = 4, y = 0 },
     attributes = { "generation", "tarot", "on_sell", "food" },
     cost = 5,
     rarity = 2,

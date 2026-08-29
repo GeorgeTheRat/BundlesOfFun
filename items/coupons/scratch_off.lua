@@ -2,7 +2,7 @@ BundlesOfFun.Voucher {
     key = "scratch_off",
     name = "Scratch-Off",
     bundle = "coupons",
-    config = { extra = { reroll_count = 6 } },
+    config = { extra = { reroll_count = 3 } },
     pos = { x = 2, y = 0 },
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)

@@ -36,7 +36,7 @@ BundlesOfFun.Back {
                             rank = rank.card_key,
                             area = G.deck,
                             set = "Base",
-                            key_append = "b_bof_embroidered"
+                            key_append = "bof_embroidered"
                         })
                         SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
                     end

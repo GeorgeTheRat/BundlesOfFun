@@ -1,0 +1,71 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+
+# the risk update function to disable rightmost joker at all times
+[[patches]] 
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:update(dt)"
+position = "after"
+match_indent = true
+payload = '''
+-- bof patch
+if G.jokers and self.area == G.jokers and G.GAME and G.GAME.blind and G.GAME.blind.name == "The Risk" and not G.GAME.blind.disabled then
+    local rightmost = self == G.jokers.cards[#G.jokers.cards]
+    if self.debuff ~= rightmost then
+        self:set_debuff(rightmost)
+        if rightmost then
+            self:juice_up()
+            G.GAME.blind:juice_up()
+            play_sound('cancel', 0.7, 0.7)
+        end
+    end
+    if rightmost then
+        G.GAME.bof_risk_joker = self
+    end
+    elseif G.GAME and G.GAME.bof_risk_joker == self and self.debuff then
+        self:set_debuff(false)
+        G.GAME.bof_risk_joker = nil
+    end
+-- patch end
+'''
+
+# hide the skip button (and its reward box) for blinds made unskippable by
+# tiny/particle; delegates to BundlesOfFun.blind_skip_ui defined in lib/hooks.lua
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+position = "at"
+match_indent = true
+pattern = '''
+        not run_info and {n=G.UIT.C, config={align = "cm", colour = G.C.UI.BACKGROUND_INACTIVE, minh = 0.6, minw = 2, maxw = 2, padding = 0.07, r = 0.1, shadow = true, hover = true, one_press = true, button = 'skip_blind', func = 'hover_tag_proxy', ref_table = _tag}, nodes={
+          {n=G.UIT.T, config={text = localize('b_skip_blind'), scale = 0.4, colour = G.C.UI.TEXT_INACTIVE}}
+        }} or {n=G.UIT.C, config={align = "cm", padding = 0.1, emboss = 0.05, colour = mix_colours(G.C.BLUE, G.C.BLACK, 0.4), r = 0.1, maxw = 2}, nodes={
+          {n=G.UIT.T, config={text = localize('b_skip_reward'), scale = 0.35, colour = G.C.WHITE}},
+        }},
+'''
+payload = '''
+-- bof patch
+BundlesOfFun.blind_skip_ui(blind_choice, run_info, _tag),
+-- patch end
+'''
+
+# tiny makes the next Small Blind's real chip requirement larger (applied to
+# G.GAME.blind.chips/chip_text in Blind:set_blind, in lib/hooks.lua), but the
+# blind-select screen computes its own preview amount independently of that,
+# so the preview needs its own adjustment to match what the fight will
+# actually require.
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+position = "after"
+match_indent = true
+pattern = '''
+  local blind_amt = get_blind_amount(G.GAME.round_resets.blind_ante)*blind_choice.config.mult*G.GAME.starting_params.ante_scaling
+'''
+payload = '''
+-- bof patch
+blind_amt = BundlesOfFun.blind_amount_preview(type, blind_amt)
+-- patch end
+'''

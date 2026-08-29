@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Handy Henry",
     bundle = "jesters",
     config = { extra = { extra_hand_bonus = 2 } },
-    pos = { x = 3, y = 2 },
+    pos = { x = 1, y = 2 },
     attributes = { "passive", "economy", "hands" },
     cost = 5,
     rarity = 2,
