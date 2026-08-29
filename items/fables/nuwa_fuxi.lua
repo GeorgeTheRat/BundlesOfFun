@@ -14,79 +14,52 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
     end,
     calculate = function(self, card, context)
-        if G.jokers.cards[1] == card then
-            if context.setting_blind then
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.4,
-                    func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 1 then
+        if G.GAME and G.GAME.bof_nuwa_fuxi_trigger then
+            if G.GAME.bof_nuwa_fuxi_trigger.tarot then
+                G.GAME.bof_nuwa_fuxi_trigger.tarot = nil
+                if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
+                    G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        func = function()
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
-                            SMODS.add_card({
-                                set = "Tarot",
-                                key_append = "f_nuwa_fuxi"
-                            })
-                        end
-                        return true
-                    end
-                }))
-            end
-            if context.blind_defeated then
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.4,
-                    func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
-                            play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
                                 set = "Tarot",
                                 edition = "e_negative",
-                                key_append = "f_nuwa_fuxi"
+                                key_append = "bof_nuwa_fuxi"
                             })
+                            G.GAME.consumeable_buffer = 0
+                            return true
                         end
-                        return true
-                    end
-                }))
+                    }))
+                    return {
+                        message = localize("k_plus_tarot"),
+                        colour = G.C.SECONDARY_SET.Tarot
+                    }
+                end
             end
-        end
-        if G.jokers.cards[#G.jokers.cards] == card then
-            if context.setting_blind then
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.4,
-                    func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
+            if G.GAME.bof_nuwa_fuxi_trigger.spectral then
+                G.GAME.bof_nuwa_fuxi_trigger.spectral = nil
+                if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
+                    G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        func = function()
                             play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
                             SMODS.add_card({
-                                set = "fish_s",
-                                area = G.consumeables,
-                                key_append = "f_nuwa_fuxi"
+                                set = "Spectral",
+                                edition = "e_negative",
+                                key_append = "bof_nuwa_fuxi"
                             })
+                            G.GAME.consumeable_buffer = 0
+                            return true
                         end
-                        return true
-                    end
-                }))
-            end
-            if context.blind_defeated then
-                G.E_MANAGER:add_event(Event({
-                    trigger = "after",
-                    delay = 0.4,
-                    func = function()
-                        if G.consumeables.config.card_limit - #G.consumeables.cards >= 0 then
-                            play_sound("timpani")
-                            card:juice_up(0.3, 0.5)
-                            SMODS.add_card({
-                                set = "fish_b",
-                                area = G.consumeables,
-                                key_append = "f_nuwa_fuxi"
-                            })
-                        end
-                        return true
-                    end
-                }))
+                    }))
+                    return {
+                        message = localize("k_plus_spectral"),
+                        colour = G.C.SECONDARY_SET.Spectral
+                    }
+                end
             end
         end
     end

@@ -1,32 +1,40 @@
 BundlesOfFun.Consumable {
-    key = "trout_s",
-    name = "Rainbow Trout Small",
-    bundle = "minnows",
+    key = "blob_s",
+    name = "Blobfish Small",
+    bundle = "fish",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    pos = { x = 2, y = 0 },
+    pos = { x = 6, y = 0 },
     config = {
         card_limit = 1,
-        extra = {
-            xmult = 1.25,
-            rounds_remaining = 2
-        }
+        extra = { rounds_remaining = 1 }
     },
     cost = 4,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.xmult,
                 card.ability.card_limit,
                 card.ability.extra.rounds_remaining
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
+        if context.joker_main and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    SMODS.add_card {
+                        set = "Planet",
+                        key_append = "bof_blob_s"
+                    }
+                    G.GAME.consumeable_buffer = 0
+                    return true
+                end
+            }))
             return {
-                xmult = card.ability.extra.xmult
+                message = localize("k_plus_planet"),
+                colour = G.C.SECONDARY_SET.Planet
             }
         end
         if context.end_of_round and context.main_eval and not context.repetition then

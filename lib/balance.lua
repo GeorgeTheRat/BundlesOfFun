@@ -27,60 +27,72 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
     if key ~= "bof_balance_percent" then
         return bof_original_smods_calculate_effect(effect, scored_card, key, amount, from_edition)
     end
-    if amount > 1 then
-        amount = 1
+    if amount > 100 then
+        amount = 100
     end
     if effect.card and effect.card ~= scored_card then
         juice_card(effect.card)
     end
-    local new_hand_chips, new_mult = calculate_balance_percent_values(hand_chips, mult, amount)
+    local new_hand_chips, new_mult = calculate_balance_percent_values(hand_chips, mult, amount / 100)
     SMODS.Scoring_Parameters.chips:modify(new_hand_chips - hand_chips)
     SMODS.Scoring_Parameters.mult:modify(new_mult - mult)
-    local text = "Balanced " .. (amount * 100) .. "%"
+    local text = "Balanced " .. amount .. "%"
     
-    -- apply plasma color effect
+    -- apply plasma color effect with vanilla sounds
     G.E_MANAGER:add_event(Event({
-        trigger = "immediate",
-        func = (function()
-            ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount))
-            ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount))
+        func = function()
+            local pitch = 1 + (amount / 100 - 1) * 0.3
+            play_sound("gong", 0.94 * pitch, 0.3)
+            play_sound("gong", 0.94 * 1.5 * pitch, 0.2)
+            play_sound("tarot1", 1.5)
+            ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount / 100))
+            ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount / 100))
             if not bof_balance_mixed then
                 bof_balance_mixed = true
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
+                    trigger = "after",
                     blockable = false,
                     blocking = false,
-                    delay = 6.3,
-                    func = (function()
-                        if G.STATE ~= 2 then
-                            ease_colour(G.C.UI_CHIPS, G.C.BLUE, 2)
-                            ease_colour(G.C.UI_MULT, G.C.RED, 2)
-                            bof_balance_mixed = false
-                            return true
-                        end
-                    end)
+                    delay = 0.8,
+                    func = function()
+                        ease_colour(G.C.UI_CHIPS, G.C.BLUE, 0.8)
+                        ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
+                        return true
+                    end
+                }))
+                G.E_MANAGER:add_event(Event({
+                    trigger = "after",
+                    blockable = false,
+                    blocking = false,
+                    no_delete = true,
+                    delay = 1.3,
+                    func = function()
+                        G.C.UI_CHIPS[1], G.C.UI_CHIPS[2], G.C.UI_CHIPS[3], G.C.UI_CHIPS[4] = G.C.BLUE[1], G.C.BLUE[2], G.C.BLUE[3], G.C.BLUE[4]
+                        G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
+                        bof_balance_mixed = false
+                        return true
+                    end
                 }))
             end
             return true
-        end)
+        end
     }))
     if not effect.remove_default_message then
         if from_edition then
-            card_eval_status_text(scored_card, "jokers", nil, amount, nil, {
+            card_eval_status_text(scored_card, "jokers", nil, amount / 100, nil, {
                 message = text,
                 colour = G.C.PLASMA,
-                sound = "gong",
                 edition = true
             })
         else
             card_eval_status_text(
-                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, "extra", nil, amount, nil, {
+                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, "extra", nil, amount / 100, nil, {
                     message = text,
-                    colour = G.C.PLASMA,
-                    sound = "gong"
+                    colour = G.C.PLASMA
                 }
             )
         end
     end
+    delay(0.6)
     return true
 end

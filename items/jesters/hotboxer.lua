@@ -34,7 +34,7 @@ BundlesOfFun.Joker({
 		if context.buying_card and context.card.ability.set == "Tarot" then
 			card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
 			return {
-				message = localize("k_bof_val_down"),
+				message = localize("k_val_down_ex"),
 				colour = G.C.RED
 			}
 		end

@@ -1,0 +1,14 @@
+-- todo: implement logic
+-- BundlesOfFun.Joker {
+--     key = "billy_bass",
+--     name = "Billy Bass",
+--     bundle = { "normalities", { "fish" } },
+--     pos = { x = 9, y = 9 },
+--     attributes = { "retrigger", "fish" },
+--     cost = 8,
+--     rarity = 2,
+--     blueprint_compat = true,
+--     atlas = "joker",
+--     calculate = function(self, card, context)
+--     end
+-- }

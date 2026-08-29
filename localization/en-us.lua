@@ -178,8 +178,8 @@ return {
                 name = "Fried Shrimp",
                 text = {
                     "The next {C:attention}#1#{} Booster Pack#<s>1# opened",
-                    "#<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} card and a",
-                    "{C:white,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
+                    "#<have,has>1# a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card and a",
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
                 }
             },
             j_bof_melon = {
@@ -279,8 +279,21 @@ return {
                     },
                     {
                         "{C:fish}Tackle Packs{} always contain",
-                        "only {C:white,X:big}Big{} {C:fish}Fish{} cards"
-                    }
+                        "only {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
+                    },
+                    -- {
+                    --     "{C:attention}Unenhanced{} cards in",
+                    --     "{C:attention}Standard Packs{} become {C:attention}Wooden{}"
+                    -- }
+                }
+            },
+            j_bof_matey = {
+                name = "Matey",
+                text = {
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
+                    "into their respective",
+                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
+                    "instead of expiring"
                 }
             },
             j_bof_timmy = {
@@ -732,6 +745,31 @@ return {
                     "create a random {C:planet}Planet{} card"
                 }
             },
+            j_bof_billy_bass = {
+                name = "Big Mouth Billy Bass",
+                text = {
+                    "Retrigger all {C:attention}held{}",
+                    "{C:fish}Fish{} card abilities"
+                }
+            },
+            j_bof_fish_bowl = {
+                name = "Fish in a Bowl",
+                text = {
+                    "Gains {C:money}$#1#{} of sell value",
+                    "at end of round",
+                    "{C:green}#2# in #3#{} chance to {C:red}die{} instead,",
+                    "retaining this Joker's {C:attention}sell value"
+                }
+            },
+            j_bof_dead_fish_bowl = {
+                name = "Dead Fish in a Bowl",
+                text = {
+                    "Creates a {C:white,E:1,X:small}Small{} {C:attention}Goldfish{} and loses",
+                    "{C:money}$#1#{} of sell value at end of round",
+                    "This card is {C:red}destroyed{} when",
+                    "its {C:attention}sell value{} reaches {C:money}$#2#"
+                }
+            },
             -- Fables
             j_bof_narr = {
                 name = "Narr",
@@ -813,15 +851,12 @@ return {
                 name = "Nüwa & Fuxi",
                 text = {
                     {
-                        "Create a random {C:tarot}Tarot{} card when {C:attention}Blind{} is selected and",
-                        "a random {C:dark_edition}Negative {C:tarot}Tarot{} card when {C:attention}Blind{} is defeated",
-                        "if this is the {C:attention}leftmost{} Joker",
-                        "{C:inactive}(Must have room)"
+                        "Create a {C:dark_edition}Negative {C:tarot}Tarot{} card",
+                        "when a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card expires"
                     },
                     {
-                        "Create a random {C:white,X:small}Small{} {C:fish}Fish{} card when {C:attention}Blind{} is selected",
-                        "and a random {C:white,X:big}Big{} {C:fish}Fish{} card when {C:attention}Blind{} is defeated",
-                        "if this is the {C:attention}rightmost{} Joker"
+                        "Create a {C:dark_edition}Negative {C:spectral}Spectral{} card",
+                        "when a {C:white,E:1,X:big}Big{} {C:fish}Fish{} card expires"
                     }
                 },
                 unlock = {
@@ -958,6 +993,18 @@ return {
                     "{C:attention}suit{} in deck"
                 }
             },
+            b_bof_scaly = {
+                name = "Scaly Deck",
+                text = {
+                    "Start run with the",
+                    "{C:attention,T:v_bof_ice_bucket}Ice Bucket{} voucher and",
+                    "{C:attention}2{} copies of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
+                },
+                unlock = {
+                    "Discover a",
+                    "{C:white,E:1,X:legendary}Legendary{} {C:fish}Fish{} card"
+                }
+            },
             b_bof_retro = {
                 name = "Retro Deck",
                 text = {
@@ -1059,12 +1106,47 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_goldfish_s = {
+            c_bof_gold_s = {
                 name = "Goldfish {X:small}Small",
                 text = {
                     "Earn {C:money}$#1#{} when hand played,",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_koi_s = {
+                name = "Koi {X:small}Small",
+                text = {
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_clown_s = {
+                name = "Clownfish {X:small}Small",
+                text = {
+                    "Create a {C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_blob_s = {
+                name = "Blobfish {X:small}Small",
+                text = {
+                    "Create a {C:planet}Planet{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_octopus_s = {
+                name = "Octopus {X:small}Small",
+                text = {
+                    "Create a {C:white,E:1,X:small}Small{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
                 }
             },
             c_bof_bass_b = {
@@ -1091,7 +1173,7 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
-            c_bof_goldfish_b = {
+            c_bof_gold_b = {
                 name = "Goldfish {X:big}Big",
                 text = {
                     "Earn {C:money}$#1#{} when hand played,",
@@ -1099,11 +1181,46 @@ return {
                     "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
+            c_bof_koi_b = {
+                name = "Koi {X:big}Big",
+                text = {
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
+                    "{C:inactive}#3# round#<s>3# remaining..."
+                }
+            },
+            c_bof_clown_b = {
+                name = "Clownfish {X:big}Big",
+                text = {
+                    "Create an {C:uncommon}Uncommon{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_blob_b = {
+                name = "Blobfish {X:big}Big",
+                text = {
+                    "Create a {C:tarot}Tarot{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:inactive}#2# round#<s>2# remaining..."
+                }
+            },
+            c_bof_octopus_b = {
+                name = "Octopus {X:big}Big",
+                text = {
+                    "Create a {C:white,E:1,X:big}Big{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
+                }
+            },
             c_bof_bass_l = {
                 name = "Largemouth Bass {X:legendary}Legendary",
                 text = {
-                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number",
-                    "of chips that {C:attention}all cards{} in deck add to,",
+                    "Gives {C:chips}+Chips{} equal to the {C:attention}total{} number of",
+                    "chips that {C:attention}numbered cards{} in deck add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 },
                 unlock = {
@@ -1133,7 +1250,7 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            c_bof_goldfish_l = {
+            c_bof_gold_l = {
                 name = "Goldfish {X:legendary}Legendary",
                 text = {
                     "Earn money equal to the",
@@ -1144,7 +1261,51 @@ return {
                 unlock = {
                     "{E:1,s:1.3}?????",
                 }
-            }
+            },
+            c_bof_koi_l = {
+                name = "Koi {X:legendary}Legendary",
+                text = {
+                    "Balance {C:chips}Chips{} and {C:mult}Mult{},",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_clown_l = {
+                name = "Clownfish {X:legendary}Legendary",
+                text = {
+                    "Create a non-{C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_blob_l = {
+                name = "Blobfish {X:legendary}Legendary",
+                text = {
+                    "Create a {C:spectral}Spectral{} card when hand played,",
+                    "{C:inactive,s:0.8}(Must have room)",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_octopus_l = {
+                name = "Octopus {X:legendary}Legendary",
+                text = {
+                    "Create a {C:white,E:1,X:legendary}Legendary{} copy of",
+                    "the next expired {C:fish}Fish{} card,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held",
+                    "{C:red,E:2}self destructs"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
         },
         -- coupons
         Voucher = {
@@ -1429,14 +1590,14 @@ return {
                 name = "Fry Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:white,X:small}Small{} {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:white,E:1,X:small}Small{} {C:fish}Fish{} cards"
                 }
             },
             p_bof_hooked = {
                 name = "Hooked Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:white,X:big}Big{} {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
                 }
             },
             k_bof_perkeo_legendary = {
@@ -1476,11 +1637,15 @@ return {
             k_alarm_ex = "Alarm Set!",
             k_erased_ex = "Erased!",
             k_sticker_ex = "Sticker Applied!",
-            k_bof_val_down = "Value Down!",
+            k_val_down_ex = "Value Down!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
+            k_plus_fish = "+1 Fish",
+            k_expired_ex = "Expired!",
+            k_fish_q = "Fish?",
+
             bl_bof_square = "Must contain 4 scoring cards",
             bl_bof_terminal = "Last scored rank is debuffed",
             bof_most_common_suit = "(most common suit in deck)",

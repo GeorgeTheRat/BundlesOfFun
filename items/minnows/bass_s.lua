@@ -9,7 +9,7 @@ BundlesOfFun.Consumable {
         card_limit = 1,
         extra = {
             chips = 30,
-            rounds_remaining = 2
+            rounds_remaining = 4
         }
     },
     cost = 4,
@@ -38,7 +38,7 @@ BundlesOfFun.Consumable {
             else
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
-                    message = localize("k_eaten_ex")
+                    message = localize("k_expired_ex")
                 }
             end
         end

@@ -137,7 +137,8 @@ local files = {
             "printed",
             "hooked",
             "hypnotic",
-            "band"
+            "band",
+            "matey"
         }, directory = "items/jesters/"
     },
     normalities = {
@@ -147,10 +148,13 @@ local files = {
             "rummikub",
             "passport",
             "clock",
-            "keyboard",
             "gnome",
             "ticket",
-            "astrolabe"
+            "astrolabe",
+            -- "billy_bass",
+            "fish_bowl",
+            "dead_fish_bowl",
+            "keyboard"
         }, directory = "items/normalities/"
     },
     fables = {
@@ -178,7 +182,8 @@ local files = {
             "retro",
             "soapy",
             "display",
-            "lightning"
+            "lightning",
+            "scaly"
         }, directory = "items/flats/"
     },
     minnows = {
@@ -186,15 +191,27 @@ local files = {
             "bass_s",
             "betta_s",
             "trout_s",
-            "goldfish_s",
+            "gold_s",
+            "koi_s",
+            "clown_s",
+            "blob_s",
+            "octopus_s",
             "bass_b",
             "betta_b",
             "trout_b",
-            "goldfish_b",
+            "gold_b",
+            "koi_b",
+            "clown_b",
+            "blob_b",
+            "octopus_b",
             "bass_l",
             "betta_l",
             "trout_l",
-            "goldfish_l",
+            "gold_l",
+            "koi_l",
+            "clown_l",
+            "blob_l",
+            "octopus_l",
             "tackle_normal_1",
             "tackle_normal_2",
             "tackle_jumbo_1",

@@ -28,7 +28,7 @@ BundlesOfFun.Joker {
         if context.joker_main then
             if card.ability.extra.balance > 0 then
                 return {
-                    bof_balance_percent = card.ability.extra.balance * 0.01
+                    bof_balance_percent = card.ability.extra.balance
                 }
             end
         end

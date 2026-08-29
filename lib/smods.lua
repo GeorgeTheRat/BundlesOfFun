@@ -27,6 +27,13 @@ SMODS.Atlas({
 })
 
 SMODS.Atlas({
+    key = "matey_alt", 
+    path = "matey_alt.png", 
+    px = 71,
+    py = 95, 
+})
+
+SMODS.Atlas({
     key = "deck", 
     path = "deck.png", 
     px = 71,
@@ -142,7 +149,7 @@ SMODS.ConsumableType({
     key = "Fish",
     primary_colour = { 1.0, 0.6, 0.7, 1 },
     secondary_colour = { 1.0, 0.6, 0.7, 1 },
-    collection_rows = { 2, 2 },
+    collection_rows = { 4, 4 },
     shop_rate = 0,
     select_card = "consumeables",
     default = "c_bof_bass_s",

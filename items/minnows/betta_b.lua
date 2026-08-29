@@ -4,12 +4,12 @@ BundlesOfFun.Consumable {
     bundle = "minnows",
     set = "Fish",
     pools = { ["fish_b"] = true },
-    pos = { x = 4, y = 0 },
+    pos = { x = 1, y = 1 },
     config = {
         card_limit = 1,
         extra = {
             mult = 10,
-            rounds_remaining = 3
+            rounds_remaining = 4
         }
     },
     cost = 6,
@@ -37,9 +37,11 @@ BundlesOfFun.Consumable {
                 }
             else
                 SMODS.destroy_cards(card, { pinch_anim = true })
-                return {
-                    message = localize("k_eaten_ex")
-                }
+                if not card.ability.bof_matey_transforming then
+                    return {
+                        message = localize("k_expired_ex")
+                    }
+                end
             end
         end
     end

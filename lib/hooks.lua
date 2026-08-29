@@ -236,6 +236,71 @@ SMODS.Booster:take_ownership_by_kind("Spectral", {
 		return _card
     end
 }, true)
+-- todo: make it so that this code just like actually works
+-- SMODS.Booster:take_ownership_by_kind("Standard", {
+--     update_pack = function(self, dt)
+--         local state_wasnt_complete = not G.STATE_COMPLETE
+--         SMODS.Booster.update_pack(self, dt)
+--         if next(SMODS.find_card("j_bof_eureka")) and state_wasnt_complete and G.pack_cards and G.pack_cards.cards then
+--             local unenhanced_cards = {}
+--             for i, c in ipairs(G.pack_cards.cards) do
+--                 if next(SMODS.get_enhancements(c)) == nil then
+--                     table.insert(unenhanced_cards, c)
+--                 end
+--             end
+--             if #unenhanced_cards > 0 then
+--                 G.E_MANAGER:add_event(Event({
+--                     trigger = "immediate",
+--                     func = function()
+--                         play_sound("tarot1")
+--                         for _, c in ipairs(unenhanced_cards) do
+--                             c:juice_up(0.3, 0.5)
+--                         end
+--                         return true
+--                     end
+--                 }))
+--                 for i, c in ipairs(unenhanced_cards) do
+--                     local percent = 1.15 - (i - 0.999) / (#unenhanced_cards - 0.998) * 0.3
+--                     G.E_MANAGER:add_event(Event({
+--                         trigger = "after",
+--                         delay = 0.15,
+--                         func = function()
+--                             c:flip()
+--                             play_sound("card1", percent)
+--                             c:juice_up(0.3, 0.3)
+--                             return true
+--                         end
+--                     }))
+--                 end
+--                 delay(0.2)
+--                 for i, c in ipairs(unenhanced_cards) do
+--                     G.E_MANAGER:add_event(Event({
+--                         trigger = "after",
+--                         delay = 0.1,
+--                         func = function()
+--                             c:set_ability("m_bof_wooden")
+--                             return true
+--                         end
+--                     }))
+--                 end
+--                 for i, c in ipairs(unenhanced_cards) do
+--                     local percent = 0.85 + (i - 0.999) / (#unenhanced_cards - 0.998) * 0.3
+--                     G.E_MANAGER:add_event(Event({
+--                         trigger = "after",
+--                         delay = 0.15,
+--                         func = function()
+--                             c:flip()
+--                             play_sound("tarot2", percent, 0.6)
+--                             c:juice_up(0.3, 0.3)
+--                             return true
+--                         end
+--                     }))
+--                 end
+--                 delay(0.5)
+--             end
+--         end
+--     end
+-- }, true)
 
 -- wooden deck effect
 local original_back_apply_to_run = Back.apply_to_run
@@ -311,11 +376,15 @@ function Back:load(backTable)
 end
 
 -- fossilized deck: re-check unlock whenever consumable slots change
+-- scaly deck: unlock when legendary fish is discovered
 local original_consumeable_emplace = CardArea.emplace
 function CardArea:emplace(card, location, stay_flipped)
     local ret = original_consumeable_emplace(self, card, location, stay_flipped)
     if G.consumeables and self == G.consumeables then
         check_for_unlock({ type = "bof_consumable_held" })
+        if card and card.config and card.config.center and card.config.center.key and card.config.center.key:match("_l$") then
+            check_for_unlock({ b_bof_scaly = true })
+        end
     end
     return ret
 end
@@ -363,6 +432,8 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
+    G.GAME.bof_octopus_triggered = nil
+    G.GAME.bof_nuwa_fuxi_trigger = nil
     G.GAME.bof_nerd_guarantee_rare = nil
     G.GAME.bof_tiny_active = nil
     G.GAME.bof_tiny_scaled_ante = nil
@@ -379,6 +450,15 @@ function Game:start_run(arg)
     G.GAME.bof_rerolled_showdown = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
+end
+
+-- reset octopus tracking at start of each round
+local original_game_start_round = Game.start_round
+function Game:start_round()
+    G.GAME.bof_octopus_claimed_fish = nil
+    G.GAME.bof_octopus_triggered = nil
+    G.GAME.bof_nuwa_fuxi_trigger = nil
+    return original_game_start_round and original_game_start_round(self)
 end
 
 -- tiny: the blind-select screen preview (used by the lovely/enemies.toml
@@ -708,11 +788,13 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     return create_card_ref(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
--- continuation of hotboxer
 -- ice bucket and buried treasure logic
 local function bof_apply_fish_voucher_state(card)
-    if not card or not card.ability or card.ability.set ~= "Fish" or type(card.ability.extra) ~= "table" then
+    if not card or not card.ability or card.ability.set ~= "Fish" then
         return
+    end
+    if type(card.ability.extra) ~= "table" then
+        card.ability.extra = {}
     end
     local extra_rounds = BOF.nc(G.GAME, "bof_fish_extra_rounds") or 0
     local extra_slots = BOF.nc(G.GAME, "bof_fish_extra_consumable_slots") or 0
@@ -736,6 +818,8 @@ function Card:set_ability(center, initial, delay_sprites)
     original_card_set_ability(self, center, initial, delay_sprites)
     bof_apply_fish_voucher_state(self)
 end
+
+-- continuation of hotboxer
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and t.area == G.shop_jokers and t.set ~= "Tarot" then
@@ -760,6 +844,8 @@ function SMODS.create_card(t)
     bof_apply_fish_voucher_state(card)
     return card
 end
+
+-- continuation of ice bucket and buried treasure
 local original_card_add_to_deck = Card.add_to_deck
 function Card:add_to_deck(from_debuff)
     local was_added = not self.added_to_deck
@@ -1375,11 +1461,108 @@ G.FUNCS.discard_cards_from_highlighted = function(e, hook)
 end
 
 -- track fish expiration for buried treasure unlock
+-- octopus trigger/general logic
+-- todo: make it so that the messages from octopus trigger immediately after the fish it copies
+-- matey: big fish transform to small fish
+-- nuwa & fuxi: track fish expiration for card creation
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)
     if card and card.ability and card.ability.set == "Fish" then
+        local fish_key = card.config.center.key
+        local is_big_fish = fish_key:match("_b$")
+        local is_small_fish = fish_key:match("_s$")
+        local is_octopus = fish_key:match("octopus")
+        
+        if is_big_fish and next(SMODS.find_card("j_bof_matey")) then
+            card.ability.bof_matey_transforming = true
+            local small_fish_key = fish_key:sub(1, -3) .. "_s"
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.1,
+                func = function()
+                    play_sound("tarot1")
+                    card:juice_up(0.3, 0.5)
+                    for _, matey in ipairs(SMODS.find_card("j_bof_matey")) do
+                        matey:juice_up(0.3, 0.5)
+                    end
+                    return true
+                end
+            }))
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.15,
+                func = function()
+                    card:flip()
+                    play_sound("card1", 1)
+                    card:juice_up(0.3, 0.3)
+                    return true
+                end
+            }))
+            delay(0.2)
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.1,
+                func = function()
+                    card:set_ability(small_fish_key)
+                    card.ability.bof_matey_transforming = nil
+                    return true
+                end
+            }))
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.15,
+                func = function()
+                    card:flip()
+                    play_sound("tarot2", 1, 0.6)
+                    card:juice_up(0.3, 0.3)
+                    return true
+                end
+            }))
+            return true
+        end
+        
         G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
         check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
+        
+        if is_small_fish then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.GAME.bof_small_fish_expired = (G.GAME.bof_small_fish_expired or 0) + 1
+                    G.GAME.bof_nuwa_fuxi_trigger = G.GAME.bof_nuwa_fuxi_trigger or {}
+                    G.GAME.bof_nuwa_fuxi_trigger.tarot = true
+                    return true
+                end
+            }))
+        end
+        if is_big_fish then
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    G.GAME.bof_big_fish_expired = (G.GAME.bof_big_fish_expired or 0) + 1
+                    G.GAME.bof_nuwa_fuxi_trigger = G.GAME.bof_nuwa_fuxi_trigger or {}
+                    G.GAME.bof_nuwa_fuxi_trigger.spectral = true
+                    return true
+                end
+            }))
+        end
+
+        
+        G.GAME.bof_octopus_triggered = G.GAME.bof_octopus_triggered or {}
+        for _, octopus in ipairs(G.consumeables.cards) do
+            if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not is_octopus then
+                G.GAME.bof_octopus_triggered[octopus] = true
+                G.E_MANAGER:add_event(Event({
+                    trigger = "immediate",
+                    func = function()
+                        local effect = octopus.config.center.trigger(octopus, fish_key)
+                        if effect then
+                            SMODS.calculate_effect(effect, octopus)
+                        end
+                        G.GAME.bof_octopus_triggered[octopus] = nil
+                        return true
+                    end
+                }))
+            end
+        end
     end
     return original_smods_destroy_cards(card, args)
 end

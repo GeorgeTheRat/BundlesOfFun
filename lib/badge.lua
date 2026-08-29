@@ -1,5 +1,3 @@
--- todo: make cool disabled bundle color thing update live instead of on game restart
-
 -- bundle information: names and colors
 -- i'm smart i know that word
 -- pneumonoultramicroscopicsilicovolcanoconiosis
