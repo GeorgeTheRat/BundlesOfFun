@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "candy",
-    name = "Pocket Candy",
+    key = "gnocchi",
+    name = "Gnocchi",
     bundle = "appetizers",
     config = { extra = { blinds = 3 } },
     pos = { x = 6, y = 0 },

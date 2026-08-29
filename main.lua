@@ -83,7 +83,7 @@ local files = {
             "leek",
             "durian",
             "macarons",
-            "candy",
+            "gnocchi",
             "apple",
             "core",
             "tomatoes",

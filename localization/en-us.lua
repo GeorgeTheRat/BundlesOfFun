@@ -141,8 +141,8 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_candy = {
-                name = "Pocket Candy",
+            j_bof_gnocchi = {
+                name = "Gnocchi",
                 text = {
                     "The next {C:attention}#1# Blind#<s>1#{} skipped,",
                     "create a {C:attention}Juggle Tag"
