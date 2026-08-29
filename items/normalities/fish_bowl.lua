@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             odds = 3
         }
     },
-    pos = { x = 3, y = 6 },
+    pos = { x = 0, y = 10 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "chance", "fish" },
     cost = 5,
@@ -57,7 +57,7 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
-                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_bof_expired") })
+                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_expired_ex") })
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.15,

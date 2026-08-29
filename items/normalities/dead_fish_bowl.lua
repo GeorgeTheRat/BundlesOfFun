@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = false
         }
     },
-    pos = { x = 4, y = 6 },
+    pos = { x = 1, y = 10 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "fish" },
     cost = 1,
@@ -57,7 +57,7 @@ BundlesOfFun.Joker {
         if card.sell_cost <= card.ability.extra.destroy and not card.ability.extra.gonna_go then
             card.ability.extra.gonna_go = true
             SMODS.destroy_cards(card, { pinch_anim = true })
-            card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_bof_expired") })
+            card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_expired_ex") })
         end
     end,
     remove_from_deck = function(self, card, context)

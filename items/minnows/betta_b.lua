@@ -39,7 +39,7 @@ BundlesOfFun.Consumable {
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 if not card.ability.bof_matey_transforming then
                     return {
-                        message = localize("k_bof_expired")
+                        message = localize("k_expired_ex")
                     }
                 end
             end
