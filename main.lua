@@ -293,3 +293,7 @@ end
 for _, name in ipairs(files["coupons"].list) do
     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
 end
+
+for _, name in ipairs(files["enemies"].list) do
+    assert(SMODS.load_file(files["enemies"].directory .. name .. ".lua"))()
+end
