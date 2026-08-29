@@ -105,29 +105,29 @@ end
 '''
 
 # make it so that fossilized can display the negative consumable {T:}
-[[patches]]
-[patches.pattern]
-target = '''=[SMODS _ "src/utils.lua"]'''
-pattern = '''
-T.vars = {}
-'''
-position = "after"
-match_indent = true
-payload = '''
--- bof patch
-T.config = part.control.T_config_extra and {extra = part.control.T_config_extra}
--- patch end
-'''
-[[patches]]
-[patches.pattern]
-target = '''=[SMODS _ "src/utils/run_select.lua"]'''
-pattern = '''
-key = part.control.T,
-'''
-position = "after"
-match_indent = true
-payload = '''
--- bof patch
-config = part.control.T_config_extra and {extra = part.control.T_config_extra},
--- patch end
-'''
+# [[patches]]
+# [patches.pattern]
+# target = '''=[SMODS _ "src/utils.lua"]'''
+# pattern = '''
+# T.vars = {}
+# '''
+# position = "after"
+# match_indent = true
+# payload = '''
+# -- bof patch
+# T.config = part.control.T_config_extra and {extra = part.control.T_config_extra}
+# -- patch end
+# '''
+# [[patches]]
+# [patches.pattern]
+# target = '''=[SMODS _ "src/utils/run_select.lua"]'''
+# pattern = '''
+# key = part.control.T,
+# '''
+# position = "after"
+# match_indent = true
+# payload = '''
+# -- bof patch
+# config = part.control.T_config_extra and {extra = part.control.T_config_extra},
+# -- patch end
+# '''
