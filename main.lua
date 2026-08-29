@@ -133,7 +133,7 @@ local files = {
             "jocker",
             "postman",
             "satanist",
-            "doctor",
+            -- "doctor",
             "printed",
             "hooked",
             "hypnotic",
