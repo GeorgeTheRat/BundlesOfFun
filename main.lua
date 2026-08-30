@@ -151,10 +151,10 @@ local files = {
             "gnome",
             "ticket",
             "astrolabe",
+            "keyboard",
             -- "billy_bass",
             "fish_bowl",
-            "dead_fish_bowl",
-            "keyboard"
+            "dead_fish_bowl"
         }, directory = "items/normalities/"
     },
     fables = {
