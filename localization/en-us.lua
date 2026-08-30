@@ -1125,7 +1125,8 @@ return {
             c_bof_clown_s = {
                 name = "Clownfish {X:small}Small",
                 text = {
-                    "Create a {C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "Create a {C:common}Common{} {C:attention}Joker",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
@@ -1134,7 +1135,8 @@ return {
             c_bof_blob_s = {
                 name = "Blobfish {X:small}Small",
                 text = {
-                    "Create a {C:planet}Planet{} card when hand played,",
+                    "Create a {C:planet}Planet{} card",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
@@ -1192,7 +1194,8 @@ return {
             c_bof_clown_b = {
                 name = "Clownfish {X:big}Big",
                 text = {
-                    "Create an {C:uncommon}Uncommon{} {C:attention}Joker{} when hand played,",
+                    "Create an {C:uncommon}Uncommon{} {C:attention}Joker",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
@@ -1201,7 +1204,8 @@ return {
             c_bof_blob_b = {
                 name = "Blobfish {X:big}Big",
                 text = {
-                    "Create a {C:tarot}Tarot{} card when hand played,",
+                    "Create a {C:tarot}Tarot{} card",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held",
                     "{C:inactive}#2# round#<s>2# remaining..."
