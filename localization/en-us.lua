@@ -1275,7 +1275,8 @@ return {
             c_bof_clown_l = {
                 name = "Clownfish {X:legendary}Legendary",
                 text = {
-                    "Create a non-{C:common}Common{} {C:attention}Joker{} when hand played,",
+                    "Create a non-{C:common}Common{} {C:attention}Joker",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 },
@@ -1286,7 +1287,8 @@ return {
             c_bof_blob_l = {
                 name = "Blobfish {X:legendary}Legendary",
                 text = {
-                    "Create a {C:spectral}Spectral{} card when hand played,",
+                    "Create a random {C:attention}consumable",
+                    "when hand played,",
                     "{C:inactive,s:0.8}(Must have room)",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 },
