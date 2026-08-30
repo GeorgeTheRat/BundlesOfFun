@@ -1,6 +1,5 @@
 [manifest]
 version = "1.0.0"
-dump_lua = true
 
 # function to allow booster packs and vouchers to appear in the shop
 # taken directly from entropy with minor changes

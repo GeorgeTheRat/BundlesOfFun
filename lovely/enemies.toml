@@ -1,6 +1,5 @@
 [manifest]
 version = "1.0.0"
-dump_lua = true
 
 # the risk update function to disable rightmost joker at all times
 [[patches]] 

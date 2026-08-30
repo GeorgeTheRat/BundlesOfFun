@@ -1,6 +1,5 @@
 [manifest]
 version = "1.0.0"
-dump_lua = true
 
 # save boss list for passport to mess with
 [[patches]]

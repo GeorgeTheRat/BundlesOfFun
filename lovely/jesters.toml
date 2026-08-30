@@ -1,6 +1,5 @@
 [manifest]
 version = "1.0.0"
-dump_lua = true
 
 # super joker custom context.bof_emergency call
 [[patches]]

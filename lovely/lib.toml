@@ -1,7 +1,6 @@
 [manifest]
 version = "1.0.0"
-priority = -42069
-dump_lua = true
+priority = -3
 
 # lang mod (pluralization & ordinalization) for older smods
 # right from cryptid
