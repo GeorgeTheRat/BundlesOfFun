@@ -149,9 +149,9 @@ local files = {
             "passport",
             "clock",
             "gnome",
+            "keyboard",
             "ticket",
             "astrolabe",
-            "keyboard",
             -- "billy_bass",
             "fish_bowl",
             "dead_fish_bowl"

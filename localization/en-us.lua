@@ -287,15 +287,6 @@ return {
                     -- }
                 }
             },
-            j_bof_matey = {
-                name = "Matey",
-                text = {
-                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
-                    "into their respective",
-                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
-                    "instead of expiring"
-                }
-            },
             j_bof_timmy = {
                 name = "Youngster Timmy",
                 text={
@@ -568,6 +559,14 @@ return {
                     }
                 }
             },
+            j_bof_nerd = {
+                name = "Nerd",
+                text = {
+                    "Every {C:attention}#<o>1# {C:inactive}[#2#]{} reroll in",
+                    "the shop is {C:green,E:1}guaranteed",
+                    "to contain a {C:rare}Rare {C:attention}Joker"
+                }
+            },
             j_bof_jocker = {
                 name = "Jocker",
                 text = {
@@ -580,14 +579,6 @@ return {
                         "{C:rare}Rare {C:attention}Jokers{} cost",
                         "{C:attention}double{} in the shop"
                     }
-                }
-            },
-            j_bof_nerd = {
-                name = "Nerd",
-                text = {
-                    "Every {C:attention}#<o>1# {C:inactive}[#2#]{} reroll in",
-                    "the shop is {C:green,E:1}guaranteed",
-                    "to contain a {C:rare}Rare {C:attention}Joker"
                 }
             },
             j_bof_postman = {
@@ -611,8 +602,7 @@ return {
             j_bof_doctor = {
                 name = "Doctor",
                 text = {
-                    "Create a non-{C:rare}Rare{} Joker",
-                    "when a card is {C:attention}Enhanced"
+                    ""
                 }
             },
             j_bof_printed = {
@@ -645,6 +635,15 @@ return {
                     "All played cards give",
                     "{C:mult}+#1#{} Mult when scored if",
                     "played hand is a {C:attention}High Card{}"
+                }
+            },
+            j_bof_matey = {
+                name = "Matey",
+                text = {
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
+                    "into their respective",
+                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
+                    "instead of expiring"
                 }
             },
             -- Normalities
