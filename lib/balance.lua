@@ -1,8 +1,10 @@
--- register custom calculation key for balance effect
+-- register custom calculation keys for balance effects
 table.insert(SMODS.calculation_keys, "bof_balance_percent")
+table.insert(SMODS.calculation_keys, "bof_unbalance_percent")
 if SMODS.other_calculation_keys then
     table.insert(SMODS.other_calculation_keys, "bof_balance_percent")
-end 
+    table.insert(SMODS.other_calculation_keys, "bof_unbalance_percent")
+end
 
 -- track color mixing state and original function
 local bof_balance_mixed = false
@@ -22,23 +24,41 @@ function calculate_balance_percent_values(input_hand_chips, input_mult, percent)
     return new_hand_chips, new_mult
 end
 
--- handle balance percent calculation with visual effects
+-- unbalance chips and mult away from their average
+function calculate_unbalance_percent_values(input_hand_chips, input_mult, percent)
+    local high = math.max(input_hand_chips, input_mult)
+    local low = math.min(input_hand_chips, input_mult)
+    local transfer = (low * percent) / 2
+    high = high + transfer
+    low = low - transfer
+    high = math.floor(high + 0.5)
+    low = math.floor(low + 0.5)
+    low = math.max(1, low)
+    if input_hand_chips >= input_mult then
+        return high, low
+    else
+        return low, high
+    end
+end
+
+-- handle balance percent calculations with visual effects
 SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
-    if key ~= "bof_balance_percent" then
+    if key ~= "bof_balance_percent" and key ~= "bof_unbalance_percent" then
         return bof_original_smods_calculate_effect(effect, scored_card, key, amount, from_edition)
     end
-    if amount > 100 then
-        amount = 100
-    end
+    amount = math.min(100, amount)
     if effect.card and effect.card ~= scored_card then
         juice_card(effect.card)
     end
-    local new_hand_chips, new_mult = calculate_balance_percent_values(hand_chips, mult, amount / 100)
+    local new_hand_chips, new_mult
+    if key == "bof_balance_percent" then
+        new_hand_chips, new_mult = calculate_balance_percent_values(hand_chips, mult, amount / 100)
+    else
+        new_hand_chips, new_mult = calculate_unbalance_percent_values(hand_chips, mult, amount / 100)
+    end
     SMODS.Scoring_Parameters.chips:modify(new_hand_chips - hand_chips)
     SMODS.Scoring_Parameters.mult:modify(new_mult - mult)
-    local text = "Balanced " .. amount .. "%"
-    
-    -- apply plasma color effect with vanilla sounds
+    local text = (key == "bof_balance_percent" and "Balanced " or "Unbalanced ") .. amount .. "%"
     G.E_MANAGER:add_event(Event({
         func = function()
             local pitch = 1 + (amount / 100 - 1) * 0.3
