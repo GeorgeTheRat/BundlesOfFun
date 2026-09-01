@@ -68,8 +68,7 @@ BundlesOfFun.Joker {
             }
         end
         if context.end_of_round and context.main_eval and not context.blueprint then
-            local old_count = card.ability.extra.count
-            if old_count <= card.ability.extra.count_mod then
+            if card.ability.extra.count <= card.ability.extra.count_mod then
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
@@ -79,9 +78,10 @@ BundlesOfFun.Joker {
                     ref_table = card.ability.extra,
                     ref_value = "count",
                     operation = "-",
-                    scalar_table = { card.ability.extra },
                     scalar_value = "count_mod",
-                    no_message = true
+                    scaling_message = {
+                        message = "-" .. card.ability.extra.count_mod
+                    }
                 })
             end
         end
