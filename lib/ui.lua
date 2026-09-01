@@ -239,14 +239,14 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.BLACK,
         },
         nodes = {
-            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.BACKGROUND.L }, nodes = {
+            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
                 create_toggle {
                     label = "Custom Sounds",
                     ref_table = BundlesOfFun.config,
                     ref_value = "custom_sounds",
                 }
             }},
-            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.BACKGROUND.L }, nodes = {
+            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
                 create_toggle {
                     label = "evil dih (joke setting)",
                     ref_table = BundlesOfFun.config,
@@ -280,14 +280,14 @@ SMODS.current_mod.extra_tabs = function()
                         colour = G.C.BLACK,
                     },
                     nodes = {
-                        { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
-                            { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
+                        { n = G.UIT.R, config = { align = "cm", padding = 0.1, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
+                            { n = G.UIT.C, config = { align = "cm", padding = 0.15 }, nodes = {
                                 bundle_toggle("appetizers", G.C.bof_appetizers),
                                 bundle_toggle("jesters", G.C.bof_jesters),
                                 bundle_toggle("normalities", G.C.bof_normalities),
                                 bundle_toggle("fables", G.C.bof_fables),
                             }},
-                            { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
+                            { n = G.UIT.C, config = { align = "cm", padding = 0.15 }, nodes = {
                                 bundle_toggle("flats", G.C.bof_flats),
                                 bundle_toggle("minnows", G.C.bof_minnows),
                                 bundle_toggle("coupons", G.C.bof_coupons),
@@ -299,7 +299,7 @@ SMODS.current_mod.extra_tabs = function()
                                 object = DynaText({
                                     string = { "Some items only appear if multiple sets are enabled" },
                                     colours = { G.C.WHITE },
-                                    scale = 0.4,
+                                    scale = 0.35,
                                     shadow = true,
                                     bump = true
                                 })
@@ -325,9 +325,7 @@ SMODS.current_mod.extra_tabs = function()
                         colour = G.C.BLACK,
                     },
                     nodes = {
-                        -- The outer container is a Column (C) to stack the two rows vertically
-                        { n = G.UIT.C, config = { align = "cm", padding = 0.2 }, nodes = {
-                            -- Top Row
+                        { n = G.UIT.C, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
                             { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
                                 credit_tag_sprite("credit_george", { x = 0, y = 0 }),
                                 credit_tag_sprite("credit_glitch", { x = 1, y = 0 }),
@@ -335,7 +333,6 @@ SMODS.current_mod.extra_tabs = function()
                                 credit_tag_sprite("credit_marffe", { x = 3, y = 0 }),
                                 credit_tag_sprite("credit_revo", { x = 4, y = 0 }),
                             }},
-                            -- Bottom Row
                             { n = G.UIT.R, config = { align = "cm", minw = 5 }, nodes = {
                                 credit_tag_sprite("credit_arc", { x = 0, y = 1 }),
                                 credit_tag_sprite("credit_sophe", { x = 1, y = 1 }),

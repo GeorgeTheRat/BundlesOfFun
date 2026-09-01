@@ -1670,6 +1670,8 @@ return {
         v_dictionary = {
             a_bof_balance = "Balanced #1#%",
             a_bof_balance_minus = "-#1#%",
+            a_bof_plus_card = "+#1# Card",
+            a_bof_plus_cards = "+#1# Cards",
             a_bof_hand = "+#1# Hand"
         }
     }
