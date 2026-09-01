@@ -190,6 +190,14 @@ return {
                     "sell value by {C:money}$#2#{} when scored"
                 }
             },
+            j_bof_mango = {
+                name = "Mango",
+                text = {
+                    "Create {C:attention}#1#{} card#<s>1# with #<,an>1# {C:enhanced}Enhancement#<s>1#",
+                    "and {C:dark_edition}Edition#<s>1#{} when {C:attention}Blind{} is selected,",
+                    "decreases by {C:attention}-#2#{} at end of round"
+                }
+            },
             -- Jesters
             j_bof_hal = {
                 name = "Hatty Hal",

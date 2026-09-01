@@ -2,7 +2,12 @@ BundlesOfFun.Joker {
     key = "mango",
     name = "Mango",
     bundle = "appetizers",
-    config = { extra = { count = 4 } },
+    config = {
+        extra = {
+            count = 4,
+            count_mod = 1
+        }
+    },
     pos = { x = 2, y = 1 },
     attributes = { "playing_card", "enhancements", "editions", "food" },
     cost = 8,
@@ -12,7 +17,12 @@ BundlesOfFun.Joker {
     perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.count } }
+        return {
+            vars = {
+                card.ability.extra.count,
+                card.ability.extra.count_mod
+            }
+        }
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
@@ -39,52 +49,40 @@ BundlesOfFun.Joker {
                     end
                 }))
             end
-            if card.ability.extra.count - 1 <= 0 then
+            return {
+                message = localize{ type = "variable", key = (card.ability.extra.count == 1 and "a_bof_plus_card" or "a_bof_plus_cards"), vars = { card.ability.extra.count } },
+                func = function()
+                    G.deck.config.card_limit = G.deck.config.card_limit + #cards_added
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        delay = 0.4 * #cards_added,
+                        func = function()
+                            for _, card_added in ipairs(cards_added) do
+                                draw_card(G.play, G.deck, 90, "up")
+                                SMODS.calculate_context({ playing_card_added = true, cards = { card_added } })
+                            end
+                            return true
+                        end
+                    }))
+                end
+            }
+        end
+        if context.end_of_round and context.main_eval and not context.blueprint then
+            local old_count = card.ability.extra.count
+            if old_count <= card.ability.extra.count_mod then
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
-                    message = localize("k_eaten_ex"),
-                    func = function()
-                        G.deck.config.card_limit = G.deck.config.card_limit + #cards_added
-                        G.E_MANAGER:add_event(Event({
-                            trigger = "after",
-                            delay = 0.4 * #cards_added,
-                            func = function()
-                                for _, card_added in ipairs(cards_added) do
-                                    draw_card(G.play, G.deck, 90, "up")
-                                    SMODS.calculate_context({ playing_card_added = true, cards = { card_added } })
-                                end
-                                return true
-                            end
-                        }))
-                    end
+                    message = localize("k_eaten_ex")
                 }
             else
-                local old_count = card.ability.extra.count
                 SMODS.scale_card(card, {
                     ref_table = card.ability.extra,
                     ref_value = "count",
                     operation = "-",
-                    scalar_table = { 1 },
-                    scalar_value = 1,
+                    scalar_table = { card.ability.extra },
+                    scalar_value = "count_mod",
                     no_message = true
                 })
-                return {
-                    message = localize{ type = "variable", key = (old_count == 1 and "a_bof_plus_card" or "a_bof_plus_cards"), vars = { old_count } },
-                    func = function()
-                        G.deck.config.card_limit = G.deck.config.card_limit + #cards_added
-                        G.E_MANAGER:add_event(Event({
-                            trigger = "after",
-                            delay = 0.4 * #cards_added,
-                            func = function()
-                                for _, card_added in ipairs(cards_added) do
-                                    draw_card(G.play, G.deck, 90, "up")
-                                    SMODS.calculate_context({ playing_card_added = true, cards = { card_added } })
-                                end
-                                return true
-                            end
-                        }))
-                    end
-                }
             end
         end
     end
