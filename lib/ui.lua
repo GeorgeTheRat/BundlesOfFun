@@ -187,7 +187,11 @@ local function credit_tag_sprite(tag_key, tag_pos)
         Node.stop_hover(self)
         self.hover_tilt = 0
     end
-    tag_sprite:juice_up(0.1, 0.3)
+    if BundlesOfFun.config.evil_dih then
+        tag_sprite:juice_up(28, 37)
+    else
+        tag_sprite:juice_up(0.1, 0.3)
+    end
     return {
         n = G.UIT.C,
         config = {
@@ -235,16 +239,23 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.BLACK,
         },
         nodes = {
-            { n = G.UIT.R, config = { align = "cm", padding = 0.4 }, nodes = {
+            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.BACKGROUND.L }, nodes = {
                 create_toggle {
                     label = "Custom Sounds",
                     ref_table = BundlesOfFun.config,
                     ref_value = "custom_sounds",
-                },
+                }
+            }},
+            { n = G.UIT.R, config = { align = "cm", padding = 0.2, r = 0.1, emboss = 0.05, colour = G.C.BACKGROUND.L }, nodes = {
                 create_toggle {
                     label = "evil dih (joke setting)",
                     ref_table = BundlesOfFun.config,
                     ref_value = "evil_dih",
+                },
+                create_toggle {
+                    label = "dih jiggle (EXTREMELY ANNOYING)",
+                    ref_table = BundlesOfFun.config,
+                    ref_value = "dih_jiggle",
                 }
             }}
         }

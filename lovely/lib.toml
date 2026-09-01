@@ -130,3 +130,18 @@ end
 # config = part.control.T_config_extra and {extra = part.control.T_config_extra},
 # -- patch end
 # '''
+
+# dih jiggle config
+[[patches]]
+[patches.pattern]
+target = 'engine/moveable.lua'
+position = 'at'
+match_indent = true
+pattern = '''
+local end_time = G.TIMERS.REAL + 0.4
+'''
+payload = '''
+-- bof patch
+local end_time = BundlesOfFun.config.dih_jiggle and (G.TIMERS.REAL + 5) or (G.TIMERS.REAL + 0.4)
+-- patch end
+'''
