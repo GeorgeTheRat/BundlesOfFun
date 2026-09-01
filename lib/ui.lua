@@ -187,7 +187,7 @@ local function credit_tag_sprite(tag_key, tag_pos)
         Node.stop_hover(self)
         self.hover_tilt = 0
     end
-    tag_sprite:juice_up()
+    tag_sprite:juice_up(0.1, 0.3)
     return {
         n = G.UIT.C,
         config = {
