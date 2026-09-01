@@ -11,11 +11,8 @@ BundlesOfFun.Joker {
     set_ability = function(self, card, initial, delay_sprites)
         G.E_MANAGER:add_event(Event({
             func = function()
-                if self.discovered and not BOF.nc(card.area, "config", "collection") then
-                    if pseudorandom("bof_matey") > 0.9 then
-                        card.children.center.atlas = G.ASSET_ATLAS["bof_matey_alt"]
-                        card.children.center:set_sprite_pos({ x = 0, y = 0 })
-                    end
+                if self.discovered and not BOF.nc(card.area, "config", "collection") and pseudorandom("bof_matey") > 0.9 then
+                    card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
                 end
                 return true
             end

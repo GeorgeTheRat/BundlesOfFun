@@ -12,6 +12,14 @@ SMODS.Atlas({
     py = 95, 
 })
 
+-- evil dih
+SMODS.Atlas({
+    key = "evil_dih",
+    path = "evil_dih.png",
+    px = 71,
+    py = 95,
+})
+
 SMODS.Atlas({
     key = "joker", 
     path = "joker.png", 
@@ -26,12 +34,6 @@ SMODS.Atlas({
     py = 95, 
 })
 
-SMODS.Atlas({
-    key = "matey_alt", 
-    path = "matey_alt.png", 
-    px = 71,
-    py = 95, 
-})
 
 SMODS.Atlas({
     key = "deck", 
@@ -87,13 +89,6 @@ SMODS.Atlas {
 SMODS.Atlas({
     key = "pinned",
     path = "pinned.png",
-    px = 71,
-    py = 95,
-})
-
-SMODS.Atlas({ -- evil dih
-    key = "evil_dih",
-    path = "evil_dih.png",
     px = 71,
     py = 95,
 })
