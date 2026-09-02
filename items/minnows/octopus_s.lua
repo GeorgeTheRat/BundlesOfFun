@@ -1,7 +1,7 @@
 BundlesOfFun.Consumable {
     key = "octopus_s",
     name = "Octopus Small",
-    bundle = "fish",
+    bundle = "minnows",
     set = "Fish",
     soul_set = "Fish",
     pools = { ["fish_s"] = true },

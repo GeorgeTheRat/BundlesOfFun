@@ -755,7 +755,7 @@ return {
             j_bof_billy_bass = {
                 name = "Big Mouth Billy Bass",
                 text = {
-                    "Retrigger all {C:attention}held{}",
+                    "Retrigger all {C:attention}held",
                     "{C:fish}Fish{} card abilities"
                 }
             },

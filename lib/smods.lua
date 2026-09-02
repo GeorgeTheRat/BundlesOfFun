@@ -34,7 +34,6 @@ SMODS.Atlas({
     py = 95, 
 })
 
-
 SMODS.Atlas({
     key = "deck", 
     path = "deck.png", 

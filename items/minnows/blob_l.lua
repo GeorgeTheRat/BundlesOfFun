@@ -1,7 +1,7 @@
 BundlesOfFun.Consumable {
     key = "blob_l",
     name = "Blobfish Legendary",
-    bundle = "fish",
+    bundle = "minnows",
     set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 6, y = 2 },

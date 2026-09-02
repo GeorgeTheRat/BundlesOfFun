@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "dead_fish_bowl",
     name = "Dead Fish in a Bowl",
-    bundle = { "normalities", { "fish" } },
+    bundle = { "normalities", { "minnows" } },
     config = {
         extra = {
             sell_cost_mod = 1,

@@ -153,7 +153,7 @@ local files = {
             "keyboard",
             "ticket",
             "astrolabe",
-            -- "billy_bass",
+            "billy_bass",
             "fish_bowl",
             "dead_fish_bowl"
         }, directory = "items/normalities/"
