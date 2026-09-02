@@ -21,7 +21,7 @@ BundlesOfFun.Joker {
             vars = {
                 card.ability.extra.prob,
                 card.ability.extra.prob_mod
-            } 
+            }
         }
     end,
     calculate = function(self, card, context)
@@ -30,8 +30,9 @@ BundlesOfFun.Joker {
                 numerator = context.numerator + card.ability.extra.prob
             }
         end
-        if context.pseudorandom_result and context.result then
-            if card.ability.extra.prob > 0 then
+        if context.pseudorandom_result and context.result and not card.ability.extra.eaten then
+            local last_use = card.ability.extra.prob <= 0.1
+            if not last_use then
                 SMODS.scale_card(card, {
                     ref_table = card.ability.extra,
                     ref_value = "prob",
@@ -39,17 +40,16 @@ BundlesOfFun.Joker {
                     operation = "-",
                     no_message = true
                 })
+                if card.ability.extra.prob <= 0.1 then
+                    card.ability.extra.prob = 0.1
+                end
             else
+                card.ability.extra.eaten = true
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }
             end
-        end
-    end,
-    update = function(self, card, dt) -- has to do this due to 
-        if not card.ability.extra.prob_current then
-            card.ability.extra.prob_current = card.ability.extra.prob_start 
         end
     end,
     joker_display_def = function(JokerDisplay)
@@ -71,7 +71,7 @@ BundlesOfFun.Joker {
                     return
                 end
                 local colour = (math.floor(card.ability.extra.prob * 10) == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
-                for i = 2, 4 do 
+                for i = 2, 4 do
                     local child = children[i]
                     if child then child.config.colour = colour end
                 end
