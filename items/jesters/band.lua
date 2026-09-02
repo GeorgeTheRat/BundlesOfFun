@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "One-Man Band",
     bundle = "jesters",
     config = { extra = { mult = 15 } },
-    pos = { x = 5, y = 6 },
+    pos = { x = 14, y = 3 },
     attributes = { "mult", "hand_type"},
     cost = 5,
     rarity = 1,

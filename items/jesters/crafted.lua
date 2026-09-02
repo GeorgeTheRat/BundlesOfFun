@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Crafted Joker",
     bundle = "jesters",
     config = { extra = { bof_crafted_target = nil } },
-    pos = { x = 2, y = 4 },
+    pos = { x = 7, y = 2 },
     attributes = { "destroy_card", "enhancements", "seals", "editions" },
     cost = 5,
     rarity = 2,

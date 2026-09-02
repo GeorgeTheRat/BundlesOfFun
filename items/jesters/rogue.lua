@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Rogue",
     bundle = "jesters",
     config = { extra = { dollars = 1 } },
-    pos = { x = 5, y = 2 },
+    pos = { x = 5, y = 1 },
     attributes = { "economy", "spades", "clubs" },
     cost = 6,
     rarity = 1,

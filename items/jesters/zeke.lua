@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Zipper Zeke",
     bundle = "jesters",
     config = { extra = { odds = 2 } },
-    pos = { x = 6, y = 4 },
+    pos = { x = 11, y = 2 },
     attributes = { "generation", "chance", "joker", "tarot" },
     cost = 6,
     rarity = 1,

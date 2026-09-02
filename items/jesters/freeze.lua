@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             xmult = 1
         }
     },
-    pos = { x = 4, y = 5 },
+    pos = { x = 4, y = 3 },
     attributes = { "xmult", "hand_type", "planet" },
     cost = 7,
     rarity = 2,

@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             hand_size = -1
         }
     },
-    pos = { x = 3, y = 3 },
+    pos = { x = 13, y = 1 },
     pixel_size = { w = 65 },
     attributes = { "hands", "discard", "hand_size", "passive" },
     cost = 7,

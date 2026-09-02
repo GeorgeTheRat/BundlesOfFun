@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = false
         }
     },
-    pos = { x = 1, y = 10 },
+    pos = { x = 11, y = 5 },
     pixel_size = { h = 69 },
     attributes = { "scaling", "generation", "fish" },
     cost = 1,

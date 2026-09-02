@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "fancy",
     name = "Fancy Pants",
     bundle = "jesters",
-    pos = { x = 1, y = 4 },
+    pos = { x = 6, y = 2 },
     attributes = { "generation", "tag" },
     cost = 7,
     rarity = 3,

@@ -1,9 +1,9 @@
-BundlesOfFun.Joker({
+BundlesOfFun.Joker {
 	key = "schlitzohr",
 	name = "Schlitzohr",
 	bundle = "jesters",
 	config = { extra = { cards = 4 } },
-	pos = { x = 3, y = 4 },
+	pos = { x = 8, y = 2 },
 	attributes = { "full_deck", "modify_card" },
 	cost = 5,
 	rarity = 2,
@@ -92,4 +92,4 @@ BundlesOfFun.Joker({
 			}))
 		end
 	end
-})
+}

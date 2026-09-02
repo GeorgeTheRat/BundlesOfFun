@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Elephant",
     bundle = "jesters",
     config = { extra = { chips = 70 } },
-    pos = { x = 0, y = 5 },
+    pos = { x = 0, y = 3 },
     attributes = { "chips" },
     cost = 5,
     rarity = 1,

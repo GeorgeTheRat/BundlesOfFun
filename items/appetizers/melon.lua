@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             sell_cost_mod = 3
         }
     },
-    pos = { x = 1, y = 1 },
+    pos = { x = 11, y = 0 },
     attributes = { "face", "economy", "scaling", "sell_value", "food" },
     cost = 8,
     rarity = 3,

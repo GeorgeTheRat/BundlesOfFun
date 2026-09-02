@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "golden_sun",
     name = "Mr. Golden Sun",
     bundle = "jesters",
-    pos = { x = 1, y = 3 },
+    pos = { x = 11, y = 1 },
     attributes = { "mult", "chips", "destroy_card" },
     cost = 8,
     rarity = 2,

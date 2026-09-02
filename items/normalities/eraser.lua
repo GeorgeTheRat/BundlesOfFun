@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Eraser",
     bundle = "normalities",
     config = { extra = { mult = 2 } },
-    pos = { x = 1, y = 9 },
+    pos = { x = 1, y = 5 },
     pixel_size = { w = 57 },
     attributes = { "mult", "enhancements", "seals", "editions" },
     cost = 3,

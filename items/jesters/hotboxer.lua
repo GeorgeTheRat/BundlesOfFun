@@ -1,4 +1,4 @@
-BundlesOfFun.Joker({
+BundlesOfFun.Joker {
 	key = "hotboxer",
 	name = "Hotboxer",
 	bundle = "jesters",
@@ -8,7 +8,7 @@ BundlesOfFun.Joker({
 			sell_cost_mod = 1
 		}
 	},
-	pos = { x = 4, y = 4 },
+	pos = { x = 9, y = 2 },
 	attributes = { "generation", "passive", "tarot" },
 	cost = 7,
 	rarity = 2,
@@ -47,4 +47,4 @@ BundlesOfFun.Joker({
             end
         }))
 	end
-})
+}

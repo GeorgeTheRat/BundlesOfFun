@@ -1,4 +1,4 @@
-BundlesOfFun.Joker({
+BundlesOfFun.Joker {
 	key = "luminary",
 	name = "Luminary",
 	bundle = "jesters",
@@ -9,7 +9,7 @@ BundlesOfFun.Joker({
             triggered = 0,
 		},
 	},
-	pos = { x = 7, y = 3 },
+	pos = { x = 2, y = 2 },
     attributes = { "economy", "diamonds", "hearts" },
 	cost = 6,
 	rarity = 1,
@@ -51,4 +51,4 @@ BundlesOfFun.Joker({
         card.ability.extra.dollars = 1
         return dollars
     end
-})
+}

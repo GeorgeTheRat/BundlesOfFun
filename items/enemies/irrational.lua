@@ -12,7 +12,7 @@ BundlesOfFun.Blind {
         if blind.disabled then return end
 
         -- three staggered shuffle+sound beats, same pacing as vanilla's Amber Acorn
-        if context.before and #G.hand.cards > 0 then
+        if context.press_play and #G.hand.cards > 0 then
             for _, card in ipairs(G.hand.cards) do
                 G.E_MANAGER:add_event(Event({ func = function() card:flip(); return true end }))
             end

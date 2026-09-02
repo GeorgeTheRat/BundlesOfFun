@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             mult = 15
         }
     },
-    pos = { x = 6, y = 2 },
+    pos = { x = 6, y = 1 },
     attributes = { "mult", "chips", "hands" },
     cost = 4,
     rarity = 1,

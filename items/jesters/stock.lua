@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             enhancement = nil
         }
     },
-    pos = { x = 7, y = 4 },
+    pos = { x = 12, y = 2 },
     attributes = { "xblindsize", "destroy_card", "enhancements" },
     cost = 6,
     rarity = 2,

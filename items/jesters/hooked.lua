@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             appearance_mod = 1
         }
     },
-    pos = { x = 2, y = 6 },
+    pos = { x = 12, y = 3 },
     attributes = { "passive", "economy", "hands" },
     cost = 5,
     rarity = 2,

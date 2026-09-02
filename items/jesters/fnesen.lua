@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             prepped = true
         }
     },
-    pos = { x = 5, y = 5 },
+    pos = { x = 5, y = 3 },
     attributes = { "xmult" },
     cost = 5,
     rarity = 2,

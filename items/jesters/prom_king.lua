@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Prom King",
     bundle = "jesters",
     config = { extra = { xmult = 0.5 } },
-    pos = { x = 2, y = 5 },
+    pos = { x = 2, y = 3 },
     attributes = { "xmult", "king" },
     cost = 8,
     rarity = 3,

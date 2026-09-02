@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             gonna_go = true
         }
     },
-    pos = { x = 3, y = 9 },
+    pos = { x = 3, y = 5 },
     attributes = { "chips", "scaling", "passive" },
     cost = 7,
     rarity = 3,

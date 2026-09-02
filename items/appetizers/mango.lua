@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
             count_mod = 1
         }
     },
-    pos = { x = 2, y = 1 },
+    pos = { x = 12, y = 0 },
     attributes = { "playing_card", "enhancements", "editions", "food" },
     cost = 8,
     rarity = 3,

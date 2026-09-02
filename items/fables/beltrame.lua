@@ -2,8 +2,8 @@ BundlesOfFun.Joker {
     key = "beltrame",
     name = "Beltrame",
     bundle = "fables",
-    pos = { x = 9, y = 7 },
-    soul_pos = { x = 9, y = 8 },
+    pos = { x = 9, y = 6 },
+    soul_pos = { x = 9, y = 7 },
     config = {
         extra = {
             max = 10,

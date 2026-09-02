@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Prom Queen",
     bundle = "jesters",
     config = { extra = { chips = 50 } },
-    pos = { x = 3, y = 5 },
+    pos = { x = 3, y = 3 },
     attributes = { "chips", "queen" },
     cost = 8,
     rarity = 3,

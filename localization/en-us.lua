@@ -826,8 +826,8 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_dagonet = {
-                name = "Dagonet",
+            j_bof_glue = {
+                name = "Glue",
                 text = {
                     "Played {C:attention}Enhanced{} cards give",
                     "{C:mult}+#1#{} Mult when scored,",

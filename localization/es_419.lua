@@ -633,8 +633,8 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
-            j_bof_dagonet = {
-                name = "Dagonet",
+            j_bof_glue = {
+                name = "Glue",
                 text = {
                     "Las {C:attention}cartas Mejoradas{} jugadas",
                     "otorgan {C:mult}+#1#{} Multi al anotar, aumenta",

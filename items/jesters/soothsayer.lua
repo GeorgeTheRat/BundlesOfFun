@@ -2,7 +2,7 @@ BundlesOfFun.Joker {
     key = "soothsayer",
     name = "Soothsayer",
     bundle = "jesters",
-    pos = { x = 5, y = 3 },
+    pos = { x = 0, y = 2 },
     attributes = { "generation", "planet", "seals" },
     config = { extra = { hand = nil } },
     cost = 5,

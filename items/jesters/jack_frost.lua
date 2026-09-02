@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
             total = 0
         }
     },
-    pos = { x = 2, y = 3 },
+    pos = { x = 12, y = 1 },
     attributes = { "mult", "hands"},
     cost = 8,
     rarity = 2,
