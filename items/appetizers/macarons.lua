@@ -4,8 +4,9 @@ BundlesOfFun.Joker {
     bundle = "appetizers",
     config = {
         extra = {
-            balance = 100,
-            balance_mod = 25
+            balance = 60,
+            balance_mod_min = 6,
+            balance_mod_max = 12
         }
     },
     pos = { x = 5, y = 0 },
@@ -20,25 +21,31 @@ BundlesOfFun.Joker {
         return {
             vars = {
                 card.ability.extra.balance,
-                card.ability.extra.balance_mod
+                card.ability.extra.balance_mod_min,
+                card.ability.extra.balance_mod_max
             }
         }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            if card.ability.extra.balance > 0 then
-                return {
-                    bof_balance_percent = card.ability.extra.balance
-                }
-            end
+            return {
+                bof_balance_percent = card.ability.extra.balance
+            }
         end
         if context.end_of_round and context.main_eval and not context.blueprint then
-            if card.ability.extra.balance - card.ability.extra.balance_mod > 0 then
-                card.ability.extra.balance = card.ability.extra.balance - card.ability.extra.balance_mod
-                return {
-                    message = localize{ type = "variable", key = "a_bof_balance_minus", vars = { card.ability.extra.balance_mod } },
-                    colour = G.C.PLASMA
-                }
+            local balance_mod = math.random(card.ability.extra.balance_mod_min, card.ability.extra.balance_mod_max)
+            if card.ability.extra.balance >= balance_mod then
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "balance",
+                    scalar_table = { balance_mod = balance_mod },
+                    scalar_value = "balance_mod",
+                    operation = "-",
+                    scaling_message = {
+                        message = localize{ type = "variable", key = "a_bof_balance_minus", vars = { balance_mod } },
+                        colour = G.C.PLASMA
+                    }
+                })
             else
                 SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
@@ -48,12 +55,7 @@ BundlesOfFun.Joker {
         end
     end,
     in_pool = function(self, args)
-        if G.GAME then
-            if G.GAME.selected_back.effect.center.key ~= "b_plasma" then
-                return true
-            end
-        end
-        return false
+        return G.GAME and G.GAME.selected_back.effect.center.key ~= "b_plasma"
     end,
     joker_display_def = function(JokerDisplay)
         return {
@@ -74,7 +76,7 @@ BundlesOfFun.Joker {
                 if not children then
                     return
                 end
-                local colour = (card.ability.extra.balance == 25) and G.C.RED or G.C.UI.TEXT_INACTIVE
+                local colour = (card.ability.extra.balance == 1) and G.C.RED or G.C.UI.TEXT_INACTIVE
                 for i = 2, 5 do 
                     local child = children[i]
                     if child then child.config.colour = colour end

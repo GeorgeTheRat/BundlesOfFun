@@ -137,8 +137,9 @@ return {
                 text = {
                     "Balance {C:white,X:plasma}#1#%{} of",
                     "{C:chips}Chips{} and {C:mult}Mult{},",
-                    "decreases by {C:white,X:plasma}-#2#%{}",
-                    "at end of round"
+                    "decreases by",
+                    "{C:white,X:plasma}-#2#%{} to {C:white,X:plasma}-#3#%{} at",
+                    "end of round"
                 }
             },
             j_bof_gnocchi = {
@@ -684,7 +685,7 @@ return {
                 text = {
                     "This {C:attention}Joker{} gains {C:chips}+#1#{} Chip#<s>1#",
                     "if the {C:attention}total{} chip value of ",
-                    "scoring cards is at least {C:attention}#2#",
+                    "{C:attention}scoring{} cards is at least {C:attention}#2#",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },
@@ -802,8 +803,8 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_turold = {
-                name = "Turold",
+            j_bof_waite = {
+                name = "Waite",
                 text = {
                     "This Joker gains {C:white,X:mult}X#1#{} Mult",
                     "when hand is played,",
@@ -854,8 +855,8 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_nuwa_fuxi = {
-                name = "Nüwa & Fuxi",
+            j_bof_payne = {
+                name = "Payne",
                 text = {
                     {
                         "Create a {C:dark_edition}Negative {C:tarot}Tarot{} card",

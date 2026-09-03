@@ -162,11 +162,11 @@ local files = {
         list = {
             "narr",
             "manqian",
-            "turold",
+            "waite",
             "taillefer",
             "glue",
             "gonella",
-            "nuwa_fuxi",
+            "payne",
             "durie",
             "mezzetino",
             "beltrame"

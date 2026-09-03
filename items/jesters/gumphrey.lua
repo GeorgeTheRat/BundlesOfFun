@@ -31,13 +31,6 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            return {
-                mult = card.ability.extra.mult
-            }
-        end
-    end,
-    update = function(self, card, dt)
         if G.playing_cards ~= nil then
             local enhanced_count = 0
             for k, v in pairs(G.playing_cards) do
@@ -46,6 +39,11 @@ BundlesOfFun.Joker {
                 end
             end
             card.ability.extra.mult = enhanced_count * card.ability.extra.mult_mod
+        end
+        if context.joker_main then
+            return {
+                mult = card.ability.extra.mult
+            }
         end
     end,
     joker_display_def = function(JokerDisplay)
@@ -58,3 +56,15 @@ BundlesOfFun.Joker {
         }
     end
 }
+
+-- gumphrey and bearded joker have the same effect so disable bearded
+if SMODS.find_mod("allinjest") then
+    SMODS.Joker:take_ownership("aij_bearded_joker", {
+        in_pool = function(self, args)
+            return false
+        end,
+        no_collection = function()
+            return true
+        end
+    })
+end

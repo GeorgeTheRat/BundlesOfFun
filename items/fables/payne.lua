@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "nuwa_fuxi",
-    name = "Nüwa & Fuxi",
+    key = "payne",
+    name = "Payne",
     bundle = { "fables", { "minnows" } },
     pos = { x = 6, y = 6 },
     soul_pos = { x = 6, y = 7 },
@@ -14,9 +14,9 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
     end,
     calculate = function(self, card, context)
-        if G.GAME and G.GAME.bof_nuwa_fuxi_trigger then
-            if G.GAME.bof_nuwa_fuxi_trigger.tarot then
-                G.GAME.bof_nuwa_fuxi_trigger.tarot = nil
+        if G.GAME and G.GAME.bof_payne_trigger then
+            if G.GAME.bof_payne_trigger.tarot then
+                G.GAME.bof_payne_trigger.tarot = nil
                 if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
                     G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                     G.E_MANAGER:add_event(Event({
@@ -26,7 +26,7 @@ BundlesOfFun.Joker {
                             SMODS.add_card({
                                 set = "Tarot",
                                 edition = "e_negative",
-                                key_append = "bof_nuwa_fuxi"
+                                key_append = "bof_payne"
                             })
                             G.GAME.consumeable_buffer = 0
                             return true
@@ -38,8 +38,8 @@ BundlesOfFun.Joker {
                     }
                 end
             end
-            if G.GAME.bof_nuwa_fuxi_trigger.spectral then
-                G.GAME.bof_nuwa_fuxi_trigger.spectral = nil
+            if G.GAME.bof_payne_trigger.spectral then
+                G.GAME.bof_payne_trigger.spectral = nil
                 if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
                     G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
                     G.E_MANAGER:add_event(Event({
@@ -49,7 +49,7 @@ BundlesOfFun.Joker {
                             SMODS.add_card({
                                 set = "Spectral",
                                 edition = "e_negative",
-                                key_append = "bof_nuwa_fuxi"
+                                key_append = "bof_payne"
                             })
                             G.GAME.consumeable_buffer = 0
                             return true
