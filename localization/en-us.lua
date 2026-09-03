@@ -684,7 +684,7 @@ return {
                 text = {
                     "This {C:attention}Joker{} gains {C:chips}+#1#{} Chip#<s>1#",
                     "if the {C:attention}total{} chip value of ",
-                    "played cards is at least {C:attention}#2#",
+                    "scoring cards is at least {C:attention}#2#",
                     "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chip#<s>3#)"
                 }
             },

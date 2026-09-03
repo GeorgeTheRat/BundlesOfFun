@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "normalities",
     config = {
         extra = { 
-            chips_mod = 5,
+            chips_mod = 8,
             chips_threshold = 30,
             chips = 0
         }
@@ -28,7 +28,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.before then
             local total = 0
-            for k, v in pairs(G.play.cards) do
+            for k, v in pairs(context.scoring_hand) do
                 total = total + v.base.nominal + v.ability.bonus + (v.ability.perma_bonus or 0)
             end
             if total >= card.ability.extra.chips_threshold  then

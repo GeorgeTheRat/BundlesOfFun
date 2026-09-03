@@ -156,7 +156,9 @@ BundlesOfFun.Joker {
     end,
     in_pool = function(self)
         for _, c in ipairs(G.deck.cards or {}) do
-            if next(SMODS.get_enhancements(c)) then return true end
+            if next(SMODS.get_enhancements(c)) and not SMODS.find_mod("Multiplayer") then
+                return true
+            end
         end
         return false
     end
