@@ -123,11 +123,6 @@ SMODS.Attribute({
     key = "scale_scaling"
 })
 
--- for jokers that adjust consumable slots (just tumor tom rn)
-SMODS.Attribute({
-    key = "consumable_slot"
-})
-
 -- for jokers that do stuff with fish
 SMODS.Attribute({
     key = "fish"

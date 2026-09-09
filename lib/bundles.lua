@@ -36,6 +36,24 @@ local function get_bundle_no_collection(bundle)
     end
 end
 
+-- Steamodded 26.829 exposes SMODS.hide_from_collection() as the canonical API.
+-- Some older compatibility hacks in this mod still inspect a raw boolean/function
+-- directly, so centralize the check here so both the bundle system and collection
+-- tallies follow the supported behavior.
+function BundlesOfFun.is_hidden_from_collection(obj)
+    if not obj then return false end
+    if SMODS and type(SMODS.hide_from_collection) == "function" then
+        local hidden = SMODS.hide_from_collection(obj)
+        if hidden ~= nil then
+            return hidden
+        end
+    end
+    if type(obj.no_collection) == "function" then
+        return obj:no_collection()
+    end
+    return obj.no_collection == true
+end
+
 -- prevent disabled bundle items from entering pools
 local original_add_to_pool = SMODS.add_to_pool
 SMODS.add_to_pool = function(prototype_obj, args)
@@ -198,49 +216,12 @@ function BundlesOfFun.sync_all_bundles()
     end
 end
 
--- recalculate collection tallies respecting bundle visibility
+-- Refresh the rendered tally text without re-counting the collection. Steamodded
+-- already computes the true tallies and respects SMODS.hide_from_collection(); the
+-- old logic here was double-counting visible items by incrementing the totals a
+-- second time. We only need to keep the display string in sync for the UI.
 function BundlesOfFun.refresh_collection_ui()
-    if not G.DISCOVER_TALLIES or not G.P_CENTERS then return end
-    local set_to_tally = {
-        Joker = "jokers",
-        Voucher = "vouchers",
-        Booster = "boosters",
-        Edition = "editions",
-        Back = "backs"
-    }
-    for _, v in pairs(G.P_CENTERS) do
-        if not v.omit and type(v.no_collection) == "function" and not v.no_collection() then
-            local tally_key = set_to_tally[v.set] or (v.consumeable and "consumeables")
-            local tally = tally_key and G.DISCOVER_TALLIES[tally_key]
-            if tally then
-                tally.of = tally.of + 1
-                if v.discovered then tally.tally = tally.tally + 1 end
-                G.DISCOVER_TALLIES.total.of = G.DISCOVER_TALLIES.total.of + 1
-                if v.discovered then G.DISCOVER_TALLIES.total.tally = G.DISCOVER_TALLIES.total.tally + 1 end
-                if v.consumeable then
-                    local sub = G.DISCOVER_TALLIES[v.set:lower().."s"]
-                    if sub then
-                        sub.of = sub.of + 1
-                        if v.discovered then sub.tally = sub.tally + 1 end
-                    end
-                end
-            end
-        end
-    end
-    -- special check for blinds specifically since they aren't part of G.P_CENTERS
-    if G.P_BLINDS then
-        for _, v in pairs(G.P_BLINDS) do
-            if not v.omit and type(v.no_collection) == "function" and not v.no_collection() then
-                local tally = G.DISCOVER_TALLIES.blinds
-                if tally then
-                    tally.of = tally.of + 1
-                    if v.discovered then tally.tally = tally.tally + 1 end
-                    G.DISCOVER_TALLIES.total.of = G.DISCOVER_TALLIES.total.of + 1
-                    if v.discovered then G.DISCOVER_TALLIES.total.tally = G.DISCOVER_TALLIES.total.tally + 1 end
-                end
-            end
-        end
-    end
+    if not G.DISCOVER_TALLIES then return end
     for _, entry in pairs(G.DISCOVER_TALLIES) do
         if type(entry) == "table" then
             entry.display = (entry.tally or 0).." / "..(entry.of or 0)

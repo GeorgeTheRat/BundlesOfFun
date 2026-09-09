@@ -1251,29 +1251,15 @@ function set_discover_tallies()
     BundlesOfFun.refresh_collection_ui()
 end
 
--- modsCollectionTally returns { tally, of } with no .display field.
--- The UIBox_button lovely-patch reads ref_value = "display", so set it here.
--- The original also only checks `not v.no_collection` (boolean), so function-type
--- no_collection items (BundlesOfFun's approach) are always excluded. We add them back.
+-- Steamodded already computes the real collection totals and filters hidden
+-- entries through SMODS.hide_from_collection(). We only need to patch in the
+-- display string for UI boxes; adding the counts here double-counts entries.
 local bof_modsCollectionTally_ref = modsCollectionTally
 function modsCollectionTally(pool, set, ignore_discovered)
     local result = bof_modsCollectionTally_ref(pool, set, ignore_discovered)
-    if pool and G.ACTIVE_MOD_UI then
-        for _, v in pairs(pool) do
-            if v.mod and G.ACTIVE_MOD_UI.id == v.mod.id and type(v.no_collection) == "function" and not v.no_collection() then
-                if set then
-                    if v.set and v.set == set then
-                        result.of = result.of + 1
-                        if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
-                    end
-                else
-                    result.of = result.of + 1
-                    if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
-                end
-            end
-        end
+    if result then
+        result.display = (result.tally or 0) .. " / " .. (result.of or 0)
     end
-    result.display = result.tally .. " / " .. result.of
     return result
 end
 
@@ -1298,15 +1284,12 @@ function BundlesOfFun.get_next_showdown_ante()
     return win_ante
 end
 
--- generates target_ante's boss for real via SMODS.poll_object (temporarily
--- pointing round_resets.ante at it, since that's what SMODS.create_blind_pool
--- and SMODS.is_showdown_ante read to decide eligibility/showdown-ness) and
--- locks it into perscribed_bosses. deliberately does NOT bump
--- G.GAME.bosses_used here - vanilla's get_new_boss bumps it once, for real,
--- when it actually consumes this preseeded entry; bumping here too would
--- double-count this boss as "used" against the anti-repeat weighting for a
--- single real fight. safe to call repeatedly - it's a no-op once an ante's
--- entry exists
+-- Generate the actual upcoming boss using the same selection pipeline Steamodded
+-- uses in the new small/big/boss workflow, not a raw blind poll. The modern
+-- blind pool checks the target ante, showdown-ness, and bosses_used table, so
+-- reproducing `SMODS.get_new_blind('boss')` here keeps the prediction aligned
+-- with what will actually appear. We snapshot and restore the used-count state so
+-- the preview does not mutate real run data.
 local function bof_pregenerate_boss(target_ante)
     if type(target_ante) ~= "number" then
         return
@@ -1315,10 +1298,20 @@ local function bof_pregenerate_boss(target_ante)
     if G.GAME.perscribed_bosses[target_ante] then
         return
     end
+
     local saved_ante = G.GAME.round_resets.ante
+    local saved_bosses_used = copy_table(G.GAME.bosses_used or {})
+    local saved_choices = copy_table(G.GAME.round_resets.blind_choices or {})
     G.GAME.round_resets.ante = target_ante
-    local ok, boss = pcall(SMODS.poll_object, { type = "Blind", seed = "boss" })
+
+    local ok, boss = pcall(function()
+        return SMODS.get_new_blind('boss')
+    end)
+
     G.GAME.round_resets.ante = saved_ante
+    G.GAME.bosses_used = saved_bosses_used
+    G.GAME.round_resets.blind_choices = saved_choices
+
     if ok and boss then
         G.GAME.perscribed_bosses[target_ante] = boss
     end
@@ -1357,7 +1350,9 @@ end
 
 -- the moment the real ante's boss is decided, also generate next ante's
 -- boss (and the next showdown's, if further out) so the display deck can
--- show the real answer instead of a guess
+-- show the real answer instead of a guess. New Steamodded versions select
+-- Small/Big/Boss all through the blind-order pipeline instead of the old
+-- get_new_boss() flow, so we mirror that refresh on both APIs.
 local original_reset_blinds = reset_blinds
 function reset_blinds()
     bof_committing_boss = true
@@ -1366,6 +1361,18 @@ function reset_blinds()
     if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
         bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
         bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
+    end
+end
+
+if SMODS and type(SMODS.reset_blind_choices) == "function" then
+    local original_smods_reset_blind_choices = SMODS.reset_blind_choices
+    function SMODS.reset_blind_choices(choices)
+        local result = original_smods_reset_blind_choices(choices)
+        if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
+            bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
+            bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
+        end
+        return result
     end
 end
 
@@ -1388,6 +1395,17 @@ function BundlesOfFun.create_predicted_blind_choice(type, blind_key, blind_ante,
     return choice
 end
 
+local function bof_get_pregenerated_boss_for_ante(ante)
+    if not ante or not G.GAME or not G.GAME.perscribed_bosses then
+        return nil
+    end
+    local boss_key = G.GAME.perscribed_bosses[ante]
+    if boss_key and G.P_BLINDS and G.P_BLINDS[boss_key] then
+        return boss_key
+    end
+    return nil
+end
+
 -- hook current_blinds to add prediction ui
 local G_UIDEF_current_blinds_ref = G.UIDEF.current_blinds
 function G.UIDEF.current_blinds()
@@ -1399,13 +1417,16 @@ function G.UIDEF.current_blinds()
         bof_pregenerate_boss(next_ante)
         bof_pregenerate_boss(showdown_ante)
 
-        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[next_ante], next_ante, true)
+        local next_boss = bof_get_pregenerated_boss_for_ante(next_ante) or (G.GAME.round_resets.blind_choices and G.GAME.round_resets.blind_choices.Boss)
+        local showdown_boss = bof_get_pregenerated_boss_for_ante(showdown_ante) or (G.GAME.round_resets.blind_choices and G.GAME.round_resets.blind_choices.Boss)
+
+        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", next_boss, next_ante, true)
         local boss_node = boss_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No boss", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
         local boss_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.BLUE }, nodes = {
             { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. next_ante, scale = 0.4, colour = G.C.BLUE, shadow = true } } } },
             boss_node
         } }
-        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[showdown_ante], showdown_ante, true)
+        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", showdown_boss, showdown_ante, true)
         local showdown_node = showdown_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No showdown", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
         local showdown_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.RED }, nodes = {
             { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. showdown_ante, scale = 0.4, colour = G.C.RED, shadow = true } } } },
