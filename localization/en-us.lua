@@ -646,6 +646,15 @@ return {
                     "played hand is a {C:attention}High Card{}"
                 }
             },
+            j_bof_cloudy = {
+                name = "Cloudy Joker",
+                text = {
+                    "This Joker gives",
+                    "{C:chips}+Chips{} equal to",
+                    "the {C:attention}base {C:chips}Chips{} of",
+                    "played {C:attention}poker hand"
+                }
+            },
             j_bof_matey = {
                 name = "Matey",
                 text = {

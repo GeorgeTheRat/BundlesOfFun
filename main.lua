@@ -139,7 +139,8 @@ local files = {
             "hooked",
             "hypnotic",
             "band",
-            "matey"
+            "matey",
+            "cloudy"
         }, directory = "items/jesters/"
     },
     normalities = {
