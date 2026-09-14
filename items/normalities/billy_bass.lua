@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)
-        if context.retrigger_joker_check and BOF.nc(context.other_card, "ability") and context.other_card.ability.set == "Fish" then
+        if context.retrigger_joker_check and BOF.nc(context.other_context, "joker_main") and BOF.nc(context.other_card, "ability") and context.other_card.ability.set == "Fish" then
             return {
                 repetitions = 1,
                 message = localize("k_again_ex"),
