@@ -646,6 +646,15 @@ return {
                     "played hand is a {C:attention}High Card{}"
                 }
             },
+            j_bof_matey = {
+                name = "Matey",
+                text = {
+                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
+                    "into their respective",
+                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
+                    "instead of expiring"
+                }
+            },
             j_bof_cloudy = {
                 name = "Cloudy Joker",
                 text = {
@@ -655,13 +664,13 @@ return {
                     "played {C:attention}poker hand"
                 }
             },
-            j_bof_matey = {
-                name = "Matey",
+            j_bof_knight = {
+                name = "Knight",
                 text = {
-                    "{C:white,E:1,X:big}Big{} {C:fish}Fish{} cards turn",
-                    "into their respective",
-                    "{C:white,E:1,X:small}Small{} {C:fish}Fish{} card",
-                    "instead of expiring"
+                    "{C:attention}Enhance{} a random",
+                    "card in hand when",
+                    "a card is {C:attention}enhanced",
+                    "{C:inactive}(Cannot trigger self)"
                 }
             },
             -- Normalities
