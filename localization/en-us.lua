@@ -199,6 +199,14 @@ return {
                     "decreases by {C:attention}-#2#{} at end of round"
                 }
             },
+            j_bof_tuff = {
+                name = "TUFF MANGO PHONK 676767 BOIIIIII",
+                text = {
+                    "Create {C:attention}#1#{} card#<s>1# with#<, an>1# {C:enhanced}Enhancement#<s>1#",
+                    "and {C:dark_edition}Edition#<s>1#{} when {C:attention}Blind{} is selected,",
+                    "decreases by {C:attention}-#2#{} at end of round"
+                }
+            },
             -- Jesters
             j_bof_hal = {
                 name = "Hatty Hal",
@@ -662,6 +670,15 @@ return {
                     "{C:chips}+Chips{} equal to",
                     "the {C:attention}base {C:chips}Chips{} of",
                     "played {C:attention}poker hand"
+                }
+            },
+            j_bof_cloud_9 = {
+                name = "Cloud 9",
+                text = {
+                    "Earn {C:money}$1{} for each",
+                    "{C:attention}9{} in your {C:attention}full deck",
+                    "at end of round",
+                    "{C:inactive}(Currently {C:money}$#1#{C:inactive})"
                 }
             },
             j_bof_knight = {
@@ -1660,6 +1677,7 @@ return {
     },
     misc = {
         dictionary = {
+            bof_green_common = "green common",
             b_fish_cards = "Fish Cards",
             k_active_ex = "Active!",
             k_inactive_el = "Inactive...",

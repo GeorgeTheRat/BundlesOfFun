@@ -37,6 +37,7 @@ G.C.bof_glitch_1 = HEX("f04360")
 G.C.bof_glitch_2 = HEX("855a82")
 G.C.bof_ColonParen = HEX("3498db")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
+G.C.GREEN_COMMON = HEX("2bc2af")
 local george = SMODS.Gradient{
     key = "george_the_rat",
     colours = {

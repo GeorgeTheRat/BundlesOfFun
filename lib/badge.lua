@@ -50,7 +50,7 @@ end
 
 local original_create_mod_badges = SMODS.create_mod_badges
 function SMODS.create_mod_badges(obj, badges)
-    if SMODS.config.no_mod_badges then
+    if SMODS.config.no_mod_badges or BOF.nc(obj, "no_mod_badges") then
         return
     end
 

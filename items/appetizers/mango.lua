@@ -18,6 +18,7 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
+            key = BundlesOfFun.config.evil_dih and "j_bof_tuff" or "j_bof_mango",
             vars = {
                 card.ability.extra.count,
                 card.ability.extra.count_mod
