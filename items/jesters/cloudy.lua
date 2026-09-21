@@ -28,14 +28,9 @@ BundlesOfFun.Joker {
         end
     end,
     set_ability = function(self, card, initial, delay_sprites)
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                if self.discovered and BundlesOfFun.config.evil_dih then
-                    card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
-                end
-                return true
-            end
-        }))
+        if self.discovered and BundlesOfFun.config.evil_dih then
+            card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
+        end
 	end,
     set_card_type_badge = function(self, card, badges)
         if BundlesOfFun.config.evil_dih then
