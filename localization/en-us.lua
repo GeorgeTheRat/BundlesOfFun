@@ -877,8 +877,8 @@ return {
                 name = "Gonella",
                 text = {
                     {
-                        "{C:attention}Bottommost{} card in deck becomes a",
-                        "{C:attention}Lucky Card{} when {C:attention}Blind{} is selected",
+                        "{C:attention}Bottommost{} card in deck becomes",
+                        "a {C:attention}Lucky Card{} when {C:attention}Blind{} is selected",
                     },
                     {
                         "All {C:attention}listed {C:green,E:1}probabilities{} are",
@@ -924,9 +924,9 @@ return {
             j_bof_mezzetino = {
                 name = "Mezzetino",
                 text = {
-                    "Create a {C:dark_edition}Negative",
-                    "copy of {C:planet}Planet{} card",
-                    "for played hand"
+                    "Create a {C:attention}copy{} of",
+                    "{C:planet}Planet{} card for",
+                    "played {C:attention}poker hand"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
