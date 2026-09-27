@@ -34,6 +34,11 @@ BundlesOfFun.Joker {
             end
         end
     end,
+    set_sprites = function(self, card, initial)
+        if self.discovered and BundlesOfFun.config.evil_dih then
+            card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
+        end
+	end,
     joker_display_def = function(JokerDisplay)
         return {
             -- mirrors calculate: only fires if every card in the currently selected hand
