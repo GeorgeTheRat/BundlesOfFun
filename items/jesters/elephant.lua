@@ -10,7 +10,12 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.chips } }
+        return {
+            key = BundlesOfFun.config.evil_dih and "j_bof_address_me" or "j_bof_elephant"
+            vars = {
+                card.ability.extra.chips
+            }
+        }
     end,
     calculate = function(self, card, context)
         if context.joker_main then

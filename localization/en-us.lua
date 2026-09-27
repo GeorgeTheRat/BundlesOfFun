@@ -524,6 +524,14 @@ return {
                     "the same {C:attention}rank"
                 }
             },
+            j_bof_address_me = {
+                name = "address me",
+                text = {
+                    "{C:chips}+#1#{} Chips if all",
+                    "{C:attention}played{} cards are",
+                    "the same {C:attention}rank"
+                }
+            },
             j_bof_prom_king = {
                 name = "Prom King",
                 text = {
