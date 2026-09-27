@@ -27,7 +27,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    set_ability = function(self, card, initial, delay_sprites)
+    set_sprites = function(self, card, initial)
         if self.discovered and BundlesOfFun.config.evil_dih then
             card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
         end

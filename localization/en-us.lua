@@ -813,6 +813,55 @@ return {
                     "its {C:attention}sell value{} reaches {C:money}$#2#"
                 }
             },
+            -- Artisans
+            j_bof_butcher = {
+                name = "Butcher",
+                text = {
+                    "If played hand has {C:attention}#1# {C:hearts}Hearts{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:white,X:mult}X#4#{} Mult",
+                    "per {C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_red_comma = {
+                name = "Red Comma",
+                text = {
+                    "If played hand has {C:attention}#1# {C:hearts}Hearts,",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:white,X:mult}X#4#{} Mult",
+                    "per {C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_bartender = {
+                name = "Bartender",
+                text = {
+                    "If played hand has {C:attention}#1# {C:spades}Spades{},",
+                    "each played card permanently",
+                    "gains {C:chips}+#2#{} Chips per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_farmer = {
+                name = "Farmer",
+                text = {
+                    "If played hand has {C:attention}#1# {C:clubs}Clubs{},",
+                    "each played card permanently",
+                    "gains {C:mult}+#2#{} Mult per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_beekeeper = {
+                name = "Beekeper",
+                text = {
+                    "If played hand has {C:attention}#1# {C:diamonds}Diamonds{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:money}$#4#{} per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
             -- Fables
             j_bof_narr = {
                 name = "Narr",
@@ -1702,6 +1751,7 @@ return {
             bof_bof = "Bundles Of Fun",
             bof_appetizers = "Appetizers",
             bof_jesters = "Jesters",
+            bof_artisans = "Artisans",
             bof_normalities = "Normalities",
             bof_fables = "Fables",
             bof_flats = "Flats",
@@ -1709,7 +1759,6 @@ return {
             bof_coupons = "Coupons",
             bof_enemies = "Enemies",
             -- bof_finishers = "Finishers",
-            -- bof_games = "Games"
         },
         v_dictionary = {
             a_bof_balance = "Balanced #1#%",

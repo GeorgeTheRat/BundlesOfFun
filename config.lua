@@ -2,6 +2,7 @@ return {
     bundles = {
         appetizers = true,
         jesters = true,
+        artisans = true,
         normalities = true,
         fables = true,
         flats = true,
@@ -10,5 +11,6 @@ return {
         enemies = true
     },
     custom_sounds = true,
-    evil_dih = false
+    evil_dih = false,
+    dih_jiggle = false
 }
