@@ -3,11 +3,17 @@ BundlesOfFun.Consumable {
     name = "Koi Legendary",
     bundle = "minnows",
     set = "Fish",
+    soul_set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 4, y = 2 },
     attributes = { "balance" },
-    config = { card_limit = 1 },
+    config = {
+        card_limit = 1,
+        extra = { consumable_slots = 0 }
+    },
     cost = 20,
+    unlocked = false,
+    hidden = true,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.card_limit } }

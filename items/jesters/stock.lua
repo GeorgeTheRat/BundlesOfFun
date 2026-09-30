@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = {
         extra = {
-            blind_reduction = 5,
+            blind_reduction = 10,
             enhancement = nil
         }
     },

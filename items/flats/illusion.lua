@@ -1,35 +1,49 @@
 BundlesOfFun.Back {
-	key = "illusion",
+    key = "illusion",
     name = "Illusion Deck",
     bundle = "flats",
     config = {
         extra = {
             stat_per_ante = 2,
+            opposite = 1,
             result = 0
         }
     },
-	atlas = "deck",
-	pos = { x = 4, y = 0 },
+    atlas = "deck",
+    pos = { x = 4, y = 0 },
     unlocked = false,
     loc_vars = function(self, info_queue)
-		return { vars = { self.config.extra.stat_per_ante } }
-	end,
+        return {
+            vars = {
+                self.config.extra.stat_per_ante,
+                self.config.extra.opposite
+            } 
+        }
+    end,
     calculate = function(self, back, context)
         if context.end_of_round and context.main_eval and context.beat_boss then
             if self.config.extra.result == 1 then
                 G.GAME.round_resets.hands = G.GAME.round_resets.hands - self.config.extra.stat_per_ante
+                G.GAME.round_resets.discards = G.GAME.round_resets.discards + self.config.extra.opposite
                 ease_hands_played(-self.config.extra.stat_per_ante)
+                ease_discard(self.config.extra.opposite)
             elseif self.config.extra.result == 2 then
                 G.GAME.round_resets.discards = G.GAME.round_resets.discards - self.config.extra.stat_per_ante
+                G.GAME.round_resets.hands = G.GAME.round_resets.hands + self.config.extra.opposite
                 ease_discard(-self.config.extra.stat_per_ante)
+                ease_hands_played(self.config.extra.opposite)
             end
-            if pseudorandom("illusion") > 0.5 then
+            if pseudorandom("bof_illusion") > 0.5 then
                 G.GAME.round_resets.hands = G.GAME.round_resets.hands + self.config.extra.stat_per_ante
+                G.GAME.round_resets.discards = G.GAME.round_resets.discards - self.config.extra.opposite
                 ease_hands_played(self.config.extra.stat_per_ante)
+                ease_discard(-self.config.extra.opposite)
                 self.config.extra.result = 1
             else
                 G.GAME.round_resets.discards = G.GAME.round_resets.discards + self.config.extra.stat_per_ante
+                G.GAME.round_resets.hands = G.GAME.round_resets.hands - self.config.extra.opposite
                 ease_discard(self.config.extra.stat_per_ante)
+                ease_hands_played(-self.config.extra.opposite)
                 self.config.extra.result = 2
             end
         end

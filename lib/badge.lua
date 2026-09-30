@@ -1,9 +1,13 @@
 -- bundle information: names and colors
 -- i'm smart i know that word
 -- pneumonoultramicroscopicsilicovolcanoconiosis
+
+-- the first comment was changed and i don't remember what smart word it was
+-- i'm bundling it
 local BUNDLES = {
     appetizers = { name = "Appetizers", color = G.C.bof_appetizers },
     jesters = { name = "Jesters", color = G.C.bof_jesters },
+    artisans = { name = "Artisans", color = G.C.bof_artisans },
     normalities = { name = "Normalities", color = G.C.bof_normalities },
     fables = { name = "Fables", color = G.C.bof_fables },
     flats = { name = "Flats", color = G.C.bof_flats },
@@ -50,13 +54,8 @@ end
 
 local original_create_mod_badges = SMODS.create_mod_badges
 function SMODS.create_mod_badges(obj, badges)
-    if SMODS.config.no_mod_badges then
-        return
-    end
-
-    if obj and obj.set == "Back" and obj.unlocked == false then
-        return
-    end
+    if SMODS.config.no_mod_badges or BOF.nc(obj, "no_mod_badges") then return end
+    if obj and obj.set == "Back" and obj.unlocked == false then return end
 
     -- calculate scale factor for text to fit badge
     local function calculate_scale_fac(text)

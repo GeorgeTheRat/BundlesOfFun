@@ -25,6 +25,7 @@ end
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
+G.C.bof_artisans = HEX("626e7a") 
 G.C.bof_fables = HEX("535fc1")
 G.C.bof_normalities = HEX("c4bca5")
 G.C.bof_flats = HEX("ff7a6f")
@@ -32,13 +33,13 @@ G.C.bof_minnows = { 1.0, 0.6, 0.7, 1 }
 G.C.bof_coupons = HEX("69aad8")
 G.C.bof_enemies = HEX("497760")
 G.C.bof_finishers = HEX("5e5f45")
-G.C.bof_games = HEX("43cb32")
 G.C.bof_george_1 = HEX("67bf9d")
 G.C.bof_george_2 = HEX("1e9ae9")
 G.C.bof_glitch_1 = HEX("f04360")
 G.C.bof_glitch_2 = HEX("855a82")
 G.C.bof_ColonParen = HEX("3498db")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
+G.C.GREEN_COMMON = HEX("2bc2af")
 local george = SMODS.Gradient{
     key = "george_the_rat",
     colours = {
@@ -147,8 +148,19 @@ local files = {
             "hooked",
             "hypnotic",
             "band",
-            "matey"
+            "matey",
+            "cloudy",
+            "knight",
+            "pinhead"
         }, directory = "items/jesters/"
+    },
+    artisans = {
+        list = {
+            "butcher",
+            "bartender",
+            "farmer",
+            "beekeper"
+        }, directory = "items/artisans/"
     },
     normalities = {
         list = {
@@ -281,6 +293,10 @@ end
 
 for _, name in ipairs(files["jesters"].list) do
     assert(SMODS.load_file(files["jesters"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["artisans"].list) do
+    assert(SMODS.load_file(files["artisans"].directory .. name .. ".lua"))()
 end
 
 for _, name in ipairs(files["normalities"].list) do

@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
 	pos = { x = 8, y = 3 },
 	attributes = { "suit", "diamonds", "hearts", "spades", "clubs", "passive" },
 	cost = 5,
-	rarity = 2,
+	rarity = 1,
 	blueprint_compat = false,
 	atlas = "joker"
     -- logic is located in lovely/jesters.toml

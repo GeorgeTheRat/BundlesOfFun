@@ -200,6 +200,14 @@ return {
                     "decreases by {C:attention}-#2#{} at end of round"
                 }
             },
+            j_bof_tuff = {
+                name = "TUFF MANGO PHONK 676767 BOIIIIII",
+                text = {
+                    "Create {C:attention}#1#{} card#<s>1# with#<, an>1# {C:enhanced}Enhancement#<s>1#",
+                    "and {C:dark_edition}Edition#<s>1#{} when {C:attention}Blind{} is selected,",
+                    "decreases by {C:attention}-#2#{} at end of round"
+                }
+            },
             -- Jesters
             j_bof_hal = {
                 name = "Hatty Hal",
@@ -517,6 +525,14 @@ return {
                     "the same {C:attention}rank"
                 }
             },
+            j_bof_address_me = {
+                name = "address me",
+                text = {
+                    "{C:chips}+#1#{} Chips if all",
+                    "{C:attention}played{} cards are",
+                    "the same {C:attention}rank"
+                }
+            },
             j_bof_prom_king = {
                 name = "Prom King",
                 text = {
@@ -656,6 +672,41 @@ return {
                     "instead of expiring"
                 }
             },
+            j_bof_cloudy = {
+                name = "Cloudy Joker",
+                text = {
+                    "This Joker gives",
+                    "{C:chips}+Chips{} equal to",
+                    "the {C:attention}base {C:chips}Chips{} of",
+                    "played {C:attention}poker hand"
+                }
+            },
+            j_bof_cloud_9 = {
+                name = "Cloud 9",
+                text = {
+                    "Earn {C:money}$1{} for each",
+                    "{C:attention}9{} in your {C:attention}full deck",
+                    "at end of round",
+                    "{C:inactive}(Currently {C:money}$#1#{C:inactive})"
+                }
+            },
+            j_bof_knight = {
+                name = "Knight",
+                text = {
+                    "{C:attention}Enhance{} a random",
+                    "card in hand when",
+                    "a card is {C:attention}enhanced",
+                    "{C:inactive}(Cannot trigger self)"
+                }
+            },
+            j_bof_pinhead = {
+                name = "Pinhead",
+                text = {
+                    "Retrigger all played cards",
+                    "{C:attention}adjacent{} to {C:attention}Bonus Cards{}",
+                    "or {C:attention}Mult Cards"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
@@ -779,6 +830,55 @@ return {
                     "its {C:attention}sell value{} reaches {C:money}$#2#"
                 }
             },
+            -- Artisans
+            j_bof_butcher = {
+                name = "Butcher",
+                text = {
+                    "If played hand has {C:attention}#1# {C:hearts}Hearts{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:white,X:mult}X#4#{} Mult",
+                    "per {C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_red_comma = {
+                name = "Red Comma",
+                text = {
+                    "If played hand has {C:attention}#1# {C:hearts}Hearts,",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:white,X:mult}X#4#{} Mult",
+                    "per {C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_bartender = {
+                name = "Bartender",
+                text = {
+                    "If played hand has {C:attention}#1# {C:spades}Spades{},",
+                    "each played card permanently",
+                    "gains {C:chips}+#2#{} Chips per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_farmer = {
+                name = "Farmer",
+                text = {
+                    "If played hand has {C:attention}#1# {C:clubs}Clubs{},",
+                    "each played card permanently",
+                    "gains {C:mult}+#2#{} Mult per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_beekeeper = {
+                name = "Beekeper",
+                text = {
+                    "If played hand has {C:attention}#1# {C:diamonds}Diamonds{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:money}$#4#{} per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
             -- Fables
             j_bof_narr = {
                 name = "Narr",
@@ -843,8 +943,8 @@ return {
                 name = "Gonella",
                 text = {
                     {
-                        "{C:attention}Bottommost{} card in deck becomes a",
-                        "{C:attention}Lucky Card{} when {C:attention}Blind{} is selected",
+                        "{C:attention}Bottommost{} card in deck becomes",
+                        "a {C:attention}Lucky Card{} when {C:attention}Blind{} is selected",
                     },
                     {
                         "All {C:attention}listed {C:green,E:1}probabilities{} are",
@@ -890,9 +990,9 @@ return {
             j_bof_mezzetino = {
                 name = "Mezzetino",
                 text = {
-                    "Create a {C:dark_edition}Negative",
-                    "copy of {C:planet}Planet{} card",
-                    "for played hand"
+                    "Create a {C:attention}copy{} of",
+                    "{C:planet}Planet{} card for",
+                    "played {C:attention}poker hand"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
@@ -924,11 +1024,11 @@ return {
             b_bof_embroidered = {
                 name = "Embroidered Deck",
                 text = {
-                    "Start with one random",
-                    "{C:attention}rank{} missing from deck",
+                    "Start with {C:attention}#1#{} random",
+                    "{C:attention}ranks{} missing from deck",
                     "When {C:attention}Boss Blind{} is defeated,",
-                    "add {C:attention}4{} cards to deck with each",
-                    "{C:attention}suit{} of one random {C:attention}rank",
+                    "add {C:attention}#2#{} cards of one random",
+                    "{C:attention}rank{} to the deck",
                     "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}Clubs{C:inactive,s:0.8}, and {C:attention,s:0.8}Diamonds{C:inactive,s:0.8})"
                 },
                 unlock = {
@@ -950,10 +1050,11 @@ return {
             b_bof_illusion = {
                 name = "Illusion Deck",
                 text = {
-                    "When a {C:attention}Boss Blind",
-                    "is defeated, increase",
-                    "hands or discards by",
-                    "{C:plasma}+#1#{} for the next {C:attention}Ante"
+                    "When a {C:attention}Boss Blind{} is",
+                    "defeated, randomly gain",
+                    "{C:blue}+#1#{} Hand#<s>1# and {C:red}-#2#{} Discard#<s>2# or",
+                    "{C:red}+#1#{} Discard#<s>1# and {C:blue}-#2#{} Hand#<s>2#",
+                    "for the next {C:attention}Ante"
                 },
                 unlock = {
                     "Win a run with",
@@ -1658,6 +1759,7 @@ return {
     },
     misc = {
         dictionary = {
+            bof_green_common = "green common",
             b_fish_cards = "Fish Cards",
             k_active_ex = "Active!",
             k_inactive_el = "Inactive...",
@@ -1683,6 +1785,7 @@ return {
             bof_bof = "Bundles Of Fun",
             bof_appetizers = "Appetizers",
             bof_jesters = "Jesters",
+            bof_artisans = "Artisans",
             bof_normalities = "Normalities",
             bof_fables = "Fables",
             bof_flats = "Flats",
@@ -1690,7 +1793,6 @@ return {
             bof_coupons = "Coupons",
             bof_enemies = "Enemies",
             -- bof_finishers = "Finishers",
-            -- bof_games = "Games"
         },
         v_dictionary = {
             a_bof_balance = "Balanced #1#%",

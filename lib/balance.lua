@@ -28,7 +28,7 @@ end
 function calculate_unbalance_percent_values(input_hand_chips, input_mult, percent)
     local high = math.max(input_hand_chips, input_mult)
     local low = math.min(input_hand_chips, input_mult)
-    local transfer = (low * percent) / 2
+    local transfer = (low - 1) * percent
     high = high + transfer
     low = low - transfer
     high = math.floor(high + 0.5)
