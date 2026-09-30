@@ -740,7 +740,7 @@ return {
                 text = {
                     "This Joker gains {C:mult}+#1#{} Mult",
                     "when hand is played,",
-                    "resets when a {C:attention}face card{} is",
+                    "{C:attention}resets{} when a {C:attention}face{} card is",
                     "discarded or held in hand",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 }

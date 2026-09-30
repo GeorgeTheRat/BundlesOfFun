@@ -33,14 +33,12 @@ BundlesOfFun.Joker {
                         break
                     end
                 end
-                if faces then
-                    local last_mult = card.ability.extra.mult
-                    card.ability.extra.mult = 0
-                    if last_mult > 0 then
-                        return {
-                            message = localize("k_reset")
-                        }
-                    end
+                if faces and card.ability.extra.mult ~= 0 then
+                    SMODS.reset_card(card, {
+                        ref_table = card.ability.extra,
+                        ref_value = "mult",
+                        reset_value = 0,
+                    })
                 else
                     SMODS.scale_card(card, {
                         ref_table = card.ability.extra,
@@ -58,14 +56,12 @@ BundlesOfFun.Joker {
                         break
                     end
                 end
-                if faces then
-                    local last_mult = card.ability.extra.mult
-                    card.ability.extra.mult = 0
-                    if last_mult > 0 then
-                        return {
-                            message = localize("k_reset")
-                        }
-                    end
+                if faces and card.ability.extra.mult ~= 0 then
+                    SMODS.reset_card(card, {
+                        ref_table = card.ability.extra,
+                        ref_value = "mult",
+                        reset_value = 0,
+                    })
                 end
             end
         end
