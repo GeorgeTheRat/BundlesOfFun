@@ -16,6 +16,7 @@ BundlesOfFun.Joker {
 	blueprint_compat = false,
 	atlas = "joker",
 	loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_shade_light" }
 		return {
 			vars = {
                 card.ability.extra.dollars,
@@ -26,7 +27,7 @@ BundlesOfFun.Joker {
 	calculate = function(self, card, context)
 		if context.before then
             for _, v in pairs(context.full_hand) do
-                if not SMODS.in_scoring(v, context.scoring_hand) and (v:is_suit("Hearts") or v:is_suit("Diamonds")) then
+                if not SMODS.in_scoring(v, context.scoring_hand) and v:is_suit_shade("light") then
                     SMODS.scale_card(card, {
                         ref_table = card.ability.extra,
                         ref_value = "dollars",

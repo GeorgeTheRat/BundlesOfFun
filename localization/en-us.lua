@@ -374,10 +374,10 @@ return {
                 name = "Luminary",
                 text = {
                     "Earn {C:money}$#1#{} at end of round",
-                    "Increase payout by {C:money}$#2#{} for each",
-                    "played hand that contains a",
-                    "{C:attention}played{} and {C:attention}unscoring{} card with",
-                    "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
+                    "Increase payout by {C:money}$#2#{} for ",
+                    "each played hand that contains",
+                    "a {C:attention}played{} and {C:attention}unscoring{} card",
+                    "with {C:light}Light{} shade this round"
                 }
             },
             j_bof_furious = {
@@ -1622,6 +1622,21 @@ return {
             k_bof_tom_sell = {
                 text = {
                     "{C:inactive,s:0.8}(Cannot be sold when slots are full)"
+                }
+            },
+            k_bof_shade_light = {
+                name = "Light",
+                text = {
+                    "{C:hearts}Hearts{} or",
+                    "{C:diamonds}Diamonds"
+                }
+            },
+            -- currently unused
+            k_bof_shade_dark = {
+                name = "Dark",
+                text = {
+                    "{C:spades}Spades{} or",
+                    "{C:clubs}Clubs"
                 }
             },
             k_bof_modification = {
