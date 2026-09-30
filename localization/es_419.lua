@@ -140,28 +140,6 @@ return {
                 }
             },
             j_bof_gnocchi = {
-                name = "Ñoquis",
-                text = {
-                    "Al omitir la#<s>1# siguiente#<s>1# {C:attention}#1# Ciega#<s>1#{},",
-                    "crea una {C:attention}Etiqueta de Malabar{}"
-                }
-            },
-            j_bof_bread = {
-                name = "Pan Maravilloso",
-                text = {
-                    "Balancea un {C:white,X:plasma}#1#%{} de {C:chips}Fichas{}",
-                    "y {C:mult}Multi{}, disminuye en {C:white,X:plasma}-#2#%{}",
-                    "al final de la ronda"
-                }
-            },
-            j_bof_candy = {
-                name = "Dulce de Bolsillo",
-                text = {
-                    "Al omitir la#<s>1# siguiente#<s>1# {C:attention}#1# Ciega#<s>1#{},",
-                    "crea una {C:attention}Etiqueta de Malabar{}"
-                }
-            },
-            j_bof_gnocchi = {
                 name = "Gnocchi",
                 text = {
                     "Los siguientes {C:attention}#1#{} comodines vendidos",
