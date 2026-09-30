@@ -1287,12 +1287,12 @@ function BundlesOfFun.get_next_showdown_ante()
     return win_ante
 end
 
+local original_smods_get_new_blind = SMODS and SMODS.get_new_blind
+local original_smods_reset_blind_choices = SMODS and SMODS.reset_blind_choices
+
 -- Generate the actual upcoming boss using the same selection pipeline Steamodded
--- uses in the new small/big/boss workflow, not a raw blind poll. The modern
--- blind pool checks the target ante, showdown-ness, and bosses_used table, so
--- reproducing `SMODS.get_new_blind('boss')` here keeps the prediction aligned
--- with what will actually appear. We snapshot and restore the used-count state so
--- the preview does not mutate real run data.
+-- uses in the small/big/boss workflow. Small and Big are generated first because
+-- modern blind pools exclude choices already made for the target ante.
 local function bof_pregenerate_boss(target_ante)
     if type(target_ante) ~= "number" then
         return
@@ -1304,16 +1304,27 @@ local function bof_pregenerate_boss(target_ante)
 
     local saved_ante = G.GAME.round_resets.ante
     local saved_bosses_used = copy_table(G.GAME.bosses_used or {})
-    local saved_choices = copy_table(G.GAME.round_resets.blind_choices or {})
+    local saved_choices = G.GAME.round_resets.blind_choices
+    local saved_blind_order = G.GAME.round_resets.blind_order
+    local predicted_choices = {}
     G.GAME.round_resets.ante = target_ante
+    G.GAME.round_resets.blind_choices = predicted_choices
 
     local ok, boss = pcall(function()
-        return SMODS.get_new_blind('boss')
+        if type(original_smods_reset_blind_choices) == 'function' then
+            original_smods_reset_blind_choices(predicted_choices)
+            return predicted_choices.Boss
+        elseif type(original_smods_get_new_blind) == 'function' then
+            return original_smods_get_new_blind('boss')
+        else
+            return get_new_boss()
+        end
     end)
 
     G.GAME.round_resets.ante = saved_ante
     G.GAME.bosses_used = saved_bosses_used
     G.GAME.round_resets.blind_choices = saved_choices
+    G.GAME.round_resets.blind_order = saved_blind_order
 
     if ok and boss then
         G.GAME.perscribed_bosses[target_ante] = boss
@@ -1325,24 +1336,43 @@ end
 -- Boss blind is defeated (round_resets.ante has already ticked over to the
 -- next ante by then, via end_round's ease_ante(1), before that mod's hook
 -- runs) - the same moment our own pregenerated entry for that ante is
--- sitting in G.GAME.perscribed_bosses waiting for OUR reset_blinds hook
--- below to hand it to the real blind_choices.Boss assignment. Since
--- get_new_boss() deletes the perscribed_bosses entry the instant it's read,
--- whichever of us calls it first silently steals the other's answer; other
+-- sitting in G.GAME.perscribed_bosses waiting for the real blind choice. since
+-- get_new_boss() deletes the entry when read (and modern steamodded has a
+-- separate SMODS.get_new_blind path), an external preview could otherwise
+-- steal the answer before it is committed; other
 -- mods generally only undo the pseudorandom/bosses_used side effects of
 -- their peek (see Next Ante Preview's predict_next_ante), not this cache,
 -- so our real commit is left to roll a fresh (and possibly different) boss
 -- than whatever was already shown on the Run Info panel. bof_committing_boss
--- is only true while OUR real commit (inside original_reset_blinds, via
--- vanilla's own `blind_choices.Boss = get_new_boss()`) is running, so any
+-- is only true while a blind-choice reset is committing, so any
 -- other caller's consumption of our cached entry gets restored afterward;
 -- legitimate rerolls (Director's Cut/Retcon/Boss Tag) are unaffected since
 -- by the time those can run, reset_blinds has already consumed that ante's
 -- entry for real and there's nothing left to restore.
 local bof_committing_boss = false
+if type(original_smods_get_new_blind) == 'function' then
+    function SMODS.get_new_blind(blind_type)
+        local ante = BOF.nc(G.GAME, "round_resets", "ante")
+        local cache = BF.nc(G.GAME, "perscribed_bosses")
+        local pending = blind_type == 'boss' and ante and cache and cache[ante]
+        if pending and G.P_BLINDS and G.P_BLINDS[pending] then
+            if bof_committing_boss then
+                cache[ante] = nil
+                if type(SMODS.add_boss_to_used_table) == 'function' then
+                    SMODS.add_boss_to_used_table(pending, 'boss')
+                end
+            end
+            return pending
+        elseif pending then
+            cache[ante] = nil
+        end
+        return original_smods_get_new_blind(blind_type)
+    end
+end
+
 local original_get_new_boss = get_new_boss
 function get_new_boss()
-    local ante = G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante
+    local ante = BOF.nc(G.GAME, "round_resets", "ante")
     local pending = ante and G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[ante]
     local result = original_get_new_boss()
     if pending and not bof_committing_boss then
@@ -1361,17 +1391,22 @@ function reset_blinds()
     bof_committing_boss = true
     original_reset_blinds()
     bof_committing_boss = false
-    if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
+    if BOF.nc(G.GAME, "round_resets", "ante") then
         bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
         bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
     end
 end
 
 if SMODS and type(SMODS.reset_blind_choices) == "function" then
-    local original_smods_reset_blind_choices = SMODS.reset_blind_choices
     function SMODS.reset_blind_choices(choices)
-        local result = original_smods_reset_blind_choices(choices)
-        if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
+        local previous_committing_state = bof_committing_boss
+        bof_committing_boss = true
+        local ok, result = pcall(original_smods_reset_blind_choices, choices)
+        bof_committing_boss = previous_committing_state
+        if not ok then
+            error(result)
+        end
+        if BOF.nc(G.GAME, "round_resets", "ante") then
             bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
             bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
         end
@@ -1413,15 +1448,15 @@ end
 local G_UIDEF_current_blinds_ref = G.UIDEF.current_blinds
 function G.UIDEF.current_blinds()
     local value = G_UIDEF_current_blinds_ref()
-    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_display" then
+    if BOF.nc(G.GAME, "selected_back", "effect", "center") and G.GAME.selected_back.effect.center.key == "b_bof_display" then
         G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
         local next_ante = (G.GAME.round_resets.ante or 1) + 1
         local showdown_ante = BundlesOfFun.get_next_showdown_ante()
         bof_pregenerate_boss(next_ante)
         bof_pregenerate_boss(showdown_ante)
 
-        local next_boss = bof_get_pregenerated_boss_for_ante(next_ante) or (G.GAME.round_resets.blind_choices and G.GAME.round_resets.blind_choices.Boss)
-        local showdown_boss = bof_get_pregenerated_boss_for_ante(showdown_ante) or (G.GAME.round_resets.blind_choices and G.GAME.round_resets.blind_choices.Boss)
+        local next_boss = bof_get_pregenerated_boss_for_ante(next_ante) or BOF.nc(G.GAME.round_resets.blind_choices, "Boss")
+        local showdown_boss = bof_get_pregenerated_boss_for_ante(showdown_ante) or BOF.nc(G.GAME.round_resets.blind_choices, "Boss")
 
         local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", next_boss, next_ante, true)
         local boss_node = boss_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No boss", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
