@@ -145,9 +145,9 @@ return {
             j_bof_gnocchi = {
                 name = "Gnocchi",
                 text = {
-                    "The next {C:attention}#1#{} Jokers sold",
-                    "sell for {C:money}3X{} their original",
-                    "sell value"
+                    "The next {C:attention}#1#{} Joker#<s>1#",
+                    "sold sell#<,s>1# for {C:money}#2#X{} #<their,its>1#",
+                    "{C:attention}original{} sell value"
                 }
             },
             j_bof_apple = {

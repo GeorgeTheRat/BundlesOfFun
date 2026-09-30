@@ -894,16 +894,13 @@ function Card:sell_card(...)
     if BOF.nc(self, "ability", "set") == "Joker" and BOF.nc(G.jokers, "cards") then
         for _, joker in ipairs(G.jokers.cards) do
             local remaining_sales = BOF.nc(joker, "ability", "extra", "sells")
-            if BOF.nc(joker, "config", "center", "key") == "j_bof_gnocchi"
-                and not joker.debuff and remaining_sales and remaining_sales > 0
-            then
+            if BOF.nc(joker, "config", "center", "key") == "j_bof_gnocchi" and not joker.debuff and remaining_sales and remaining_sales > 0 then
                 active_gnocchi[#active_gnocchi + 1] = joker
             end
         end
     end
-
     if #active_gnocchi > 0 then
-        self.sell_cost = self.sell_cost * 3
+        local sale_multiplier = active_gnocchi[1].ability.extra.multiplier or 3
         for _, gnocchi in ipairs(active_gnocchi) do
             gnocchi.ability.extra.sells = gnocchi.ability.extra.sells - 1
             card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
@@ -914,18 +911,17 @@ function Card:sell_card(...)
                 exhausted_gnocchi[#exhausted_gnocchi + 1] = gnocchi
             end
         end
+        self.sell_cost = self.sell_cost * sale_multiplier
     end
-
     local result = original_card_sell_card(self, ...)
     if #exhausted_gnocchi > 0 then
-        G.E_MANAGER:add_event(Event({
-            trigger = "after",
-            delay = 0.5,
-            func = function()
-                SMODS.destroy_cards(exhausted_gnocchi, { pinch_anim = true })
-                return true
-            end
-        }))
+        SMODS.destroy_cards(exhausted_gnocchi, { pinch_anim = true })
+        for _, gnocchi in ipairs(exhausted_gnocchi) do
+            card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
+                message = localize("k_eaten_ex"),
+                colour = G.C.FILTER
+            })
+        end
     end
     return result
 end

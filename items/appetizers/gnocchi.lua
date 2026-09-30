@@ -2,16 +2,26 @@ BundlesOfFun.Joker {
     key = "gnocchi",
     name = "Gnocchi",
     bundle = "appetizers",
-    config = { extra = { sells = 3 } },
+    config = {
+        extra = {
+            sells = 3,
+            multiplier = 3
+        }
+    },
     pos = { x = 6, y = 0 },
     attributes = { "economy", "sell_value", "food" },
-    cost = 3,
+    cost = 4,
     rarity = 1,
     blueprint_compat = false,
     eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.sells } }
+        return {
+            vars = {
+                card.ability.extra.sells,
+                card.ability.extra.multiplier
+            }
+        }
     end,
     joker_display_def = function(JokerDisplay)
         return {
