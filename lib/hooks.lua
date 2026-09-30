@@ -1353,7 +1353,7 @@ local bof_committing_boss = false
 if type(original_smods_get_new_blind) == 'function' then
     function SMODS.get_new_blind(blind_type)
         local ante = BOF.nc(G.GAME, "round_resets", "ante")
-        local cache = BF.nc(G.GAME, "perscribed_bosses")
+        local cache = BOF.nc(G.GAME, "perscribed_bosses")
         local pending = blind_type == 'boss' and ante and cache and cache[ante]
         if pending and G.P_BLINDS and G.P_BLINDS[pending] then
             if bof_committing_boss then
