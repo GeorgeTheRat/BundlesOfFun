@@ -1,5 +1,5 @@
--- cards cannot be rearranged in hand
--- (actual effect lives in the CardArea:set_ranks hook in lib/hooks.lua - this just registers the blind)
+-- cards cannot be rearranged
+-- (actual effect lives in lib/hooks.lua - this just registers the blind)
 BundlesOfFun.Blind {
     key = "decay",
     name = "The Decay",
