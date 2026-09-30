@@ -3,7 +3,6 @@ BundlesOfFun.Voucher {
     name = "Dark Alley",
     bundle = "coupons",
     pos = { x = 0, y = 0 },
-    attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
@@ -19,10 +18,9 @@ BundlesOfFun.Voucher {
         end
     end,
     calculate = function(self, card, context)
-        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
+        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") and context.set ~= "Booster" then
             if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
-                local back = G.GAME and G.GAME.selected_back
-                if BOF.nc(back, "effect", "center", "key") ~= "b_bof_fossilized" then
+                if BOF.nc(G.GAME, "selected_back", "effect", "center", "key") ~= "b_bof_fossilized" then
                     if pseudorandom(pseudoseed("bof_dark_alley")) < 0.03 then
                         return { shop_create_flags = { edition = "e_negative" } }
                     end

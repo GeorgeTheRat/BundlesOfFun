@@ -35,7 +35,7 @@ BundlesOfFun.Voucher {
         end
     end,
     calculate = function(self, card, context)
-        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
+        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") and context.set ~= "Booster" then
             if pseudorandom(pseudoseed("bof_illegal_wares")) < 0.09 then
                 return { shop_create_flags = { edition = "e_negative" } }
             end
