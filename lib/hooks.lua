@@ -1274,8 +1274,11 @@ end
 -- nothing else needs to hook into boss selection to make a pregenerated
 -- entry actually get used once its ante comes around
 function BundlesOfFun.get_next_showdown_ante()
-    local current_ante = G.GAME.round_resets.ante or 1
-    local win_ante = G.GAME.win_ante or 8
+    local current_ante = tonumber(G.GAME.round_resets.ante) or 1
+    local win_ante = tonumber(G.GAME.win_ante) or 8
+    if win_ante <= 0 then
+        win_ante = 8
+    end
     for i = current_ante + 1, current_ante + win_ante do
         if i % win_ante == 0 then
             return i
