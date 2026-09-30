@@ -34,7 +34,7 @@ BundlesOfFun.Blind {
             local changed = false
 
             for _, joker in ipairs(G.jokers.cards) do
-                local center = joker.config and joker.config.center
+                local center = BOF.nc(joker, "config", "center")
                 local is_rare = center and center.rarity == 3
                 local should_debuff = is_rare and not is_final_hand
 

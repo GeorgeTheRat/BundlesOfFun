@@ -10,7 +10,7 @@ BundlesOfFun.Back {
 		return { vars = { self.config.extra.hands } }
 	end,
     check_for_unlock = function(self, args)
-        if args and args.type == "hand" and G.GAME and G.GAME.hands then
+        if args and args.type == "hand" and BOF.nc(G.GAME, "hands") then
             local base_hands = { -- Why hardcoded? bc you can have mods adding extra hand types and this is easier than making exceptions for other mods
                 "High Card",
                 "Pair",

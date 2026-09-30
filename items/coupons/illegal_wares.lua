@@ -22,10 +22,10 @@ BundlesOfFun.Voucher {
         end
     end,
     check_for_unlock = function(self, args)
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             local count = 0
             for _, c in ipairs(G.consumeables.cards) do
-                if c.ability and c.ability.set == "Spectral" then
+                if BOF.nc(c, "ability", "set") == "Spectral" then
                     count = count + 1
                     if count >= 3 then
                         return true

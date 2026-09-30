@@ -32,7 +32,7 @@ BundlesOfFun.Joker {
         info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_blind_type", vars = { colours = { bof_boss_colour(), bof_showdown_colour() } } }
         if not card.ability.extra.enhancement then
             local counts = {}
-            for _, c in ipairs(G.playing_cards or (G.deck and G.deck.cards) or {}) do
+            for _, c in ipairs(G.playing_cards or BOF.nc(G.deck, "cards") or {}) do
                 for k in pairs(SMODS.get_enhancements(c)) do
                     counts[k] = (counts[k] or 0) + 1
                 end

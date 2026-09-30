@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
                     queen_count = queen_count + 1
                 end
             end
-            if G.hand and G.hand.cards then
+            if BOF.nc(G.hand, "cards") then
                 for _, hand_card in ipairs(G.hand.cards) do
                     if hand_card:get_id() == 12 then
                         queen_count = queen_count + 1
@@ -53,7 +53,7 @@ joker_display_def = function(JokerDisplay)
                         queen_count = queen_count + JokerDisplay.calculate_card_triggers(played_card, scoring_hand)
                     end
                 end
-                if G.hand and G.hand.cards then
+                if BOF.nc(G.hand, "cards") then
                     for _, hand_card in ipairs(G.hand.cards) do
                         if hand_card:get_id() == 12 then
                             queen_count = queen_count + JokerDisplay.calculate_card_triggers(hand_card, nil, true)

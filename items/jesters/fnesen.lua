@@ -18,7 +18,7 @@ BundlesOfFun.Joker {
         return { vars = { card.ability.extra.xmult } }
     end,
     calculate = function(self, card, context)
-        if context.debuff_card and context.debuff_card.area == G.jokers and context.debuff_card.ability.fnesen_chosen then
+        if BOF.nc(context, "debuff_card", "area") == G.jokers and BOF.nc(context, "debuff_card", "ability", "fnesen_chosen") then
             return {
                 debuff = true
             }

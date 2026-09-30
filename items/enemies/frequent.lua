@@ -11,8 +11,9 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
-        if context.stay_flipped and context.to_area == G.hand and G.GAME.bof_frequent_suit then
-            if context.other_card.base.suit == G.GAME.bof_frequent_suit then
+        local frequent_suit = BOF.nc(G.GAME, "bof_frequent_suit")
+        if context.stay_flipped and context.to_area == G.hand and frequent_suit then
+            if context.other_card.base.suit == frequent_suit then
                 return {
                     stay_flipped = true
                 }
@@ -20,7 +21,7 @@ BundlesOfFun.Blind {
         end
     end,
     loc_vars = function(self)
-        local suit = G.GAME and G.GAME.bof_frequent_suit
+        local suit = BOF.nc(G.GAME, "bof_frequent_suit")
         if suit then
             return { vars = { localize(suit, "suits_singular") } }
         end

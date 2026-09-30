@@ -55,7 +55,8 @@ BundlesOfFun.Joker {
         end
     end,
     in_pool = function(self, args)
-        return G.GAME and G.GAME.selected_back.effect.center.key ~= "b_plasma"
+        local selected_back_key = BOF.nc(G.GAME, "selected_back", "effect", "center", "key")
+        return selected_back_key and selected_back_key ~= "b_plasma"
     end,
     joker_display_def = function(JokerDisplay)
         return {

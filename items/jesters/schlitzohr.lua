@@ -48,7 +48,7 @@ BundlesOfFun.Joker {
 						trigger = "after",
 						delay = 0.15,
 						func = function()
-							if G.deck and G.deck.cards then
+							if BOF.nc(G.deck, "cards") then
 								local sorted_cards = {}
 								for _, c in ipairs(G.deck.cards) do
 									if not SMODS.has_no_rank(c) then

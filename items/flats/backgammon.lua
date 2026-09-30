@@ -6,7 +6,7 @@ BundlesOfFun.Back {
 	pos = { x = 8, y = 0 },
     unlocked = false,
     calculate = function(self, card, context)
-        if context.after and context.scoring_hand and (G.jokers and #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit) then
+        if context.after and context.scoring_hand and (BOF.nc(G.jokers, "cards") and #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit) then
             local cards_to_trigger = 0 -- this should be more than 0 unless you're playing with a mod that lets you play a hand without cards, or a mod that adds non-vanilla suits
             for i, other_card in ipairs(context.scoring_hand) do
                 if other_card:is_suit("Spades") or other_card:is_suit("Clubs") or other_card:is_suit("Hearts") or other_card:is_suit("Diamonds") then
@@ -63,10 +63,10 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        if args and args.type == "modify_deck" and G.GAME and G.GAME.blind then
+        if args and args.type == "modify_deck" and BOF.nc(G.GAME, "blind") then
             local first_suit = nil
             for _, card in ipairs(G.playing_cards or {}) do
-                local suit = card.base and card.base.suit
+                local suit = BOF.nc(card, "base", "suit")
                 if suit then
                     if not first_suit then
                         first_suit = suit

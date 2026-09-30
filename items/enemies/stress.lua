@@ -7,7 +7,7 @@ BundlesOfFun.Blind {
     name = "The Stress",
     bundle = "enemies",
     pos = { y = 17 },
-    attributes = { "ante", "shop" },
+    attributes = { "shop" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("88b8b8"),

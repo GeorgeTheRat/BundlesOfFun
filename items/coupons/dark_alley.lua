@@ -22,7 +22,7 @@ BundlesOfFun.Voucher {
         if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
             if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
                 local back = G.GAME and G.GAME.selected_back
-                if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized") then
+                if BOF.nc(back, "effect", "center", "key") ~= "b_bof_fossilized" then
                     if pseudorandom(pseudoseed("bof_dark_alley")) < 0.03 then
                         return { shop_create_flags = { edition = "e_negative" } }
                     end

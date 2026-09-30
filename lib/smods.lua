@@ -1,8 +1,9 @@
 SMODS.Atlas({
     key = "credit", 
     path = "credit.png", 
-    px = 68,
-    py = 68, 
+    px = 34,
+    py = 34,
+    force_pixel = true,
 })
 
 SMODS.Atlas({

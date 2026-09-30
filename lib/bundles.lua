@@ -107,7 +107,7 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
         local fish_count = 0
         if BOF.nc(G.consumeables, "cards") then
             for _, card in ipairs(G.consumeables.cards) do
-                if card.ability and card.ability.set == "Fish" then
+                if BOF.nc(card, "ability", "set") == "Fish" then
                     fish_count = fish_count + 1
                 end
             end

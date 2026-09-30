@@ -25,13 +25,7 @@ BundlesOfFun.Booster {
         }
     end,
     create_card = function(self, card, i)
-        return {
-            set = "fish_s",
-            skip_materialize = true,
-            area = G.pack_cards,
-            soulable = true,
-            key_append = "bof_fis"
-        }
+        return BundlesOfFun.create_fish_pack_card("fish_s", "bof_fis")
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.bof_minnows)

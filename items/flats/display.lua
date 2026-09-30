@@ -12,7 +12,7 @@ BundlesOfFun.Back {
         }
     end,
     check_for_unlock = function(self, args)
-        if args and args.type == "modify_deck" and G.GAME and G.GAME.blind then
+        if args and args.type == "modify_deck" and BOF.nc(G.GAME, "blind") then
             if G.GAME.bof_rerolled_showdown then
                 return true
             end

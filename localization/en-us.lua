@@ -145,8 +145,9 @@ return {
             j_bof_gnocchi = {
                 name = "Gnocchi",
                 text = {
-                    "The next {C:attention}#1# Blind#<s>1#{} skipped,",
-                    "create a {C:attention}Juggle Tag"
+                    "The next {C:attention}#1#{} Jokers sold",
+                    "sell for {C:money}3X{} their original",
+                    "sell value"
                 }
             },
             j_bof_apple = {
@@ -783,7 +784,7 @@ return {
                 name = "Narr",
                 text = {
                     "This Joker gains {C:white,X:mult}X#1#{} Mult",
-                    "for every {C:attention}card{} with {V:1}#2#{} suit",
+                    "for every {C:attention}card{} with {C:1}#2#{} suit",
                     "in your deck at end of round",
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
                 },
@@ -796,7 +797,7 @@ return {
                 text = {
                     "{C:white,X:mult}Multiply{C:mult} Mult{} by {C:attention}level{} of",
                     "most played {C:attention}poker hand",
-                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
+                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {C:1}lvl.#2#{C:inactive})"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
@@ -956,8 +957,8 @@ return {
                 },
                 unlock = {
                     "Win a run with",
-                    "{C:attention}#1#{} on {V:1}#2#",
-                    "or {C:attention}#3#{} on {V:2}#4#"
+                    "{C:attention}#1#{} on {C:1}#2#",
+                    "or {C:attention}#3#{} on {C:2}#4#"
                 }
             },
             b_bof_fossilized = {
@@ -1672,6 +1673,7 @@ return {
             k_fish = "Fish",
             k_plus_fish = "+1 Fish",
             k_expired_ex = "Expired!",
+            k_bof_thrice_ex = "Thrice!",
             k_fish_q = "Fish?",
 
             bl_bof_square = "Must contain 4 scoring cards",

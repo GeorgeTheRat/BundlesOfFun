@@ -11,9 +11,9 @@ BundlesOfFun.Back {
 	end,
     calc_dollar_bonus = function(self, back)
         local count = 0
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             for _, c in ipairs(G.consumeables.cards) do
-                if c.ability and c.ability.consumeable then
+                if BOF.nc(c, "ability", "consumeable") then
                     count = count + 1
                 end
             end
@@ -23,10 +23,10 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             local has = { Tarot = false, Planet = false, Spectral = false }
             for _, c in ipairs(G.consumeables.cards) do
-                local set = c.ability and c.ability.set
+                local set = BOF.nc(c, "ability", "set")
                 if set and has[set] ~= nil then
                     has[set] = true
                 end
