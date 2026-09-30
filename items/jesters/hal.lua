@@ -40,7 +40,8 @@ BundlesOfFun.Joker {
                     scalar_value = "chips_mod_mod",
                     no_message = true
                 })
-                if card.children.center and card.children.center.sprite_pos and card.children.center.sprite_pos.x ~= 9 then
+                local sprite_x = BOF.nc(card, "children", "center", "sprite_pos", "x")
+                if sprite_x and sprite_x ~= 9 then
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             if card.children.center.atlas == G.ASSET_ATLAS["bof_joker"] then

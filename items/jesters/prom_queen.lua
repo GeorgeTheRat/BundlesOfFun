@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
                     king_count = king_count + 1
                 end
             end
-            if G.hand and G.hand.cards then
+            if BOF.nc(G.hand, "cards") then
                 for _, hand_card in ipairs(G.hand.cards) do
                     if hand_card:get_id() == 13 then
                         king_count = king_count + 1
@@ -51,7 +51,7 @@ BundlesOfFun.Joker {
                             king_count = king_count + JokerDisplay.calculate_card_triggers(played_card, scoring_hand)
                         end
                     end
-                    if G.hand and G.hand.cards then
+                    if BOF.nc(G.hand, "cards") then
                         for _, hand_card in ipairs(G.hand.cards) do
                             if hand_card:get_id() == 13 then
                                 king_count = king_count + JokerDisplay.calculate_card_triggers(hand_card, nil, true)

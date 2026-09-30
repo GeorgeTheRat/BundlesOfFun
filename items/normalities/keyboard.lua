@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local eight_tally = 0
-        if G.deck and G.deck.cards then
+        if BOF.nc(G.deck, "cards") then
             for _, playing_card in ipairs(G.deck.cards) do
                 if playing_card:get_id() == 8 then eight_tally = eight_tally + 1 end
             end
@@ -27,7 +27,7 @@ BundlesOfFun.Joker {
         if context.individual and context.cardarea == G.play then
             if context.other_card:get_id() == 8 then
                 local eight_tally = 0
-                if G.deck and G.deck.cards then
+                if BOF.nc(G.deck, "cards") then
                     for _, playing_card in ipairs(G.deck.cards) do
                         if playing_card:get_id() == 8 then eight_tally = eight_tally + 1 end
                     end

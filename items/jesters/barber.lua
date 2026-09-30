@@ -28,7 +28,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.setting_blind then
             local trigger = false
-            if G.deck and G.deck.cards and #G.deck.cards > 0 then
+            if BOF.nc(G.deck, "cards") and #G.deck.cards > 0 then
                 for i = 1, #G.deck.cards do
                     if next(SMODS.get_enhancements(G.deck.cards[i])) then
                         trigger = true
@@ -59,7 +59,7 @@ BundlesOfFun.Joker {
                                 trigger = "after",
                                 delay = 0.15,
                                 func = function()
-                                    if G.deck and G.deck.cards and #G.deck.cards > 0 then
+                                    if BOF.nc(G.deck, "cards") and #G.deck.cards > 0 then
                                         for i = 1, #G.deck.cards do
                                             if next(SMODS.get_enhancements(G.deck.cards[i])) then
                                                 G.deck.cards[i]:set_ability("c_base", nil, true)

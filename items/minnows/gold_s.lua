@@ -5,6 +5,7 @@ BundlesOfFun.Consumable {
     set = "Fish",
     pools = { ["fish_s"] = true },
     pos = { x = 3, y = 0 },
+    attributes = { "economy" },
     config = {
         card_limit = 1,
         extra = {

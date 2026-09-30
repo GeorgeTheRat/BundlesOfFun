@@ -28,19 +28,19 @@ function SMODS.save_mod_config(mod)
             trigger = "after",
             delay = 0.1,
             func = function()
-                if G.jokers and G.jokers.cards then
+                if BOF.nc(G.jokers, "cards") then
                     for _, card in ipairs(G.jokers.cards) do
                         card.badges = nil
                         card:recalculate()
                     end
                 end
-                if G.consumeables and G.consumeables.cards then
+                if BOF.nc(G.consumeables, "cards") then
                     for _, card in ipairs(G.consumeables.cards) do
                         card.badges = nil
                         card:recalculate()
                     end
                 end
-                if G.deck and G.deck.cards then
+                if BOF.nc(G.deck, "cards") then
                     for _, card in ipairs(G.deck.cards) do
                         card.badges = nil
                         card:recalculate()

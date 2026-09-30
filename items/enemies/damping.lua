@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Damping",
     bundle = "enemies",
     pos = { y = 5 },
+    attributes = { "joker", "rarity", "debuff" },
     atlas = "blind",
     boss = { min = 4 },
     boss_colour = HEX("8e7cca"),
@@ -33,7 +34,7 @@ BundlesOfFun.Blind {
             local changed = false
 
             for _, joker in ipairs(G.jokers.cards) do
-                local center = joker.config and joker.config.center
+                local center = BOF.nc(joker, "config", "center")
                 local is_rare = center and center.rarity == 3
                 local should_debuff = is_rare and not is_final_hand
 

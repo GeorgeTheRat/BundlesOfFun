@@ -1,8 +1,9 @@
 SMODS.Atlas({
     key = "credit", 
     path = "credit.png", 
-    px = 68,
-    py = 68, 
+    px = 34,
+    py = 34,
+    force_pixel = true,
 })
 
 SMODS.Atlas({
@@ -121,11 +122,6 @@ SMODS.DrawStep {
 -- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"
-})
-
--- for jokers that adjust consumable slots (just tumor tom rn)
-SMODS.Attribute({
-    key = "consumable_slot"
 })
 
 -- for jokers that do stuff with fish

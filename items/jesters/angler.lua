@@ -16,7 +16,7 @@ BundlesOfFun.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local fish_count = 0
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             for _, consumable in ipairs(G.consumeables.cards) do
                 if consumable.ability.set == "Fish" then
                     fish_count = fish_count + 1
@@ -35,7 +35,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             local fish_count = 0
-            if G.consumeables and G.consumeables.cards then
+            if BOF.nc(G.consumeables, "cards") then
                 for _, consumable in ipairs(G.consumeables.cards) do
                     if consumable.ability.set == "Fish" then
                         fish_count = fish_count + 1
@@ -66,7 +66,7 @@ BundlesOfFun.Joker {
             },
             calc_function = function(card)
                 local fish_count = 0
-                if G.consumeables and G.consumeables.cards then
+                if BOF.nc(G.consumeables, "cards") then
                     for _, consumable in ipairs(G.consumeables.cards) do
                         if consumable.ability.set == "Fish" then
                             fish_count = fish_count + 1

@@ -19,7 +19,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.selling_card and context.card and context.card.ability and context.card.ability.set == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
+        if context.selling_card and BOF.nc(context, "card", "ability", "set") == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
             local rarity = 1
             while rarity == 1 or rarity == 4 do
                 rarity = SMODS.poll_rarity("Joker", "bof_zeke")

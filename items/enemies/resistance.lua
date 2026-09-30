@@ -11,6 +11,7 @@ BundlesOfFun.Blind {
     name = "The Resistance",
     bundle = "enemies",
     pos = { y = 24 },
+    attributes = { "economy", "hands", "discard" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("65b3dd"),

@@ -6,6 +6,7 @@ BundlesOfFun.Consumable {
     soul_set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 0, y = 2 },
+    attributes = { "chips" },
     config = {
         card_limit = 1,
         extra = { consumable_slots = 0 }

@@ -6,6 +6,7 @@ BundlesOfFun.Consumable {
     soul_set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 1, y = 2 },
+    attributes = { "mult" },
     config = {
         card_limit = 1,
         extra = { consumable_slots = 0 }
@@ -20,7 +21,7 @@ BundlesOfFun.Consumable {
     calculate = function(self, card, context)
         if context.joker_main then
             local total_mult = 0
-            if G.GAME and G.GAME.hands then
+            if BOF.nc(G.GAME, "hands") then
                 for hand_name, hand_data in pairs(G.GAME.hands) do
                     if hand_data.visible and hand_data.mult then
                         total_mult = total_mult + hand_data.mult

@@ -7,6 +7,7 @@ BundlesOfFun.Booster {
         choose = 1
     },
     pos = { x = 3, y = 0 },
+    attributes = { "booster", "jumbo", "fish" },
     draw_hand = false,
     group_key = "k_bof_tackle",
     kind = "bof_fish",
@@ -25,29 +26,11 @@ BundlesOfFun.Booster {
     end,
     create_card = function(self, card, i)
         if next(SMODS.find_card("j_bof_eureka")) then
-            return {
-                set = "fish_b",
-                skip_materialize = true,
-                area = G.pack_cards,
-                soulable = true,
-                key_append = "bof_fis3"
-            }
+            return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis3")
         elseif pseudorandom("p_bof_tackle_jumbo_1") > 0.7 then
-            return {
-                set = "fish_b",
-                skip_materialize = true,
-                area = G.pack_cards,
-                soulable = true,
-                key_append = "bof_fis2"
-            }
+            return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis2")
         else
-            return {
-                set = "fish_s",
-                skip_materialize = true,
-                area = G.pack_cards,
-                soulable = true,
-                key_append = "bof_fis1"
-            }
+            return BundlesOfFun.create_fish_pack_card("fish_s", "bof_fis1")
         end
     end,
     ease_background_colour = function(self)

@@ -20,6 +20,8 @@ function BOF.nc(value, ...)
     return value
 end
 
+
+
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
@@ -63,6 +65,12 @@ G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
+local hearts = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Hearts or G.C.SO_1.Hearts
+local diamonds = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Diamonds or G.C.SO_1.Diamonds
+G.ARGS.LOC_COLOURS.light = mix_colours(hearts, diamonds, 0.5)
+local spades = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Spades or G.C.SO_1.Spades
+local clubs = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Clubs or G.C.SO_1.Clubs
+G.ARGS.LOC_COLOURS.dark = mix_colours(spades, clubs, 0.5)
 
 -- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")

@@ -23,6 +23,7 @@ BundlesOfFun.Blind {
     name = "The Terminal",
     bundle = "enemies",
     pos = { y = 18 },
+    attributes = { "rank", "debuff" },
     atlas = "blind",
     boss = { min = 3 },
     boss_colour = HEX("588888"),
@@ -40,7 +41,7 @@ BundlesOfFun.Blind {
         -- whether the card being asked about matches the tracked rank
         if context.debuff_card then
             local rank = G.GAME.bof_terminal_debuffed_rank
-            if rank and context.debuff_card.base and context.debuff_card.base.id == rank then
+            if rank and BOF.nc(context, "debuff_card", "base", "id") == rank then
                 return { debuff = true }
             end
             return
@@ -71,7 +72,7 @@ BundlesOfFun.Blind {
                     end
                 end
             end
-            local new_rank = last_card and last_card.base and last_card.base.id
+            local new_rank = BOF.nc(last_card, "base", "id")
             if new_rank then
                 G.GAME.bof_terminal_pending_rank = new_rank
             end

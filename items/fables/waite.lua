@@ -39,11 +39,11 @@ BundlesOfFun.Joker {
             }
         end
         if context.end_of_round and context.main_eval and not context.blueprint then
-            card.ability.extra.xmult = 1
-            return {
-                message = localize("k_reset"),
-                colour = G.C.MULT
-            }
+            SMODS.reset_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "xmult",
+                reset_value = 1,
+            })
         end
     end
 }

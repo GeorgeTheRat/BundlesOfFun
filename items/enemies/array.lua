@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Array",
     bundle = "enemies",
     pos = { y = 8 },
+    attributes = { "consumable", "destroy_card" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("789868"),
@@ -11,7 +12,7 @@ BundlesOfFun.Blind {
         if blind.disabled then return end
 
         if context.before then
-            local consumables = G.consumeables and G.consumeables.cards
+            local consumables = BOF.nc(G.consumeables, "cards")
             if not consumables or #consumables == 0 then return end
 
             local target = pseudorandom_element(consumables, pseudoseed("bof_index"))

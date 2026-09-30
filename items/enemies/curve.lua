@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Curve",
     bundle = "enemies",
     pos = { y = 9 },
+    attributes = { "hand_type", "hand_level", "discard" },
     atlas = "blind",
     boss = { min = 3 },
     boss_colour = HEX("c8d8e8"),

@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Circuit",
     bundle = "enemies",
     pos = { y = 19 },
+    attributes = { "face_down" },
     atlas = "blind",
     boss = { min = 6 }, -- this feels way too punishing IMO too put anywhere under this
     boss_colour = HEX("e88868"),

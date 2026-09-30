@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Useless",
     bundle = "enemies",
     pos = { y = 14 },
+    attributes = { "economy", "joker", "sell_value" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("a88878"),

@@ -32,7 +32,7 @@ BundlesOfFun.Joker {
                         trigger = "after",
                         delay = 0.15,
                         func = function()
-                            if G.deck and G.deck.cards and #G.deck.cards > 0 then
+                            if BOF.nc(G.deck, "cards") and #G.deck.cards > 0 then
                                 G.deck.cards[1]:set_ability("m_lucky")
                             end
                             return true

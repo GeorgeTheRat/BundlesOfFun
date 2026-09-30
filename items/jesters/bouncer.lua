@@ -30,7 +30,7 @@ BundlesOfFun.Joker {
                 suits[s.card_key] = 0
             end
             for _, playing_card in pairs(G.playing_cards) do
-                if playing_card.base and playing_card.base.suit then
+                if BOF.nc(playing_card, "base", "suit") then
                     local suit_obj = SMODS.Suits[playing_card.base.suit]
                     if suit_obj then
                         local suit_card_key = suit_obj.card_key
@@ -63,7 +63,7 @@ BundlesOfFun.Joker {
                     suits[s.card_key] = 0
                 end
                 for _, playing_card in pairs(G.playing_cards) do
-                    if playing_card.base and playing_card.base.suit then
+                    if BOF.nc(playing_card, "base", "suit") then
                         local suit_obj = SMODS.Suits[playing_card.base.suit]
                         if suit_obj then
                             local suit_card_key = suit_obj.card_key

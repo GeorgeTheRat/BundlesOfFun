@@ -4,6 +4,7 @@ BundlesOfFun.Voucher {
     bundle = "coupons",
     requires = { "v_bof_dark_alley" },
     pos = { x = 0, y = 1 },
+    attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     unlocked = false,
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)
@@ -21,10 +22,10 @@ BundlesOfFun.Voucher {
         end
     end,
     check_for_unlock = function(self, args)
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             local count = 0
             for _, c in ipairs(G.consumeables.cards) do
-                if c.ability and c.ability.set == "Spectral" then
+                if BOF.nc(c, "ability", "set") == "Spectral" then
                     count = count + 1
                     if count >= 3 then
                         return true
@@ -34,7 +35,7 @@ BundlesOfFun.Voucher {
         end
     end,
     calculate = function(self, card, context)
-        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
+        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") and context.set ~= "Booster" then
             if pseudorandom(pseudoseed("bof_illegal_wares")) < 0.09 then
                 return { shop_create_flags = { edition = "e_negative" } }
             end

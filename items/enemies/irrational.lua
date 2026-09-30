@@ -5,6 +5,7 @@ BundlesOfFun.Blind {
     name = "The Irrational",
     bundle = "enemies",
     pos = { y = 15 },
+    attributes = { "position" },
     atlas = "blind",
     boss = { min = 3 },
     boss_colour = HEX("d8d888"),

@@ -161,6 +161,14 @@ return {
                     "crea una {C:attention}Etiqueta de Malabar{}"
                 }
             },
+            j_bof_gnocchi = {
+                name = "Gnocchi",
+                text = {
+                    "Los siguientes {C:attention}#1#{} comodines vendidos",
+                    "se venden por {C:money}3X{} su valor original",
+                    "de venta"
+                }
+            },
             j_bof_apple = {
                 name = "Manzana",
                 text = {
@@ -807,7 +815,7 @@ return {
                 name = "Narr",
                 text = {
                     "Gana {C:white,X:mult}X#1#{} Multi por cada",
-                    "{C:attention}carta{} de palo {V:1}#2#{} en tu",
+                    "{C:attention}carta{} de palo {C:1}#2#{} en tu",
                     "baraja al final de la ronda",
                     "{C:inactive}(Actualmente {C:white,X:mult}X#3#{C:inactive} Multi)"
                 },
@@ -821,7 +829,7 @@ return {
                     "{C:white,X:mult}Multiplica{C:mult} el Multi{} por",
                     "el {C:attention}nivel{} de la mano de póker",
                     "{C:attention}más jugada{} antes de anotar",
-                    "{C:inactive}(Actualmente {C:attention}#1#{C:inactive} a {C:inactive}{V:1}lvl.#2#{C:inactive})"
+                    "{C:inactive}(Actualmente {C:attention}#1#{C:inactive} a {C:inactive}{C:1}lvl.#2#{C:inactive})"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",
@@ -999,8 +1007,8 @@ return {
                 },
                 unlock = {
                     "Gana una partida con",
-                    "{C:attention}#1#{} en {V:1}#2#{}",
-                    "o {C:attention}#3#{} en {V:2}#4#{}"
+                    "{C:attention}#1#{} en {C:1}#2#{}",
+                    "o {C:attention}#3#{} en {C:2}#4#{}"
                 }
             },
             b_bof_fossilized = {
@@ -1759,6 +1767,7 @@ return {
             k_bof_tackle = "Paquete de Pescador",
             k_bof_fry = "Paquete Frito",
             k_bof_hooked = "Paquete de Cebo",
+            k_bof_thrice_ex = "¡Por triplicado!",
             k_fish = "Pez",
             k_plus_fish = "+1 Pez",
             k_expired_ex = "¡Expirado!",

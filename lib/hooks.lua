@@ -348,7 +348,7 @@ end
 -- that derivation ourselves everywhere vanilla assigns loc_name, so a key
 -- override actually shows up in the name too
 local function bof_refresh_back_loc_name(back)
-    local center = back and back.effect and back.effect.center
+    local center = BOF.nc(back, "effect", "center")
     if not center or not center.unlocked or type(center.loc_vars) ~= "function" then
         return
     end
@@ -383,7 +383,8 @@ function CardArea:emplace(card, location, stay_flipped)
     local ret = original_consumeable_emplace(self, card, location, stay_flipped)
     if G.consumeables and self == G.consumeables then
         check_for_unlock({ type = "bof_consumable_held" })
-        if card and card.config and card.config.center and card.config.center.key and card.config.center.key:match("_l$") then
+        local center_key = BOF.nc(card, "config", "center", "key")
+        if center_key and center_key:match("_l$") then
             check_for_unlock({ b_bof_scaly = true })
         end
     end
@@ -393,7 +394,7 @@ end
 -- wooden deck card sounds
 local original_play_sound = play_sound
 function play_sound(sound_code, per, vol)
-    if BundlesOfFun.config.custom_sounds and BOF.nc(G.GAME, "selected_back", "effect", "center") and G.GAME.selected_back.effect.center.key == "b_bof_wooden" then
+    if BundlesOfFun.config.custom_sounds and BOF.nc(G.GAME, "selected_back", "effect", "center", "key") == "b_bof_wooden" then
         if sound_code == "card1" then
             sound_code = "bof_wooden_1"
         elseif sound_code == "paper1" then
@@ -592,9 +593,9 @@ end
 -- here instead of using their own calculate() for this part.
 local original_evaluate_play = G.FUNCS.evaluate_play
 G.FUNCS.evaluate_play = function(e)
-    if BOF.nc(G.GAME, "blind", "config", "blind") and not G.GAME.blind.disabled 
-        and G.GAME.blind.config.blind then
-        if G.GAME.blind.config.blind.key == "bl_bof_dense" then
+    local blind_center = BOF.nc(G.GAME, "blind", "config", "blind")
+    if blind_center and not G.GAME.blind.disabled then
+        if blind_center.key == "bl_bof_dense" then
             BundlesOfFun.dense_clear_marks()
             local _, _, _, scoring_hand = G.FUNCS.get_poker_hand_info(G.play.cards)
             local target = nil
@@ -644,7 +645,7 @@ end
 local original_set_ranks = CardArea.set_ranks
 function CardArea:set_ranks()
     original_set_ranks(self)
-    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay_b"
         and not G.GAME.blind.disabled then
         for k, card in ipairs(self.cards) do
             card.bof_decay_locked_index = k
@@ -661,7 +662,7 @@ end
 local original_align_cards = CardArea.align_cards
 function CardArea:align_cards()
     original_align_cards(self)
-    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind") and G.GAME.blind.config.blind.key == "bl_bof_decay_b"
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay_b"
         and not G.GAME.blind.disabled then
         table.sort(self.cards, function(a, b)
             return (a.bof_decay_locked_index or 0) < (b.bof_decay_locked_index or 0)
@@ -674,7 +675,7 @@ local original_use_card = G.FUNCS.use_card
 function G.FUNCS.use_card(e, mute, nosave)
     local card = e.config.ref_table
     local result = original_use_card(e, mute, nosave)
-    if BOF.nc(card, "ability") and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
+    if BOF.nc(card, "ability", "set") == "Voucher" and card.area == G.shop_vouchers then
         local current_ante = G.GAME.round_resets.ante or 1
         if current_ante ~= G.GAME.bof_current_ante then
             G.GAME.bof_vouchers_redeemed_this_ante = 0
@@ -745,9 +746,9 @@ G.FUNCS.skip_blind = function(e)
         return
     end
     original_skip_blind(e)
-    local back = G.GAME and G.GAME.selected_back
-    if BOF.nc(back, "effect", "center") and back.effect.center.key == "b_bof_retro" then
-        local amount = BOF.nc(back.effect.center.config, "extra", "hands") or 4
+    local back = BOF.nc(G.GAME, "selected_back")
+    if BOF.nc(back, "effect", "center", "key") == "b_bof_retro" then
+        local amount = BOF.nc(back, "effect", "center", "config", "extra", "hands") or 4
         G.E_MANAGER:add_event(Event({
             trigger = "immediate",
             func = function()
@@ -823,7 +824,7 @@ end
 -- continuation of hotboxer
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
-    if next(SMODS.find_card("j_bof_hotboxer")) and G.shop_jokers and G.shop_jokers.cards and t.area == G.shop_jokers and t.set ~= "Tarot" then
+    if next(SMODS.find_card("j_bof_hotboxer")) and BOF.nc(G.shop_jokers, "cards") and t.area == G.shop_jokers and t.set ~= "Tarot" then
         if (#G.shop_jokers.cards + 1) == G.GAME.shop.joker_max then
             t.set = "Tarot"
             t.key = nil
@@ -834,7 +835,7 @@ function SMODS.create_card(t)
         t and
         t.area and
         (t.area == G.shop_jokers or t.area == G.pack_cards) and
-        (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker"))
+        (t.set == "Joker" or (t.key and BOF.nc(G.P_CENTERS, t.key, "set") == "Joker"))
     then
         t.set = "Joker"
         t.legendary = nil
@@ -844,6 +845,84 @@ function SMODS.create_card(t)
     local card = original_smods_create_card(t)
     bof_apply_fish_voucher_state(card)
     return card
+end
+
+function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
+    local legendary_fish = {}
+    local total_soul_rate = 0
+    local non_soul_rate = 1
+    local fish_pool = BOF.nc(G.P_CENTER_POOLS, "fish_l") or {}
+
+    for _, fish_center in ipairs(fish_pool) do
+        local soul_rate = fish_center.soul_rate
+        if soul_rate and soul_rate > 0 and SMODS.add_to_pool(fish_center)
+            and not (G.GAME.used_jokers[fish_center.key] and not SMODS.showman(fish_center.key) and not fish_center.can_repeat_soul)
+        then
+            total_soul_rate = total_soul_rate + soul_rate
+            non_soul_rate = math.max(non_soul_rate * (1 - soul_rate), 0)
+            legendary_fish[#legendary_fish + 1] = fish_center
+        end
+    end
+
+    local legendary_key
+    if total_soul_rate > 0 then
+        local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. fish_set ))
+        local threshold = 1
+        for _, fish_center in ipairs(legendary_fish) do
+            threshold = threshold - fish_center.soul_rate / total_soul_rate * (1 - non_soul_rate)
+            if roll > threshold then
+                legendary_key = fish_center.key
+                break
+            end
+        end
+    end
+
+    return {
+        set = fish_set,
+        key = legendary_key,
+        skip_materialize = true,
+        area = G.pack_cards,
+        soulable = true,
+        key_append = key_append
+    }
+end
+
+local original_card_sell_card = Card.sell_card
+function Card:sell_card(...)
+    local active_gnocchi = {}
+    local exhausted_gnocchi = {}
+    if BOF.nc(self, "ability", "set") == "Joker" and BOF.nc(G.jokers, "cards") then
+        for _, joker in ipairs(G.jokers.cards) do
+            local remaining_sales = BOF.nc(joker, "ability", "extra", "sells")
+            if BOF.nc(joker, "config", "center", "key") == "j_bof_gnocchi" and not joker.debuff and remaining_sales and remaining_sales > 0 then
+                active_gnocchi[#active_gnocchi + 1] = joker
+            end
+        end
+    end
+    if #active_gnocchi > 0 then
+        local sale_multiplier = active_gnocchi[1].ability.extra.multiplier or 3
+        for _, gnocchi in ipairs(active_gnocchi) do
+            gnocchi.ability.extra.sells = gnocchi.ability.extra.sells - 1
+            card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
+                message = localize("k_bof_thrice_ex"),
+                colour = G.C.MONEY
+            })
+            if gnocchi.ability.extra.sells <= 0 and gnocchi ~= self then
+                exhausted_gnocchi[#exhausted_gnocchi + 1] = gnocchi
+            end
+        end
+        self.sell_cost = self.sell_cost * sale_multiplier
+    end
+    local result = original_card_sell_card(self, ...)
+    if #exhausted_gnocchi > 0 then
+        SMODS.destroy_cards(exhausted_gnocchi, { pinch_anim = true })
+        for _, gnocchi in ipairs(exhausted_gnocchi) do
+            card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
+                message = localize("k_eaten_ex")
+            })
+        end
+    end
+    return result
 end
 
 -- continuation of ice bucket and buried treasure
@@ -878,8 +957,8 @@ end
 -- for the one vanilla call that reads it, then putting it back (touching the
 -- real field would desync the sprite/save state)
 local function bof_dominant_active()
-    return G.GAME and G.GAME.blind and not G.GAME.blind.disabled and G.GAME.blind.config
-        and G.GAME.blind.config.blind and G.GAME.blind.config.blind.key == "bl_bof_dominant"
+    local blind = BOF.nc(G.GAME, "blind")
+    return blind and not blind.disabled and BOF.nc(blind, "config", "blind", "key") == "bl_bof_dominant"
 end
 
 local dominant_calculate_seal = Card.calculate_seal
@@ -954,11 +1033,12 @@ SMODS.Joker:take_ownership("perkeo", {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         local main_end = {}
-        if G.consumeables and G.consumeables.cards then
+        if BOF.nc(G.consumeables, "cards") then
             for _, consumable in ipairs(G.consumeables.cards) do
-                if BOF.nc(consumable.config.center, "key") then
+                local center_key = BOF.nc(consumable, "config", "center", "key")
+                if center_key then
                     for _, legendary_key in ipairs(legendary_fish_keys) do
-                        if consumable.config.center.key == legendary_key then
+                        if center_key == legendary_key then
                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
                             break
                         end
@@ -1012,7 +1092,7 @@ local function bof_scratch_off_reroll_boosters()
     local booster_cards = {}
     for i = #G.shop_booster.cards, 1, -1 do
         local c = G.shop_booster.cards[i]
-        if c.ability and c.ability.set == "Booster" then
+        if BOF.nc(c, "ability", "set") == "Booster" then
             booster_cards[#booster_cards + 1] = c
         end
     end
@@ -1076,7 +1156,7 @@ local function bof_lottery_ticket_reroll_vouchers()
     local voucher_cards = {}
     for i = #G.shop_vouchers.cards, 1, -1 do
         local c = G.shop_vouchers.cards[i]
-        if c.ability and c.ability.set == "Voucher" then
+        if BOF.nc(c, "ability", "set") == "Voucher" then
             voucher_cards[#voucher_cards + 1] = c
         end
     end
@@ -1121,7 +1201,7 @@ end
 local original_smeared_check = SMODS.smeared_check
 function SMODS.smeared_check(card, suit)
     if next(SMODS.find_card("j_bof_postman")) then
-        if G.play and G.play.cards then
+        if BOF.nc(G.play, "cards") then
             for i, played_card in ipairs(G.play.cards) do
                 if played_card == card and i <= 4 then
                     local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
@@ -1132,7 +1212,7 @@ function SMODS.smeared_check(card, suit)
                 end
             end
         end
-        if G.hand and G.hand.highlighted then
+        if BOF.nc(G.hand, "highlighted") then
             local highlighted_copy = {}
             for _, c in ipairs(G.hand.highlighted) do
                 table.insert(highlighted_copy, c)
@@ -1251,29 +1331,15 @@ function set_discover_tallies()
     BundlesOfFun.refresh_collection_ui()
 end
 
--- modsCollectionTally returns { tally, of } with no .display field.
--- The UIBox_button lovely-patch reads ref_value = "display", so set it here.
--- The original also only checks `not v.no_collection` (boolean), so function-type
--- no_collection items (BundlesOfFun's approach) are always excluded. We add them back.
+-- Steamodded already computes the real collection totals and filters hidden
+-- entries through SMODS.hide_from_collection(). We only need to patch in the
+-- display string for UI boxes; adding the counts here double-counts entries.
 local bof_modsCollectionTally_ref = modsCollectionTally
 function modsCollectionTally(pool, set, ignore_discovered)
     local result = bof_modsCollectionTally_ref(pool, set, ignore_discovered)
-    if pool and G.ACTIVE_MOD_UI then
-        for _, v in pairs(pool) do
-            if v.mod and G.ACTIVE_MOD_UI.id == v.mod.id and type(v.no_collection) == "function" and not v.no_collection() then
-                if set then
-                    if v.set and v.set == set then
-                        result.of = result.of + 1
-                        if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
-                    end
-                else
-                    result.of = result.of + 1
-                    if ignore_discovered or v.discovered then result.tally = result.tally + 1 end
-                end
-            end
-        end
+    if result then
+        result.display = (result.tally or 0) .. " / " .. (result.of or 0)
     end
-    result.display = result.tally .. " / " .. result.of
     return result
 end
 
@@ -1288,8 +1354,11 @@ end
 -- nothing else needs to hook into boss selection to make a pregenerated
 -- entry actually get used once its ante comes around
 function BundlesOfFun.get_next_showdown_ante()
-    local current_ante = G.GAME.round_resets.ante or 1
-    local win_ante = G.GAME.win_ante or 8
+    local current_ante = tonumber(G.GAME.round_resets.ante) or 1
+    local win_ante = tonumber(G.GAME.win_ante) or 8
+    if win_ante <= 0 then
+        win_ante = 8
+    end
     for i = current_ante + 1, current_ante + win_ante do
         if i % win_ante == 0 then
             return i
@@ -1298,15 +1367,12 @@ function BundlesOfFun.get_next_showdown_ante()
     return win_ante
 end
 
--- generates target_ante's boss for real via SMODS.poll_object (temporarily
--- pointing round_resets.ante at it, since that's what SMODS.create_blind_pool
--- and SMODS.is_showdown_ante read to decide eligibility/showdown-ness) and
--- locks it into perscribed_bosses. deliberately does NOT bump
--- G.GAME.bosses_used here - vanilla's get_new_boss bumps it once, for real,
--- when it actually consumes this preseeded entry; bumping here too would
--- double-count this boss as "used" against the anti-repeat weighting for a
--- single real fight. safe to call repeatedly - it's a no-op once an ante's
--- entry exists
+local original_smods_get_new_blind = SMODS and SMODS.get_new_blind
+local original_smods_reset_blind_choices = SMODS and SMODS.reset_blind_choices
+
+-- Generate the actual upcoming boss using the same selection pipeline Steamodded
+-- uses in the small/big/boss workflow. Small and Big are generated first because
+-- modern blind pools exclude choices already made for the target ante.
 local function bof_pregenerate_boss(target_ante)
     if type(target_ante) ~= "number" then
         return
@@ -1315,10 +1381,31 @@ local function bof_pregenerate_boss(target_ante)
     if G.GAME.perscribed_bosses[target_ante] then
         return
     end
+
     local saved_ante = G.GAME.round_resets.ante
+    local saved_bosses_used = copy_table(G.GAME.bosses_used or {})
+    local saved_choices = G.GAME.round_resets.blind_choices
+    local saved_blind_order = G.GAME.round_resets.blind_order
+    local predicted_choices = {}
     G.GAME.round_resets.ante = target_ante
-    local ok, boss = pcall(SMODS.poll_object, { type = "Blind", seed = "boss" })
+    G.GAME.round_resets.blind_choices = predicted_choices
+
+    local ok, boss = pcall(function()
+        if type(original_smods_reset_blind_choices) == 'function' then
+            original_smods_reset_blind_choices(predicted_choices)
+            return predicted_choices.Boss
+        elseif type(original_smods_get_new_blind) == 'function' then
+            return original_smods_get_new_blind('boss')
+        else
+            return get_new_boss()
+        end
+    end)
+
     G.GAME.round_resets.ante = saved_ante
+    G.GAME.bosses_used = saved_bosses_used
+    G.GAME.round_resets.blind_choices = saved_choices
+    G.GAME.round_resets.blind_order = saved_blind_order
+
     if ok and boss then
         G.GAME.perscribed_bosses[target_ante] = boss
     end
@@ -1329,24 +1416,43 @@ end
 -- Boss blind is defeated (round_resets.ante has already ticked over to the
 -- next ante by then, via end_round's ease_ante(1), before that mod's hook
 -- runs) - the same moment our own pregenerated entry for that ante is
--- sitting in G.GAME.perscribed_bosses waiting for OUR reset_blinds hook
--- below to hand it to the real blind_choices.Boss assignment. Since
--- get_new_boss() deletes the perscribed_bosses entry the instant it's read,
--- whichever of us calls it first silently steals the other's answer; other
+-- sitting in G.GAME.perscribed_bosses waiting for the real blind choice. since
+-- get_new_boss() deletes the entry when read (and modern steamodded has a
+-- separate SMODS.get_new_blind path), an external preview could otherwise
+-- steal the answer before it is committed; other
 -- mods generally only undo the pseudorandom/bosses_used side effects of
 -- their peek (see Next Ante Preview's predict_next_ante), not this cache,
 -- so our real commit is left to roll a fresh (and possibly different) boss
 -- than whatever was already shown on the Run Info panel. bof_committing_boss
--- is only true while OUR real commit (inside original_reset_blinds, via
--- vanilla's own `blind_choices.Boss = get_new_boss()`) is running, so any
+-- is only true while a blind-choice reset is committing, so any
 -- other caller's consumption of our cached entry gets restored afterward;
 -- legitimate rerolls (Director's Cut/Retcon/Boss Tag) are unaffected since
 -- by the time those can run, reset_blinds has already consumed that ante's
 -- entry for real and there's nothing left to restore.
 local bof_committing_boss = false
+if type(original_smods_get_new_blind) == 'function' then
+    function SMODS.get_new_blind(blind_type)
+        local ante = BOF.nc(G.GAME, "round_resets", "ante")
+        local cache = BOF.nc(G.GAME, "perscribed_bosses")
+        local pending = blind_type == 'boss' and ante and cache and cache[ante]
+        if pending and G.P_BLINDS and G.P_BLINDS[pending] then
+            if bof_committing_boss then
+                cache[ante] = nil
+                if type(SMODS.add_boss_to_used_table) == 'function' then
+                    SMODS.add_boss_to_used_table(pending, 'boss')
+                end
+            end
+            return pending
+        elseif pending then
+            cache[ante] = nil
+        end
+        return original_smods_get_new_blind(blind_type)
+    end
+end
+
 local original_get_new_boss = get_new_boss
 function get_new_boss()
-    local ante = G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante
+    local ante = BOF.nc(G.GAME, "round_resets", "ante")
     local pending = ante and G.GAME.perscribed_bosses and G.GAME.perscribed_bosses[ante]
     local result = original_get_new_boss()
     if pending and not bof_committing_boss then
@@ -1357,15 +1463,34 @@ end
 
 -- the moment the real ante's boss is decided, also generate next ante's
 -- boss (and the next showdown's, if further out) so the display deck can
--- show the real answer instead of a guess
+-- show the real answer instead of a guess. New Steamodded versions select
+-- Small/Big/Boss all through the blind-order pipeline instead of the old
+-- get_new_boss() flow, so we mirror that refresh on both APIs.
 local original_reset_blinds = reset_blinds
 function reset_blinds()
     bof_committing_boss = true
     original_reset_blinds()
     bof_committing_boss = false
-    if G.GAME and G.GAME.round_resets and G.GAME.round_resets.ante then
+    if BOF.nc(G.GAME, "round_resets", "ante") then
         bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
         bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
+    end
+end
+
+if SMODS and type(SMODS.reset_blind_choices) == "function" then
+    function SMODS.reset_blind_choices(choices)
+        local previous_committing_state = bof_committing_boss
+        bof_committing_boss = true
+        local ok, result = pcall(original_smods_reset_blind_choices, choices)
+        bof_committing_boss = previous_committing_state
+        if not ok then
+            error(result)
+        end
+        if BOF.nc(G.GAME, "round_resets", "ante") then
+            bof_pregenerate_boss(G.GAME.round_resets.ante + 1)
+            bof_pregenerate_boss(BundlesOfFun.get_next_showdown_ante())
+        end
+        return result
     end
 end
 
@@ -1388,24 +1513,38 @@ function BundlesOfFun.create_predicted_blind_choice(type, blind_key, blind_ante,
     return choice
 end
 
+local function bof_get_pregenerated_boss_for_ante(ante)
+    if not ante or not G.GAME or not G.GAME.perscribed_bosses then
+        return nil
+    end
+    local boss_key = G.GAME.perscribed_bosses[ante]
+    if boss_key and G.P_BLINDS and G.P_BLINDS[boss_key] then
+        return boss_key
+    end
+    return nil
+end
+
 -- hook current_blinds to add prediction ui
 local G_UIDEF_current_blinds_ref = G.UIDEF.current_blinds
 function G.UIDEF.current_blinds()
     local value = G_UIDEF_current_blinds_ref()
-    if G.GAME and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center and G.GAME.selected_back.effect.center.key == "b_bof_display" then
+    if BOF.nc(G.GAME, "selected_back", "effect", "center", "key") == "b_bof_display" then
         G.GAME.perscribed_bosses = G.GAME.perscribed_bosses or {}
         local next_ante = (G.GAME.round_resets.ante or 1) + 1
         local showdown_ante = BundlesOfFun.get_next_showdown_ante()
         bof_pregenerate_boss(next_ante)
         bof_pregenerate_boss(showdown_ante)
 
-        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[next_ante], next_ante, true)
+        local next_boss = bof_get_pregenerated_boss_for_ante(next_ante) or BOF.nc(G.GAME.round_resets.blind_choices, "Boss")
+        local showdown_boss = bof_get_pregenerated_boss_for_ante(showdown_ante) or BOF.nc(G.GAME.round_resets.blind_choices, "Boss")
+
+        local boss_choice = BundlesOfFun.create_predicted_blind_choice("Boss", next_boss, next_ante, true)
         local boss_node = boss_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No boss", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
         local boss_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.BLUE }, nodes = {
             { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. next_ante, scale = 0.4, colour = G.C.BLUE, shadow = true } } } },
             boss_node
         } }
-        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", G.GAME.perscribed_bosses[showdown_ante], showdown_ante, true)
+        local showdown_choice = BundlesOfFun.create_predicted_blind_choice("Boss", showdown_boss, showdown_ante, true)
         local showdown_node = showdown_choice or { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "No showdown", scale = 0.35, colour = G.C.UI.TEXT_INACTIVE } } } }
         local showdown_section = { n = G.UIT.C, config = { align = "tm", padding = 0.1, outline = 2, r = 0.1, line_emboss = 0.2, outline_colour = G.C.RED }, nodes = {
             { n = G.UIT.R, config = { align = "cm" }, nodes = { { n = G.UIT.T, config = { text = "Ante " .. showdown_ante, scale = 0.4, colour = G.C.RED, shadow = true } } } },
@@ -1468,7 +1607,7 @@ end
 -- nuwa & fuxi: track fish expiration for card creation
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)
-    if card and card.ability and card.ability.set == "Fish" then
+    if BOF.nc(card, "ability", "set") == "Fish" then
         local fish_key = card.config.center.key
         local is_big_fish = fish_key:match("_b$")
         local is_small_fish = fish_key:match("_s$")

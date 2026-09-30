@@ -7,6 +7,7 @@ BundlesOfFun.Blind {
     name = "The Dense",
     bundle = "enemies",
     pos = { y = 16 },
+    attributes = { "debuff" },
     atlas = "blind",
     boss = { min = 0 },
     boss_colour = HEX("689898"),
@@ -19,7 +20,7 @@ BundlesOfFun.Blind {
 
         -- whether the card being asked about is the one that got marked
         if context.debuff_card then
-            if context.debuff_card.ability and context.debuff_card.ability.bof_dense_marked then
+            if BOF.nc(context, "debuff_card", "ability", "bof_dense_marked") then
                 return {
                     debuff = true
                 }

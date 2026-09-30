@@ -41,7 +41,7 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 local playing_hand = next(G.play.cards)
                 local count = 0
-                if G.hand and G.hand.cards then
+                if BOF.nc(G.hand, "cards") then
                     for _, c in ipairs(G.hand.cards) do
                         if (playing_hand or not c.highlighted) and (c:is_suit("Spades") or c:is_suit("Clubs")) then
                             count = count + JokerDisplay.calculate_card_triggers(c, nil, true)

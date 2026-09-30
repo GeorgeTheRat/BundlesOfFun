@@ -40,7 +40,7 @@ BundlesOfFun.Joker {
         end
         if context.selling_card or (context.joker_type_destroyed and context.card == card) then
             for _, c in ipairs(G.hand.cards) do
-                if c.edition and c.edition.negative then
+                if BOF.nc(c, "edition", "negative") then
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             c:set_edition(nil, nil, nil, true)
@@ -50,7 +50,7 @@ BundlesOfFun.Joker {
                 end
             end
             for _, c in ipairs(G.deck.cards) do
-                if c.edition and c.edition.negative then
+                if BOF.nc(c, "edition", "negative") then
                     G.E_MANAGER:add_event(Event({
                         trigger = "after",
                         delay = 0.1,

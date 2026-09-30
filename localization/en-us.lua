@@ -145,8 +145,9 @@ return {
             j_bof_gnocchi = {
                 name = "Gnocchi",
                 text = {
-                    "The next {C:attention}#1# Blind#<s>1#{} skipped,",
-                    "create a {C:attention}Juggle Tag"
+                    "The next {C:attention}#1#{} Joker#<s>1#",
+                    "sold sell#<,s>1# for {C:money}#2#X{} #<their,its>1#",
+                    "{C:attention}original{} sell value"
                 }
             },
             j_bof_apple = {
@@ -382,10 +383,10 @@ return {
                 name = "Luminary",
                 text = {
                     "Earn {C:money}$#1#{} at end of round",
-                    "Increase payout by {C:money}$#2#{} for each",
-                    "played hand that contains a",
-                    "{C:attention}played{} and {C:attention}unscoring{} card with",
-                    "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
+                    "Increase payout by {C:money}$#2#{} for ",
+                    "each played hand that contains",
+                    "a {C:attention}played{} and {C:attention}unscoring{} card",
+                    "with {C:light}Light{} shade this round"
                 }
             },
             j_bof_furious = {
@@ -791,7 +792,7 @@ return {
                 text = {
                     "This Joker gains {C:mult}+#1#{} Mult",
                     "when hand is played,",
-                    "resets when a {C:attention}face card{} is",
+                    "{C:attention}resets{} when a {C:attention}face{} card is",
                     "discarded or held in hand",
                     "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 }
@@ -883,7 +884,7 @@ return {
                 name = "Narr",
                 text = {
                     "This Joker gains {C:white,X:mult}X#1#{} Mult",
-                    "for every {C:attention}card{} with {V:1}#2#{} suit",
+                    "for every {C:attention}card{} with {C:1}#2#{} suit",
                     "in your deck at end of round",
                     "{C:inactive}(Currently {C:white,X:mult}X#3#{C:inactive} Mult)"
                 },
@@ -896,7 +897,7 @@ return {
                 text = {
                     "{C:white,X:mult}Multiply{C:mult} Mult{} by {C:attention}level{} of",
                     "most played {C:attention}poker hand",
-                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {V:1}lvl.#2#{C:inactive})"
+                    "{C:inactive}(Currently {C:attention}#1#{C:inactive} at {C:1}lvl.#2#{C:inactive})"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
@@ -1057,8 +1058,8 @@ return {
                 },
                 unlock = {
                     "Win a run with",
-                    "{C:attention}#1#{} on {V:1}#2#",
-                    "or {C:attention}#3#{} on {V:2}#4#"
+                    "{C:attention}#1#{} on {C:1}#2#",
+                    "or {C:attention}#3#{} on {C:2}#4#"
                 }
             },
             b_bof_fossilized = {
@@ -1725,6 +1726,21 @@ return {
                     "{C:inactive,s:0.8}(Cannot be sold when slots are full)"
                 }
             },
+            k_bof_shade_light = {
+                name = "Light",
+                text = {
+                    "{C:hearts}Hearts{} or",
+                    "{C:diamonds}Diamonds"
+                }
+            },
+            -- currently unused
+            k_bof_shade_dark = {
+                name = "Dark",
+                text = {
+                    "{C:spades}Spades{} or",
+                    "{C:clubs}Clubs"
+                }
+            },
             k_bof_modification = {
 				name = "Modification",
 				text = {
@@ -1759,6 +1775,7 @@ return {
             k_fish = "Fish",
             k_plus_fish = "+1 Fish",
             k_expired_ex = "Expired!",
+            k_bof_thrice_ex = "Thrice!",
             k_fish_q = "Fish?",
 
             bl_bof_square = "Must contain 4 scoring cards",

@@ -6,6 +6,7 @@ BundlesOfFun.Blind {
     name = "The Particle",
     bundle = "enemies",
     pos = { y = 20 },
+    attributes = { "ante", "skip" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("d86878"),
