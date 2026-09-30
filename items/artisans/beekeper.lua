@@ -48,7 +48,7 @@ BundlesOfFun.Joker {
                 local juice = false
                 for _, played_card in ipairs(context.full_hand) do
                     if SMODS.pseudorandom_probability(card, "bof_beekeeper", 1, card.ability.extra.odds) then
-                        played_card.ability.perma_dollars = (played_card.ability.perma_dollars or 0) + unique_suits * card.ability.extra.dollars
+                        played_card.ability.perma_p_dollars = (played_card.ability.perma_p_dollars or 0) + unique_suits * card.ability.extra.dollars
                         played_card:juice_up()
                         juice = true
                     end
