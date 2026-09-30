@@ -1015,11 +1015,11 @@ return {
             b_bof_embroidered = {
                 name = "Embroidered Deck",
                 text = {
-                    "Start with one random",
-                    "{C:attention}rank{} missing from deck",
+                    "Start with {C:attention}#1#{} random",
+                    "{C:attention}ranks{} missing from deck",
                     "When {C:attention}Boss Blind{} is defeated,",
-                    "add {C:attention}4{} cards to deck with each",
-                    "{C:attention}suit{} of one random {C:attention}rank",
+                    "add {C:attention}#2#{} cards of one random",
+                    "{C:attention}rank{} to the deck",
                     "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}Clubs{C:inactive,s:0.8}, and {C:attention,s:0.8}Diamonds{C:inactive,s:0.8})"
                 },
                 unlock = {
@@ -1041,10 +1041,11 @@ return {
             b_bof_illusion = {
                 name = "Illusion Deck",
                 text = {
-                    "When a {C:attention}Boss Blind",
-                    "is defeated, increase",
-                    "hands or discards by",
-                    "{C:plasma}+#1#{} for the next {C:attention}Ante"
+                    "When a {C:attention}Boss Blind{} is",
+                    "defeated, randomly gain",
+                    "{C:blue}+#1#{} Hand#<s>1# and {C:red}-#2#{} Discard#<s>2# or",
+                    "{C:red}+#1#{} Discard#<s>1# and {C:blue}-#2#{} Hand#<s>2#",
+                    "for the next {C:attention}Ante"
                 },
                 unlock = {
                     "Win a run with",
