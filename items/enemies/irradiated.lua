@@ -9,6 +9,6 @@ BundlesOfFun.Blind {
     pos = { y = 2 },
     attributes = { "chips" },
     atlas = "blind",
-    boss = { min = 0 },
+    boss = { min = 2 },
     boss_colour = HEX("e8dfc4")
 }
