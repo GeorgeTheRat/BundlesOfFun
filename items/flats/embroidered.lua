@@ -9,6 +9,7 @@ BundlesOfFun.Back {
         }
     },
     pos = { x = 3, y = 0 },
+    attributes = { "generation", "destroy_card", "playing_card" },
     unlocked = false,
     atlas = "deck",
     loc_vars = function(self, info_queue)

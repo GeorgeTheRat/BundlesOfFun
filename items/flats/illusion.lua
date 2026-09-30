@@ -11,6 +11,7 @@ BundlesOfFun.Back {
     },
     atlas = "deck",
     pos = { x = 4, y = 0 },
+    attributes = { "hands", "discard", "boss_blind" },
     unlocked = false,
     loc_vars = function(self, info_queue)
         return {

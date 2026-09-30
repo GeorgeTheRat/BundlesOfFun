@@ -3,6 +3,7 @@ BundlesOfFun.Back {
     name = "Display Deck",
     bundle = "flats",
 	pos = { x = 5, y = 0 },
+    attributes = { "boss_blind" },
     unlocked = false,
     atlas = "deck",
     loc_vars = function(self, info_queue)

@@ -5,6 +5,7 @@ BundlesOfFun.Joker {
     rarity = 2,
     cost = 6,
     pos = { x = 7, y = 4 },
+    attributes = { "enhancements", "modify_card" },
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)

@@ -3,6 +3,7 @@ BundlesOfFun.Joker {
     name = "Big Mouth Billy Bass",
     bundle = { "normalities", { "minnows" } },
     pos = { x = 10, y = 5 },
+    attributes = { "retrigger", "fish" },
     cost = 7,
     rarity = 2,
     blueprint_compat = true,

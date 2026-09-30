@@ -4,6 +4,7 @@ BundlesOfFun.Back {
     bundle = "flats",
 	atlas = "deck",
 	pos = { x = 6, y = 0 },
+    attributes = { "destroy_card", "discard", "enhancements" },
     unlocked = false,
     calculate = function(self, back, context)
         if context.discard and not context.other_card.debuff and next(SMODS.get_enhancements(context.other_card)) ~= nil then

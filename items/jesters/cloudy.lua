@@ -2,12 +2,13 @@ BundlesOfFun.Joker {
     key = "cloudy",
     name = "Cloudy Joker",
     bundle = "jesters",
-    no_mod_badges = BundlesOfFun.config.evil_dih and true or false,
+    pos = { x = 4, y = 4 },
+    attributes = { "chips", "hand_type" },
     rarity = 1,
     cost = 4,
-    pos = { x = 4, y = 4 },
     blueprint_compat = true,
     atlas = "joker",
+    no_mod_badges = BundlesOfFun.config.evil_dih and true or false,
     loc_vars = function(self, info_queue, card)
         local nine_tally = 0
         if G.playing_cards then

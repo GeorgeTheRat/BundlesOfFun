@@ -5,6 +5,7 @@ BundlesOfFun.Back {
     config = { remove_aces = true, extra_cards = { 2, 3, 4, 5 } },
 	atlas = "deck",
 	pos = { x = 2, y = 0 },
+    attributes = { "rank", "ace", "full_deck", "enhancements", "modify_card" },
     unlocked = false,
     apply = function(self, back)
         G.E_MANAGER:add_event(Event({
@@ -26,6 +27,7 @@ SMODS.Enhancement {
     key = "wooden",
     name = "Wooden",
     config = { bonus = 5 },
+    attributes = { "chips" },
     no_collection = true,
     atlas = "wooden",
     loc_vars = function(self, info_queue, card)

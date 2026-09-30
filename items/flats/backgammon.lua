@@ -4,6 +4,7 @@ BundlesOfFun.Back {
     bundle = "flats",
 	atlas = "deck",
 	pos = { x = 8, y = 0 },
+    attributes = { "suit", "modify_card" },
     unlocked = false,
     calculate = function(self, card, context)
         if context.after and context.scoring_hand and (BOF.nc(G.jokers, "cards") and #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit) then

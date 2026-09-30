@@ -5,6 +5,7 @@ BundlesOfFun.Back {
     config = { dollars_per_consumable = 1 },
 	atlas = "deck",
 	pos = { x = 9, y = 0 },
+    attributes = { "economy", "shop", "chance", "consumable", "editions" },
     unlocked = false,
     loc_vars = function(self, info_queue)
 		return { vars = { self.config.dollars_per_consumable } }

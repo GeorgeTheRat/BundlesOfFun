@@ -3,6 +3,7 @@ BundlesOfFun.Back {
     name = "Lightning Deck",
     bundle = "flats",
 	pos = { x = 0, y = 0 },
+    attributes = { "mult", "chips", "face", "full_deck", "enhancements", "modify_card" },
     unlocked = false,
     atlas = "deck",
     apply = function(self, back)

@@ -5,6 +5,7 @@ BundlesOfFun.Back {
     config = { extra = { hands = 4 } },
 	atlas = "deck",
 	pos = { x = 7, y = 0 },
+    attributes = { "hand_type", "hand_level", "skip" },
     unlocked = false,
     loc_vars = function(self, info_queue)
 		return { vars = { self.config.extra.hands } }

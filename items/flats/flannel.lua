@@ -5,6 +5,7 @@ BundlesOfFun.Back {
     config = { mult = 4 },
 	atlas = "deck",
 	pos = { x = 1, y = 0 },
+    attributes = { "mult" },
     unlocked = false,
     loc_vars = function(self, info_queue)
 		return { vars = { self.config.mult } }

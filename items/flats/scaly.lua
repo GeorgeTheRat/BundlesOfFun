@@ -12,6 +12,7 @@ BundlesOfFun.Back {
     unlocked = false,
     atlas = "deck",
     pos = { x = 10, y = 0 },
+    attributes = { "generation", "consumable", "fish" },
     check_for_unlock = function(self, args)
         return args and args.b_bof_scaly
     end

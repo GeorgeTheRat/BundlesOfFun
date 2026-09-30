@@ -3,6 +3,7 @@ BundlesOfFun.Voucher {
     name = "Dark Alley",
     bundle = "coupons",
     pos = { x = 0, y = 0 },
+    attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
