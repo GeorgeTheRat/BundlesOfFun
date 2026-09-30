@@ -4,6 +4,7 @@ BundlesOfFun.Voucher {
     bundle = { "coupons", { "minnows" } },
     requires = { "v_bof_ice_bucket" },
     pos = { x = 3, y = 1 },
+    attributes = { "consumable_slot", "fish" },
     unlocked = false,
     atlas = "voucher",
     redeem = function(self, card, area)

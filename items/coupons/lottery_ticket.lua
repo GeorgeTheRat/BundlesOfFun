@@ -5,6 +5,7 @@ BundlesOfFun.Voucher {
     requires = { "v_bof_scratch_off" },
     config = { extra = { reroll_count = 6 } },
     pos = { x = 2, y = 1 },
+    attributes = { "shop", "reroll" },
     unlocked = false,
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)

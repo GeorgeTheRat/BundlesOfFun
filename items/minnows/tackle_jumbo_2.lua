@@ -7,6 +7,7 @@ BundlesOfFun.Booster {
         choose = 1
     },
     pos = { x = 3, y = 0 },
+    attributes = { "booster", "jumbo", "fish" },
     draw_hand = false,
     group_key = "k_bof_tackle",
     kind = "bof_fish",

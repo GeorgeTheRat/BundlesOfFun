@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Array",
     bundle = "enemies",
     pos = { y = 8 },
+    attributes = { "consumable", "destroy_card" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("789868"),

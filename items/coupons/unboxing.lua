@@ -3,6 +3,7 @@ BundlesOfFun.Voucher {
     name = "Unboxing",
     bundle = "coupons",
     pos = { x = 1, y = 0 },
+    attributes = { "shop", "booster" },
     atlas = "voucher",
     redeem = function(self, card, area)
         G.GAME.booster_rate = 2

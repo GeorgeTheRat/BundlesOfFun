@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Golden",
     bundle = "enemies",
     pos = { y = 21 },
+    attributes = { "economy", "lose_economy" },
     atlas = "blind",
     boss = { min = 4 },
     -- again this felt too punishing (atleast for low-card hands) too put

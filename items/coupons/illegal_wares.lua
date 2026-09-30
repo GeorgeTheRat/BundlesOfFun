@@ -4,6 +4,7 @@ BundlesOfFun.Voucher {
     bundle = "coupons",
     requires = { "v_bof_dark_alley" },
     pos = { x = 0, y = 1 },
+    attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     unlocked = false,
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)

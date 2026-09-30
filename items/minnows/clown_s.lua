@@ -5,6 +5,7 @@ BundlesOfFun.Consumable {
     set = "Fish",
     pools = { ["fish_s"] = true },
     pos = { x = 5, y = 0 },
+    attributes = { "generation", "joker" },
     config = {
         card_limit = 1,
         extra = { rounds_remaining = 1 }

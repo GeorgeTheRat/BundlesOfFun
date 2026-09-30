@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Damping",
     bundle = "enemies",
     pos = { y = 5 },
+    attributes = { "joker", "rarity", "debuff" },
     atlas = "blind",
     boss = { min = 4 },
     boss_colour = HEX("8e7cca"),

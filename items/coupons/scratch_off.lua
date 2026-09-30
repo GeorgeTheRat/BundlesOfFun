@@ -4,6 +4,7 @@ BundlesOfFun.Voucher {
     bundle = "coupons",
     config = { extra = { reroll_count = 3 } },
     pos = { x = 2, y = 0 },
+    attributes = { "shop", "reroll" },
     atlas = "voucher",
     loc_vars = function(self, info_queue, card)
         return { vars = { self.config.extra.reroll_count } }

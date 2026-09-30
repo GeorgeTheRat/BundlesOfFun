@@ -7,6 +7,7 @@ BundlesOfFun.Blind {
     name = "The Dense",
     bundle = "enemies",
     pos = { y = 16 },
+    attributes = { "debuff" },
     atlas = "blind",
     boss = { min = 0 },
     boss_colour = HEX("689898"),

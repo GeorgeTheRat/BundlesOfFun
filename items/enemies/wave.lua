@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Wave",
     bundle = "enemies",
     pos = { y = 23 },
+    attributes = { "hands", "joker", "position" },
     atlas = "blind",
     boss = { min = 2 },
     boss_colour = HEX("b8d878"),

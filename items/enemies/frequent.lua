@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Frequent",
     bundle = "enemies",
     pos = { y = 12 },
+    attributes = { "suit", "face_down" },
     atlas = "blind",
     boss = { min = 3 },
     boss_colour = HEX("98a868"),

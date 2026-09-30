@@ -4,6 +4,7 @@ BundlesOfFun.Blind {
     name = "The Viscous",
     bundle = "enemies",
     pos = { y = 6 },
+    attributes = { "debuff" },
     atlas = "blind",
     boss = { min = 4 },
     boss_colour = HEX("61b0af"),

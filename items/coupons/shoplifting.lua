@@ -4,6 +4,7 @@ BundlesOfFun.Voucher {
     bundle = "coupons",
     requires = { "v_bof_unboxing" },
     pos = { x = 1, y = 1 },
+    attributes = { "shop" },
     unlocked = false,
     atlas = "voucher",
     redeem = function(self, card, area)

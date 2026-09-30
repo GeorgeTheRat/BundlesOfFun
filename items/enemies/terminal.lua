@@ -23,6 +23,7 @@ BundlesOfFun.Blind {
     name = "The Terminal",
     bundle = "enemies",
     pos = { y = 18 },
+    attributes = { "rank", "debuff" },
     atlas = "blind",
     boss = { min = 3 },
     boss_colour = HEX("588888"),

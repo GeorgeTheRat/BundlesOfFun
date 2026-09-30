@@ -3,6 +3,7 @@ BundlesOfFun.Voucher {
     name = "Ice Bucket",
     bundle = { "coupons", { "minnows" } },
     pos = { x = 3, y = 0 },
+    attributes = { "fish" },
     atlas = "voucher",
     redeem = function(self, card, area)
         G.GAME.bof_fish_extra_rounds = (G.GAME.bof_fish_extra_rounds or 0) + 1
