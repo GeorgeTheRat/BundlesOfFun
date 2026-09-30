@@ -67,6 +67,9 @@ G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
 local hearts = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Hearts or G.C.SO_1.Hearts
 local diamonds = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Diamonds or G.C.SO_1.Diamonds
 G.ARGS.LOC_COLOURS.light = mix_colours(hearts, diamonds, 0.5)
+local spades = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Spades or G.C.SO_1.Spades
+local clubs = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Clubs or G.C.SO_1.Clubs
+G.ARGS.LOC_COLOURS.dark = mix_colours(spades, clubs, 0.5)
 
 -- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
