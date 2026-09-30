@@ -8,7 +8,7 @@
   "version": "0.7.0-alpha",
   "icon_path": "icon.png",
   "dependencies": [
-    "Steamodded (>=1.0.0~BETA-1731b)"
+    "Steamodded (>=26.824.0~dev-d)"
   ],
   "tags": [ "vanilla_balance" ]
 }
