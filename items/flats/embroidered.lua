@@ -27,9 +27,9 @@ BundlesOfFun.Back {
                 all_ranks[#all_ranks + 1] = r
             end
         end
-        G.GAME.starting_deck_size = G.GAME.starting_deck_size - (self.config.extra.ranks * 4)
         G.E_MANAGER:add_event(Event({
             func = function()
+                G.GAME.starting_deck_size = G.GAME.starting_deck_size - (self.config.extra.ranks * 4)
                 for i = 1, self.config.extra.ranks do
                     local rank = pseudorandom_element(all_ranks, pseudoseed("bof_embroidered_1"))
                     for j, r in ipairs(all_ranks) do

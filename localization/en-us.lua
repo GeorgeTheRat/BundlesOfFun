@@ -698,6 +698,14 @@ return {
                     "{C:inactive}(Cannot trigger self)"
                 }
             },
+            j_bof_pinhead = {
+                name = "Pinhead",
+                text = {
+                    "Retrigger all played cards",
+                    "{C:attention}adjacent{} to {C:attention}Bonus Cards{}",
+                    "or {C:attention}Mult Cards"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",

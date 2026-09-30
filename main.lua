@@ -142,7 +142,8 @@ local files = {
             "band",
             "matey",
             "cloudy",
-            "knight"
+            "knight",
+            "pinhead"
         }, directory = "items/jesters/"
     },
     artisans = {
