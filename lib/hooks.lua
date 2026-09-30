@@ -918,8 +918,7 @@ function Card:sell_card(...)
         SMODS.destroy_cards(exhausted_gnocchi, { pinch_anim = true })
         for _, gnocchi in ipairs(exhausted_gnocchi) do
             card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
-                message = localize("k_eaten_ex"),
-                colour = G.C.FILTER
+                message = localize("k_eaten_ex")
             })
         end
     end
