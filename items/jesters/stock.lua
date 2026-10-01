@@ -155,8 +155,11 @@ BundlesOfFun.Joker {
         end
     end,
     in_pool = function(self)
+        if BundlesOfFun.is_multiplayer_lobby_active() then
+            return false
+        end
         for _, c in ipairs(G.deck.cards or {}) do
-            if next(SMODS.get_enhancements(c)) and not SMODS.find_mod("Multiplayer") then
+            if next(SMODS.get_enhancements(c)) then
                 return true
             end
         end

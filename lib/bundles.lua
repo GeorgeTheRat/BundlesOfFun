@@ -36,6 +36,11 @@ local function get_bundle_no_collection(bundle)
     end
 end
 
+function BundlesOfFun.is_multiplayer_lobby_active()
+    local multiplayer = rawget(_G, "MP")
+    return type(multiplayer) == "table" and type(multiplayer.LOBBY) == "table" and multiplayer.LOBBY.code ~= nil
+end
+
 -- Steamodded 26.829 exposes SMODS.hide_from_collection() as the canonical API.
 -- Some older compatibility hacks in this mod still inspect a raw boolean/function
 -- directly, so centralize the check here so both the bundle system and collection
