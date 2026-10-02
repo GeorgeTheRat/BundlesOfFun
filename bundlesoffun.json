@@ -10,5 +10,8 @@
   "dependencies": [
     "Steamodded (>=26.824.0~dev-d)"
   ],
+  "conflicts": [
+    "JokerDisplay (<<2.0.0)"
+  ],
   "tags": [ "vanilla_balance" ]
 }

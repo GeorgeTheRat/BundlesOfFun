@@ -31,7 +31,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if G.playing_cards ~= nil then
+        if G.playing_cards then
             local enhanced_count = 0
             for k, v in pairs(G.playing_cards) do
                 if next(SMODS.get_enhancements(v)) then
@@ -49,10 +49,14 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+" },
-                { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
-            },
-            text_config = { colour = G.C.MULT },
+                {
+                    ref_table = "card.ability.extra",
+                    ref_value = "mult",
+                    retrigger_type = "*",
+                    signed = true,
+                    colour = G.C.MULT
+                }
+            }
         }
     end
 }

@@ -100,7 +100,6 @@ BundlesOfFun.Joker {
                 { ref_table = "card.joker_display_values", ref_value = "start_count_apple" },
                 { text = ")" },
             },
-            reminder_text_config = { scale = 0.35 },
             calc_function = function(card)
                 card.joker_display_values.start_count_apple = card.joker_display_values.start_count_apple or card.ability.extra.perma_mult
             end,

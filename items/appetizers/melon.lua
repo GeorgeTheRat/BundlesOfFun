@@ -66,9 +66,14 @@ BundlesOfFun.Joker {
         return {
             text = {
                 { text = "+$" },
-                { ref_table = "card.joker_display_values", ref_value = "sell_cost", retrigger_type = "dollars" }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "sell_cost",
+                    retrigger_type = "*",
+                    signed = "$",
+                    colour = G.C.GOLD
+                }
             },
-            text_config = { colour = G.C.GOLD },
             reminder_text = {
                 { text = "(" },
                 { ref_table = "card.ability.extra", ref_value = "count" },
@@ -76,7 +81,6 @@ BundlesOfFun.Joker {
                 { ref_table = "card.joker_display_values", ref_value = "start_count_melon" },
                 { text = ")" },
             },
-            reminder_text_config = { scale = 0.35 },
             calc_function = function(card)
                 local sell_cost = 0
                 local _, _, scoring_hand = JokerDisplay.evaluate_hand()

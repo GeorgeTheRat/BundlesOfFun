@@ -74,10 +74,14 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
     return {
         text = {
-            { text = "+" },
-            { ref_table = "card.joker_display_values", ref_value = "mult", retrigger_type = "mult" }
+            {
+                ref_table = "card.joker_display_values",
+                ref_value = "mult",
+                retrigger_type = "mult",
+                signed = true,
+                colour = G.C.MULT
+            }
         },
-        text_config = { colour = G.C.MULT },
         reminder_text = {
             { text = "(" },
             { ref_table = "card.ability.extra", ref_value = "count" },
@@ -85,7 +89,6 @@ BundlesOfFun.Joker {
             { ref_table = "card.joker_display_values", ref_value = "start_count_core" },
             { text = ")" },
         },
-        reminder_text_config = { scale = 0.35 },
         calc_function = function(card)
             local mult = 0
             local _, _, scoring_hand = JokerDisplay.evaluate_hand()

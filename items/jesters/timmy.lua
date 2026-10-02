@@ -1,17 +1,10 @@
 local function cards_above_deck()
-    local a, b = (G.GAME.starting_deck_size or 52), 0
-    for i = 1, #G.playing_cards do
-        b = b + 1
-    end
-    if (a - b) < 0 then
-        return -(a - b)
-    end
-    return 0
+    return math.max(0, #G.playing_cards - (G.GAME.starting_deck_size or 52))
 end
 
 BundlesOfFun.Joker {
     key = "timmy",
-    name = "Youngster Timmy",
+    name = "Little Timmy",
     bundle = "jesters",
     config = { extra = { chips = 8 } },
     pos = { x = 9, y = 1 },
@@ -35,5 +28,21 @@ BundlesOfFun.Joker {
                 chips = card.ability.extra.chips * cards_above_deck(),
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "chips",
+                    signed = true,
+                    colour = G.C.CHIPS
+                }
+            },
+            calc_function = function(card)
+                card.joker_display_values = card.joker_display_values or {}
+                card.joker_display_values.chips = card.ability.extra.chips * cards_above_deck()
+            end
+        }
     end
 }

@@ -306,7 +306,7 @@ return {
                 }
             },
             j_bof_timmy = {
-                name = "Youngster Timmy",
+                name = "Little Timmy",
                 text={
                     "{C:blue}+#1#{} Chip#<s>1# for each",
                     "card above {C:attention}#2#",

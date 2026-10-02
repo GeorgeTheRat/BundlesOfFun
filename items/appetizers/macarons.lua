@@ -68,7 +68,6 @@ BundlesOfFun.Joker {
                 { text = "%" },
                 { text = ")" }
             },
-            reminder_text_config = { scale = 0.35 },
             calc_function = function(card)
                 card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.balance
             end,

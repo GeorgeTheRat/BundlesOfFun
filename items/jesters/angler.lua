@@ -52,12 +52,6 @@ BundlesOfFun.Joker {
     end,
     joker_display_def = function(JokerDisplay)
         return {
-            -- mirrors calculate: only fires when this is the final hand of the round.
-            -- hands_left decrements before joker_main runs for the hand being played, but this
-            -- calc_function runs continuously pre-play (before that decrement happens) -- so
-            -- while a hand is still just selected, "final hand" means hands_left == 1 (about to
-            -- become 0), and only once G.play.cards is populated (hand already resolving) does
-            -- hands_left == 0 directly match what calculate itself checks.
             text = {
                 { text = "+", colour = G.C.CHIPS },
                 { ref_table = "card.joker_display_values", ref_value = "chips", colour = G.C.CHIPS },
