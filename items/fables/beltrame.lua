@@ -26,24 +26,35 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.hand and context.end_of_round and card.ability.extra.count < card.ability.extra.max then
             local other_card = context.other_card
+            local function juice()
+                card:juice_up(0.3, 0.5)
+                other_card:juice_up(0.3, 0.5)
+                play_sound("generic1", 0.9 + math.random() * 0.1, 0.8)
+                play_sound("holo1", 1.2 + math.random() * 0.1, 0.4)
+                delay(0.2)
+            end
             if other_card:is_suit("Spades") then
-                G.E_MANAGER:add_event(Event({ 
+                G.E_MANAGER:add_event(Event({
                     func = function()
                         add_tag(Tag("tag_polychrome"))
-                        return true 
-                    end 
+                        juice()
+                        return true
+                    end
                 }))
+                card.ability.extra.count = card.ability.extra.count + 1
             end
-            if other_card:is_suit("Hearts") then
-                G.E_MANAGER:add_event(Event({ 
+            if other_card:is_suit("Hearts") and card.ability.extra.count < card.ability.extra.max then
+                G.E_MANAGER:add_event(Event({
                     func = function()
                         add_tag(Tag("tag_garbage"))
-                        return true 
-                    end 
+                        juice()
+                        return true
+                    end
                 }))
+                card.ability.extra.count = card.ability.extra.count + 1
             end
-            if other_card:is_suit("Clubs") then
-                G.E_MANAGER:add_event(Event({ 
+            if other_card:is_suit("Clubs") and card.ability.extra.count < card.ability.extra.max then
+                G.E_MANAGER:add_event(Event({
                     func = function()
                         local _poker_hands = {}
                         for k, v in pairs(G.GAME.hands) do
@@ -54,29 +65,22 @@ BundlesOfFun.Joker {
                         Tag("tag_orbital").ability.orbital_hand = pseudorandom_element(_poker_hands, "bof_beltrame")
                         Tag("tag_orbital"):set_ability()
                         add_tag(Tag("tag_orbital"))
+                        juice()
                         return true
-                    end 
+                    end
                 }))
+                card.ability.extra.count = card.ability.extra.count + 1
             end
-            if other_card:is_suit("Diamonds") then
-                G.E_MANAGER:add_event(Event({ 
+            if other_card:is_suit("Diamonds") and card.ability.extra.count < card.ability.extra.max then
+                G.E_MANAGER:add_event(Event({
                     func = function()
                         add_tag(Tag("tag_standard"))
-                        return true 
-                    end 
+                        juice()
+                        return true
+                    end
                 }))
+                card.ability.extra.count = card.ability.extra.count + 1
             end
-            delay(0.2)
-            G.E_MANAGER:add_event(Event({ 
-                func = function()
-                    card:juice_up(0.3, 0.5)
-                    other_card:juice_up(0.3, 0.5)
-                    play_sound("generic1", 0.9 + math.random() * 0.1, 0.8)
-                    play_sound("holo1", 1.2 + math.random() * 0.1, 0.4)
-                    return true 
-                end 
-            }))
-            card.ability.extra.count = card.ability.extra.count + 1
             return nil, true
         end
         if context.blind_defeated then

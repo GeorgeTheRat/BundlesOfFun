@@ -41,13 +41,16 @@ BundlesOfFun.Joker {
 	end,
     joker_display_def = function(JokerDisplay)
         return {
-            -- mirrors calculate: only fires if every card in the currently selected hand
-            -- shares the same rank
+            -- mirrors calculate: only fires if every card shares same rank
             text = {
-                { text = "+" },
-                { ref_table = "card.joker_display_values", ref_value = "chips", retrigger_type = "chips" }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "chips",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.CHIPS
+                }
             },
-            text_config = { colour = G.C.CHIPS },
             calc_function = function(card)
                 local hand = JokerDisplay.current_hand
                 local active = false

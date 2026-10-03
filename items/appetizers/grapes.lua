@@ -43,15 +43,31 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+", colour = G.C.CHIPS },
-                { ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS },
-                { text = " +", colour = G.C.MULT },
-                { ref_table = "card.ability.extra", ref_value = "mult", colour = G.C.MULT },
-                { text = " " }, -- for spacing
+                {
+                    ref_table = "card.ability.extra",
+                    ref_value = "chips",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.CHIPS
+                },
+                { text = " " },
+                {
+                    ref_table = "card.ability.extra",
+                    ref_value = "mult",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.MULT
+                },
+                { text = " " },
                 {
                     border_nodes = {
-                        { text = "X" },
-                        { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "xmult" }
+                        {
+                            ref_table = "card.ability.extra",
+                            ref_value = "xmult",
+                            signed = "X",
+                            retrigger_type = "^",
+                            colour = G.C.MULT
+                        }
                     }
                 }
             },

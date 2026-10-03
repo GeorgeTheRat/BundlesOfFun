@@ -48,7 +48,7 @@ BundlesOfFun.Joker {
                 card.sell_cost = card.sell_cost + card.ability.extra.sell_cost_mod
                 return {
                     func = function()
-                        card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.GOLD })
+                        card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.MONEY })
                     end
                 }
             end
@@ -71,7 +71,7 @@ BundlesOfFun.Joker {
                     ref_value = "sell_cost",
                     retrigger_type = "*",
                     signed = "$",
-                    colour = G.C.GOLD
+                    colour = G.C.MONEY
                 }
             },
             reminder_text = {

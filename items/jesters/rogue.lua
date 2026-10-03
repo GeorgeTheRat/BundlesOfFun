@@ -27,10 +27,14 @@ BundlesOfFun.Joker {
             -- unless a hand has already resolved (G.play.cards populated) -- same pattern
             -- JokerDisplay's own vanilla Reserved Parking definition uses for its held-in-hand count.
             text = {
-                { text = "+$" },
-                { ref_table = "card.joker_display_values", ref_value = "dollars" }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "dollars",
+                    signed = "$",
+                    retrigger_type = "*",
+                    colour = G.C.MONEY
+                }
             },
-            text_config = { colour = G.C.GOLD },
             reminder_text = {
                 { text = "(", colour = G.C.UI.TEXT_INACTIVE },
                 { ref_table = "card.joker_display_values", ref_value = "localized_text_1" },

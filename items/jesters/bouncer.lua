@@ -52,10 +52,14 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+" },
-                { ref_table = "card.joker_display_values", ref_value = "mult", retrigger_type = "mult" }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "mult",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.MULT
+                }
             },
-            text_config = { colour = G.C.MULT },
             calc_function = function(card)
                 local suits = {}
                 for _, key in ipairs(SMODS.Suit.obj_buffer) do

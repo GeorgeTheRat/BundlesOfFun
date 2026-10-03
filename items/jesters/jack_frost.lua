@@ -67,8 +67,13 @@ BundlesOfFun.Joker {
             text = {
                 {
                     border_nodes = {
-                        { text = "X" },
-                        { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "xmult" }
+                        {
+                            ref_table = "card.ability.extra",
+                            ref_value = "xmult",
+                            signed = true,
+                            retrigger_type = "^",
+                            colour = G.C.MULT
+                        }
                     }
                 }
             },
