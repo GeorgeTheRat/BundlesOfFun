@@ -31,7 +31,6 @@ BundlesOfFun.Joker {
                 other_card:juice_up(0.3, 0.5)
                 play_sound("generic1", 0.9 + math.random() * 0.1, 0.8)
                 play_sound("holo1", 1.2 + math.random() * 0.1, 0.4)
-                delay(0.2)
             end
             if other_card:is_suit("Spades") then
                 G.E_MANAGER:add_event(Event({
@@ -42,6 +41,7 @@ BundlesOfFun.Joker {
                     end
                 }))
                 card.ability.extra.count = card.ability.extra.count + 1
+                delay(0.2)
             end
             if other_card:is_suit("Hearts") and card.ability.extra.count < card.ability.extra.max then
                 G.E_MANAGER:add_event(Event({
@@ -52,6 +52,7 @@ BundlesOfFun.Joker {
                     end
                 }))
                 card.ability.extra.count = card.ability.extra.count + 1
+                delay(0.2)
             end
             if other_card:is_suit("Clubs") and card.ability.extra.count < card.ability.extra.max then
                 G.E_MANAGER:add_event(Event({
@@ -70,6 +71,7 @@ BundlesOfFun.Joker {
                     end
                 }))
                 card.ability.extra.count = card.ability.extra.count + 1
+                delay(0.2)
             end
             if other_card:is_suit("Diamonds") and card.ability.extra.count < card.ability.extra.max then
                 G.E_MANAGER:add_event(Event({
@@ -80,6 +82,7 @@ BundlesOfFun.Joker {
                     end
                 }))
                 card.ability.extra.count = card.ability.extra.count + 1
+                delay(0.2)
             end
             return nil, true
         end
