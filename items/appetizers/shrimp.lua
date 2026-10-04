@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
         }
     },
     pos = { x = 10, y = 0 },
-    attributes = { "scaling", "generation", "passive", "food" },
+    attributes = { "scaling", "generation", "passive", "food", "fish" },
     cost = 7,
     rarity = 3,
     eternal_compat = false,
