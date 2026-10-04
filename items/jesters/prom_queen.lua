@@ -37,10 +37,14 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+" },
-                { ref_table = "card.joker_display_values", ref_value = "chips" }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "chips",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.CHIPS
+                }
             },
-            text_config = { colour = G.C.CHIPS },
             calc_function = function(card)
                 local king_count = 0
                 local queen_count = 0

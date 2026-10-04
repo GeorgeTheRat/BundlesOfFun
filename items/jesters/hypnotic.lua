@@ -89,10 +89,14 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+" },
-                { ref_table = "card.joker_display_values", ref_value = "hand_size" },
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "hand_size",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.FILTER
+                },
             },
-            text_config = { colour = G.C.FILTER },
             reminder_text = {
                 { text = "(" },
                 { ref_table = "card.joker_display_values", ref_value = "most_played_hand", colour = G.C.FILTER },
