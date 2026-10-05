@@ -8,5 +8,5 @@ BundlesOfFun.Joker {
 	rarity = 1,
 	blueprint_compat = false,
 	atlas = "joker"
-    -- logic is located in lovely/jesters.toml
+    -- logic is located in lib/hooks.lua
 }
