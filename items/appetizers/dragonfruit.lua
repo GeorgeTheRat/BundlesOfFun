@@ -28,5 +28,7 @@ BundlesOfFun.Joker {
                 message = localize("k_eaten_ex")
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
     end
 }
