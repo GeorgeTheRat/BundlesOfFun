@@ -70,7 +70,7 @@ BundlesOfFun.Joker {
                         {
                             ref_table = "card.ability.extra",
                             ref_value = "xmult",
-                            signed = true,
+                            signed = "X",
                             retrigger_type = "^"
                         }
                     }
