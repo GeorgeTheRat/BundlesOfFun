@@ -71,8 +71,7 @@ BundlesOfFun.Joker {
                             ref_table = "card.ability.extra",
                             ref_value = "xmult",
                             signed = true,
-                            retrigger_type = "^",
-                            colour = G.C.MULT
+                            retrigger_type = "^"
                         }
                     }
                 }

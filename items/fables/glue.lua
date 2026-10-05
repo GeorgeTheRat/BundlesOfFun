@@ -39,5 +39,18 @@ BundlesOfFun.Joker {
                 mult = card.ability.extra.mult
             }
         end
-    end
+    end,
+    -- joker_display_def = function(JokerDisplay)
+    --     return {
+    --         text = {
+    --             {
+    --                 ref_table = "card.ability.extra",
+    --                 ref_value = "mult",
+    --                 retrigger_type = "*",
+    --                 signed = true,
+    --                 colour = G.C.MULT
+    --             }
+    --         }
+    --     }
+    -- end
 }

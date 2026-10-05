@@ -45,5 +45,21 @@ BundlesOfFun.Joker {
                 reset_value = 1,
             })
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    border_nodes = {
+                        {
+                            ref_table = "card.ability.extra",
+                            ref_value = "xmult",
+                            signed = "X",
+                            retrigger_type = "^"
+                        }
+                    }
+                }
+            }
+        }
     end
 }
