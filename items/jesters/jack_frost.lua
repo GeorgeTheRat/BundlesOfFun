@@ -78,11 +78,35 @@ BundlesOfFun.Joker {
             },
             reminder_text = {
                 { text = "[" },
-                { ref_table = "card.ability.extra", ref_value = "current" },
+                { ref_table = "card.joker_display_values", ref_value = "display_current" },
                 { text = "/" },
                 { ref_table = "card.ability.extra", ref_value = "requirement" },
                 { text = "]" }
-            }
+            },
+            calc_function = function(card)
+                if G.STATE == G.STATES.SELECTING_HAND then
+                    local scoring_chips = 0
+                    local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+                    if text ~= "Unknown" then
+                        for _, scoring_card in pairs(scoring_hand) do
+                            scoring_chips = scoring_chips + scoring_card.base.nominal + scoring_card.ability.bonus + (scoring_card.ability.perma_bonus or 0)
+                        end
+                    end
+                    card.joker_display_values.display_current = card.ability.extra.current + scoring_chips
+                else
+                    card.joker_display_values.display_current = card.ability.extra.current
+                end
+                card.joker_display_values.is_met = card.joker_display_values.display_current >= card.ability.extra.requirement
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if BOF.nc(reminder_text, "children") then
+                    for i = 2, 4 do
+                        if reminder_text.children[i] then
+                            reminder_text.children[i].config.colour = card.joker_display_values.is_met and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                        end
+                    end
+                end
+            end
         }
     end
 }
