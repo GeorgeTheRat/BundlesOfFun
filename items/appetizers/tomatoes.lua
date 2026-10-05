@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
-        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomato")
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomatoes")
         return {
             vars = {
                 card.ability.extra.amount,
@@ -36,7 +36,7 @@ BundlesOfFun.Joker {
                 if SMODS.pseudorandom_probability(card, "bof_tomato", 1, card.ability.extra.odds) then
                     card:juice_up()
                     context.other_card:juice_up()
-                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomato")))
+                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomatoes")))
                 end
             end
         end
@@ -51,6 +51,14 @@ BundlesOfFun.Joker {
     end,
     joker_display_def = function(JokerDisplay)
         return {
+            extra = {
+                {
+                    { text = "(" },
+                    { ref_table = "card.joker_display_values", ref_value = "odds" },
+                    { text = ")" },
+                }
+            },
+            extra_config = { colour = G.C.GREEN, scale = 0.3 },
             reminder_text = {
                 { text = "(" },
                 { ref_table = "card.ability.extra", ref_value = "amount" },
@@ -59,6 +67,8 @@ BundlesOfFun.Joker {
                 { text = ")" },
             },
             calc_function = function(card)
+                local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomatoes")
+                card.joker_display_values.odds = localize { type = "variable", key = "jdis_odds", vars = { numerator, denominator } }
                 card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.amount
             end,
             style_function = function(card, text, reminder_text, extra)
