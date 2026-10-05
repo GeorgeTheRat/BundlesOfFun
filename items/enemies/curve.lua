@@ -11,6 +11,10 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
+        if context.first_hand_drawn then
+            G.GAME.current_round.hands_left = math.max(0, G.GAME.current_round.hands_left - 1)
+        end
+
         -- figure out what poker hand the discarded cards would form and drop that hand's level
         if context.pre_discard and context.full_hand and #context.full_hand > 0 then
             local hand_name = G.FUNCS.get_poker_hand_info(context.full_hand)

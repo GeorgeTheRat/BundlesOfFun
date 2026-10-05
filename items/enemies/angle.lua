@@ -11,13 +11,13 @@ BundlesOfFun.Blind {
     boss = { min = 3 },
     boss_colour = HEX("7888a8"),
     calculate = function(self, blind, context)
-        if context.setting_blind then
+        if blind.disabled then return end
+
+        if context.first_hand_drawn then
             G.GAME.bof_angle_base_chips = G.GAME.blind.chips
             G.GAME.bof_angle_discarded_cards = {}
             G.GAME.current_round.hands_left = math.max(0, G.GAME.current_round.hands_left - 1)
         end
-
-        if blind.disabled then return end
 
         -- dedup by sort_id so a card only counts once
         if context.discard and context.other_card and context.other_card.sort_id then

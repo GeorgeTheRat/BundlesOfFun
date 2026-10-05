@@ -1581,8 +1581,8 @@ return {
             bl_bof_curve = {
                 name = "The Curve",
                 text = {
-                    "Decrease level of",
-                    "discarded poker hands"
+                    "-1 hand, decrease level",
+                    "of discarded poker hands"
                 }
             },
             bl_bof_decay = {
