@@ -17,6 +17,10 @@ BundlesOfFun.Blind {
 
             local target = pseudorandom_element(consumables, pseudoseed("bof_index"))
             if target then
+                -- mark fish as array-destroyed so they skip their expiry effects
+                if BOF.nc(target, "ability", "set") == "Fish" then
+                    target.bof_array_destroyed = true
+                end
                 target:start_dissolve()
                 blind:wiggle()
             end

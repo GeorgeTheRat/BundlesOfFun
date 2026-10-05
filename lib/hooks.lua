@@ -442,7 +442,6 @@ function Game:start_run(arg)
     G.GAME.bof_particle_active = nil
     G.GAME.bof_stress_locked_ante = nil
     G.GAME.bof_risk_joker = nil
-    G.GAME.bof_viscous_pending_card_id = nil
     G.GAME.bof_frequent_suit = nil
     G.GAME.bof_terminal_debuffed_rank = nil
     G.GAME.bof_terminal_pending_rank = nil
@@ -450,6 +449,7 @@ function Game:start_run(arg)
     G.GAME.bof_angle_base_chips = nil
     G.GAME.bof_angle_discarded_cards = nil
     G.GAME.bof_rerolled_showdown = nil
+    G.GAME.bof_postman_play_order = nil
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
@@ -460,6 +460,7 @@ function Game:start_round()
     G.GAME.bof_octopus_claimed_fish = nil
     G.GAME.bof_octopus_triggered = nil
     G.GAME.bof_payne_trigger = nil
+    G.GAME.bof_postman_play_order = nil
     return original_game_start_round and original_game_start_round(self)
 end
 
@@ -639,34 +640,18 @@ function ease_ante(mod)
     end
     return ret
 end
--- decay: hand cards stay draggable but always ease back to their original slot.
--- set_ranks is called whenever the hand's composition/order actually changes, so it's
--- the right point to (re)capture the canonical order as a locked index per card.
+-- decay: hand cards cannot be dragged/reordered at all. set_ranks is vanilla's own
+-- pass that (re)grants drag to every hand card (its final else branch, since hand is
+-- neither deck/play/shop/consumeable) - it runs whenever the hand's composition/order
+-- changes, so it's the right point to immediately revoke it again while Decay is active.
 local original_set_ranks = CardArea.set_ranks
 function CardArea:set_ranks()
     original_set_ranks(self)
-    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay_b"
+    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay"
         and not G.GAME.blind.disabled then
-        for k, card in ipairs(self.cards) do
-            card.bof_decay_locked_index = k
+        for _, card in ipairs(self.cards) do
+            card.states.drag.can = false
         end
-    end
-end
-
--- align_cards only skips T.x/T.y assignment for the card currently being dragged (drag
--- physics owns its position directly); it's vanilla's own post-loop table.sort (based on
--- live x position) that permanently reorders self.cards, which is what makes a drop
--- "stick" as a reorder. Re-sorting back to the locked index every frame means the array
--- order never actually changes, so a dropped card eases back to its original slot on
--- the next align_cards call - draggable, but always snaps back.
-local original_align_cards = CardArea.align_cards
-function CardArea:align_cards()
-    original_align_cards(self)
-    if self == G.hand and BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay_b"
-        and not G.GAME.blind.disabled then
-        table.sort(self.cards, function(a, b)
-            return (a.bof_decay_locked_index or 0) < (b.bof_decay_locked_index or 0)
-        end)
     end
 end
 
@@ -1197,82 +1182,78 @@ local function bof_lottery_ticket_reroll_vouchers()
     G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
 end
 
--- postman: first four played cards count as additional suits
+-- postman: live position-based suit assignment
+-- i hate postman.
+local original_align_cards = CardArea.align_cards
+function CardArea:align_cards(...)
+    local result = original_align_cards(self, ...)
+    if self == G.hand
+        and next(SMODS.find_card("j_bof_postman"))
+        and G.hand.highlighted and #G.hand.highlighted > 0
+        and G.CONTROLLER and G.CONTROLLER.dragging and G.CONTROLLER.dragging.target
+        and getmetatable(G.CONTROLLER.dragging.target) == Card
+        and G.CONTROLLER.dragging.target.area == G.hand
+    then
+        G.hand:parse_highlighted()
+    end
+    return result
+end
+
+local original_parse_highlighted = CardArea.parse_highlighted
+function CardArea:parse_highlighted(...)
+    if self == G.hand and next(SMODS.find_card("j_bof_postman")) and #self.highlighted > 0 then
+        local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
+        local hand_index = {}
+        for i, c in ipairs(self.cards) do hand_index[c] = i end
+        local sorted = {}
+        for _, c in ipairs(self.highlighted) do table.insert(sorted, c) end
+        table.sort(sorted, function(a, b)
+            return (hand_index[a] or 999) < (hand_index[b] or 999)
+        end)
+        for i, c in ipairs(sorted) do
+            c.ability.bof_postman_suit = postman_suits[i]
+        end
+        local result = original_parse_highlighted(self, ...)
+        for _, c in ipairs(sorted) do
+            c.ability.bof_postman_suit = nil
+        end
+        return result
+    end
+    return original_parse_highlighted(self, ...)
+end
+
+local original_play_cards_from_highlighted = G.FUNCS.play_cards_from_highlighted
+G.FUNCS.play_cards_from_highlighted = function(e)
+    if next(SMODS.find_card("j_bof_postman")) and G.hand and G.hand.highlighted and #G.hand.highlighted > 0 then
+        local hand_index = {}
+        for i, c in ipairs(G.hand.cards) do hand_index[c] = i end
+        local sorted = {}
+        for _, c in ipairs(G.hand.highlighted) do table.insert(sorted, c) end
+        table.sort(sorted, function(a, b)
+            return (hand_index[a] or 999) < (hand_index[b] or 999)
+        end)
+        G.GAME.bof_postman_play_order = sorted
+    end
+    return original_play_cards_from_highlighted(e)
+end
+
+-- postman: smeared_check reads position-based suit tags
 local original_smeared_check = SMODS.smeared_check
 function SMODS.smeared_check(card, suit)
     if next(SMODS.find_card("j_bof_postman")) then
-        if BOF.nc(G.play, "cards") then
-            for i, played_card in ipairs(G.play.cards) do
+        if card.ability.bof_postman_suit then
+            if suit == card.ability.bof_postman_suit then return true end
+        end
+        if BOF.nc(G.play, "cards") and G.GAME.bof_postman_play_order then
+            for i, played_card in ipairs(G.GAME.bof_postman_play_order) do
                 if played_card == card and i <= 4 then
                     local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
-                    local assigned_suit = postman_suits[i]
-                    if suit == assigned_suit then
-                        return true
-                    end
-                end
-            end
-        end
-        if BOF.nc(G.hand, "highlighted") then
-            local highlighted_copy = {}
-            for _, c in ipairs(G.hand.highlighted) do
-                table.insert(highlighted_copy, c)
-            end
-            table.sort(highlighted_copy, function(a, b) return a.T.x < b.T.x end)
-            for i, highlighted_card in ipairs(highlighted_copy) do
-                if highlighted_card == card and i <= 4 then
-                    local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
-                    local assigned_suit = postman_suits[i]
-                    if suit == assigned_suit then
-                        return true
-                    end
+                    if suit == postman_suits[i] then return true end
                 end
             end
         end
     end
-    
     return original_smeared_check(card, suit)
-end
-
--- postman: trigger poker hand check when cards are released or sorted
-local original_card_release = Node.release
-function Node:release(dragged)
-    local result = original_card_release(self, dragged)
-    if next(SMODS.find_card("j_bof_postman")) and dragged:is(Node) and dragged.area == G.hand then
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                G.hand:parse_highlighted()
-                return true
-            end
-        }))
-        
-    end
-    return result
-end
-local original_sort_hand_suit = G.FUNCS.sort_hand_suit
-function G.FUNCS.sort_hand_suit(e)
-    local result = original_sort_hand_suit(e)
-    if next(SMODS.find_card("j_bof_postman")) then
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                G.hand:parse_highlighted()
-                return true
-            end
-        }))
-    end
-    return result
-end
-local original_sort_hand_value = G.FUNCS.sort_hand_value
-function G.FUNCS.sort_hand_value(e)
-    local result = original_sort_hand_value(e)
-    if next(SMODS.find_card("j_bof_postman")) then
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                G.hand:parse_highlighted()
-                return true
-            end
-        }))
-    end
-    return result
 end
 
 -- scratch-off & lottery ticket logic cont.
@@ -1600,6 +1581,16 @@ G.FUNCS.discard_cards_from_highlighted = function(e, hook)
     return original_discard(e, hook)
 end
 
+-- array: skip fish calculate_joker effects (held-in-hand scoring etc.) when the
+-- fish has been marked for array-destruction — it's mid-dissolve and shouldn't fire
+local original_card_calculate_joker = Card.calculate_joker
+function Card:calculate_joker(context)
+    if self.bof_array_destroyed and BOF.nc(self, "ability", "set") == "Fish" then
+        return
+    end
+    return original_card_calculate_joker(self, context)
+end
+
 -- track fish expiration for buried treasure unlock
 -- octopus trigger/general logic
 -- todo: make it so that the messages from octopus trigger immediately after the fish it copies
@@ -1608,11 +1599,16 @@ end
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)
     if BOF.nc(card, "ability", "set") == "Fish" then
+        -- array: skip all fish expiry effects if destroyed by The Array
+        if card.bof_array_destroyed then
+            return original_smods_destroy_cards(card, args)
+        end
+
         local fish_key = card.config.center.key
         local is_big_fish = fish_key:match("_b$")
         local is_small_fish = fish_key:match("_s$")
         local is_octopus = fish_key:match("octopus")
-        
+
         if is_big_fish and next(SMODS.find_card("j_bof_matey")) then
             card.ability.bof_matey_transforming = true
             local small_fish_key = fish_key:sub(1, -3) .. "_s"
@@ -1660,10 +1656,10 @@ function SMODS.destroy_cards(card, args)
             }))
             return true
         end
-        
+
         G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
         check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
-        
+
         if is_small_fish then
             G.E_MANAGER:add_event(Event({
                 func = function()
@@ -1685,7 +1681,7 @@ function SMODS.destroy_cards(card, args)
             }))
         end
 
-        
+
         G.GAME.bof_octopus_triggered = G.GAME.bof_octopus_triggered or {}
         for _, octopus in ipairs(G.consumeables.cards) do
             if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not is_octopus then

@@ -702,9 +702,14 @@ return {
             j_bof_pinhead = {
                 name = "Pinhead",
                 text = {
-                    "Retrigger all played cards",
-                    "{C:attention}adjacent{} to {C:attention}Bonus Cards{}",
-                    "or {C:attention}Mult Cards"
+                    {
+                        "Retrigger cards to the",
+                        "{C:attention}right{} of {C:attention}Mult Cards{}"
+                    },
+                    {
+                        "Retrigger cards to the",
+                        "{C:attention}left{} of {C:attention}Bonus Cards{}"
+                    }
                 }
             },
             -- Normalities
@@ -1604,8 +1609,8 @@ return {
             bl_bof_random = {
                 name = "The Random",
                 text = {
-                    "Shuffle cards in",
-                    "played hand"
+                    "Shuffle played and",
+                    "held cards"
                 }
             },
             bl_bof_useless = {
@@ -1618,8 +1623,8 @@ return {
             bl_bof_irrational = {
                 name = "The Irrational",
                 text = {
-                    "Shuffle cards",
-                    "held in hand"
+                    "Give leftmost Joker",
+                    "a random sticker"
                 }
             },
             bl_bof_dense = {

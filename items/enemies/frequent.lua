@@ -13,7 +13,7 @@ BundlesOfFun.Blind {
 
         local frequent_suit = BOF.nc(G.GAME, "bof_frequent_suit")
         if context.stay_flipped and context.to_area == G.hand and frequent_suit then
-            if context.other_card.base.suit == frequent_suit then
+            if not SMODS.has_no_suit(context.other_card) and context.other_card.base.suit == frequent_suit then
                 return {
                     stay_flipped = true
                 }

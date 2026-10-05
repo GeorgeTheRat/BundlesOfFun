@@ -12,7 +12,7 @@ BundlesOfFun.mod_config = SMODS.current_mod.config
 -- nil check function
 function BOF.nc(value, ...)
     for i = 1, select("#", ...) do
-        if value == nil then
+        if value == nil or type(value) ~= "table" then
             return nil
         end
         value = value[select(i, ...)]

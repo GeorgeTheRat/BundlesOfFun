@@ -11,13 +11,18 @@ BundlesOfFun.Blind {
     calculate = function(self, blind, context)
         if blind.disabled then return end
 
-        -- guarded so it can't compound if this fires more than once
         if context.setting_blind then
             for _, joker in ipairs(G.jokers.cards) do
                 if not joker.ability.bof_useless_halved then
                     joker.ability.bof_useless_halved = true
-                    joker.sell_cost = math.floor(joker.sell_cost * 0.5)
+                    joker.sell_cost = math.max(1, math.floor(joker.sell_cost * 0.5))
                 end
+            end
+        end
+
+        if context.end_of_round then
+            for _, joker in ipairs(G.jokers.cards) do
+                joker.ability.bof_useless_halved = nil
             end
         end
     end

@@ -18,22 +18,22 @@ BundlesOfFun.Joker {
             for i, v in ipairs(context.full_hand) do
                 if v == context.other_card then idx = i break end
             end
-            local triggers = false
+            local reps = 0
             if idx > 1 then
-                local adjacent = context.full_hand[idx - 1]
-                if BOF.nc(adjacent, "ability", "name") and (adjacent.ability.name == "Bonus" or adjacent.ability.name == "Mult") then
-                    triggers = true
+                local left = context.full_hand[idx - 1]
+                if BOF.nc(left, "ability", "name") == "Mult" then
+                    reps = reps + 1
                 end
             end
             if idx < #context.full_hand then
-                local adjacent = context.full_hand[idx + 1]
-                if BOF.nc(adjacent, "ability", "name") and (adjacent.ability.name == "Bonus" or adjacent.ability.name == "Mult") then
-                    triggers = true
+                local right = context.full_hand[idx + 1]
+                if BOF.nc(right, "ability", "name") == "Bonus" then
+                    reps = reps + 1
                 end
             end
-            if triggers then
+            if reps > 0 then
                 return {
-                    repetitions = 1
+                    repetitions = reps
                 }
             end
         end
