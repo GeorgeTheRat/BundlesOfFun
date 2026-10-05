@@ -1,5 +1,5 @@
 BundlesOfFun.Joker {
-    key = "clock",
+    key = "alarm",
     name = "Alarm Clock",
     bundle = "normalities",
     config = {
@@ -18,7 +18,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         local is_active = (G.GAME.bof_total_hands_played or 0) % 2 == 1
         return {
-            key = is_active and "j_bof_clock_active" or "j_bof_clock_inactive",
+            key = is_active and "j_bof_alarm_active" or "j_bof_alarm_inactive",
             vars = {
                 card.ability.extra.xmult
             }

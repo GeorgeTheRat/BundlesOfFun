@@ -723,7 +723,7 @@ return {
                     }
                 }
             },
-            j_bof_clock_inactive = {
+            j_bof_alarm_inactive = {
                 name = "Despertador",
                 text = {
                     "{X:mult,C:white}X#1#{} Multi cada",
@@ -731,7 +731,7 @@ return {
                     "{C:inactive}Inactivo...",
                 }
             },
-            j_bof_clock_active = {
+            j_bof_alarm_active = {
                 name = "Despertador",
                 text = {
                     "{X:mult,C:white}X#1#{} Multi cada",

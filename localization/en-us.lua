@@ -760,7 +760,7 @@ return {
                     }
                 }
             },
-            j_bof_clock_inactive = {
+            j_bof_alarm_inactive = {
                 name = "Alarm Clock",
                 text = {
                     "{X:mult,C:white}X#1#{} Mult every",
@@ -768,7 +768,7 @@ return {
                     "{C:inactive}Inactive...",
                 }
             },
-            j_bof_clock_active = {
+            j_bof_alarm_active = {
                 name = "Alarm Clock",
                 text = {
                     "{X:mult,C:white}X#1#{} Mult every",

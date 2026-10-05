@@ -168,7 +168,7 @@ local files = {
             "eraser",
             "rummikub",
             "passport",
-            "clock",
+            "alarm",
             "gnome",
             "keyboard",
             "ticket",
