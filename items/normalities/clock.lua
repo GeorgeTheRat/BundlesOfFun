@@ -71,5 +71,37 @@ BundlesOfFun.Joker {
                 end
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    border_nodes = {
+                        {
+                            ref_table = "card.joker_display_values",
+                            ref_value = "xmult",
+                            signed = "X",
+                            retrigger_type = "^"
+                        }
+                    }
+                }
+            },
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "status_text" },
+                { text = ")" }
+            },
+            calc_function = function(card)
+                local is_active = (G.GAME.bof_total_hands_played or 0) % 2 == 1
+                card.joker_display_values.xmult = is_active and card.ability.extra.xmult or 1
+                card.joker_display_values.status_text = is_active and localize("k_active_ex") or localize("k_inactive_el")
+                card.joker_display_values.is_active = is_active
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if BOF.nc(reminder_text, "children", 2) then
+                    reminder_text.children[2].config.colour = card.joker_display_values.is_active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                end
+            end
+        }
     end
 }
