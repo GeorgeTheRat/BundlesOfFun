@@ -4,10 +4,7 @@ BundlesOfFun.Back {
     bundle = "flats",
     config = {
         voucher = "v_bof_ice_bucket",
-        consumables = {
-            "c_bof_octopus_b",
-            "c_bof_octopus_b"
-        }
+        consumables = { "c_bof_octopus_b" }
     },
     unlocked = false,
     atlas = "deck",

@@ -953,7 +953,7 @@ return {
                     },
                     {
                         "All {C:attention}listed {C:green,E:1}probabilities{} are",
-                        "{C:green}guaranteed{} during the {C:attention}Boss Blind"
+                        "{C:green}guaranteed{} during {C:attention}Boss Blinds"
                     }
                 },
                 unlock = {
@@ -1112,7 +1112,7 @@ return {
                 text = {
                     "Start run with the",
                     "{C:attention,T:v_bof_ice_bucket}Ice Bucket{} voucher and",
-                    "{C:attention}2{} copies of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
+                    "a copy of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
                 },
                 unlock = {
                     "Discover a",
