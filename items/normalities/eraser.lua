@@ -47,5 +47,27 @@ BundlesOfFun.Joker {
                 mult = card.ability.extra.mult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "mult",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.MULT
+                }
+            },
+            calc_function = function(card)
+                local mult = 0
+                for _, playing_card in ipairs(G.hand.cards) do
+                    if playing_card.facing and not (playing_card.facing == "back") and not playing_card.debuff and not playing_card.highlighted then
+                        mult = mult + card.ability.extra.mult * JokerDisplay.calculate_card_triggers(playing_card, nil, true)
+                    end
+                end
+                card.joker_display_values.mult = mult
+            end
+        }
     end
 }
