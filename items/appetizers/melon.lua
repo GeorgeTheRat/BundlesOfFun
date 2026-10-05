@@ -65,7 +65,6 @@ BundlesOfFun.Joker {
     joker_display_def = function(JokerDisplay)
         return {
             text = {
-                { text = "+$" },
                 {
                     ref_table = "card.joker_display_values",
                     ref_value = "sell_cost",
