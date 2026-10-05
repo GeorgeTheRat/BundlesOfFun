@@ -37,5 +37,7 @@ BundlesOfFun.Joker {
                 colour = G.C.SECONDARY_SET.Planet
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
     end
 }

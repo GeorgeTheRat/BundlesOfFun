@@ -63,5 +63,7 @@ BundlesOfFun.Joker {
                 end
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
     end
 }

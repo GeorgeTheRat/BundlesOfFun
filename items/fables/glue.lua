@@ -40,17 +40,29 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    -- joker_display_def = function(JokerDisplay)
-    --     return {
-    --         text = {
-    --             {
-    --                 ref_table = "card.ability.extra",
-    --                 ref_value = "mult",
-    --                 retrigger_type = "*",
-    --                 signed = true,
-    --                 colour = G.C.MULT
-    --             }
-    --         }
-    --     }
-    -- end
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "mult",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.MULT
+                }
+            },
+            calc_function = function(card)
+                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+                local count = 0
+                if text ~= "Unknown" then
+                    for _, scoring_card in pairs(scoring_hand) do
+                        if next(SMODS.get_enhancements(scoring_card)) then
+                            count = count + JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
+                        end
+                    end
+                end
+                card.joker_display_values.mult = card.ability.extra.mult * count
+            end
+        }
+    end
 }

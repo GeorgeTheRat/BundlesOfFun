@@ -43,5 +43,7 @@ BundlesOfFun.Joker {
     end,
     remove_from_deck = function(self, card, from_debuff)
         G.consumeables:change_size(-card.ability.extra.consumable_slots)
+    end,
+    joker_display_def = function(JokerDisplay)
     end
 }
