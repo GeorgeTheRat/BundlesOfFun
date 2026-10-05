@@ -18,5 +18,34 @@ BundlesOfFun.Joker {
                 mult = card.ability.extra.mult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "mult",
+                    signed = true,
+                    retrigger_type = "*",
+                    colour = G.C.MULT
+                }
+            },
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "localized_text", colour = G.C.FILTER },
+                { text = ")" },
+            },
+            calc_function = function(card)
+                local hand_name, _, scoring_hand = JokerDisplay.evaluate_hand()
+                local mult = 0
+                if hand_name == "High Card" then
+                    for _, scoring_card in pairs(scoring_hand) do
+                        mult = mult + card.ability.extra.mult * JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
+                    end
+                end
+                card.joker_display_values.mult = mult
+                card.joker_display_values.localized_text = localize("High Card", "poker_hands")
+            end
+        }
     end
 }
