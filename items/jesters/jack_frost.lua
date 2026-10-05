@@ -77,11 +77,11 @@ BundlesOfFun.Joker {
                 }
             },
             reminder_text = {
-                { text = "[" },
+                { text = "(" },
                 { ref_table = "card.joker_display_values", ref_value = "display_current" },
                 { text = "/" },
                 { ref_table = "card.ability.extra", ref_value = "requirement" },
-                { text = "]" }
+                { text = ")" }
             },
             calc_function = function(card)
                 if G.STATE == G.STATES.SELECTING_HAND then
