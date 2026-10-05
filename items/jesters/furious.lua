@@ -20,5 +20,23 @@ BundlesOfFun.Joker {
     end,
     calc_dollar_bonus = function(self, card)
         return card.ability.extra.dollars
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    ref_table = "card.ability.extra",
+                    ref_value = "dollars",
+                    signed = "$",
+                    colour = G.C.GOLD
+                },
+            },
+            reminder_text = {
+                { ref_table = "card.joker_display_values", ref_value = "localized_text" },
+            },
+            calc_function = function(card)
+                card.joker_display_values.localized_text = "(" .. localize("k_round") .. ")"
+            end
+        }
     end
 }
