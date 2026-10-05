@@ -38,10 +38,16 @@ match_indent = true
 payload = '''
 -- bof patch
 if G.GAME.booster_rate then
-    if pseudorandom("bof_shop_booster") < G.GAME.booster_rate / total_rate then args.set = "Booster" end
+    if pseudorandom("bof_shop_booster") < G.GAME.booster_rate / total_rate then
+        args.set = "Booster"
+        args.area = G.shop_booster
+    end
 end
 if G.GAME.voucher_rate then
-    if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then args.set = "Voucher" end
+    if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then
+        args.set = "Voucher"
+        args.area = G.shop_vouchers
+    end
 end
 -- patch end
 '''

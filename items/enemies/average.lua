@@ -25,6 +25,18 @@ BundlesOfFun.Blind {
                 end
             end
             for _, card in ipairs(to_discard) do
+                -- fire the same discard-context dispatch vanilla's own
+                -- discard_cards_from_highlighted uses, so discard-reactive effects
+                -- (Glue, Ramen, etc.) actually see this as a discard instead of a
+                -- silent card-area move
+                card:calculate_seal({ discard = true })
+                local effects = {}
+                SMODS.calculate_context(
+                    { discard = true, other_card = card, full_hand = to_discard, ignore_other_debuff = true },
+                    effects
+                )
+                SMODS.trigger_effects(effects)
+
                 card.ability.discarded = true
                 draw_card(G.hand, G.discard, 50, "down", false, card)
             end
