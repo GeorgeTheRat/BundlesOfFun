@@ -62,5 +62,36 @@ BundlesOfFun.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                { 
+                    border_nodes = {
+                        {
+                            ref_table = "card.ability.extra",
+                            ref_value = "xmult",
+                            signed = "X",
+                            retrigger_type = "^"
+                        }
+                    }
+                }
+            },
+            reminder_text = {
+                { text = "(", colour = G.C.UI.TEXT_INACTIVE },
+                { ref_table = "card.joker_display_values", ref_value = "active_text" },
+                { text = ")", colour = G.C.UI.TEXT_INACTIVE },
+            },
+            calc_function = function(card)
+                card.joker_display_values.active = card.ability.extra.active
+                card.joker_display_values.is_active = card.joker_display_values.active
+                card.joker_display_values.active_text = localize(card.joker_display_values.is_active and "jdis_active" or "jdis_inactive")
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if BOF.nc(reminder_text, "children", 2) then
+                    reminder_text.children[2].config.colour = card.joker_display_values.is_active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                end
+            end
+        }
     end
 }
