@@ -31,13 +31,13 @@ BundlesOfFun.Blind {
                     trigger = "after",
                     delay = 0.4,
                     func = function()
-                        local sticker = pseudorandom_element(available_stickers, pseudoseed("bof_irrational_sticker"))
+                        local sticker = pseudorandom_element(available_stickers, pseudoseed("bof_irrational"))
                         target:add_sticker(sticker.key, true)
                         target:juice_up()
+                        blind:wiggle()
                         return true
                     end
                 }))
-                return { message = localize("k_sticker_ex") }
             end
         end
     end

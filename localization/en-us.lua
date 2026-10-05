@@ -1560,7 +1560,7 @@ return {
             bl_bof_viscous = {
                 name = "The Viscous",
                 text = {
-                    "Permanently debuff one random",
+                    "Permanently debuff one",
                     "scoring card per hand"
                 }
             },
@@ -1602,15 +1602,15 @@ return {
             bl_bof_frequent = {
                 name = "The Frequent",
                 text = {
-                    "Cards with #1#",
-                    "suit are drawn face down"
+                    "Cards with #1# suit",
+                    "are drawn face down"
                 }
             },
             bl_bof_random = {
                 name = "The Random",
                 text = {
-                    "Shuffle played and",
-                    "held cards"
+                    "Shuffle played",
+                    "and held cards"
                 }
             },
             bl_bof_useless = {
