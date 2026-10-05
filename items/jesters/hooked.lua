@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "hooked",
     name = "Hooked Joker",
-    bundle = "jesters",
+    bundle = "jesters", { "minnows" },
     config = {
         extra = {
             appearance = 1,
