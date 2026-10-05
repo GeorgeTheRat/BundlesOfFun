@@ -149,7 +149,7 @@ end
 
 local original_HUD_blind_badge = G.FUNCS.HUD_blind_badge
 G.FUNCS.HUD_blind_badge = function(e)
-    if G.GAME.blind.in_blind and G.GAME.blind.config.blind and G.GAME.blind.config.blind.bundle then
+    if G.GAME.blind.in_blind and BOF.nc(G.GAME.blind.config.blind, "bundle") then
         if not e.bof_badges_created then
             local blind = G.GAME.blind.config.blind
             local badges = {}

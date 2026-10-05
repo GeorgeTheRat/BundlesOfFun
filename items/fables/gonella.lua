@@ -55,5 +55,24 @@ BundlesOfFun.Joker {
                 numerator = context.denominator
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(",                              colour = G.C.UI.TEXT_INACTIVE },
+                { ref_table = "card.joker_display_values", ref_value = "active_text" },
+                { text = ")",                              colour = G.C.UI.TEXT_INACTIVE },
+            },
+            calc_function = function(card)
+                local boss_active = BOF.nc(G.GAME.blind, "get_type") and (G.GAME.blind:get_type() == "Boss") and BOF.nc(G.GAME.blind, "in_blind")
+                card.joker_display_values.active = boss_active
+                card.joker_display_values.active_text = localize(boss_active and "jdis_active" or "jdis_inactive")
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if reminder_text and reminder_text.children and reminder_text.children[2] then
+                    reminder_text.children[2].config.colour = card.joker_display_values.active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                end
+            end
+        }
     end
 }
