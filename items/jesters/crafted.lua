@@ -79,5 +79,24 @@ BundlesOfFun.Joker {
                 }
             end
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "active_text" },
+                { text = ")" }
+            },
+            calc_function = function(card)
+                local is_first_hand = G.GAME.current_round.hands_played == 0
+                card.joker_display_values.is_active = is_first_hand
+                card.joker_display_values.active_text = localize(is_first_hand and "jdis_active" or "jdis_inactive")
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if BOF.nc(reminder_text, "children", 2) then
+                    reminder_text.children[2].config.colour = card.joker_display_values.is_active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                end
+            end
+        }
     end
 }
