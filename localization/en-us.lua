@@ -703,12 +703,12 @@ return {
                 name = "Pinhead",
                 text = {
                     {
-                        "Retrigger cards to the",
-                        "{C:attention}right{} of {C:attention}Mult Cards{}"
+                        "Retrigger played cards to",
+                        "the {C:attention}right{} of {C:attention}Mult Cards"
                     },
                     {
-                        "Retrigger cards to the",
-                        "{C:attention}left{} of {C:attention}Bonus Cards{}"
+                        "Retrigger played cards to",
+                        "the {C:attention}left{} of {C:attention}Bonus Cards"
                     }
                 }
             },
