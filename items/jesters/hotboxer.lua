@@ -18,7 +18,7 @@ BundlesOfFun.Joker {
 		return {
 			vars = {
 				card.ability.extra.shop_size,
-				card.ability.extra.sell_cost_mod
+				card.ability.extra.value_mod
 			}
 		}
 	end,
