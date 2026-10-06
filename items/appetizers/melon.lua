@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             count = 25,
-            sell_cost_mod = 3
+            value_mod = 3
         }
     },
     pos = { x = 11, y = 0 },
@@ -20,7 +20,7 @@ BundlesOfFun.Joker {
         return {
             vars = {
                 card.ability.extra.count,
-                card.ability.extra.sell_cost_mod
+                card.ability.extra.value_mod
             }
         }
     end,
@@ -45,7 +45,8 @@ BundlesOfFun.Joker {
                     end
                 }
             elseif scored then
-                card.sell_cost = card.sell_cost + card.ability.extra.sell_cost_mod
+                card.ability.extra_value = card.ability.extra_value + card.ability.extra.value_mod
+                card:set_cost()
                 return {
                     func = function()
                         card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.MONEY })
@@ -90,7 +91,7 @@ BundlesOfFun.Joker {
                             face_cards = face_cards + 1
                         end
                     end
-                    sell_cost = math.min(face_cards, card.ability.extra.count) * card.ability.extra.sell_cost_mod
+                    sell_cost = math.min(face_cards, card.ability.extra.count) * card.ability.extra.value_mod
                 end
                 card.joker_display_values.sell_cost = sell_cost
                 card.joker_display_values.start_count_melon = card.joker_display_values.start_count_melon or card.ability.extra.count

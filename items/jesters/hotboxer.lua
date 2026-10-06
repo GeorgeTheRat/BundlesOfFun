@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
 	config = {
 		extra = {
 			shop_size = 1,
-			sell_cost_mod = 1
+			value_mod = 1
 		}
 	},
 	pos = { x = 9, y = 2 },
@@ -32,7 +32,8 @@ BundlesOfFun.Joker {
 	end,
 	calculate = function(self, card, context)
 		if context.buying_card and context.card.ability.set == "Tarot" then
-			card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
+			card.ability.extra_value = card.ability.extra_value - card.ability.extra.value_mod
+			card:set_cost()
 			return {
 				message = localize("k_val_down_ex"),
 				colour = G.C.RED

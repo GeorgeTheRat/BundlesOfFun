@@ -188,8 +188,8 @@ return {
                 name = "Royal Melon",
                 text = {
                     "The next {C:attention}#1#{} played {C:attention}face",
-                    "{C:attention}card#<s>1#{} increase this Joker's",
-                    "sell value by {C:money}$#2#{} when scored"
+                    "card#<s>1# increase this Joker's",
+                    "{C:attention}sell value{} by {C:money}$#2#{} when scored"
                 }
             },
             j_bof_mango = {
