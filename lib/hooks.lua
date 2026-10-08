@@ -485,8 +485,30 @@ end
 -- stress: voucher lock applies to every shop through the whole next Ante
 --   (Small, Big, and its Boss), not just the first one - see the
 --   bof_stress_locked_ante comment near where it's set, in stress.lua
+function BundlesOfFun.get_frequent_suit()
+    if not G.playing_cards or #G.playing_cards == 0 then
+        return "Spades"
+    end
+    local suit_counts = {}
+    for _, card in ipairs(G.playing_cards) do
+        local suit = card.base.suit
+        suit_counts[suit] = (suit_counts[suit] or 0) + 1
+    end
+    local most_common, most_count = "Spades", suit_counts["Spades"] or 0
+    for suit, count in pairs(suit_counts) do
+        if count > most_count then
+            most_common, most_count = suit, count
+        end
+    end
+    return most_common
+end
+
 local original_blind_set_blind = Blind.set_blind
 function Blind:set_blind(blind, reset, silent)
+    if not reset and BOF.nc(blind, "key") == "bl_bof_frequent" then
+        G.GAME.bof_frequent_suit = BundlesOfFun.get_frequent_suit()
+    end
+
     local ret = original_blind_set_blind(self, blind, reset, silent)
     if not reset and BOF.nc(blind, "key") then
         if blind.key == "bl_small" and G.GAME.bof_tiny_active then
@@ -615,30 +637,6 @@ G.FUNCS.evaluate_play = function(e)
         end
     end
     return original_evaluate_play(e)
-end
-
--- frequent: update most common suit at the beginning of each ante
-local original_ease_ante = ease_ante
-function ease_ante(mod)
-    local ret = original_ease_ante(mod)
-    if G.GAME and G.playing_cards then
-        local suit_counts = {}
-        for _, c in ipairs(G.playing_cards) do
-            local s = c.base.suit
-            suit_counts[s] = (suit_counts[s] or 0) + 1
-        end
-        -- seeding the accumulator with Spades means a tie can't dethrone it (strict >),
-        -- instead of falling to whatever pairs()'s unordered iteration visits first
-        local most_common, most_count = "Spades", (suit_counts["Spades"] or 0)
-        for suit, count in pairs(suit_counts) do
-            if count > most_count then
-                most_common = suit
-                most_count = count
-            end
-        end
-        G.GAME.bof_frequent_suit = most_common
-    end
-    return ret
 end
 -- decay: hand cards cannot be dragged/reordered at all. set_ranks is vanilla's own
 -- pass that (re)grants drag to every hand card (its final else branch, since hand is

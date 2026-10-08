@@ -21,11 +21,9 @@ BundlesOfFun.Blind {
         end
     end,
     loc_vars = function(self)
-        local suit = BOF.nc(G.GAME, "bof_frequent_suit")
-        if suit then
-            return { vars = { localize(suit, "suits_singular") } }
-        end
-        return { vars = { "" } }
+        local active_frequent = BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_frequent"
+        local suit = active_frequent and BOF.nc(G.GAME, "bof_frequent_suit") or BundlesOfFun.get_frequent_suit()
+        return { vars = { localize(suit, "suits_singular") } }
     end,
     collection_loc_vars = function(self)
         return { vars = { localize("bof_most_common_suit") } }
