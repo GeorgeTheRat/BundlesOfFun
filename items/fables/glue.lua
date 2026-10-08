@@ -34,7 +34,12 @@ BundlesOfFun.Joker {
                 message_colour = G.C.MULT
             })
         end
-        if context.individual and context.cardarea == G.play and next(SMODS.get_enhancements(context.other_card)) then
+        if
+            context.individual and
+            context.cardarea == G.play and
+            next(SMODS.get_enhancements(context.other_card)) and
+            card.ability.extra.mult ~= 0 -- this is done due to it oddly "phantom-triggering" when mult is zero
+        then
             return {
                 mult = card.ability.extra.mult
             }

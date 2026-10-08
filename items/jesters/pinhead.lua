@@ -21,13 +21,13 @@ BundlesOfFun.Joker {
             local reps = 0
             if idx > 1 then
                 local left = context.full_hand[idx - 1]
-                if BOF.nc(left, "ability", "name") == "Mult" then
+                if BOF.nc(left, "ability", "name") == "Mult" and not left.debuff then
                     reps = reps + 1
                 end
             end
             if idx < #context.full_hand then
                 local right = context.full_hand[idx + 1]
-                if BOF.nc(right, "ability", "name") == "Bonus" then
+                if BOF.nc(right, "ability", "name") == "Bonus" and not right.debuff then
                     reps = reps + 1
                 end
             end
