@@ -804,7 +804,6 @@ local function bof_apply_fish_voucher_state(card)
     end
     if slot_delta ~= 0 then
         card.ability.card_limit = (card.ability.card_limit or 0) + slot_delta
-        card.ability.extra.consumable_slots = (card.ability.extra.consumable_slots or 0) + slot_delta
     end
     card.ability.bof_fish_extra_rounds_applied = extra_rounds
     card.ability.bof_fish_extra_slots_applied = extra_slots
@@ -842,12 +841,12 @@ function SMODS.create_card(t)
     return card
 end
 
+-- card creation for fish-related booster packs
 function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
     local legendary_fish = {}
     local total_soul_rate = 0
     local non_soul_rate = 1
     local fish_pool = BOF.nc(G.P_CENTER_POOLS, "fish_l") or {}
-
     for _, fish_center in ipairs(fish_pool) do
         local soul_rate = fish_center.soul_rate
         if soul_rate and soul_rate > 0 and SMODS.add_to_pool(fish_center)
@@ -858,7 +857,6 @@ function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
             legendary_fish[#legendary_fish + 1] = fish_center
         end
     end
-
     local legendary_key
     if total_soul_rate > 0 then
         local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. fish_set ))
@@ -871,7 +869,6 @@ function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
             end
         end
     end
-
     return {
         set = fish_set,
         key = legendary_key,
@@ -882,6 +879,7 @@ function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
     }
 end
 
+-- gnocchi logic
 local original_card_sell_card = Card.sell_card
 function Card:sell_card(...)
     local active_gnocchi = {}
@@ -918,24 +916,6 @@ function Card:sell_card(...)
         end
     end
     return result
-end
-
--- continuation of ice bucket and buried treasure
-local original_card_add_to_deck = Card.add_to_deck
-function Card:add_to_deck(from_debuff)
-    local was_added = not self.added_to_deck
-    original_card_add_to_deck(self, from_debuff)
-    if was_added and self.added_to_deck and self.area == G.consumeables and self.ability and type(self.ability.extra) == "table" and self.ability.extra.consumable_slots then
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit + self.ability.extra.consumable_slots
-    end
-end
-local original_card_remove_from_deck = Card.remove_from_deck
-function Card:remove_from_deck(from_debuff)
-    local extra_slots = self.ability and type(self.ability.extra) == "table" and tonumber(self.ability.extra.consumable_slots) or 0
-    original_card_remove_from_deck(self, from_debuff)
-    if self.area == G.consumeables and extra_slots > 0 and G.consumeables then
-        G.consumeables.config.card_limit = G.consumeables.config.card_limit - extra_slots
-    end
 end
 
 -- eraser: prevent seal from triggering when marked for removal

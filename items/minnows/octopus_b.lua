@@ -14,6 +14,25 @@ BundlesOfFun.Consumable {
         return { vars = { card.ability.card_limit } }
     end,
     trigger = function(self, fish_key)
+        if next(SMODS.find_card("j_bof_matey")) then
+            if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        local base_key = fish_key:sub(1, -3)
+                        SMODS.add_card {
+                            set = "Fish",
+                            key = base_key .. "_b",
+                            key_append = "bof_octopus"
+                        }
+                        return true
+                    end
+                }))
+                card_eval_status_text(self, "extra", nil, nil, nil, { message = localize("k_plus_fish"), colour = G.C.SET.Fish })
+            end
+            SMODS.destroy_cards(self, { pinch_anim = true })
+            return
+        end
+
         if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
             G.E_MANAGER:add_event(Event({
@@ -24,7 +43,7 @@ BundlesOfFun.Consumable {
                         key = base_key .. "_b",
                         key_append = "bof_octopus"
                     }
-                    G.GAME.consumeable_buffer = 0
+                    G.GAME.consumeable_buffer = math.max(0, G.GAME.consumeable_buffer - 1)
                     return true
                 end
             }))

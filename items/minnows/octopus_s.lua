@@ -24,7 +24,7 @@ BundlesOfFun.Consumable {
                         key = base_key .. "_s",
                         key_append = "bof_octopus"
                     }
-                    G.GAME.consumeable_buffer = 0
+                    G.GAME.consumeable_buffer = math.max(0, G.GAME.consumeable_buffer - 1)
                     return true
                 end
             }))
