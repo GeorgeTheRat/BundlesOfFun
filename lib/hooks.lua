@@ -655,6 +655,18 @@ function CardArea:set_ranks()
     end
 end
 
+-- decay: disable sort buttons
+local original_sort_hand_value = G.FUNCS.sort_hand_value
+function G.FUNCS.sort_hand_value(e)
+    if BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay" and not G.GAME.blind.disabled then return end
+    return original_sort_hand_value(e)
+end
+local original_sort_hand_suit = G.FUNCS.sort_hand_suit
+function G.FUNCS.sort_hand_suit(e)
+    if BOF.nc(G.GAME, "blind", "config", "blind", "key") == "bl_bof_decay" and not G.GAME.blind.disabled then return end
+    return original_sort_hand_suit(e)
+end
+
 -- track voucher purchases for lottery ticket unlock
 local original_use_card = G.FUNCS.use_card
 function G.FUNCS.use_card(e, mute, nosave)
