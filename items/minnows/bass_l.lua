@@ -21,14 +21,11 @@ BundlesOfFun.Consumable {
     calculate = function(self, card, context)
         if context.joker_main then
             local total_chips = 0
-            if G.playing_cards then
-                for i, c in ipairs(G.playing_cards) do
-                    local rank = SMODS.Ranks[c.base.rank]
-                    if c.base.rank ~= "Ace" and not rank.face then
-                        total_chips = total_chips + c:get_chip_bonus()
-                        if c.ability and c.ability.perma_bonus then
-                            total_chips = total_chips + c.ability.perma_bonus
-                        end
+            for i, c in ipairs(G.playing_cards or {}) do
+                if c:get_id() ~= 14 and not c:is_face() then
+                    total_chips = total_chips + c:get_chip_bonus()
+                    if BOF.nc(c.ability, "perma_bonus") then
+                        total_chips = total_chips + c.ability.perma_bonus
                     end
                 end
             end
