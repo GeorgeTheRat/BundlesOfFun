@@ -318,8 +318,8 @@ return {
                 name = "Geezer Gary",
                 text = {
                     "This Joker gains {C:chips}+Chips",
-                    "equal to the {C:attention}current Ante",
-                    "when a Joker is {C:attention}sold",
+                    "equal to {C:attention}double{} the current",
+                    "{C:attention}Ante{} when a Joker is {C:attention}sold",
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chip#<s>1#)"
                 }
             },
