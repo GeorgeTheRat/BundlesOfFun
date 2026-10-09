@@ -51,31 +51,21 @@ target = 'functions/UI_definitions.lua'
 pattern = '''
     if card.area == G.shop_jokers and G.shop_jokers then --Add a buy button
 '''
-position = 'before'
-match_indent = true
-payload = '''
--- bof patch
-    if card.area == G.shop_jokers and G.shop_jokers and card.ability.set == 'Booster' then
-        base_attach.children.redeem = G.UIDEF.card_focus_button{
-            card = card, parent = base_attach, type = 'buy',
-            func = 'can_open', button = 'open_booster', card_width = card_width*0.85
-        }
-    elseif card.area == G.shop_jokers and G.shop_jokers and card.ability.set == 'Voucher' then
-        base_attach.children.redeem = G.UIDEF.card_focus_button{
-            card = card, parent = base_attach, type = 'buy',
-            func = 'can_redeem', button = 'redeem_from_shop', card_width = card_width*0.85
-        }
-    end
-'''
-[[patches]]
-[patches.pattern]
-target = 'functions/UI_definitions.lua'
-pattern = '''
-    if card.area == G.shop_jokers and G.shop_jokers then --Add a buy button
-'''
 position = 'at'
 match_indent = true
 payload = '''
 -- bof patch
-    if card.area == G.shop_jokers and G.shop_jokers and card.ability.set ~= 'Booster' and card.ability.set ~= 'Voucher' then --Add a buy button
+if card.area == G.shop_jokers and G.shop_jokers and card.ability.set == "Booster" then
+    base_attach.children.redeem = G.UIDEF.card_focus_button{
+        card = card, parent = base_attach, type = "buy",
+        func = "can_open", button = "open_booster", card_width = card_width*0.85
+    }
+elseif card.area == G.shop_jokers and G.shop_jokers and card.ability.set == "Voucher" then
+    base_attach.children.redeem = G.UIDEF.card_focus_button{
+        card = card, parent = base_attach, type = "buy",
+        func = "can_redeem", button = "redeem_from_shop", card_width = card_width*0.85
+    }
+end
+if card.area == G.shop_jokers and G.shop_jokers and card.ability.set ~= "Booster" and card.ability.set ~= "Voucher" then --Add a buy button
+-- patch end
 '''
