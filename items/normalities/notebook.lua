@@ -52,15 +52,16 @@ BundlesOfFun.Joker {
                                 if target_joker ~= card then
                                     target_joker:juice_up()
                                 end
-                                -- on the sixth day of christmas, my true love gave to me
-                                local seven_swans_a_swimming = context.blueprint_card or card
+                                -- on the eighth day of christmas, my true love gave to me
+                                local eight_maids_a_milking = context.blueprint_card or card
+                                -- seven_swans_a_swimming
                                 -- six_geese_a_laying
                                 -- five_gold_rings
                                 -- four_calling_birds
                                 -- three_french_hens
                                 -- two_turtle_doves
                                 -- and a_partridge_in_a_pear_tree
-                                seven_swans_a_swimming:juice_up()
+                                eight_maids_a_milking:juice_up()
                                 return true
                             end
                         }))

@@ -1000,8 +1000,12 @@ SMODS.Edition:take_ownership("e_negative", {
 local legendary_fish_keys = {
     "c_bof_bass_l",
     "c_bof_betta_l",
-    "c_bof_goldfish_l",
-    "c_bof_trout_l"
+    "c_bof_gold_l",
+    "c_bof_trout_l",
+    "c_bof_koi_l",
+    "c_bof_clown_l",
+    "c_bof_blob_l",
+    "c_bof_octopus_l",
 }
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -1042,8 +1046,9 @@ SMODS.Joker:take_ownership("perkeo", {
                         G.consumeables:emplace(card)
                         return true
                     end}))
-                -- on the sixth day of christmas, my true love gave to me
-                local eight_maids_a_milking = context.blueprint_card or card
+                -- on the ninth day of christmas, my true love gave to me
+                local nine_ladies_dancing = context.blueprint_card or card
+                -- eight_maids_a_milking
                 -- seven_swans_a_swimming
                 -- six_geese_a_laying
                 -- five_gold_rings
@@ -1051,7 +1056,7 @@ SMODS.Joker:take_ownership("perkeo", {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                card_eval_status_text(eight_maids_a_milking, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                card_eval_status_text(nine_ladies_dancing, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
                 return nil, true
             else
                 return true
