@@ -1182,14 +1182,6 @@ return {
                     "{C:red,E:2}se autodestruye{}",
                 }
             },
-            c_bof_goldfish_s = {
-                name = "Pez Dorado {X:small}Pequeño",
-                text = {
-                    "Gana {C:money}$#1#{}",
-                    "{C:inactive}#3# ronda#<s>3# restante#<s>3#...",
-                    "{C:attention,s:0.8}+#2#{} {C:inactive,s:0.8}ranura#<s>2# de consumible{}",
-                }
-            },
             c_bof_bass_b = {
                 name = "Perca Americana {X:big}Grande",
                 text = {
@@ -1257,14 +1249,6 @@ return {
                     "próximo Pez expirado,",
                     "{C:attention}+#1#{} ranura#<s>1# de consumible",
                     "{C:red,E:2}se autodestruye{}",
-                }
-            },
-            c_bof_goldfish_b = {
-                name = "Pez Dorado {X:big}Grande",
-                text = {
-                    "Gana {C:money}$#1#{}",
-                    "{C:inactive}#3# ronda#<s>3# restante#<s>3#...",
-                    "{C:attention,s:0.8}+#2#{} {C:inactive,s:0.8}ranura#<s>2# de consumible{}",
                 }
             },
             c_bof_bass_l = {
@@ -1354,18 +1338,6 @@ return {
                     "próximo Pez expirado,",
                     "{C:attention,s:0.8}+#1#{} {C:inactive,s:0.8}ranura#<s>1# de consumible{}",
                     "{C:red,E:2}se autodestruye{}",
-                },
-                unlock = {
-                    "{E:1,s:1.3}?????",
-                }
-            },
-            c_bof_goldfish_l = {
-                name = "Pez Dorado {X:legendary}Legendario",
-                text = {
-                    "Otorga dinero igual a la cantidad",
-                    "{C:attention}actual{} de {C:money}interés{} que",
-                    "se ganaría al jugar una mano,",
-                    "{C:attention,s:0.8}+#1#{} {C:inactive,s:0.8}ranura#<s>1# de consumible{}",
                 },
                 unlock = {
                     "{E:1,s:1.3}?????",
