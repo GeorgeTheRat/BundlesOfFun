@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "normalities",
     config = {
         extra = {
-            mult_mod = 1,
+            mult_mod = 2,
             mult = 0
         }
     },
@@ -24,45 +24,43 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if not context.blueprint then
-            if context.before then
-                local faces = false
-                for _, playing_card in pairs(G.hand.cards) do
-                    if playing_card:is_face() then
-                        faces = true
-                        break
-                    end
-                end
-                if faces and card.ability.extra.mult ~= 0 then
-                    SMODS.reset_card(card, {
-                        ref_table = card.ability.extra,
-                        ref_value = "mult",
-                        reset_value = 0,
-                    })
-                else
-                    SMODS.scale_card(card, {
-                        ref_table = card.ability.extra,
-                        ref_value = "mult",
-                        scalar_value = "mult_mod",
-                        message_colour = G.C.MULT
-                    })
+        if context.before and not not context.blueprint then
+            local faces = false
+            for _, playing_card in pairs(G.hand.cards) do
+                if playing_card:is_face() then
+                    faces = true
+                    break
                 end
             end
-            if context.pre_discard then
-                local faces = false
-                for _, playing_card in pairs(context.full_hand) do
-                    if playing_card:is_face() then
-                        faces = true
-                        break
-                    end
+            if faces and card.ability.extra.mult ~= 0 then
+                SMODS.reset_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "mult",
+                    reset_value = 0,
+                })
+            else
+                SMODS.scale_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "mult",
+                    scalar_value = "mult_mod",
+                    message_colour = G.C.MULT
+                })
+            end
+        end
+        if context.pre_discard then
+            local faces = false
+            for _, playing_card in pairs(context.full_hand) do
+                if playing_card:is_face() then
+                    faces = true
+                    break
                 end
-                if faces and card.ability.extra.mult ~= 0 then
-                    SMODS.reset_card(card, {
-                        ref_table = card.ability.extra,
-                        ref_value = "mult",
-                        reset_value = 0,
-                    })
-                end
+            end
+            if faces and card.ability.extra.mult ~= 0 then
+                SMODS.reset_card(card, {
+                    ref_table = card.ability.extra,
+                    ref_value = "mult",
+                    reset_value = 0,
+                })
             end
         end
         if context.joker_main then
