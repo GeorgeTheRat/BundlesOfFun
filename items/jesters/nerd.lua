@@ -31,6 +31,7 @@ BundlesOfFun.Joker {
                 card.ability.extra.tally = 0
                 return {
                     shop_create_flags = {
+                        key = false,
                         set = "Joker",
                         rarity = "Rare"
                     }
@@ -40,9 +41,37 @@ BundlesOfFun.Joker {
         if context.create_shop_card and reset then
             card.ability.extra.tally = 1
             local eval = function()
-                return G.GAME.round_scores.times_rerolled.amt % card.ability.extra.rerolls == 0 and G.GAME.round_scores.times_rerolled.amt ~= 0
+                local amt = G.GAME.round_scores.times_rerolled.amt
+                return amt ~= 0 and amt % card.ability.extra.rerolls ~= 0
             end
             juice_card_until(card, eval, true)
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "rerolls" },
+                { text = "/", colour = G.C.UI.TEXT_INACTIVE },
+                { ref_table = "card.ability.extra", ref_value = "rerolls" },
+                { text = ")", colour = G.C.UI.TEXT_INACTIVE }
+            },
+            calc_function = function(card)
+                local amt, rerolls = G.GAME.round_scores.times_rerolled.amt, card.ability.extra.rerolls
+                local remainder = amt % rerolls
+
+                card.joker_display_values.rerolls = rerolls - remainder
+                card.joker_display_values.is_ready = amt ~= 0 and remainder == rerolls - 1
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local colour = card.joker_display_values.is_ready and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do
+                    local node = BOF.nc(reminder_text, "children", i)
+                    if BOF.nc(node, "config") then
+                        node.config.colour = colour
+                    end
+                end
+            end
+        }
     end
 }

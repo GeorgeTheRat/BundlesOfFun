@@ -1513,8 +1513,8 @@ return {
                 }
             }
         },
-        -- enemies (& finishers)
         Blind = {
+            -- enemies
             bl_bof_dominant = {
                 name = "The Dominant",
                 text = {
@@ -1688,6 +1688,42 @@ return {
                 text = {
                     "No payout from Blind, Hands,",
                     "Discards, or Interest"
+                }
+            },
+            -- finishers
+            bl_bof_fire = {
+                name = "Blazing Fire",
+                text = {
+                    "X0.2 Mult if played hand scores",
+                    "more than Blind requirement"
+                }
+            },
+            bl_bof_water = {
+                name = "Tidal Water",
+                text = {
+                    "Leftmost and Rightmost Joker, scoring",
+                    "card, and held card are debuffed"
+                }
+            },
+            bl_bof_air = {
+                name = "Howling Air",
+                text = {
+                    "Small Blind and Big Blind this",
+                    "Ante are huge and unskippable"
+                }
+            },
+            bl_bof_earth = {
+                name = "Rooted Earth",
+                text = {
+                    "Unenhance all drawn",
+                    "enhanced cards"
+                }
+            },
+            bl_bof_aether = {
+                name = "Empyrean Aether",
+                text = {
+                    "Unbalance 50% of Chips",
+                    "and Mult after scoring"
                 }
             }
         },

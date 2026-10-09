@@ -281,6 +281,15 @@ local files = {
             "wave",
             "resistance"
         }, directory = "items/enemies/"
+    },
+    finishers = {
+        list = {
+            "fire",
+            "water",
+            "air",
+            "earth",
+            "aether"
+        }, directory = "items/finishers/"
     }
 }
 
@@ -319,4 +328,8 @@ end
 
 for _, name in ipairs(files["enemies"].list) do
     assert(SMODS.load_file(files["enemies"].directory .. name .. ".lua"))()
+end
+
+for _, name in ipairs(files["finishers"].list) do
+    assert(SMODS.load_file(files["finishers"].directory .. name .. ".lua"))()
 end

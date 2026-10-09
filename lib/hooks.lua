@@ -843,24 +843,33 @@ function SMODS.create_card(t)
 end
 
 -- card creation for fish-related booster packs
-function BundlesOfFun.create_fish_pack_card(fish_set, key_append)
-    local legendary_fish = {}
-    local total_soul_rate = 0
-    local non_soul_rate = 1
+function BundlesOfFun.create_fish_pack_card(fish_set, key_append, pack_card_index)
+    -- Each card in a booster needs its own RNG append. Reusing one append makes
+    -- every slot poll the same entry from the fish-size pool.
+    if pack_card_index then
+        key_append = key_append .. "_" .. pack_card_index
+    end
+    local legendary_fish, total_soul_rate, non_soul_rate, legendary_key = {}, 0, 1
     local fish_pool = BOF.nc(G.P_CENTER_POOLS, "fish_l") or {}
     for _, fish_center in ipairs(fish_pool) do
         local soul_rate = fish_center.soul_rate
-        if soul_rate and soul_rate > 0 and SMODS.add_to_pool(fish_center)
-            and not (G.GAME.used_jokers[fish_center.key] and not SMODS.showman(fish_center.key) and not fish_center.can_repeat_soul)
+        if
+            soul_rate and
+            soul_rate > 0 and
+            SMODS.add_to_pool(fish_center) and
+            not (
+                G.GAME.used_jokers[fish_center.key] and
+                not SMODS.showman(fish_center.key) and
+                not fish_center.can_repeat_soul
+            )
         then
             total_soul_rate = total_soul_rate + soul_rate
             non_soul_rate = math.max(non_soul_rate * (1 - soul_rate), 0)
             legendary_fish[#legendary_fish + 1] = fish_center
         end
     end
-    local legendary_key
     if total_soul_rate > 0 then
-        local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. fish_set ))
+        local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. key_append))
         local threshold = 1
         for _, fish_center in ipairs(legendary_fish) do
             threshold = threshold - fish_center.soul_rate / total_soul_rate * (1 - non_soul_rate)
