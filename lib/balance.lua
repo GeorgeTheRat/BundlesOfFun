@@ -57,24 +57,42 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
     SMODS.Scoring_Parameters.chips:modify(new_hand_chips - hand_chips)
     SMODS.Scoring_Parameters.mult:modify(new_mult - mult)
     local text = (key == "bof_balance_percent" and "Balanced " or "Unbalanced ") .. amount .. "%"
+    local plasma_animation = effect.bof_plasma_animation == true
+    if plasma_animation then
+        update_hand_text({ delay = 0 }, { mult = new_mult, chips = new_hand_chips })
+    end
+    local sound_pitch = effect.bof_fixed_sound_pitch and 1 or (1 + (amount / 100 - 1) * 0.3)
     G.E_MANAGER:add_event(Event({
         func = function()
-            local pitch = 1 + (amount / 100 - 1) * 0.3
-            play_sound("gong", 0.94 * pitch, 0.3)
-            play_sound("gong", 0.94 * 1.5 * pitch, 0.2)
-            play_sound("tarot1", 1.5)
-            ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount / 100))
-            ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount / 100))
-            if not bof_balance_mixed then
-                bof_balance_mixed = true
+            local pitch = sound_pitch
+            if key == "bof_balance_percent" then
+                play_sound("gong", 0.94 * pitch, 0.3)
+                play_sound("gong", 0.94 * 1.5 * pitch, 0.2)
+                play_sound("tarot1", 1.5 * pitch)
+            else
+                play_sound("bof_ungong", 2^(-4/12) * pitch, 0.3)
+                play_sound("bof_ungong", 2^(-6/12) * pitch, 0.2)
+                play_sound("tarot1", 2^(-8/12) * pitch)
+            end
+            if plasma_animation then
+                ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount / 100))
+                ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount / 100))
+                attention_text({
+                    scale = 1.4,
+                    text = text,
+                    hold = 2,
+                    align = "cm",
+                    offset = { x = 0, y = -2.7 },
+                    major = G.play
+                })
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     blockable = false,
                     blocking = false,
-                    delay = 0.8,
+                    delay = 4.3,
                     func = function()
-                        ease_colour(G.C.UI_CHIPS, G.C.BLUE, 0.8)
-                        ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
+                        ease_colour(G.C.UI_CHIPS, G.C.BLUE, 2)
+                        ease_colour(G.C.UI_MULT, G.C.RED, 2)
                         return true
                     end
                 }))
@@ -83,19 +101,48 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
                     blockable = false,
                     blocking = false,
                     no_delete = true,
-                    delay = 1.3,
+                    delay = 6.3,
                     func = function()
                         G.C.UI_CHIPS[1], G.C.UI_CHIPS[2], G.C.UI_CHIPS[3], G.C.UI_CHIPS[4] = G.C.BLUE[1], G.C.BLUE[2], G.C.BLUE[3], G.C.BLUE[4]
                         G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
-                        bof_balance_mixed = false
                         return true
                     end
                 }))
+            else
+                ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount / 100))
+                ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount / 100))
+                if not bof_balance_mixed then
+                    bof_balance_mixed = true
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        blockable = false,
+                        blocking = false,
+                        delay = 0.8,
+                        func = function()
+                            ease_colour(G.C.UI_CHIPS, G.C.BLUE, 0.8)
+                            ease_colour(G.C.UI_MULT, G.C.RED, 0.8)
+                            return true
+                        end
+                    }))
+                    G.E_MANAGER:add_event(Event({
+                        trigger = "after",
+                        blockable = false,
+                        blocking = false,
+                        no_delete = true,
+                        delay = 1.3,
+                        func = function()
+                            G.C.UI_CHIPS[1], G.C.UI_CHIPS[2], G.C.UI_CHIPS[3], G.C.UI_CHIPS[4] = G.C.BLUE[1], G.C.BLUE[2], G.C.BLUE[3], G.C.BLUE[4]
+                            G.C.UI_MULT[1], G.C.UI_MULT[2], G.C.UI_MULT[3], G.C.UI_MULT[4] = G.C.RED[1], G.C.RED[2], G.C.RED[3], G.C.RED[4]
+                            bof_balance_mixed = false
+                            return true
+                        end
+                    }))
+                end
             end
             return true
         end
     }))
-    if not effect.remove_default_message then
+    if not plasma_animation and not effect.remove_default_message then
         if from_edition then
             card_eval_status_text(scored_card, "jokers", nil, amount / 100, nil, {
                 message = text,
@@ -104,7 +151,8 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
             })
         else
             card_eval_status_text(
-                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, "extra", nil, amount / 100, nil, {
+                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus,
+                "extra", nil, amount / 100, nil, {
                     message = text,
                     colour = G.C.PLASMA
                 }

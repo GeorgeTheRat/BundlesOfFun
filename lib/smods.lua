@@ -187,6 +187,19 @@ SMODS.ObjectType({
     default = "c_bof_bass_l"
 })
 
+-- ts was NOT the wind
+SMODS.Sound({
+	key = "alarm_wind",
+	path = "alarm_wind.ogg",
+	loop = false
+})
+
+SMODS.Sound({
+	key = "alarm_ring",
+	path = "alarm_ring.ogg",
+	loop = false
+})
+
 SMODS.Sound({
 	key = "wooden_1",
 	path = "wooden_1.ogg",
@@ -212,12 +225,6 @@ SMODS.Sound({
 })
 
 SMODS.Sound({
-	key = "alarm_ring",
-	path = "alarm_ring.ogg",
-	loop = false
-})
-
-SMODS.Sound({
     key = "music_fish",
     path = "music_fish.ogg",
     select_music_track = function()
@@ -226,10 +233,9 @@ SMODS.Sound({
     end
 })
 
--- ts was NOT the wind
 SMODS.Sound({
-	key = "alarm_wind",
-	path = "alarm_wind.ogg",
+	key = "ungong",
+	path = "ungong.ogg",
 	loop = false
 })
 

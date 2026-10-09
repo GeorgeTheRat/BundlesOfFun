@@ -59,7 +59,6 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 local amt, rerolls = G.GAME.round_scores.times_rerolled.amt, card.ability.extra.rerolls
                 local remainder = amt % rerolls
-
                 card.joker_display_values.rerolls = rerolls - remainder
                 card.joker_display_values.is_ready = amt ~= 0 and remainder == rerolls - 1
             end,
