@@ -14,20 +14,6 @@ if v.config.center ~= G.P_CENTERS.c_base and not v.debuff and not v.vampired and
 -- patch end
 '''
 
-# hook the game start to clear stale display deck boss predictions from a
-# previous run
-[[patches]]
-[patches.pattern]
-target = "game.lua"
-pattern = '''G.GAME.starting_params = {'''
-position = "after"
-match_indent = true
-payload = '''
--- bof patch
-G.GAME.perscribed_bosses = {}
--- patch end
-'''
-
 # track showdown rerolls for display deck unlock
 # G.GAME.blind isn't reassigned to the upcoming boss until the blind is
 # actually selected (Blind:set_blind is only called from state_events.lua's

@@ -7,6 +7,23 @@ version = "1.0.0"
 [patches.pattern]
 target = 'functions/UI_definitions.lua'
 pattern = '''
+for _,v in ipairs(SMODS.ConsumableType.obj_buffer) do
+    total_rate = total_rate + G.GAME[v:lower()..'_rate']
+end
+'''
+position = 'after'
+match_indent = true
+payload = '''
+-- bof patch
+if G.GAME.booster_rate then total_rate = total_rate + G.GAME.booster_rate end
+if G.GAME.voucher_rate then total_rate = total_rate + G.GAME.voucher_rate end
+-- patch end
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
 for _, v in ipairs(SMODS.ConsumableType.obj_buffer) do
     if not (v == 'Tarot' or v == 'Planet' or v == 'Spectral') then
         table.insert(rates, { type = v, val = G.GAME[v:lower()..'_rate'] })
@@ -26,28 +43,39 @@ end
 -- patch end
 '''
 
-# prev cont.
+# give packs and vouchers in shop proper controller actions
+# keep the generic joker-shop buy action for other cards
 [[patches]]
 [patches.pattern]
 target = 'functions/UI_definitions.lua'
 pattern = '''
-local args = {set = v.type, area = area, key_append = 'sho', front = false}
+    if card.area == G.shop_jokers and G.shop_jokers then --Add a buy button
 '''
-position = 'after'
+position = 'before'
 match_indent = true
 payload = '''
 -- bof patch
-if G.GAME.booster_rate then
-    if pseudorandom("bof_shop_booster") < G.GAME.booster_rate / total_rate then
-        args.set = "Booster"
-        args.area = G.shop_booster
+    if card.area == G.shop_jokers and G.shop_jokers and card.ability.set == 'Booster' then
+        base_attach.children.redeem = G.UIDEF.card_focus_button{
+            card = card, parent = base_attach, type = 'buy',
+            func = 'can_open', button = 'open_booster', card_width = card_width*0.85
+        }
+    elseif card.area == G.shop_jokers and G.shop_jokers and card.ability.set == 'Voucher' then
+        base_attach.children.redeem = G.UIDEF.card_focus_button{
+            card = card, parent = base_attach, type = 'buy',
+            func = 'can_redeem', button = 'redeem_from_shop', card_width = card_width*0.85
+        }
     end
-end
-if G.GAME.voucher_rate then
-    if pseudorandom("bof_shop_voucher") < G.GAME.voucher_rate / total_rate then
-        args.set = "Voucher"
-        args.area = G.shop_vouchers
-    end
-end
--- patch end
+'''
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+    if card.area == G.shop_jokers and G.shop_jokers then --Add a buy button
+'''
+position = 'at'
+match_indent = true
+payload = '''
+-- bof patch
+    if card.area == G.shop_jokers and G.shop_jokers and card.ability.set ~= 'Booster' and card.ability.set ~= 'Voucher' then --Add a buy button
 '''

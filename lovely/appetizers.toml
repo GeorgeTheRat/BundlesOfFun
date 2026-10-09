@@ -8,7 +8,6 @@ pattern = '''
 if SMODS.check_looping_context(_card) then
     goto skip
 end
-SMODS.current_evaluated_object = _card
 local eval, post = eval_card(_card, context)
 '''
 position = 'at'

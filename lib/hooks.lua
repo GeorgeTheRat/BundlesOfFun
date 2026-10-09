@@ -450,6 +450,7 @@ function Game:start_run(arg)
     G.GAME.bof_angle_discarded_cards = nil
     G.GAME.bof_rerolled_showdown = nil
     G.GAME.bof_postman_play_order = nil
+    G.GAME.perscribed_bosses = {}
     G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
