@@ -1736,8 +1736,7 @@ return {
             bof_minnows = "Peces",
             bof_coupons = "Cupones",
             bof_enemies = "Enemigos",
-            -- bof_finishers = "Finishers",
-            -- bof_games = "Games"
+            bof_finishers = "Finishers"
         }
     }
 }

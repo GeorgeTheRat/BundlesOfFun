@@ -1797,7 +1797,7 @@ return {
             bof_minnows = "Minnows",
             bof_coupons = "Coupons",
             bof_enemies = "Enemies",
-            -- bof_finishers = "Finishers",
+            bof_finishers = "Finishers",
         },
         v_dictionary = {
             a_bof_balance = "Balanced #1#%",

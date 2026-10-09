@@ -8,7 +8,8 @@ return {
         flats = true,
         minnows = true,
         coupons = true,
-        enemies = true
+        enemies = true,
+        finishers = true
     },
     custom_sounds = true,
     evil_dih = false,

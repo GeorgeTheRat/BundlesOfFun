@@ -20,8 +20,6 @@ function BOF.nc(value, ...)
     return value
 end
 
-
-
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
@@ -32,7 +30,7 @@ G.C.bof_flats = HEX("ff7a6f")
 G.C.bof_minnows = { 1.0, 0.6, 0.7, 1 }
 G.C.bof_coupons = HEX("69aad8")
 G.C.bof_enemies = HEX("497760")
-G.C.bof_finishers = HEX("5e5f45")
+G.C.bof_finishers = HEX("4fbb8f")
 G.C.bof_george_1 = HEX("67bf9d")
 G.C.bof_george_2 = HEX("1e9ae9")
 G.C.bof_glitch_1 = HEX("f04360")

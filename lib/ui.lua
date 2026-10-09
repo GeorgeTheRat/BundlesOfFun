@@ -100,21 +100,6 @@ SMODS.Tag {
     end
 }
 
--- create toggle ui element for bundle
-local function bundle_toggle(item, colour)
-    return { n = G.UIT.R, config = { align = "cm" }, nodes = {
-        create_toggle{
-            label = localize("bof_" .. item),
-            active_colour = colour,
-            col = true,
-            label_scale = 0.4,
-            ref_table = BundlesOfFun.config.bundles,
-            ref_value = item,
-            align = "cm"
-        }
-    }}
-end
-
 -- basically just copying the function in engine/ui.lua to generate tags in the collection
 -- works well though
 local function credit_tag_sprite(tag_key, tag_pos)
@@ -262,6 +247,21 @@ SMODS.current_mod.config_tab = function()
     }
 end
 
+-- create toggle ui element for bundle
+local function bundle_toggle(item, colour)
+    return { n = G.UIT.R, config = { align = "cm" }, nodes = {
+        create_toggle {
+            label = localize("bof_" .. item),
+            active_colour = colour,
+            col = true,
+            label_scale = 0.4,
+            ref_table = BundlesOfFun.config.bundles,
+            ref_value = item,
+            align = "cm"
+        }
+    }}
+end
+
 -- define the tabs for bundles and credits
 SMODS.current_mod.extra_tabs = function()
     return {
@@ -276,27 +276,27 @@ SMODS.current_mod.extra_tabs = function()
                         r = 0.1,
                         minw = 10,
                         align = "cm",
-                        padding = 0.3,
+                        padding = 0.2,
                         colour = G.C.BLACK,
                     },
                     nodes = {
                         { n = G.UIT.R, config = { align = "cm", padding = 0.1, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
-                            { n = G.UIT.C, config = { align = "cm", padding = 0.15 }, nodes = {
+                            { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
                                 bundle_toggle("appetizers", G.C.bof_appetizers),
                                 bundle_toggle("jesters", G.C.bof_jesters),
                                 bundle_toggle("artisans", G.C.bof_artisans),
                                 bundle_toggle("normalities", G.C.bof_normalities),
                                 bundle_toggle("fables", G.C.bof_fables)
                             }},
-                            { n = G.UIT.C, config = { align = "cm", padding = 0.15 }, nodes = {
+                            { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
                                 bundle_toggle("flats", G.C.bof_flats),
                                 bundle_toggle("minnows", G.C.bof_minnows),
                                 bundle_toggle("coupons", G.C.bof_coupons),
                                 bundle_toggle("enemies", G.C.bof_enemies),
-                                -- bundle_toggle("finishers", G.C.bof_finishers),
+                                bundle_toggle("finishers", G.C.bof_finishers)
                             }}
                         }},
-                        { n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
+                        { n = G.UIT.R, config = { align = "cm" }, nodes = {
                             { n = G.UIT.O, config = {
                                 object = DynaText({
                                     string = { "Some items only appear if multiple sets are enabled" },

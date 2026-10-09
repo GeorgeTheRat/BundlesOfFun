@@ -13,7 +13,8 @@ local BUNDLES = {
     flats = { name = "Flats", color = G.C.bof_flats },
     minnows = { name = "Minnows", color = G.C.bof_minnows },
     coupons = { name = "Coupons", color = G.C.bof_coupons },
-    enemies = { name = "Enemies", color = G.C.bof_enemies }
+    enemies = { name = "Enemies", color = G.C.bof_enemies },
+    finishers = { name = "Finishers", color = G.C.bof_finishers },
 }
 
 -- hook into config changes to refresh badges
@@ -55,7 +56,7 @@ end
 local original_create_mod_badges = SMODS.create_mod_badges
 function SMODS.create_mod_badges(obj, badges)
     if SMODS.config.no_mod_badges or BOF.nc(obj, "no_mod_badges") then return end
-    if obj and obj.set == "Back" and obj.unlocked == false then return end
+    if BOF.nc(obj, "set") == "Back" and obj.unlocked == false then return end
 
     -- calculate scale factor for text to fit badge
     local function calculate_scale_fac(text)
