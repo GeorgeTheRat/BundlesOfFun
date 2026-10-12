@@ -102,13 +102,13 @@ function SMODS.create_mod_badges(obj, badges)
                         align = "cm",
                         colour = category.color,
                         r = 0.1,
-                        minw = 2,
+                        minw = BOF.nc(obj, "set") == "Back" and 3.8 or 2,
                         minh = 0.32,
                         emboss = 0.05,
                         padding = 0.03 * 0.9,
                     },
                     nodes = {
-                        { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
+                        { n = G.UIT.B, config = { h = 0.1, w = 0.028 + 0.037 } },
                         {
                             n = G.UIT.O,
                             config = {
@@ -124,10 +124,10 @@ function SMODS.create_mod_badges(obj, badges)
                                 }),
                             },
                         },
-                        { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
-                    },
-                },
-            },
+                        { n = G.UIT.B, config = { h = 0.1, w = 0.028 + 0.037 } }
+                    }
+                }
+            }
         }
     end
 
@@ -138,7 +138,6 @@ function SMODS.create_mod_badges(obj, badges)
         elseif type(obj.bundle) == "table" then
             category_name = obj.bundle[1]
         end
-        
         local badge = create_bundle_badge(category_name)
         if badge then
             badges[#badges + 1] = badge

@@ -63,16 +63,15 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
     end
     local sound_pitch = effect.bof_fixed_sound_pitch and 1 or (1 + (amount / 100 - 1) * 0.3)
     G.E_MANAGER:add_event(Event({
-        func = function()
-            local pitch = sound_pitch
+        func = function() 
             if key == "bof_balance_percent" then
-                play_sound("gong", 0.94 * pitch, 0.3)
-                play_sound("gong", 0.94 * 1.5 * pitch, 0.2)
-                play_sound("tarot1", 1.5 * pitch)
+                play_sound("gong", 0.94 * sound_pitch, 0.3)
+                play_sound("gong", 0.94 * 1.5 * sound_pitch, 0.2)
+                play_sound("tarot1", 1.5 * sound_pitch)
             else
-                play_sound("bof_ungong", 2^(-4/12) * pitch, 0.3)
-                play_sound("bof_ungong", 2^(-6/12) * pitch, 0.2)
-                play_sound("tarot1", 2^(-8/12) * pitch)
+                play_sound("bof_ungong", 2^(-5/12) * sound_pitch, 1)
+                play_sound("bof_ungong", 2^(-7/12) * sound_pitch, 0.8)
+                play_sound("tarot1", 2^(-8/12) * sound_pitch, 4)
             end
             if plasma_animation then
                 ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount / 100))
