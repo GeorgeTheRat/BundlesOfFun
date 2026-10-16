@@ -14,6 +14,7 @@ BundlesOfFun.Joker {
     cost = 5,
     rarity = 2,
     blueprint_compat = false,
+    eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "j_bof_fish_bowl")

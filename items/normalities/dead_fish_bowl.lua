@@ -15,6 +15,7 @@ BundlesOfFun.Joker {
     cost = 1,
     rarity = 2,
     blueprint_compat = false,
+    eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.c_bof_gold_s
