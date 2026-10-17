@@ -24,6 +24,7 @@ BundlesOfFun.Joker {
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         add_tag(Tag(tag_key))
+                        play_sound("generic1")
                         four_calling_birds:juice_up(0.3, 0.5)
                         G.E_MANAGER:add_event(Event({
                             func = function()
@@ -39,6 +40,7 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
+                delay(0.2)
             end
         end
     end,
