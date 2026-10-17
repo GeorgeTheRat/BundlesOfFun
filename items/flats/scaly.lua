@@ -1,7 +1,7 @@
 BundlesOfFun.Back {
 	key = "scaly",
     name = "Scaly Deck",
-    bundle = "flats",
+    bundle = { "flats", { "minnows" } },
     config = {
         voucher = "v_bof_ice_bucket",
         consumables = { "c_bof_octopus_b" }
