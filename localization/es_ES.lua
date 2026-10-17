@@ -415,9 +415,14 @@ return {
             j_bof_fancy = {
                 name = "Pantalones Elegantes",
                 text = {
-                    "Crea una {C:attention}Etiqueta Manual{} o",
-                    "una {C:attention}Etiqueta de Basura{} al azar",
-                    "al seleccionar una {C:small,E:1}Ciega Pequeña{}"
+                    {
+                        "Crea una {C:blue}Etiqueta Manual{} cuando",
+                        "se selecciona una {C:small,E:1}Ciega Pequeña{}"
+                    },
+                    {
+                        "Crea una {C:red}Etiqueta de Basura{} cuando",
+                        "se selecciona una {C:big,E:1}Ciega Grande{}"
+                    }
                 }
             },
             j_bof_crafted = {

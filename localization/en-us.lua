@@ -422,9 +422,14 @@ return {
             j_bof_fancy = {
                 name = "Fancy Pants",
                 text = {
-                    "Create either a {C:attention}Handy Tag{} or",
-                    "{C:attention}Garbage Tag{} at random when",
-                    "{C:small,E:1}Small Blind{} is selected"
+                    {
+                        "Create a {C:blue}Handy Tag{} when",
+                        "{C:small,E:1}Small Blind{} is selected"
+                    },
+                    {
+                        "Create a {C:red}Garbage Tag{} when",
+                        "{C:big,E:1}Big Blind{} is selected"
+                    }
                 }
             },
             j_bof_crafted = {
