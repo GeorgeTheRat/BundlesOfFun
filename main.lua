@@ -175,7 +175,8 @@ local files = {
             "astrolabe",
             "billy_bass",
             "fish_bowl",
-            "dead_fish_bowl"
+            "dead_fish_bowl",
+            "sign"
         }, directory = "items/normalities/"
     },
     fables = {

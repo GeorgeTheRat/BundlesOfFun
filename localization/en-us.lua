@@ -689,7 +689,7 @@ return {
             j_bof_jouster = {
                 name = "Jouster",
                 text = {
-                    "{X:mult,C:white}X#1#{} Mult if it will cause",
+                    "{C:white,X:mult}X#1#{} Mult if it will cause",
                     "the {C:attention}round{} to be {C:edition,E:1,X:black}won{}"
                 }
             },
@@ -854,6 +854,14 @@ return {
                     "{C:money}$#1#{} of sell value at end of round",
                     "This card is {C:red}destroyed{} when",
                     "its {C:attention}sell value{} reaches {C:money}$#2#"
+                }
+            },
+            j_bof_sign = {
+                name = "Road Sign",
+                text = {
+                    "{C:white,X:mult}X#1#{} Mult if {C:attention}previously",
+                    "played hand was a {C:attention}Straight",
+                    "but this hand is {C:red}not"
                 }
             },
             -- Artisans

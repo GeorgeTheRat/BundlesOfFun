@@ -45,11 +45,11 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
-                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_plus_fish"), colour = G.C.SET.Fish })
+                SMODS.calculate_effect({ message = localize("k_plus_fish"), colour = G.C.SET.Fish }, card)
             end
             card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
             return {
-                message = "Value Down!",
+                message = localize("k_val_down_ex"),
                 colour = G.C.RED
             }
         end
@@ -58,7 +58,7 @@ BundlesOfFun.Joker {
         if card.sell_cost <= card.ability.extra.destroy and not card.ability.extra.gonna_go then
             card.ability.extra.gonna_go = true
             SMODS.destroy_cards(card, { pinch_anim = true })
-            card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_expired_ex") })
+            SMODS.calculate_effect({ message = localize("k_expired_ex") }, card)
         end
     end,
     remove_from_deck = function(self, card, context)

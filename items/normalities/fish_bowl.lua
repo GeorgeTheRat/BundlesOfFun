@@ -72,7 +72,7 @@ BundlesOfFun.Joker {
             else
                 card.sell_cost = card.sell_cost + card.ability.extra.sell_cost_mod
                 return {
-                    message = "Value Up!",
+                    message = localize("k_val_up"),
                     colour = G.C.MONEY
                 }
             end
