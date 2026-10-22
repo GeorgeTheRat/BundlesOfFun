@@ -159,6 +159,16 @@ return {
                     "at end of round"
                 }
             },
+            j_bof_milko = {
+                name = "Milko",
+                text = {
+                    "{C:red}+#1#{} discard#<s>1# each round,",
+                    "decreases by {C:red}-#2#{} discard#<s>2#",
+                    "at end of round if {C:attention}Blind{}",
+                    "is defeated with {C:attention}fewer",
+                    "than {C:attention}#3#{} Discard#<s>3# remaining"
+                }
+            },
             j_bof_core = {
                 name = "Apple Core",
                 text = {
