@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
             discards_req = 2
         }
     },
-    -- pos = { x = 0, y = 0 },
+    -- pos = { x = 13, y = 0 },
     attributes = { "discard", "scaling", "food" },
     cost = 5,
     rarity = 1,

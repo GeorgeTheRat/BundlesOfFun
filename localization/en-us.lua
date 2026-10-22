@@ -163,9 +163,8 @@ return {
                 name = "Milko",
                 text = {
                     "{C:red}+#1#{} discard#<s>1# each round,",
-                    "decreases by {C:red}-#2#{} discard#<s>2#",
-                    "at end of round if {C:attention}Blind{}",
-                    "is defeated with {C:attention}fewer",
+                    "decreases by {C:red}-#2#{} discard#<s>2# if",
+                    "{C:attention}Blind{} is defeated with {C:attention}fewer",
                     "than {C:attention}#3#{} Discard#<s>3# remaining"
                 }
             },
