@@ -686,6 +686,13 @@ return {
                     "instead of expiring"
                 }
             },
+            j_bof_jouster = {
+                name = "Jouster",
+                text = {
+                    "{X:mult,C:white}X#1#{} Mult if it will cause",
+                    "the {C:attention}round{} to be {C:edition,E:1,X:black}won{}"
+                }
+            },
             j_bof_cloudy = {
                 name = "Cloudy Joker",
                 text = {

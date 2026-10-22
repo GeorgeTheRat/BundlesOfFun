@@ -148,6 +148,7 @@ local files = {
             "hypnotic",
             "band",
             "matey",
+            "jouster",
             "cloudy",
             "knight",
             "pinhead"
