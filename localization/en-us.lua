@@ -1004,6 +1004,18 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
+            j_bof_bobby = {
+                name = "Bobby Kay",
+                text = {
+                    "First played {C:attention}Enhanced{} card and all",
+                    "cards that {C:attention}share{} its {C:enhanced}Enhancement",
+                    "in played hand permanently",
+                    "gain {C:white,X:mult}X#1#{} Mult when scored"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
             j_bof_durie = {
                 name = "Durie",
                 text = {

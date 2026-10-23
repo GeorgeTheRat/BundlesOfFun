@@ -191,7 +191,8 @@ local files = {
             "durie",
             "mezzetino",
             "beltrame",
-            "placeholder"
+            "placeholder",
+            "bobby"
         }, directory = "items/fables/"
     },
     flats = {
