@@ -97,7 +97,7 @@ local files = {
             "shrimp",
             "melon",
             "mango",
-            "milko"
+            "mliko"
 		}, directory = "items/appetizers/"
     },
     jesters = {

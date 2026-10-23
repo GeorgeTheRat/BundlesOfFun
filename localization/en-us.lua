@@ -159,8 +159,8 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_milko = {
-                name = "Milko",
+            j_bof_mliko = {
+                name = "Mlíko",
                 text = {
                     "{C:red}+#1#{} discard#<s>1# each round,",
                     "decreases by {C:red}-#2#{} discard#<s>2# if",

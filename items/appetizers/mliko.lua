@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "milko",
-    name = "Milko",
+    key = "mliko",
+    name = "Mlíko",
     bundle = "appetizers",
     config = {
         extra = {
@@ -9,14 +9,14 @@ BundlesOfFun.Joker {
             discards_req = 2
         }
     },
-    -- pos = { x = 13, y = 0 },
+    pos = { x = 13, y = 0 },
     attributes = { "discard", "scaling", "food" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
