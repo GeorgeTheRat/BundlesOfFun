@@ -176,6 +176,7 @@ local files = {
             "billy_bass",
             "fish_bowl",
             "dead_fish_bowl",
+            "anvil",
             "sign"
         }, directory = "items/normalities/"
     },

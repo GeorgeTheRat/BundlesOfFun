@@ -856,6 +856,14 @@ return {
                     "its {C:attention}sell value{} reaches {C:money}$#2#"
                 }
             },
+            j_bof_anvil = {
+                name = "Anvil",
+                text = {
+                    "Cards with {C:attention}highest rank",
+                    "in played hand decrease",
+                    "in {C:attention}rank{} when scored"
+                }
+            },
             j_bof_sign = {
                 name = "Road Sign",
                 text = {
