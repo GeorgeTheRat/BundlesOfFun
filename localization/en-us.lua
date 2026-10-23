@@ -168,6 +168,15 @@ return {
                     "than {C:attention}#3#{} Discard#<s>3# remaining"
                 }
             },
+            j_bof_koshary = {
+                name = "Koshary",
+                text = {
+                    "{X:red,C:white} X#1# {} Mult",
+                    "decreases by {X:red,C:white} X#2# {} Mult if",
+                    "played hand has fewer than",
+                    "{C:attention}#3#{} {C:attention}Enhanced{} cards"
+                }
+            },
             j_bof_core = {
                 name = "Apple Core",
                 text = {

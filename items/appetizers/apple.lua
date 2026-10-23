@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
             context.other_card.ability.perma_mult = (context.other_card.ability.perma_mult or 0) + card.ability.extra.perma_mult
             return {
                 message = localize("k_upgrade_ex"),
-                colour = G.C.MULT
+                colour = G.C.RED
             }
         end
         if context.end_of_round and context.main_eval and not context.blueprint then
