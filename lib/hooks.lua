@@ -387,6 +387,10 @@ function CardArea:emplace(card, location, stay_flipped)
         if center_key and center_key:match("_l$") then
             check_for_unlock({ b_bof_scaly = true })
         end
+        if BOF.nc(card, "ability", "set") == "Fish" then
+            G.GAME.bof_payne_trigger = G.GAME.bof_payne_trigger or {}
+            G.GAME.bof_payne_trigger.tarot = true
+        end
     end
     return ret
 end
@@ -435,7 +439,6 @@ function Game:start_run(arg)
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
     G.GAME.bof_octopus_triggered = nil
-    G.GAME.bof_payne_trigger = nil
     G.GAME.bof_nerd_guarantee_rare = nil
     G.GAME.bof_tiny_active = nil
     G.GAME.bof_tiny_scaled_ante = nil
@@ -460,7 +463,6 @@ local original_game_start_round = Game.start_round
 function Game:start_round()
     G.GAME.bof_octopus_claimed_fish = nil
     G.GAME.bof_octopus_triggered = nil
-    G.GAME.bof_payne_trigger = nil
     G.GAME.bof_postman_play_order = nil
     return original_game_start_round and original_game_start_round(self)
 end
@@ -1578,7 +1580,7 @@ end
 -- octopus trigger/general logic
 -- todo: make it so that the messages from octopus trigger immediately after the fish it copies
 -- matey: big fish transform to small fish
--- nuwa & fuxi: track fish expiration for card creation
+-- payne: track fish expiration for card creation
 local original_smods_destroy_cards = SMODS.destroy_cards
 function SMODS.destroy_cards(card, args)
     if BOF.nc(card, "ability", "set") == "Fish" then
@@ -1586,13 +1588,8 @@ function SMODS.destroy_cards(card, args)
         if card.bof_array_destroyed then
             return original_smods_destroy_cards(card, args)
         end
-
         local fish_key = card.config.center.key
-        local is_big_fish = fish_key:match("_b$")
-        local is_small_fish = fish_key:match("_s$")
-        local is_octopus = fish_key:match("octopus")
-
-        if is_big_fish and next(SMODS.find_card("j_bof_matey")) then
+        if fish_key:match("_b$") and next(SMODS.find_card("j_bof_matey")) then
             card.ability.bof_matey_transforming = true
             local small_fish_key = fish_key:sub(1, -3) .. "_s"
             G.E_MANAGER:add_event(Event({
@@ -1643,31 +1640,17 @@ function SMODS.destroy_cards(card, args)
         G.GAME.bof_fish_expired = (G.GAME.bof_fish_expired or 0) + 1
         check_for_unlock({ bof_fish_expired = G.GAME.bof_fish_expired })
 
-        if is_small_fish then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    G.GAME.bof_small_fish_expired = (G.GAME.bof_small_fish_expired or 0) + 1
-                    G.GAME.bof_payne_trigger = G.GAME.bof_payne_trigger or {}
-                    G.GAME.bof_payne_trigger.tarot = true
-                    return true
-                end
-            }))
-        end
-        if is_big_fish then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    G.GAME.bof_big_fish_expired = (G.GAME.bof_big_fish_expired or 0) + 1
-                    G.GAME.bof_payne_trigger = G.GAME.bof_payne_trigger or {}
-                    G.GAME.bof_payne_trigger.spectral = true
-                    return true
-                end
-            }))
-        end
-
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                G.GAME.bof_payne_trigger = G.GAME.bof_payne_trigger or {}
+                G.GAME.bof_payne_trigger.spectral = true
+                return true
+            end
+        }))
 
         G.GAME.bof_octopus_triggered = G.GAME.bof_octopus_triggered or {}
         for _, octopus in ipairs(G.consumeables.cards) do
-            if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not is_octopus then
+            if octopus.config.center.key:find("octopus") and octopus ~= card and not G.GAME.bof_octopus_triggered[octopus] and not fish_key:match("octopus") then
                 G.GAME.bof_octopus_triggered[octopus] = true
                 G.E_MANAGER:add_event(Event({
                     trigger = "immediate",

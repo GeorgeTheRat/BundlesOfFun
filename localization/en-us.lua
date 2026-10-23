@@ -993,11 +993,11 @@ return {
                 text = {
                     {
                         "Create a {C:dark_edition}Negative {C:tarot}Tarot{} card",
-                        "when a {C:white,E:1,X:small}Small{} {C:fish}Fish{} card expires"
+                        "when a {C:fish}Fish{} card is obtained"
                     },
                     {
                         "Create a {C:dark_edition}Negative {C:spectral}Spectral{} card",
-                        "when a {C:white,E:1,X:big}Big{} {C:fish}Fish{} card expires"
+                        "when a {C:fish}Fish{} card {C:attention}expires"
                     }
                 },
                 unlock = {
