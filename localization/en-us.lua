@@ -1051,6 +1051,17 @@ return {
                 unlock = {
                     "{E:1,s:1.3}?????"
                 }
+            },
+            j_bof_placeholder = {
+                name = "Placeholder",
+                text = {
+                    "Retrigger all played",
+                    "cards {C:attention}once{} for every",
+                    "{C:attention}empty consumable{} slot"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
             }
         },
         -- flats
