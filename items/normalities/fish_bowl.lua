@@ -17,6 +17,7 @@ BundlesOfFun.Joker {
     eternal_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.j_bof_dead_fish_bowl
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "j_bof_fish_bowl")
 		return {
 			vars = {
