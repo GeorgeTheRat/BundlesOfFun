@@ -416,7 +416,7 @@ end
 -- reset stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
-    if G.GAME.bof_stock_original_mult then
+    if not arg.savetext and G.GAME.bof_stock_original_mult then
         for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
             for key, original_mult in pairs(blind_table) do
                 if type(original_mult) ~= "number" then
