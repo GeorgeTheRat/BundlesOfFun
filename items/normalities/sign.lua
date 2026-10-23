@@ -14,14 +14,12 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.after then
-            card.ability.extra.previous_hand = G.GAME.last_hand_played or ""
+            card.ability.extra.previous_hand = G.GAME.last_hand_played
         end
-        if context.joker_main then
-            if card.ability.extra.previous_hand == "Straight" and context.scoring_name ~= "Straight" then
-                return {
-                    xmult = card.ability.extra.xmult
-                }
-            end
+        if context.joker_main and card.ability.extra.previous_hand == "Straight" then
+            return {
+                xmult = card.ability.extra.xmult
+            }
         end
     end
 }

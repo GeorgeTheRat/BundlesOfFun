@@ -860,8 +860,7 @@ return {
                 name = "Road Sign",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult if {C:attention}previously",
-                    "played hand was a {C:attention}Straight",
-                    "but this hand is {C:red}not"
+                    "played hand was a {C:attention}Straight"
                 }
             },
             -- Artisans
