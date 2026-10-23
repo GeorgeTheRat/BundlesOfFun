@@ -49,7 +49,7 @@ BundlesOfFun.Joker {
                 card:set_cost()
                 return {
                     func = function()
-                        card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_val_up"), colour = G.C.MONEY })
+                        SMODS.calculate_effect({ message = localize("k_val_up"), colour = G.C.MONEY }, card)
                     end
                 }
             end

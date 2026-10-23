@@ -72,10 +72,24 @@ BundlesOfFun.Joker {
                 card.ability.extra.previous_has_five = current_has_five
                 if current_has_five then
                     G.hand:change_size(card.ability.extra.hand_size)
-                    card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize", vars = { card.ability.extra.hand_size } }) })
+                    return {
+                        message = localize({
+                            type = "variable",
+                            key = "a_handsize",
+                            vars = { card.ability.extra.hand_size }
+                        }),
+                        message_card = card
+                    }
                 else
                     G.hand:change_size(-card.ability.extra.hand_size)
-                    card_eval_status_text(card, "extra", nil, nil, nil, { message = localize({ type = "variable", key = "a_handsize_minus", vars = { card.ability.extra.hand_size } }) })
+                    return {
+                        message = localize({
+                            type = "variable",
+                            key = "a_handsize_minus",
+                            vars = { card.ability.extra.hand_size }
+                        }),
+                        message_card = card
+                    }
                 end
             end
         end

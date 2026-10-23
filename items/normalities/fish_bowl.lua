@@ -58,7 +58,7 @@ BundlesOfFun.Joker {
                         return true
                     end
                 }))
-                card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_expired_ex") })
+                SMODS.calculate_effect({ message = localize("k_expired_ex") }, card)
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.15,

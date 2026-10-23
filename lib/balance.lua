@@ -149,8 +149,7 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
                 edition = true
             })
         else
-            card_eval_status_text(
-                effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus,
+            card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus,
                 "extra", nil, amount / 100, nil, {
                     message = text,
                     colour = G.C.PLASMA

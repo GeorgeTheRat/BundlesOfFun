@@ -888,10 +888,7 @@ function Card:sell_card(...)
         local sale_multiplier = active_gnocchi[1].ability.extra.multiplier or 3
         for _, gnocchi in ipairs(active_gnocchi) do
             gnocchi.ability.extra.sells = gnocchi.ability.extra.sells - 1
-            card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
-                message = localize("k_bof_thrice_ex"),
-                colour = G.C.MONEY
-            })
+            SMODS.calculate_effect({ message = localize("k_bof_thrice_ex"), colour = G.C.MONEY }, gnocchi)
             if gnocchi.ability.extra.sells <= 0 and gnocchi ~= self then
                 exhausted_gnocchi[#exhausted_gnocchi + 1] = gnocchi
             end
@@ -902,9 +899,7 @@ function Card:sell_card(...)
     if #exhausted_gnocchi > 0 then
         SMODS.destroy_cards(exhausted_gnocchi, { pinch_anim = true })
         for _, gnocchi in ipairs(exhausted_gnocchi) do
-            card_eval_status_text(gnocchi, "extra", nil, nil, nil, {
-                message = localize("k_eaten_ex")
-            })
+            SMODS.calculate_effect({ message = localize("k_eaten_ex") }, gnocchi)
         end
     end
     return result
@@ -1001,6 +996,7 @@ local legendary_fish_keys = {
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     -- did i genuinely just get rick rolled by a take_ownership call for perkeo
+    -- yes, yes you did
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         local main_end = {}
@@ -1010,7 +1006,7 @@ SMODS.Joker:take_ownership("perkeo", {
                 if center_key then
                     for _, legendary_key in ipairs(legendary_fish_keys) do
                         if center_key == legendary_key then
-                            localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
+                            localize{ type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
                             break
                         end
                     end
@@ -1047,7 +1043,7 @@ SMODS.Joker:take_ownership("perkeo", {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                card_eval_status_text(nine_ladies_dancing, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                SMODS.calculate_effect({ message = localize("k_duplicated_ex") }, nine_ladies_dancing)
                 return nil, true
             else
                 return true
