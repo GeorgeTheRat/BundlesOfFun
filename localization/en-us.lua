@@ -699,7 +699,7 @@ return {
                 name = "Jouster",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult if it will cause",
-                    "the {C:attention}round{} to be {C:edition,E:1,X:black}won{}"
+                    "the {C:attention}round{} to be {C:dark_edition,E:1}won"
                 }
             },
             j_bof_cloudy = {
@@ -876,7 +876,7 @@ return {
             j_bof_sign = {
                 name = "Road Sign",
                 text = {
-                    "{C:white,X:mult}X#1#{} Mult if {C:attention}previously",
+                    "{C:white,X:mult}X#1#{} Mult if {C:attention}previous",
                     "played hand was a {C:attention}Straight"
                 }
             },
@@ -1877,6 +1877,7 @@ return {
             k_alarm_ex = "Alarm Set!",
             k_erased_ex = "Erased!",
             k_sticker_ex = "Sticker Applied!",
+            k_sipped_ex = "Sipped!",
             k_val_down_ex = "Value Down!",
             k_bof_tackle = "Tackle Pack",
             k_bof_fry = "Fry Pack",
