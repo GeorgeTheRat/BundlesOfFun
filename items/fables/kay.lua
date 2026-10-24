@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
-    key = "bobby",
-    name = "Bobby Kay",
+    key = "kay",
+    name = "Kay",
     bundle = "fables",
     pos = { x = 13, y = 6 },
     soul_pos = { x = 13, y = 7 },
