@@ -58,5 +58,51 @@ BundlesOfFun.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
+    end,
+    joker_display_def = function(JokerDisplay)
+        return {
+            text = {
+                {
+                    border_nodes = {
+                        {
+                            ref_table = "card.ability.extra",
+                            ref_value = "xmult",
+                            signed = "X",
+                            retrigger_type = "^"
+                        }
+                    }
+                }
+            },
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "reminder_text" },
+                { text = ")", colour = G.C.UI.TEXT_INACTIVE }
+            },
+            calc_function = function(card)
+                local enhanced_count = 0
+                if BOF.nc(G.play, "cards") and #G.play.cards > 0 then
+                    for _, played_card in ipairs(G.play.cards) do
+                        if next(SMODS.get_enhancements(played_card)) then
+                            enhanced_count = enhanced_count + 1
+                        end
+                    end
+                elseif BOF.nc(G.hand, "cards") then
+                    for _, hand_card in ipairs(G.hand.cards) do
+                        if hand_card.highlighted and next(SMODS.get_enhancements(hand_card)) then
+                            enhanced_count = enhanced_count + 1
+                        end
+                    end
+                end
+                card.joker_display_values.enhanced_count = enhanced_count
+                card.joker_display_values.threshold = card.ability.extra.enhanced_req
+                card.joker_display_values.is_met = enhanced_count >= card.ability.extra.enhanced_req
+                card.joker_display_values.reminder_text = enhanced_count .. "/" .. card.ability.extra.enhanced_req
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                if BOF.nc(reminder_text, "children", 2) then
+                    reminder_text.children[2].config.colour = card.joker_display_values.is_met and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                end
+            end
+        }
     end
 }
