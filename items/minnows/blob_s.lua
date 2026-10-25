@@ -8,7 +8,7 @@ BundlesOfFun.Consumable {
     attributes = { "generation", "planet" },
     config = {
         card_limit = 1,
-        extra = { rounds_remaining = 1 }
+        extra = { rounds_remaining = 2 }
     },
     cost = 4,
     atlas = "consumable",
