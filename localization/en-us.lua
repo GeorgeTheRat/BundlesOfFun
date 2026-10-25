@@ -487,8 +487,8 @@ return {
                 name = "Director",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult, retriggers",
-                    "{C:attention}once{} for every card in",
-                    "played hand that {C:attention}retriggered"
+                    "{C:attention}once{} for every {C:attention}retriggered",
+                    "card in played hand"
                 }
             },
             j_bof_zeke = {
