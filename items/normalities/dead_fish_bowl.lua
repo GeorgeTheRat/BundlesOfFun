@@ -55,7 +55,7 @@ BundlesOfFun.Joker {
         end
     end,
     update = function(self, card, dt)
-        if card.sell_cost <= card.ability.extra.destroy and not card.ability.extra.gonna_go then
+        if card.sell_cost <= card.ability.extra.destroy and not card.ability.extra.gonna_go and G.STATE ~= G.STATES.GAME_OVER then
             card.ability.extra.gonna_go = true
             SMODS.destroy_cards(card, { pinch_anim = true })
             SMODS.calculate_effect({ message = localize("k_expired_ex") }, card)

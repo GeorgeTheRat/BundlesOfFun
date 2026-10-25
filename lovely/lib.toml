@@ -76,7 +76,7 @@ if not hide_desc and card and card.ability and (card.ability.card_limit or 0) ~=
 -- patch end
 '''
 
-# fix troubadour mod for bundles of fun
+# fix troubadour mod
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Troubadour "src/items/wider_collection.lua"]'

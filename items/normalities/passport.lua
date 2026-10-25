@@ -26,9 +26,9 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind and not context.blueprint then
-            G.GAME.bof_passport_blinds = G.GAME.bof_passport_blinds or {}
-            if not G.GAME.bof_passport_blinds[G.GAME.blind.config.blind.key] then
-                G.GAME.bof_passport_blinds[G.GAME.blind.config.blind.key] = true
+            card.ability.bof_visited_blinds = card.ability.bof_visited_blinds or {}
+            if not card.ability.bof_visited_blinds[G.GAME.blind.config.blind.key] then
+                card.ability.bof_visited_blinds[G.GAME.blind.config.blind.key] = true
                 card.ability.extra.gonna_go = true
             end
         end
