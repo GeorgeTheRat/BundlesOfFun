@@ -792,8 +792,7 @@ function BundlesOfFun.create_fish_pack_card(fish_set, key_append, pack_card_inde
         end
     end
     if #legendary_fish > 0 then
-        local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. key_append))
-        if roll < 0.003 then
+        if pseudorandom(pseudoseed("bof_fish_soul_" .. key_append)) < 0.003 then
             legendary_key = legendary_fish[math.ceil(pseudorandom(pseudoseed("bof_fish_pick_" .. key_append)) * #legendary_fish)].key
         end
     end
