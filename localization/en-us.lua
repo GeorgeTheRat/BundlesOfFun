@@ -1037,6 +1037,17 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
+            j_bof_jung = {
+                name = "Jung",
+                text = {
+                    "{C:attention}Other{} Jokers each give",
+                    "an additional {C:white,X:mult}X#1#{} Mult",
+                    "for every {C:money}$#2#{} of {C:attention}sell value"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
             j_bof_durie = {
                 name = "Durie",
                 text = {

@@ -221,6 +221,7 @@ local files = {
             "mezzetino",
             "beltrame",
             "alder",
+            "jung",
             "kay"
         }, directory = "items/fables/"
     },
