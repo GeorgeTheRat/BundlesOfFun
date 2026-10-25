@@ -729,6 +729,15 @@ return {
                     "{C:inactive}(Cannot trigger self)"
                 }
             },
+            j_bof_gelatinous = {
+                name = "Gelatinous Joker",
+                text = {
+                    "Each card held in hand becomes",
+                    "a random {C:attention}scoring rank{} every",
+                    "{C:attention}#1# {C:inactive}[#2#] {C:attention}consecutive{} hand#<s>1#",
+                    "that contain a {C:attention}Two Pair"
+                }
+            },
             j_bof_pinhead = {
                 name = "Pinhead",
                 text = {
@@ -1874,6 +1883,7 @@ return {
             k_inactive_el = "Inactive...",
             k_ready_ex = "Ready!",
             k_destroyed_ex = "Destroyed!",
+            k_transformed_ex = "Transformed!",
             k_alarm_ex = "Alarm Set!",
             k_erased_ex = "Erased!",
             k_sticker_ex = "Sticker Applied!",

@@ -152,6 +152,7 @@ local files = {
             "jouster",
             "cloudy",
             "knight",
+            "gelatinous",
             "pinhead"
         }, directory = "items/jesters/"
     },
@@ -194,7 +195,7 @@ local files = {
             "mezzetino",
             "beltrame",
             "placeholder",
-            "bobby"
+            "kay"
         }, directory = "items/fables/"
     },
     flats = {

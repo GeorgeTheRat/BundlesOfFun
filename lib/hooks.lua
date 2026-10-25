@@ -1536,9 +1536,9 @@ G.FUNCS.discard_cards_from_highlighted = function(e, hook)
         end
         local selected = G.hand.highlighted
         if #selected > 0 then
-            SMODS.calculate_context({ durie = true })
+            SMODS.calculate_context({ bof_durie = true })
             for _, card in ipairs(selected) do
-                if not (card.edition and card.edition.negative) then
+                if not BOF.nc(card.edition, "negative") then
                     card:set_edition("e_negative", nil, true)
                     G.E_MANAGER:add_event(Event({
                         func = function()
