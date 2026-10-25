@@ -784,17 +784,16 @@ function BundlesOfFun.create_fish_pack_card(fish_set, key_append, pack_card_inde
     if pack_card_index then
         key_append = key_append .. "_" .. pack_card_index
     end
-    local legendary_fish, non_soul_rate, legendary_key = {}, 1
+    local legendary_fish, legendary_key = {}
     local fish_pool = BOF.nc(G.P_CENTER_POOLS, "fish_l") or {}
     for _, fish_center in ipairs(fish_pool) do
         if SMODS.add_to_pool(fish_center) and not (G.GAME.used_jokers[fish_center.key] and not SMODS.showman(fish_center.key) and not fish_center.can_repeat_soul) then
-            non_soul_rate = non_soul_rate * (1 - 0.003)
             legendary_fish[#legendary_fish + 1] = fish_center
         end
     end
     if #legendary_fish > 0 then
         local roll = pseudorandom(pseudoseed("bof_fish_soul_" .. key_append))
-        if roll > non_soul_rate then
+        if roll < 0.003 then
             legendary_key = legendary_fish[math.ceil(pseudorandom(pseudoseed("bof_fish_pick_" .. key_append)) * #legendary_fish)].key
         end
     end
