@@ -274,10 +274,9 @@ return {
             j_bof_rogue = {
                 name = "Rogue",
                 text = {
-                    "Cards with {C:spades}Spade",
-                    "or {C:clubs}Club{} suit give",
-                    "{C:money}$#1#{} when held in hand",
-                    "at end of round"
+                    "Cards with {C:dark}Dark{} shade",
+                    "give {C:money}$#1#{} when held in",
+                    "hand at end of round"
                 }
             },
             j_bof_evil = {
@@ -695,7 +694,7 @@ return {
                 name = "Jouster",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult if it will cause",
-                    "the {C:attention}round{} to be {C:dark_edition,E:1}won"
+                    "the {C:attention}round{} to be {C:green,E:1}won"
                 }
             },
             j_bof_cloudy = {
@@ -1167,12 +1166,12 @@ return {
                     "in one round"
                 }
             },
-            b_bof_backgammon = {
-                name = "Backgammon Deck",
+            b_bof_tiled = {
+                name = "Tiled Deck",
                 text = {
-                    "Convert each scored card with",
-                    "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart",
-                    "or {C:diamonds}Diamond{} suit and vice versa",
+                    "Convert each scored",
+                    "card with {C:dark,T:k_bof_shade_dark,T_set:Other}Dark{} shade into",
+                    "{C:light,T:k_bof_shade_light,T_set:Other}Light{} shade and {C:attention}vice versa",
                     "No effect if Joker slots are full"
                 },
                 unlock = {
@@ -1847,12 +1846,11 @@ return {
                     "{C:diamonds}Diamonds"
                 }
             },
-            -- currently unused
             k_bof_shade_dark = {
                 name = "Dark",
                 text = {
-                    "{C:spades}Spades{} or",
-                    "{C:clubs}Clubs"
+                    "{C:spades}Spades",
+                    "or {C:clubs}Clubs"
                 }
             },
             k_bof_modification = {

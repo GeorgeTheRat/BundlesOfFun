@@ -14,10 +14,10 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            local blind_chips = G.GAME.blind.chips
+            local chips_remaining = G.GAME.blind.chips - G.GAME.chips
             local scoring = hand_chips * mult
-            local boosted_scoring = hand_chips * mult * card.ability.extra.xmult
-            if scoring < blind_chips and boosted_scoring >= blind_chips then
+            local boosted_scoring = scoring * card.ability.extra.xmult
+            if scoring < chips_remaining and boosted_scoring >= chips_remaining then
                 return {
                     xmult = card.ability.extra.xmult
                 }

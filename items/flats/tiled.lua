@@ -1,6 +1,6 @@
 BundlesOfFun.Back {
-	key = "backgammon",
-    name = "Backgammon Deck",
+	key = "tiled",
+    name = "Tiled Deck",
     bundle = "flats",
 	atlas = "deck",
 	pos = { x = 8, y = 0 },
@@ -10,7 +10,7 @@ BundlesOfFun.Back {
         if context.after and context.scoring_hand and (BOF.nc(G.jokers, "cards") and #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit) then
             local cards_to_trigger = 0 -- this should be more than 0 unless you're playing with a mod that lets you play a hand without cards, or a mod that adds non-vanilla suits
             for i, other_card in ipairs(context.scoring_hand) do
-                if other_card:is_suit("Spades") or other_card:is_suit("Clubs") or other_card:is_suit("Hearts") or other_card:is_suit("Diamonds") then
+                if other_card:is_suit_shade("dark") or other_card:is_suit_shade("light") then
                     cards_to_trigger = cards_to_trigger + 1
                     local percent = 1.15 - (cards_to_trigger - 0.999) / (#context.scoring_hand - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
@@ -32,13 +32,11 @@ BundlesOfFun.Back {
                         trigger = "after",
                         delay = 0.1,
                         func = function()
-                            other_card.ability.played_this_ante = false
                             if other_card.base.suit == "Spades" or other_card.base.suit == "Clubs" then -- base suit so wild cards arent changed to hearts or diamonds always
-                                other_card:change_suit(pseudorandom_element({"Hearts", "Diamonds"}, pseudoseed("bof_backgammon_suit_change")))
+                                other_card:change_suit(pseudorandom_element({ "Hearts", "Diamonds" }, pseudoseed("bof_tiled")))
                             elseif other_card.base.suit == "Hearts" or other_card.base.suit == "Diamonds" then
-                                other_card:change_suit(pseudorandom_element({"Spades", "Clubs"}, pseudoseed("bof_backgammon_suit_change")))
+                                other_card:change_suit(pseudorandom_element({ "Spades", "Clubs" }, pseudoseed("bof_tiled")))
                             end
-                            other_card.ability.played_this_ante = true
                             return true
                         end
                     }))

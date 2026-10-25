@@ -56,19 +56,37 @@ local glitch = SMODS.Gradient {
 }
 
 -- register localization colors
+local last_colour_palettes
+local function register_loc_colours()
+    G.ARGS.LOC_COLOURS.george = george
+    G.ARGS.LOC_COLOURS.glitch = glitch
+    G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
+    G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
+    G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
+    G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
+    G.ARGS.LOC_COLOURS.light = mix_colours(G.C.SUITS.Hearts, G.C.SUITS.Diamonds, 0.5)
+    G.ARGS.LOC_COLOURS.dark = mix_colours(G.C.SUITS.Spades, G.C.SUITS.Clubs, 0.5)
+end
 loc_colour()
-G.ARGS.LOC_COLOURS.george = george
-G.ARGS.LOC_COLOURS.glitch = glitch
-G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
-G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
-G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
-G.ARGS.LOC_COLOURS.debuff = mix_colours(G.C.RED, G.C.GREY, 0.7)
-local hearts = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Hearts or G.C.SO_1.Hearts
-local diamonds = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Diamonds or G.C.SO_1.Diamonds
-G.ARGS.LOC_COLOURS.light = mix_colours(hearts, diamonds, 0.5)
-local spades = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Spades or G.C.SO_1.Spades
-local clubs = (G.SETTINGS.colourblind_option == 2) and G.C.SO_2.Clubs or G.C.SO_1.Clubs
-G.ARGS.LOC_COLOURS.dark = mix_colours(spades, clubs, 0.5)
+register_loc_colours()
+local function get_colour_palette_state()
+    return table.concat({
+        tostring(G.SETTINGS.colour_palettes.Spades),
+        tostring(G.SETTINGS.colour_palettes.Hearts),
+        tostring(G.SETTINGS.colour_palettes.Clubs),
+        tostring(G.SETTINGS.colour_palettes.Diamonds)
+    }, "|")
+end
+last_colour_palettes = get_colour_palette_state()
+local ref = Game.update
+function Game:update(dt)
+    ref(self, dt)
+    local palette_state = get_colour_palette_state()
+    if palette_state ~= last_colour_palettes then
+        last_colour_palettes = palette_state
+        register_loc_colours()
+    end
+end
 
 -- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
@@ -205,7 +223,7 @@ local files = {
             "illusion",
             "fossilized",
             "wooden",
-            "backgammon",
+            "tiled",
             "retro",
             "soapy",
             "display",

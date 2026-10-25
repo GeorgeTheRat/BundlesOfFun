@@ -10,6 +10,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_shade_dark" }
         return { vars = { card.ability.extra.dollars } }
     end,
     calculate = function(self, card, context)
