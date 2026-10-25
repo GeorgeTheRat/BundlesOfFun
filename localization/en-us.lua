@@ -1058,7 +1058,8 @@ return {
                 text = {
                     "Create a {C:attention}copy{} of",
                     "{C:planet}Planet{} card for",
-                    "played {C:attention}poker hand"
+                    "played {C:attention}poker hand",
+                    "{C:inactive}(Must have room)"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
