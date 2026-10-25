@@ -32,9 +32,9 @@ BundlesOfFun.Back {
                         trigger = "after",
                         delay = 0.1,
                         func = function()
-                            if other_card.base.suit == "Spades" or other_card.base.suit == "Clubs" then -- base suit so wild cards arent changed to hearts or diamonds always
+                            if other_card:bof_is_true_suit_shade("dark") then -- base suit so wild cards arent changed to hearts or diamonds always
                                 other_card:change_suit(pseudorandom_element({ "Hearts", "Diamonds" }, pseudoseed("bof_tiled")))
-                            elseif other_card.base.suit == "Hearts" or other_card.base.suit == "Diamonds" then
+                            elseif other_card:bof_is_true_suit_shade("light") then
                                 other_card:change_suit(pseudorandom_element({ "Spades", "Clubs" }, pseudoseed("bof_tiled")))
                             end
                             return true

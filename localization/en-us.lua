@@ -1179,18 +1179,6 @@ return {
                     "{C:attention}suit{} in deck"
                 }
             },
-            b_bof_scaly = {
-                name = "Scaly Deck",
-                text = {
-                    "Start run with the",
-                    "{C:attention,T:v_bof_ice_bucket}Ice Bucket{} voucher and",
-                    "a copy of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
-                },
-                unlock = {
-                    "Discover a",
-                    "{C:white,E:1,X:legendary}Legendary{} {C:fish}Fish{} card"
-                }
-            },
             b_bof_retro = {
                 name = "Retro Deck",
                 text = {
@@ -1244,7 +1232,7 @@ return {
                 name = "Lightning Deck",
                 text = {
                     "{C:attention}Face{} cards start",
-                    "as {C:attention}Mult Cards",
+                    "as {C:attention,T:m_mult}Mult Cards",
                     "Played cards do not give",
                     "their {C:attention}base chips{} when scored"
                 },
@@ -1252,6 +1240,18 @@ return {
                     "Win a run without ever",
                     "triggering any {C:mult}+Mult{} effects,",
                     "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
+                }
+            },
+            b_bof_scaly = {
+                name = "Scaly Deck",
+                text = {
+                    "Start run with the",
+                    "{C:attention,T:v_bof_ice_bucket}Ice Bucket{} voucher and",
+                    "a copy of {C:fish,T:c_bof_octopus_b}Octopus {C:white,E:1,X:big}Big"
+                },
+                unlock = {
+                    "Discover a",
+                    "{C:white,E:1,X:legendary}Legendary {C:fish}Fish{} card"
                 }
             }
         },

@@ -20,6 +20,14 @@ function BOF.nc(value, ...)
     return value
 end
 
+-- suit shade base function
+-- currently used exclusively in tiled deck
+function Card:bof_is_true_suit_shade(shade, bypass_debuff)
+    if self.debuff and not bypass_debuff then return end
+    if SMODS.has_no_suit(self) then return false end
+    return SMODS.Suits[self.base.suit].shade == shade
+end
+
 -- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
