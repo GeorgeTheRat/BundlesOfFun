@@ -194,7 +194,7 @@ local files = {
             "durie",
             "mezzetino",
             "beltrame",
-            "placeholder",
+            "alder",
             "kay"
         }, directory = "items/fables/"
     },

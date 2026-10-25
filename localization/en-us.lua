@@ -1089,8 +1089,8 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_placeholder = {
-                name = "Placeholder",
+            j_bof_alder = {
+                name = "Alder",
                 text = {
                     "Retrigger all played",
                     "cards {C:attention}once{} for every",
