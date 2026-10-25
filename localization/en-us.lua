@@ -316,11 +316,7 @@ return {
                     {
                         "{C:fish}Tackle Packs{} always contain",
                         "only {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
-                    },
-                    -- {
-                    --     "{C:attention}Unenhanced{} cards in",
-                    --     "{C:attention}Standard Packs{} become {C:attention}Wooden{}"
-                    -- }
+                    }
                 }
             },
             j_bof_timmy = {
@@ -454,7 +450,7 @@ return {
                 name = "Crafted Joker",
                 text = {
                     "If played hand is the {C:attention}first{} hand",
-                    "of round, copy all {C:attention}modifications{}",
+                    "of round, copy all {C:attention}modifications",
                     "from the {C:attention}leftmost{} card to the",
                     "{C:attention}rightmost{} card in played hand,",
                     "then {C:red}destroy{} the leftmost card"
@@ -561,7 +557,7 @@ return {
                 text = {
                     "Played {C:attention}Kings{} give an",
                     "additional {X:mult,C:white}X#1#{} Mult",
-                    "when scored per {C:attention}Queen{}",
+                    "when scored per {C:attention}Queen",
                     "played or held in hand"
                 }
             },
@@ -569,7 +565,7 @@ return {
                 name = "Prom Queen",
                 text = {
                     "Each {C:attention}Queen{} held in hand",
-                    "gives {C:chips}+#1#{} Chips per {C:attention}King{}",
+                    "gives {C:chips}+#1#{} Chips per {C:attention}King",
                     "played or held in hand"
                 }
             },
@@ -683,7 +679,7 @@ return {
                 text = {
                     "All played cards give",
                     "{C:mult}+#1#{} Mult when scored if",
-                    "played hand is a {C:attention}High Card{}"
+                    "played hand is a {C:attention}High Card"
                 }
             },
             j_bof_matey = {
@@ -828,7 +824,7 @@ return {
                 name = "Card-en Gnome",
                 text = {
                     "Cards with an {C:dark_edition}Edition",
-                    "in the shop are {C:attention}free{}"
+                    "in the shop are {C:attention}free"
                 }
             },
             j_bof_ticket = {
@@ -1175,7 +1171,7 @@ return {
                 name = "Backgammon Deck",
                 text = {
                     "Convert each scored card with",
-                    "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart{}",
+                    "{C:spades}Spade{} or {C:clubs}Club{} suit into {C:hearts}Heart",
                     "or {C:diamonds}Diamond{} suit and vice versa",
                     "No effect if Joker slots are full"
                 },
@@ -1230,7 +1226,7 @@ return {
                     "{C:inactive}(See Run Info)"
                 },
                 unlock = {
-                    "Reroll a {C:attention}Showdown Blind{}"
+                    "Reroll a {C:attention}Showdown Blind"
                 }
             },
             b_bof_spaghetti_dih = { -- evil dih
@@ -1242,7 +1238,7 @@ return {
                     "{C:inactive}(See Run Info)"
                 },
                 unlock = {
-                    "Reroll a {C:attention}Showdown Blind{}"
+                    "Reroll a {C:attention}Showdown Blind"
                 }
             },
             b_bof_lightning = {
