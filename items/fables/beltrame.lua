@@ -93,13 +93,18 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 local playing_hand = next(G.play.cards)
                 local spades, hearts, clubs, diamonds = 0, 0, 0, 0
+                local count = 0
+                local max = card.ability.extra.max
                 if BOF.nc(G.hand, "cards") then
                     for _, c in ipairs(G.hand.cards) do
                         if playing_hand or not c.highlighted then
-                            if c:is_suit("Spades") then spades = spades + 1 end
-                            if c:is_suit("Hearts") then hearts = hearts + 1 end
-                            if c:is_suit("Clubs") then clubs = clubs + 1 end
-                            if c:is_suit("Diamonds") then diamonds = diamonds + 1 end
+                            if count < max then
+                                if c:is_suit("Spades") then spades = spades + 1 end
+                                if c:is_suit("Hearts") then hearts = hearts + 1 end
+                                if c:is_suit("Clubs") then clubs = clubs + 1 end
+                                if c:is_suit("Diamonds") then diamonds = diamonds + 1 end
+                                count = count + 1
+                            end
                         end
                     end
                 end
