@@ -1048,6 +1048,22 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
+            j_bof_white = {
+                name = "White",
+                text = {
+                    {
+                        "{C:blue}+#1#{} Hand#<s>1# if played {C:attention}poker hand",
+                        "has not been {C:attention}played{} this round"
+                    },
+                    {
+                        "{C:blue}+#2#{} Hand#<s>2# instead if played",
+                        "hand is a {C:attention}Straight{} or higher"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
             j_bof_durie = {
                 name = "Durie",
                 text = {

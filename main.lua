@@ -222,7 +222,8 @@ local files = {
             "beltrame",
             "alder",
             "jung",
-            "kay"
+            "kay",
+            "white"
         }, directory = "items/fables/"
     },
     flats = {

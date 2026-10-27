@@ -57,14 +57,6 @@ BundlesOfFun.Joker {
             if other_card:is_suit("Clubs") and card.ability.extra.count < card.ability.extra.max then
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        local _poker_hands = {}
-                        for k, v in pairs(G.GAME.hands) do
-                            if v.visible then
-                                _poker_hands[#_poker_hands + 1] = k
-                            end
-                        end
-                        Tag("tag_orbital").ability.orbital_hand = pseudorandom_element(_poker_hands, "bof_beltrame")
-                        Tag("tag_orbital"):set_ability()
                         add_tag(Tag("tag_orbital"))
                         juice()
                         return true

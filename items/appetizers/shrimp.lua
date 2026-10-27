@@ -5,7 +5,8 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             packs = 7,
-            packs_mod = 1
+            packs_mod = 1,
+            fish_created_this_booster = false
         }
     },
     pos = { x = 10, y = 0 },
@@ -23,9 +24,13 @@ BundlesOfFun.Joker {
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + 2
     end,
     calculate = function(self, card, context)
+        if context.opening_booster then
+            card.ability.extra.fish_created_this_booster = false
+        end
         if context.create_booster_card then
             local _size = math.max(1, context.booster.ability.extra + (G.GAME.modifiers.booster_size_mod or 0))
             if context.index == _size - 1 then
+                card.ability.extra.fish_created_this_booster = true
                 return {
                     booster_create_flags = {
                         set = "fish_s",
@@ -34,6 +39,7 @@ BundlesOfFun.Joker {
                     }
                 }
             elseif context.index == _size then
+                card.ability.extra.fish_created_this_booster = true
                 return {
                     booster_create_flags = {
                         set = "fish_b",
@@ -44,21 +50,23 @@ BundlesOfFun.Joker {
             end
         end
         if context.ending_booster then
-            if card.ability.extra.packs <= 1 then
-                SMODS.destroy_cards(card, { pinch_anim = true })
-                return {
-                    message = localize("k_eaten_ex")
-                }
-            else
-                SMODS.scale_card(card, {
-                    ref_table = card.ability.extra,
-                    ref_value = "packs",
-                    scalar_value = "packs_mod",
-                    operation = "-",
-                    scaling_message = {
-                        message = card.ability.extra.packs - 1 .. ""
+            if card.ability.extra.fish_created_this_booster then
+                if card.ability.extra.packs <= 1 then
+                    SMODS.destroy_cards(card, { pinch_anim = true })
+                    return {
+                        message = localize("k_eaten_ex")
                     }
-                })
+                else
+                    SMODS.scale_card(card, {
+                        ref_table = card.ability.extra,
+                        ref_value = "packs",
+                        scalar_value = "packs_mod",
+                        operation = "-",
+                        scaling_message = {
+                            message = card.ability.extra.packs - 1 .. ""
+                        }
+                    })
+                end
             end
         end
     end,
