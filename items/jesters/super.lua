@@ -46,7 +46,14 @@ BundlesOfFun.Joker {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                SMODS.calculate_effect({ message = localize{ type = "variable", key = (card.ability.extra.hands == 1 and "a_bof_hand" or "a_hands"), vars = { card.ability.extra.hands } } }, six_geese_a_laying)
+                SMODS.calculate_effect({
+                    message = localize({
+                        type = "variable",
+                        key = (card.ability.extra.hands == 1 and "a_bof_hand" or "a_hands"),
+                        vars = { card.ability.extra.hands }
+                    }),
+                    colour = G.C.BLUE
+                }, six_geese_a_laying)
             else
                 G.STATE = G.STATES.NEW_ROUND
             end

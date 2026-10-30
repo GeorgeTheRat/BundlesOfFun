@@ -22,7 +22,7 @@ BundlesOfFun.Joker {
             local all_same_rank = true
             local first_rank = context.full_hand[1].base.value
             for _, c in ipairs(context.full_hand) do
-                if c.base.value ~= first_rank then
+                if c.no_rank or c.base.value ~= first_rank then
                     all_same_rank = false
                     break
                 end
@@ -58,7 +58,7 @@ BundlesOfFun.Joker {
                     active = true
                     local first_rank = hand[1].base.value
                     for _, c in ipairs(hand) do
-                        if c.base.value ~= first_rank then
+                        if c.no_rank or c.base.value ~= first_rank then
                             active = false
                             break
                         end

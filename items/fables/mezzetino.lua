@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)
-        if context.joker_main and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + 1 then
+        if context.joker_main and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
             G.E_MANAGER:add_event(Event({
                 trigger = "before",

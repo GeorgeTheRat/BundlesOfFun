@@ -33,7 +33,7 @@ BundlesOfFun.Joker {
             if spades >= card.ability.extra.amount then
                 local suits = {}
                 for _, hand_card in ipairs(G.hand.cards) do
-                    if BOF.nc(hand_card.base, "suit") and not (BOF.nc(SMODS.get_enhancements(hand_card), "m_stone")) then
+                    if BOF.nc(hand_card.base, "suit") and not hand_card.no_suit then
                         suits[hand_card.base.suit] = true
                     end
                 end
