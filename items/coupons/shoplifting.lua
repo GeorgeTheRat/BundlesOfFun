@@ -3,7 +3,7 @@ BundlesOfFun.Voucher {
     name = "Shoplifting",
     bundle = "coupons",
     requires = { "v_bof_unboxing" },
-    pos = { x = 1, y = 1 },
+    pos = { x = 3, y = 0 },
     attributes = { "shop" },
     unlocked = false,
     atlas = "voucher",

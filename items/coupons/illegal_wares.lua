@@ -3,7 +3,7 @@ BundlesOfFun.Voucher {
     name = "Illegal Wares",
     bundle = "coupons",
     requires = { "v_bof_dark_alley" },
-    pos = { x = 0, y = 1 },
+    pos = { x = 1, y = 0 },
     attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     unlocked = false,
     atlas = "voucher",

@@ -2,7 +2,7 @@ BundlesOfFun.Voucher {
     key = "unboxing",
     name = "Unboxing",
     bundle = "coupons",
-    pos = { x = 1, y = 0 },
+    pos = { x = 2, y = 0 },
     attributes = { "shop", "booster" },
     atlas = "voucher",
     redeem = function(self, card, area)

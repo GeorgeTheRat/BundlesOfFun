@@ -40,6 +40,9 @@ BundlesOfFun.Blind {
 
                 if joker.ability.damping_chosen ~= should_debuff then
                     joker.ability.damping_chosen = should_debuff
+                    if not should_debuff then
+                        joker.debuff = false
+                    end
                     SMODS.recalc_debuff(joker)
                     if should_debuff then joker:juice_up() end
                     changed = true
