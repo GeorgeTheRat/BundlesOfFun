@@ -351,41 +351,22 @@ end
 -- reset stuff on new run
 local original_game_start_run = Game.start_run
 function Game:start_run(arg)
-    if not arg.savetext then
-        if G.GAME.bof_stock_original_mult then
-            for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
-                for key, original_mult in pairs(blind_table) do
-                    if type(original_mult) ~= "number" then
-                        return
-                    end
-                    if G.P_BLINDS and G.P_BLINDS[key] then
-                        G.P_BLINDS[key].mult = original_mult
-                    elseif G.P_TEENY_BLINDS and G.P_TEENY_BLINDS[key] then
-                        G.P_TEENY_BLINDS[key].mult = original_mult
-                    elseif G.P_CEO_BLINDS and G.P_CEO_BLINDS[key] then
-                        G.P_CEO_BLINDS[key].mult = original_mult
-                    end
+    if not arg.savetext and G.GAME.bof_stock_original_mult then
+        for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
+            for key, original_mult in pairs(blind_table) do
+                if type(original_mult) ~= "number" then
+                    return
                 end
-            end
-            G.GAME.bof_stock_original_mult = nil
-        else
-            G.GAME.bof_stock_original_mult = {}
-            for k, v in pairs(G.P_BLINDS or {}) do
-                if type(v) == "table" and v.mult then
-                    G.GAME.bof_stock_original_mult[k] = v.mult
-                end
-            end
-            for k, v in pairs(G.P_TEENY_BLINDS or {}) do
-                if type(v) == "table" and v.mult then
-                    G.GAME.bof_stock_original_mult[k] = v.mult
-                end
-            end
-            for k, v in pairs(G.P_CEO_BLINDS or {}) do
-                if type(v) == "table" and v.mult then
-                    G.GAME.bof_stock_original_mult[k] = v.mult
+                if G.P_BLINDS and G.P_BLINDS[key] then
+                    G.P_BLINDS[key].mult = original_mult
+                elseif G.P_TEENY_BLINDS and G.P_TEENY_BLINDS[key] then
+                    G.P_TEENY_BLINDS[key].mult = original_mult
+                elseif G.P_CEO_BLINDS and G.P_CEO_BLINDS[key] then
+                    G.P_CEO_BLINDS[key].mult = original_mult
                 end
             end
         end
+        G.GAME.bof_stock_original_mult = nil
     end
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
