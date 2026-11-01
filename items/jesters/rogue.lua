@@ -14,7 +14,7 @@ BundlesOfFun.Joker {
         return { vars = { card.ability.extra.dollars } }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.hand and context.end_of_round and (context.other_card:is_suit("Spades") or context.other_card:is_suit("Clubs")) then
+        if context.individual and context.cardarea == G.hand and context.end_of_round and context.other_card:is_suit_shade("dark") then
             G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.dollars
             return {
                 dollars = card.ability.extra.dollars
@@ -38,9 +38,7 @@ BundlesOfFun.Joker {
             },
             reminder_text = {
                 { text = "(", colour = G.C.UI.TEXT_INACTIVE },
-                { ref_table = "card.joker_display_values", ref_value = "localized_text_1" },
-                { text = " or ", colour = G.C.UI.TEXT_INACTIVE },
-                { ref_table = "card.joker_display_values", ref_value = "localized_text_2" },
+                { ref_table = "card.joker_display_values", ref_value = "localized_text" },
                 { text = ")", colour = G.C.UI.TEXT_INACTIVE },
             },
             calc_function = function(card)
@@ -48,23 +46,18 @@ BundlesOfFun.Joker {
                 local count = 0
                 if BOF.nc(G.hand, "cards") then
                     for _, c in ipairs(G.hand.cards) do
-                        if (playing_hand or not c.highlighted) and (c:is_suit("Spades") or c:is_suit("Clubs")) then
+                        if (playing_hand or not c.highlighted) and c:is_suit_shade("dark") then
                             count = count + JokerDisplay.calculate_card_triggers(c, nil, true)
                         end
                     end
                 end
                 card.joker_display_values.dollars = count * card.ability.extra.dollars
-                card.joker_display_values.localized_text_1 = localize("Spades", "suits_plural")
-                card.joker_display_values.localized_text_2 = localize("Clubs", "suits_plural")
+                card.joker_display_values.localized_text = localize("Dark", "shades")
             end,
             style_function = function(card, text, reminder_text, extra)
-                local suit_node_1 = reminder_text and reminder_text.children and reminder_text.children[2]
-                local suit_node_2 = reminder_text and reminder_text.children and reminder_text.children[4]
-                if suit_node_1 then
-                    suit_node_1.config.colour = lighten(G.C.SUITS["Spades"], 0.35)
-                end
-                if suit_node_2 then
-                    suit_node_2.config.colour = lighten(G.C.SUITS["Clubs"], 0.35)
+                local suit_node = reminder_text and reminder_text.children and reminder_text.children[2]
+                if suit_node then
+                    suit_node.config.colour = lighten(G.ARGS.LOC_COLOURS.dark, 0.35)
                 end
             end
         }

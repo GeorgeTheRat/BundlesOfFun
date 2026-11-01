@@ -1942,6 +1942,10 @@ return {
             a_bof_plus_card = "+#1# Card",
             a_bof_plus_cards = "+#1# Cards",
             a_bof_hand = "+#1# Hand"
+        },
+        shades = {
+            Light = "Light",
+            Dark = "Dark"
         }
     }
 }
