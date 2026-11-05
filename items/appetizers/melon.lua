@@ -49,7 +49,10 @@ BundlesOfFun.Joker {
                 card:set_cost()
                 return {
                     func = function()
-                        SMODS.calculate_effect({ message = localize("k_val_up"), colour = G.C.MONEY }, card)
+                        -- on the second day of christmas, my true love gave to me
+                        local two_turtle_doves = context.blueprint_card or card
+                        -- and a_partridge_in_a_pear_tree
+                        SMODS.calculate_effect({ message = localize("k_val_up"), colour = G.C.MONEY }, two_turtle_doves)
                     end
                 }
             end

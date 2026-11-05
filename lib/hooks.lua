@@ -111,133 +111,6 @@ function Card:get_chip_bonus()
 	return getchip(self)
 end
 
--- eureka logic
-SMODS.Booster:take_ownership_by_kind("Arcana", {
-        create_card = function(self, card, i)
-            local _card
-            if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
-                local consumeables = {}
-                for _, c in pairs(G.P_CENTER_POOLS.Consumeables) do
-                    if c.set ~= "Tarot" then
-                        table.insert(consumeables, c)
-                    end
-                end
-                _card = {
-                    set = pseudorandom_element(consumeables, pseudoseed("j_bof_eureka")).set,
-                    area = G.pack_cards,
-                    skip_materialize = true,
-                    soulable = true,
-                    key_append = "ar3"
-                }
-            elseif G.GAME.used_vouchers.v_omen_globe and pseudorandom("omen_globe") > 0.8 then
-                _card = {
-                    set = "Spectral",
-                    area = G.pack_cards,
-                    skip_materialize = true,
-                    soulable = true,
-                    key_append = "ar2"
-                }
-			else
-                _card = {
-                    set = "Tarot",
-                    area = G.pack_cards,
-                    skip_materialize = true,
-                    soulable = true,
-                    key_append = "ar1"
-                }
-            end
-            return _card
-        end
-}, true)
-SMODS.Booster:take_ownership_by_kind("Celestial", {
-    update_pack = function(self, dt)
-        local state_wasnt_complete = not G.STATE_COMPLETE
-        SMODS.Booster.update_pack(self, dt)
-        if next(SMODS.find_card("j_bof_eureka")) and state_wasnt_complete then
-            G.E_MANAGER:add_event(Event({
-                trigger = "immediate",
-                func = function()
-                    G.E_MANAGER:add_event(Event({
-                        trigger = "immediate",
-                        func = function()
-                            G.FUNCS.draw_from_deck_to_hand()
-                            return true
-                        end
-                    }))
-                    return true
-                end
-            }))
-        end
-    end,
-    create_card = function(self, card, i)
-        local _card
-        if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
-            _card = {
-                set = "Tarot",
-                area = G.pack_cards,
-                skip_materialize = true,
-                soulable = true,
-                key_append = "pl2"
-            }
-        elseif G.GAME.used_vouchers.v_telescope and i == 1 then
-            local _planet, _hand, _tally = nil, nil, 0
-            for _, handname in ipairs(G.handlist) do
-                if SMODS.is_poker_hand_visible(handname) and G.GAME.hands[handname].played > _tally then
-                    _hand = handname
-                    _tally = G.GAME.hands[handname].played
-                end
-            end
-            if _hand then
-                for _, planet_center in pairs(G.P_CENTER_POOLS.Planet) do
-                    if planet_center.config.hand_type == _hand then
-                        _planet = planet_center.key
-                    end
-                end
-            end
-            _card = {
-                set = "Planet",
-                area = G.pack_cards,
-                skip_materialize = true,
-                soulable = true,
-                key = _planet,
-                key_append = "pl1"
-            }
-        else
-            _card = {
-                set = "Planet",
-                area = G.pack_cards,
-                skip_materialize = true,
-                soulable = true,
-                key_append = "pl1"
-            }
-        end
-        return _card
-    end
-}, true)
-SMODS.Booster:take_ownership_by_kind("Spectral", {
-    create_card = function(self, card, i)
-		local _card
-		if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
-            _card = {
-                set = "Tarot",
-                area = G.pack_cards,
-                skip_materialize = true,
-                soulable = true,
-                key_append = "spe1"
-            }
-		else
-			_card = {
-				set = "Spectral",
-				area = G.pack_cards,
-				skip_materialize = true,
-				soulable = true,
-				key_append = "spe"
-			}
-		end
-		return _card
-    end
-}, true)
-
 -- wooden deck effect
 local original_back_apply_to_run = Back.apply_to_run
 function Back:apply_to_run()
@@ -752,6 +625,14 @@ function Card:set_ability(center, initial, delay_sprites)
     bof_apply_fish_voucher_state(self)
 end
 
+local original_card_remove_from_deck = Card.remove_from_deck
+function Card:remove_from_deck(from_debuff)
+    original_card_remove_from_deck(self, from_debuff)
+    if BundlesOfFun.remove_eureka_booster then
+        BundlesOfFun.remove_eureka_booster(self.ID)
+    end
+end
+
 -- continuation of hotboxer
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
@@ -966,9 +847,11 @@ SMODS.Joker:take_ownership("perkeo", {
                         card:add_to_deck()
                         G.consumeables:emplace(card)
                         return true
-                    end}))
-                -- on the ninth day of christmas, my true love gave to me
-                local nine_ladies_dancing = context.blueprint_card or card
+                    end
+                }))
+                -- on the tenth day of christmas, my true love gave to me
+                local eleven_pipers_piping = context.blueprint_card or card
+                -- nine_ladies_dancing
                 -- eight_maids_a_milking
                 -- seven_swans_a_swimming
                 -- six_geese_a_laying
@@ -977,7 +860,7 @@ SMODS.Joker:take_ownership("perkeo", {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                SMODS.calculate_effect({ message = localize("k_duplicated_ex") }, nine_ladies_dancing)
+                SMODS.calculate_effect({ message = localize("k_duplicated_ex") }, eleven_pipers_piping)
                 return nil, true
             else
                 return true

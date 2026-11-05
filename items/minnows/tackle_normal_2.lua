@@ -21,9 +21,7 @@ BundlesOfFun.Booster {
         return g
     end,
     create_card = function(self, card, i)
-        if next(SMODS.find_card("j_bof_eureka")) then
-            return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis3", i)
-        elseif pseudorandom("p_bof_tackle_jumbo_1") > 0.7 then
+        if pseudorandom("p_bof_tackle_jumbo_1") > 0.7 then
             return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis2", i)
         else
             return BundlesOfFun.create_fish_pack_card("fish_s", "bof_fis1", i)

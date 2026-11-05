@@ -38,8 +38,9 @@ BundlesOfFun.Joker {
             end
             if trigger then
                 for i = 1, card.ability.extra.cards do
-                    -- on the third day of christmas, my true love gave to me
-                    local three_french_hens = context.blueprint_card or card
+                    -- on the fourth day of christmas, my true love gave to me
+                    local four_calling_birds = context.blueprint_card or card
+                    -- three_french_hens
                     -- two_turtle_doves
                     -- and a_partridge_in_a_pear_tree
                     G.E_MANAGER:add_event(Event({
@@ -47,7 +48,7 @@ BundlesOfFun.Joker {
                         delay = 0.4,
                         func = function()
                             play_sound("tarot1")
-                            three_french_hens:juice_up(0.3, 0.5)
+                            four_calling_birds:juice_up(0.3, 0.5)
                             return true
                         end
                     }))

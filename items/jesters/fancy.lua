@@ -14,18 +14,20 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-            -- on the fourth day of christmas, my true love gave to me
-            local four_calling_birds = context.blueprint_card or card
-            -- three_french_hens
-            -- two_turtle_doves
-            -- and a_partridge_in_a_pear_tree
+			-- on the sixth day of christmas, my true love gave to me
+			local six_geese_a_laying = context.blueprint_card or card
+			-- five_gold_rings
+			-- four_calling_birds
+			-- three_french_hens
+			-- two_turtle_doves
+			-- and a_partridge_in_a_pear_tree
             local tag_key = context.blind.key == "bl_small" and "tag_handy" or context.blind.key == "bl_big" and "tag_garbage" or nil
             if tag_key then
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         add_tag(Tag(tag_key))
                         play_sound("generic1")
-                        four_calling_birds:juice_up(0.3, 0.5)
+                        six_geese_a_laying:juice_up(0.3, 0.5)
                         G.E_MANAGER:add_event(Event({
                             func = function()
                                 for i = 1, #G.GAME.tags do

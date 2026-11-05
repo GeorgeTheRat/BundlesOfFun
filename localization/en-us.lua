@@ -304,18 +304,8 @@ return {
             j_bof_eureka = {
                 name = "Emmanuel E. \"Eureka\"",
                 text = {
-                    {
-                        "{C:tarot}Arcana Packs{} may contain",
-                        "{C:attention}consumables{} of all types"
-                    },
-                    {
-                        "{C:spectral}Spectral Packs{} and {C:planet}Celestial Packs",
-                        "may contain {C:tarot}Tarot{} cards"
-                    },
-                    {
-                        "{C:fish}Tackle Packs{} always contain",
-                        "only {C:white,E:1,X:big}Big{} {C:fish}Fish{} cards"
-                    }
+                    "Adds a free {C:attention}Mega Booster Pack",
+                    "to every shop when {C:attention}entered"
                 }
             },
             j_bof_timmy = {
@@ -1832,14 +1822,16 @@ return {
                 name = "Tackle Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:fish}Fish{} cards",
+                    "{C:inactive,s:0.8}(70% chance of {C:white,E:1,X:big}Big{C:inactive,s:0.8} Fish)"
                 }
             },
             p_bof_tackle_jumbo = {
                 name = "Jumbo Tackle Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:fish}Fish{} cards"
+                    "{C:attention}#2# {C:fish}Fish{} cards",
+                    "{C:inactive,s:0.8}(70% chance of {C:white,E:1,X:big}Big{C:inactive,s:0.8} Fish)"
                 }
             },
             p_bof_fry = {

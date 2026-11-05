@@ -31,10 +31,11 @@ BundlesOfFun.Joker {
                             }
                         end
                         G.GAME.consumeable_buffer = 0
-                        -- on the second day of christmas, my true love gave to me
-                        local two_turtle_doves = context.blueprint_card or card
+                        -- on the third day of christmas, my true love gave to me
+                        local three_french_hens = context.blueprint_card or card
+                        -- two_turtle_doves
                         -- and a_partridge_in_a_pear_tree
-                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Spectral" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Spectral }, two_turtle_doves)
+                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Spectral" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Spectral }, three_french_hens)
                         return true
                     end
                 }))
