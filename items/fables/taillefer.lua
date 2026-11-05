@@ -35,7 +35,14 @@ BundlesOfFun.Joker {
                         local three_french_hens = context.blueprint_card or card
                         -- two_turtle_doves
                         -- and a_partridge_in_a_pear_tree
-                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Spectral" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Spectral }, three_french_hens)
+                        SMODS.calculate_effect({
+                            message = localize({
+                                type = "variable",
+                                key = (num_cards == 1 and "a_bof_spectral" or "a_bof_spectrals"),
+                                vars = { num_cards }
+                            }),
+                            colour = G.C.SECONDARY_SET.Spectral
+                        }, three_french_hens)
                         return true
                     end
                 }))

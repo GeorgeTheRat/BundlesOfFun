@@ -1707,7 +1707,11 @@ return {
             a_bof_balance_minus = "-#1#%",
             a_bof_plus_card = "+#1# Carta",
             a_bof_plus_cards = "+#1# Cartas",
-            a_bof_hand = "+#1# Mano"
+            a_bof_hand = "+#1# Mano",
+            a_bof_fool = "+#1# Loco",
+            a_bof_fools = "+#1# Locos",
+            a_bof_spectral = "+#1# Espectral",
+            a_bof_spectrals = "+#1# Espectrales"
         },
         dictionary = {
             b_fish_cards = "Cartas de Pez",

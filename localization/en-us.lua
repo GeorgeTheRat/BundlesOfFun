@@ -1933,7 +1933,11 @@ return {
             a_bof_balance_minus = "-#1#%",
             a_bof_plus_card = "+#1# Card",
             a_bof_plus_cards = "+#1# Cards",
-            a_bof_hand = "+#1# Hand"
+            a_bof_hand = "+#1# Hand",
+            a_bof_fool = "+#1# Fool",
+            a_bof_fools = "+#1# Fools",
+            a_bof_spectral = "+#1# Spectral",
+            a_bof_spectrals = "+#1# Spectrals"
         },
         shades = {
             Light = "Light",
