@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "j_bof_zeke")
+        local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_zeke")
         return {
             vars = {
                 numerator,

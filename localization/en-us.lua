@@ -649,9 +649,8 @@ return {
             j_bof_hooked = {
                 name = "Hooked Joker",
                 text = {
-                    "{C:fish}Tackle{}, {C:fish}Fry{}, and {C:fish}Hooked Packs",
-                    "appear {C:attention}#1#X{} more often in the shop,",
-                    "increases by {C:attention}#2#X{} per {C:fish}Fish{} card held"
+                    "{C:fish}Fish{} cards have a {C:green}#1# in #2#{} chance",
+                    "to not {C:attention}consume{} a round"
                 }
             },
             j_bof_hypnotic = {
@@ -1141,8 +1140,8 @@ return {
                     "Start with {C:attention}#1#{} random",
                     "{C:attention}ranks{} missing from deck",
                     "When {C:attention}Boss Blind{} is defeated,",
-                    "add {C:attention}#2#{} cards of one random",
-                    "{C:attention}rank{} to the deck",
+                    "add a {C:attention}full set{} of a",
+                    "random {C:attention}rank{} to deck",
                     "{C:inactive,s:0.8}(ex: {C:attention,s:0.8}K of Spades{C:inactive,s:0.8}, {C:attention,s:0.8}Hearts{C:inactive,s:0.8}, {C:attention,s:0.8}Clubs{C:inactive,s:0.8}, and {C:attention,s:0.8}Diamonds{C:inactive,s:0.8})"
                 },
                 unlock = {
@@ -1268,15 +1267,15 @@ return {
             b_bof_lightning = {
                 name = "Lightning Deck",
                 text = {
-                    "{C:attention}Face{} cards start",
-                    "as {C:attention,T:m_mult}Mult Cards",
+                    "{C:attention}Face{} cards in deck",
+                    "start as {C:attention,T:m_mult}Mult Cards",
                     "Played cards do not give",
                     "their {C:attention}base chips{} when scored"
                 },
                 unlock = {
                     "Win a run without ever",
                     "triggering any {C:mult}+Mult{} effects,",
-                    "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
+                    "{C:white,s:0.8,X:mult}XMult{s:0.8} effects may still be used"
                 }
             },
             b_bof_scaly = {
@@ -1288,7 +1287,7 @@ return {
                 },
                 unlock = {
                     "Discover a",
-                    "{C:white,E:1,X:legendary}Legendary {C:fish}Fish{} card"
+                    "{C:white,E:1,X:legendary}Legendary{} {C:fish}Fish{} card"
                 }
             }
         },
@@ -1490,7 +1489,7 @@ return {
                 }
             },
             c_bof_i = {
-                name = "I",
+                name = "{C:blue}I",
                 text = {
                     "Earn money equal to the",
                     "{C:attention}current amount{} of {C:attention}interest{} that",

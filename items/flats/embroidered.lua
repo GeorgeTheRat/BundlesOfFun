@@ -2,23 +2,13 @@ BundlesOfFun.Back {
     key = "embroidered",
     name = "Embroidered Deck",
     bundle = "flats",
-    config = {
-        extra = {
-            ranks = 4,
-            cards = 4
-        }
-    },
+    config = { extra = { cards = 4 } },
     pos = { x = 3, y = 0 },
     attributes = { "generation", "destroy_card", "playing_card" },
     unlocked = false,
     atlas = "deck",
     loc_vars = function(self, info_queue)
-        return {
-            vars = {
-                self.config.extra.ranks,
-                self.config.extra.cards
-            }
-        }
+        return {  vars = {  self.config.extra.cards } }
     end,
     apply = function(self, back)
         local all_ranks = {}
@@ -30,8 +20,8 @@ BundlesOfFun.Back {
         end
         G.E_MANAGER:add_event(Event({
             func = function()
-                G.GAME.starting_deck_size = G.GAME.starting_deck_size - (self.config.extra.ranks * 4)
-                for i = 1, self.config.extra.ranks do
+                G.GAME.starting_deck_size = G.GAME.starting_deck_size - (self.config.extra.cards * 4)
+                for i = 1, self.config.extra.cards do
                     local rank = pseudorandom_element(all_ranks, pseudoseed("bof_embroidered_1"))
                     for j, r in ipairs(all_ranks) do
                         if r == rank then
@@ -58,8 +48,8 @@ calculate = function(self, back, context)
                 for _, suit in pairs(SMODS.Suits) do
                     suits[#suits + 1] = suit
                 end
-                for i = 1, self.config.extra.cards do
-                    local suit = suits[((i - 1) % #suits) + 1]
+                for i = 1, 4 do
+                    local suit = suits[i]
                     local new_card = SMODS.add_card({
                         suit = suit.card_key,
                         rank = rank.card_key,
@@ -68,6 +58,7 @@ calculate = function(self, back, context)
                         key_append = "bof_embroidered"
                     })
                     SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
+                    play_sound("card1")
                 end
                 return true
             end

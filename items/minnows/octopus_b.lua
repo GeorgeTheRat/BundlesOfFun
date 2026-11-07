@@ -32,7 +32,6 @@ BundlesOfFun.Consumable {
             SMODS.destroy_cards(self, { pinch_anim = true })
             return
         end
-
         if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit + (G.GAME.bof_fish_extra_consumable_slots or 0) + 1 then
             G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
             G.E_MANAGER:add_event(Event({

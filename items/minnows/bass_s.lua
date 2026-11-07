@@ -31,16 +31,20 @@ BundlesOfFun.Consumable {
             }
         end
         if context.end_of_round and context.main_eval and not context.repetition then
-            if card.ability.extra.rounds_remaining > 1 then
-                card.ability.extra.rounds_remaining = card.ability.extra.rounds_remaining - 1
-                return {
-                    message = card.ability.extra.rounds_remaining .. ""
-                }
+            if not card.ability.hooked then
+                if card.ability.extra.rounds_remaining > 1 then
+                    card.ability.extra.rounds_remaining = card.ability.extra.rounds_remaining - 1
+                    return {
+                        message = card.ability.extra.rounds_remaining .. ""
+                    }
+                else
+                    SMODS.destroy_cards(card, { pinch_anim = true })
+                    return {
+                        message = localize("k_expired_ex")
+                    }
+                end
             else
-                SMODS.destroy_cards(card, { pinch_anim = true })
-                return {
-                    message = localize("k_expired_ex")
-                }
+                card.ability.hooked = nil
             end
         end
     end
