@@ -280,20 +280,36 @@ SMODS.current_mod.extra_tabs = function()
                         colour = G.C.BLACK,
                     },
                     nodes = {
-                        { n = G.UIT.R, config = { align = "cm", padding = 0.1, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
-                            { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
-                                bundle_toggle("appetizers", G.C.bof_appetizers),
-                                bundle_toggle("jesters", G.C.bof_jesters),
-                                bundle_toggle("artisans", G.C.bof_artisans),
-                                bundle_toggle("normalities", G.C.bof_normalities),
-                                bundle_toggle("fables", G.C.bof_fables)
-                            }},
-                            { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
-                                bundle_toggle("flats", G.C.bof_flats),
-                                bundle_toggle("minnows", G.C.bof_minnows),
-                                bundle_toggle("coupons", G.C.bof_coupons),
-                                bundle_toggle("enemies", G.C.bof_enemies),
-                                bundle_toggle("finishers", G.C.bof_finishers)
+                        { n = G.UIT.R, config = { align = "cm" }, nodes = {
+                            { n = G.UIT.C, config = { align = "cm", padding = 0.1, r = 0.1, emboss = 0.05, colour = G.C.SET.Joker }, nodes = {
+                                { n = G.UIT.R, config = { align = "cm" }, nodes = {
+                                    { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
+                                        bundle_toggle("appetizers", G.C.bof_appetizers),
+                                        bundle_toggle("jesters", G.C.bof_jesters),
+                                        bundle_toggle("artisans", G.C.bof_artisans),
+                                        bundle_toggle("normalities", G.C.bof_normalities),
+                                        bundle_toggle("fables", G.C.bof_fables)
+                                    }},
+                                    { n = G.UIT.C, config = { align = "cm", padding = 0.1 }, nodes = {
+                                        bundle_toggle("flats", G.C.bof_flats),
+                                        bundle_toggle("minnows", G.C.bof_minnows),
+                                        bundle_toggle("coupons", G.C.bof_coupons),
+                                        bundle_toggle("enemies", G.C.bof_enemies),
+                                        bundle_toggle("finishers", G.C.bof_finishers)
+                                    }}
+                                }},
+                                { n = G.UIT.R, config = { align = "cm"}, nodes = {
+                                    create_toggle {
+                                        label = "Cross-Mod Content",
+                                        active_colour = G.C.BLACK,
+                                        col = true,
+                                        label_scale = 0.35,
+                                        ref_table = BundlesOfFun.config,
+                                        ref_value = "crossmod",
+                                        callback = BundlesOfFun.on_crossmod_toggle,
+                                        align = "cm"
+                                    }
+                                }}
                             }}
                         }},
                         { n = G.UIT.R, config = { align = "cm" }, nodes = {

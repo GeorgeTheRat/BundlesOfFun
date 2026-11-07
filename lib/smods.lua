@@ -21,6 +21,14 @@ SMODS.Atlas({
     py = 95,
 })
 
+-- evil fih
+SMODS.Atlas ({
+    key = "evil_fih",
+    path = "evil_fih.png",
+    px = 71,
+    py = 95,
+})
+
 SMODS.Atlas({
     key = "joker", 
     path = "joker.png", 
@@ -77,14 +85,21 @@ SMODS.Atlas({
     py = 95,
 })
 
-SMODS.Atlas {
+SMODS.Atlas({
 	key = "blind",
     atlas_table = "ANIMATION_ATLAS",
 	path = "blind.png",
 	px = 34,
 	py = 34,
 	frames = 21
-}
+})
+
+SMODS.Atlas({
+    key = "crossmod", 
+    path = "crossmod.png", 
+    px = 71,
+    py = 95,
+})
 
 SMODS.Atlas({
     key = "pinned",

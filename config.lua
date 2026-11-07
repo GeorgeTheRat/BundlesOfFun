@@ -11,6 +11,7 @@ return {
         enemies = true,
         finishers = true
     },
+    crossmod = true,
     custom_sounds = true,
     evil_dih = false,
     dih_jiggle = false

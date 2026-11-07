@@ -16,7 +16,10 @@ BundlesOfFun.Consumable {
     hidden = true,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.card_limit } }
+        return {
+            key = BundlesOfFun.config.evil_dih and "c_bof_i" or "c_bof_gold_l",
+            vars = { card.ability.card_limit }
+        }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
@@ -24,5 +27,10 @@ BundlesOfFun.Consumable {
                 dollars = math.min(G.GAME.interest_cap / 5, math.floor(G.GAME.dollars / 5))
             }
         end
-    end
+    end,
+    set_sprites = function(self, card, initial)
+        if self.discovered and BundlesOfFun.config.evil_dih then
+            card.children.center.atlas = G.ASSET_ATLAS["bof_evil_fih"]
+        end
+	end
 }

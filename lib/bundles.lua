@@ -13,12 +13,12 @@ end
 
 -- check if bundle and its dependencies are enabled
 local function check_bundle_enabled(primary, secondary)
-    if not BundlesOfFun.config.bundles[primary] then
+    if not BOF.nc(BundlesOfFun.config.bundles, primary) then
         return false
     end
     if secondary then
         for _, bundle_name in ipairs(secondary) do
-            if not BundlesOfFun.config.bundles[bundle_name] then
+            if not BOF.nc(BundlesOfFun.config.bundles, bundle_name) then
                 return false
             end
         end
@@ -26,19 +26,40 @@ local function check_bundle_enabled(primary, secondary)
     return true
 end
 
--- create function to hide item from collection when bundle disabled
-local function get_bundle_no_collection(bundle)
-    if bundle then
-        local primary, secondary = parse_bundle(bundle)
-        return function()
-            return not check_bundle_enabled(primary, secondary)
+local function is_crossmod_enabled(crossmod)
+    if not crossmod or not BundlesOfFun.config.crossmod then
+        return false
+    end
+    return next(SMODS.find_mod(crossmod)) ~= nil
+end
+
+local function is_center_enabled(center)
+    if center.bundle then
+        local primary, secondary = parse_bundle(center.bundle)
+        if not check_bundle_enabled(primary, secondary) then
+            return false
         end
+    end
+    if center.crossmod and not is_crossmod_enabled(center.crossmod) then
+        return false
+    end
+    return true
+end
+
+local function set_managed_no_collection(center)
+    if not center.bundle and not center.crossmod then return end
+    local original = center.no_collection
+    center.no_collection = function(self, ...)
+        if original == true or (type(original) == "function" and original(center, ...)) then
+            return true
+        end
+        return not is_center_enabled(center)
     end
 end
 
 function BundlesOfFun.is_multiplayer_lobby_active()
     local multiplayer = rawget(_G, "MP")
-    return type(multiplayer) == "table" and type(multiplayer.LOBBY) == "table" and multiplayer.LOBBY.code ~= nil
+    return type(multiplayer) == "table" and BOF.nc(multiplayer, "LOBBY", "code") ~= nil
 end
 
 -- Steamodded 26.829 exposes SMODS.hide_from_collection() as the canonical API.
@@ -47,7 +68,7 @@ end
 -- tallies follow the supported behavior.
 function BundlesOfFun.is_hidden_from_collection(obj)
     if not obj then return false end
-    if SMODS and type(SMODS.hide_from_collection) == "function" then
+    if BOF.nc(SMODS, "hide_from_collection") and type(SMODS.hide_from_collection) == "function" then
         local hidden = SMODS.hide_from_collection(obj)
         if hidden ~= nil then
             return hidden
@@ -68,41 +89,38 @@ SMODS.add_to_pool = function(prototype_obj, args)
             return false
         end
     end
+    if prototype_obj.crossmod then
+        if not is_crossmod_enabled(prototype_obj.crossmod) then
+            return false
+        end
+    end
     return original_add_to_pool(prototype_obj, args)
 end
 
 BundlesOfFun.Joker = SMODS.Joker:extend({
     inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Joker.inject(self)
     end
 })
 
 BundlesOfFun.Back = SMODS.Back:extend({
     inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Back.inject(self)
     end
 })
 
 BundlesOfFun.Consumable = SMODS.Consumable:extend({
     inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Consumable.inject(self)
     end
 })
 
 BundlesOfFun.Booster = SMODS.Booster:extend({
     inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Booster.inject(self)
     end,
     get_weight = function(self)
@@ -119,7 +137,7 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
         end
         local multiplier = 1
         for _, hooked in ipairs(SMODS.find_card("j_bof_hooked")) do
-            multiplier = multiplier * (hooked.ability.extra.appearance + fish_count * hooked.ability.extra.appearance_mod)
+            multiplier = multiplier * (BOF.nc(hooked, "ability", "extra", "appearance") + fish_count * BOF.nc(hooked, "ability", "extra", "appearance_mod"))
         end
         return self.weight * multiplier
     end
@@ -127,18 +145,14 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
 
 BundlesOfFun.Voucher = SMODS.Voucher:extend({
     inject = function(self)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Voucher.inject(self)
     end
 })
 
 BundlesOfFun.Blind = SMODS.Blind:extend({
     inject = function(self, i)
-        if self.bundle and not self.no_collection then
-            self.no_collection = get_bundle_no_collection(self.bundle)
-        end
+        set_managed_no_collection(self)
         SMODS.Blind.inject(self, i)
         if not self._discovered_unlocked_overwritten then
             self._discovered_unlocked_overwritten = true
@@ -171,6 +185,10 @@ function BundlesOfFun.ensure_bundle_map()
                 end
             end
         end
+        if center.crossmod then
+            BundlesOfFun.bundle_items[center.crossmod] = BundlesOfFun.bundle_items[center.crossmod] or {}
+            table.insert(BundlesOfFun.bundle_items[center.crossmod], center)
+        end
     end
 end
 
@@ -198,11 +216,27 @@ end
 function BundlesOfFun.sync_bundle(bundle_name)
     if not G.P_CENTER_POOLS then return end
     BundlesOfFun.ensure_bundle_map()
-    local items = BundlesOfFun.bundle_items[bundle_name]
+    local items = BOF.nc(BundlesOfFun.bundle_items, bundle_name)
     if not items then return end
     for _, center in ipairs(items) do
-        local primary, secondary = parse_bundle(center.bundle)
-        local enabled = check_bundle_enabled(primary, secondary)
+        local enabled = is_center_enabled(center)
+        sync_pool(G.P_CENTER_POOLS[center.set], center, enabled)
+        if center.pools then
+            for pool_key in pairs(center.pools) do
+                sync_pool(G.P_CENTER_POOLS[pool_key], center, enabled)
+            end
+        end
+    end
+end
+
+-- update all pools for items with crossmod dependency
+function BundlesOfFun.sync_crossmod(mod_id)
+    if not G.P_CENTER_POOLS then return end
+    BundlesOfFun.ensure_bundle_map()
+    local items = BOF.nc(BundlesOfFun.bundle_items, mod_id)
+    if not items then return end
+    for _, center in ipairs(items) do
+        local enabled = is_center_enabled(center)
         sync_pool(G.P_CENTER_POOLS[center.set], center, enabled)
         if center.pools then
             for pool_key in pairs(center.pools) do
@@ -218,6 +252,42 @@ function BundlesOfFun.sync_all_bundles()
     if not BundlesOfFun.bundle_items then return end
     for bundle_name in pairs(BundlesOfFun.bundle_items) do
         BundlesOfFun.sync_bundle(bundle_name)
+    end
+end
+
+-- sync all crossmod items to current mod state
+function BundlesOfFun.sync_all_crossmods()
+    BundlesOfFun.ensure_bundle_map()
+    if not BundlesOfFun.bundle_items then return end
+    for mod_id, items in pairs(BundlesOfFun.bundle_items) do
+        local is_crossmod = false
+        for _, center in ipairs(items) do
+            if center.crossmod == mod_id then
+                is_crossmod = true
+                break
+            end
+        end
+        if is_crossmod then
+            BundlesOfFun.sync_crossmod(mod_id)
+        end
+    end
+end
+
+-- hook into Game:init_objective to sync crossmods when game starts
+if Game.init_objective then
+    local original_init_objective = Game.init_objective
+    Game.init_objective = function(self, args)
+        BundlesOfFun.sync_all_crossmods()
+        return original_init_objective(self, args)
+    end
+end
+
+-- hook into G.FUNCS.start_run to sync crossmods when starting a run
+if BOF.nc(G.FUNCS, "start_run") then
+    local original_start_run = G.FUNCS.start_run
+    G.FUNCS.start_run = function(e)
+        BundlesOfFun.sync_all_crossmods()
+        return original_start_run(e)
     end
 end
 
@@ -261,9 +331,23 @@ function BundlesOfFun.on_bundle_toggle(bundle_name)
     end
 end
 
+function BundlesOfFun.on_crossmod_toggle()
+    BundlesOfFun.sync_all_crossmods()
+end
+
 -- refresh tallies when mod overlay closes
 function BundlesOfFun.on_exit_mods()
+    BundlesOfFun.sync_all_crossmods()
     BundlesOfFun.refresh_collection_ui()
+end
+
+-- hook into exiting mods menu to sync crossmods live
+if G.FUNCS.exit_mods then
+    local original_exit_mods = G.FUNCS.exit_mods
+    G.FUNCS.exit_mods = function(e)
+        BundlesOfFun.on_exit_mods()
+        return original_exit_mods(e)
+    end
 end
 
 -- Replace the raw bundles config table with a proxy that fires on_bundle_toggle

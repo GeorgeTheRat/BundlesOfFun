@@ -900,7 +900,7 @@ return {
                 text = {
                     "If played hand has {C:attention}#1# {C:spades}Spades{},",
                     "each played card permanently",
-                    "gains {C:chips}+#2#{} Chips per",
+                    "gains {C:chips}+#2#{} Chip#<s>2# per",
                     "{C:attention}unique suit{} held in hand"
                 }
             },
@@ -920,6 +920,25 @@ return {
                     "each played card has",
                     "a {C:green}#2# in #3#{} chance to",
                     "permanently gain {C:money}$#4#{} per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_wizard = {
+                name = "Wizard",
+                text = {
+                    "If played hand has {C:attention}#1# {C:paperback_stars}Stars{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:white,X:chips}X#4#{} Chip#<s>4#",
+                    "per {C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_ruler = {
+                name = "Ruler",
+                text = {
+                    "If played hand has {C:attention}#1# {C:paperback_crowns}Crowns{},",
+                    "each played card permanently",
+                    "gains {C:green}+#2#{} odds per",
                     "{C:attention}unique suit{} held in hand"
                 }
             },
@@ -1460,6 +1479,18 @@ return {
             },
             c_bof_gold_l = {
                 name = "Goldfish {X:legendary}Legendary",
+                text = {
+                    "Earn money equal to the",
+                    "{C:attention}current amount{} of {C:attention}interest{} that",
+                    "would be earned when hand played,",
+                    "{C:attention}+#1#{} consumable slot#<s>1# while held"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
+            c_bof_i = {
+                name = "I",
                 text = {
                     "Earn money equal to the",
                     "{C:attention}current amount{} of {C:attention}interest{} that",
