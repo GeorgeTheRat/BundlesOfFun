@@ -267,9 +267,9 @@ end
 -- hook into G.FUNCS.start_run to sync crossmods when starting a run
 if BOF.nc(G.FUNCS, "start_run") then
     local original_start_run = G.FUNCS.start_run
-    G.FUNCS.start_run = function(e)
+    G.FUNCS.start_run = function(...)
         BundlesOfFun.sync_all_crossmods()
-        return original_start_run(e)
+        return original_start_run(...)
     end
 end
 

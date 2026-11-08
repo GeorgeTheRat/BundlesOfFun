@@ -39,32 +39,32 @@ BundlesOfFun.Back {
             end
         }))
     end,
-calculate = function(self, back, context)
-    if context.end_of_round and context.main_eval and context.beat_boss then
-        local rank = pseudorandom_element(SMODS.Ranks, pseudoseed("bof_embroidered_2"))
-        G.E_MANAGER:add_event(Event({
-            func = function()
-                local suits = {}
-                for _, suit in pairs(SMODS.Suits) do
-                    suits[#suits + 1] = suit
+    calculate = function(self, back, context)
+        if context.end_of_round and context.main_eval and context.beat_boss then
+            local rank = pseudorandom_element(SMODS.Ranks, pseudoseed("bof_embroidered_2"))
+            G.E_MANAGER:add_event(Event({
+                func = function()
+                    local suits = {}
+                    for _, suit in pairs(SMODS.Suits) do
+                        suits[#suits + 1] = suit
+                    end
+                    for i = 1, 4 do
+                        local suit = suits[i]
+                        local new_card = SMODS.add_card({
+                            suit = suit.card_key,
+                            rank = rank.card_key,
+                            area = G.deck,
+                            set = "Base",
+                            key_append = "bof_embroidered"
+                        })
+                        SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
+                        play_sound("card1")
+                    end
+                    return true
                 end
-                for i = 1, 4 do
-                    local suit = suits[i]
-                    local new_card = SMODS.add_card({
-                        suit = suit.card_key,
-                        rank = rank.card_key,
-                        area = G.deck,
-                        set = "Base",
-                        key_append = "bof_embroidered"
-                    })
-                    SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
-                    play_sound("card1")
-                end
-                return true
-            end
-        }))
-    end
-end,
+            }))
+        end
+    end,
     check_for_unlock = function(self, args)
         return args.type == "modify_deck" and G.deck and G.deck.config.card_limit >= 80
     end
