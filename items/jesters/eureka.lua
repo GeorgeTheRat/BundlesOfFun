@@ -32,7 +32,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     pos = { x = 8, y = 1 },
     attributes = { "booster", "shop" },
-    cost = 7,
+    cost = 8,
     rarity = 3,
     blueprint_compat = true,
     atlas = "joker",
