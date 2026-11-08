@@ -28,6 +28,7 @@ BundlesOfFun.Joker {
     end,
     add_to_deck = function(self, card, context)
         card.sell_cost = G.GAME.bof_fish_bowl_sell_cost or card.sell_cost
+        G.GAME.bof_fish_bowl_sell_cost = nil
     end,
     calculate = function(self, card, context)
         if context.end_of_round and context.main_eval and not context.blueprint then
@@ -60,9 +61,6 @@ BundlesOfFun.Joker {
             SMODS.destroy_cards(card, { pinch_anim = true })
             SMODS.calculate_effect({ message = localize("k_expired_ex") }, card)
         end
-    end,
-    remove_from_deck = function(self, card, context)
-        G.GAME.bof_fish_bowl_sell_cost = nil
     end,
     in_pool = function()
         return false

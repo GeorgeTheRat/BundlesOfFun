@@ -9,6 +9,7 @@ BundlesOfFun.Joker {
         }
     },
     pos = { x = 7, y = 5 },
+    pixel_size = { w = 66 },
     attributes = { "chips", "scaling", "passive" },
     cost = 6,
     rarity = 1,

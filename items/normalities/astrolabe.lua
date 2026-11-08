@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "Astrolabe",
     bundle = "normalities",
     pos = { x = 8, y = 5 },
-    pixel_size = { h = 80, w = 69 },
+    pixel_size = { w = 69, h = 80 },
     attributes = { "passive", "planet", "space" },
     cost = 7,
     rarity = 2,

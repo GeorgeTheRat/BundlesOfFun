@@ -342,9 +342,9 @@ return {
             j_bof_jack_frost = {
                 name = "Jack Frost",
                 text = {
-                    "This Joker gains {C:white,X:mult}X#1#{} Mult per",
-                    "{C:attention}#2# {C:inactive}[#3#]{} chips from {C:attention}scoring",
-                    "cards in played hands",
+                    "This Joker gains {C:white,X:mult}X#1#{} Mult",
+                    "per {C:attention}#2# {C:inactive}[#3#]{} chips from",
+                    "{C:attention}scoring{} cards in played hands",
                     "{C:inactive}(Currently {C:white,X:mult}X#4#{C:inactive} Mult)"
                 }
             },
@@ -649,17 +649,17 @@ return {
             j_bof_hooked = {
                 name = "Hooked Joker",
                 text = {
-                    "{C:fish}Fish{} cards have a {C:green}#1# in #2#{} chance",
-                    "to not {C:attention}consume{} a round"
+                    "{C:fish}Fish{} cards have a",
+                    "{C:green}#1# in #2#{} chance to",
+                    "not {C:attention}consume{} a round"
                 }
             },
             j_bof_hypnotic = {
                 name = "Hypnotic Joker",
                 text = {
-                    "{C:attention}+#1#{} hand size",
-                    "if most played",
-                    "hand normally has",
-                    "{C:attention}#2#{} scoring cards"
+                    "{C:attention}+#1#{} hand size if most",
+                    "played hand {C:attention}normally",
+                    "has {C:attention}#2#{} scoring cards"
                 }
             },
             j_bof_band = {
@@ -870,7 +870,16 @@ return {
                 name = "Road Sign",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult if {C:attention}previous",
-                    "played hand was a {C:attention}Straight"
+                    "played hand was",
+                    "a {C:attention}Straight"
+                }
+            },
+            j_bof_calendar = {
+                name = "Calendar",
+                text = {
+                    "{C:attention}+#1#{} shop slot#<s>1#, decreases by",
+                    "{C:red}-#2#{} when a {C:attention}purchase{} is made",
+                    "Resets when {C:attention}shop{} is exited"
                 }
             },
             -- Artisans

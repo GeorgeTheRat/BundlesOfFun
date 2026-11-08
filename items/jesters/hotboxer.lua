@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
 		}
 	},
 	pos = { x = 9, y = 2 },
-	attributes = { "generation", "passive", "tarot" },
+	attributes = { "generation", "passive", "tarot", "shop" },
 	cost = 7,
 	rarity = 2,
 	blueprint_compat = false,

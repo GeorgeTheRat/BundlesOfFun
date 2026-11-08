@@ -6,7 +6,7 @@ BundlesOfFun.Blind {
     pos = { y = 19 },
     attributes = { "face_down" },
     atlas = "blind",
-    boss = { min = 6 }, -- this feels way too punishing IMO too put anywhere under this
+    boss = { min = 6 },
     boss_colour = HEX("e88868"),
     calculate = function(self, blind, context)
         if blind.disabled then return end
@@ -17,7 +17,7 @@ BundlesOfFun.Blind {
         if context.stay_flipped and context.to_area == G.hand then
             local visible = 0
             for _, c in ipairs(G.hand.cards) do
-                if c.facing == 'front' then visible = visible + 1 end
+                if c.facing == "front" then visible = visible + 1 end
             end
             if visible >= 4 then
                 return { stay_flipped = true }

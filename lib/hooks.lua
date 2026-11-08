@@ -223,23 +223,60 @@ end
 
 -- reset stuff on new run
 local original_game_start_run = Game.start_run
-function Game:start_run(arg)
-    if not arg.savetext and G.GAME.bof_stock_original_mult then
-        for _, blind_table in pairs(G.GAME.bof_stock_original_mult) do
-            for key, original_mult in pairs(blind_table) do
-                if type(original_mult) ~= "number" then
-                    return
+local function bof_set_stock_blind_mults(mult_by_type)
+    if type(mult_by_type) ~= "table" then
+        return
+    end
+    local pools = {
+        Small = G.P_BLINDS,
+        Big = G.P_BLINDS,
+        Boss = G.P_BLINDS,
+        Teeny = G.P_TEENY_BLINDS,
+        CEO = G.P_CEO_BLINDS
+    }
+    local all_pools = { G.P_BLINDS or {}, G.P_TEENY_BLINDS or {}, G.P_CEO_BLINDS or {} }
+    for blind_type, blind_table in pairs(mult_by_type) do
+        if type(blind_table) == "number" then
+            for _, pool in ipairs(all_pools) do
+                if type(pool[blind_type]) == "table" then
+                    pool[blind_type].mult = blind_table
                 end
-                if G.P_BLINDS and G.P_BLINDS[key] then
-                    G.P_BLINDS[key].mult = original_mult
-                elseif G.P_TEENY_BLINDS and G.P_TEENY_BLINDS[key] then
-                    G.P_TEENY_BLINDS[key].mult = original_mult
-                elseif G.P_CEO_BLINDS and G.P_CEO_BLINDS[key] then
-                    G.P_CEO_BLINDS[key].mult = original_mult
+            end
+        else
+            local pool = pools[blind_type]
+            if pool and type(blind_table) == "table" then
+                for key, mult in pairs(blind_table) do
+                    if type(mult) == "number" and type(pool[key]) == "table" then
+                        pool[key].mult = mult
+                    end
                 end
             end
         end
-        G.GAME.bof_stock_original_mult = nil
+    end
+end
+local function bof_restore_stock_blind_mults(clear_tracking)
+    local original_mults = BundlesOfFun.bof_stock_original_mult or BOF.nc(G.GAME, "bof_stock_original_mult")
+    bof_set_stock_blind_mults(original_mults)
+    if clear_tracking then
+        BundlesOfFun.bof_stock_original_mult = nil
+        if G.GAME then
+            G.GAME.bof_stock_original_mult = nil
+            G.GAME.bof_stock_modified_mult = nil
+        end
+    end
+end
+local original_game_delete_run = Game.delete_run
+function Game:delete_run(...)
+    bof_restore_stock_blind_mults(false)
+    return original_game_delete_run(self, ...)
+end
+function Game:start_run(arg)
+    arg = arg or {}
+    if not arg.savetext then
+        bof_restore_stock_blind_mults(true)
+    else
+        BundlesOfFun.bof_stock_original_mult = BOF.nc(arg, "savetext", "GAME", "bof_stock_original_mult")
+        bof_set_stock_blind_mults(BOF.nc(arg, "savetext", "GAME", "bof_stock_modified_mult"))
     end
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
@@ -737,7 +774,6 @@ local function bof_dominant_active()
     local blind = BOF.nc(G.GAME, "blind")
     return blind and not blind.disabled and BOF.nc(blind, "config", "blind", "key") == "bl_bof_dominant"
 end
-
 local dominant_calculate_seal = Card.calculate_seal
 function Card:calculate_seal(context, ...)
     if bof_dominant_active() and self.seal then
@@ -749,7 +785,6 @@ function Card:calculate_seal(context, ...)
     end
     return dominant_calculate_seal(self, context, ...)
 end
-
 local dominant_get_p_dollars = Card.get_p_dollars
 function Card:get_p_dollars()
     if bof_dominant_active() and self.seal then
@@ -761,7 +796,6 @@ function Card:get_p_dollars()
     end
     return dominant_get_p_dollars(self)
 end
-
 local dominant_get_end_of_round_effect = Card.get_end_of_round_effect
 function Card:get_end_of_round_effect(context)
     if bof_dominant_active() and self.seal then

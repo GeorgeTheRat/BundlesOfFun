@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = { extra = { xmult = 1.25 } },
     pos = { x = 10, y = 2 },
     attributes = { "xmult", "retrigger" },
-    cost = 7,
+    cost = 5,
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",

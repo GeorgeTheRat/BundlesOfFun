@@ -19,14 +19,14 @@ BundlesOfFun.Joker {
             if BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss_colour") and not BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss", "showdown") then
                 return G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour
             else
-                return G.C.ORANGE
+                return G.C.FILTER
             end
         end
         local function bof_showdown_colour()
             if BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss_colour") and BOF.nc(G.P_BLINDS, G.GAME.round_resets.blind_choices.Boss, "boss", "showdown") then
                 return G.P_BLINDS[G.GAME.round_resets.blind_choices.Boss].boss_colour
             else
-                return G.C.ORANGE
+                return G.C.FILTER
             end
         end
         info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_blind_type", vars = { colours = { bof_boss_colour(), bof_showdown_colour() } } }
@@ -67,8 +67,10 @@ BundlesOfFun.Joker {
         if context.end_of_round and context.main_eval then
             local counts = {}
             for _, c in ipairs(G.playing_cards or G.deck.cards or {}) do
-                for k in pairs(SMODS.get_enhancements(c)) do
-                    counts[k] = (counts[k] or 0) + 1
+                if not c.debuff then
+                    for k in pairs(SMODS.get_enhancements(c)) do
+                        counts[k] = (counts[k] or 0) + 1
+                    end
                 end
             end
             local best_enh, max_val = nil, 0
@@ -85,7 +87,7 @@ BundlesOfFun.Joker {
         if context.after then
             local target_enh, destroyed = card.ability.extra.enhancement or "m_bonus", {}
             for _, c in ipairs(context.full_hand) do
-                if SMODS.get_enhancements(c)[target_enh] then
+                if not c.debuff and SMODS.get_enhancements(c)[target_enh] then
                     destroyed[#destroyed + 1] = c
                 end
             end
@@ -126,12 +128,20 @@ BundlesOfFun.Joker {
                     if active_pool then
                         G.GAME.bof_stock_original_mult = G.GAME.bof_stock_original_mult or {}
                         G.GAME.bof_stock_original_mult[blind_type] = G.GAME.bof_stock_original_mult[blind_type] or {}
+                        BundlesOfFun.bof_stock_original_mult = BundlesOfFun.bof_stock_original_mult or {}
+                        BundlesOfFun.bof_stock_original_mult[blind_type] = BundlesOfFun.bof_stock_original_mult[blind_type] or {}
+                        G.GAME.bof_stock_modified_mult = G.GAME.bof_stock_modified_mult or {}
+                        G.GAME.bof_stock_modified_mult[blind_type] = G.GAME.bof_stock_modified_mult[blind_type] or {}
                         for key, b_def in pairs(active_pool) do
                             if type(b_def) == "table" and b_def.mult then
                                 if not G.GAME.bof_stock_original_mult[blind_type][key] then
                                     G.GAME.bof_stock_original_mult[blind_type][key] = b_def.mult
                                 end
+                                if not BundlesOfFun.bof_stock_original_mult[blind_type][key] then
+                                    BundlesOfFun.bof_stock_original_mult[blind_type][key] = b_def.mult
+                                end
                                 b_def.mult = b_def.mult * reduction_mult
+                                G.GAME.bof_stock_modified_mult[blind_type][key] = b_def.mult
                             end
                         end
                     end
@@ -159,7 +169,7 @@ BundlesOfFun.Joker {
             return false
         end
         for _, c in ipairs(G.deck.cards or {}) do
-            if next(SMODS.get_enhancements(c)) then
+            if not c.debuff and next(SMODS.get_enhancements(c)) then
                 return true
             end
         end

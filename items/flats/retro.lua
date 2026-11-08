@@ -3,10 +3,10 @@ BundlesOfFun.Back {
     name = "Retro Deck",
     bundle = "flats",
     config = { extra = { hands = 4 } },
-	atlas = "deck",
 	pos = { x = 7, y = 0 },
     attributes = { "hand_type", "hand_level", "skip" },
     unlocked = false,
+	atlas = "deck",
     loc_vars = function(self, info_queue)
 		return { vars = { self.config.extra.hands } }
 	end,

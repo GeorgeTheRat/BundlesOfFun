@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
         }
     },
     pos = { x = 5, y = 3 },
-    attributes = { "xmult" },
+    attributes = { "xmult", "debuff" },
     cost = 5,
     rarity = 2,
     blueprint_compat = false,
