@@ -27,5 +27,7 @@ BundlesOfFun.Joker {
                 retrigger_juice = nine_ladies_dancing
             }
         end
+    end,
+    joker_display_def = function()
     end
 }
