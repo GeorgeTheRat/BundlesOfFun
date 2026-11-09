@@ -7,7 +7,7 @@ BundlesOfFun.Back {
 	pos = { x = 1, y = 0 },
     attributes = { "mult" },
     unlocked = false,
-    loc_vars = function(self, info_queue)
+    loc_vars = function(self)
 		return { vars = { self.config.mult } }
 	end,
     calculate = function(self, back, context)
@@ -17,7 +17,7 @@ BundlesOfFun.Back {
             }
         end
     end,
-    check_for_unlock = function(self, args)
+    check_for_unlock = function()
         if BOF.nc(G.GAME, "hands") then
             for hand_name, hand_data in pairs(G.GAME.hands) do
                 if hand_data.mult and hand_data.mult >= 75 then

@@ -98,7 +98,7 @@ BundlesOfFun.Joker {
                 end
                 card.joker_display_values.is_met = card.joker_display_values.display_current >= card.ability.extra.requirement
             end,
-            style_function = function(card, text, reminder_text, extra)
+            style_function = function(card, text, reminder_text)
                 if BOF.nc(reminder_text, "children") then
                     for i = 2, 4 do
                         if reminder_text.children[i] then

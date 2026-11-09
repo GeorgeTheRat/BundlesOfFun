@@ -14,6 +14,6 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        return args and args.b_bof_soapy
+        return args.b_bof_soapy
     end
 }

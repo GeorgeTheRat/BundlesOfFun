@@ -59,7 +59,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {
@@ -78,8 +78,8 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 card.joker_display_values.narr_suit = localize(suit(), "suits_plural")
             end,
-            style_function = function(card, text, reminder_text, extra)
-                if reminder_text and reminder_text.children[2] then
+            style_function = function(card, text, reminder_text)
+                if BOF.nc(reminder_text, "children", 2) then
                     reminder_text.children[2].config.colour = lighten(G.C.SUITS[suit()], 0.35)
                 end
             end

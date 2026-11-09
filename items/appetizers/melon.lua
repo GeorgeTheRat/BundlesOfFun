@@ -99,8 +99,8 @@ BundlesOfFun.Joker {
                 card.joker_display_values.sell_cost = sell_cost
                 card.joker_display_values.start_count_melon = card.joker_display_values.start_count_melon or card.ability.extra.count
             end,
-            style_function = function(card, text, reminder_text, extra)
-                local children = reminder_text and reminder_text.children
+            style_function = function(card, text, reminder_text)
+                local children = BOF.nc(reminder_text, "children")
                 if not children then
                     return
                 end

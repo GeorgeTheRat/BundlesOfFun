@@ -13,7 +13,7 @@ BundlesOfFun.Back {
     pos = { x = 4, y = 0 },
     attributes = { "hands", "discard", "boss_blind" },
     unlocked = false,
-    loc_vars = function(self, info_queue)
+    loc_vars = function(self)
         return {
             vars = {
                 self.config.extra.stat_per_ante,
@@ -49,21 +49,20 @@ BundlesOfFun.Back {
             end
         end
     end,
-    locked_loc_vars = function(self, info_queue, back)
-        local red_deck = localize("k_unknown")
+    locked_loc_vars = function()
+        local red_deck, blue_deck = localize("k_unknown"), localize("k_unknown")
         if G.P_CENTERS["b_red"].unlocked then
-            red_deck = localize { type = "name_text", set = "Back", key = "b_red" }
+            red_deck = localize({ type = "name_text", set = "Back", key = "b_red" })
         end
-        local blue_deck = localize("k_unknown")
         if G.P_CENTERS["b_blue"].unlocked then
-            blue_deck = localize { type = "name_text", set = "Back", key = "b_blue" }
+            blue_deck = localize({ type = "name_text", set = "Back", key = "b_blue" })
         end
         return {
             vars = {
                 red_deck,
-                localize { type = "name_text", set = "Stake", key = "stake_blue" },
+                localize({ type = "name_text", set = "Stake", key = "stake_blue" }),
                 blue_deck,
-                localize { type = "name_text", set = "Stake", key = "stake_red" },
+                localize({ type = "name_text", set = "Stake", key = "stake_red" }),
                 colours = {
                     get_stake_col(5),
                     get_stake_col(2)

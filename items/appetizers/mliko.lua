@@ -26,7 +26,7 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    add_to_deck = function(self, card, from_debuff)
+    add_to_deck = function(self, card)
         G.GAME.round_resets.discards = G.GAME.round_resets.discards + card.ability.extra.discards
         ease_discard(card.ability.extra.discards)
     end,
@@ -57,11 +57,11 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    remove_from_deck = function(self, card, from_debuff)
+    remove_from_deck = function(self, card)
         G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.discards
         ease_discard(-card.ability.extra.discards)
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(" },
@@ -73,8 +73,8 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 card.joker_display_values.start_count_milko = card.joker_display_values.start_count_milko or card.ability.extra.discards
             end,
-            style_function = function(card, text, reminder_text, extra)
-                local children = reminder_text and reminder_text.children
+            style_function = function(card, text, reminder_text)
+                local children = BOF.nc(reminder_text, "children")
                 if not children then
                     return
                 end

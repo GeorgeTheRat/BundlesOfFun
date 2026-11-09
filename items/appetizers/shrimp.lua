@@ -19,7 +19,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.packs } }
     end,
-    add_to_deck = function(self, card)
+    add_to_deck = function()
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + 2
     end,
@@ -70,11 +70,11 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    remove_from_deck = function(self, card)
+    remove_from_deck = function()
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - 2
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(" },
@@ -86,8 +86,8 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.packs
             end,
-            style_function = function(card, text, reminder_text, extra)
-                local children = reminder_text and reminder_text.children
+            style_function = function(card, text, reminder_text)
+                local children = BOF.nc(reminder_text, "children")
                 if not children then
                     return
                 end

@@ -7,10 +7,10 @@ BundlesOfFun.Back {
 	pos = { x = 9, y = 0 },
     attributes = { "economy", "shop", "chance", "consumable", "editions" },
     unlocked = false,
-    loc_vars = function(self, info_queue)
+    loc_vars = function(self)
 		return { vars = { self.config.dollars_per_consumable } }
 	end,
-    calc_dollar_bonus = function(self, back)
+    calc_dollar_bonus = function(self)
         local count = 0
         if BOF.nc(G.consumeables, "cards") then
             for _, c in ipairs(G.consumeables.cards) do
@@ -23,7 +23,16 @@ BundlesOfFun.Back {
             return count * self.config.dollars_per_consumable
         end
     end,
-    check_for_unlock = function(self, args)
+    calculate = function(self, back, context)
+        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
+            if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
+                if pseudorandom(pseudoseed("bof_fossilized")) < 0.06 then
+                    return { shop_create_flags = { edition = "e_negative" } }
+                end
+            end
+        end
+    end,
+    check_for_unlock = function()
         if BOF.nc(G.consumeables, "cards") then
             local has = { Tarot = false, Planet = false, Spectral = false }
             for _, c in ipairs(G.consumeables.cards) do
@@ -34,15 +43,6 @@ BundlesOfFun.Back {
             end
             if has.Tarot and has.Planet and has.Spectral then
                 return true
-            end
-        end
-    end,
-    calculate = function(self, back, context)
-        if context.create_shop_card and (context.set == "Tarot" or context.set == "Planet" or context.set == "Spectral" or context.set == "Fish") then
-            if not G.GAME.used_vouchers["v_bof_illegal_wares"] then
-                if pseudorandom(pseudoseed("bof_fossilized")) < 0.06 then
-                    return { shop_create_flags = { edition = "e_negative" } }
-                end
             end
         end
     end

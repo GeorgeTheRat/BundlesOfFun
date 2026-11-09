@@ -19,7 +19,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             -- mirrors calculate: only fires on the first or last hand of the round
             text = {

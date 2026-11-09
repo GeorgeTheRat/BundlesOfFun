@@ -82,7 +82,7 @@ BundlesOfFun.Joker {
             card.ability.extra.count = 0
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 { ref_table = "card.joker_display_values", ref_value = "spades_count" },
@@ -113,7 +113,7 @@ BundlesOfFun.Joker {
                 card.joker_display_values.clubs_count = clubs .. " "
                 card.joker_display_values.diamonds_count = diamonds
             end,
-            style_function = function(card, text, extra)
+            style_function = function(card, text)
                 if BOF.nc(text, "children") then
                     if text.children[1] then
                         text.children[1].config.colour = lighten(G.C.SUITS["Spades"], 0.35)

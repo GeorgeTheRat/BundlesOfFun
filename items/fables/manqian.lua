@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
     unlocked = false,
     blueprint_compat = true,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         local most_played = 0
         local most_played_hand
         for hand, data in pairs(G.GAME.hands) do
@@ -46,7 +46,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {

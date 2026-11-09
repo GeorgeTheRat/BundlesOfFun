@@ -108,7 +108,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    calc_dollar_bonus = function(self,card)
+    calc_dollar_bonus = function(self, card)
         if card.ability.extra.yes then
             card.ability.extra.yes = false
             return card.ability.extra.dollars

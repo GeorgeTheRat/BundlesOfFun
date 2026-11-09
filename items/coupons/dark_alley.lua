@@ -5,15 +5,15 @@ BundlesOfFun.Voucher {
     pos = { x = 0, y = 0 },
     attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     atlas = "voucher",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
     end,
-    redeem = function(self, card, area) -- done this way to make sure not to affect ghost deck
+    redeem = function() -- done this way to make sure not to affect ghost deck
         if G.GAME.spectral_rate < 1 then
             G.GAME.spectral_rate = 1
         end
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         if G.GAME.spectral_rate == 1 then
             G.GAME.spectral_rate = 0
         end

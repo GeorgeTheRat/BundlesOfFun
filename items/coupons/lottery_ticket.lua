@@ -8,16 +8,16 @@ BundlesOfFun.Voucher {
     attributes = { "shop", "reroll" },
     unlocked = false,
     atlas = "voucher",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self)
         return { vars = { self.config.extra.reroll_count } }
     end,
-    redeem = function(self, card, area)
+    redeem = function()
         G.GAME.bof_lottery_ticket_shop_reroll_count = 0
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         G.GAME.bof_lottery_ticket_shop_reroll_count = 0
     end,
     check_for_unlock = function(self, args)
-        return args and args.bof_vouchers_redeemed_this_ante and args.bof_vouchers_redeemed_this_ante >= 2
+        return args.bof_vouchers_redeemed_this_ante and args.bof_vouchers_redeemed_this_ante >= 2
     end
 }

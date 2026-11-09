@@ -2,12 +2,15 @@ BundlesOfFun.Back {
 	key = "wooden",
     name = "Wooden Deck",
     bundle = "flats",
-    config = { remove_aces = true, extra_cards = { 2, 3, 4, 5 } },
+    config = {
+        remove_aces = true,
+        extra_cards = { 5, 4, 3, 2 }
+    },
 	atlas = "deck",
 	pos = { x = 2, y = 0 },
     attributes = { "rank", "ace", "full_deck", "enhancements", "modify_card" },
     unlocked = false,
-    apply = function(self, back)
+    apply = function()
         G.E_MANAGER:add_event(Event({
             func = function()
                 for _, playing_card in ipairs(G.playing_cards) do
@@ -18,7 +21,7 @@ BundlesOfFun.Back {
         }))
     end,
     check_for_unlock = function(self, args)
-        return args and args.b_bof_wooden
+        return args.b_bof_wooden
     end
 }
 

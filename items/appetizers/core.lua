@@ -68,7 +68,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    in_pool = function(self, args)
+    in_pool = function()
         return false
     end,
     joker_display_def = function(JokerDisplay)
@@ -99,8 +99,8 @@ BundlesOfFun.Joker {
             card.joker_display_values.mult = mult
             card.joker_display_values.start_count_core = card.joker_display_values.start_count_core or card.ability.extra.count
         end,
-        style_function = function(card, text, reminder_text, extra)
-            local children = reminder_text and reminder_text.children
+        style_function = function(card, text, reminder_text)
+            local children = BOF.nc(reminder_text, "children")
             if not children then
                 return
             end

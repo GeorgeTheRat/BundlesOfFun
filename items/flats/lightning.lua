@@ -3,10 +3,10 @@ BundlesOfFun.Back {
     name = "Lightning Deck",
     bundle = "flats",
 	pos = { x = 0, y = 0 },
-    attributes = { "mult", "chips", "face", "full_deck", "enhancements", "modify_card" },
+    attributes = { "face", "enhancements", "modify_card" },
     unlocked = false,
     atlas = "deck",
-    apply = function(self, back)
+    apply = function()
         G.E_MANAGER:add_event(Event({
             func = function()
                 for _, playing_card in ipairs(G.playing_cards) do

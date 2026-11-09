@@ -10,10 +10,10 @@ BundlesOfFun.Joker {
     unlocked = false,
     blueprint_compat = true,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
     end,
-    calculate = function(self, card, context)
+    calculate = function(self, card)
         if BOF.nc(G.GAME, "bof_payne_trigger") then
             if G.GAME.bof_payne_trigger.tarot then
                 G.GAME.bof_payne_trigger.tarot = nil
@@ -63,6 +63,6 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
     end
 }

@@ -164,7 +164,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    in_pool = function(self)
+    in_pool = function()
         if BundlesOfFun.is_multiplayer_lobby_active() then
             return false
         end

@@ -21,13 +21,13 @@ BundlesOfFun.Booster {
         return g
     end,
     create_card = function(self, card, i)
-        if pseudorandom("p_bof_tackle_jumbo_1") > 0.7 then
+        if pseudorandom("bof_tackle_jumbo_2") > 0.7 then
             return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis2", i)
         else
             return BundlesOfFun.create_fish_pack_card("fish_s", "bof_fis1", i)
         end
     end,
-    ease_background_colour = function(self)
+    ease_background_colour = function()
         ease_colour(G.C.DYN_UI.MAIN, G.C.bof_minnows)
         ease_background_colour({
             new_colour = G.C.bof_minnows,
@@ -35,7 +35,7 @@ BundlesOfFun.Booster {
             contrast = 2
         })
     end,
-    particles = function(self)
+    particles = function()
         G.booster_pack_sparkles = Particles(1, 1, 0, 0, {
             timer = 0.015,
             scale = 0.175,

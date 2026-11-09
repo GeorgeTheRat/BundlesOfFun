@@ -26,7 +26,7 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    add_to_deck = function(self, card, context)
+    add_to_deck = function(self, card)
         card.sell_cost = G.GAME.bof_fish_bowl_sell_cost or card.sell_cost
         G.GAME.bof_fish_bowl_sell_cost = nil
     end,
@@ -55,7 +55,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    update = function(self, card, dt)
+    update = function(self, card)
         if card.sell_cost <= card.ability.extra.destroy and not card.ability.extra.gonna_go and G.STATE ~= G.STATES.GAME_OVER then
             card.ability.extra.gonna_go = true
             SMODS.destroy_cards(card, { pinch_anim = true })

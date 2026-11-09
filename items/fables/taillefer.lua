@@ -14,7 +14,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.consumable_slots } }
     end,
-    add_to_deck = function(self, card, from_debuff)
+    add_to_deck = function(self, card)
         G.consumeables:change_size(card.ability.extra.consumable_slots)
     end,
     calculate = function(self, card, context)
@@ -49,7 +49,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    remove_from_deck = function(self, card, from_debuff)
+    remove_from_deck = function(self, card)
         G.consumeables:change_size(-card.ability.extra.consumable_slots)
     end,
     joker_display_def = function(JokerDisplay)

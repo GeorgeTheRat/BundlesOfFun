@@ -8,7 +8,7 @@ BundlesOfFun.Joker {
     rarity = 1,
     blueprint_compat = false,
     atlas = "joker",
-    set_sprites = function(self, card, initial)
+    set_sprites = function(self, card)
         G.E_MANAGER:add_event(Event({
             func = function()
                 if self.discovered and not BOF.nc(card.area, "config", "collection") and pseudorandom("bof_matey") > 0.9 then

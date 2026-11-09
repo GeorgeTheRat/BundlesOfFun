@@ -7,21 +7,21 @@ BundlesOfFun.Voucher {
     attributes = { "shop", "chance", "consumable", "spectral", "editions" },
     unlocked = false,
     atlas = "voucher",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
     end,
-    redeem = function(self, card, area)
+    redeem = function()
         if G.GAME.spectral_rate then
             G.GAME.spectral_rate = G.GAME.spectral_rate * 3
         end
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         if G.GAME.spectral_rate then
             G.GAME.spectral_rate = G.GAME.spectral_rate / 3
         end
     end,
-    check_for_unlock = function(self, args)
+    check_for_unlock = function()
         if BOF.nc(G.consumeables, "cards") then
             local count = 0
             for _, c in ipairs(G.consumeables.cards) do

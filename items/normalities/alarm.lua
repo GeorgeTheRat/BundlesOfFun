@@ -16,12 +16,9 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
-        local is_active = (G.GAME.bof_total_hands_played or 0) % 2 == 1
         return {
-            key = is_active and "j_bof_alarm_active" or "j_bof_alarm_inactive",
-            vars = {
-                card.ability.extra.xmult
-            }
+            key = (G.GAME.bof_total_hands_played or 0) % 2 == 1 and "j_bof_alarm_active" or "j_bof_alarm_inactive",
+            vars = { card.ability.extra.xmult }
         }
     end,
     calculate = function(self, card, context)
@@ -72,7 +69,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {
@@ -97,7 +94,7 @@ BundlesOfFun.Joker {
                 card.joker_display_values.status_text = is_active and localize("k_active_ex") or localize("k_inactive_el")
                 card.joker_display_values.is_active = is_active
             end,
-            style_function = function(card, text, reminder_text, extra)
+            style_function = function(card, text, reminder_text)
                 if BOF.nc(reminder_text, "children", 2) then
                     reminder_text.children[2].config.colour = card.joker_display_values.is_active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
                 end

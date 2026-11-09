@@ -47,7 +47,7 @@ BundlesOfFun.Joker {
             juice_card_until(card, eval, true)
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(" },

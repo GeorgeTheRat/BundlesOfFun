@@ -59,7 +59,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {
@@ -98,7 +98,7 @@ BundlesOfFun.Joker {
                 card.joker_display_values.is_met = enhanced_count >= card.ability.extra.enhanced_req
                 card.joker_display_values.reminder_text = enhanced_count .. "/" .. card.ability.extra.enhanced_req
             end,
-            style_function = function(card, text, reminder_text, extra)
+            style_function = function(card, text, reminder_text)
                 if BOF.nc(reminder_text, "children", 2) then
                     reminder_text.children[2].config.colour = card.joker_display_values.is_met and G.C.GREEN or G.C.UI.TEXT_INACTIVE
                 end

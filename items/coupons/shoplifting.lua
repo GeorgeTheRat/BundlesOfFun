@@ -7,10 +7,10 @@ BundlesOfFun.Voucher {
     attributes = { "shop" },
     unlocked = false,
     atlas = "voucher",
-    redeem = function(self, card, area)
+    redeem = function()
         G.GAME.voucher_rate = 0.5
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         G.GAME.voucher_rate = nil
     end,
     check_for_unlock = function(self, args)

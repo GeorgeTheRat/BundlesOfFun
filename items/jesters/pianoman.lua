@@ -8,11 +8,11 @@ BundlesOfFun.Joker {
     blueprint_compat = false,
     atlas = "joker",
     attributes = { "passive", "jokers" },
-    add_to_deck = function(self, card, deck)
+    add_to_deck = function()
         G.GAME.bof_pianoman_common_only = true
         G.GAME.bof_pianoman_unlimited_boosters = true
     end,
-    remove_from_deck = function(self, card, deck)
+    remove_from_deck = function()
         G.GAME.bof_pianoman_common_only = false
         G.GAME.bof_pianoman_unlimited_boosters = false
     end

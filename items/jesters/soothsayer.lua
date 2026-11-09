@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
     rarity = 2,
     blueprint_compat = true,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         table.insert(info_queue, G.P_SEALS["Blue"])
     end,
     calculate = function(self, card, context)
@@ -40,7 +40,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    in_pool = function(self, args)
+    in_pool = function()
         if not G.deck then
             return false
         end

@@ -37,6 +37,6 @@ BundlesOfFun.Joker {
             five_gold_rings:juice_up(0.3, 0.5)
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
     end
 }

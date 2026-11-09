@@ -7,10 +7,10 @@ BundlesOfFun.Back {
     attributes = { "generation", "destroy_card", "playing_card" },
     unlocked = false,
     atlas = "deck",
-    loc_vars = function(self, info_queue)
-        return {  vars = {  self.config.extra.cards } }
+    loc_vars = function(self)
+        return { vars = { self.config.extra.cards } }
     end,
-    apply = function(self, back)
+    apply = function(self)
         local all_ranks = {}
         for _, key in ipairs(SMODS.Rank.obj_buffer) do
             local r = SMODS.Ranks[key]
@@ -66,6 +66,6 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        return args.type == "modify_deck" and G.deck and G.deck.config.card_limit >= 80
+        return args.type == "modify_deck" and BOF.nc(G.deck, "config", "card_limit") >= 80
     end
 }

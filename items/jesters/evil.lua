@@ -31,7 +31,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             -- mirrors calculate: only fires when this is the final hand of the round.
             -- hands_left decrements before joker_main runs for the hand being played, but this

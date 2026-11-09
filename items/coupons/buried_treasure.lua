@@ -7,7 +7,7 @@ BundlesOfFun.Voucher {
     attributes = { "consumable_slot", "fish" },
     unlocked = false,
     atlas = "voucher",
-    redeem = function(self, card, area)
+    redeem = function(self, card)
         G.GAME.bof_fish_extra_consumable_slots = (G.GAME.bof_fish_extra_consumable_slots or 0) + 1
         if BOF.nc(G.consumeables, "cards") then
             for _, fish in ipairs(G.consumeables.cards) do
@@ -15,7 +15,7 @@ BundlesOfFun.Voucher {
             end
         end
     end,
-    unredeem = function(self, card, area)
+    unredeem = function(self, card)
         G.GAME.bof_fish_extra_consumable_slots = (G.GAME.bof_fish_extra_consumable_slots or 0) - 1
         if BOF.nc(G.consumeables, "cards") then
             for _, fish in ipairs(G.consumeables.cards) do
@@ -24,6 +24,6 @@ BundlesOfFun.Voucher {
         end
     end,
     check_for_unlock = function(self, args)
-        return args and args.bof_fish_expired and args.bof_fish_expired >= 5
+        return args.bof_fish_expired and args.bof_fish_expired >= 5
     end
 }

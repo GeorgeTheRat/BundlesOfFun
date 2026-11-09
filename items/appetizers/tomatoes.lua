@@ -49,7 +49,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             extra = {
                 {
@@ -68,11 +68,11 @@ BundlesOfFun.Joker {
             },
             calc_function = function(card)
                 local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_tomatoes")
-                card.joker_display_values.odds = localize { type = "variable", key = "jdis_odds", vars = { numerator, denominator } }
+                card.joker_display_values.odds = localize({ type = "variable", key = "jdis_odds", vars = { numerator, denominator } })
                 card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.amount
             end,
-            style_function = function(card, text, reminder_text, extra)
-                local children = reminder_text and reminder_text.children
+            style_function = function(card, text, reminder_text)
+                local children = BOF.nc(reminder_text, "children")
                 if not children then
                     return
                 end

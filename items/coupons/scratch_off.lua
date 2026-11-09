@@ -6,13 +6,13 @@ BundlesOfFun.Voucher {
     pos = { x = 0, y = 1 },
     attributes = { "shop", "reroll" },
     atlas = "voucher",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self)
         return { vars = { self.config.extra.reroll_count } }
     end,
-    redeem = function(self, card, area)
+    redeem = function()
         G.GAME.bof_scratch_off_shop_reroll_count = 0
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         G.GAME.bof_scratch_off_shop_reroll_count = 0
     end
 }

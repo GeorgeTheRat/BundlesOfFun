@@ -12,7 +12,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.extra_hand_bonus } }
     end,
-    add_to_deck = function(self, card, shop)
+    add_to_deck = function(self, card)
         G.GAME.modifiers.money_per_hand = (G.GAME.modifiers.money_per_hand or 1) + card.ability.extra.extra_hand_bonus
     end,
     remove_from_deck = function(self, card)

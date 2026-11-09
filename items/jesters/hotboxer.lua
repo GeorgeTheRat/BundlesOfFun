@@ -22,7 +22,7 @@ BundlesOfFun.Joker {
 			}
 		}
 	end,
-	add_to_deck = function(self, card, from_debuff)
+	add_to_deck = function(self, card)
 		G.E_MANAGER:add_event(Event({
             func = function()
                 change_shop_size(card.ability.extra.shop_size)
@@ -40,7 +40,7 @@ BundlesOfFun.Joker {
 			}
 		end
 	end,
-	remove_from_deck = function(self, card, from_debuff)
+	remove_from_deck = function(self, card)
 		G.E_MANAGER:add_event(Event({
             func = function()
                 change_shop_size(-card.ability.extra.shop_size)

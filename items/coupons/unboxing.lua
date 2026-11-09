@@ -5,10 +5,10 @@ BundlesOfFun.Voucher {
     pos = { x = 2, y = 0 },
     attributes = { "shop", "booster" },
     atlas = "voucher",
-    redeem = function(self, card, area)
+    redeem = function()
         G.GAME.booster_rate = 2
     end,
-    unredeem = function(self, card, area)
+    unredeem = function()
         G.GAME.booster_rate = nil
     end
 }

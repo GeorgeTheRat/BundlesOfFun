@@ -23,7 +23,7 @@ BundlesOfFun.Booster {
     create_card = function(self, card, i)
         return BundlesOfFun.create_fish_pack_card("fish_b", "bof_fis", i)
     end,
-    ease_background_colour = function(self)
+    ease_background_colour = function()
         ease_colour(G.C.DYN_UI.MAIN, G.C.bof_minnows)
         ease_background_colour({
             new_colour = G.C.bof_minnows,
@@ -31,7 +31,7 @@ BundlesOfFun.Booster {
             contrast = 2
         })
     end,
-    particles = function(self)
+    particles = function()
         G.booster_pack_sparkles = Particles(1, 1, 0, 0, {
             timer = 0.015,
             scale = 0.175,

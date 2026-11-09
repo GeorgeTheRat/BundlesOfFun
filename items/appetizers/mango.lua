@@ -87,7 +87,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(" },
@@ -99,8 +99,8 @@ BundlesOfFun.Joker {
             calc_function = function(card)
                 card.joker_display_values.start_count = card.joker_display_values.start_count or card.ability.extra.count
             end,
-            style_function = function(card, text, reminder_text, extra)
-                local children = reminder_text and reminder_text.children
+            style_function = function(card, text, reminder_text)
+                local children = BOF.nc(reminder_text, "children")
                 if not children then
                     return
                 end

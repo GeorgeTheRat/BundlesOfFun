@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
     rarity = 2,
     atlas = "joker",
     blueprint_compat = false,
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = { set = "Other", key = "k_bof_modification" }
     end,
     calculate = function(self, card, context)
@@ -80,7 +80,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(" },
@@ -92,7 +92,7 @@ BundlesOfFun.Joker {
                 card.joker_display_values.is_active = is_first_hand
                 card.joker_display_values.active_text = localize(is_first_hand and "jdis_active" or "jdis_inactive")
             end,
-            style_function = function(card, text, reminder_text, extra)
+            style_function = function(card, text, reminder_text)
                 if BOF.nc(reminder_text, "children", 2) then
                     reminder_text.children[2].config.colour = card.joker_display_values.is_active and G.C.GREEN or G.C.UI.TEXT_INACTIVE
                 end

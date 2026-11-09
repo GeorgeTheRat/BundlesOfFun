@@ -62,7 +62,7 @@ BundlesOfFun.Back {
         end
     end,
     check_for_unlock = function(self, args)
-        if args and args.type == "modify_deck" and BOF.nc(G.GAME, "blind") then
+        if args.type == "modify_deck" and BOF.nc(G.GAME, "blind") then
             local first_suit = nil
             for _, card in ipairs(G.playing_cards or {}) do
                 local suit = BOF.nc(card, "base", "suit")

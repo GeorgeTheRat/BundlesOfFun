@@ -23,7 +23,7 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    add_to_deck = function(self, card, from_debuff)
+    add_to_deck = function(self, card)
         local most_played = 0
         local most_played_count = math.huge
         for hand, data in pairs(G.GAME.hands) do
@@ -47,7 +47,7 @@ BundlesOfFun.Joker {
             G.hand:change_size(card.ability.extra.hand_size)
         end
     end,
-    calculate = function(self, card, context)
+    calculate = function(self, card)
         local most_played = 0
         local most_played_count = math.huge
         for hand, data in pairs(G.GAME.hands) do
@@ -94,13 +94,13 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    remove_from_deck = function(self, card, from_debuff)
+    remove_from_deck = function(self, card)
         if card.ability.extra.previous_has_five then
             G.hand:change_size(-card.ability.extra.hand_size)
         end
         card.ability.extra.previous_has_five = nil
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {

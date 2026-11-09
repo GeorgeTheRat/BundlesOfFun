@@ -12,9 +12,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             key = BundlesOfFun.config.evil_dih and "j_bof_address_me" or "j_bof_elephant",
-            vars = {
-                card.ability.extra.chips
-            }
+            vars = { card.ability.extra.chips }
         }
     end,
     calculate = function(self, card, context)
@@ -34,7 +32,7 @@ BundlesOfFun.Joker {
             end
         end
     end,
-    set_sprites = function(self, card, initial)
+    set_sprites = function(self, card)
         if self.discovered and BundlesOfFun.config.evil_dih then
             card.children.center.atlas = G.ASSET_ATLAS["bof_evil_dih"]
         end

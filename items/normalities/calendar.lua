@@ -23,7 +23,7 @@ BundlesOfFun.Joker {
             }
         }
     end,
-    add_to_deck = function(self, card, context)
+    add_to_deck = function(self, card)
         card.ability.extra.og_shop_size = card.ability.extra.shop_size
         G.E_MANAGER:add_event(Event({
             func = function()
@@ -63,7 +63,7 @@ BundlesOfFun.Joker {
             card.ability.extra.shop_ended = true
         end
     end,
-    remove_from_deck = function(self, card, context)
+    remove_from_deck = function(self, card)
         G.E_MANAGER:add_event(Event({
             func = function()
                 change_shop_size(-card.ability.extra.shop_size)
@@ -71,7 +71,7 @@ BundlesOfFun.Joker {
             end
         }))
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {

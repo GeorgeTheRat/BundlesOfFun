@@ -21,7 +21,7 @@ BundlesOfFun.Joker {
     calc_dollar_bonus = function(self, card)
         return card.ability.extra.dollars
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             text = {
                 {

@@ -43,6 +43,6 @@ BundlesOfFun.Joker {
             return nil, true
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
     end
 }

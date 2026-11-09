@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
     unlocked = false,
     blueprint_compat = false,
     atlas = "joker",
-    loc_vars = function(self, info_queue, card)
+    loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
     end,
     calculate = function(self, card, context)
@@ -56,7 +56,7 @@ BundlesOfFun.Joker {
             }
         end
     end,
-    joker_display_def = function(JokerDisplay)
+    joker_display_def = function()
         return {
             reminder_text = {
                 { text = "(", colour = G.C.UI.TEXT_INACTIVE },
