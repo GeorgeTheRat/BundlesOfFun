@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             amount = 5,
-            odds = 4,
+            odds = 5,
             dollars = 1
         }
     },
