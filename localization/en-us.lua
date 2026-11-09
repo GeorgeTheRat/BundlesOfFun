@@ -1004,7 +1004,7 @@ return {
                     "Played {C:attention}Enhanced{} cards give",
                     "{C:mult}+#1#{} Mult when scored,",
                     "increases by {C:mult}+#2#{} Mult when",
-                    "a {C:attention}Enhanced{} card is discarded"
+                    "an {C:attention}Enhanced{} card is discarded"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
@@ -1731,8 +1731,8 @@ return {
             bl_bof_frequent = {
                 name = "The Frequent",
                 text = {
-                    "Cards with #1# suit",
-                    "are drawn face down"
+                    "#1# cards are",
+                    "drawn face down"
                 }
             },
             bl_bof_random = {
