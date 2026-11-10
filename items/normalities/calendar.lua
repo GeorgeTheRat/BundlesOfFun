@@ -37,7 +37,7 @@ BundlesOfFun.Joker {
             change_shop_size(card.ability.extra.shop_size)
             card.ability.extra.shop_ended = nil
         end
-        if context.buying_card and card.ability.extra.shop_size > 0 then
+        if context.buying_card and context.card ~= card and card.ability.extra.shop_size > 0 then
             G.E_MANAGER:add_event(Event({
                 func = function()
                     change_shop_size(math.min(-card.ability.extra.shop_size_mod, (card.ability.extra.shop_size_mod - card.ability.extra.shop_size) + 1))
