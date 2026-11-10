@@ -13,6 +13,7 @@ BundlesOfFun.Joker {
     attributes = { "scaling", "generation", "passive", "booster", "food", "fish" },
     cost = 7,
     rarity = 3,
+    blueprint_compat = false,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "joker",
