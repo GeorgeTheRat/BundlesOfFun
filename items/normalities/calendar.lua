@@ -13,7 +13,7 @@ BundlesOfFun.Joker {
     attributes = { "passive", "shop" },
     cost = 7,
     rarity = 2,
-    blueprint_compat = true,
+    blueprint_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
