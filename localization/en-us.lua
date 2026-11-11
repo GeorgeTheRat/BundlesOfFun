@@ -1840,15 +1840,15 @@ return {
             bl_bof_water = {
                 name = "Tidal Water",
                 text = {
-                    "Leftmost and Rightmost Joker, scoring",
-                    "card, and held card are debuffed"
+                    "Leftmost and Rightmost",
+                    "Jokers are disabled"
                 }
             },
             bl_bof_air = {
                 name = "Howling Air",
                 text = {
-                    "Small Blind and Big Blind this",
-                    "Ante are huge and unskippable"
+                    "Small Blind and Big Blind this Ante",
+                    "are very large and unskippable"
                 }
             },
             bl_bof_earth = {

@@ -323,10 +323,10 @@ local files = {
     },
     finishers = {
         list = {
-            -- "fire",
-            -- "water",
-            -- "air",
-            -- "earth",
+            "fire",
+            "water",
+            "air",
+            "earth",
             "aether"
         }, directory = "items/finishers/"
     }

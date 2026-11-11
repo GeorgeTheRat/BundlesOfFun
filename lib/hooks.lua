@@ -287,6 +287,10 @@ function Game:start_run(arg)
     G.GAME.bof_tiny_active = nil
     G.GAME.bof_tiny_scaled_ante = nil
     G.GAME.bof_particle_active = nil
+    G.GAME.bof_air_active_ante = nil
+    G.GAME.bof_air_ui_active = nil
+    G.GAME.bof_air_sound_active = nil
+    G.GAME.bof_water_edge_signature = nil
     G.GAME.bof_stress_locked_ante = nil
     G.GAME.bof_risk_joker = nil
     G.GAME.bof_frequent_suit = nil
@@ -311,6 +315,87 @@ function Game:start_round()
     return original_game_start_round and original_game_start_round(self)
 end
 
+function BundlesOfFun.air_active()
+    local ante = BOF.nc(G.GAME, "round_resets", "ante")
+    return BOF.nc(G.GAME, "round_resets", "blind_choices", "Boss") == "bl_bof_air" or (ante and BOF.nc(G.GAME, "bof_air_active_ante") == ante)
+end
+
+function BundlesOfFun.air_activation_sound()
+    if not G.GAME.bof_air_sound_active then
+        G.GAME.bof_air_sound_active = true
+        play_sound("cancel")
+    end
+end
+
+function BundlesOfFun.refresh_air_blinds(was_active)
+    local active = BundlesOfFun.air_active()
+    if G.GAME then
+        G.GAME.bof_air_ui_active = active
+    end
+    if was_active ~= active then
+        if active then
+            BundlesOfFun.air_activation_sound()
+        elseif G.GAME then
+            play_sound("cancel")
+            G.GAME.bof_air_sound_active = nil
+        end
+    end
+    if not G.blind_select_opts or was_active == active then return false end
+
+    for _, blind_choice in ipairs({ "Small", "Big" }) do
+        local key = string.lower(blind_choice)
+        local current = G.blind_select_opts[key]
+        if current and current.parent then
+            local parent = current.parent
+            local offset_y = BOF.nc(current, "alignment", "offset", "y") or 0
+            current:remove()
+            G.blind_select_opts[key] = UIBox {
+                T = { parent.T.x, 0, 0, 0 },
+                definition = {
+                    n = G.UIT.ROOT,
+                    config = { align = "cm", colour = G.C.CLEAR },
+                    nodes = { UIBox_dyn_container({ create_UIBox_blind_choice(blind_choice) }, false, get_blind_main_colour(blind_choice)) }
+                },
+                config = { align = "bmi", offset = { x = 0, y = G.ROOM.T.y + 9 }, major = parent, xy_bond = "Weak" }
+            }
+            parent.config.object = G.blind_select_opts[key]
+            parent.config.object:recalculate()
+            G.blind_select_opts[key].parent = parent
+            G.blind_select_opts[key].alignment.offset.y = offset_y
+        end
+    end
+    return true
+end
+
+function BundlesOfFun.juice_air_blind_scores()
+    if not G.blind_select_opts then return end
+
+    for _, key in ipairs({ "small", "big" }) do
+        local blind_score = G.blind_select_opts[key] and G.blind_select_opts[key]:get_UIE_by_ID("blind_score")
+        if blind_score then blind_score:juice_up() end
+    end
+end
+
+function BundlesOfFun.sync_air_blinds()
+    if not G.GAME or G.STATE ~= G.STATES.BLIND_SELECT or not G.blind_select_opts then return end
+
+    local active = BundlesOfFun.air_active()
+    local was_active = G.GAME.bof_air_ui_active
+    if was_active == nil then
+        G.GAME.bof_air_ui_active = active
+    elseif was_active ~= active then
+        if BundlesOfFun.refresh_air_blinds(was_active) then
+            BundlesOfFun.juice_air_blind_scores()
+        end
+    end
+end
+
+local original_game_update_air_blinds = Game.update
+function Game:update(dt)
+    original_game_update_air_blinds(self, dt)
+    BundlesOfFun.sync_air_blinds()
+end
+
 -- tiny: the blind-select screen preview (used by the lovely/enemies.toml
 -- patch to functions/UI_definitions.lua) computes its own chip amount
 -- independently of Blind:set_blind, so it needs the same multiplier applied
@@ -323,6 +408,9 @@ end
 function BundlesOfFun.blind_amount_preview(blind_choice, amount)
     if blind_choice == 'Small' and (G.GAME.bof_tiny_active or G.GAME.bof_tiny_scaled_ante == G.GAME.round_resets.ante) then
         amount = math.floor(amount * 1.5)
+    end
+    if BundlesOfFun.air_active() and (blind_choice == 'Small' or blind_choice == 'Big') then
+        amount = math.floor(amount * 2)
     end
     return amount
 end
@@ -363,6 +451,10 @@ function Blind:set_blind(blind, reset, silent)
             self.chip_text = number_format(self.chips)
             G.GAME.bof_tiny_scaled_ante = G.GAME.round_resets.ante
             G.GAME.bof_tiny_active = nil
+        end
+        if BundlesOfFun.air_active() and (blind.key == "bl_small" or blind.key == "bl_big") then
+            self.chips = math.floor(self.chips * 2)
+            self.chip_text = number_format(self.chips)
         end
         if blind.boss and G.GAME.bof_particle_active then
             G.GAME.bof_particle_active = nil
@@ -548,6 +640,7 @@ function BundlesOfFun.blind_skip_locked(blind_choice)
         return blind_choice == 'Small'
     end
     if G.GAME.bof_particle_active and (blind_choice == 'Small' or blind_choice == 'Big') then return true end
+    if BundlesOfFun.air_active() and (blind_choice == 'Small' or blind_choice == 'Big') then return true end
     return false
 end
 
@@ -583,10 +676,11 @@ end
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     local blind_on_deck = BOF.nc(G.GAME, "blind_on_deck")
-    if (G.GAME.bof_tiny_active and blind_on_deck == 'Small')
-        or (G.GAME.bof_particle_active and (blind_on_deck == 'Small' or blind_on_deck == 'Big')) then
-        return
-    end
+    if
+        (G.GAME.bof_tiny_active and blind_on_deck == "Small") or
+        (G.GAME.bof_particle_active and (blind_on_deck == "Small" or blind_on_deck == "Big")) or
+        (BundlesOfFun.air_active() and (blind_on_deck == "Small" or blind_on_deck == "Big"))
+    then return end
     original_skip_blind(e)
     local back = BOF.nc(G.GAME, "selected_back")
     if BOF.nc(back, "effect", "center", "key") == "b_bof_retro" then
