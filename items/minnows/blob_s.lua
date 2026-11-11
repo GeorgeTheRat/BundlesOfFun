@@ -4,7 +4,7 @@ BundlesOfFun.Consumable {
     bundle = "minnows",
     set = "Fish",
     pools = { ["fish_s"] = true },
-    pos = { x = 6, y = 0 },
+    pos = { x = 5, y = 0 },
     attributes = { "generation", "planet" },
     config = {
         card_limit = 1,

@@ -5,7 +5,7 @@ BundlesOfFun.Consumable {
     set = "Fish",
     soul_set = "Fish",
     pools = { ["fish_l"] = true },
-    pos = { x = 6, y = 2 },
+    pos = { x = 5, y = 2 },
     attributes = { "generation", "consumable", "tarot", "planet", "spectral", "fish" },
     config = {
         card_limit = 1,

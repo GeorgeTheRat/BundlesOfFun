@@ -1871,16 +1871,14 @@ return {
                 name = "Tackle Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:fish}Fish{} cards",
-                    "{C:inactive,s:0.8}(70% chance of {C:white,E:1,X:big}Big{C:inactive,s:0.8} Fish)"
+                    "{C:attention}#2# {C:fish}Fish{} cards"
                 }
             },
             p_bof_tackle_jumbo = {
                 name = "Jumbo Tackle Pack",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2# {C:fish}Fish{} cards",
-                    "{C:inactive,s:0.8}(70% chance of {C:white,E:1,X:big}Big{C:inactive,s:0.8} Fish)"
+                    "{C:attention}#2# {C:fish}Fish{} cards"
                 }
             },
             p_bof_fry = {
