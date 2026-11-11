@@ -18,6 +18,7 @@ BundlesOfFun.Joker {
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "bof_beekeeper")
         return {
+            key = BundlesOfFun.config.evil_dih and "j_bof_beekeper" or "j_bof_beekeeper",
             vars = {
                 card.ability.extra.amount,
                 numerator,
@@ -27,7 +28,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.initial_scoring_step then
+        if context.before then
             local diamonds = 0
             for _, played_card in ipairs(context.full_hand) do
                 if played_card:is_suit("Diamonds") then

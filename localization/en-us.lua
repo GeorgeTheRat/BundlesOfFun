@@ -922,6 +922,16 @@ return {
                 }
             },
             j_bof_beekeeper = {
+                name = "Beekeeper",
+                text = {
+                    "If played hand has {C:attention}#1# {C:diamonds}Diamonds{},",
+                    "each played card has",
+                    "a {C:green}#2# in #3#{} chance to",
+                    "permanently gain {C:money}$#4#{} per",
+                    "{C:attention}unique suit{} held in hand"
+                }
+            },
+            j_bof_beekeper = {
                 name = "Beekeper",
                 text = {
                     "If played hand has {C:attention}#1# {C:diamonds}Diamonds{},",

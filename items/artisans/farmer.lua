@@ -23,7 +23,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.initial_scoring_step then
+        if context.before then
             local clubs = 0
             for _, played_card in ipairs(context.full_hand) do
                 if played_card:is_suit("Clubs") then

@@ -187,7 +187,7 @@ local files = {
             "butcher",
             "bartender",
             "farmer",
-            "beekeper",
+            "beekeeper",
             "crossmod/wizard",
             "crossmod/ruler"
         }, directory = "items/artisans/"
