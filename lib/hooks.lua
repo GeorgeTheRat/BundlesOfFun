@@ -291,6 +291,7 @@ function Game:start_run(arg)
     G.GAME.bof_air_ui_active = nil
     G.GAME.bof_air_sound_active = nil
     G.GAME.bof_water_edge_signature = nil
+    G.GAME.bof_shrimp_booster_size_mod = 0
     G.GAME.bof_stress_locked_ante = nil
     G.GAME.bof_risk_joker = nil
     G.GAME.bof_frequent_suit = nil
@@ -313,6 +314,31 @@ function Game:start_round()
     G.GAME.bof_octopus_triggered = nil
     G.GAME.bof_postman_play_order = nil
     return original_game_start_round and original_game_start_round(self)
+end
+
+-- booster pack function for fried shrimp so that it DOESN'T add to loc_vars
+function BundlesOfFun.booster_pack_size(extra, include_shrimp)
+    local size = (extra or 1) + (BOF.nc(G.GAME, "modifiers", "booster_size_mod") or 0)
+    if include_shrimp ~= false then
+        size = size + (BOF.nc(G.GAME, "bof_shrimp_booster_size_mod") or 0)
+    end
+    return math.max(1, size)
+end
+
+-- booster pack loc_vars update with pianoman
+local original_booster_loc_vars = SMODS.Booster.loc_vars
+function SMODS.Booster.loc_vars(self, info_queue, card)
+    local result = original_booster_loc_vars(self, info_queue, card)
+    if not result or not result.vars or not card or not card.ability then
+        return result
+    end
+    local size = BundlesOfFun.booster_pack_size(card.ability.extra or BOF.nc(self, "config", "extra"), false)
+    local choose = (card.ability.choose or BOF.nc(self, "config", "choose") or 1) + (BOF.nc(G.GAME, "modifiers", "booster_choice_mod") or 0)
+    local options = BOF.nc(G.GAME, "jest_change_booster_options")
+    local pianoman_applies = BOF.nc(G.GAME, "bof_pianoman_unlimited_boosters") and not (options and (options.trigger or options.pack_choices == "unlimited"))
+    result.vars[2] = size
+    result.vars[1] = pianoman_applies and size or math.min(choose, size)
+    return result
 end
 
 function BundlesOfFun.air_active()

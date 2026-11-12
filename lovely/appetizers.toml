@@ -1,6 +1,7 @@
 [manifest]
 version = "1.0.0"
 
+# apple core preventing other scoring functionality 
 [[patches]]
 [patches.pattern]
 target = '=[SMODS _ "src/utils.lua"]'
@@ -32,4 +33,39 @@ end
 SMODS.current_evaluated_object = _card
 local eval, post = eval_card(_card, context)
 -- patch end
+'''
+
+# fried shrimp booster size modifier
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+position = "at"
+match_indent = true
+pattern = '''
+    G.GAME.pack_choices = math.min((self.ability.choose or self.config.center.config.choose or 1) + (G.GAME.modifiers.booster_choice_mod or 0), self.ability.extra and math.max(1, self.ability.extra + (G.GAME.modifiers.booster_size_mod or 0)) or self.config.center.extra and math.max(1, self.config.center.extra + (G.GAME.modifiers.booster_size_mod or 0)) or 1)
+'''
+payload = '''
+    G.GAME.pack_choices = math.min((self.ability.choose or self.config.center.config.choose or 1) + (G.GAME.modifiers.booster_choice_mod or 0), BundlesOfFun.booster_pack_size(self.ability.extra or self.config.center.config.extra or self.config.center.extra))
+'''
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+position = "at"
+match_indent = true
+pattern = '''
+        local _size = math.max(1, self.ability.extra + (G.GAME.modifiers.booster_size_mod or 0))
+'''
+payload = '''
+        local _size = BundlesOfFun.booster_pack_size(self.ability.extra)
+'''
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/game_object.lua"]'
+position = "at"
+match_indent = true
+pattern = '''
+        local _size = math.max(1, SMODS.OPENED_BOOSTER.ability.extra + (G.GAME.modifiers.booster_size_mod or 0))
+'''
+payload = '''
+        local _size = BundlesOfFun.booster_pack_size(SMODS.OPENED_BOOSTER.ability.extra)
 '''

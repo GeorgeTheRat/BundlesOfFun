@@ -15,55 +15,57 @@ local active_bof_blind_key = BOF.nc(active_bof_blind, "config", "blind", "key")
 local is_risk = active_bof_blind_key == "bl_bof_risk" and not active_bof_blind.disabled
 local is_water = active_bof_blind_key == "bl_bof_water" and not active_bof_blind.disabled
 if G.jokers and self.area == G.jokers and (is_risk or is_water) then
-  local rightmost = self == G.jokers.cards[#G.jokers.cards]
-  local target = is_water and (#G.jokers.cards > 0 and (self == G.jokers.cards[1] or rightmost)) or rightmost
-  if is_water then
-    local edge_signature
-    if #G.jokers.cards == 1 then
-      edge_signature = tostring(G.jokers.cards[1].sort_id or G.jokers.cards[1].ID)
-    elseif #G.jokers.cards > 1 then
-      local first_edge = tostring(G.jokers.cards[1].sort_id or G.jokers.cards[1].ID)
-      local last_edge = tostring(G.jokers.cards[#G.jokers.cards].sort_id or G.jokers.cards[#G.jokers.cards].ID)
-      edge_signature = first_edge < last_edge and (first_edge .. ":" .. last_edge) or (last_edge .. ":" .. first_edge)
+    local rightmost = self == G.jokers.cards[#G.jokers.cards]
+    local target = is_water and (#G.jokers.cards > 0 and (self == G.jokers.cards[1] or rightmost)) or rightmost
+    if is_water then
+        local edge_signature
+        if #G.jokers.cards == 1 then
+            edge_signature = tostring(G.jokers.cards[1].sort_id or G.jokers.cards[1].ID)
+        elseif #G.jokers.cards > 1 then
+            local first_edge = tostring(G.jokers.cards[1].sort_id or G.jokers.cards[1].ID)
+            local last_edge = tostring(G.jokers.cards[#G.jokers.cards].sort_id or G.jokers.cards[#G.jokers.cards].ID)
+            edge_signature = first_edge < last_edge and (first_edge .. ":" .. last_edge) or (last_edge .. ":" .. first_edge)
+        end
+        if G.GAME.bof_water_edge_signature ~= edge_signature then
+            G.GAME.bof_water_edge_signature = edge_signature
+            if edge_signature then
+                play_sound("cancel", 0.7, 0.7)
+            end
+        end
+        local previous_target = self.ability.bof_water_edge_debuff
+        if previous_target ~= target and (previous_target or target) then
+            self.ability.bof_water_edge_debuff = target and true or nil
+            SMODS.recalc_debuff(self)
+            if target then
+                self:juice_up()
+                active_bof_blind:juice_up()
+            end
+        end
+    elseif self.debuff ~= target then
+        self:set_debuff(target)
+        if target then
+            self:juice_up()
+            active_bof_blind:juice_up()
+            play_sound("cancel", 0.7, 0.7)
+        end
     end
-    if G.GAME.bof_water_edge_signature ~= edge_signature then
-      G.GAME.bof_water_edge_signature = edge_signature
-      if edge_signature then play_sound("cancel", 0.7, 0.7) end
+    if is_risk and rightmost then
+        G.GAME.bof_risk_joker = self
     end
-    local previous_target = self.ability.bof_water_edge_debuff
-    if previous_target ~= target and (previous_target or target) then
-      self.ability.bof_water_edge_debuff = target and true or nil
-      SMODS.recalc_debuff(self)
-      if target then
-        self:juice_up()
-        active_bof_blind:juice_up()
-      end
-    end
-  elseif self.debuff ~= target then
-    self:set_debuff(target)
-    if target then
-      self:juice_up()
-      active_bof_blind:juice_up()
-      play_sound("cancel", 0.7, 0.7)
-    end
-  end
-  if is_risk and rightmost then
-    G.GAME.bof_risk_joker = self
-  end
 elseif G.GAME and G.GAME.bof_risk_joker == self and self.debuff then
     self:set_debuff(false)
     G.GAME.bof_risk_joker = nil
 end
 if self.ability and self.ability.bof_water_edge_debuff and (not is_water or self.area ~= G.jokers) then
-  self.ability.bof_water_edge_debuff = nil
-  if G.GAME.blind then
-    SMODS.recalc_debuff(self)
-  else
-    self:set_debuff(false)
-  end
+    self.ability.bof_water_edge_debuff = nil
+    if G.GAME.blind then
+        SMODS.recalc_debuff(self)
+    else
+        self:set_debuff(false)
+    end
 end
 if G.GAME and not is_water then
-  G.GAME.bof_water_edge_signature = nil
+    G.GAME.bof_water_edge_signature = nil
 end
 -- patch end
 '''
@@ -117,7 +119,9 @@ pattern = '''
 {n=G.UIT.T, config={text = number_format(blind_amt), scale = score_number_scale(0.9, blind_amt), colour = disabled and G.C.UI.TEXT_INACTIVE or G.C.RED, shadow =  not disabled}}
 '''
 payload = '''
+-- bof patch
 {n=G.UIT.T, config={id = 'blind_score', text = number_format(blind_amt), scale = score_number_scale(0.9, blind_amt), colour = disabled and G.C.UI.TEXT_INACTIVE or G.C.RED, shadow =  not disabled}}
+-- patch end
 '''
 
 # refresh small/big previews when reroll adds or removes howling air
@@ -127,17 +131,19 @@ target = "functions/button_callbacks.lua"
 position = "at"
 match_indent = true
 pattern = '''
-  local par = G.blind_select_opts.boss.parent
-  G.GAME.round_resets.blind_choices.Boss = get_new_boss()
+local par = G.blind_select_opts.boss.parent
+G.GAME.round_resets.blind_choices.Boss = get_new_boss()
 '''
 payload = '''
-  local par = G.blind_select_opts.boss.parent
-  local bof_air_was_active = BundlesOfFun.air_active()
-  G.GAME.round_resets.blind_choices.Boss = get_new_boss()
-  if G.GAME.round_resets.blind_choices.Boss ~= "bl_bof_air" then
+-- bof patch
+local par = G.blind_select_opts.boss.parent
+local bof_air_was_active = BundlesOfFun.air_active()
+G.GAME.round_resets.blind_choices.Boss = get_new_boss()
+if G.GAME.round_resets.blind_choices.Boss ~= "bl_bof_air" then
     G.GAME.bof_air_active_ante = nil
-  end
-  if BundlesOfFun.refresh_air_blinds(bof_air_was_active) then
+end
+if BundlesOfFun.refresh_air_blinds(bof_air_was_active) then
     BundlesOfFun.juice_air_blind_scores()
-  end
+end
+-- patch end
 '''

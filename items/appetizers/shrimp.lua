@@ -21,15 +21,14 @@ BundlesOfFun.Joker {
         return { vars = { card.ability.extra.packs } }
     end,
     add_to_deck = function()
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + 2
+        G.GAME.bof_shrimp_booster_size_mod = (G.GAME.bof_shrimp_booster_size_mod or 0) + 2
     end,
     calculate = function(self, card, context)
         if context.opening_booster then
             card.ability.extra.fish_created_this_booster = false
         end
         if context.create_booster_card then
-            local _size = math.max(1, context.booster.ability.extra + (G.GAME.modifiers.booster_size_mod or 0))
+            local _size = BundlesOfFun.booster_pack_size(context.booster.ability.extra)
             if context.index == _size - 1 then
                 card.ability.extra.fish_created_this_booster = true
                 return {
@@ -72,8 +71,7 @@ BundlesOfFun.Joker {
         end
     end,
     remove_from_deck = function()
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
-        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - 2
+        G.GAME.bof_shrimp_booster_size_mod = (G.GAME.bof_shrimp_booster_size_mod or 0) - 2
     end,
     joker_display_def = function()
         return {
