@@ -1748,8 +1748,8 @@ return {
             bl_bof_random = {
                 name = "The Random",
                 text = {
-                    "Shuffle played",
-                    "and held cards"
+                    "Shuffle all",
+                    "played cards"
                 }
             },
             bl_bof_useless = {

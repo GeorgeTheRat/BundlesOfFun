@@ -44,8 +44,8 @@ if G.jokers and self.area == G.jokers and (is_risk or is_water) then
     if target then
       self:juice_up()
       active_bof_blind:juice_up()
-      play_sound('cancel', 0.7, 0.7)
-      end
+      play_sound("cancel", 0.7, 0.7)
+    end
   end
   if is_risk and rightmost then
     G.GAME.bof_risk_joker = self

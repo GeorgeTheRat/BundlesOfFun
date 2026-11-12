@@ -557,7 +557,72 @@ local original_evaluate_play = G.FUNCS.evaluate_play
 G.FUNCS.evaluate_play = function(e)
     local blind_center = BOF.nc(G.GAME, "blind", "config", "blind")
     if blind_center and not G.GAME.blind.disabled then
-        if blind_center.key == "bl_bof_dense" then
+        if blind_center.key == "bl_bof_random" and #G.play.cards > 0 then
+            -- this event-chain thing is super scuffed but needed since calculation has to wait until the animated shuffle finishes or it records the pre-shuffle order
+            local played_cards = {}
+            for _, card in ipairs(G.play.cards) do
+                played_cards[#played_cards + 1] = card
+            end
+            local shuffle_events = {
+                {
+                    trigger = "immediate",
+                    func = function()
+                        for _, card in ipairs(played_cards) do card:flip() end
+                        return true
+                    end
+                },
+                {
+                    trigger = "after",
+                    delay = 0.2,
+                    func = function()
+                        G.play:shuffle("bof_random")
+                        play_sound("cardSlide1", 0.85)
+                        return true
+                    end
+                },
+                {
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        G.play:shuffle("bof_random")
+                        play_sound("cardSlide1", 1.15)
+                        return true
+                    end
+                },
+                {
+                    trigger = "after",
+                    delay = 0.15,
+                    func = function()
+                        G.play:shuffle("bof_random")
+                        play_sound("cardSlide1", 1)
+                        return true
+                    end
+                },
+                {
+                    trigger = "after",
+                    delay = 0.5,
+                    func = function() return true end
+                },
+                {
+                    trigger = "immediate",
+                    func = function()
+                        for _, card in ipairs(played_cards) do card:flip() end
+                        return true
+                    end
+                },
+                {
+                    trigger = "immediate",
+                    func = function()
+                        original_evaluate_play(e)
+                        return true
+                    end
+                }
+            }
+            for i = #shuffle_events, 1, -1 do
+                G.E_MANAGER:add_event(Event(shuffle_events[i]), "base", true)
+            end
+            return
+        elseif blind_center.key == "bl_bof_dense" then
             BundlesOfFun.dense_clear_marks()
             local _, _, _, scoring_hand = G.FUNCS.get_poker_hand_info(G.play.cards)
             local target = nil
