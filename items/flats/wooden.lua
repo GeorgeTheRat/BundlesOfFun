@@ -25,7 +25,6 @@ BundlesOfFun.Back {
     end
 }
 
--- todo: make localization merge with hiker like with bonus
 SMODS.Enhancement {
     key = "wooden",
     name = "Wooden Card",
@@ -34,7 +33,13 @@ SMODS.Enhancement {
     no_collection = true,
     atlas = "wooden",
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.bonus } }
+        local ability = card and card.ability or self.config
+        return { vars = { (ability.bonus or self.config.bonus or 0) + (ability.perma_bonus or 0) } }
+    end,
+    generate_ui = function(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
+        local merged_vars = copy_table(specific_vars or {})
+        merged_vars.bonus_chips = nil
+        SMODS.Enhancement.generate_ui(self, info_queue, card, desc_nodes, merged_vars, full_UI_table)
     end,
     in_pool = function()
         return false
