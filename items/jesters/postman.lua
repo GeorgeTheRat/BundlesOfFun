@@ -1,6 +1,6 @@
 BundlesOfFun.Joker {
 	key = "postman",
-	name = "Postman",
+	name = "The Postman",
 	bundle = "jesters",
 	pos = { x = 8, y = 3 },
 	attributes = { "suit", "diamonds", "hearts", "spades", "clubs", "passive" },

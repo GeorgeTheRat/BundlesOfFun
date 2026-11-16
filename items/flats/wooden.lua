@@ -28,7 +28,7 @@ BundlesOfFun.Back {
 -- todo: make localization merge with hiker like with bonus
 SMODS.Enhancement {
     key = "wooden",
-    name = "Wooden",
+    name = "Wooden Card",
     config = { bonus = 5 },
     attributes = { "chips" },
     no_collection = true,

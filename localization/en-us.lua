@@ -616,7 +616,7 @@ return {
                 }
             },
             j_bof_postman = {
-                name = "Postman",
+                name = "The Postman",
                 text = {
                     "First {C:attention}four{} played",
                     "cards additionally",
@@ -1313,7 +1313,7 @@ return {
         -- wooden (for, what do you know, wooden deck)
         Enhanced = {
             m_bof_wooden = {
-                name = "Wooden",
+                name = "Wooden Card",
                 text = {
                     "{C:chips}+#1#{} extra chips,",
                     "{s:0.8}does not count for",
