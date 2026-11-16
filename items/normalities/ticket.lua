@@ -25,7 +25,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before and not not context.blueprint then
+        if context.before and not context.blueprint then
             local faces = false
             for _, playing_card in pairs(G.hand.cards) do
                 if playing_card:is_face() then
