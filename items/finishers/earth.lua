@@ -6,6 +6,7 @@ BundlesOfFun.Blind {
 	attributes = { "enhancement" },
 	atlas = "blind",
 	boss = { showdown = true },
+	dollars = 8,
 	boss_colour = HEX("b5b26b"),
 	calculate = function(self, blind, context)
 		if blind.disabled or not context.hand_drawn then return end

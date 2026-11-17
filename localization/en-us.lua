@@ -735,6 +735,15 @@ return {
                     }
                 }
             },
+            j_bof_synesthesiac = {
+                name = "Synesthesiac",
+                text = {
+                    "This Joker gives {C:mult}+#1#{} Mult",
+                    "for every {C:attention}5{} played before",
+                    "{C:attention}obtaining{} this Joker",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
@@ -1052,45 +1061,6 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
-            j_bof_kay = {
-                name = "Kay",
-                text = {
-                    "First played {C:attention}Enhanced{} card and all",
-                    "cards that {C:attention}share{} its {C:enhanced}Enhancement",
-                    "in played hand permanently",
-                    "gain {C:white,X:mult}X#1#{} Mult when scored"
-                },
-                unlock = {
-                    "{E:1,s:1.3}?????"
-                }
-            },
-            j_bof_jung = {
-                name = "Jung",
-                text = {
-                    "{C:attention}Other{} Jokers each give",
-                    "an additional {C:white,X:mult}X#1#{} Mult",
-                    "for every {C:money}$#2#{} of {C:attention}sell value"
-                },
-                unlock = {
-                    "{E:1,s:1.3}?????"
-                }
-            },
-            j_bof_white = {
-                name = "White",
-                text = {
-                    {
-                        "{C:blue}+#1#{} Hand#<s>1# if played {C:attention}poker hand",
-                        "has not been {C:attention}played{} this round"
-                    },
-                    {
-                        "{C:blue}+#2#{} Hand#<s>2# instead if played",
-                        "hand is a {C:attention}Straight{} or higher"
-                    }
-                },
-                unlock = {
-                    "{E:1,s:1.3}?????"
-                }
-            },
             j_bof_durie = {
                 name = "Durie",
                 text = {
@@ -1139,12 +1109,51 @@ return {
                     "{E:1,s:1.3}?????"
                 }
             },
+            j_bof_white = {
+                name = "White",
+                text = {
+                    {
+                        "{C:blue}+#1#{} Hand#<s>1# if played {C:attention}poker hand",
+                        "has not been {C:attention}played{} this round"
+                    },
+                    {
+                        "{C:blue}+#2#{} Hand#<s>2# instead if played",
+                        "hand is a {C:attention}Straight{} or higher"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
             j_bof_alder = {
                 name = "Alder",
                 text = {
                     "Retrigger all played",
                     "cards {C:attention}once{} for every",
                     "{C:attention}empty consumable{} slot"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_kay = {
+                name = "Kay",
+                text = {
+                    "First played {C:attention}Enhanced{} card and all",
+                    "cards that {C:attention}share{} its {C:enhanced}Enhancement",
+                    "in played hand permanently",
+                    "gain {C:white,X:mult}X#1#{} Mult when scored"
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????"
+                }
+            },
+            j_bof_jung = {
+                name = "Jung",
+                text = {
+                    "{C:attention}Other{} Jokers each give",
+                    "an additional {C:white,X:mult}X#1#{} Mult",
+                    "for every {C:money}$#2#{} of {C:attention}sell value"
                 },
                 unlock = {
                     "{E:1,s:1.3}?????"
@@ -1200,7 +1209,9 @@ return {
                     "Earn an additional {C:money}$#1#{} at end",
                     "of round per held {C:attention}consumable",
                     "{C:attention}Consumables{} in shop may",
-                    "rarely appear {C:dark_edition,T:e_negative}Negative" -- todo: make this display e_negative_consumable instead
+                    "rarely appear {C:dark_edition,T:e_negative}Negative"
+                    -- to be used instead when steamodded fixes a bug with T_vars not functioning
+                    -- "rarely appear {C:dark_edition,T:bof_negative_consumable,T_vars=1}Negative"
                 },
                 unlock = {
                     "Have one of each",
@@ -1847,8 +1858,8 @@ return {
             bl_bof_air = {
                 name = "Howling Air",
                 text = {
-                    "Small Blind and Big Blind this Ante",
-                    "are very large and unskippable"
+                    "All Blinds this Ante are",
+                    "extra large and unskippable"
                 }
             },
             bl_bof_earth = {
@@ -1932,6 +1943,13 @@ return {
                 text = {
                     "{C:small,E:1}Small{}, {C:big,E:1}Big{}, and",
                     "{E:1,V:1}Boss{}/{E:1,V:2}Showdown"
+                }
+            },
+            -- to be used in fossilized deck when steamodded fixes a bug with T_vars not functioning
+            bof_negative_consumable = {
+                name = "Negative",
+                text = {
+                    "{C:dark_edition}+#1#{} consumable slot#<s>1#",
                 }
             }
         }

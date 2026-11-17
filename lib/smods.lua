@@ -262,6 +262,15 @@ SMODS.UndiscoveredSprite({
 
 -- check for some deck unlocks
 SMODS.current_mod.calculate = function(self, context)
+    -- synesthesiac played 5 tracking
+    if context.before then
+        G.GAME.bof_played_fives = G.GAME.bof_played_fives or 0
+        for _, c in ipairs(G.play.cards) do
+            if c.base.id == 5 then
+                G.GAME.bof_played_fives = G.GAME.bof_played_fives + 1
+            end
+        end
+    end
     if context.end_of_round and context.main_eval then
         G.GAME.current_round.bof_wooden_destroyed = 0
     end

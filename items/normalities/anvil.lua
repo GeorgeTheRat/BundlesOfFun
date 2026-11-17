@@ -2,12 +2,12 @@ BundlesOfFun.Joker {
     key = "anvil",
     name = "Anvil",
     bundle = "normalities",
-    -- pos = { x = 9, y = 5 },
+    pos = { x = 9, y = 5 },
     attributes = { "rank" },
     cost = 4,
     rarity = 1,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
             local highest_rank = -1

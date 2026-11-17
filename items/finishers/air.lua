@@ -6,6 +6,7 @@ BundlesOfFun.Blind {
 	attributes = { "ante", "skip", "large_blind" },
 	atlas = "blind",
 	boss = { showdown = true },
+	dollars = 8,
 	mult = 4,
 	boss_colour = HEX("97c9d4"),
 	set_blind = function(self, reset, silent)

@@ -3,12 +3,13 @@ BundlesOfFun.Joker {
     name = "Road Sign",
     bundle = "normalities",
     config = { extra = { xmult = 4 } },
-    -- pos = { x = 13, y = 5 },
+    pos = { x = 13, y = 5 },
+    pixel_size = { w = 47 },
     attributes = { "xmult", "hand_type" },
     cost = 7,
     rarity = 2,
     blueprint_compat = true,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.xmult } }
     end,

@@ -179,7 +179,8 @@ local files = {
             "cloudy",
             "knight",
             "gelatinous",
-            "pinhead"
+            "pinhead",
+            "synesthesiac"
         }, directory = "items/jesters/"
     },
     artisans = {
@@ -223,10 +224,10 @@ local files = {
             "durie",
             "mezzetino",
             "beltrame",
+            "white",
             "alder",
             "jung",
-            "kay",
-            "white"
+            "kay"
         }, directory = "items/fables/"
     },
     flats = {
