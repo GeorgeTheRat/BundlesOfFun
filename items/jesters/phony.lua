@@ -44,6 +44,7 @@ BundlesOfFun.Joker {
                 {
                     ref_table = "card.ability.extra",
                     ref_value = "mult",
+                    retrigger_type = "*",
                     signed = true, 
                     colour = G.C.MULT
                 },
@@ -54,6 +55,7 @@ BundlesOfFun.Joker {
                 {
                     ref_table = "card.ability.extra",
                     ref_value = "chips",
+                    retrigger_type = "*",
                     colour = G.C.CHIPS
                 }
             }

@@ -36,8 +36,13 @@ BundlesOfFun.Joker {
     joker_display_def = function()
         return {
             text = {
-                { text = "+", colour = G.C.MULT },
-                { ref_table = "card.joker_display_values", ref_value = "mult", colour = G.C.MULT }
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "mult",
+                    retrigger_type = "*",
+                    signed = true,
+                    colour = G.C.MULT 
+                }
             },
             calc_function = function(card)
                 local fives = card.added_to_deck and card.ability.extra.fives or G.GAME.bof_played_fives or 0

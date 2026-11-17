@@ -35,6 +35,7 @@ BundlesOfFun.Joker {
                 {
                     ref_table = "card.joker_display_values",
                     ref_value = "chips",
+                    retrigger_type = "*",
                     signed = true,
                     colour = G.C.CHIPS
                 }
