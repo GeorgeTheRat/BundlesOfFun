@@ -30,14 +30,18 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.hand and not context.end_of_round then
-            if context.other_card and card.ability.extra.amount > 0 then
-                card.ability.extra.amount = card.ability.extra.amount - 1
-                if SMODS.pseudorandom_probability(card, "bof_tomato", 1, card.ability.extra.odds) then
-                    card:juice_up()
-                    context.other_card:juice_up()
-                    context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomatoes")))
-                end
+        if
+            context.individual and
+            context.cardarea == G.hand and
+            card.ability.extra.amount > 0 and
+            not context.end_of_round and
+            not next(SMODS.get_enhancements(context.other_card))
+        then
+            card.ability.extra.amount = card.ability.extra.amount - 1
+            if SMODS.pseudorandom_probability(card, "bof_tomatoes", 1, card.ability.extra.odds) then
+                card:juice_up()
+                context.other_card:juice_up()
+                context.other_card:set_ability(pseudorandom_element({ "m_mult", "m_lucky" }, pseudoseed("bof_tomatoes")))
             end
         end
         if context.after and not context.blueprint then

@@ -28,7 +28,10 @@ BundlesOfFun.Joker {
     end,
     add_to_deck = function(self, card)
         card.sell_cost = G.GAME.bof_fish_bowl_sell_cost or card.sell_cost
+        card.ability.extra_value = (G.GAME.bof_fish_bowl_extra_value or card.ability.extra_value) + 1
+        card:set_cost()
         G.GAME.bof_fish_bowl_sell_cost = nil
+        G.GAME.bof_fish_bowl_extra_value = nil
     end,
     calculate = function(self, card, context)
         if context.end_of_round and context.main_eval and not context.blueprint then
@@ -48,11 +51,18 @@ BundlesOfFun.Joker {
                 }))
                 SMODS.calculate_effect({ message = localize("k_plus_fish"), colour = G.C.SET.Fish }, card)
             end
-            card.sell_cost = card.sell_cost - card.ability.extra.sell_cost_mod
-            return {
-                message = localize("k_val_down_ex"),
-                colour = G.C.RED
-            }
+            SMODS.scale_card(card, {
+                ref_table = card.ability,
+                ref_value = "extra_value",
+                scalar_table = card.ability.extra,
+                scalar_value = "sell_cost_mod",
+                operation = "-",
+                scaling_message = {
+                    message = localize("k_val_down_ex"),
+                    colour = G.C.RED
+                }
+            })
+            card:set_cost()
         end
     end,
     update = function(self, card)

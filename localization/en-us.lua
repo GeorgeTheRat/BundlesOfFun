@@ -188,8 +188,8 @@ return {
             j_bof_tomatoes = {
                 name = "Tomatoes",
                 text = {
-                    "The next {C:attention}#1#{} cards",
-                    "held in hand have a",
+                    "The next {C:attention}#1#{} {C:attention}unenhanced",
+                    "cards held in hand have a",
                     "{C:green}#2# in #3#{} chance of becoming",
                     "{C:attention}Mult Cards{} or {C:attention}Lucky Cards"
                 }

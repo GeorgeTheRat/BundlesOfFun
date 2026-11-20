@@ -31,6 +31,7 @@ BundlesOfFun.Joker {
         if context.end_of_round and context.main_eval and not context.blueprint then
             if SMODS.pseudorandom_probability(card, "j_bof_fish_bowl", 1, card.ability.extra.odds) then
                 G.GAME.bof_fish_bowl_sell_cost = card.sell_cost
+                G.GAME.bof_fish_bowl_extra_value = card.ability.extra_value
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.1,
@@ -71,11 +72,17 @@ BundlesOfFun.Joker {
                     end
                 }))
             else
-                card.sell_cost = card.sell_cost + card.ability.extra.sell_cost_mod
-                return {
-                    message = localize("k_val_up"),
-                    colour = G.C.MONEY
-                }
+                SMODS.scale_card(card, {
+                    ref_table = card.ability,
+                    ref_value = "extra_value",
+                    scalar_table = card.ability.extra,
+                    scalar_value = "sell_cost_mod",
+                    scaling_message = {
+                        message = localize("k_val_up"),
+                        colour = G.C.MONEY
+                    }
+                })
+                card:set_cost()
             end
         end
     end
