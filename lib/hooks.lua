@@ -283,6 +283,7 @@ function Game:start_run(arg)
     G.GAME.bof_scratch_off_shop_reroll_count = 0
     G.GAME.bof_vouchers_redeemed_this_ante = 0
     G.GAME.bof_current_ante = 1
+    G.GAME.bof_hands_played_last_ante = 0
     G.GAME.bof_octopus_triggered = nil
     G.GAME.bof_tiny_active = nil
     G.GAME.bof_tiny_scaled_ante = nil
@@ -469,7 +470,6 @@ function Blind:set_blind(blind, reset, silent)
     if not reset and BOF.nc(blind, "key") == "bl_bof_frequent" then
         G.GAME.bof_frequent_suit = BundlesOfFun.get_frequent_suit()
     end
-
     local ret = original_blind_set_blind(self, blind, reset, silent)
     if not reset and BOF.nc(blind, "key") then
         if blind.key == "bl_small" and G.GAME.bof_tiny_active then
@@ -490,6 +490,27 @@ function Blind:set_blind(blind, reset, silent)
         end
     end
     return ret
+end
+
+-- muddy joker: track hands played last ante
+local original_ease_ante = ease_ante
+function ease_ante(mod)
+    local current_ante = G.GAME.round_resets.ante or 1
+    local new_ante = current_ante + mod
+    if new_ante ~= current_ante then
+        G.GAME.bof_hands_played_last_ante = G.GAME.bof_hands_played_this_ante or 0
+        G.GAME.bof_hands_played_this_ante = 0
+        G.GAME.bof_current_ante = new_ante
+        local muddy_cards = SMODS.find_card("j_bof_muddy")
+        if muddy_cards then
+            for _, muddy in ipairs(muddy_cards) do
+                if muddy.ability and muddy.ability.extra then
+                    muddy.ability.extra.hands = G.GAME.bof_hands_played_last_ante or 0
+                end
+            end
+        end
+    end
+    return original_ease_ante(mod)
 end
 
 -- stress: no voucher restocks anywhere in the locked Ante (Voucher Tags still
@@ -668,6 +689,7 @@ G.FUNCS.evaluate_play = function(e)
     end
     return original_evaluate_play(e)
 end
+
 -- decay: hand cards cannot be dragged/reordered at all. set_ranks is vanilla's own
 -- pass that (re)grants drag to every hand card (its final else branch, since hand is
 -- neither deck/play/shop/consumeable) - it runs whenever the hand's composition/order

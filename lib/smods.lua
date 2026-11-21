@@ -270,6 +270,7 @@ SMODS.current_mod.calculate = function(self, context)
                 G.GAME.bof_played_fives = G.GAME.bof_played_fives + 1
             end
         end
+        G.GAME.bof_hands_played_this_ante = (G.GAME.bof_hands_played_this_ante or 0) + 1
     end
     if context.end_of_round and context.main_eval then
         G.GAME.current_round.bof_wooden_destroyed = 0

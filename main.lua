@@ -179,6 +179,7 @@ local files = {
             "cloudy",
             "synesthesiac",
             "strongman",
+            "muddy",
             "knight",
             "gelatinous",
             "pinhead"

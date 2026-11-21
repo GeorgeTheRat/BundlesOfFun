@@ -752,6 +752,14 @@ return {
                     }
                 }
             },
+            j_bof_muddy = {
+                name = "Muddy Joker",
+                text = {
+                    "{C:mult}+#1#{} Mult for every",
+                    "hand played {C:attention}last Ante",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
             -- Normalities
             j_bof_notebook = {
                 name = "Notebook",
@@ -1837,8 +1845,8 @@ return {
             bl_bof_wave = {
                 name = "The Wave",
                 text = {
-                    "Rightmost Joker becomes",
-                    "Pinned when last hand played"
+                    "Pin rightmost Joker",
+                    "when last hand played"
                 }
             },
             bl_bof_resistance = {
