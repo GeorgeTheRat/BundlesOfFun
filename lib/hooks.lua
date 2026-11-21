@@ -695,22 +695,19 @@ function G.FUNCS.sort_hand_suit(e)
     return original_sort_hand_suit(e)
 end
 
--- track voucher purchases for lottery ticket unlock
-local original_use_card = G.FUNCS.use_card
-function G.FUNCS.use_card(e, mute, nosave)
-    local card = e.config.ref_table
-    local result = original_use_card(e, mute, nosave)
-    if BOF.nc(card, "ability", "set") == "Voucher" and card.area == G.shop_vouchers then
+-- track voucher redeems for lottery ticket unlock
+local original_card_redeem = Card.redeem
+function Card:redeem()
+    if self.ability.set == "Voucher" then
+        G.GAME.bof_vouchers_redeemed_this_ante = (G.GAME.bof_vouchers_redeemed_this_ante or 0) + 1
         local current_ante = G.GAME.round_resets.ante or 1
         if current_ante ~= G.GAME.bof_current_ante then
-            G.GAME.bof_vouchers_redeemed_this_ante = 0
+            G.GAME.bof_vouchers_redeemed_this_ante = 1
             G.GAME.bof_current_ante = current_ante
         end
-        G.GAME.bof_vouchers_purchased = (G.GAME.bof_vouchers_purchased or 0) + 1
-        G.GAME.bof_vouchers_redeemed_this_ante = (G.GAME.bof_vouchers_redeemed_this_ante or 0) + 1
         check_for_unlock({ bof_vouchers_redeemed_this_ante = G.GAME.bof_vouchers_redeemed_this_ante })
     end
-    return result
+    return original_card_redeem(self)
 end
 
 -- track booster skips for shoplifting unlock
