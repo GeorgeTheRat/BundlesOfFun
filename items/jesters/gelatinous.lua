@@ -26,6 +26,12 @@ BundlesOfFun.Joker {
         if context.before then
             if next(context.poker_hands["Two Pair"]) then
                 card.ability.extra.count = card.ability.extra.count + 1
+                if card.ability.extra.count == card.ability.extra.req - 1 then
+                    local eval = function()
+                        return card.ability.extra.count == card.ability.extra.req - 1
+                    end
+                    juice_card_until(card, eval, true)
+                end
                 if card.ability.extra.count >= card.ability.extra.req then
                     card.ability.extra.count = 0
                     if BOF.nc(G.hand, "cards") then
@@ -110,5 +116,28 @@ BundlesOfFun.Joker {
                 card.ability.extra.count = 0
             end
         end
+    end,
+    joker_display_def = function()
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.ability.extra", ref_value = "count" },
+                { text = "/", colour = G.C.UI.TEXT_INACTIVE },
+                { ref_table = "card.ability.extra", ref_value = "req" },
+                { text = ")", colour = G.C.UI.TEXT_INACTIVE }
+            },
+            calc_function = function(card)
+                card.joker_display_values.is_ready = card.ability.extra.count == card.ability.extra.req - 1
+            end,
+            style_function = function(card, text, reminder_text, extra)
+                local colour = card.joker_display_values.is_ready and G.C.GREEN or G.C.UI.TEXT_INACTIVE
+                for i = 2, 4 do
+                    local node = BOF.nc(reminder_text, "children", i)
+                    if BOF.nc(node, "config") then
+                        node.config.colour = colour
+                    end
+                end
+            end
+        }
     end
 }
