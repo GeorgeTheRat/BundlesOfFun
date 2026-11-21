@@ -704,6 +704,23 @@ return {
                     "{C:inactive}(Currently {C:money}$#1#{C:inactive})"
                 }
             },
+            j_bof_synesthesiac = {
+                name = "Synesthesiac",
+                text = {
+                    "This Joker gives {C:mult}+#1#{} Mult",
+                    "for every {C:attention}5{} played before",
+                    "{C:attention}obtaining{} this Joker",
+                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+                }
+            },
+            j_bof_strongman = {
+                name = "Strongman",
+                text = {
+                    "When a card {C:attention}changes{} rank,",
+                    "all cards in {C:attention}deck{} with the {C:attention}new",
+                    "{C:attention}rank{} permanently gain {C:mult}+#1#{} Mult"
+                }
+            },
             j_bof_knight = {
                 name = "Knight",
                 text = {
@@ -733,15 +750,6 @@ return {
                         "Retrigger played cards to",
                         "the {C:attention}left{} of {C:attention}Bonus Cards"
                     }
-                }
-            },
-            j_bof_synesthesiac = {
-                name = "Synesthesiac",
-                text = {
-                    "This Joker gives {C:mult}+#1#{} Mult",
-                    "for every {C:attention}5{} played before",
-                    "{C:attention}obtaining{} this Joker",
-                    "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
                 }
             },
             -- Normalities

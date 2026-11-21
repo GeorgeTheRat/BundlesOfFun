@@ -177,10 +177,11 @@ local files = {
             "matey",
             "jouster",
             "cloudy",
+            "synesthesiac",
+            "strongman",
             "knight",
             "gelatinous",
-            "pinhead",
-            "synesthesiac"
+            "pinhead"
         }, directory = "items/jesters/"
     },
     artisans = {

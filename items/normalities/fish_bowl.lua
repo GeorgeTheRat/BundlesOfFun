@@ -85,5 +85,8 @@ BundlesOfFun.Joker {
                 card:set_cost()
             end
         end
+    end,
+    in_pool = function(self, args)
+        return not next(SMODS.find_card("j_bof_dead_fish_bowl"))
     end
 }
