@@ -3,7 +3,7 @@ BundlesOfFun.Joker {
     name = "3D-Printed Joker",
     bundle = "jesters",
     pos = { x = 11, y = 3 },
-    attributes = { "mult", "chips" },
+    attributes = { "copying", "rarity" },
     cost = 10,
     rarity = 3,
     blueprint_compat = true,

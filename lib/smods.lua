@@ -127,21 +127,34 @@ SMODS.DrawStep {
     func = function(self, layer)
         if self.pinned and G.shared_stickers.pinned then
             G.shared_stickers.pinned.role.draw_major = self
-            G.shared_stickers.pinned:draw_shader('dissolve', nil, nil, nil, self.children.center)
-            G.shared_stickers.pinned:draw_shader('voucher', nil, self.ARGS.send_to_shader, nil, self.children.center)
+            G.shared_stickers.pinned:draw_shader("dissolve", nil, nil, nil, self.children.center)
+            G.shared_stickers.pinned:draw_shader("voucher", nil, self.ARGS.send_to_shader, nil, self.children.center)
         end
     end,
-    conditions = { vortex = false, facing = 'front' },
+    conditions = { vortex = false, facing = "front" },
 }
 
--- for jokers that scale its scaling effect
+-- for jokers that work with dark shade
 SMODS.Attribute({
-    key = "scale_scaling"
+    key = "dark",
+    keys = {
+        "j_blackboard"
+    }
 })
 
 -- for jokers that do stuff with fish
 SMODS.Attribute({
     key = "fish"
+})
+
+-- for jokers that work with light shade
+SMODS.Attribute({
+    key = "light",
+})
+
+-- for jokers that scale its scaling effect
+SMODS.Attribute({
+    key = "scale_scaling"
 })
 
 -- for jokers that do stuff with stickers (just notebook)

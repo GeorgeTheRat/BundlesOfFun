@@ -10,7 +10,7 @@ BundlesOfFun.Joker {
 		},
 	},
 	pos = { x = 2, y = 2 },
-    attributes = { "economy", "diamonds", "hearts" },
+    attributes = { "economy", "diamonds", "hearts", "light" },
 	cost = 6,
 	rarity = 1,
 	blueprint_compat = false,
@@ -51,5 +51,25 @@ BundlesOfFun.Joker {
         local dollars = card.ability.extra.dollars
         card.ability.extra.dollars = 1
         return dollars
+    end,
+    joker_display_def = function()
+        return {
+            text = {
+                {
+                    ref_table = "card.joker_display_values",
+                    ref_value = "dollars",
+                    signed = "$",
+                    retrigger_type = "*",
+                    colour = G.C.MONEY
+                }
+            },
+            reminder_text = {
+                { ref_table = "card.joker_display_values", ref_value = "localized_text" },
+            },
+            calc_function = function(card)
+                card.joker_display_values.dollars = card.ability.extra.dollars
+                card.joker_display_values.localized_text = "(" .. localize("k_round") .. ")"
+            end
+        }
     end
 }

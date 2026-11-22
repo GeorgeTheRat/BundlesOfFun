@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "jesters",
     config = { extra = { dollars = 1 } },
     pos = { x = 5, y = 1 },
-    attributes = { "economy", "spades", "clubs" },
+    attributes = { "economy", "spades", "clubs", "dark" },
     cost = 6,
     rarity = 1,
     blueprint_compat = true,
