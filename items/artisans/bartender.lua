@@ -50,7 +50,7 @@ BundlesOfFun.Joker {
                 if juice then
                     return {
                         message = localize("k_upgrade_ex"),
-                        colour = G.C.BLUE
+                        colour = G.C.CHIPS
                     }
                 end
             end

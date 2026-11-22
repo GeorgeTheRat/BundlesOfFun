@@ -57,7 +57,7 @@ BundlesOfFun.Joker {
             end
             return {
                 message = localize("k_upgrade_ex"),
-                colour = G.C.BLUE
+                colour = G.C.CHIPS
             }
         end
         if context.joker_main then

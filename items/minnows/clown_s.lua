@@ -38,7 +38,7 @@ BundlesOfFun.Consumable {
                 }))
                 return {
                     message = localize("k_plus_joker"),
-                    colour = G.C.BLUE
+                    colour = G.C.RARITY[1]
                 }
             end
         end

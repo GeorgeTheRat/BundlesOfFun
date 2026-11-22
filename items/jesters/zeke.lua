@@ -20,11 +20,13 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.selling_card and BOF.nc(context, "card", "ability", "set") == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
-            local rarity = 1
-            while rarity == 1 or rarity == 4 do
+            local rarity = SMODS.poll_rarity("Joker", "bof_zeke")
+            local attempts = 0
+            while rarity == 1 and attempts < 100 do
+                attempts = attempts + 1
                 rarity = SMODS.poll_rarity("Joker", "bof_zeke")
             end
-            if type(rarity) == "number" and rarity > 1 and rarity < 4 then
+            if type(rarity) == "number" then
                 local rarity_names = { [2] = "Uncommon", [3] = "Rare" }
                 rarity = rarity_names[rarity]
             end
@@ -44,7 +46,7 @@ BundlesOfFun.Joker {
                 }))
                 return {
                     message = localize("k_plus_joker"),
-                    colour = G.C.RARITY[rarity] or G.C.FILTER
+                    colour = G.C.RARITY[rarity] or G.C.BLUE
                 }
             end
         end
