@@ -34,17 +34,26 @@ BundlesOfFun.Joker {
                 end
             end
             if crowns >= card.ability.extra.amount then
-                local suits = {}
+                local regular_suits = {}
+                local wild_count = 0
                 for _, hand_card in ipairs(G.hand.cards) do
                     if BOF.nc(hand_card.base, "suit") and not hand_card.no_suit then
-                        suits[hand_card.base.suit] = true
+                        if BOF.nc(BOF.nc(hand_card, "config", "center"), "any_suit") then
+                            wild_count = wild_count + 1
+                        else
+                            regular_suits[hand_card.base.suit] = true
+                        end
                     end
                 end
-                local unique_suits = 0
-                for _ in pairs(suits) do
-                    unique_suits = unique_suits + 1
+                local unique_regular_suits = 0
+                for _ in pairs(regular_suits) do
+                    unique_regular_suits = unique_regular_suits + 1
                 end
-                local juice = false
+                local total_suits = 0
+                for _ in pairs(SMODS.Suits) do
+                    total_suits = total_suits + 1
+                end
+                local unique_suits, juice = math.min(unique_regular_suits + wild_count, total_suits)
                 for _, played_card in ipairs(context.full_hand) do
                     if played_card:is_suit("paperback_Crowns") then
                         played_card.ability.perma_paperback_plus_odds = (played_card.ability.perma_paperback_plus_odds or 0) + unique_suits * card.ability.extra.prob_bonus
