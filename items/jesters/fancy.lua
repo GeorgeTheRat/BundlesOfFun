@@ -14,8 +14,9 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-			-- on the sixth day of christmas, my true love gave to me
-			local six_geese_a_laying = context.blueprint_card or card
+			-- on the seventh day of christmas, my true love gave to me
+			local seven_swans_a_swimming = context.blueprint_card or card
+			-- six_geese_a_laying
 			-- five_gold_rings
 			-- four_calling_birds
 			-- three_french_hens
@@ -27,7 +28,7 @@ BundlesOfFun.Joker {
                     func = function()
                         add_tag(Tag(tag_key))
                         play_sound("generic1")
-                        six_geese_a_laying:juice_up(0.3, 0.5)
+                        seven_swans_a_swimming:juice_up(0.3, 0.5)
                         G.E_MANAGER:add_event(Event({
                             func = function()
                                 for i = 1, #G.GAME.tags do

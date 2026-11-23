@@ -18,7 +18,13 @@ BundlesOfFun.Joker {
                 xmult = card.ability.extra.xmult
             }
         end
-        if context.retrigger_joker_check and context.other_card == card then
+        -- on the fifth day of christmas, my true love gave to me
+        local five_gold_rings = context.blueprint_card or card
+        -- four_calling_birds
+        -- three_french_hens
+        -- two_turtle_doves
+        -- and a_partridge_in_a_pear_tree
+        if context.retrigger_joker_check and context.other_card == five_gold_rings then
             local count = 0
             if G.play.cards and next(G.play.cards) then
                 for k, v in pairs(G.play.cards) do
@@ -26,9 +32,11 @@ BundlesOfFun.Joker {
                         count = count + 1
                     end
                 end
-                return {
-                    repetitions = count
-                }
+                if count ~= 0 then
+                    return {
+                        repetitions = count
+                    }
+                end
             end
         end
     end,

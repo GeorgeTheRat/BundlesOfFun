@@ -9,9 +9,15 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)
-        if context.retrigger_joker_check and BOF.nc(context.other_context, "joker_main") and BOF.nc(context.other_card, "ability") and context.other_card.ability.set == "Fish" then
-            -- on the ninth day of christmas, my true love gave to me
-            local nine_ladies_dancing = context.blueprint_card or card
+        if
+            context.retrigger_joker_check and
+            BOF.nc(context.other_context, "joker_main") and
+            BOF.nc(context.other_card, "ability", "set") and
+            context.other_card.ability.set == "Fish"
+        then
+            -- on the tenth day of christmas, my true love gave to me
+            local ten_lords_a_leaping = context.blueprint_card or card
+            -- nine_ladies_dancing
             -- eight_maids_a_milking
             -- seven_swans_a_swimming
             -- six_geese_a_laying
@@ -24,7 +30,7 @@ BundlesOfFun.Joker {
                 repetitions = 1,
                 message = localize("k_again_ex"),
                 no_retrigger_juice = true,
-                retrigger_juice = nine_ladies_dancing
+                retrigger_juice = ten_lords_a_leaping
             }
         end
     end,

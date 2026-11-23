@@ -14,8 +14,9 @@ BundlesOfFun.Joker {
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			-- on the seventh day of christmas, my true love gave to me
-			local seven_swans_a_swimming = context.blueprint_card or card
+			-- on the eighth day of christmas, my true love gave to me
+			local eight_maids_a_milking = context.blueprint_card or card
+			-- seven_swans_a_swimming
 			-- six_geese_a_laying
 			-- five_gold_rings
 			-- four_calling_birds
@@ -27,7 +28,7 @@ BundlesOfFun.Joker {
 			delay = 0.4,
 			func = function()
 				play_sound("tarot1")
-				seven_swans_a_swimming:juice_up(0.3, 0.5)
+				eight_maids_a_milking:juice_up(0.3, 0.5)
 				return true
 			end
 			}))

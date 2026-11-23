@@ -39,8 +39,9 @@ BundlesOfFun.Joker {
                 if not context.blueprint then
                     card.ability.extra.uses = card.ability.extra.uses - 1
                 end
-                -- on the eighth day of christmas, my true love gave to me
-                local eight_maids_a_milking = context.blueprint_card or card
+                -- on the ninth day of christmas, my true love gave to me
+                local nine_ladies_dancing = context.blueprint_card or card
+                -- eight_maids_a_milking
                 -- seven_swans_a_swimming
                 -- six_geese_a_laying
                 -- five_gold_rings
@@ -55,7 +56,7 @@ BundlesOfFun.Joker {
                         vars = { card.ability.extra.hands }
                     }),
                     colour = G.C.BLUE
-                }, eight_maids_a_milking)
+                }, nine_ladies_dancing)
             else
                 G.STATE = G.STATES.NEW_ROUND
             end
