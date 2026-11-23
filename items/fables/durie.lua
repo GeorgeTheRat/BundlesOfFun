@@ -38,7 +38,7 @@ BundlesOfFun.Joker {
                 end
             end
         end
-        if context.selling_card or (context.joker_type_destroyed and context.card == card) then
+        if context.selling_self or (context.joker_type_destroyed and context.card == card) then
             for _, c in ipairs(G.hand.cards) do
                 if BOF.nc(c, "edition", "negative") then
                     G.E_MANAGER:add_event(Event({
