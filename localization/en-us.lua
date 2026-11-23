@@ -168,8 +168,8 @@ return {
                     "than {C:attention}#3#{} Discard#<s>3# remaining"
                 }
             },
-            j_bof_koshary = {
-                name = "Koshary",
+            j_bof_waffles = {
+                name = "Waffles",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult, decreases",
                     "by {C:white,X:mult}X#2#{} Mult if played",

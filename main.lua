@@ -124,7 +124,7 @@ local files = {
             "melon",
             "mango",
             "mliko",
-            "koshary"
+            "waffles"
 		}, directory = "items/appetizers/"
     },
     jesters = {
@@ -179,10 +179,10 @@ local files = {
             "cloudy",
             "synesthesiac",
             "strongman",
-            "muddy",
             "knight",
             "gelatinous",
-            "pinhead"
+            "pinhead",
+            "muddy"
         }, directory = "items/jesters/"
     },
     artisans = {
