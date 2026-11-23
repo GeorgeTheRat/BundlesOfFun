@@ -15,6 +15,7 @@ BundlesOfFun.Blind {
 
         if context.blind_defeated or context.end_of_round then
             G.GAME.bof_tiny_active = true
+            BundlesOfFun.activate_blind_pool_multiplier("bl_small", 1.5, "bof_tiny_small")
         end
     end
 }

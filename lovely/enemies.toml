@@ -71,7 +71,7 @@ end
 '''
 
 # hide the skip button (and its reward box) for blinds made unskippable by
-# tiny/particle; delegates to BundlesOfFun.blind_skip_ui defined in lib/hooks.lua
+# tiny/particle/air; delegates to BundlesOfFun.blind_skip_ui defined in lib/hooks.lua
 [[patches]]
 [patches.pattern]
 target = "functions/UI_definitions.lua"
@@ -137,13 +137,7 @@ G.GAME.round_resets.blind_choices.Boss = get_new_boss()
 payload = '''
 -- bof patch
 local par = G.blind_select_opts.boss.parent
-local bof_air_was_active = BundlesOfFun.air_active()
 G.GAME.round_resets.blind_choices.Boss = get_new_boss()
-if G.GAME.round_resets.blind_choices.Boss ~= "bl_bof_air" then
-    G.GAME.bof_air_active_ante = nil
-end
-if BundlesOfFun.refresh_air_blinds(bof_air_was_active) then
-    BundlesOfFun.juice_air_blind_scores()
-end
+BundlesOfFun.refresh_air_blinds(G.GAME.round_resets.blind_choices.Boss)
 -- patch end
 '''

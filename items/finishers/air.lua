@@ -11,10 +11,6 @@ BundlesOfFun.Blind {
 	boss_colour = HEX("97c9d4"),
 	set_blind = function(self, reset, silent)
 		if reset then return end
-		local was_active = BundlesOfFun.air_active()
-		G.GAME.bof_air_active_ante = G.GAME.round_resets.ante
-		BundlesOfFun.refresh_air_blinds(was_active)
-		BundlesOfFun.juice_air_blind_scores()
-		BundlesOfFun.air_activation_sound()
+		BundlesOfFun.refresh_air_blinds("bl_bof_air")
 	end
 }

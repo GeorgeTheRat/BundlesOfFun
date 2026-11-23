@@ -97,29 +97,23 @@ BundlesOfFun.Joker {
                 end
                 local reduction_mult = (1 - card.ability.extra.blind_reduction * 0.01) ^ #destroyed
                 local blind, blind_type = G.GAME.blind, nil
-                if SMODS.find_mod("Cold-Beans") and Colonparen and Colonparen.get_blind_type then
-                    blind_type = Colonparen.get_blind_type(blind)
-                else
-                    local b_key = BOF.nc(blind, "config", "blind", "key")
-                    if b_key == "bl_small" or blind.name == "Small Blind" then
-                        blind_type = "Small"
-                    elseif b_key == "bl_big" or blind.name == "Big Blind" then
-                        blind_type = "Big"
-                    elseif BOF.nc(blind.config, "blind", "boss") then
-                        blind_type = "Boss"
-                    end
+                local b_key = BOF.nc(blind, "config", "blind", "key")
+                if b_key == "bl_small" or blind.name == "Small Blind" then
+                    blind_type = "Small"
+                elseif b_key == "bl_big" or blind.name == "Big Blind" then
+                    blind_type = "Big"
+                elseif BOF.nc(blind.config, "blind", "boss") then
+                    blind_type = "Boss"
                 end
                 if blind_type then
                     local pools = {
                         Small = { bl_small = G.P_BLINDS.bl_small },
-                        Big   = { bl_big = G.P_BLINDS.bl_big },
-                        Teeny = G.P_TEENY_BLINDS or {},
-                        CEO   = G.P_CEO_BLINDS or {}
+                        Big   = { bl_big = G.P_BLINDS.bl_big }
                     }
                     if blind_type == "Boss" then
                         pools.Boss = {}
                         for k, v in pairs(G.P_BLINDS) do
-                            if type(v) == "table" and (v.boss or BOF.nc(v.spawn_info, "showdown")) then
+                            if type(v) == "table" and v.boss then
                                 pools.Boss[k] = v
                             end
                         end
@@ -151,9 +145,13 @@ BundlesOfFun.Joker {
                     delay = 0.4,
                     func = function()
                         if G.GAME.blind then
-                            G.GAME.blind.mult = (G.GAME.blind.mult or 1) * reduction_mult
-                            G.GAME.blind.chips = get_blind_amount(G.GAME.round_resets.ante) * G.GAME.blind.mult * G.GAME.starting_params.ante_scaling
+                            G.GAME.blind.chips = G.GAME.blind.chips * reduction_mult
                             G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
+                            local base = get_blind_amount(G.GAME.round_resets.ante)
+                                * G.GAME.starting_params.ante_scaling
+                            if type(base) == "number" and base > 0 then
+                                G.GAME.blind.mult = G.GAME.blind.chips / base
+                            end
                         end
                         return true
                     end

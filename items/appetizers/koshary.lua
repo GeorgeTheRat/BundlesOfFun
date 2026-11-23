@@ -13,7 +13,7 @@ BundlesOfFun.Joker {
     attributes = { "xmult", "enhancements", "food" },
     cost = 5,
     rarity = 1,
-    blueprint_compat = false,
+    blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
     atlas = "placeholder",
@@ -27,7 +27,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after then
+        if context.after and not context.blueprint then
             local enhanced_count = 0
             for _, played_card in ipairs(context.full_hand) do
                 local enhancements = SMODS.get_enhancements(played_card)
