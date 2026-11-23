@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "normalities",
     pos = { x = 9, y = 5 },
     attributes = { "rank" },
-    cost = 4,
+    cost = 6,
     rarity = 1,
     blueprint_compat = true,
     atlas = "joker",
