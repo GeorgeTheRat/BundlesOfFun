@@ -1,3 +1,11 @@
+local function change_calendar_shop_size(card, amount)
+    if not G.GAME.shop then return false end
+    if amount == 0 then return true end
+    change_shop_size(amount)
+    card.ability.extra.shop_size_applied = (card.ability.extra.shop_size_applied or 0) + amount
+    return true
+end
+
 BundlesOfFun.Joker {
     key = "calendar",
     name = "Calendar",
@@ -24,23 +32,31 @@ BundlesOfFun.Joker {
         }
     end,
     add_to_deck = function(self, card)
-        card.ability.extra.og_shop_size = card.ability.extra.shop_size
+        card.ability.extra.og_shop_size = card.ability.extra.og_shop_size or card.ability.extra.shop_size
+        card.ability.extra.shop_size_applied = card.ability.extra.shop_size_applied or 0
         G.E_MANAGER:add_event(Event({
             func = function()
-                change_shop_size(card.ability.extra.shop_size)
+                change_calendar_shop_size(card, card.ability.extra.shop_size)
                 return true
             end
         }))
     end,
     calculate = function(self, card, context)
         if context.modify_final_cashout and card.ability.extra.shop_ended then
-            change_shop_size(card.ability.extra.shop_size)
-            card.ability.extra.shop_ended = nil
+            local target_size = card.ability.extra.og_shop_size or card.ability.extra.shop_size
+            local applied_size = card.ability.extra.shop_size_applied or 0
+            if change_calendar_shop_size(card, target_size - applied_size) then
+                card.ability.extra.shop_ended = nil
+            end
         end
         if context.buying_card and context.card ~= card and card.ability.extra.shop_size > 0 then
+            local size_change = math.min(
+                -card.ability.extra.shop_size_mod,
+                (card.ability.extra.shop_size_mod - card.ability.extra.shop_size) + 1
+            )
             G.E_MANAGER:add_event(Event({
                 func = function()
-                    change_shop_size(math.min(-card.ability.extra.shop_size_mod, (card.ability.extra.shop_size_mod - card.ability.extra.shop_size) + 1))
+                    change_calendar_shop_size(card, size_change)
                     return true
                 end
             }))
@@ -66,7 +82,7 @@ BundlesOfFun.Joker {
     remove_from_deck = function(self, card)
         G.E_MANAGER:add_event(Event({
             func = function()
-                change_shop_size(-card.ability.extra.shop_size)
+                change_calendar_shop_size(card, -(card.ability.extra.shop_size_applied or 0))
                 return true
             end
         }))
