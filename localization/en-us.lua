@@ -1024,8 +1024,8 @@ return {
             j_bof_taillefer = {
                 name = "Taillefer",
                 text = {
-                    "Fill {C:attention}consumable slots",
-                    "with random {C:spectral}Spectral{} cards",
+                    "Fill {C:attention}consumable slots{} with",
+                    "random {C:spectral}Spectral{} cards",
                     "when {C:attention}Blind{} is selected,",
                     "{C:attention}+#1#{} consumable slot"
                 },
