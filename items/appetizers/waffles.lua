@@ -9,14 +9,14 @@ BundlesOfFun.Joker {
             enhanced_req = 3,
         }
     },
-    -- pos = { x = 14, y = 0 },
+    pos = { x = 14, y = 0 },
     attributes = { "xmult", "enhancements", "food" },
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
