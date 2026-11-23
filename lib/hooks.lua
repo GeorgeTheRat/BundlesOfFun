@@ -1154,7 +1154,7 @@ SMODS.Joker:take_ownership("perkeo", {
                     end
                 }))
                 -- on the twelfth day of christmas, my true love gave to me
-                local twelve = context.blueprint_card or card
+                local twelve_drummers_drumming = context.blueprint_card or card
                 -- eleven_pipers_piping
                 -- ten_lords_a_leaping
                 -- nine_ladies_dancing
@@ -1166,7 +1166,7 @@ SMODS.Joker:take_ownership("perkeo", {
                 -- three_french_hens
                 -- two_turtle_doves
                 -- and a_partridge_in_a_pear_tree
-                SMODS.calculate_effect({ message = localize("k_duplicated_ex") }, twelve)
+                SMODS.calculate_effect({ message = localize("k_duplicated_ex") }, twelve_drummers_drumming)
                 return nil, true
             else
                 return true
