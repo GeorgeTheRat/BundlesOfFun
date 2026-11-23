@@ -351,8 +351,8 @@ return {
             j_bof_jim = {
                 name = "Slim Jim",
                 text = {
-                    "{C:blue}+#1#{} hand per round",
-                    "{C:red}+#2#{} discard each round",
+                    "{C:blue}+#1#{} hand#<s>1# per round",
+                    "{C:red}+#2#{} discard#<s>2# each round",
                     "{C:attention}#3#{} hand size"
                 }
             },
