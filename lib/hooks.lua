@@ -1292,9 +1292,6 @@ end
 -- i hate postman.
 local original_align_cards = CardArea.align_cards
 function CardArea:align_cards(...)
-    if self.cards == nil then
-        return
-    end
     local result = original_align_cards(self, ...)
     if self == G.hand
         and next(SMODS.find_card("j_bof_postman"))
@@ -1310,9 +1307,6 @@ end
 
 local original_parse_highlighted = CardArea.parse_highlighted
 function CardArea:parse_highlighted(...)
-    if self.cards == nil then
-        return
-    end
     if self == G.hand and next(SMODS.find_card("j_bof_postman")) and #self.highlighted > 0 then
         local postman_suits = { "Spades", "Hearts", "Clubs", "Diamonds" }
         local hand_index = {}
