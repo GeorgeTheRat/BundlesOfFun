@@ -31,7 +31,7 @@ BundlesOfFun.Joker {
                 rarity = rarity_names[rarity]
             end
             if #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit then
-                G.GAME.joker_buffer = G.GAME.joker_buffer + 1
+                G.GAME.joker_buffer = (G.GAME.joker_buffer or 0) + 1
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         local new_card = SMODS.add_card {
@@ -40,7 +40,7 @@ BundlesOfFun.Joker {
                             key_append = "bof_zeke"
                         }
                         new_card:start_materialize()
-                        G.GAME.joker_buffer = 0
+                        G.GAME.joker_buffer = math.max(0, G.GAME.joker_buffer - 1)
                         return true
                     end
                 }))

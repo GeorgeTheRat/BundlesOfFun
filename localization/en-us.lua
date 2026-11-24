@@ -111,8 +111,156 @@ return {
             j_bof_grapes = {
                 name = "Grapes",
                 text = {
-                    "{C:chips}+#1#{} Chip#<s>1#, {C:mult}+#2#{} Mult, {C:white,X:mult}X#3#{} Mult",
-                    "{C:red}Destroyed{} when {C:attention}Boss Blind{} is defeated"
+                    { "{C:chips}+#1#{} Chip#<s>1#" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_chips = {
+                name = "Grapes",
+                text = {
+                    { "{C:chips}+#1#{} Chip#<s>1#" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_mult = {
+                name = "Grapes",
+                text = {
+                    { "{C:mult}+#2#{} Mult" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_xmult = {
+                name = "Grapes",
+                text = {
+                    { "{C:white,X:mult}X#3#{} Mult" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_probability = {
+                name = "Grapes",
+                text = {
+                    {
+                        "Doubles all {C:attention}listed",
+                        "{C:green,E:1,s:1.1}probabilities",
+                        "{C:inactive}(ex: {C:green}1 in 3{C:inactive} -> {C:green}2 in 3{C:inactive})"
+                    },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_spectral = {
+                name = "Grapes",
+                text = {
+                    {
+                        "Create a {C:spectral}Spectral{} card",
+                        "when {C:attention}Blind{} is selected"
+                    },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_balance = {
+                name = "Grapes",
+                text = {
+                    {
+                        "Balance {C:white,X:plasma}#4#%{} of",
+                        "{C:chips}Chips{} and {C:mult}Mult"
+                    },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_shop = {
+                name = "Grapes",
+                text = {
+                    { "{C:attention}+#5#{} shop slot#<s>5#" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_tag = {
+                name = "Grapes",
+                text = {
+                    {
+                        "Create a random {C:attention}Tag",
+                        "when {C:attention}Blind{} is selected"
+                    },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_dollars = {
+                name = "Grapes",
+                text = {
+                    {
+                        "Earn {C:money}$#6#{} when",
+                        "hand is played"
+                    },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_hand_size = {
+                name = "Grapes",
+                text = {
+                    { "{C:attention}+#7#{} hand size" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_discard = {
+                name = "Grapes",
+                text = {
+                    { "{C:red}+#8#{} discard#<s>8#" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_hand = {
+                name = "Grapes",
+                text = {
+                    { "{C:blue}+#9#{} hand#<s>9#" },
+                    {
+                        "Effect {C:attention}changes",
+                        "at end of round"
+                    }
+                }
+            },
+            j_bof_grapes_self_destruct = {
+                name = "Grapes",
+                text = {
+                    {
+                        "{C:red,E:2}Self destructs",
+                        "when hand is played"
+                    }
                 }
             },
             j_bof_leek = {
@@ -122,6 +270,7 @@ return {
                     "{C:green,E:1}probabilities{} by {C:green}+#1#{},",
                     "decreases by {C:red}-#2#{} when",
                     "a {C:green}probability{} succeeds",
+                    "{C:inactive}(ex: {C:green}1 in 3{C:inactive} -> {C:green}4.9 in 3{C:inactive})",
                 }
             },
             j_bof_durian = {
@@ -1894,6 +2043,91 @@ return {
             }
         },
         Other = {
+            k_bof_grapes_next_chips = {
+                name = "Next Effect",
+                text = {
+                    "{C:chips}+#1#{} Chip#<s>1#"
+                }
+            },
+            k_bof_grapes_next_mult = {
+                name = "Next Effect",
+                text = {
+                    "{C:mult}+#2#{} Mult"
+                }
+            },
+            k_bof_grapes_next_xmult = {
+                name = "Next Effect",
+                text = {
+                    "{C:white,X:mult}X#3#{} Mult"
+                }
+            },
+            k_bof_grapes_next_probability = {
+                name = "Next Effect",
+                text = {
+                    "Doubles all {C:attention}listed",
+                    "{C:green,E:1,s:1.1}probabilities",
+                    "{C:inactive}(ex: {C:green}1 in 3{C:inactive} -> {C:green}2 in 3{C:inactive})"
+                }
+            },
+            k_bof_grapes_next_spectral = {
+                name = "Next Effect",
+                text = {
+                    "Create a {C:spectral}Spectral{} card",
+                    "when {C:attention}Blind{} is selected"
+                }
+            },
+            k_bof_grapes_next_balance = {
+                name = "Next Effect",
+                text = {
+                    "Balance {C:white,X:plasma}#4#%{} of",
+                    "{C:chips}Chips{} and {C:mult}Mult"
+                }
+            },
+            k_bof_grapes_next_shop = {
+                name = "Next Effect",
+                text = {
+                    "{C:attention}+#5#{} shop slot#<s>5#"
+                }
+            },
+            k_bof_grapes_next_tag = {
+                name = "Next Effect",
+                text = {
+                    "Create a random {C:attention}Tag",
+                    "when {C:attention}Blind{} is selected"
+                }
+            },
+            k_bof_grapes_next_dollars = {
+                name = "Next Effect",
+                text = {
+                    "Earn {C:money}$#6#{} when",
+                    "hand is played"
+                }
+            },
+            k_bof_grapes_next_hand_size = {
+                name = "Next Effect",
+                text = {
+                    "{C:attention}+#7#{} hand size"
+                }
+            },
+            k_bof_grapes_next_discard = {
+                name = "Next Effect",
+                text = {
+                    "{C:red}+#8#{} discard#<s>8#"
+                }
+            },
+            k_bof_grapes_next_hand = {
+                name = "Next Effect",
+                text = {
+                    "{C:blue}+#9#{} hand#<s>9#"
+                }
+            },
+            k_bof_grapes_next_self_destruct = {
+                name = "Next Effect",
+                text = {
+                    "{C:red,E:2}Self destructs",
+                    "when hand is played"
+                }
+            },
             p_bof_tackle_normal = {
                 name = "Tackle Pack",
                 text = {
@@ -1993,6 +2227,21 @@ return {
             k_bof_thrice_ex = "Thrice!",
             k_fish_q = "Fish?",
 
+            k_bof_grapes_change = "Effect Changed!",
+            k_bof_grapes_display_name_chips = "+Chips",
+            k_bof_grapes_display_name_mult = "+Mult",
+            k_bof_grapes_display_name_xmult = "XMult",
+            k_bof_grapes_display_name_probability = "Probability",
+            k_bof_grapes_display_name_spectral = "Spectral",
+            k_bof_grapes_display_name_balance = "Balance",
+            k_bof_grapes_display_name_shop = "Shop Slot",
+            k_bof_grapes_display_name_tag = "Tag",
+            k_bof_grapes_display_name_dollars = "+$",
+            k_bof_grapes_display_name_hand_size = "Hand Size",
+            k_bof_grapes_display_name_discard = "Discard",
+            k_bof_grapes_display_name_hand = "Hand",
+            k_bof_grapes_display_name_self_destruct = "Self Destruct",
+
             bl_bof_square = "Must contain 4 scoring cards",
             bl_bof_terminal = "Last scored rank is debuffed",
             bof_most_common_suit = "(most common suit in deck)",
@@ -2018,7 +2267,21 @@ return {
             a_bof_fool = "+#1# Fool",
             a_bof_fools = "+#1# Fools",
             a_bof_spectral = "+#1# Spectral",
-            a_bof_spectrals = "+#1# Spectrals"
+            a_bof_spectrals = "+#1# Spectrals",
+
+            a_bof_grapes_display_value_chips = "+#1#",
+            a_bof_grapes_display_value_mult = "+#1#",
+            a_bof_grapes_display_value_xmult = "X#1#",
+            a_bof_grapes_display_value_probability = "X2",
+            a_bof_grapes_display_value_spectral = "+1",
+            a_bof_grapes_display_value_balance = "#1#%",
+            a_bof_grapes_display_value_shop = "+#1#",
+            a_bof_grapes_display_value_tag = "+1",
+            a_bof_grapes_display_value_dollars = "+$#1#",
+            a_bof_grapes_display_value_hand_size = "+#1#",
+            a_bof_grapes_display_value_discard = "+#1#",
+            a_bof_grapes_display_value_hand = "+#1#",
+            a_bof_grapes_display_value_self_destruct = "!!"
         },
         shades = {
             Light = "Light",
