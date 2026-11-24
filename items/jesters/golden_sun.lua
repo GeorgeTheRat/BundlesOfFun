@@ -9,7 +9,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "joker",
     calculate = function(self, card, context)
-        if context.final_scoring_step then
+        if context.joker_main then
             G.E_MANAGER:add_event(Event({
                 func = function()
                     card:juice_up(0.3, 0.5)
