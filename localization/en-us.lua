@@ -334,8 +334,8 @@ return {
                         "{C:attention}discarded hand{} each round"
                     },
                     {
-                        "Halve {C:chips}Chips{} and {C:mult}Mult{} when",
-                        "calculating score for played hand"
+                        "Halve {C:chips}Chips{} and {C:mult}Mult",
+                        "when hand played"
                     }
                 }
             },
