@@ -11,7 +11,7 @@ BundlesOfFun.Joker {
     blueprint_compat = true,
     atlas = "placeholder",
     calculate = function(self, card, context)
-        if context.repetition then
+        if context.repetition and context.cardarea == G.play then
             return {
                 repetitions = (G.consumeables.config.card_limit or 0) - #(G.consumeables.cards or {})
             }
