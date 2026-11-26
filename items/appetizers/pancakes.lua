@@ -29,7 +29,7 @@ BundlesOfFun.Joker {
     calculate = function(self, card, context)
         if context.after and not context.blueprint then
             local enhanced_count = 0
-            for _, played_card in ipairs(context.full_hand) do
+            for _, played_card in ipairs(context.scoring_hand) do
                 local enhancements = SMODS.get_enhancements(played_card)
                 if next(enhancements) then
                     enhanced_count = enhanced_count + 1

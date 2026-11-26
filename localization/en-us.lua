@@ -321,7 +321,7 @@ return {
                 name = "Pancakes",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult, decreases",
-                    "by {C:white,X:mult}X#2#{} Mult if played",
+                    "by {C:white,X:mult}X#2#{} Mult if scoring",
                     "hand has {C:attention}fewer{} than",
                     "{C:attention}#3# Enhanced{} cards"
                 }

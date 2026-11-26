@@ -70,7 +70,7 @@ BundlesOfFun.Joker {
                 }
             })
         end
-        if context.ending_shop then
+        if context.ending_shop and card.ability.extra.shop_size ~= card.ability.extra.og_shop_size then
             SMODS.reset_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "shop_size",
