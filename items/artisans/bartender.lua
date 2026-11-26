@@ -5,7 +5,7 @@ BundlesOfFun.Joker {
     config = {
         extra = {
             amount = 5,
-            chips = 7
+            chips = 5
         }
     },
     pos = { x = 12, y = 4 },
