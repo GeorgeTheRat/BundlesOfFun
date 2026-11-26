@@ -2,16 +2,11 @@ BundlesOfFun.Joker {
     key = "gary",
     name = "Geezer Gary",
     bundle = "jesters",
-    config = {
-        extra = {
-            chips = 0,
-            chips_mod = nil
-        }
-    },
+    config = { extra = { chips = 0 } },
     pos = { x = 10, y = 1 },
     attributes = { "chips", "scaling", "joker" },
     cost = 6,
-    rarity = 1,
+    rarity = 2,
     blueprint_compat = true,
     perishable_compat = false,
     atlas = "joker",
