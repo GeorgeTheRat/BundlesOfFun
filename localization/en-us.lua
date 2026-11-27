@@ -321,7 +321,7 @@ return {
                 name = "Pancakes",
                 text = {
                     "{C:white,X:mult}X#1#{} Mult, decreases",
-                    "by {C:white,X:mult}X#2#{} Mult if scoring",
+                    "by {C:white,X:mult}X#2#{} Mult if played",
                     "hand has {C:attention}fewer{} than",
                     "{C:attention}#3# Enhanced{} cards"
                 }
@@ -469,9 +469,9 @@ return {
             j_bof_gary = {
                 name = "Geezer Gary",
                 text = {
-                    "This Joker gains {C:chips}+Chips",
-                    "equal to {C:attention}double{} the current",
-                    "{C:attention}Ante{} when a Joker is {C:attention}sold",
+                    "When a Joker is {C:attention}sold{},",
+                    "this Joker gains {C:attention}double",
+                    "its sell value as {C:chips}+Chips",
                     "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chip#<s>1#)"
                 }
             },

@@ -15,11 +15,12 @@ BundlesOfFun.Joker {
     end,
     calculate = function(self, card, context)
         if context.selling_card and context.card.ability.set == "Joker" and not context.blueprint then
-            card.ability.extra.chips_mod = (G.GAME.round_resets.ante or 1) * 2
             SMODS.scale_card(card, {
                 ref_table = card.ability.extra,
                 ref_value = "chips",
-                scalar_value = "chips_mod",
+                scalar_table = context.card,
+                scalar_value = "sell_cost",
+                scalar_factor = 2,
                 message_colour = G.C.CHIPS
             })
         end
